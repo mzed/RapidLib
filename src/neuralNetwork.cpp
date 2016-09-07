@@ -49,6 +49,7 @@ neuralNetwork::neuralNetwork(int num_inputs,
 */
 neuralNetwork::neuralNetwork(int num_inputs,
 			     std::vector<int> which_inputs,
+			     int num_hidden_layers,
 			     int num_hidden_nodes,
 			     std::vector<double> _weights,
 			     std::vector<double> w_hidden_output,
@@ -60,26 +61,12 @@ neuralNetwork::neuralNetwork(int num_inputs,
   numInputs = num_inputs;
   
   whichInputs = which_inputs;
+  numHiddenLayers = num_hidden_layers;
   numHiddenNodes = num_hidden_nodes;
   
-  //input neurons, including bias
-  //inputNeurons = new double[numInputs + 1];
-  for (int i=0; i < numInputs; ++i){
-    inputNeurons[i] = 0;
-  }
-  inputNeurons[numInputs] = 1;
-  
-  //hidden neurons, including bias
-  //hiddenNeurons = new double[numHiddenNodes + 1];
-  for (int i=0; i < numHiddenNodes; ++i){
-    hiddenNeurons[i] = 0;
-  }
-  hiddenNeurons[numHiddenNodes] = 1;
-  
   //winding up a long vector from javascript
-  int numLayers = 1;
   int count = 0;
-  for (int i = 0; i < numLayers; ++i) {
+  for (int i = 0; i < numHiddenLayers; ++i) {
     std::vector<std::vector<double>> layer;
     for (int j = 0; j < numHiddenNodes; ++j){
       std::vector<double> node;
@@ -97,9 +84,6 @@ neuralNetwork::neuralNetwork(int num_inputs,
   
   wHiddenOutput = w_hidden_output;
   
-  //inRanges = new double[numInputs];
-  //inBases = new double[numInputs];
-  
   for (int i = 0; i < numInputs; ++i) {
     inRanges.push_back((in_max[i] - in_min[i])/ 2);
 #ifdef DEBUG
@@ -114,9 +98,6 @@ neuralNetwork::neuralNetwork(int num_inputs,
 }
 
 neuralNetwork::~neuralNetwork() {
-  //delete[] inputNeurons;
-  //delete[] hiddenNeurons;
-
 	//	int maxNodes = std::max(numInputs, numHiddenNodes);
 	//	for (int i=0; i <= numInputs; ++i) {
 	//		for (int j=0; j <=maxNodes; ++j) {
@@ -131,15 +112,15 @@ neuralNetwork::~neuralNetwork() {
 }
 
 inline double neuralNetwork::activationFunction(double x) {
-	//sigmoid
-       if (x < -45) { //from weka, to combat overflow
-           x = 0;
-       } else if (x > 45) {
-           x = 1;
-       } else {
-           x = 1/(1 + exp(-x));
-       }
-       return x;
+  //sigmoid
+  if (x < -45) { //from weka, to combat overflow
+    x = 0;
+  } else if (x > 45) {
+    x = 1;
+  } else {
+    x = 1/(1 + exp(-x));
+  }
+  return x;
 }
 
 double neuralNetwork::processInput(std::vector<double> inputVector) {
@@ -150,9 +131,9 @@ double neuralNetwork::processInput(std::vector<double> inputVector) {
     printf("pattern %d = %f\n", h, inputVector[whichInputs[h]]);
 #endif
   }
-
+ 
   //set input layer
-  inputNeurons.clear();
+  std::vector<double> inputNeurons;
   for (int i = 0; i < numInputs; ++i) {
     inputNeurons.push_back((pattern[i] - inBases[i]) / inRanges[i]);
 #ifdef DEBUG
@@ -161,30 +142,44 @@ double neuralNetwork::processInput(std::vector<double> inputVector) {
 #endif
   }
   inputNeurons.push_back(1);
-
-  //calculate hidden layer
-  hiddenNeurons.clear();
-  for (int j=0; j < numHiddenNodes; ++j) {
-    hiddenNeurons.push_back(0);
-    for (int i = 0; i <= numInputs; ++i) {
-      hiddenNeurons[j] += inputNeurons[i] * weights[0][j][i];//FIXME: the order here is confusing
+  
+  //calculate hidden layers
+  std::vector<double> hiddenNeurons;
+  for (int i = 0; i < numHiddenLayers; ++i) {
+    std::vector<double> oldNeurons;
+    oldNeurons = hiddenNeurons;
+    hiddenNeurons.clear();
+    for (int j=0; j < numHiddenNodes; ++j) {
+      hiddenNeurons.push_back(0);
+      if (i == 0) {
+	for (int k = 0; k <= numInputs; ++k) {
+	  hiddenNeurons[j] += inputNeurons[k] * weights[0][j][k];
 #ifdef DEBUG
-      printf("inputNeuron %d = %f weight %f j %d\n", i, inputNeurons[i], weights[0][i][j], j);
+	  printf("inputN[%d] %f weight %f\n", k, inputNeurons[k], weights[i][j][k]);
+	  printf("hiddenNeurons[%d] = %f\n", j, hiddenNeurons[j]);
+#endif 
+	}
+      } else {
+	for (int k = 0; k <= numHiddenNodes; ++k) {
+	  hiddenNeurons[j] = oldNeurons[k] * weights [i][j][k];
+#ifdef DEBUG
+	  printf("oldNeurons[%d] %f weight %f\n", k, oldNeurons[k], weights[i][j][k]);
+	  printf("hiddenNeurons[%d] = %f\n", j, hiddenNeurons[j]);
 #endif
+	}
+      }
+      hiddenNeurons[j] = activationFunction(hiddenNeurons[j]);
     }
-#ifdef DEBUG
-    printf("pre-hiddenNeuron %d = %f\n", j, hiddenNeurons[j]);
-#endif
-    hiddenNeurons[j] = activationFunction(hiddenNeurons[j]);
-#ifdef DEBUG
-    printf("hiddenNeuron %d = %f\n", j, hiddenNeurons[j]);
-#endif
+    hiddenNeurons.push_back(1); //for bias weight
   }
-  hiddenNeurons.push_back(1);
   //calculate output
   double output = 0;
   for (int k=0; k <= numHiddenNodes; ++k){
     output += hiddenNeurons[k] * wHiddenOutput[k];
+#ifdef DEBUG
+    printf("hidden Neuron %f - weight %f\n", hiddenNeurons[k], wHiddenOutput[k]);
+    printf("summing output: %f\n", output);
+#endif
   }
   output = (output * outRange) + outBase;
 #ifdef DEBUG

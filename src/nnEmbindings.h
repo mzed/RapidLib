@@ -15,7 +15,7 @@ EMSCRIPTEN_BINDINGS(nn_module) {
 
    class_<neuralNetwork>("neuralNetwork")
 
-     .constructor<int, std::vector<int>, int, std::vector<double>, std::vector<double>, std::vector<double>, std::vector<double>, double, double>()
+     .constructor<int, std::vector<int>, int, int, std::vector<double>, std::vector<double>, std::vector<double>, std::vector<double>, double, double>()
      //.constructor<int, std::vector<int>, int, std::vector<double>, std::vector<double>>()
      .function("processInput", &neuralNetwork::processInput)
      ;
