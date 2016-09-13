@@ -23,6 +23,7 @@ rapidMix.Regression = function () {
                 this.created = false;
                 this.numOutputs = arguments[1];
                 //create a model set with one model per output
+                console.log("Sorry, haven't implemented multiple outputs");
             }
             break;
         default:
@@ -90,7 +91,7 @@ rapidMix.Classification = function () {
             }
             this.numOutputs = arguments[1];
             if (arguments[1] === 1) {
-                this.model = new rapidMix.knnClassification(this.numInputs, whichInputs, neighbours, 0, 1);
+                this.model = new rapidMix.knnClassification(this.numInputs, whichInputs, neighbours, 1);
                 this.created = true;
             }
             break;
@@ -134,7 +135,7 @@ rapidMix.Classification.prototype = {
                 for (let i = 0; i < this.numInputs; ++i) {
                     whichInputs.push_back(i);
                 }
-                this.model = new rapidMix.knnClassification(this.numInputs, whichInputs, neighbours, 0, 1);
+                this.model = new rapidMix.knnClassification(this.numInputs, whichInputs, neighbours, 1);
                 this.created = true;
                 for (let i = 0; i < trainingSet.length; ++i) {
                     let features = new rapidMix.VectorDouble();

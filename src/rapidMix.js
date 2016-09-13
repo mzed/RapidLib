@@ -10,12 +10,12 @@ rapidMix.VectorNeighbour = Module.VectorNeighbour;
 rapidMix.knnClassification = Module.knnClassification;
 rapidMix.neuralNetwork = Module.neuralNetwork;
 
-rapidMix.modelSet = function() {
+rapidMix.ModelSet = function() {
     console.log("creating model set");
     this.myModelSet = [];
 };
 
-rapidMix.modelSet.prototype.loadJSON = function (url) {
+rapidMix.ModelSet.prototype.loadJSON = function (url) {
     var that = this;
     var request = new XMLHttpRequest();
     request.open("GET", url, true);
@@ -40,7 +40,7 @@ rapidMix.modelSet.prototype.loadJSON = function (url) {
                         }
                     }
 
-                    var myKnn = new rapidMix.knnClassification(numInputs, whichInputs, neighbours, numExamples, k, numClasses);
+                    var myKnn = new rapidMix.knnClassification(numInputs, whichInputs, neighbours, k);
                     value.examples.forEach(function (value) {
                         var features = new rapidMix.VectorDouble();
                         for (var i = 0; i < numInputs; ++i) {
@@ -113,17 +113,17 @@ rapidMix.modelSet.prototype.loadJSON = function (url) {
     request.send(null);
 };
 
-rapidMix.modelSet.prototype.addNNModel = function (model) {
+rapidMix.ModelSet.prototype.addNNModel = function (model) {
     console.log('Adding NN model');
     this.myModelSet.push(model);
 };
 
-rapidMix.modelSet.prototype.addkNNModel = function (model) {
+rapidMix.ModelSet.prototype.addkNNModel = function (model) {
     console.log('Adding kNN model');
     this.myModelSet.push(model);
 };
 
-rapidMix.modelSet.prototype.processInput = function (input) {
+rapidMix.ModelSet.prototype.processInput = function (input) {
     var modelSetInput = new rapidMix.VectorDouble();
     for (var i = 0; i < input.length; ++i) {
         modelSetInput.push_back(input[i]);

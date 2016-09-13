@@ -5,10 +5,9 @@
 #include "knnClassification.h"
 #include "knnEmbindings.h"
 
-knnClassification::knnClassification(int num_inputs, std::vector<int> which_inputs, std::vector<neighbour> _neighbours, int num_examples, int k) {
+knnClassification::knnClassification(int num_inputs, std::vector<int> which_inputs, std::vector<neighbour> _neighbours, int k) {
 	numInputs = num_inputs;
 	whichInputs = which_inputs;
-	numExamples = num_examples;
 	neighbours = _neighbours;
 	numNeighbours = k;
 	nearestNeighbours = new std::pair<int, double>[numNeighbours];
@@ -21,7 +20,6 @@ knnClassification::~knnClassification() {
 void knnClassification::addNeighbour(int classNum, std::vector<double> features) {
   neighbour newNeighbour = {classNum, features};
   neighbours.push_back(newNeighbour);
-  numExamples++;
 };
 
 double knnClassification::processInput(std::vector<double> inputVector) {
@@ -37,22 +35,24 @@ double knnClassification::processInput(std::vector<double> inputVector) {
    }
 
    //Find k nearest neighbours
-   for (int i = 0; i < numExamples; ++i) {
+   int index = 0;
+   for (std::vector<neighbour>::iterator it = neighbours.begin(); it != neighbours.end(); ++it) { 
      //find Euclidian distance for this neighbor
      double euclidianDistance = 0;
      for(int j = 0; j < numInputs ; ++j){
-       euclidianDistance = euclidianDistance + pow((pattern[j] - neighbours[i].features[j]),2);
+       //euclidianDistance = euclidianDistance + pow((pattern[j] - neighbours[i].features[j]),2);
+       euclidianDistance = euclidianDistance + pow((pattern[j] - it->features[j]), 2);
      }
      euclidianDistance = sqrt(euclidianDistance);
-     if (i < numNeighbours) {
+     if (index < numNeighbours) {
        //save the first k neighbours
-       nearestNeighbours[i] = {i, euclidianDistance};
+       nearestNeighbours[index] = {index, euclidianDistance};
        if (euclidianDistance > farthestNN.second) {
-	 farthestNN = {i, euclidianDistance};
+	 farthestNN = {index, euclidianDistance};
        }
      } else if (euclidianDistance < farthestNN.second) {
        //replace farthest, if new neighbour is closer
-       nearestNeighbours[farthestNN.first] = {i, euclidianDistance};
+       nearestNeighbours[farthestNN.first] = {index, euclidianDistance};
        int currentFarthest = 0;
        double currentFarthestDistance = 0.;
        for (int n = 0; n < numNeighbours; n++) {
@@ -63,7 +63,8 @@ double knnClassification::processInput(std::vector<double> inputVector) {
        }
        farthestNN = {currentFarthest, currentFarthestDistance};
      }
-    }
+     ++index;
+   }
 
    //majority vote on nearest neighbours
    std::map<int, int> classVoteMap;
