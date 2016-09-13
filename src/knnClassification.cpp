@@ -1,16 +1,17 @@
 #include <math.h>
 #include <utility>
+#include <map>
+#include <vector>
 #include "knnClassification.h"
 #include "knnEmbindings.h"
 
-knnClassification::knnClassification(int num_inputs, std::vector<int> which_inputs, std::vector<neighbour> _neighbours, int num_examples, int k, int num_classes) {
+knnClassification::knnClassification(int num_inputs, std::vector<int> which_inputs, std::vector<neighbour> _neighbours, int num_examples, int k) {
 	numInputs = num_inputs;
 	whichInputs = which_inputs;
 	numExamples = num_examples;
 	neighbours = _neighbours;
 	numNeighbours = k;
 	nearestNeighbours = new std::pair<int, double>[numNeighbours];
-	numClasses = num_classes;
 }
 
 knnClassification::~knnClassification() {
@@ -20,6 +21,7 @@ knnClassification::~knnClassification() {
 void knnClassification::addNeighbour(int classNum, std::vector<double> features) {
   neighbour newNeighbour = {classNum, features};
   neighbours.push_back(newNeighbour);
+  numExamples++;
 };
 
 double knnClassification::processInput(std::vector<double> inputVector) {
@@ -64,20 +66,25 @@ double knnClassification::processInput(std::vector<double> inputVector) {
     }
 
    //majority vote on nearest neighbours
-   std::vector<int> numVotesPerClass;
-   for (int i=0; i < numClasses; ++i) {
-     numVotesPerClass.push_back(0);
-   }
+   std::map<int, int> classVoteMap;
+   typedef std::pair<int, int> classVotePair;
    for (int i = 0; i < numNeighbours; ++i){
-     numVotesPerClass[neighbours[nearestNeighbours[i].first].classNum - 1]++;
+     int classNum = neighbours[nearestNeighbours[i].first].classNum;
+     if ( classVoteMap.find(classNum) == classVoteMap.end() ) {
+       classVoteMap.insert(classVotePair(classNum, 1));
+     } else {
+       classVoteMap[classNum]++;
+     }
    }
    double foundClass = 0;
    int mostVotes = 0;
-   for (int i = 0; i < numClasses; ++i) {
-     if (numVotesPerClass[i] > mostVotes) { //TODO: Handle ties the same way Wekinator does
-       mostVotes = numVotesPerClass[i];
-       foundClass = i + 1;
+   std::map<int, int>::iterator p;
+   for(p = classVoteMap.begin(); p != classVoteMap.end(); ++p)
+     {
+       if (p->second > mostVotes) {
+	 mostVotes = p->second;
+	 foundClass = p->first;
+       }
      }
-   }
    return foundClass;
 }

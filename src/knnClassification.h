@@ -12,7 +12,7 @@ struct neighbour {
 class knnClassification : public baseModel {
 
 public:
-	knnClassification(int, std::vector<int>, std::vector<neighbour>, int, int, int);
+	knnClassification(int, std::vector<int>, std::vector<neighbour>, int, int);
 	~knnClassification();
 	void addNeighbour(int, std::vector<double>);
 	double processInput(std::vector<double>);
@@ -23,7 +23,6 @@ private:
 	std::vector<neighbour> neighbours;
 	int numExamples;
 	int numNeighbours; //aka "k"
-	int numClasses;
 	std::pair<int, double>* nearestNeighbours;
 };
 

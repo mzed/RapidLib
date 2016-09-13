@@ -26,7 +26,7 @@ EMSCRIPTEN_BINDINGS(knn_module) {
     ;
 
   class_<knnClassification>("knnClassification")
-    .constructor<int, std::vector<int>, std::vector<neighbour>, int, int, int>()
+    .constructor<int, std::vector<int>, std::vector<neighbour>, int, int>()
     .function("addNeighbour", &knnClassification::addNeighbour)
     .function("processInput", &knnClassification::processInput)
     ;

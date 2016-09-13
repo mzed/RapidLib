@@ -1,5 +1,4 @@
 /* globals Module */
-
 var rapidMix = {};
 
 //rapidMix namespace
@@ -25,7 +24,7 @@ rapidMix.modelSet.prototype.loadJSON = function (url) {
         //console.log("loaded", JSON.stringify(this.response));
         var modelSet = this.response;
         var allInputs = modelSet.metadata.inputNames;
-        modelSet.modelSet.forEach(function (value, i) {
+        modelSet.modelSet.forEach(function (value) {
             var numInputs = value.numInputs;
             var whichInputs = new rapidMix.VectorInt();
             switch (value.modelType) {
@@ -42,7 +41,7 @@ rapidMix.modelSet.prototype.loadJSON = function (url) {
                     }
 
                     var myKnn = new rapidMix.knnClassification(numInputs, whichInputs, neighbours, numExamples, k, numClasses);
-                    value.examples.forEach(function (value, i) {
+                    value.examples.forEach(function (value) {
                         var features = new rapidMix.VectorDouble();
                         for (var i = 0; i < numInputs; ++i) {
                             features.push_back(parseFloat(value.features[i]));
@@ -106,32 +105,32 @@ rapidMix.modelSet.prototype.loadJSON = function (url) {
                     that.addNNModel(myNN);
                     break;
                 default:
-                    console.log('unknown model type ', value.modelType);
+                    console.warn('unknown model type ', value.modelType);
                     break;
-            };
+            }
         });
     };
     request.send(null);
-}
+};
 
 rapidMix.modelSet.prototype.addNNModel = function (model) {
     console.log('Adding NN model');
     this.myModelSet.push(model);
-}
+};
 
 rapidMix.modelSet.prototype.addkNNModel = function (model) {
     console.log('Adding kNN model');
     this.myModelSet.push(model);
-}
+};
 
 rapidMix.modelSet.prototype.processInput = function (input) {
     var modelSetInput = new rapidMix.VectorDouble();
-    for (var i = 0; i < input.lenght; ++i) {
-        modelSetInputInput.push_back(input[i]);
+    for (var i = 0; i < input.length; ++i) {
+        modelSetInput.push_back(input[i]);
     }
     var output = [];
     for (var i = 0; i < this.myModelSet.length; ++i) {
         output.push(this.myModelSet[i].processInput(modelSetInput));
     }
      return output;
-}
+};
