@@ -3,9 +3,15 @@
 
 #include <vector>
 
+struct trainingExample {
+    std::vector<double> input;
+    double output;
+};
+
 class baseModel {
 public:
-  virtual double processInput(std::vector<double>) = 0;
+    virtual double processInput(std::vector<double>) = 0;
+    virtual void train(std::vector<trainingExample>) = 0;
     virtual ~baseModel() {};
 };
 

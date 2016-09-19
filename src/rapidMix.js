@@ -1,4 +1,7 @@
 /* globals Module */
+
+"use strict";
+
 var rapidMix = {};
 
 //rapidMix namespace
@@ -9,6 +12,7 @@ rapidMix.VectorNeighbour = Module.VectorNeighbour;
 
 rapidMix.knnClassification = Module.knnClassification;
 rapidMix.neuralNetwork = Module.neuralNetwork;
+
 
 rapidMix.ModelSet = function() {
     console.log("creating model set");
@@ -123,12 +127,13 @@ rapidMix.ModelSet.prototype.addkNNModel = function (model) {
     this.myModelSet.push(model);
 };
 
-rapidMix.ModelSet.prototype.processInput = function (input) {
+rapidMix.ModelSet.prototype.process = function (input) {
     var modelSetInput = new rapidMix.VectorDouble();
     for (var i = 0; i < input.length; ++i) {
         modelSetInput.push_back(input[i]);
     }
     var output = [];
+    //noinspection JSDuplicatedDeclaration
     for (var i = 0; i < this.myModelSet.length; ++i) {
         output.push(this.myModelSet[i].processInput(modelSetInput));
     }

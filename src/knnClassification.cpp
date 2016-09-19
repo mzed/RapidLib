@@ -3,14 +3,14 @@
 #include <map>
 #include <vector>
 #include "knnClassification.h"
-#include "knnEmbindings.h"
 
-knnClassification::knnClassification(int num_inputs, std::vector<int> which_inputs, std::vector<neighbour> _neighbours, int k) {
-	numInputs = num_inputs;
-	whichInputs = which_inputs;
-	neighbours = _neighbours;
-	numNeighbours = k;
-	nearestNeighbours = new std::pair<int, double>[numNeighbours];
+knnClassification::knnClassification(int num_inputs, std::vector<int> which_inputs, std::vector<neighbour> _neighbours, int k) 
+  : numInputs(num_inputs),
+    whichInputs(which_inputs),
+    neighbours(_neighbours),
+    numNeighbours(k)
+{
+  nearestNeighbours = new std::pair<int, double>[numNeighbours];
 }
 
 knnClassification::~knnClassification() {
