@@ -1,7 +1,3 @@
-/*
-bindings for use with emscripten. -22 Aug 2016, mz
-*/
-
 #ifndef knnEmbindings_h
 #define knnEmbindings_h
 
@@ -18,17 +14,17 @@ EMSCRIPTEN_BINDINGS(stl_wrappers) {
 
 
 EMSCRIPTEN_BINDINGS(knn_module) {
-  register_vector<neighbour>("VectorNeighbour");
+  register_vector<trainingExample>("TrainingSet");
 
-  value_object<neighbour>("neighbour")
-    .field("classNum", &neighbour::classNum)
-    .field("featurs", &neighbour::features)
+  value_object<trainingExample>("trainingExample")
+    .field("input", &trainingExample::input)
+    .field("output", &trainingExample::output)
     ;
 
-  class_<knnClassification>("knnClassification")
-    .constructor<int, std::vector<int>, std::vector<neighbour>, int>()
+  class_<knnClassification>("KnnClassification")
+    .constructor<int, std::vector<int>, std::vector<trainingExample>, int>()
     .function("addNeighbour", &knnClassification::addNeighbour)
-    .function("processInput", &knnClassification::processInput)
+    .function("process", &knnClassification::process)
     ;
-  };
+};
 #endif

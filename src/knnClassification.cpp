@@ -3,8 +3,9 @@
 #include <map>
 #include <vector>
 #include "knnClassification.h"
+#include "knnEmbindings.h"
 
-knnClassification::knnClassification(int num_inputs, std::vector<int> which_inputs, std::vector<neighbour> _neighbours, int k) 
+knnClassification::knnClassification(int num_inputs, std::vector<int> which_inputs, std::vector<trainingExample> _neighbours, int k)
   : numInputs(num_inputs),
     whichInputs(which_inputs),
     neighbours(_neighbours),
@@ -18,11 +19,11 @@ knnClassification::~knnClassification() {
 }
 
 void knnClassification::addNeighbour(int classNum, std::vector<double> features) {
-  neighbour newNeighbour = {classNum, features};
+  trainingExample newNeighbour = {features, static_cast<double>(classNum)};
   neighbours.push_back(newNeighbour);
 };
 
-double knnClassification::processInput(std::vector<double> inputVector) {
+double knnClassification::process(std::vector<double> inputVector) {
    for (int i = 0; i < numNeighbours; ++i) {
      nearestNeighbours[i] = {0, 0.};
    };
@@ -36,12 +37,12 @@ double knnClassification::processInput(std::vector<double> inputVector) {
 
    //Find k nearest neighbours
    int index = 0;
-   for (std::vector<neighbour>::iterator it = neighbours.begin(); it != neighbours.end(); ++it) { 
+   for (std::vector<trainingExample>::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {
      //find Euclidian distance for this neighbor
      double euclidianDistance = 0;
      for(int j = 0; j < numInputs ; ++j){
        //euclidianDistance = euclidianDistance + pow((pattern[j] - neighbours[i].features[j]),2);
-       euclidianDistance = euclidianDistance + pow((pattern[j] - it->features[j]), 2);
+       euclidianDistance = euclidianDistance + pow((pattern[j] - it->input[j]), 2);
      }
      euclidianDistance = sqrt(euclidianDistance);
      if (index < numNeighbours) {
@@ -70,7 +71,7 @@ double knnClassification::processInput(std::vector<double> inputVector) {
    std::map<int, int> classVoteMap;
    typedef std::pair<int, int> classVotePair;
    for (int i = 0; i < numNeighbours; ++i){
-     int classNum = neighbours[nearestNeighbours[i].first].classNum;
+     int classNum = neighbours[nearestNeighbours[i].first].output;
      if ( classVoteMap.find(classNum) == classVoteMap.end() ) {
        classVoteMap.insert(classVotePair(classNum, 1));
      } else {

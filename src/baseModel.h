@@ -10,7 +10,7 @@ struct trainingExample {
 
 class baseModel {
 public:
-    virtual double processInput(std::vector<double>) = 0;
+    virtual double process(std::vector<double>) = 0;
     virtual void train(std::vector<trainingExample>) = 0;
     virtual ~baseModel() {};
 };

@@ -12,9 +12,11 @@ bindings for use with emscripten. -22 Aug 2016, mz
 using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(nn_module) {
-   class_<neuralNetwork>("neuralNetwork")
+   class_<neuralNetwork>("NeuralNetwork")
+     .constructor<int, std::vector<int>, int, int>()
      .constructor<int, std::vector<int>, int, int, std::vector<double>, std::vector<double>, std::vector<double>, std::vector<double>, double, double>()
-     .function("processInput", &neuralNetwork::processInput)
+     .function("process", &neuralNetwork::process)
+     .function("train", &neuralNetwork::train)
      ;
 
 };

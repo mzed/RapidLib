@@ -1,13 +1,10 @@
 /*jshint esnext: true */
-/*globals rapidMix, synaptic */
+/*globals rapidMix*/
 
 "use strict";
 
-/////////////////////////////////////////Façade for synaptic
-
 rapidMix.Regression = function () {
     this.model = [];
-    this.trainer = [];
     this.numInputs = 0;
     this.numOutputs = 0;
     this.created = false;
@@ -17,11 +14,11 @@ rapidMix.Regression = function () {
         case 2:
             this.numInputs = arguments[0];
             this.numOutputs = arguments[1];
-            for (let i = 0; i < this.numOutputs; ++i) {
-                //this.model.push(new synaptic.Architect.Perceptron(this.numInputs, this.numInputs, 1));
-                this.model.push(makeNN(this.numInputs));
-                this.trainer.push(new synaptic.Trainer(this.model[i]));
+            var whichInputs = new rapidMix.VectorInt;
+            for (let i = 0; i < this.numInputs; ++i) {
+                whichInputs.push_back(i);
             }
+            this.model.push(new rapidMix.NeuralNetwork(this.numInputs, whichInputs, 1, this.numInputs));
             this.created = true;
             break;
         default:
@@ -31,19 +28,24 @@ rapidMix.Regression = function () {
 
 rapidMix.Regression.prototype = {
     train(trainingSet) {
+        var start = new Date().getTime();
         if (this.created) {
             var returnObj;
-            for (let i = 0; i < this.trainer.length; ++i) {
-                let tempTrainingSet = [];
-                for (let j = 0; j < trainingSet.length; ++j) {
-                    let tempOutput = trainingSet[j].output[i];
-                    tempTrainingSet[j] = {
-                        input: trainingSet[j].input,
-                        output: [tempOutput]
-                    };
+            for (let i = 0; i < this.model.length; ++i) {
+                let rmTrainingSet = new rapidMix.TrainingSet;
+                for (let trainingExample of trainingSet) {
+                    let tempDouble = new rapidMix.VectorDouble;
+                    for (let i = 0; i < this.numInputs; ++i) {
+                        tempDouble.push_back(trainingExample.input[i]);
+                    }
+                    var tempObj = {'input': tempDouble, 'output': trainingExample.output[0]};
+                    rmTrainingSet.push_back(tempObj);
                 }
-                returnObj = this.trainer[i].train(tempTrainingSet);
-                console.log(returnObj);
+                this.model[i].train(rmTrainingSet);
+                var end = new Date().getTime();
+                var time = end - start;
+                var result = {'examples': trainingSet.length, 'time': time};
+                console.log(result);
             }
             return true;
         } else {
@@ -61,9 +63,11 @@ rapidMix.Regression.prototype = {
                 }
             }
             for (let i = 0; i < this.numOutputs; ++i) {
-                //this.model.push(new synaptic.Architect.Perceptron(this.numInputs, this.numInputs, 1));
-                this.model.push(makeNN(this.numInputs));
-                this.trainer.push(new synaptic.Trainer(this.model[i]));
+                var whichInputs = new rapidMix.VectorInt;
+                for (let i = 0; i < this.numInputs; ++i) {
+                    whichInputs.push_back(i);
+                }
+                this.model.push(new rapidMix.NeuralNetwork(this.numInputs, whichInputs, 1, this.numInputs))
             }
             this.created = true;
             return this.train(trainingSet);
@@ -73,7 +77,11 @@ rapidMix.Regression.prototype = {
         if (this.created) {
             var returnArray = [];
             for (let i = 0; i < this.model.length; ++i) {
-                returnArray.push(this.model[i].activate(input));
+                let inputVector = new rapidMix.VectorDouble;
+                for (let j = 0; j < input.length; ++j) {
+                    inputVector.push_back(input[j]);
+                }
+                returnArray.push(this.model[i].process(inputVector));
             }
             return returnArray;
         } else {
@@ -92,16 +100,16 @@ rapidMix.Classification = function () {
         case 0:
             break;
         case 2:
-            var neighbours = new rapidMix.VectorNeighbour();
+            var trainingSet = new rapidMix.TrainingSet;
             this.numInputs = arguments[0];
-            var whichInputs = new rapidMix.VectorInt();
+            var whichInputs = new rapidMix.VectorInt;
             for (let i = 0; i < this.numInputs; ++i) {
                 whichInputs.push_back(i);
             }
             this.numOutputs = arguments[1];
             this.model = [];
             for (let i = 0; i < this.numOutputs; ++i) {
-                this.model.push(new rapidMix.knnClassification(this.numInputs, whichInputs, neighbours, 1));
+                this.model.push(new rapidMix.KnnClassification(this.numInputs, whichInputs, trainingSet, 1));
             }
             this.created = true;
             break;
@@ -116,7 +124,7 @@ rapidMix.Classification.prototype = {
         if (this.created) {
             for (let out = 0; out < this.numOutputs; ++out) {
                 for (let i = 0; i < trainingSet.length; ++i) {
-                    let features = new rapidMix.VectorDouble();
+                    let features = new rapidMix.VectorDouble;
                     for (let j = 0; j < this.numInputs; ++j) {
                         features.push_back(trainingSet[i].input[j]);
                     }
@@ -132,6 +140,7 @@ rapidMix.Classification.prototype = {
         } else {
             this.numInputs = trainingSet[0].input.length;
             this.numOutputs = trainingSet[0].output.length;
+            var rmTrainingSet = new rapidMix.TrainingSet();
             for (let trainingExample of trainingSet) {
                 if (trainingExample.input.length != this.numInputs) {
                     console.error("training set examples have different numbers of inputs");
@@ -141,18 +150,22 @@ rapidMix.Classification.prototype = {
                     console.error("training set examples have different numbers of outputs");
                     return false;
                 }
+                var tempDouble = new rapidMix.VectorDouble;
+                for (let i = 0; i < this.numInputs; ++i) {
+                    tempDouble.push_back(trainingExample.input[i]);
+                }
+                var tempObj = {'input': tempDouble, 'output': trainingExample.output[0]};
+                rmTrainingSet.push_back(tempObj);
             }
 
-            var neighbours = new rapidMix.VectorNeighbour();
-            var whichInputs = new rapidMix.VectorInt();
+            var whichInputs = new rapidMix.VectorInt;
             for (let i = 0; i < this.numInputs; ++i) {
                 whichInputs.push_back(i);
             }
             for (let i = 0; i < this.numOutputs; ++i) {
-                this.model.push(new rapidMix.knnClassification(this.numInputs, whichInputs, neighbours, 1));
+                this.model.push(new rapidMix.KnnClassification(this.numInputs, whichInputs, rmTrainingSet, 1));
             }
             this.created = true;
-            return this.train(trainingSet);
         }
     },
     process(input) {
@@ -163,7 +176,7 @@ rapidMix.Classification.prototype = {
             }
             var returnArray = [];
             for (let i = 0; i < this.model.length; ++i) {
-                returnArray.push(this.model[i].processInput(toKnn));
+                returnArray.push(this.model[i].process(toKnn));
             }
             return returnArray;
         } else {
@@ -172,22 +185,3 @@ rapidMix.Classification.prototype = {
         }
     }
 };
-
-function makeNN(inputs) {
-    var outputLayer = new synaptic.Layer(1);
-    outputLayer.set({
-        squash: synaptic.Neuron.squash.IDENTITY,
-        bias: 1
-    });
-    var hiddenLayer = new synaptic.Layer(inputs);
-    var inputLayer = new synaptic.Layer(inputs);
-
-    inputLayer.project(hiddenLayer);
-    hiddenLayer.project(outputLayer);
-
-    return new synaptic.Network({
-        input: inputLayer,
-        hidden: [hiddenLayer],
-        output: outputLayer
-    })
-}

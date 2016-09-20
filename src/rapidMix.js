@@ -8,10 +8,11 @@ var rapidMix = {};
 
 rapidMix.VectorInt = Module.VectorInt;
 rapidMix.VectorDouble = Module.VectorDouble;
-rapidMix.VectorNeighbour = Module.VectorNeighbour;
+rapidMix.TrainingExample = Module.TrainingExample;
+rapidMix.TrainingSet = Module.TrainingSet;
 
-rapidMix.knnClassification = Module.knnClassification;
-rapidMix.neuralNetwork = Module.neuralNetwork;
+rapidMix.KnnClassification = Module.KnnClassification;
+rapidMix.NeuralNetwork = Module.NeuralNetwork;
 
 
 rapidMix.ModelSet = function() {
@@ -33,7 +34,7 @@ rapidMix.ModelSet.prototype.loadJSON = function (url) {
             var whichInputs = new rapidMix.VectorInt();
             switch (value.modelType) {
                 case 'kNN classification':
-                    var neighbours = new rapidMix.VectorNeighbour();
+                    var neighbours = new rapidMix.TrainingSet();
                     var numExamples = value.numExamples;
                     var k = value.k;
                     var numClasses = value.numClasses;
@@ -44,7 +45,7 @@ rapidMix.ModelSet.prototype.loadJSON = function (url) {
                         }
                     }
 
-                    var myKnn = new rapidMix.knnClassification(numInputs, whichInputs, neighbours, k);
+                    var myKnn = new rapidMix.KnnClassification(numInputs, whichInputs, neighbours, k);
                     value.examples.forEach(function (value) {
                         var features = new rapidMix.VectorDouble();
                         for (var i = 0; i < numInputs; ++i) {
@@ -105,7 +106,7 @@ rapidMix.ModelSet.prototype.loadJSON = function (url) {
                         inMax.push_back(value.inMaxes[j]);
                     }
 
-                    var myNN = new rapidMix.neuralNetwork(numInputs, whichInputs, numLayers, numNodes, weights, wHiddenOutput, inMax, inMin, outMax, outMin);
+                    var myNN = new rapidMix.NeuralNetwork(numInputs, whichInputs, numLayers, numNodes, weights, wHiddenOutput, inMax, inMin, outMax, outMin);
                     that.addNNModel(myNN);
                     break;
                 default:
