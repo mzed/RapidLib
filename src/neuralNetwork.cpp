@@ -2,11 +2,12 @@
 #include <random>
 #include <algorithm>
 #include <vector>
+#include <iostream>
 
 #include "neuralNetwork.h"
 #include "nnEmbindings.h"
-//#define DEBUG
 
+#define DEBUG
 //this is the constructor for building a trained model from JSON
 neuralNetwork::neuralNetwork(int num_inputs,
                              std::vector<int> which_inputs,
@@ -32,6 +33,8 @@ numEpochs(NUM_EPOCHS),
 outputErrorGradient(0)
 {
     bool randomize = _weights.size() ? false : true;
+    std::default_random_engine generator;
+    std::uniform_real_distribution<double> distribution(-0.5,0.5);
     //winding up a long vector from javascript
     int count = 0;
     for (int i = 0; i < numHiddenLayers; ++i) {
@@ -40,7 +43,7 @@ outputErrorGradient(0)
             std::vector<double> node;
             for(int k = 0; k <= numInputs; ++k){ //FIXME if numInputs =/= numHiddenNodes
                 if (randomize) {
-                    node.push_back( ((double)rand()/RAND_MAX) - 0.5);
+                    node.push_back(distribution(generator));
                 } else {
                     node.push_back( _weights[count]);
                 }
@@ -53,7 +56,7 @@ outputErrorGradient(0)
     
     if(randomize) {
         for (int i = 0; i <= numHiddenNodes; ++i) {
-            wHiddenOutput.push_back(((double)rand()/RAND_MAX) - 0.5);
+            wHiddenOutput.push_back(distribution(generator));
         }
     }
     
@@ -106,13 +109,15 @@ momentum(MOMENTUM),
 numEpochs(NUM_EPOCHS),
 outputErrorGradient(0)
 {
-    int count = 0;
+    std::default_random_engine generator;
+    std::uniform_real_distribution<double> distribution(-0.5,0.5);
+    
     for (int i = 0; i < numHiddenLayers; ++i) {
         std::vector<std::vector<double>> layer;
         for (int j = 0; j < numHiddenNodes; ++j){
             std::vector<double> node;
             for(int k = 0; k <= numInputs; ++k){ //FIXME if numInputs =/= numHiddenNodes
-                node.push_back( ((double)rand()/RAND_MAX) - 0.5);
+                node.push_back(distribution(generator));
             }
             layer.push_back(node);
         }
@@ -120,7 +125,7 @@ outputErrorGradient(0)
     }
     
     for (int i = 0; i <= numHiddenNodes; ++i) {
-        wHiddenOutput.push_back(((double)rand()/RAND_MAX) - 0.5);
+        wHiddenOutput.push_back(distribution(generator));
     }
     
     //////////////////////////////////////////trainer
@@ -152,7 +157,7 @@ neuralNetwork::~neuralNetwork() {
 }
 
 inline double neuralNetwork::getOutputErrorGradient(double desiredValue, double outputValue) {
-    return outputValue * (1 - outputValue) * (desiredValue - outputValue);
+    return (desiredValue - outputValue) / outRange;
 }
 
 inline double neuralNetwork::getHiddenErrorGradient(int layer, int neuron) {
@@ -173,22 +178,15 @@ inline double neuralNetwork::activationFunction(double x) {
 }
 
 double neuralNetwork::process(std::vector<double> inputVector) {
-    double pattern[numInputs];
+    std::vector<double> pattern;
     for (int h = 0; h < numInputs; h++) {
-        pattern[h] = inputVector[h]; //(inputVector[whichInputs[h]]);
-#ifdef DEBUG
-        printf("pattern %d = %f\n", h, inputVector[whichInputs[h]]);
-#endif
+        pattern.push_back(inputVector[whichInputs[h]]);
     }
     
     //set input layer
     inputNeurons.clear();
     for (int i = 0; i < numInputs; ++i) {
-        inputNeurons.push_back((pattern[i] - inBases[i]) / inRanges[i]);
-#ifdef DEBUG
-        printf("pattern %f, base %f, range %f\n", pattern[i], inBases[i], inRanges[i]);
-        printf("inputNeuron %d = %f\n", i, inputNeurons[i]);
-#endif
+        inputNeurons.push_back((pattern[i] - (inBases[i]) / inRanges[i]));
     }
     inputNeurons.push_back(1);
     
@@ -217,15 +215,8 @@ double neuralNetwork::process(std::vector<double> inputVector) {
     outputNeuron = 0;
     for (int k=0; k <= numHiddenNodes; ++k){
         outputNeuron += hiddenNeurons[numHiddenLayers - 1][k] * wHiddenOutput[k];
-#ifdef DEBUG
-        printf("hidden Neuron %f - weight %f\n", hiddenNeurons[k], wHiddenOutput[k]);
-        printf("summing output: %f\n", output);
-#endif
     }
     outputNeuron = (outputNeuron * outRange) + outBase;
-#ifdef DEBUG
-    printf("cpp output: %f\n", outputNeuron);
-#endif
     return outputNeuron;
 }
 
@@ -259,7 +250,6 @@ void neuralNetwork::train(std::vector<trainingExample> trainingSet) {
     }
     outRange = (outMax - outMin)/ 2;
     outBase = (outMax + outMin)/ 2;
-    
     //train
     epoch = 0;
     while (epoch < numEpochs) {

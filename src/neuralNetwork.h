@@ -1,6 +1,5 @@
 #ifndef neuralNetwork_h
 #define neuralNetwork_h
-
 #include <vector>
 #include "baseModel.h"
 

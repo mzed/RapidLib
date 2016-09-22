@@ -11,6 +11,9 @@ rapidMix.Regression = function () {
     switch (arguments.length) {
         case 0:
             break;
+        case 1:
+            this.train(arguments[0]);
+            break;
         case 2:
             this.numInputs = arguments[0];
             this.numOutputs = arguments[1];
@@ -30,7 +33,6 @@ rapidMix.Regression.prototype = {
     train(trainingSet) {
         var start = new Date().getTime();
         if (this.created) {
-            var returnObj;
             for (let i = 0; i < this.model.length; ++i) {
                 let rmTrainingSet = new rapidMix.TrainingSet;
                 for (let trainingExample of trainingSet) {

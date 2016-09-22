@@ -17,7 +17,7 @@ OUTPUT_WEKI=wekiLib/RapidMixLib.js
 # General flags
 # https://kripken.github.io/emscripten-site/docs/tools_reference/emcc.html
 # -s DEMANGLE_SUPPORT=1 
-CFLAGS=-O3 -s DISABLE_EXCEPTION_CATCHING=0 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTIONS=1 -s EXPORT_NAME="'RapidLib'" --memory-init-file 0 --profiling
+CFLAGS=-O3 -s DISABLE_EXCEPTION_CATCHING=0 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTIONS=1 -s EXPORT_NAME="'RapidLib'" -s MODULARIZE=1 --memory-init-file 0 --profiling
 
 # ----------------------------------------
 # Final paths
