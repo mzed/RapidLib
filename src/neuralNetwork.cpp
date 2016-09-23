@@ -7,8 +7,6 @@
 #include "neuralNetwork.h"
 #include "nnEmbindings.h"
 
-#define DEBUG
-//this is the constructor for building a trained model from JSON
 neuralNetwork::neuralNetwork(int num_inputs,
                              std::vector<int> which_inputs,
                              int num_hidden_layers,
@@ -26,7 +24,6 @@ whichInputs(which_inputs),
 numHiddenLayers(num_hidden_layers),
 numHiddenNodes(num_hidden_nodes),
 wHiddenOutput(w_hidden_output),
-epoch(0),
 learningRate(LEARNING_RATE),
 momentum(MOMENTUM),
 numEpochs(NUM_EPOCHS),
@@ -92,7 +89,10 @@ outputErrorGradient(0)
     }
 }
 
-//this is the constructor for a model that needs to be trained
+/*!
+ * This is the constructor for a model that needs to be trained.
+ */
+
 neuralNetwork::neuralNetwork(int num_inputs,
                              std::vector<int> which_inputs,
                              int num_hidden_layers,
@@ -103,7 +103,6 @@ numInputs(num_inputs),
 whichInputs(which_inputs),
 numHiddenLayers(num_hidden_layers),
 numHiddenNodes(num_hidden_nodes),
-epoch(0),
 learningRate(LEARNING_RATE),
 momentum(MOMENTUM),
 numEpochs(NUM_EPOCHS),
@@ -153,11 +152,10 @@ outputErrorGradient(0)
     }
 }
 
+/*!
+ * This destructor is not needed.
+ */
 neuralNetwork::~neuralNetwork() {
-}
-
-inline double neuralNetwork::getOutputErrorGradient(double desiredValue, double outputValue) {
-    return (desiredValue - outputValue) / outRange;
 }
 
 inline double neuralNetwork::getHiddenErrorGradient(int layer, int neuron) {
@@ -182,7 +180,6 @@ double neuralNetwork::process(std::vector<double> inputVector) {
     for (int h = 0; h < numInputs; h++) {
         pattern.push_back(inputVector[whichInputs[h]]);
     }
-    
     //set input layer
     inputNeurons.clear();
     for (int i = 0; i < numInputs; ++i) {
@@ -251,7 +248,7 @@ void neuralNetwork::train(std::vector<trainingExample> trainingSet) {
     outRange = (outMax - outMin)/ 2;
     outBase = (outMax + outMin)/ 2;
     //train
-    epoch = 0;
+    int epoch = 0;
     while (epoch < numEpochs) {
         double incorrectPatterns = 0;
         double mse = 0;
@@ -267,20 +264,19 @@ void neuralNetwork::train(std::vector<trainingExample> trainingSet) {
 void neuralNetwork::backpropagate(double desiredOutput) {
     
     //deltas between output and hidden
-    outputErrorGradient = getOutputErrorGradient(desiredOutput, outputNeuron);
+    outputErrorGradient = (desiredOutput - outputNeuron) / outRange;
     for (int i = 0; i <= numHiddenNodes; ++i) {
         deltaHiddenOutput[i] = (learningRate * hiddenNeurons[numHiddenLayers - 1][i] * outputErrorGradient) + (momentum * deltaHiddenOutput[i]);
     }
     
     //deltas between hidden
-    
-    //TODO multiple layers
-    
-    //deltas input and hidden
-    for (int i = 0; i < numHiddenNodes; ++i) {
-        hiddenErrorGradients[i] = getHiddenErrorGradient(0, i);
-        for (int j = 0; j <= numInputs; ++j) {
-            deltaWeights[0][i][j] = (learningRate * inputNeurons[j] * hiddenErrorGradients[i]) + momentum * deltaWeights[0][i][j];
+    for (int i = 0; i < numHiddenLayers; ++i) {
+        for (int j = 0; j < numHiddenNodes; ++j) {
+            hiddenErrorGradients[j] = getHiddenErrorGradient(0, j);
+            int numDeltas = (i == 0) ? numInputs : numHiddenNodes;
+            for (int k = 0; k <= numDeltas; ++k) {
+                deltaWeights[i][j][k] = (learningRate * inputNeurons[k] * hiddenErrorGradients[j]) + momentum * deltaWeights[i][j][k];
+            }
         }
     }
     updateWeights();
@@ -288,15 +284,14 @@ void neuralNetwork::backpropagate(double desiredOutput) {
 
 void neuralNetwork::updateWeights() {
     //input to hidden weights
-    for (int i = 0; i < numHiddenNodes; ++i) {
-        for (int j = 0; j <= numInputs; ++j) {
-            weights[0][i][j] += deltaWeights[0][i][j];
+    for (int i = 0; i < numHiddenLayers; ++i) {
+        for (int j = 0; j < numHiddenNodes; ++j) {
+            int numDeltas = (i == 0) ? numInputs : numHiddenNodes;
+            for (int k = 0; k <= numInputs; ++k) {
+                weights[i][j][k] += deltaWeights[i][j][k];
+            }
         }
     }
-    
-    //hidden to hidden weights
-    //TODO multiple layers
-    
     //hidden to output weights
     for (int i = 0; i <= numHiddenNodes; ++i) {
         wHiddenOutput[i] += deltaHiddenOutput[i];

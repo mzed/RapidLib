@@ -55,7 +55,7 @@ Module.Regression.prototype = {
                     for (var j = 0; j < this.numInputs; ++j) {
                         tempDouble.push_back(parseFloat(trainingSet[ex].input[j]));
                     }
-                    var tempObj = {'input': tempDouble, 'output': parseFloat(trainingSet[ex].output[i]) }; //FIXME
+                    var tempObj = {'input': tempDouble, 'output': parseFloat(trainingSet[ex].output[i])};
                     rmTrainingSet.push_back(tempObj);
                 }
                 this.model[i].train(rmTrainingSet);
