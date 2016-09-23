@@ -41,8 +41,7 @@ double knnClassification::process(std::vector<double> inputVector) {
      //find Euclidian distance for this neighbor
      double euclidianDistance = 0;
      for(int j = 0; j < numInputs ; ++j){
-       //euclidianDistance = euclidianDistance + pow((pattern[j] - neighbours[i].features[j]),2);
-       euclidianDistance = euclidianDistance + pow((pattern[j] - it->input[j]), 2);
+         euclidianDistance = euclidianDistance + pow((pattern[j] - it->input[j]), 2);
      }
      euclidianDistance = sqrt(euclidianDistance);
      if (index < numNeighbours) {
