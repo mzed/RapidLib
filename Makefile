@@ -7,8 +7,9 @@ RAPID_JS = src/rapidMix.js
 
 #the .cpp files that are used
 WEKI_KNN=src/knnClassification.cpp
-WEKI_NN=src/neuralNetwork.cpp
-SOURCE_WEKI = $(WEKI_KNN) $(WEKI_NN)
+WEKI_NN=src/neuralNetwork.cpp src/regression.cpp
+WEKI_MS=src/modelSet.cpp
+SOURCE_WEKI = $(WEKI_KNN) $(WEKI_NN) $(WEKI_MS)
 
 # destination .js file
 OUTPUT_WEKI=wekiLib/RapidMixLib.js

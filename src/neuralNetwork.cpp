@@ -221,8 +221,8 @@ void neuralNetwork::train(std::vector<trainingExample> trainingSet) {
     //setup maxes and mins
     std::vector<double> inMax = trainingSet[0].input;
     std::vector<double> inMin = trainingSet[0].input;
-    double outMin = trainingSet[0].output;
-    double outMax = trainingSet[0].output;
+    double outMin = trainingSet[0].output[0];
+    double outMax = trainingSet[0].output[0];
     for (int ti = 1; ti < (int) trainingSet.size(); ++ti) {
         for (int i = 0; i < numInputs; ++i) {
             if (trainingSet[ti].input[i] > inMax[i]) {
@@ -231,11 +231,11 @@ void neuralNetwork::train(std::vector<trainingExample> trainingSet) {
             if (trainingSet[ti].input[i] < inMin[i]) {
                 inMin[i] = trainingSet[ti].input[i];
             }
-            if (trainingSet[ti].output > outMax) {
-                outMax = trainingSet[ti].output;
+            if (trainingSet[ti].output[0] > outMax) {
+                outMax = trainingSet[ti].output[0];
             }
-            if (trainingSet[ti].output < outMin) {
-                outMin = trainingSet[ti].output;
+            if (trainingSet[ti].output[0] < outMin) {
+                outMin = trainingSet[ti].output[0];
             }
         }
     }
@@ -255,7 +255,7 @@ void neuralNetwork::train(std::vector<trainingExample> trainingSet) {
         //run through every training instance
         for (int ti = 0; ti < (int) trainingSet.size(); ++ti) {
             process(trainingSet[ti].input);
-            backpropagate(trainingSet[ti].output);
+            backpropagate(trainingSet[ti].output[0]);
         }
         epoch++;
     }

@@ -1,4 +1,4 @@
-#include <math.h>
+#include <cmath>
 #include <utility>
 #include <map>
 #include <vector>
@@ -19,7 +19,7 @@ knnClassification::~knnClassification() {
 }
 
 void knnClassification::addNeighbour(int classNum, std::vector<double> features) {
-  trainingExample newNeighbour = {features, static_cast<double>(classNum)};
+    trainingExample newNeighbour = {features, std::vector<double>(classNum)};
   neighbours.push_back(newNeighbour);
 };
 
@@ -70,7 +70,7 @@ double knnClassification::process(std::vector<double> inputVector) {
    std::map<int, int> classVoteMap;
    typedef std::pair<int, int> classVotePair;
    for (int i = 0; i < numNeighbours; ++i){
-     int classNum = neighbours[nearestNeighbours[i].first].output;
+       int classNum = std::round(neighbours[nearestNeighbours[i].first].output[0]);
      if ( classVoteMap.find(classNum) == classVoteMap.end() ) {
        classVoteMap.insert(classVotePair(classNum, 1));
      } else {

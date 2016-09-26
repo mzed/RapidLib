@@ -6,7 +6,7 @@
 /** This is used by both NN and KNN models for training and classification */
 struct trainingExample {
     std::vector<double> input;
-    double output;
+    std::vector<double> output;
 };
 
 /** Base class for wekinator models. Implemented by NN and KNN classes
