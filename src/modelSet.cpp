@@ -29,14 +29,15 @@ bool modelSet::train(std::vector<trainingExample> training_set) {
         }
         myModelSet[i]->train(modelTrainingSet);
     }
+    created = true;
     return true;
 }
 
 std::vector<double> modelSet::process(std::vector<double> inputVector) {
-    std::vector<double> returnVector;
+  std::vector<double> returnVector;
     if (created) {
         for (auto model : myModelSet) {
-            returnVector.push_back(model->process(inputVector));
+	  returnVector.push_back(model->process(inputVector));
         }
     } else {
         returnVector.push_back(0);

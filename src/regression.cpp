@@ -1,3 +1,4 @@
+#include <vector>
 #include "regression.h"
 #include "regressionEmbindings.h"
 
@@ -50,7 +51,7 @@ bool regression::train(std::vector<trainingExample> training_set) {
         }
         for (int i = 0; i < numOutputs; ++i) {
             myModelSet.push_back(new neuralNetwork(numInputs, whichInputs, 1, numInputs));
-        }
+	}
         created = true;
         return modelSet::train(training_set);
     }

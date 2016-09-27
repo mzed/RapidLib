@@ -15,108 +15,40 @@ Module.prepTrainingSet = function (trainingSet) {
         }
         var tempObj = {'input': tempInput, 'output': tempOutput};
         rmTrainingSet.push_back(tempObj);
-     }
+    }
     return rmTrainingSet;
 };
 
+////////////////////////////////////////////////
 
-/*
- Module.Regression = function () {
- this.model = [];
- this.numInputs = 0;
- this.numOutputs = 0;
- this.created = false;
- switch (arguments.length) {
- case 0:
- break;
- case 1:
- this.train(arguments[0]);
- break;
- case 2:
- this.numInputs = arguments[0];
- this.numOutputs = arguments[1];
- var whichInputs = new Module.VectorInt;
- for (var i = 0; i < this.numInputs; ++i) {
- whichInputs.push_back(i);
- }
- for (var i = 0; i < this.numOutputs; ++i) {
- this.model.push(new Module.NeuralNetwork(this.numInputs, whichInputs, 1, this.numInputs));
- }
- this.created = true;
- break;
- default:
- console.error('rapidMix regression takes 2 arguments: # of inputs, # of outputs');
- }
- };
- */
+Module.Regression = function () {
+    this.modelSet = new Module.RegressionCpp(); //TODO implement optional arguments
+};
 
-/*
- Module.Regression.prototype = {
- train: function (trainingSet) {
- var start = new Date().getTime();
- if (this.created) {
- for (var i = 0; i < this.model.length; ++i) {
- var rmTrainingSet = new Module.TrainingSet;
- for (var ex in trainingSet) {
- var tempDouble = new Module.VectorDouble;
- for (var j = 0; j < this.numInputs; ++j) {
- tempDouble.push_back(parseFloat(trainingSet[ex].input[j]));
- }
- var tempObj = {'input': tempDouble, 'output': parseFloat(trainingSet[ex].output[i])};
- rmTrainingSet.push_back(tempObj);
- }
- this.model[i].train(rmTrainingSet);
- var end = new Date().getTime();
- var time = end - start;
- var result = {'examples': trainingSet.length, 'time': time};
- console.log(result);
- }
- return true;
- } else {
- ///create model(s) here
- this.numInputs = trainingSet[0].input.length;
- this.numOutputs = trainingSet[0].output.length;
- for (var ex in trainingSet) {
- if (trainingSet[ex].input.length != this.numInputs) {
- console.error("training set examples have different numbers of inputs");
- return false;
- }
- if (trainingSet[ex].output.length != this.numOutputs) {
- console.error("training set examples have different numbers of outputs");
- return false;
- }
- }
+Module.Regression.prototype = {
+    train: function (trainingSet) {
+        //change to vectorDoubles and send in
+        return this.modelSet.train(Module.prepTrainingSet(trainingSet));
+    },
+    process: function (input) {
+        //change input to vectors of doubles
+        var inputVector = new Module.VectorDouble();
+        for (var i = 0; i < input.length; ++i) {
+            inputVector.push_back(input[i]);
+        }
+        //get the output
+        outputVector = new Module.VectorDouble();
+        outputVector = this.modelSet.process(inputVector);
+        //change back to javascript array
+        var output = [];
+        for (var i = 0; i < outputVector.size(); ++i) {
+            output.push(outputVector.get(i));
+        }
+        return output;
+    }
+};
 
- var whichInputs = new Module.VectorInt;
- for (var j = 0; j < this.numInputs; ++j) {
- whichInputs.push_back(j);
- }
- for (var i = 0; i < this.numOutputs; ++i) {
- this.model.push(new Module.NeuralNetwork(this.numInputs, whichInputs, 1, this.numInputs))
- }
- this.created = true;
- return this.train(trainingSet);
- }
- },
- process: function (input) {
- if (this.created) {
- var returnArray = [];
- var inputVector = new Module.VectorDouble;
- for (var j = 0; j < input.length; ++j) {
- inputVector.push_back(input[j]);
- }
-
- for (var i = 0; i < this.model.length; ++i) {
- returnArray.push(this.model[i].process(inputVector));
- }
- return returnArray;
- } else {
- console.error("No trained model here");
- return false;
- }
- }
- };
- */
+/////////////////////////////////////////////////
 
 Module.Classification = function () {
     this.model = [];
