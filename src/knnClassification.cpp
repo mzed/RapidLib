@@ -23,6 +23,11 @@ void knnClassification::addNeighbour(int classNum, std::vector<double> features)
   neighbours.push_back(newNeighbour);
 };
 
+void knnClassification::train(std::vector<trainingExample> trainingSet) {
+  neighbours.clear();
+  neighbours = trainingSet;
+};
+
 double knnClassification::process(std::vector<double> inputVector) {
    for (int i = 0; i < numNeighbours; ++i) {
      nearestNeighbours[i] = {0, 0.};

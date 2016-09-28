@@ -6,10 +6,10 @@ EMSCR=/Users/mzed/emsdk_portable/emscripten/1.35.0/em++
 RAPID_JS = src/rapidMix.js
 
 #the .cpp files that are used
-WEKI_KNN=src/knnClassification.cpp
+WEKI_KNN=src/knnClassification.cpp src/classification.cpp
 WEKI_NN=src/neuralNetwork.cpp src/regression.cpp
-WEKI_MS=src/modelSet.cpp
-SOURCE_WEKI = $(WEKI_KNN) $(WEKI_NN) $(WEKI_MS)
+WEKI_MS=src/modelSet.cpp 
+SOURCE_WEKI = $(WEKI_MS) $(WEKI_NN) $(WEKI_KNN)
 
 # destination .js file
 OUTPUT_WEKI=wekiLib/RapidMixLib.js

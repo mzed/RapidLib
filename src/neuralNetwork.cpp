@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include "neuralNetwork.h"
-#include "nnEmbindings.h"
+//#include "nnEmbindings.h"
 
 neuralNetwork::neuralNetwork(int num_inputs,
                              std::vector<int> which_inputs,

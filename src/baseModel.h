@@ -2,6 +2,9 @@
 #define baseModel_h
 
 #include <vector>
+//#include <emscripten.h>
+//#include <bind.h>
+
 
 /** This is used by both NN and KNN models for training and classification */
 struct trainingExample {
@@ -17,5 +20,15 @@ public:
     virtual void train(std::vector<trainingExample>) = 0;
     virtual ~baseModel() {};
 };
+/*
+using namespace emscripten;
 
+EMSCRIPTEN_BINDINGS(base_module) {
+  value_object<trainingExample>("trainingExample")
+    .field("input", &trainingExample::input)
+    .field("output", &trainingExample::output)
+    ;
+
+}
+*/
 #endif

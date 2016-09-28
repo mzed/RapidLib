@@ -1,3 +1,4 @@
+#include <vector>
 #include "classification.h"
 #include "classificationEmbindings.h"
 
@@ -32,7 +33,7 @@ classification::classification(std::vector<trainingExample> training_set) {
 bool classification::train(std::vector<trainingExample> training_set) {
     //TODO: time this process?
     if (created) {
-        return modelSet::train(training_set);
+      return modelSet::train(training_set);
     } else {
         //create model(s) here
         numInputs = training_set[0].input.size();

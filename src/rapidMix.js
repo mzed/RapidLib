@@ -45,38 +45,53 @@ Module.Regression.prototype = {
             output.push(outputVector.get(i));
         }
         return output;
+    },
+    process: function (input) {
+        //change input to vectors of doubles
+        var inputVector = new Module.VectorDouble();
+        for (var i = 0; i < input.length; ++i) {
+            inputVector.push_back(input[i]);
+        }
+        //get the output
+        outputVector = new Module.VectorDouble();
+        outputVector = this.modelSet.process(inputVector);
+        //change back to javascript array
+        var output = [];
+        for (var i = 0; i < outputVector.size(); ++i) {
+            output.push(outputVector.get(i));
+        }
+        return output;
     }
 };
 
 /////////////////////////////////////////////////
 
 Module.Classification = function () {
-    this.model = [];
-    this.numInputs = 0;
-    this.numOutputs = 0;
-    this.created = false;
-    switch (arguments.length) {
-        case 0:
-            break;
-        case 2:
-            var trainingSet = new Module.TrainingSet;
-            this.numInputs = arguments[0];
-            var whichInputs = new Module.VectorInt;
-            for (var i = 0; i < this.numInputs; ++i) {
-                whichInputs.push_back(i);
-            }
-            this.numOutputs = arguments[1];
-            this.model = [];
-            for (var i = 0; i < this.numOutputs; ++i) {
-                this.model.push(new Module.KnnClassification(this.numInputs, whichInputs, trainingSet, 1));
-            }
-            this.created = true;
-            break;
-        default:
-            console.error('rapidMix classification takes 2 arguments: # of inputs, # of outputs');
-    }
+    this.modelSet = new Module.ClassificationCpp; //TODO implement optional arguments
 };
 
+Module.Classification.prototype  = {
+    train: function (trainingSet) {
+        return this.modelSet.train(Module.prepTrainingSet(trainingSet));
+    },
+    process: function (input) {
+        //change input to vectors of doubles
+        var inputVector = new Module.VectorDouble();
+        for (var i = 0; i < input.length; ++i) {
+            inputVector.push_back(input[i]);
+        }
+        //get the output
+        outputVector = new Module.VectorDouble();
+        outputVector = this.modelSet.process(inputVector);
+        //change back to javascript array
+        var output = [];
+        for (var i = 0; i < outputVector.size(); ++i) {
+            output.push(outputVector.get(i));
+        }
+        return output;
+    }
+};
+/*
 Module.Classification.prototype = {
     train: function (trainingSet) {
         var start = new Date().getTime();
@@ -137,8 +152,7 @@ Module.Classification.prototype = {
             return false;
         }
     }
-};
-
+};*/
 Module.ModelSet = function () {
     console.log("creating model set");
     this.myModelSet = [];
