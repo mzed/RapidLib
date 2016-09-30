@@ -11,6 +11,8 @@ This creates a set of regression models using neural networks. The models will h
 This creates a set of classification models using k nearest neighbour classification. k always = 1.
 
 ### _optional arguments_
+*These are not currently implemented, and perhaps won't be. Would they add anything valuable to the API?*  
+  
 These constructors can be specified with arguments for numbers of inputs and outputs, like:  
 `var myOptionalThing = new RapidLib.Regression(9, 4)`  
 This regression object expects nine inputs and returns 4 outputs.
@@ -50,4 +52,4 @@ A `modelSet` object will eventually implement all of the features from Wekintor.
 
 `var myModelSet = new RapidLib.ModelSet();`  
 `myModelSet.loadJSON('modelSetDescription.json');`  
-`myModelSet.process(myInput);`  
+`myModelSet.process(myInput);`
