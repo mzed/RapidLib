@@ -17,20 +17,28 @@ modelSet::~modelSet() {
 };
 
 bool modelSet::train(std::vector<trainingExample> training_set) {
-    for (int i = 0; i < myModelSet.size(); ++i) {
-        std::vector<trainingExample> modelTrainingSet; //just one output
-        for (auto example : training_set) {
-            std::vector<double> tempDouble;
-            for (int j = 0; j < numInputs; ++j) {
-                tempDouble.push_back(example.input[j]);
-            }
-            trainingExample tempObj = {tempDouble, std::vector<double> {example.output[i]}};
-            modelTrainingSet.push_back(tempObj);
-        }
-        myModelSet[i]->train(modelTrainingSet);
+  for ( auto example : training_set) {
+    if (example.input.size() != numInputs) {
+      return false;
     }
-    created = true;
-    return true;
+    if (example.output.size() != numOutputs) {
+      return false;
+    }
+  }
+  for (int i = 0; i < myModelSet.size(); ++i) {
+    std::vector<trainingExample> modelTrainingSet; //just one output
+    for (auto example : training_set) {
+      std::vector<double> tempDouble;
+      for (int j = 0; j < numInputs; ++j) {
+	tempDouble.push_back(example.input[j]);
+      }
+      trainingExample tempObj = {tempDouble, std::vector<double> {example.output[i]}};
+      modelTrainingSet.push_back(tempObj);
+    }
+    myModelSet[i]->train(modelTrainingSet);
+  }
+  created = true;
+  return true;
 }
 
 std::vector<double> modelSet::process(std::vector<double> inputVector) {

@@ -95,7 +95,6 @@ Module.Classification.prototype  = {
 //////////////////////////////////////////////////
 
 Module.ModelSet = function () {
-    console.log("creating model set");
     this.myModelSet = [];
 };
 
