@@ -3,10 +3,10 @@
 "use strict";
 
 Module.prepTrainingSet = function (trainingSet) {
-    var rmTrainingSet = new rapidMix.TrainingSet();
+    var rmTrainingSet = new Module.TrainingSet();
     for (var i = 0; i < trainingSet.length; ++i) {
-        var tempInput = new rapidMix.VectorDouble();
-        var tempOutput = new rapidMix.VectorDouble();
+        var tempInput = new Module.VectorDouble();
+        var tempOutput = new Module.VectorDouble();
         for (var j = 0; j < trainingSet[i].input.length; ++j) {
             tempInput.push_back(parseFloat(trainingSet[i].input[j]));
         }
@@ -91,81 +91,24 @@ Module.Classification.prototype  = {
         return output;
     }
 };
-/*
-Module.Classification.prototype = {
-    train: function (trainingSet) {
-        var start = new Date().getTime();
-        if (this.created) {
-            for (var out = 0; out < this.numOutputs; ++out) {
-                for (var i = 0; i < trainingSet.length; ++i) {
-                    var features = new Module.VectorDouble;
-                    for (var j = 0; j < this.numInputs; ++j) {
-                        features.push_back(trainingSet[i].input[j]);
-                    }
-                    this.model[out].addNeighbour(trainingSet[i].output[out], features);
-                }
-                var end = new Date().getTime();
-                var time = end - start;
-                var result = {'examples': trainingSet.length, 'time': time};
-                console.log(result);
-            }
-            return true;
-        } else {
-            this.numInputs = trainingSet[0].input.length;
-            this.numOutputs = trainingSet[0].output.length;
 
-            var rmTrainingSet = new Module.TrainingSet();
-            for (var ex in trainingSet) {
-                if (trainingSet[ex].input.length != this.numInputs) {
-                    console.error("training set examples have different numbers of inputs");
-                    return false;
-                }
-                if (trainingSet[ex].output.length != this.numOutputs) {
-                    console.error("training set examples have different numbers of outputs");
-                    return false;
-                }
-            }
-            var whichInputs = new Module.VectorInt;
-            for (var i = 0; i < this.numInputs; ++i) {
-                whichInputs.push_back(i);
-            }
-            for (var output = 0; output < this.numOutputs; ++output) {
-                this.model.push(new Module.KnnClassification(this.numInputs, whichInputs, rmTrainingSet, 1));
-            }
-            this.created = true;
-            this.train(trainingSet);
-        }
-    },
-    process: function (input) {
-        if (this.created) {
-            var toKnn = new Module.VectorDouble();
-            for (var i = 0; i < this.numInputs; ++i) {
-                toKnn.push_back(input[i]);
-            }
-            var returnArray = [];
-            for (var i = 0; i < this.model.length; ++i) {
-                returnArray.push(this.model[i].process(toKnn));
-            }
-            return returnArray;
-        } else {
-            console.error("No trained model here");
-            return false;
-        }
-    }
-};*/
+//////////////////////////////////////////////////
+
 Module.ModelSet = function () {
     console.log("creating model set");
     this.myModelSet = [];
 };
 
-Module.ModelSet.prototype.loadJSON = function (url) {
+Module.ModelSet.prototype.loadJSON = function (JSON_string) {
+    /*
     var that = this;
     var request = new XMLHttpRequest();
     request.open("GET", url, true);
     request.responseType = "json";
     request.onload = function () {
-        //console.log("loaded", JSON.stringify(this.response));
-        var modelSet = this.response;
+    */
+        console.log("loaded", JSON.stringify(this.response));
+        var modelSet = JSON_string;
         var allInputs = modelSet.metadata.inputNames;
         modelSet.modelSet.forEach(function (value) {
             var numInputs = value.numInputs;
@@ -252,8 +195,8 @@ Module.ModelSet.prototype.loadJSON = function (url) {
                     break;
             }
         });
-    };
-    request.send(null);
+    //};
+    //request.send(null);
 };
 
 Module.ModelSet.prototype.addNNModel = function (model) {
