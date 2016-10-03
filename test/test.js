@@ -77,6 +77,10 @@ describe('RapidAPI', function () {
             let response3 = myRegression.process([0.9, 0.7]);
             expect(response3[0]).to.equal(1.6666849608321699);
         });
+        it('should return 0 on input that doesn\'t match numInputs', function () {
+            let response1 = myRegression.process([33, 2,44, 9]);
+            expect(response1[0]).to.equal(0); //close enough
+        });
         it('should work with multiple outputs', function () {
             let myReg2 = new rapidMix.Regression();
             expect(myReg2).to.be.an.instanceof(rapidMix.Regression);
@@ -118,6 +122,10 @@ describe('RapidAPI', function () {
             expect(response2[0]).to.equal(1);
             let response3 = myClassification.process([0.9, 0.7]);
             expect(response3[0]).to.equal(2);
+        });
+        it('should return 0 on input that doesn\'t match numInputs', function () {
+            let response1 = myClassification.process([33, 2,44, 9]);
+            expect(response1[0]).to.equal(0); //close enough
         });
         it('should work with multiple outputs', function () {
             let myClass2 = new rapidMix.Classification();

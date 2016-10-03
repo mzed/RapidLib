@@ -45,22 +45,6 @@ Module.Regression.prototype = {
             output.push(outputVector.get(i));
         }
         return output;
-    },
-    process: function (input) {
-        //change input to vectors of doubles
-        var inputVector = new Module.VectorDouble();
-        for (var i = 0; i < input.length; ++i) {
-            inputVector.push_back(input[i]);
-        }
-        //get the output
-        outputVector = new Module.VectorDouble();
-        outputVector = this.modelSet.process(inputVector);
-        //change back to javascript array
-        var output = [];
-        for (var i = 0; i < outputVector.size(); ++i) {
-            output.push(outputVector.get(i));
-        }
-        return output;
     }
 };
 

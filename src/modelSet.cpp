@@ -43,7 +43,7 @@ bool modelSet::train(std::vector<trainingExample> training_set) {
 
 std::vector<double> modelSet::process(std::vector<double> inputVector) {
   std::vector<double> returnVector;
-    if (created) {
+  if (created && inputVector.size() == numInputs) {
         for (auto model : myModelSet) {
 	  returnVector.push_back(model->process(inputVector));
         }
