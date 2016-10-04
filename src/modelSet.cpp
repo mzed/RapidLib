@@ -1,5 +1,6 @@
 #include <vector>
 #include "modelSet.h"
+#include "modelSetEmbindings.h"
 
 /** No arguments, don't create models yet */
 

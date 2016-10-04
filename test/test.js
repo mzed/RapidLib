@@ -77,9 +77,11 @@ describe('RapidAPI', function () {
             let response3 = myRegression.process([0.9, 0.7]);
             expect(response3[0]).to.equal(1.6666849608321699);
         });
-        it('should return 0 on input that doesn\'t match numInputs', function () {
+        it('should return zero on input that doesn\'t match numInputs', function () {
             let response1 = myRegression.process([33, 2,44, 9]);
-            expect(response1[0]).to.equal(0); //close enough
+            expect(response1[0]).to.equal(0);
+            let response2 = myRegression.process([1]);
+            expect(response2[0]).to.equal(0);
         });
         it('should work with multiple outputs', function () {
             let myReg2 = new rapidMix.Regression();
@@ -123,9 +125,11 @@ describe('RapidAPI', function () {
             let response3 = myClassification.process([0.9, 0.7]);
             expect(response3[0]).to.equal(2);
         });
-        it('should return 0 on input that doesn\'t match numInputs', function () {
+        it('should return zero on input that doesn\'t match numInputs', function () {
             let response1 = myClassification.process([33, 2,44, 9]);
-            expect(response1[0]).to.equal(0); //close enough
+            expect(response1[0]).to.equal(0);
+            let response2 = myClassification.process([1]);
+            expect(response2[0]).to.equal(0);
         });
         it('should work with multiple outputs', function () {
             let myClass2 = new rapidMix.Classification();
@@ -153,5 +157,6 @@ describe('RapidAPI', function () {
         it('should create a new object with a modelSet', function () {
             expect(myModelSet).to.have.property('modelSet');
         });
+        it('should actually do something?');
     });
 });

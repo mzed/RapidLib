@@ -2,6 +2,13 @@
 
 "use strict";
 
+/**
+ * Utility function to convert js objects into something emscripten likes
+ * @param {Object} trainingSet - JS Object representing a training set
+ * @property {function} Module.TrainingSet - constructor for emscripten version of this struct
+ * @property {function} Module.VectorDouble - constructor for the emscriptent version of std::vector<double>
+ * @returns {Module.TrainingSet}
+ */
 Module.prepTrainingSet = function (trainingSet) {
     var rmTrainingSet = new Module.TrainingSet();
     for (var i = 0; i < trainingSet.length; ++i) {
@@ -21,15 +28,30 @@ Module.prepTrainingSet = function (trainingSet) {
 
 ////////////////////////////////////////////////
 
+/**
+ * Creates a set of regression objects using the constructor from emscripten
+ * @constructor
+ * @property {function} Module.RegressionCpp - constructor from emscripten
+ */
 Module.Regression = function () {
     this.modelSet = new Module.RegressionCpp(); //TODO implement optional arguments
 };
 
 Module.Regression.prototype = {
+    /**
+     * Trains the models using the input. Starts training from the current state of the model: randomized or trained.
+     * @param {Object} trainingSet - An array of training examples.
+     * @returns {Boolean} true indicates successful training
+     */
     train: function (trainingSet) {
         //change to vectorDoubles and send in
         return this.modelSet.train(Module.prepTrainingSet(trainingSet));
     },
+    /**
+     * Runs feed-forward regression on input
+     * @param {Array} input - An array of features to be processed.
+     * @returns {Array} output - One number for each model in the set
+     */
     process: function (input) {
         //change input to vectors of doubles
         var inputVector = new Module.VectorDouble();
@@ -37,7 +59,7 @@ Module.Regression.prototype = {
             inputVector.push_back(input[i]);
         }
         //get the output
-        outputVector = new Module.VectorDouble();
+        var outputVector = new Module.VectorDouble();
         outputVector = this.modelSet.process(inputVector);
         //change back to javascript array
         var output = [];
@@ -50,14 +72,30 @@ Module.Regression.prototype = {
 
 /////////////////////////////////////////////////
 
+/**
+ * Creates a set of classification objects using the constructor from emscripten
+ * @constructor
+ * @property {function} Module.ClassificationCpp - constructor from emscripten
+ */
+
 Module.Classification = function () {
-    this.modelSet = new Module.ClassificationCpp; //TODO implement optional arguments
+    this.modelSet = new Module.ClassificationCpp(); //TODO implement optional arguments
 };
 
-Module.Classification.prototype  = {
+Module.Classification.prototype = {
+    /**
+     * Trains the models using the input. Clears previous training set.
+     * @param {Object} trainingSet - An array of training examples.
+     * @returns {Boolean} true indicates successful training
+     */
     train: function (trainingSet) {
         return this.modelSet.train(Module.prepTrainingSet(trainingSet));
     },
+    /**
+     * Does classifications on an input vector.
+     * @param {Array} input - An array of features to be processed.
+     * @returns {Array} output - One number for each model in the set
+     */
     process: function (input) {
         //change input to vectors of doubles
         var inputVector = new Module.VectorDouble();
@@ -65,7 +103,7 @@ Module.Classification.prototype  = {
             inputVector.push_back(input[i]);
         }
         //get the output
-        outputVector = new Module.VectorDouble();
+        var outputVector = new Module.VectorDouble();
         outputVector = this.modelSet.process(inputVector);
         //change back to javascript array
         var output = [];
@@ -78,120 +116,144 @@ Module.Classification.prototype  = {
 
 //////////////////////////////////////////////////
 
+/**
+ * Creates a set of machine learning objects using constructors from emscripten. Could be any mix of regression and classification.
+ * @constructor
+ */
 Module.ModelSet = function () {
     this.myModelSet = [];
+    this.modelSet = new Module.ModelSetCpp();
 };
 
+/**
+ * Trains the models using the input. Clears previous training set.
+ * @param {string} JSON_string - JSON loaded from a model set description document.
+ * @returns {Boolean} true indicates successful training
+ */
 Module.ModelSet.prototype.loadJSON = function (JSON_string) {
     /*
-    var that = this;
-    var request = new XMLHttpRequest();
-    request.open("GET", url, true);
-    request.responseType = "json";
-    request.onload = function () {
-    */
-        console.log("loaded", JSON.stringify(this.response));
-        var modelSet = JSON_string;
-        var allInputs = modelSet.metadata.inputNames;
-        modelSet.modelSet.forEach(function (value) {
-            var numInputs = value.numInputs;
-            var whichInputs = new Module.VectorInt();
-            switch (value.modelType) {
-                case 'kNN classification':
-                    var neighbours = new Module.TrainingSet();
-                    var numExamples = value.numExamples;
-                    var k = value.k;
-                    var numClasses = value.numClasses;
+     var that = this;
+     var request = new XMLHttpRequest();
+     request.open("GET", url, true);
+     request.responseType = "json";
+     request.onload = function () {
+     */
+    console.log("loaded", JSON.stringify(this.response));
+    var modelSet = JSON_string;
+    var allInputs = modelSet.metadata.inputNames;
+    modelSet.modelSet.forEach(function (value) {
+        var numInputs = value.numInputs;
+        var whichInputs = new Module.VectorInt();
+        switch (value.modelType) {
+            case 'kNN classification':
+                var neighbours = new Module.TrainingSet();
+                var numExamples = value.numExamples;
+                var k = value.k;
+                var numClasses = value.numClasses;
 
-                    for (var i = 0; i < allInputs.length; ++i) {
-                        if (value.inputNames.includes(allInputs[i])) {
-                            whichInputs.push_back(i);
-                        }
+                for (var i = 0; i < allInputs.length; ++i) {
+                    if (value.inputNames.includes(allInputs[i])) {
+                        whichInputs.push_back(i);
                     }
+                }
 
-                    var myKnn = new Module.KnnClassification(numInputs, whichInputs, neighbours, k);
-                    value.examples.forEach(function (value) {
-                        var features = new Module.VectorDouble();
-                        for (var i = 0; i < numInputs; ++i) {
-                            features.push_back(parseFloat(value.features[i]));
-                        }
-                        myKnn.addNeighbour(parseInt(value.class), features);
-                    });
-                    that.addkNNModel(myKnn);
-                    break;
-                case 'Neural Network':
-                    var numLayers = value.numHiddenLayers;
-                    var numNodes = value.numHiddenNodes;
-                    var weights = new Module.VectorDouble();
-                    var wHiddenOutput = new Module.VectorDouble();
-                    var inMax = new Module.VectorDouble();
-                    var inMin = new Module.VectorDouble();
-                    var outMax = value.outMax;
-                    var outMin = value.outMin;
-
-                    var localWhichInputs = [];
-                    for (var i = 0; i < allInputs.length; ++i) {
-                        //console.log('allInputs[', i, '] = ', allInputs[i]);
-                        //console.log(value.inputNames);
-                        if (value.inputNames.includes(allInputs[i])) {
-                            whichInputs.push_back(i);
-                            localWhichInputs.push(i);
-                        }
+                var myKnn = new Module.KnnClassification(numInputs, whichInputs, neighbours, k);
+                value.examples.forEach(function (value) {
+                    var features = new Module.VectorDouble();
+                    for (var i = 0; i < numInputs; ++i) {
+                        features.push_back(parseFloat(value.features[i]));
                     }
+                    myKnn.addNeighbour(parseInt(value.class), features);
+                });
+                that.addkNNModel(myKnn);
+                break;
+            case 'Neural Network':
+                var numLayers = value.numHiddenLayers;
+                var numNodes = value.numHiddenNodes;
+                var weights = new Module.VectorDouble();
+                var wHiddenOutput = new Module.VectorDouble();
+                var inMax = new Module.VectorDouble();
+                var inMin = new Module.VectorDouble();
+                var outMax = value.outMax;
+                var outMin = value.outMin;
 
-                    var currentLayer = 0;
-                    value.nodes.forEach(function (value, i) {
-                        if (value.name === 'Linear Node 0') { //Output Node
+                var localWhichInputs = [];
+                for (var i = 0; i < allInputs.length; ++i) {
+                    //console.log('allInputs[', i, '] = ', allInputs[i]);
+                    //console.log(value.inputNames);
+                    if (value.inputNames.includes(allInputs[i])) {
+                        whichInputs.push_back(i);
+                        localWhichInputs.push(i);
+                    }
+                }
+
+                var currentLayer = 0;
+                value.nodes.forEach(function (value, i) {
+                    if (value.name === 'Linear Node 0') { //Output Node
+                        for (var j = 1; j <= numNodes; ++j) {
+                            var whichNode = 'Node ' + (j + (numNodes * (numLayers - 1)));
+                            wHiddenOutput.push_back(parseFloat(value[whichNode]));
+                            //console.log("pushing output ", value[whichNode]);
+                        }
+                        wHiddenOutput.push_back(parseFloat(value.Threshold));
+                    } else {
+                        currentLayer = Math.floor((i - 1) / numNodes);
+                        if (currentLayer < 1) { //Nodes connected to input
+                            for (var j = 0; j < numInputs; ++j) {
+                                //console.log('j ', j, 'whichInputs ', localWhichInputs[j]);
+                                //console.log("pushing", value['Attrib ' + allInputs[j]]);
+                                weights.push_back(parseFloat(value['Attrib ' + allInputs[localWhichInputs[j]]]));
+                            }
+                        } else { //Hidden Layers
                             for (var j = 1; j <= numNodes; ++j) {
-                                var whichNode = 'Node ' + (j + (numNodes * (numLayers - 1)));
-                                wHiddenOutput.push_back(parseFloat(value[whichNode]));
-                                //console.log("pushing output ", value[whichNode]);
+                                weights.push_back(parseFloat(value['Node ' + (j + (numNodes * (currentLayer - 1)))]));
                             }
-                            wHiddenOutput.push_back(parseFloat(value.Threshold));
-                        } else {
-                            currentLayer = Math.floor((i - 1) / numNodes);
-                            if (currentLayer < 1) { //Nodes connected to input
-                                for (var j = 0; j < numInputs; ++j) {
-                                    //console.log('j ', j, 'whichInputs ', localWhichInputs[j]);
-                                    //console.log("pushing", value['Attrib ' + allInputs[j]]);
-                                    weights.push_back(parseFloat(value['Attrib ' + allInputs[localWhichInputs[j]]]));
-                                }
-                            } else { //Hidden Layers
-                                for (var j = 1; j <= numNodes; ++j) {
-                                    weights.push_back(parseFloat(value['Node ' + (j + (numNodes * (currentLayer - 1)))]));
-                                }
-                            }
-                            weights.push_back(parseFloat(value.Threshold));
                         }
-                    });
-
-                    for (var j = 0; j < numInputs; ++j) {
-                        inMin.push_back(value.inMins[j]);
-                        inMax.push_back(value.inMaxes[j]);
+                        weights.push_back(parseFloat(value.Threshold));
                     }
+                });
 
-                    var myNN = new Module.NeuralNetwork(numInputs, whichInputs, numLayers, numNodes, weights, wHiddenOutput, inMax, inMin, outMax, outMin);
-                    that.addNNModel(myNN);
-                    break;
-                default:
-                    console.warn('unknown model type ', value.modelType);
-                    break;
-            }
-        });
+                for (var j = 0; j < numInputs; ++j) {
+                    inMin.push_back(value.inMins[j]);
+                    inMax.push_back(value.inMaxes[j]);
+                }
+
+                var myNN = new Module.NeuralNetwork(numInputs, whichInputs, numLayers, numNodes, weights, wHiddenOutput, inMax, inMin, outMax, outMin);
+                that.addNNModel(myNN);
+                break;
+            default:
+                console.warn('unknown model type ', value.modelType);
+                break;
+        }
+    });
     //};
     //request.send(null);
+    return true; //TODO: make sure this is true;
 };
 
+/**
+ * Add a NN model to a modelSet. //TODO: this doesn't need it's own function
+ * @param model
+ */
 Module.ModelSet.prototype.addNNModel = function (model) {
     console.log('Adding NN model');
     this.myModelSet.push(model);
 };
 
+/**
+ * Add a kNN model to a modelSet. //TODO: this doesn't need it's own function
+ * @param model
+ */
 Module.ModelSet.prototype.addkNNModel = function (model) {
     console.log('Adding kNN model');
     this.myModelSet.push(model);
 };
 
+/**
+ * Applies regression and classification algorithms to an input vector.
+ * @param {Array} input - An array of features to be processed.
+ * @returns {Array} output - One number for each model in the set
+ */
 Module.ModelSet.prototype.process = function (input) {
     var modelSetInput = new Module.VectorDouble();
     for (var i = 0; i < input.length; ++i) {
