@@ -127,107 +127,107 @@ Module.ModelSet = function () {
 
 /**
  * Trains the models using the input. Clears previous training set.
- * @param {string} JSON_string - JSON loaded from a model set description document.
+ * @param {string} url - JSON loaded from a model set description document.
  * @returns {Boolean} true indicates successful training
  */
-Module.ModelSet.prototype.loadJSON = function (JSON_string) {
-    /*
-     var that = this;
-     var request = new XMLHttpRequest();
-     request.open("GET", url, true);
-     request.responseType = "json";
-     request.onload = function () {
-     */
-    console.log("loaded", JSON.stringify(this.response));
-    var modelSet = JSON_string;
-    var allInputs = modelSet.metadata.inputNames;
-    modelSet.modelSet.forEach(function (value) {
-        var numInputs = value.numInputs;
-        var whichInputs = new Module.VectorInt();
-        switch (value.modelType) {
-            case 'kNN classification':
-                var neighbours = new Module.TrainingSet();
-                var numExamples = value.numExamples;
-                var k = value.k;
-                var numClasses = value.numClasses;
+Module.ModelSet.prototype.loadJSON = function (url) {
+    var that = this;
+    console.log('url ', url);
+    var request = new XMLHttpRequest();
+    request.open("GET", 'modelSetDescription.json', true);
+    request.responseType = "jsonp";
+    request.onload = function () {
+        console.log("req", this);
+        console.log("loaded", this.response);
+        var modelSet = this.responseText;
+        var allInputs = modelSet.metadata.inputNames;
+        modelSet.modelSet.forEach(function (value) {
+            var numInputs = value.numInputs;
+            var whichInputs = new Module.VectorInt();
+            switch (value.modelType) {
+                case 'kNN classification':
+                    var neighbours = new Module.TrainingSet();
+                    var numExamples = value.numExamples;
+                    var k = value.k;
+                    var numClasses = value.numClasses;
 
-                for (var i = 0; i < allInputs.length; ++i) {
-                    if (value.inputNames.includes(allInputs[i])) {
-                        whichInputs.push_back(i);
-                    }
-                }
-
-                var myKnn = new Module.KnnClassification(numInputs, whichInputs, neighbours, k);
-                value.examples.forEach(function (value) {
-                    var features = new Module.VectorDouble();
-                    for (var i = 0; i < numInputs; ++i) {
-                        features.push_back(parseFloat(value.features[i]));
-                    }
-                    myKnn.addNeighbour(parseInt(value.class), features);
-                });
-                that.addkNNModel(myKnn);
-                break;
-            case 'Neural Network':
-                var numLayers = value.numHiddenLayers;
-                var numNodes = value.numHiddenNodes;
-                var weights = new Module.VectorDouble();
-                var wHiddenOutput = new Module.VectorDouble();
-                var inMax = new Module.VectorDouble();
-                var inMin = new Module.VectorDouble();
-                var outMax = value.outMax;
-                var outMin = value.outMin;
-
-                var localWhichInputs = [];
-                for (var i = 0; i < allInputs.length; ++i) {
-                    //console.log('allInputs[', i, '] = ', allInputs[i]);
-                    //console.log(value.inputNames);
-                    if (value.inputNames.includes(allInputs[i])) {
-                        whichInputs.push_back(i);
-                        localWhichInputs.push(i);
-                    }
-                }
-
-                var currentLayer = 0;
-                value.nodes.forEach(function (value, i) {
-                    if (value.name === 'Linear Node 0') { //Output Node
-                        for (var j = 1; j <= numNodes; ++j) {
-                            var whichNode = 'Node ' + (j + (numNodes * (numLayers - 1)));
-                            wHiddenOutput.push_back(parseFloat(value[whichNode]));
-                            //console.log("pushing output ", value[whichNode]);
+                    for (var i = 0; i < allInputs.length; ++i) {
+                        if (value.inputNames.includes(allInputs[i])) {
+                            whichInputs.push_back(i);
                         }
-                        wHiddenOutput.push_back(parseFloat(value.Threshold));
-                    } else {
-                        currentLayer = Math.floor((i - 1) / numNodes);
-                        if (currentLayer < 1) { //Nodes connected to input
-                            for (var j = 0; j < numInputs; ++j) {
-                                //console.log('j ', j, 'whichInputs ', localWhichInputs[j]);
-                                //console.log("pushing", value['Attrib ' + allInputs[j]]);
-                                weights.push_back(parseFloat(value['Attrib ' + allInputs[localWhichInputs[j]]]));
-                            }
-                        } else { //Hidden Layers
+                    }
+
+                    var myKnn = new Module.KnnClassification(numInputs, whichInputs, neighbours, k);
+                    value.examples.forEach(function (value) {
+                        var features = new Module.VectorDouble();
+                        for (var i = 0; i < numInputs; ++i) {
+                            features.push_back(parseFloat(value.features[i]));
+                        }
+                        myKnn.addNeighbour(parseInt(value.class), features);
+                    });
+                    that.addkNNModel(myKnn);
+                    break;
+                case 'Neural Network':
+                    var numLayers = value.numHiddenLayers;
+                    var numNodes = value.numHiddenNodes;
+                    var weights = new Module.VectorDouble();
+                    var wHiddenOutput = new Module.VectorDouble();
+                    var inMax = new Module.VectorDouble();
+                    var inMin = new Module.VectorDouble();
+                    var outMax = value.outMax;
+                    var outMin = value.outMin;
+
+                    var localWhichInputs = [];
+                    for (var i = 0; i < allInputs.length; ++i) {
+                        //console.log('allInputs[', i, '] = ', allInputs[i]);
+                        //console.log(value.inputNames);
+                        if (value.inputNames.includes(allInputs[i])) {
+                            whichInputs.push_back(i);
+                            localWhichInputs.push(i);
+                        }
+                    }
+
+                    var currentLayer = 0;
+                    value.nodes.forEach(function (value, i) {
+                        if (value.name === 'Linear Node 0') { //Output Node
                             for (var j = 1; j <= numNodes; ++j) {
-                                weights.push_back(parseFloat(value['Node ' + (j + (numNodes * (currentLayer - 1)))]));
+                                var whichNode = 'Node ' + (j + (numNodes * (numLayers - 1)));
+                                wHiddenOutput.push_back(parseFloat(value[whichNode]));
+                                //console.log("pushing output ", value[whichNode]);
                             }
+                            wHiddenOutput.push_back(parseFloat(value.Threshold));
+                        } else {
+                            currentLayer = Math.floor((i - 1) / numNodes);
+                            if (currentLayer < 1) { //Nodes connected to input
+                                for (var j = 0; j < numInputs; ++j) {
+                                    //console.log('j ', j, 'whichInputs ', localWhichInputs[j]);
+                                    //console.log("pushing", value['Attrib ' + allInputs[j]]);
+                                    weights.push_back(parseFloat(value['Attrib ' + allInputs[localWhichInputs[j]]]));
+                                }
+                            } else { //Hidden Layers
+                                for (var j = 1; j <= numNodes; ++j) {
+                                    weights.push_back(parseFloat(value['Node ' + (j + (numNodes * (currentLayer - 1)))]));
+                                }
+                            }
+                            weights.push_back(parseFloat(value.Threshold));
                         }
-                        weights.push_back(parseFloat(value.Threshold));
+                    });
+
+                    for (var j = 0; j < numInputs; ++j) {
+                        inMin.push_back(value.inMins[j]);
+                        inMax.push_back(value.inMaxes[j]);
                     }
-                });
 
-                for (var j = 0; j < numInputs; ++j) {
-                    inMin.push_back(value.inMins[j]);
-                    inMax.push_back(value.inMaxes[j]);
-                }
-
-                var myNN = new Module.NeuralNetwork(numInputs, whichInputs, numLayers, numNodes, weights, wHiddenOutput, inMax, inMin, outMax, outMin);
-                that.addNNModel(myNN);
-                break;
-            default:
-                console.warn('unknown model type ', value.modelType);
-                break;
-        }
-    });
-    //};
-    //request.send(null);
+                    var myNN = new Module.NeuralNetwork(numInputs, whichInputs, numLayers, numNodes, weights, wHiddenOutput, inMax, inMin, outMax, outMin);
+                    that.addNNModel(myNN);
+                    break;
+                default:
+                    console.warn('unknown model type ', value.modelType);
+                    break;
+            }
+        });
+    };
+    request.send(null);
     return true; //TODO: make sure this is true;
 };
 
