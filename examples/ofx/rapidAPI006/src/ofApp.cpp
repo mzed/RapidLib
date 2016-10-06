@@ -160,7 +160,7 @@ void ofApp::keyReleased(int key){
 void ofApp::mouseMoved(int x, int y){
     if (recording) {
         trainingExample tempExample;
-        tempExample.input = {double(x)/1024, double(y)/768};
+        tempExample.input = {double(x), double(y)};
         tempExample.output = {modulationFrequency, modulationDepth, centerFrequency, resonance};
         trainingSet.push_back(tempExample);
     }
@@ -170,8 +170,8 @@ void ofApp::mouseMoved(int x, int y){
 void ofApp::mouseDragged(int x, int y, int button){
     if (trained) {
         std::vector<double> input;
-        input.push_back (double(x)/1024.0);
-        input.push_back (double(y)/768.0);
+        input.push_back (double(x));
+        input.push_back (double(y));
         std::vector<double> output = myRegression.process(input);
         modulationFrequency = output[0];
         modulationDepth = output[1];
