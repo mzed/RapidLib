@@ -6,7 +6,7 @@
  * Utility function to convert js objects into something emscripten likes
  * @param {Object} trainingSet - JS Object representing a training set
  * @property {function} Module.TrainingSet - constructor for emscripten version of this struct
- * @property {function} Module.VectorDouble - constructor for the emscriptent version of std::vector<double>
+ * @property {function} Module.VectorDouble - constructor for the emscripten version of std::vector<double>
  * @returns {Module.TrainingSet}
  */
 Module.prepTrainingSet = function (trainingSet) {
@@ -40,7 +40,7 @@ Module.Regression = function () {
 Module.Regression.prototype = {
     /**
      * Trains the models using the input. Starts training from the current state of the model: randomized or trained.
-     * @param {Object} trainingSet - An array of training examples.
+     * @param {Object} trainingSet - An array of training examples
      * @returns {Boolean} true indicates successful training
      */
     train: function (trainingSet) {
@@ -49,10 +49,14 @@ Module.Regression.prototype = {
     },
     /**
      * Runs feed-forward regression on input
-     * @param {Array} input - An array of features to be processed.
+     * @param {Array} input - An array of features to be processed. Non-arrays are converted.
      * @returns {Array} output - One number for each model in the set
      */
     process: function (input) {
+        //I'll assume that the args should have been an array
+        if (arguments.length > 1) {
+            input = Array.from(arguments);
+        }
         //change input to vectors of doubles
         var inputVector = new Module.VectorDouble();
         for (var i = 0; i < input.length; ++i) {
@@ -93,10 +97,14 @@ Module.Classification.prototype = {
     },
     /**
      * Does classifications on an input vector.
-     * @param {Array} input - An array of features to be processed.
+     * @param {Array} input - An array of features to be processed. Non-arrays are converted.
      * @returns {Array} output - One number for each model in the set
      */
     process: function (input) {
+        //I'll assume that the args should have been an array
+        if (arguments.length > 1) {
+            input = Array.from(arguments);
+        }
         //change input to vectors of doubles
         var inputVector = new Module.VectorDouble();
         for (var i = 0; i < input.length; ++i) {
@@ -133,9 +141,11 @@ Module.ModelSet = function () {
 Module.ModelSet.prototype.loadJSON = function (url) {
     var that = this;
     console.log('url ', url);
+    var b64 = Module.getBase64(url);
+    console.log('b64 ', b64);
     var request = new XMLHttpRequest();
     request.open("GET", 'modelSetDescription.json', true);
-    request.responseType = "jsonp";
+    request.responseType = "json";
     request.onload = function () {
         console.log("req", this);
         console.log("loaded", this.response);
@@ -266,3 +276,16 @@ Module.ModelSet.prototype.process = function (input) {
     }
     return output;
 };
+
+Module.getBase64 = function(str) {
+    //check if the string is a data URI
+    if (str.indexOf(';base64,') != -1 ) {
+        //see where the actual data begins
+        var dataStart = str.indexOf(';base64,') + 8;
+        //check if the data is base64-encoded, if yes, return it
+        // taken from
+        // http://stackoverflow.com/a/8571649
+        return str.slice(dataStart).match(/^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{4}|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)$/) ? str.slice(dataStart) : false;
+    }
+    else return false;
+}

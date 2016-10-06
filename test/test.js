@@ -74,7 +74,7 @@ describe('RapidAPI', function () {
             expect(response1[0]).to.be.below(0.000001); //close enough
             let response2 = myRegression.process([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0.6907738688673892);
-            let response3 = myRegression.process([0.9, 0.7]);
+            let response3 = myRegression.process(0.9, 0.7); //likes a list as well as an array
             expect(response3[0]).to.equal(1.6666849608321699);
         });
         it('should return zero on input that doesn\'t match numInputs', function () {
@@ -95,7 +95,7 @@ describe('RapidAPI', function () {
             let response2 = myReg2.process([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0.6907738688673892);
             expect(response2[1]).to.equal(7.866071136215312 );
-            let response3 = myReg2.process([0.9, 0.7]);
+            let response3 = myReg2.process(0.9, 0.7); //NB: this is not an array
             expect(response3[0]).to.equal(1.6666849608321699);
             expect(response3[1]).to.equal(4.219392385631681);
         });
