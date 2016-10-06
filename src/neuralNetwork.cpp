@@ -183,7 +183,7 @@ double neuralNetwork::process(std::vector<double> inputVector) {
     //set input layer
     inputNeurons.clear();
     for (int i = 0; i < numInputs; ++i) {
-        inputNeurons.push_back((pattern[i] - (inBases[i]) / inRanges[i]));
+      inputNeurons.push_back((pattern[i] - (inBases[i])) / inRanges[i]);
     }
     inputNeurons.push_back(1);
     
