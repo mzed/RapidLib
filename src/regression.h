@@ -21,6 +21,10 @@ public:
     /** Train on a specified set, causes creation if not created */
     bool train(std::vector<trainingExample> trainingSet);    
 
+    /** Reset to initial state. Calls modelSet method */
+    bool initialize();
+
+    /** Run regression. Calls modelSet method. */
     std::vector<double> process(std::vector<double> inputVector); 
 };
 

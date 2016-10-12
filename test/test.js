@@ -99,6 +99,11 @@ describe('RapidAPI', function () {
             expect(response3[0]).to.equal(1.6932444207337964);
             expect(response3[1]).to.equal(3.40508769608171);
         });
+        it('can be initialized', function() {
+            myRegression.initialize();
+            let response2 = myRegression.process([0.2789, 0.4574]);
+            expect(response2[0]).to.equal(0); //initialized models return 0
+        })
     });
 
     describe('Classification', function () {
@@ -147,6 +152,11 @@ describe('RapidAPI', function () {
             expect(response3[0]).to.equal(2);
             expect(response3[1]).to.equal(4);
         });
+        it('can be initialized', function() {
+            myClassification.initialize();
+            let response2 = myClassification.process([0.2789, 0.4574]);
+            expect(response2[0]).to.equal(0); //initialized models return 0
+        })
     });
 
     describe('ModelSet', function () {

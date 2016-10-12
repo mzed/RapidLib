@@ -13,6 +13,7 @@ public:
     modelSet();
     ~modelSet();
     bool train(std::vector<trainingExample> trainingSet);
+    bool initialize();
     std::vector<double> process(std::vector<double> inputVector);
 
 protected:

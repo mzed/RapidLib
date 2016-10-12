@@ -42,6 +42,16 @@ bool modelSet::train(std::vector<trainingExample> training_set) {
   return true;
 }
 
+bool modelSet::initialize() {
+  for (std::vector<baseModel*>::iterator i = myModelSet.begin(); i != myModelSet.end(); ++i) {
+    delete *i;
+  }
+  numInputs = 0;
+  numOutputs = 0;
+  created = false;
+  return true;
+}
+
 std::vector<double> modelSet::process(std::vector<double> inputVector) {
   std::vector<double> returnVector;
   if (created && inputVector.size() == numInputs) {

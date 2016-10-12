@@ -13,6 +13,7 @@ EMSCRIPTEN_BINDINGS(classification_module) {
     .constructor< std::vector<trainingExample> >()
     .constructor<int, int>()
     .function("train", &classification::train)
+    .function("initialize", &classification::initialize)
     .function("process", &classification::process)
     ;
 

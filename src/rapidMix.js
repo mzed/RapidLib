@@ -48,6 +48,13 @@ Module.Regression.prototype = {
         return this.modelSet.train(Module.prepTrainingSet(trainingSet));
     },
     /**
+     * Returns the model set to it's initial configuration.
+     * @returns {Boolean} true indicates successful initialization
+     */
+    initialize: function () {
+        return this.modelSet.initialize();
+    },
+    /**
      * Runs feed-forward regression on input
      * @param {Array} input - An array of features to be processed. Non-arrays are converted.
      * @returns {Array} output - One number for each model in the set
@@ -94,6 +101,13 @@ Module.Classification.prototype = {
      */
     train: function (trainingSet) {
         return this.modelSet.train(Module.prepTrainingSet(trainingSet));
+    },
+    /**
+     * Returns the model set to it's initial configuration.
+     * @returns {Boolean} true indicates successful initialization
+     */
+    initialize: function () {
+        return this.modelSet.initialize();
     },
     /**
      * Does classifications on an input vector.

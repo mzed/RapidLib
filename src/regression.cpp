@@ -57,6 +57,10 @@ bool regression::train(std::vector<trainingExample> training_set) {
     }
 }
 
+bool regression::initialize() {
+  //Emscripten made me do it. -mz
+  return modelSet::initialize();
+}
 std::vector<double> regression::process(std::vector<double> inputVector) {
   //Emscripten made me do it. -mz
   return modelSet::process(inputVector);
