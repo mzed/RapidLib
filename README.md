@@ -43,7 +43,7 @@ Returns `true` when models are trained.
 Trained models process input using the `process` function. Input is an array of numbers (doubles).
 
 `var myInput = [90.0, 3.14, 1.618];`  
-`var modelOutput = myReg.procss(myInput);`  
+`var modelOutput = myReg.process(myInput);`  
 
 The model ouput will be an array of numbers (doubles).
 
