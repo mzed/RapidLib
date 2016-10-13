@@ -155,15 +155,13 @@ Module.ModelSet = function () {
 Module.ModelSet.prototype.loadJSON = function (url) {
     var that = this;
     console.log('url ', url);
-    var b64 = Module.getBase64(url);
-    console.log('b64 ', b64);
+    //var b64 = Module.getBase64(url);
+    //console.log('b64 ', b64);
     var request = new XMLHttpRequest();
     request.open("GET", 'modelSetDescription.json', true);
     request.responseType = "json";
     request.onload = function () {
-        console.log("req", this);
-        console.log("loaded", this.response);
-        var modelSet = this.responseText;
+        var modelSet = this.response;
         var allInputs = modelSet.metadata.inputNames;
         modelSet.modelSet.forEach(function (value) {
             var numInputs = value.numInputs;
@@ -171,16 +169,12 @@ Module.ModelSet.prototype.loadJSON = function (url) {
             switch (value.modelType) {
                 case 'kNN classification':
                     var neighbours = new Module.TrainingSet();
-                    var numExamples = value.numExamples;
                     var k = value.k;
-                    var numClasses = value.numClasses;
-
                     for (var i = 0; i < allInputs.length; ++i) {
                         if (value.inputNames.includes(allInputs[i])) {
                             whichInputs.push_back(i);
                         }
                     }
-
                     var myKnn = new Module.KnnClassification(numInputs, whichInputs, neighbours, k);
                     value.examples.forEach(function (value) {
                         var features = new Module.VectorDouble();
@@ -203,8 +197,6 @@ Module.ModelSet.prototype.loadJSON = function (url) {
 
                     var localWhichInputs = [];
                     for (var i = 0; i < allInputs.length; ++i) {
-                        //console.log('allInputs[', i, '] = ', allInputs[i]);
-                        //console.log(value.inputNames);
                         if (value.inputNames.includes(allInputs[i])) {
                             whichInputs.push_back(i);
                             localWhichInputs.push(i);
@@ -236,7 +228,6 @@ Module.ModelSet.prototype.loadJSON = function (url) {
                             weights.push_back(parseFloat(value.Threshold));
                         }
                     });
-
                     for (var j = 0; j < numInputs; ++j) {
                         inMin.push_back(value.inMins[j]);
                         inMax.push_back(value.inMaxes[j]);
@@ -284,22 +275,8 @@ Module.ModelSet.prototype.process = function (input) {
         modelSetInput.push_back(input[i]);
     }
     var output = [];
-    //noinspection JSDuplicatedDeclaration
     for (var i = 0; i < this.myModelSet.length; ++i) {
-        output.push(this.myModelSet[i].processInput(modelSetInput));
+        output.push(this.myModelSet[i].process(modelSetInput));
     }
     return output;
 };
-
-Module.getBase64 = function(str) {
-    //check if the string is a data URI
-    if (str.indexOf(';base64,') != -1 ) {
-        //see where the actual data begins
-        var dataStart = str.indexOf(';base64,') + 8;
-        //check if the data is base64-encoded, if yes, return it
-        // taken from
-        // http://stackoverflow.com/a/8571649
-        return str.slice(dataStart).match(/^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{4}|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)$/) ? str.slice(dataStart) : false;
-    }
-    else return false;
-}

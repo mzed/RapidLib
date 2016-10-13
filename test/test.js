@@ -167,6 +167,7 @@ describe('RapidAPI', function () {
         it('should create a new object with a modelSet', function () {
             expect(myModelSet).to.have.property('modelSet');
         });
-        it('should actually do something?');
+        it('should load from JSON?');
+        it('should process input');
     });
 });

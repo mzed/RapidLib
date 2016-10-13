@@ -19,20 +19,12 @@ EMSCRIPTEN_BINDINGS(stl_wrappers) {
     ;
 }
 
-/*
 EMSCRIPTEN_BINDINGS(knn_module) {
-  register_vector<trainingExample>("TrainingSet");
-
-  value_object<trainingExample>("trainingExample")
-    .field("input", &trainingExample::input)
-    .field("output", &trainingExample::output)
-    ;
- 
   class_<knnClassification>("KnnClassification")
     .constructor<int, std::vector<int>, std::vector<trainingExample>, int>()
     .function("addNeighbour", &knnClassification::addNeighbour)
     .function("process", &knnClassification::process)
     ;
 };
-*/
+
 #endif

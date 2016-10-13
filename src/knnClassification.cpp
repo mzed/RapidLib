@@ -15,11 +15,13 @@ knnClassification::knnClassification(int num_inputs, std::vector<int> which_inpu
 }
 
 knnClassification::~knnClassification() {
-	delete[] nearestNeighbours;
+  delete[] nearestNeighbours;
 }
 
 void knnClassification::addNeighbour(int classNum, std::vector<double> features) {
-    trainingExample newNeighbour = {features, std::vector<double>(classNum)};
+  std::vector<double> classVec;
+  classVec.push_back(double(classNum));
+  trainingExample newNeighbour = {features, classVec};
   neighbours.push_back(newNeighbour);
 };
 
@@ -39,7 +41,7 @@ double knnClassification::process(std::vector<double> inputVector) {
    for (int h = 0; h < numInputs; h++) {
      pattern[h] = inputVector[whichInputs[h]];
    }
-
+   
    //Find k nearest neighbours
    int index = 0;
    for (std::vector<trainingExample>::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {
@@ -54,7 +56,7 @@ double knnClassification::process(std::vector<double> inputVector) {
        nearestNeighbours[index] = {index, euclidianDistance};
        if (euclidianDistance > farthestNN.second) {
 	 farthestNN = {index, euclidianDistance};
-       }
+      }
      } else if (euclidianDistance < farthestNN.second) {
        //replace farthest, if new neighbour is closer
        nearestNeighbours[farthestNN.first] = {index, euclidianDistance};
@@ -76,7 +78,7 @@ double knnClassification::process(std::vector<double> inputVector) {
    typedef std::pair<int, int> classVotePair;
    for (int i = 0; i < numNeighbours; ++i){
        int classNum = std::round(neighbours[nearestNeighbours[i].first].output[0]);
-     if ( classVoteMap.find(classNum) == classVoteMap.end() ) {
+       if ( classVoteMap.find(classNum) == classVoteMap.end() ) {
        classVoteMap.insert(classVotePair(classNum, 1));
      } else {
        classVoteMap[classNum]++;
