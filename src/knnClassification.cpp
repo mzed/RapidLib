@@ -3,7 +3,9 @@
 #include <map>
 #include <vector>
 #include "knnClassification.h"
+#ifdef EMSCRIPTEN
 #include "knnEmbindings.h"
+#endif
 
 knnClassification::knnClassification(int num_inputs, std::vector<int> which_inputs, std::vector<trainingExample> _neighbours, int k)
   : numInputs(num_inputs),

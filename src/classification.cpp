@@ -1,6 +1,8 @@
 #include <vector>
 #include "classification.h"
+#ifdef EMSCRIPTEN
 #include "classificationEmbindings.h"
+#endif
 
 classification::classification() {
     numInputs = 0;

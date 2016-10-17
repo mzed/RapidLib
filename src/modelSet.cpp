@@ -1,6 +1,8 @@
 #include <vector>
 #include "modelSet.h"
+#ifdef EMSCRIPTEN
 #include "modelSetEmbindings.h"
+#endif
 
 /** No arguments, don't create models yet */
 

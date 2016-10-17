@@ -1,6 +1,9 @@
 #include <vector>
 #include "regression.h"
+
+#ifdef EMSCRIPTEN
 #include "regressionEmbindings.h"
+#endif
 
 regression::regression() {
     numInputs = 0;

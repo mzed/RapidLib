@@ -2,10 +2,11 @@
 #include <random>
 #include <algorithm>
 #include <vector>
-#include <iostream>
 
 #include "neuralNetwork.h"
+#ifdef EMSCRIPTEN
 #include "nnEmbindings.h"
+#endif
 
 neuralNetwork::neuralNetwork(int num_inputs,
                              std::vector<int> which_inputs,
