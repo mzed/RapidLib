@@ -20,6 +20,14 @@ knnClassification::~knnClassification() {
   delete[] nearestNeighbours;
 }
 
+int knnClassification::getNumInputs() {
+    return numInputs;
+}
+
+std::vector<int> knnClassification::getWhichInputs() {
+    return whichInputs;
+}
+
 void knnClassification::addNeighbour(int classNum, std::vector<double> features) {
   std::vector<double> classVec;
   classVec.push_back(double(classNum));

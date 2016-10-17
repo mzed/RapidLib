@@ -176,6 +176,30 @@ inline double neuralNetwork::activationFunction(double x) {
     return x;
 }
 
+int neuralNetwork::getNumInputs() {
+    return numInputs;
+}
+
+std::vector<int> neuralNetwork::getWhichInputs() {
+    return whichInputs;
+}
+
+std::vector<double> neuralNetwork::getInRanges() {
+    return inRanges;
+}
+
+std::vector<double> neuralNetwork::getInBases() {
+    return inBases;
+}
+
+double neuralNetwork::getOutRange() {
+    return outRange;
+}
+
+double neuralNetwork::getOutBase() {
+    return outBase;
+}
+
 double neuralNetwork::process(std::vector<double> inputVector) {
     std::vector<double> pattern;
     for (int h = 0; h < numInputs; h++) {
@@ -251,8 +275,6 @@ void neuralNetwork::train(std::vector<trainingExample> trainingSet) {
     //train
     int epoch = 0;
     while (epoch < numEpochs) {
-        double incorrectPatterns = 0;
-        double mse = 0;
         //run through every training instance
         for (int ti = 0; ti < (int) trainingSet.size(); ++ti) {
             process(trainingSet[ti].input);
@@ -287,7 +309,6 @@ void neuralNetwork::updateWeights() {
     //input to hidden weights
     for (int i = 0; i < numHiddenLayers; ++i) {
         for (int j = 0; j < numHiddenNodes; ++j) {
-            int numDeltas = (i == 0) ? numInputs : numHiddenNodes;
             for (int k = 0; k <= numInputs; ++k) {
                 weights[i][j][k] += deltaWeights[i][j][k];
             }

@@ -1,6 +1,7 @@
 #include <vector>
 #include "regression.h"
 
+
 #ifdef EMSCRIPTEN
 #include "regressionEmbindings.h"
 #endif
@@ -38,8 +39,8 @@ bool regression::train(std::vector<trainingExample> training_set) {
         return modelSet::train(training_set);
     } else {
         //create model(s) here
-        numInputs = training_set[0].input.size();
-        numOutputs = training_set[0].output.size();
+        numInputs = int(training_set[0].input.size());
+        numOutputs = int(training_set[0].output.size());
         for ( auto example : training_set) {
             if (example.input.size() != numInputs) {
                 return false;
@@ -60,6 +61,7 @@ bool regression::train(std::vector<trainingExample> training_set) {
     }
 }
 
+#ifdef EMSCRIPTEN
 bool regression::initialize() {
   //Emscripten made me do it. -mz
   return modelSet::initialize();
@@ -68,3 +70,4 @@ std::vector<double> regression::process(std::vector<double> inputVector) {
   //Emscripten made me do it. -mz
   return modelSet::process(inputVector);
 }
+#endif

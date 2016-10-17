@@ -15,6 +15,8 @@ class baseModel {
 public:
     virtual double process(std::vector<double>) = 0;
     virtual void train(std::vector<trainingExample>) = 0;
+    virtual int getNumInputs() = 0;
+    virtual std::vector<int> getWhichInputs() = 0;
     virtual ~baseModel() {};
 };
 #endif

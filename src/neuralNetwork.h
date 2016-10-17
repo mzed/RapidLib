@@ -35,6 +35,14 @@ public:
      */
     double process(std::vector<double> inputVector);
     
+    int getNumInputs();
+    std::vector<int> getWhichInputs();
+    
+    std::vector<double> getInRanges();
+    std::vector<double> getInBases();
+    double getOutRange();
+    double getOutBase();
+    
 private:
     /** Parameters that describe the topography of the model */
     int numInputs;

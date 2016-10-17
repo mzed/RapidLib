@@ -35,9 +35,12 @@ public:
      *
      */
     void train(std::vector<trainingExample> trainingSet);
+    
+    int getNumInputs();
+    std::vector<int> getWhichInputs();
 
 private:
-	int numInputs;
+    int numInputs;
 	std::vector<int> whichInputs;
 	std::vector<trainingExample> neighbours;
 	int numNeighbours; //aka "k"

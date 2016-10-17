@@ -38,8 +38,8 @@ bool classification::train(std::vector<trainingExample> training_set) {
       return modelSet::train(training_set);
     } else {
         //create model(s) here
-        numInputs = training_set[0].input.size();
-        numOutputs = training_set[0].output.size();
+        numInputs = int(training_set[0].input.size());
+        numOutputs = int(training_set[0].output.size());
         for ( auto example : training_set) {
             if (example.input.size() != numInputs) {
                 return false;
@@ -60,6 +60,7 @@ bool classification::train(std::vector<trainingExample> training_set) {
     }
 }
 
+#ifdef EMSCRIPTEN
 bool classification::initialize() {
   //Emscripten made me do it. -mz
   return modelSet::initialize();
@@ -69,3 +70,4 @@ std::vector<double> classification::process(std::vector<double> inputVector) {
     //Emscripten made me do it. -mz
     return modelSet::process(inputVector);
 }
+#endif

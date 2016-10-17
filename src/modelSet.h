@@ -15,6 +15,8 @@ public:
     bool train(std::vector<trainingExample> trainingSet);
     bool initialize();
     std::vector<double> process(std::vector<double> inputVector);
+    
+    void writeJSON();
 
 protected:
     std::vector<baseModel*> myModelSet;
