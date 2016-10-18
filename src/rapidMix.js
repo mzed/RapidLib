@@ -190,10 +190,8 @@ Module.ModelSet.prototype.loadJSON = function (url) {
                     var numNodes = value.numHiddenNodes;
                     var weights = new Module.VectorDouble();
                     var wHiddenOutput = new Module.VectorDouble();
-                    var inMax = new Module.VectorDouble();
-                    var inMin = new Module.VectorDouble();
-                    var outMax = value.outMax;
-                    var outMin = value.outMin;
+                    var inRanges = new Module.VectorDouble();
+                    var inBases = new Module.VectorDouble();
 
                     var localWhichInputs = [];
                     for (var i = 0; i < allInputs.length; ++i) {
@@ -209,15 +207,12 @@ Module.ModelSet.prototype.loadJSON = function (url) {
                             for (var j = 1; j <= numNodes; ++j) {
                                 var whichNode = 'Node ' + (j + (numNodes * (numLayers - 1)));
                                 wHiddenOutput.push_back(parseFloat(value[whichNode]));
-                                //console.log("pushing output ", value[whichNode]);
                             }
                             wHiddenOutput.push_back(parseFloat(value.Threshold));
                         } else {
                             currentLayer = Math.floor((i - 1) / numNodes);
                             if (currentLayer < 1) { //Nodes connected to input
                                 for (var j = 0; j < numInputs; ++j) {
-                                    //console.log('j ', j, 'whichInputs ', localWhichInputs[j]);
-                                    //console.log("pushing", value['Attrib ' + allInputs[j]]);
                                     weights.push_back(parseFloat(value['Attrib ' + allInputs[localWhichInputs[j]]]));
                                 }
                             } else { //Hidden Layers
@@ -228,12 +223,16 @@ Module.ModelSet.prototype.loadJSON = function (url) {
                             weights.push_back(parseFloat(value.Threshold));
                         }
                     });
-                    for (var j = 0; j < numInputs; ++j) {
-                        inMin.push_back(value.inMins[j]);
-                        inMax.push_back(value.inMaxes[j]);
+
+                    for (var i = 0; i < numInputs; ++i) {
+                        inRanges.push_back((value.inMaxes[i] - value.inMins[i])/ 2);
+                        inBases.push_back((value.inMaxes[i] + value.inMins[i])/ 2);
                     }
 
-                    var myNN = new Module.NeuralNetwork(numInputs, whichInputs, numLayers, numNodes, weights, wHiddenOutput, inMax, inMin, outMax, outMin);
+                    var outRange = (value.outMax - value.outMin)/ 2;
+                    var outBase = (value.outMax + value.outMin)/ 2;
+
+                    var myNN = new Module.NeuralNetwork(numInputs, whichInputs, numLayers, numNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase);
                     that.addNNModel(myNN);
                     break;
                 default:

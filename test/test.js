@@ -167,7 +167,10 @@ describe('RapidAPI', function () {
         it('should create a new object with a modelSet', function () {
             expect(myModelSet).to.have.property('modelSet');
         });
-        it('should load from JSON?');
+        it('should load from JSON?', function () {
+            //TODO: need to stub XMLHttpRequest
+            //myModelSet.loadJSON('modelSetDescription.json');
+        });
         it('should process input');
     });
 });

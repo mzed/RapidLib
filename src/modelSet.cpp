@@ -154,7 +154,7 @@ bool modelSet::readJSON() {
         double outRange = model["outRange"].asDouble();
         double outBase = model["outBase"].asDouble();
         
-        myModelSet.push_back(new neuralNetwork(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inBases, inRanges, outRange, outBase));
+        myModelSet.push_back(new neuralNetwork(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
     }
     
     return true; //TODO: check something first

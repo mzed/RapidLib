@@ -14,10 +14,10 @@ neuralNetwork::neuralNetwork(int num_inputs,
                              int num_hidden_nodes,
                              std::vector<double> _weights,
                              std::vector<double> w_hidden_output,
-                             std::vector<double> in_max,
-                             std::vector<double> in_min,
-                             double out_max,
-                             double out_min
+                             std::vector<double> in_ranges,
+                             std::vector<double> in_bases,
+                             double out_range,
+                             double out_base
                              )
 :
 numInputs(num_inputs),
@@ -25,6 +25,10 @@ whichInputs(which_inputs),
 numHiddenLayers(num_hidden_layers),
 numHiddenNodes(num_hidden_nodes),
 wHiddenOutput(w_hidden_output),
+inRanges(in_ranges),
+inBases(in_bases),
+outRange(out_range),
+outBase(out_base),
 learningRate(LEARNING_RATE),
 momentum(MOMENTUM),
 numEpochs(NUM_EPOCHS),
@@ -52,21 +56,14 @@ outputErrorGradient(0)
         weights.push_back(layer);
     }
     
-    if(randomize) {
+    if (randomize) {
         for (int i = 0; i <= numHiddenNodes; ++i) {
             wHiddenOutput.push_back(distribution(generator));
         }
     }
     
-    for (int i = 0; i < numInputs; ++i) {
-        inRanges.push_back((in_max[i] - in_min[i])/ 2);
-        inBases.push_back((in_max[i] + in_min[i])/ 2);
-    }
-    outRange = (out_max - out_min)/ 2;
-    outBase = (out_max + out_min)/ 2;
-    
     //////////////////////////////////////////trainer
-    
+
     //initialize deltas
     for (int i = 0; i < numHiddenLayers; ++i) {
         std::vector<std::vector<double>> layer;
