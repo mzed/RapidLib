@@ -84,6 +84,14 @@ Json::Value vector2json(T vec) {
     return toReturn;
 }
 
+std::vector<double> json2vector(Json::Value json) {
+    std::vector<double> returnVec;
+    for (int i = 0; i < json.size(); ++i) {
+        returnVec.push_back(json[i].asDouble());
+    }
+    return returnVec;
+}
+
 void modelSet::writeJSON() {
     Json::Value root;
     Json::Value metadata;
@@ -115,7 +123,6 @@ void modelSet::writeJSON() {
         modelSet.append(jsonModelDescription);
     }
     root["modelSet"] = modelSet;
-    std::cout << root << std::endl;
     
     std::ofstream jo;
     jo.open ("/var/tmp/modelSetDescription.json"); //FIXME: write someplace better, esp for windows
@@ -123,5 +130,33 @@ void modelSet::writeJSON() {
     writer.write(jo, root);
     jo.close();
     
+}
+
+bool modelSet::readJSON() {
+    Json::Value root;
+    std::ifstream file("/var/tmp/modelSetDescription.json");
+    file >> root;
+    numInputs = root["metadata"]["numInputs"].asInt();
+    numOutputs = root["metadata"]["numOutputs"].asInt();
+    
+    for (const Json::Value& model : root["modelSet"]) {
+        int modelNumInputs = model["numInputs"].asInt();
+        std::vector<int> whichInputs;
+        for (int i = 0; i < model["whichInputs"].size(); ++i) { //TODO: factor these
+            whichInputs.push_back(model["whichInputs"][i].asDouble());
+        }
+        int numHiddenLayers = model["numHiddenLayers"].asInt();
+        int numHiddenNodes = model["numHiddenNodes"].asInt();
+        std::vector<double> weights = json2vector(model["weights"]);
+        std::vector<double> wHiddenOutput = json2vector(model["wHiddenOutput"]);
+        std::vector<double> inBases = json2vector(model["inBases"]);
+        std::vector<double> inRanges = json2vector(model["inRanges"]);
+        double outRange = model["outRange"].asDouble();
+        double outBase = model["outBase"].asDouble();
+        
+        myModelSet.push_back(new neuralNetwork(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inBases, inRanges, outRange, outBase));
+    }
+    
+    return true; //TODO: check something first
 }
 #endif

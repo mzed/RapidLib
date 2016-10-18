@@ -17,8 +17,12 @@ int main(int argc, const char * argv[]) {
     trainingSet.push_back(tempExample);
     
     myNN.train(trainingSet);
-    
     myNN.writeJSON();
 
+    
+    regression myNNfromFile;
+    
+    myNNfromFile.readJSON();
+    
     return 0;
 }

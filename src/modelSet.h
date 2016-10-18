@@ -17,6 +17,7 @@ public:
     std::vector<double> process(std::vector<double> inputVector);
     
     void writeJSON();
+    bool readJSON();
 
 protected:
     std::vector<baseModel*> myModelSet;
