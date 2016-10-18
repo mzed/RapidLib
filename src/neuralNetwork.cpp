@@ -184,6 +184,30 @@ std::vector<int> neuralNetwork::getWhichInputs() {
     return whichInputs;
 }
 
+int neuralNetwork::getNumHiddenLayers() {
+    return numHiddenLayers;
+}
+
+int neuralNetwork::getNumHiddenNodes() {
+    return numHiddenNodes;
+}
+
+std::vector<double> neuralNetwork::getWeights() {
+    std::vector<double> flatWeights;
+    for (int i = 0; i < weights.size(); ++i) {
+        for (int j = 0; j < weights[i].size(); ++j) {
+            for (int k = 0; k < weights[i][j].size(); ++k) {
+                flatWeights.push_back(weights[i][j][k]);
+            }
+        }
+    }
+    return flatWeights;
+}
+
+std::vector<double> neuralNetwork::getWHiddenOutput() {
+    return wHiddenOutput;
+}
+
 std::vector<double> neuralNetwork::getInRanges() {
     return inRanges;
 }
@@ -208,7 +232,7 @@ double neuralNetwork::process(std::vector<double> inputVector) {
     //set input layer
     inputNeurons.clear();
     for (int i = 0; i < numInputs; ++i) {
-      inputNeurons.push_back((pattern[i] - (inBases[i])) / inRanges[i]);
+        inputNeurons.push_back((pattern[i] - (inBases[i])) / inRanges[i]);
     }
     inputNeurons.push_back(1);
     

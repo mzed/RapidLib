@@ -37,6 +37,11 @@ public:
     
     int getNumInputs();
     std::vector<int> getWhichInputs();
+    int getNumHiddenLayers();
+    int getNumHiddenNodes();
+    
+    std::vector<double> getWeights();
+    std::vector<double> getWHiddenOutput();
     
     std::vector<double> getInRanges();
     std::vector<double> getInBases();

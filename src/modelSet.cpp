@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include "modelSet.h"
 
@@ -73,6 +74,16 @@ std::vector<double> modelSet::process(std::vector<double> inputVector) {
 }
 
 #ifndef EMSCRIPTEN
+
+template<typename T>
+Json::Value vector2json(T vec) {
+    Json::Value toReturn;
+    for (int i = 0; i < vec.size(); ++i) {
+        toReturn.append(vec[i]);
+    }
+    return toReturn;
+}
+
 void modelSet::writeJSON() {
     Json::Value root;
     Json::Value metadata;
@@ -88,35 +99,29 @@ void modelSet::writeJSON() {
         Json::Value jsonModelDescription;
         jsonModelDescription["modelType"] = "Neural Network"; //FIXME: check type
         jsonModelDescription["numInputs"] = model->getNumInputs();
-        Json::Value jsonWhichInputs;
-        std::vector<int> whichInputs = model->getWhichInputs();
-        for (int i = 0; i < whichInputs.size(); ++i) {
-            jsonWhichInputs.append(whichInputs[i]);
-        }
-        jsonModelDescription["whichInputs"] = jsonWhichInputs;
+        jsonModelDescription["whichInputs"] = vector2json(model->getWhichInputs());
         //FIXME: needs to work with classifiers, too
         neuralNetwork *nnModel = dynamic_cast<neuralNetwork*>(model);
-        jsonModelDescription["numHiddenLayers"];
-        jsonModelDescription["numHiddenNodes"];
+        jsonModelDescription["numHiddenLayers"] = nnModel->getNumHiddenLayers();
+        jsonModelDescription["numHiddenNodes"] = nnModel->getNumHiddenNodes();
         jsonModelDescription["numHiddenOutputs"] = 1;
-        Json::Value jsonInRanges;
-        Json::Value jsonInBases;
-        std::vector<double> inRanges = nnModel->getInRanges();
-        std::vector<double> inBases = nnModel->getInBases();
-        for (int i = 0; i < inRanges.size(); ++i) {
-            jsonInRanges.append(inRanges[i]);
-            jsonInBases.append(inBases[1]);
-        }
-        jsonModelDescription["inRanges"] = jsonInRanges;
-        jsonModelDescription["inBases"] = jsonInBases;
+        jsonModelDescription["inRanges"] = vector2json(nnModel->getInRanges());
+        jsonModelDescription["inBases"] = vector2json(nnModel->getInBases());
         jsonModelDescription["outRange"] = nnModel->getOutRange();
         jsonModelDescription["outBase"] = nnModel->getOutBase();
-        Json::Value nodes;
-        jsonModelDescription["nodes"] = nodes;
+        jsonModelDescription["weights"]= vector2json(nnModel->getWeights());
+        jsonModelDescription["wHiddenOutput"] = vector2json(nnModel->getWHiddenOutput());
         
         modelSet.append(jsonModelDescription);
     }
     root["modelSet"] = modelSet;
     std::cout << root << std::endl;
+    
+    std::ofstream jo;
+    jo.open ("/var/tmp/modelSetDescription.json"); //FIXME: write someplace better, esp for windows
+    Json::StyledStreamWriter writer;
+    writer.write(jo, root);
+    jo.close();
+    
 }
 #endif
