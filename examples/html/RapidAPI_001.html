@@ -50,28 +50,22 @@ alert("Basic demo of regression and classification models.\nPress 't' to train a
     ];
     
     //Train the models using the demo training set
-    var trained = false;
-    function trainMe() {
-        console.log('regression trained: ', myRegression.train(demoTrainingSet));
-        console.log('classification trained: ', myClassification.train(demoTrainingSet));
-        trained = true;
-    }
-    
+    console.log('regression trained: ', myRegression.train(demoTrainingSet));
+    console.log('classification trained: ', myClassification.train(demoTrainingSet));
+
     //Run the trained models using the mouse as input
     var regressionOutput;
     var classificationOutput;
-    function process(input) {
-        regressionOutput = myRegression.process(input);
-        classificationOutput = myClassification.process(input);
+    function process(mousePosition) {
+        regressionOutput = myRegression.process(mousePosition);
+        classificationOutput = myClassification.process(mousePosition);
     }
     
-   
-    
-////////////////////////////////////CONTROLS AND INPUT
+////////////////////////////////////INPUT
 
     var mouseX;
     var mouseY;
-    var myOutput = '(use number keys)';
+
     var canvas = document.querySelector("canvas");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -86,70 +80,30 @@ alert("Basic demo of regression and classification models.\nPress 't' to train a
             mouseX = mousePosition.offsetX / canvas.width; 
             mouseY = mousePosition.offsetY / canvas.height;
         }
-        
-        if (runState) {
-            var rapidInput = [mouseX, mouseY];
-            process(rapidInput);
-        }
+        var rapidInput = [mouseX, mouseY];
+        process(rapidInput); //This gets processed by the models
     }
-    
-    window.addEventListener('keydown',this.check,false);
-    function check(e) {
-        switch (e.keyCode) {
-            case 88:
-                togRecord();
-                break;
-            case 82:
-                togRun();
-                break;
-            case 84:
-                trainMe();
-                break;
-            default:
-                    myOutput = e.keyCode - 48;
-        }
-    }
-    
-    var recordState;
-    function togRecord() {
-        recordState = !recordState;
-        if (recordState) {
-        console.warn("recording!");
-        } else {
-            console.log("stopped recording");
-        }
-    }
-    
-    var runState;
-    function togRun() {
-        runState = !runState;
-        console.log("running"); 
-    }
-    
+
 /////////////////Drawing
     function draw() {
         context.clearRect(0,0, canvas.width, canvas.height);
         context.font="16px Verdana";
         context.fillStyle="#00FF00";
-      
-        if (trained) {
-            context.fillText('(T)RAINED!', 20, 120);
-        } else {
-            context.fillText("press 't' to train", 20, 120);
-        }
-        if (runState) {
-            context.fillText('(R)UNNING!', 20, 140);
-        } else {
-            context.fillText("press 'r' to run", 20, 140);
-        }
-        //output
-        context.fillText('regression output: ' + regressionOutput, 20, 200);
-        context.fillText('classification output: ' + classificationOutput, 20, 220);
         
+        context.fillText('This example demonstrates classification and regresion models from RapidLib.', 20, 120);
+        context.fillText('The models are trained using the training data at the top of this script, and then evaluate incoming mouse positions.', 20, 140);
+         
         //mouse coordinates
         context.font="24px Verdana";
-        context.fillText('(' + mouseX + ', ' + mouseY + ')' , 20, canvas.height - 50);
-    
+        context.fillStyle="#FFFF00";
+        context.fillText('mouse position: (' + mouseX + ', ' + mouseY + ')' , 20, 200);
+      
+        //output
+        context.font="16px Verdana";
+        context.fillStyle="#00FF00";
+        context.fillText('regression output: ' + regressionOutput, 20, 240);
+        context.fillText('classification output: ' + classificationOutput, 20, 260);
+   
         window.requestAnimationFrame(draw);
     }
     window.requestAnimationFrame(draw);
