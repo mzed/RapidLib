@@ -1,6 +1,9 @@
 "use strict";
 let expect = require('chai').expect;
-var rapidMix = require('../wekiLib/RapidMixLib.js');
+var rapidMix = require('../wekiLib/RapidLib.js');
+
+var jsons = require('./modelSetDescription.json');
+console.log("k ", jsons);
 
 var testSet = [
     {
@@ -52,7 +55,6 @@ var badSet = [
 ]
 
 describe('RapidAPI', function () {
-
     describe('Regression', function () {
         var myRegression = new rapidMix.Regression();
         it('should create a new Regression object', function () {
@@ -168,7 +170,8 @@ describe('RapidAPI', function () {
             expect(myModelSet).to.have.property('modelSet');
         });
         it('should load from JSON?', function () {
-            //TODO: need to stub XMLHttpRequest
+            //
+            // TODO: need to stub XMLHttpRequest
             //myModelSet.loadJSON('modelSetDescription.json');
         });
         it('should process input');
