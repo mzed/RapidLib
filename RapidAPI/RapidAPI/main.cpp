@@ -1,3 +1,5 @@
+#include <vector>
+#include <iostream>
 #include "regression.h"
 #include "json.h"
 
@@ -23,6 +25,8 @@ int main(int argc, const char * argv[]) {
     regression myNNfromFile;
     
     myNNfromFile.readJSON();
+    std::vector<double> inputVec = { 1, 2 };
+    std::cout << myNNfromFile.process(inputVec)[0] << std::endl;
     
     return 0;
 }

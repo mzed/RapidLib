@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE15ECE31DBA4E1000E88F7C /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE15ECE21DBA4E1000E88F7C /* jsoncpp.cpp */; };
 		BE325F351DB50BE100F199A8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F341DB50BE100F199A8 /* main.cpp */; };
 		BE325F4D1DB50BFE00F199A8 /* classification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F3D1DB50BFE00F199A8 /* classification.cpp */; };
 		BE325F4E1DB50BFE00F199A8 /* knnClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F401DB50BFE00F199A8 /* knnClassification.cpp */; };
 		BE325F4F1DB50BFE00F199A8 /* modelSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F431DB50BFE00F199A8 /* modelSet.cpp */; };
 		BE325F501DB50BFE00F199A8 /* neuralNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F461DB50BFE00F199A8 /* neuralNetwork.cpp */; };
 		BE325F511DB50BFE00F199A8 /* regression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F4A1DB50BFE00F199A8 /* regression.cpp */; };
-		BE325F571DB50CAD00F199A8 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F561DB50CAD00F199A8 /* jsoncpp.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +29,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BE15ECE01DBA4E1000E88F7C /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
+		BE15ECE11DBA4E1000E88F7C /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		BE15ECE21DBA4E1000E88F7C /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		BE325F311DB50BE100F199A8 /* RapidAPI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RapidAPI; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE325F341DB50BE100F199A8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		BE325F3C1DB50BFE00F199A8 /* baseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = baseModel.h; sourceTree = "<group>"; };
@@ -48,9 +51,6 @@
 		BE325F4A1DB50BFE00F199A8 /* regression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = regression.cpp; sourceTree = "<group>"; };
 		BE325F4B1DB50BFE00F199A8 /* regression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regression.h; sourceTree = "<group>"; };
 		BE325F4C1DB50BFE00F199A8 /* regressionEmbindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regressionEmbindings.h; sourceTree = "<group>"; };
-		BE325F541DB50CAD00F199A8 /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
-		BE325F551DB50CAD00F199A8 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
-		BE325F561DB50CAD00F199A8 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +64,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE15ECDE1DBA4E1000E88F7C /* dependancies */ = {
+			isa = PBXGroup;
+			children = (
+				BE15ECDF1DBA4E1000E88F7C /* json */,
+				BE15ECE21DBA4E1000E88F7C /* jsoncpp.cpp */,
+			);
+			name = dependancies;
+			path = ../../dependancies;
+			sourceTree = "<group>";
+		};
+		BE15ECDF1DBA4E1000E88F7C /* json */ = {
+			isa = PBXGroup;
+			children = (
+				BE15ECE01DBA4E1000E88F7C /* json-forwards.h */,
+				BE15ECE11DBA4E1000E88F7C /* json.h */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
 		BE325F281DB50BE100F199A8 = {
 			isa = PBXGroup;
 			children = (
@@ -83,7 +102,7 @@
 		BE325F331DB50BE100F199A8 /* RapidAPI */ = {
 			isa = PBXGroup;
 			children = (
-				BE325F521DB50CAD00F199A8 /* dist */,
+				BE15ECDE1DBA4E1000E88F7C /* dependancies */,
 				BE325F3B1DB50BFE00F199A8 /* src */,
 				BE325F341DB50BE100F199A8 /* main.cpp */,
 			);
@@ -113,25 +132,6 @@
 			);
 			name = src;
 			path = ../../src;
-			sourceTree = "<group>";
-		};
-		BE325F521DB50CAD00F199A8 /* dist */ = {
-			isa = PBXGroup;
-			children = (
-				BE325F531DB50CAD00F199A8 /* json */,
-				BE325F561DB50CAD00F199A8 /* jsoncpp.cpp */,
-			);
-			name = dist;
-			path = ../../dist;
-			sourceTree = "<group>";
-		};
-		BE325F531DB50CAD00F199A8 /* json */ = {
-			isa = PBXGroup;
-			children = (
-				BE325F541DB50CAD00F199A8 /* json-forwards.h */,
-				BE325F551DB50CAD00F199A8 /* json.h */,
-			);
-			path = json;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,7 +196,7 @@
 				BE325F4D1DB50BFE00F199A8 /* classification.cpp in Sources */,
 				BE325F511DB50BFE00F199A8 /* regression.cpp in Sources */,
 				BE325F501DB50BFE00F199A8 /* neuralNetwork.cpp in Sources */,
-				BE325F571DB50CAD00F199A8 /* jsoncpp.cpp in Sources */,
+				BE15ECE31DBA4E1000E88F7C /* jsoncpp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +317,7 @@
 				BE325F3A1DB50BE100F199A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
