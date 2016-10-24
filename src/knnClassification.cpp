@@ -46,10 +46,10 @@ double knnClassification::process(std::vector<double> inputVector) {
    };
    std::pair<int, double> farthestNN = {0, 0.};
 
-   double pattern[numInputs];
+   std::vector<double> pattern;
    
    for (int h = 0; h < numInputs; h++) {
-     pattern[h] = inputVector[whichInputs[h]];
+     pattern.push_back(inputVector[whichInputs[h]]);
    }
    
    //Find k nearest neighbours
