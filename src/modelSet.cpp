@@ -98,7 +98,7 @@ Json::Value modelSet::parse2json() {
     Json::Value modelSet;
     
     metadata["creator"] = "Rapid API C++";
-    metadata["version"] = "the best one";
+    metadata["version"] = "v0.1.1"; //TODO: This should be a macro someplace
     metadata["numInputs"] = numInputs;
     metadata["numOutputs"] = numOutputs;
     root["metadata"] = metadata;
@@ -165,7 +165,7 @@ bool modelSet::readJSON(std::string filepath) {
         
         myModelSet.push_back(new neuralNetwork(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
     }
-    
+    created = true;
     return true; //TODO: check something first
 }
 #endif
