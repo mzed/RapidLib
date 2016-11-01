@@ -1,12 +1,14 @@
 #include <vector>
 #include <iostream>
 #include "regression.h"
+#include "classification.h"
 #include "json.h"
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     
     regression myNN;
+    classification myKnn;
     
     std::vector<trainingExample> trainingSet;
     trainingExample tempExample;
@@ -25,8 +27,8 @@ int main(int argc, const char * argv[]) {
     regression myNNfromFile;
     
     myNNfromFile.readJSON();
-    std::vector<double> inputVec = { 1, 2 };
-    std::cout << myNNfromFile.process(inputVec)[0] << std::endl;
+    std::vector<double> inputVec = { 2.0, 44.2 };
+    std::cout << myNNfromFile.process(inputVec).size() << std::endl;
     
     return 0;
 }
