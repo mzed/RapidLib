@@ -92,7 +92,7 @@ std::vector<double> json2vector(Json::Value json) {
     return returnVec;
 }
 
-void modelSet::writeJSON() {
+Json::Value modelSet::parse2json() {
     Json::Value root;
     Json::Value metadata;
     Json::Value modelSet;
@@ -102,7 +102,7 @@ void modelSet::writeJSON() {
     metadata["numInputs"] = numInputs;
     metadata["numOutputs"] = numOutputs;
     root["metadata"] = metadata;
-
+    
     for (auto model : myModelSet) {
         Json::Value jsonModelDescription;
         jsonModelDescription["modelType"] = "Neural Network"; //FIXME: check type
@@ -123,18 +123,27 @@ void modelSet::writeJSON() {
         modelSet.append(jsonModelDescription);
     }
     root["modelSet"] = modelSet;
-    
-    std::ofstream jo;
-    jo.open ("/var/tmp/modelSetDescription.json"); //FIXME: write someplace better, esp for windows
+    return root;
+}
+
+std::string modelSet::getJSON() {
+    Json::Value root = parse2json();
+    return root.toStyledString();
+}
+
+void modelSet::writeJSON(std::string filepath) {
+    Json::Value root = parse2json();
+    std::ofstream jsonOut;
+    jsonOut.open (filepath);
     Json::StyledStreamWriter writer;
-    writer.write(jo, root);
-    jo.close();
+    writer.write(jsonOut, root);
+    jsonOut.close();
     
 }
 
-bool modelSet::readJSON() {
+bool modelSet::readJSON(std::string filepath) {
     Json::Value root;
-    std::ifstream file("/var/tmp/modelSetDescription.json");
+    std::ifstream file(filepath);
     file >> root;
     numInputs = root["metadata"]["numInputs"].asInt();
     numOutputs = root["metadata"]["numOutputs"].asInt();

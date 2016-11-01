@@ -21,14 +21,16 @@ int main(int argc, const char * argv[]) {
     trainingSet.push_back(tempExample);
     
     myNN.train(trainingSet);
-    myNN.writeJSON();
+    std::cout << myNN.getJSON() << std::endl;
+    myNN.writeJSON("/var/tmp/modelSetDescription.json");
 
     
     regression myNNfromFile;
     
-    myNNfromFile.readJSON();
+    myNNfromFile.readJSON("/var/tmp/modelSetDescription.json");
     std::vector<double> inputVec = { 2.0, 44.2 };
-    std::cout << myNNfromFile.process(inputVec).size() << std::endl;
+    std::cout << "before: " << myNN.process(inputVec)[0] << std::endl;
+    std::cout << "after: " << myNNfromFile.process(inputVec)[0] << std::endl;
     
     return 0;
 }
