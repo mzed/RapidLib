@@ -141,10 +141,18 @@ void modelSet::writeJSON(std::string filepath) {
     
 }
 
-bool modelSet::readJSON(std::string filepath) {
-    Json::Value root;
-    std::ifstream file(filepath);
-    file >> root;
+bool modelSet::putJSON(std::string jsonMessage) {
+    Json::Value parsedFromString;
+    Json::Reader reader;
+    bool parsingSuccessful = reader.parse(jsonMessage, parsedFromString);
+    if (parsingSuccessful)
+    {
+        json2modelSet(parsedFromString);
+    }
+    return parsingSuccessful;
+}
+
+void modelSet::json2modelSet(Json::Value root) {
     numInputs = root["metadata"]["numInputs"].asInt();
     numOutputs = root["metadata"]["numOutputs"].asInt();
     
@@ -166,6 +174,13 @@ bool modelSet::readJSON(std::string filepath) {
         myModelSet.push_back(new neuralNetwork(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
     }
     created = true;
-    return true; //TODO: check something first
+}
+
+bool modelSet::readJSON(std::string filepath) {
+    Json::Value root;
+    std::ifstream file(filepath);
+    file >> root;
+    json2modelSet(root);
+    return created; //TODO: check something first
 }
 #endif
