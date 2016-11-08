@@ -158,7 +158,7 @@ Module.ModelSet.prototype.loadJSON = function (url) {
     //var b64 = Module.getBase64(url);
     //console.log('b64 ', b64);
     var request = new XMLHttpRequest();
-    request.open("GET", 'modelSetDescription.json', true);
+    request.open("GET", url, true);
     request.responseType = "json";
     request.onload = function () {
         var modelSet = this.response;

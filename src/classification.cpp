@@ -59,15 +59,3 @@ bool classification::train(std::vector<trainingExample> training_set) {
         return modelSet::train(training_set);
     }
 }
-
-#ifdef EMSCRIPTEN
-bool classification::initialize() {
-  //Emscripten made me do it. -mz
-  return modelSet::initialize();
-}
-
-std::vector<double> classification::process(std::vector<double> inputVector) {
-    //Emscripten made me do it. -mz
-    return modelSet::process(inputVector);
-}
-#endif

@@ -3,7 +3,6 @@ let expect = require('chai').expect;
 var rapidMix = require('../wekiLib/RapidLib.js');
 
 var jsons = require('./modelSetDescription.json');
-console.log("k ", jsons);
 
 var testSet = [
     {

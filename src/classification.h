@@ -21,15 +21,6 @@ public:
     /** Train on a specified set, causes creation if not created */
     bool train(std::vector<trainingExample> trainingSet);
 
-
-#ifdef EMSCRIPTEN
-    /** Calls modelSet method */
-    bool initialize();
-    
-    /** Calls modelSet method */
-    std::vector<double> process(std::vector<double> inputVector);
-#endif
-
 };
 
 #endif
