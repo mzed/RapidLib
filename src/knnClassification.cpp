@@ -110,8 +110,9 @@ double knnClassification::process(std::vector<double> inputVector) {
 #ifndef EMSCRIPTEN
 Json::Value knnClassification::getJSONDescription() {
     Json::Value jsonModelDescription;
-    jsonModelDescription["modelType"] = "kNN Classificiation";
+    jsonModelDescription["modelType"] = "kNN Classificiation";
     jsonModelDescription["numInputs"] = numInputs;
+    jsonModelDescription["whichInputs"] = vector2json(whichInputs);
     jsonModelDescription["k"] = numNeighbours;
     Json::Value examples;
     for (std::vector<trainingExample>::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {

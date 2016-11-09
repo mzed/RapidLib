@@ -36,5 +36,20 @@ int main(int argc, const char * argv[]) {
     std::cout << "from string: " << myNNfromString.process(inputVec)[0] << std::endl;
     std::cout << "from file: " << myNNfromFile.process(inputVec)[0] << std::endl;
     
+    ///////////////////////////
+    
+    myKnn.train(trainingSet);
+    std::cout << myKnn.getJSON() << std::endl;
+    std::string filepath2 = "/var/tmp/modelSetDescription_knn.json";
+    myKnn.writeJSON(filepath2);
+    
+    classification myKnnFromString;
+    myKnnFromString.putJSON(myKnn.getJSON());
+    
+    
+    std::cout << "before: " << myKnn.process(inputVec)[0] << std::endl;
+    std::cout << "from string: " << myKnnFromString.process(inputVec)[0] << std::endl;
+    //std::cout << "from file: " << myKnnfromFile.process(inputVec)[0] << std::endl;
+    
     return 0;
 }
