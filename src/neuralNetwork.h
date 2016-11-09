@@ -3,6 +3,10 @@
 #include <vector>
 #include "baseModel.h"
 
+#ifndef EMSCRIPTEN
+#include "json.h"
+#endif
+
 #define LEARNING_RATE 0.3
 #define MOMENTUM 0.2
 #define NUM_EPOCHS 500
@@ -20,7 +24,7 @@ public:
     /** This constructor creates a neural network that needs to be trained.
      *
      * @param num_inputs is the number of inputs the network will process
-     * @param which_inputs is an vector of which values in the input vector are being fed to the network. ex: {0,2,4} 
+     * @param which_inputs is an vector of which values in the input vector are being fed to the network. ex: {0,2,4}
      * @param num_hidden_layer is the number of hidden layers in the network. Must be at least 1.
      * @param num_hidden_nodes is the number of hidden nodes in each hidden layer. Often, this is the same as num_inputs
      *
@@ -29,7 +33,7 @@ public:
     neuralNetwork(int num_inputs, std::vector<int> which_inputs, int num_hidden_layer, int num_hidden_nodes);
     ~neuralNetwork();
     
-    /** Generate an output value from a single input vector. 
+    /** Generate an output value from a single input vector.
      * @param A standard vector of doubles that feed-forward regression will run on.
      * @return A single double, which is the result of the feed-forward operation
      */
@@ -47,6 +51,11 @@ public:
     std::vector<double> getInBases();
     double getOutRange();
     double getOutBase();
+
+#ifndef EMSCRIPTEN
+    Json::Value getJSONDescription();
+#endif
+
     
 private:
     /** Parameters that describe the topography of the model */
@@ -97,7 +106,7 @@ private:
     double outputErrorGradient;
     inline double getHiddenErrorGradient(int, int);
     
-    /** Propagate output error back through the network. 
+    /** Propagate output error back through the network.
      * @param The desired output of the network is fed into the function, and compared with the actual output
      */
     void backpropagate(double);

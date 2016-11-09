@@ -3,6 +3,10 @@
 
 #include <vector>
 
+#ifndef EMSCRIPTEN
+#include "json.h"
+#endif
+
 /** This is used by both NN and KNN models for training and classification */
 struct trainingExample {
     std::vector<double> input;
@@ -13,10 +17,25 @@ struct trainingExample {
  */
 class baseModel {
 public:
+    virtual ~baseModel() {};
     virtual double process(std::vector<double>) = 0;
     virtual void train(std::vector<trainingExample>) = 0;
     virtual int getNumInputs() = 0;
     virtual std::vector<int> getWhichInputs() = 0;
-    virtual ~baseModel() {};
+#ifndef EMSCRIPTEN
+    virtual Json::Value getJSONDescription() = 0;
+    
+protected:
+    template<typename T>
+    Json::Value vector2json(T vec) {
+        Json::Value toReturn;
+        for (int i = 0; i < vec.size(); ++i) {
+            toReturn.append(vec[i]);
+        }
+        return toReturn;
+    }
+    
+#endif
+    
 };
 #endif

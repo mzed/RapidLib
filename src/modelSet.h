@@ -38,7 +38,7 @@ public:
     bool putJSON(std::string jsonMessage);
     /** read a JSON file at file path and build a modelSet from it */
     bool readJSON(std::string filepath);
-    
+        
 private:
     Json::Value parse2json();
     void json2modelSet(Json::Value);

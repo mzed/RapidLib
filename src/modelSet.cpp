@@ -5,14 +5,11 @@
 
 #ifndef EMSCRIPTEN
 #include "json.h"
-#endif
-
-#ifdef EMSCRIPTEN
+#else
 #include "modelSetEmbindings.h"
 #endif
 
-/** No arguments, don't create models yet */
-
+/** No arguments, don't create any models yet */
 modelSet::modelSet() :
 numInputs(0),
 numOutputs(0),
@@ -27,7 +24,7 @@ modelSet::~modelSet() {
 };
 
 bool modelSet::train(std::vector<trainingExample> training_set) {
-    for ( auto example : training_set) {
+    for (trainingExample example : training_set) {
         if (example.input.size() != numInputs) {
             return false;
         }
@@ -37,7 +34,7 @@ bool modelSet::train(std::vector<trainingExample> training_set) {
     }
     for (int i = 0; i < myModelSet.size(); ++i) {
         std::vector<trainingExample> modelTrainingSet; //just one output
-        for (auto example : training_set) {
+        for (trainingExample example : training_set) {
             std::vector<double> tempDouble;
             for (int j = 0; j < numInputs; ++j) {
                 tempDouble.push_back(example.input[j]);
@@ -73,17 +70,10 @@ std::vector<double> modelSet::process(std::vector<double> inputVector) {
     return returnVector;
 }
 
+
+
 #ifndef EMSCRIPTEN
-
-template<typename T>
-Json::Value vector2json(T vec) {
-    Json::Value toReturn;
-    for (int i = 0; i < vec.size(); ++i) {
-        toReturn.append(vec[i]);
-    }
-    return toReturn;
-}
-
+//In emscripten, we do the JSON parsing with native JavaScript
 std::vector<double> json2vector(Json::Value json) {
     std::vector<double> returnVec;
     for (int i = 0; i < json.size(); ++i) {
@@ -102,25 +92,8 @@ Json::Value modelSet::parse2json() {
     metadata["numInputs"] = numInputs;
     metadata["numOutputs"] = numOutputs;
     root["metadata"] = metadata;
-    
     for (auto model : myModelSet) {
-        Json::Value jsonModelDescription;
-        jsonModelDescription["modelType"] = "Neural Network"; //FIXME: check type
-        jsonModelDescription["numInputs"] = model->getNumInputs();
-        jsonModelDescription["whichInputs"] = vector2json(model->getWhichInputs());
-        //FIXME: needs to work with classifiers, too
-        neuralNetwork *nnModel = dynamic_cast<neuralNetwork*>(model);
-        jsonModelDescription["numHiddenLayers"] = nnModel->getNumHiddenLayers();
-        jsonModelDescription["numHiddenNodes"] = nnModel->getNumHiddenNodes();
-        jsonModelDescription["numHiddenOutputs"] = 1;
-        jsonModelDescription["inRanges"] = vector2json(nnModel->getInRanges());
-        jsonModelDescription["inBases"] = vector2json(nnModel->getInBases());
-        jsonModelDescription["outRange"] = nnModel->getOutRange();
-        jsonModelDescription["outBase"] = nnModel->getOutBase();
-        jsonModelDescription["weights"]= vector2json(nnModel->getWeights());
-        jsonModelDescription["wHiddenOutput"] = vector2json(nnModel->getWHiddenOutput());
-        
-        modelSet.append(jsonModelDescription);
+        modelSet.append(model->getJSONDescription());
     }
     root["modelSet"] = modelSet;
     return root;

@@ -20,7 +20,7 @@ public:
     
     /** Train on a specified set, causes creation if not created */
     bool train(std::vector<trainingExample> trainingSet);
-
+    
 };
 
 #endif

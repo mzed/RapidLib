@@ -63,7 +63,7 @@ outputErrorGradient(0)
     }
     
     //////////////////////////////////////////trainer
-
+    
     //initialize deltas
     for (int i = 0; i < numHiddenLayers; ++i) {
         std::vector<std::vector<double>> layer;
@@ -220,6 +220,27 @@ double neuralNetwork::getOutRange() {
 double neuralNetwork::getOutBase() {
     return outBase;
 }
+
+#ifndef EMSCRIPTEN
+
+Json::Value neuralNetwork::getJSONDescription() {
+    Json::Value jsonModelDescription;
+    jsonModelDescription["modelType"] = "Neural Network";
+    jsonModelDescription["numInputs"] = numInputs;
+    jsonModelDescription["whichInputs"] = vector2json(whichInputs);
+    jsonModelDescription["numHiddenLayers"] = numHiddenLayers;
+    jsonModelDescription["numHiddenNodes"] = numHiddenNodes;
+    jsonModelDescription["numHiddenOutputs"] = 1;
+    jsonModelDescription["inRanges"] = vector2json(inRanges);
+    jsonModelDescription["inBases"] = vector2json(inBases);
+    jsonModelDescription["outRange"] = outRange;
+    jsonModelDescription["outBase"] = outBase;
+    jsonModelDescription["weights"]= vector2json(getWeights());
+    jsonModelDescription["wHiddenOutput"] = vector2json(wHiddenOutput);
+    
+    return jsonModelDescription;
+}
+#endif
 
 double neuralNetwork::process(std::vector<double> inputVector) {
     std::vector<double> pattern;
