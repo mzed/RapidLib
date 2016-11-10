@@ -46,10 +46,12 @@ int main(int argc, const char * argv[]) {
     classification myKnnFromString;
     myKnnFromString.putJSON(myKnn.getJSON());
     
+    classification myKnnfromFile;
+    myKnnfromFile.readJSON(filepath2);
     
-    std::cout << "before: " << myKnn.process(inputVec)[0] << std::endl;
-    std::cout << "from string: " << myKnnFromString.process(inputVec)[0] << std::endl;
-    //std::cout << "from file: " << myKnnfromFile.process(inputVec)[0] << std::endl;
+    std::cout << "knn before: " << myKnn.process(inputVec)[0] << std::endl;
+    std::cout << "knn from string: " << myKnnFromString.process(inputVec)[0] << std::endl;
+    std::cout << "knn from file: " << myKnnfromFile.process(inputVec)[0] << std::endl;
     
     return 0;
 }

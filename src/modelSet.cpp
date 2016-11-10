@@ -135,7 +135,6 @@ void modelSet::json2modelSet(Json::Value root) {
         for (int i = 0; i < model["whichInputs"].size(); ++i) { //TODO: factor these
             whichInputs.push_back(model["whichInputs"][i].asDouble());
         }
-        
         if (model["modelType"].asString() == "Neural Network") {
             int numHiddenLayers = model["numHiddenLayers"].asInt();
             int numHiddenNodes = model["numHiddenNodes"].asInt();
@@ -147,16 +146,15 @@ void modelSet::json2modelSet(Json::Value root) {
             double outBase = model["outBase"].asDouble();
             
             myModelSet.push_back(new neuralNetwork(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
-        } else if (model["modelType"].asString() == "kNN Classification") {
+        } else if (model["modelType"].asString() == "kNN Classificiation") {
             std::vector<trainingExample> trainingSet;
             const Json::Value examples = model["examples"];
             for (int i = 0; i < examples.size(); ++i) {
                 trainingExample tempExample;
                 tempExample.input = json2vector(examples[i]["features"]);
-                tempExample.output = json2vector(examples[i]["class"]);
+                tempExample.output.push_back(examples[i]["class"].asDouble());
                 trainingSet.push_back(tempExample);
             }
-        
             int k = model["k"].asInt();
             myModelSet.push_back(new knnClassification(modelNumInputs, whichInputs, trainingSet, k));
         }
