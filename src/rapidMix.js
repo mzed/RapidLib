@@ -162,6 +162,7 @@ Module.ModelSet.prototype.loadJSON = function (url) {
     request.responseType = "json";
     request.onload = function () {
         var modelSet = this.response;
+        console.log("loaded: ", modelSet);
         var allInputs = modelSet.metadata.inputNames;
         modelSet.modelSet.forEach(function (value) {
             var numInputs = value.numInputs;
@@ -210,7 +211,7 @@ Module.ModelSet.prototype.loadJSON = function (url) {
                             }
                             wHiddenOutput.push_back(parseFloat(value.Threshold));
                         } else {
-                            currentLayer = Math.floor((i - 1) / numNodes);
+                            currentLayer = Math.floor((i - 1) / numNodes); //FIXME: This will bereak if node is out or order.
                             if (currentLayer < 1) { //Nodes connected to input
                                 for (var j = 0; j < numInputs; ++j) {
                                     weights.push_back(parseFloat(value['Attrib ' + allInputs[localWhichInputs[j]]]));
@@ -225,12 +226,12 @@ Module.ModelSet.prototype.loadJSON = function (url) {
                     });
 
                     for (var i = 0; i < numInputs; ++i) {
-                        inRanges.push_back((value.inMaxes[i] - value.inMins[i])/ 2);
-                        inBases.push_back((value.inMaxes[i] + value.inMins[i])/ 2);
+                        inRanges.push_back(value.inRanges[i]);
+                        inBases.push_back(value.Bases[i]);
                     }
 
-                    var outRange = (value.outMax - value.outMin)/ 2;
-                    var outBase = (value.outMax + value.outMin)/ 2;
+                    var outRange = value.outRange;
+                    var outBase = value.outBase;
 
                     var myNN = new Module.NeuralNetwork(numInputs, whichInputs, numLayers, numNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase);
                     that.addNNModel(myNN);

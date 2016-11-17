@@ -309,11 +309,11 @@ void neuralNetwork::train(std::vector<trainingExample> trainingSet) {
     inRanges.clear();
     inBases.clear();
     for (int i = 0; i < numInputs; ++i) {
-        inRanges.push_back((inMax[i] - inMin[i])/ 2);
-        inBases.push_back((inMax[i] + inMin[i])/ 2);
+        inRanges.push_back((inMax[i] - inMin[i]) * 0.5);
+        inBases.push_back((inMax[i] + inMin[i]) * 0.5);
     }
-    outRange = (outMax - outMin)/ 2;
-    outBase = (outMax + outMin)/ 2;
+    outRange = (outMax - outMin) * 0.5;
+    outBase = (outMax + outMin) * 0.5;
     //train
     int epoch = 0;
     while (epoch < numEpochs) {

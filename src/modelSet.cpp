@@ -90,6 +90,11 @@ Json::Value modelSet::parse2json() {
     metadata["creator"] = "Rapid API C++";
     metadata["version"] = "v0.1.1"; //TODO: This should be a macro someplace
     metadata["numInputs"] = numInputs;
+    Json::Value inputNamesJSON;
+    for (int i = 0; i < inputNames.size(); ++i) {
+        inputNamesJSON.append(inputNames[i]);
+    }
+    metadata["inputNames"] = inputNamesJSON;
     metadata["numOutputs"] = numOutputs;
     root["metadata"] = metadata;
     for (auto model : myModelSet) {

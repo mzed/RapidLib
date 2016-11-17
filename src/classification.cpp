@@ -39,6 +39,9 @@ bool classification::train(std::vector<trainingExample> training_set) {
     } else {
         //create model(s) here
         numInputs = int(training_set[0].input.size());
+        for (int i = 0; i < numInputs; ++i) {
+            inputNames.push_back("input-" + std::to_string(i));
+        }
         numOutputs = int(training_set[0].output.size());
         for ( auto example : training_set) {
             if (example.input.size() != numInputs) {

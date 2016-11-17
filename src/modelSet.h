@@ -25,6 +25,7 @@ public:
 protected:
     std::vector<baseModel*> myModelSet;
     int numInputs;
+    std::vector<std::string> inputNames;
     int numOutputs;
     bool created;
 
