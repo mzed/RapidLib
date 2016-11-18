@@ -223,8 +223,7 @@ double neuralNetwork::getOutBase() {
 
 #ifndef EMSCRIPTEN
 
-Json::Value neuralNetwork::getJSONDescription() {
-    Json::Value jsonModelDescription;
+void neuralNetwork::getJSONDescription(Json::Value &jsonModelDescription) {
     jsonModelDescription["modelType"] = "Neural Network";
     jsonModelDescription["numInputs"] = numInputs;
     jsonModelDescription["whichInputs"] = vector2json(whichInputs);
@@ -237,8 +236,6 @@ Json::Value neuralNetwork::getJSONDescription() {
     jsonModelDescription["outBase"] = outBase;
     jsonModelDescription["weights"]= vector2json(getWeights());
     jsonModelDescription["wHiddenOutput"] = vector2json(wHiddenOutput);
-    
-    return jsonModelDescription;
 }
 #endif
 

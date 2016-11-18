@@ -53,7 +53,7 @@ public:
     double getOutBase();
 
 #ifndef EMSCRIPTEN
-    Json::Value getJSONDescription();
+    void getJSONDescription(Json::Value &currentModel);
 #endif
 
     

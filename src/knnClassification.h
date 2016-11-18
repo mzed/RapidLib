@@ -44,7 +44,7 @@ public:
     std::vector<int> getWhichInputs();
     
 #ifndef EMSCRIPTEN
-    Json::Value getJSONDescription();
+    void getJSONDescription(Json::Value &currentModel);
 #endif
     
 private:

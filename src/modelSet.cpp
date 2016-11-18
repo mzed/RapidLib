@@ -98,7 +98,10 @@ Json::Value modelSet::parse2json() {
     metadata["numOutputs"] = numOutputs;
     root["metadata"] = metadata;
     for (auto model : myModelSet) {
-        modelSet.append(model->getJSONDescription());
+        Json::Value currentModel;
+        currentModel["inputNames"] = inputNamesJSON; //TODO: implment this feature
+        model->getJSONDescription(currentModel);
+        modelSet.append(currentModel);
     }
     root["modelSet"] = modelSet;
     return root;
@@ -132,13 +135,23 @@ bool modelSet::putJSON(std::string jsonMessage) {
 
 void modelSet::json2modelSet(Json::Value root) {
     numInputs = root["metadata"]["numInputs"].asInt();
+    for (int i = 0; i < root["metadata"]["inputNames"].size(); ++i) {
+        inputNames.push_back(root["metadata"]["inputNames"][i].asString());
+    }
     numOutputs = root["metadata"]["numOutputs"].asInt();
     
     for (const Json::Value& model : root["modelSet"]) {
         int modelNumInputs = model["numInputs"].asInt();
         std::vector<int> whichInputs;
-        for (int i = 0; i < model["whichInputs"].size(); ++i) { //TODO: factor these
-            whichInputs.push_back(model["whichInputs"][i].asDouble());
+        std::vector<std::string> modelInputNames;
+        for (int i = 0; i < model["inputNames"].size(); ++i) {
+            modelInputNames.push_back(model["inputNames"][i].asString());
+        }
+        for (int i = 0; i < inputNames.size(); ++i) {
+            if (std::find(modelInputNames.begin(), modelInputNames.end(), inputNames[i]) != modelInputNames.end())
+            {
+                whichInputs.push_back(i);
+            }
         }
         if (model["modelType"].asString() == "Neural Network") {
             int numHiddenLayers = model["numHiddenLayers"].asInt();

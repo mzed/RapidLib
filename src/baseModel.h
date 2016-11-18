@@ -23,7 +23,7 @@ public:
     virtual int getNumInputs() = 0;
     virtual std::vector<int> getWhichInputs() = 0;
 #ifndef EMSCRIPTEN
-    virtual Json::Value getJSONDescription() = 0;
+    virtual void getJSONDescription(Json::Value &currentModel) = 0;
     
 protected:
     template<typename T>
