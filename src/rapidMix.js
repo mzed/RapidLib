@@ -148,7 +148,7 @@ Module.ModelSet = function () {
 };
 
 /**
- * Trains the models using the input. Clears previous training set.
+ * Creates a model set populated with modes described in a JSON document.
  * @param {string} url - JSON loaded from a model set description document.
  * @returns {Boolean} true indicates successful training
  */

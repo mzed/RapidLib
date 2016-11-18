@@ -30,9 +30,9 @@ test: $(SOURCE_WEKI)
 	mocha
 
 dev: full
-	scp wekiLib/RapidLib.js mzbys001@igor.doc.gold.ac.uk:/home/mzbys001/public_html/RapidMixLib.js
+	scp rapidLib/RapidLib.js mzbys001@igor.doc.gold.ac.uk:/home/mzbys001/public_html/RapidMixLib.js
 
 prod: full
-	scp wekiLib/RapidLib.js eaviuser@igor.doc.gold.ac.uk:/home/eavi/public_html/rapidmix/RapidLib.js
+	scp rapidLib/RapidLib.js eaviuser@igor.doc.gold.ac.uk:/home/eavi/public_html/rapidmix/RapidLib.js
 
 all: full
