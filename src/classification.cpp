@@ -40,7 +40,7 @@ bool classification::train(std::vector<trainingExample> training_set) {
         //create model(s) here
         numInputs = int(training_set[0].input.size());
         for (int i = 0; i < numInputs; ++i) {
-            inputNames.push_back("inputs-" + std::to_string(i));
+            inputNames.push_back("inputs-" + std::to_string(i + 1));
         }
         numOutputs = int(training_set[0].output.size());
         for ( auto example : training_set) {

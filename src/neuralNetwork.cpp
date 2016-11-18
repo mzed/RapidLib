@@ -236,6 +236,35 @@ void neuralNetwork::getJSONDescription(Json::Value &jsonModelDescription) {
     jsonModelDescription["outBase"] = outBase;
     jsonModelDescription["weights"]= vector2json(getWeights());
     jsonModelDescription["wHiddenOutput"] = vector2json(wHiddenOutput);
+    
+    //Create Nodes
+    Json::Value nodes;
+    
+    //Output Node
+    Json::Value outNode;
+    outNode["name"] = "Linear Node 0";
+    for (int i = 0; i < numHiddenNodes; ++i) {
+        std::string nodeName = "Node " + std::to_string(i + 1);
+        outNode[nodeName] = wHiddenOutput[i];
+    }
+    outNode["threshold"] = wHiddenOutput[numHiddenNodes];
+    nodes.append(outNode);
+    
+    //Input nodes
+    for (int i = 0; i < weights.size(); ++i) { //layers
+        for (int j = 0; j < weights[i].size(); ++j) { //hidden nodes
+            Json::Value tempNode;
+            tempNode["name"] = "Sigmoid Node " + std::to_string(i + j + 1); //FIXME: this won't work with multiple layers
+            for (int k = 0; k < weights[i][j].size() - 1; ++ k) { //inputs + threshold aka bias
+                std::string connectNode = "Attrib inputs-" + std::to_string(k + 1);
+                tempNode[connectNode] = weights[i][j][k];
+            }
+            tempNode["threshold"] = weights[i][j][weights[i][j].size() - 1];
+            nodes.append(tempNode);
+        }
+    }
+    
+    jsonModelDescription["nodes"] = nodes;
 }
 #endif
 
