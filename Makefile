@@ -1,5 +1,4 @@
-# change '../../em++' to path to em++ in emscripten folder
-EMSCR=/Users/mzed/emsdk_portable/emscripten/1.35.0/em++ 
+EMSCR=em++
 
 # ----------------------------------------
 #javascript for loading JSON
