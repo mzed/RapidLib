@@ -12,7 +12,7 @@ WEKI_MS=src/modelSet.cpp
 SOURCE_WEKI = $(WEKI_MS) $(WEKI_NN) $(WEKI_KNN)
 
 # destination .js file
-OUTPUT_WEKI=wekiLib/RapidLib.js
+OUTPUT_RAPID=rapidLib/RapidLib.js
 
 # ----------------------------------------
 # General flags
@@ -23,16 +23,16 @@ CFLAGS=-O3 -s DISABLE_EXCEPTION_CATCHING=0 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTION
 # ----------------------------------------
 # Final paths
 full: $(SOURCE_WEKI)
-	$(EMSCR) $(CFLAGS) -s MODULARIZE=1 --post-js $(RAPID_JS) --bind -o $(OUTPUT_WEKI) $(SOURCE_WEKI)
+	$(EMSCR) $(CFLAGS) -s MODULARIZE=1 --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_WEKI)
 
 test: $(SOURCE_WEKI)
-	$(EMSCR) $(CFLAGS) --post-js $(RAPID_JS) --bind -o $(OUTPUT_WEKI) $(SOURCE_WEKI) --profiling
+	$(EMSCR) $(CFLAGS) --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_WEKI) --profiling
 	mocha
 
 dev: full
-	scp rapidLib/RapidLib.js mzbys001@igor.doc.gold.ac.uk:/home/mzbys001/public_html/RapidMixLib.js
+	scp $(OUTPUT_RAPID) mzbys001@igor.doc.gold.ac.uk:/home/mzbys001/public_html/RapidMixLib.js
 
 prod: full
-	scp rapidLib/RapidLib.js eaviuser@igor.doc.gold.ac.uk:/home/eavi/public_html/rapidmix/RapidLib.js
+	scp $(OUTPUT_RAPID) eaviuser@igor.doc.gold.ac.uk:/home/eavi/public_html/rapidmix/RapidLib.js
 
 all: full
