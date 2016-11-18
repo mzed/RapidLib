@@ -234,8 +234,6 @@ void neuralNetwork::getJSONDescription(Json::Value &jsonModelDescription) {
     jsonModelDescription["inBases"] = vector2json(inBases);
     jsonModelDescription["outRange"] = outRange;
     jsonModelDescription["outBase"] = outBase;
-    jsonModelDescription["weights"]= vector2json(getWeights());
-    jsonModelDescription["wHiddenOutput"] = vector2json(wHiddenOutput);
     
     //Create Nodes
     Json::Value nodes;
@@ -247,7 +245,7 @@ void neuralNetwork::getJSONDescription(Json::Value &jsonModelDescription) {
         std::string nodeName = "Node " + std::to_string(i + 1);
         outNode[nodeName] = wHiddenOutput[i];
     }
-    outNode["threshold"] = wHiddenOutput[numHiddenNodes];
+    outNode["Threshold"] = wHiddenOutput[numHiddenNodes];
     nodes.append(outNode);
     
     //Input nodes
@@ -259,7 +257,7 @@ void neuralNetwork::getJSONDescription(Json::Value &jsonModelDescription) {
                 std::string connectNode = "Attrib inputs-" + std::to_string(k + 1);
                 tempNode[connectNode] = weights[i][j][k];
             }
-            tempNode["threshold"] = weights[i][j][weights[i][j].size() - 1];
+            tempNode["Threshold"] = weights[i][j][weights[i][j].size() - 1];
             nodes.append(tempNode);
         }
     }

@@ -211,7 +211,7 @@ Module.ModelSet.prototype.loadJSON = function (url) {
                             }
                             wHiddenOutput.push_back(parseFloat(value.Threshold));
                         } else {
-                            currentLayer = Math.floor((i - 1) / numNodes); //FIXME: This will bereak if node is out or order.
+                            currentLayer = Math.floor((i - 1) / numNodes); //FIXME: This will break if node is out or order.
                             if (currentLayer < 1) { //Nodes connected to input
                                 for (var j = 0; j < numInputs; ++j) {
                                     weights.push_back(parseFloat(value['Attrib ' + allInputs[localWhichInputs[j]]]));

@@ -34,12 +34,13 @@ int main(int argc, const char * argv[]) {
     myNNfromFile.readJSON(filepath);
     std::vector<double> inputVec = { 2.0, 44.2 };
     
-    assert(myNN.process(inputVec)[0] == myNNfromString.process(inputVec)[0]);
-    assert(myNN.process(inputVec)[0] == myNNfromFile.process(inputVec)[0]);
-    
     std::cout << "before: " << myNN.process(inputVec)[0] << std::endl;
     std::cout << "from string: " << myNNfromString.process(inputVec)[0] << std::endl;
+    std::cout << myNNfromString.getJSON() << std::endl;
     std::cout << "from file: " << myNNfromFile.process(inputVec)[0] << std::endl;
+    
+    assert(myNN.process(inputVec)[0] == myNNfromString.process(inputVec)[0]);
+    assert(myNN.process(inputVec)[0] == myNNfromFile.process(inputVec)[0]);
     
     ///////////////////////////
     
@@ -54,12 +55,12 @@ int main(int argc, const char * argv[]) {
     classification myKnnFromFile;
     myKnnFromFile.readJSON(filepath2);
     
-    assert(myKnn.process(inputVec)[0] == myKnnFromString.process(inputVec)[0]);
-    assert(myKnn.process(inputVec)[0] == myKnnFromFile.process(inputVec)[0]);
-    
     std::cout << "knn before: " << myKnn.process(inputVec)[0] << std::endl;
     std::cout << "knn from string: " << myKnnFromString.process(inputVec)[0] << std::endl;
     std::cout << "knn from file: " << myKnnFromFile.process(inputVec)[0] << std::endl;
     
+    assert(myKnn.process(inputVec)[0] == myKnnFromString.process(inputVec)[0]);
+    assert(myKnn.process(inputVec)[0] == myKnnFromFile.process(inputVec)[0]);
+
     return 0;
 }

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <cmath>
 #include "modelSet.h"
 
 #ifndef EMSCRIPTEN
@@ -156,8 +157,32 @@ void modelSet::json2modelSet(Json::Value root) {
         if (model["modelType"].asString() == "Neural Network") {
             int numHiddenLayers = model["numHiddenLayers"].asInt();
             int numHiddenNodes = model["numHiddenNodes"].asInt();
-            std::vector<double> weights = json2vector(model["weights"]);
-            std::vector<double> wHiddenOutput = json2vector(model["wHiddenOutput"]);
+            std::vector<double> weights;            std::vector<double> wHiddenOutput;
+            int nodeIndex = 0;
+            for (const Json::Value& node : model["nodes"]) {
+                if (node["name"].asString() == "Linear Node 0") {
+                    for (int i = 1; i <= numHiddenNodes; ++i) {
+                        std::string whichNode = "Node " + std::to_string(i + (numHiddenNodes * (numHiddenLayers - 1)));
+                        wHiddenOutput.push_back(node[whichNode].asDouble());
+                    }
+                    wHiddenOutput.push_back(node["Threshold"].asDouble());
+                } else { //FIXME: this will break if nodes are out of order
+                    int currentLayer = floor((nodeIndex - 1)/numHiddenNodes);
+                    if (currentLayer < 1) { //Nodes connected to input
+                        for (int i = 0; i < numInputs; ++i) {
+                            std::string whichNode = "Attrib " + model["inputNames"][i].asString();
+                            weights.push_back(node[whichNode].asDouble());
+                        }
+                    } else { //Hidden Layers
+                        for (int i = 0; i < numHiddenNodes; ++i) {
+                            std::string whichNode = "Node " + std::to_string(i + (numHiddenNodes * (currentLayer - 1)));
+                            weights.push_back(node[whichNode].asDouble());
+                        }                    }
+                    weights.push_back(node["Threshold"].asDouble());
+                }
+                nodeIndex++;
+                std::cout << "name " << node["name"].asString() << std::endl;
+            }
             std::vector<double> inBases = json2vector(model["inBases"]);
             std::vector<double> inRanges = json2vector(model["inRanges"]);
             double outRange = model["outRange"].asDouble();
