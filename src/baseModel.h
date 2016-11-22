@@ -2,19 +2,13 @@
 #define baseModel_h
 
 #include <vector>
+#include "trainingExample.h"
 
 #ifndef EMSCRIPTEN
 #include "json.h"
 #endif
 
-/** This is used by both NN and KNN models for training and classification */
-struct trainingExample {
-    std::vector<double> input;
-    std::vector<double> output;
-};
-
-/** Base class for wekinator models. Implemented by NN and KNN classes
- */
+/** Base class for wekinator models. Implemented by NN and KNN classes */
 class baseModel {
 public:
     virtual ~baseModel() {};

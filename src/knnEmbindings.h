@@ -7,6 +7,7 @@
 
 using namespace emscripten;
 
+
 EMSCRIPTEN_BINDINGS(stl_wrappers) {
   register_vector<int>("VectorInt");
   register_vector<double>("VectorDouble");
@@ -18,6 +19,7 @@ EMSCRIPTEN_BINDINGS(stl_wrappers) {
     .field("output", &trainingExample::output)
     ;
 }
+
 
 EMSCRIPTEN_BINDINGS(knn_module) {
   class_<knnClassification>("KnnClassification")

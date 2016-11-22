@@ -2,6 +2,7 @@
 #define modelSet_h
 
 #include <vector>
+#include "trainingExample.h"
 #include "baseModel.h"
 #include "neuralNetwork.h"
 #include "knnClassification.h"
