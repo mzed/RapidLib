@@ -9,9 +9,19 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -27,6 +37,21 @@
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -36,16 +61,21 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
-<script type="text/javascript">
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
-</script>
-<div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_func.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,62 +91,168 @@ $(function() {
 </div>
 
 <div class="contents">
-&#160;<ul>
+&#160;
+
+<h3><a id="index_a"></a>- a -</h3><ul>
 <li>addNeighbour()
 : <a class="el" href="classknn_classification.html#a591f953b182fed995ebfb13c712b76d5">knnClassification</a>
 </li>
+</ul>
+
+
+<h3><a id="index_c"></a>- c -</h3><ul>
 <li>classification()
 : <a class="el" href="classclassification.html#a96cfefed3bbc9b8b61a44b9c6cc9e29a">classification</a>
+</li>
+</ul>
+
+
+<h3><a id="index_g"></a>- g -</h3><ul>
+<li>getInBases()
+: <a class="el" href="classneural_network.html#af3fdc1c2bdf4794680ccc4cd845fb47e">neuralNetwork</a>
+</li>
+<li>getInRanges()
+: <a class="el" href="classneural_network.html#a876638749a0c7027e82da294947f1840">neuralNetwork</a>
 </li>
 <li>getJSON()
 : <a class="el" href="classmodel_set.html#a031987885b1462ec7d7dbeef0c803d97">modelSet</a>
 </li>
+<li>getJSONDescription()
+: <a class="el" href="classbase_model.html#a54c7ba2132721c2f990ea2fe2313f863">baseModel</a>
+, <a class="el" href="classknn_classification.html#a456b4b1b0fedb8f8fbe6d810bd80ceb8">knnClassification</a>
+, <a class="el" href="classneural_network.html#a83f5c57ed3f555cd534a6f4ea425dfb7">neuralNetwork</a>
+</li>
+<li>getNumHiddenLayers()
+: <a class="el" href="classneural_network.html#ade72f91a9207f52618f9b70cb585a992">neuralNetwork</a>
+</li>
+<li>getNumHiddenNodes()
+: <a class="el" href="classneural_network.html#a679a628a34f70dd52f781c8c9dbd1a02">neuralNetwork</a>
+</li>
+<li>getNumInputs()
+: <a class="el" href="classbase_model.html#a1601088280ebe5be525fd1fe49d4b1e1">baseModel</a>
+, <a class="el" href="classknn_classification.html#a3f9c8fb78c6a66f0ab9440629140400d">knnClassification</a>
+, <a class="el" href="classneural_network.html#aaf9ff8b1a88126fcffc1e9f07a4ffe49">neuralNetwork</a>
+</li>
+<li>getOutBase()
+: <a class="el" href="classneural_network.html#a4524958a9de02bd5e48d0c991d634788">neuralNetwork</a>
+</li>
+<li>getOutRange()
+: <a class="el" href="classneural_network.html#a9890f2967b4442eda4087869c57bccfd">neuralNetwork</a>
+</li>
+<li>getWeights()
+: <a class="el" href="classneural_network.html#a9822cd69469d7b2a946a9f87c8bebe5f">neuralNetwork</a>
+</li>
+<li>getWhichInputs()
+: <a class="el" href="classbase_model.html#a5d6b7579536f5713eed0b7b4a6687a16">baseModel</a>
+, <a class="el" href="classknn_classification.html#af7db9297f695e67df6af08719da37921">knnClassification</a>
+, <a class="el" href="classneural_network.html#afc93cb28c3897d4d1faa4ac8fbf0c1f8">neuralNetwork</a>
+</li>
+<li>getWHiddenOutput()
+: <a class="el" href="classneural_network.html#ac372190f6eabf0af27e5c317f2a1d51b">neuralNetwork</a>
+</li>
+</ul>
+
+
+<h3><a id="index_i"></a>- i -</h3><ul>
 <li>initialize()
 : <a class="el" href="classmodel_set.html#afefb50a0fe8f45821c6a7599784d7eb4">modelSet</a>
 </li>
+</ul>
+
+
+<h3><a id="index_k"></a>- k -</h3><ul>
 <li>knnClassification()
 : <a class="el" href="classknn_classification.html#a93e0eda34ff02a37baaa8700b46ec5fd">knnClassification</a>
 </li>
+</ul>
+
+
+<h3><a id="index_m"></a>- m -</h3><ul>
 <li>modelSet()
 : <a class="el" href="classmodel_set.html#ae44cba85f4c52e7d05e0f622b3ea9030">modelSet</a>
 </li>
+</ul>
+
+
+<h3><a id="index_n"></a>- n -</h3><ul>
 <li>neuralNetwork()
 : <a class="el" href="classneural_network.html#aee6fd482cd0b6b4004759bb57d4b14db">neuralNetwork</a>
 </li>
+</ul>
+
+
+<h3><a id="index_p"></a>- p -</h3><ul>
 <li>process()
-: <a class="el" href="classknn_classification.html#a909050a125c4bf5cc2e48db0202fcb79">knnClassification</a>
+: <a class="el" href="classbase_model.html#a07d92b944728ff2b3339d6bceaecb6a3">baseModel</a>
+, <a class="el" href="classknn_classification.html#a909050a125c4bf5cc2e48db0202fcb79">knnClassification</a>
 , <a class="el" href="classmodel_set.html#a232b11aa2987dd7db56c0f55edf868ea">modelSet</a>
 , <a class="el" href="classneural_network.html#a2da76293dbe590594e79e96768c02a29">neuralNetwork</a>
 </li>
 <li>putJSON()
 : <a class="el" href="classmodel_set.html#a09b07168fbe9d9377eb26f30bf16884c">modelSet</a>
 </li>
+</ul>
+
+
+<h3><a id="index_r"></a>- r -</h3><ul>
 <li>readJSON()
 : <a class="el" href="classmodel_set.html#a8f7a837515889c6bddb3184a022b1727">modelSet</a>
 </li>
 <li>regression()
-: <a class="el" href="classregression.html#a40993153659b1f637cf4d596df6e97ab">regression</a>
+: <a class="el" href="classregression.html#a9d38dcda0e5c99caf0faf85f98a5ebb3">regression</a>
 </li>
+</ul>
+
+
+<h3><a id="index_t"></a>- t -</h3><ul>
 <li>train()
-: <a class="el" href="classclassification.html#a8e834c25309bc471c5bb8e8730874c82">classification</a>
+: <a class="el" href="classbase_model.html#aed9192d6c0f17a1816a55b077baf2523">baseModel</a>
+, <a class="el" href="classclassification.html#a8e834c25309bc471c5bb8e8730874c82">classification</a>
 , <a class="el" href="classknn_classification.html#ae159e53f542d08d04c76760f2e25e843">knnClassification</a>
 , <a class="el" href="classmodel_set.html#ab0b16ec988c8077158de1c3d8986df03">modelSet</a>
 , <a class="el" href="classneural_network.html#aae35def98392b0d0a51f2c82afc48efc">neuralNetwork</a>
 , <a class="el" href="classregression.html#ae45d7dbf24cab75202d966d116829813">regression</a>
 </li>
+</ul>
+
+
+<h3><a id="index_v"></a>- v -</h3><ul>
+<li>vector2json()
+: <a class="el" href="classbase_model.html#a853d3a2d610c43fca37676ac1459e3b9">baseModel</a>
+</li>
+</ul>
+
+
+<h3><a id="index_w"></a>- w -</h3><ul>
 <li>writeJSON()
 : <a class="el" href="classmodel_set.html#a805879b6c8ec54d16c2ac511c72442b9">modelSet</a>
+</li>
+</ul>
+
+
+<h3><a id="index_0x7e"></a>- ~ -</h3><ul>
+<li>~baseModel()
+: <a class="el" href="classbase_model.html#a7c96328a8eda015d7f1b3d195e2fd567">baseModel</a>
+</li>
+<li>~knnClassification()
+: <a class="el" href="classknn_classification.html#a37e034151bb6d69c3952454df630dd80">knnClassification</a>
+</li>
+<li>~modelSet()
+: <a class="el" href="classmodel_set.html#a21eadb6e6cdd54dda57a4a94582bfe7b">modelSet</a>
 </li>
 <li>~neuralNetwork()
 : <a class="el" href="classneural_network.html#a0967982cb0345a610f78d225d812086f">neuralNetwork</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

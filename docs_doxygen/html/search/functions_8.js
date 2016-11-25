@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['readjson',['readJSON',['../classmodel_set.html#a8f7a837515889c6bddb3184a022b1727',1,'modelSet']]],
-  ['regression',['regression',['../classregression.html#a40993153659b1f637cf4d596df6e97ab',1,'regression::regression()'],['../classregression.html#ad03f74e09d96f315de3933628e8f4138',1,'regression::regression(std::vector&lt; trainingExample &gt; trainingSet)'],['../classregression.html#a9d38dcda0e5c99caf0faf85f98a5ebb3',1,'regression::regression(int numInputs, int numOutputs)']]]
+  ['neuralnetwork',['neuralNetwork',['../classneural_network.html#aee6fd482cd0b6b4004759bb57d4b14db',1,'neuralNetwork::neuralNetwork(int num_inputs, std::vector&lt; int &gt; which_inputs, int num_hidden_layers, int num_hidden_nodes, std::vector&lt; double &gt;, std::vector&lt; double &gt;, std::vector&lt; double &gt;, std::vector&lt; double &gt;, double, double)'],['../classneural_network.html#ad5cad1e6ac86745ab47fceeb8d42cbd9',1,'neuralNetwork::neuralNetwork(int num_inputs, std::vector&lt; int &gt; which_inputs, int num_hidden_layer, int num_hidden_nodes)']]]
 ];

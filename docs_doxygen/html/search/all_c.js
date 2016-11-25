@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7eneuralnetwork',['~neuralNetwork',['../classneural_network.html#a0967982cb0345a610f78d225d812086f',1,'neuralNetwork']]]
+  ['process',['process',['../classbase_model.html#a07d92b944728ff2b3339d6bceaecb6a3',1,'baseModel::process()'],['../classknn_classification.html#a909050a125c4bf5cc2e48db0202fcb79',1,'knnClassification::process()'],['../classmodel_set.html#a232b11aa2987dd7db56c0f55edf868ea',1,'modelSet::process()'],['../classneural_network.html#a2da76293dbe590594e79e96768c02a29',1,'neuralNetwork::process()']]],
+  ['putjson',['putJSON',['../classmodel_set.html#a09b07168fbe9d9377eb26f30bf16884c',1,'modelSet']]]
 ];

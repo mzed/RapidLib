@@ -6,8 +6,7 @@
 
 
 
-Inheritance diagram for model\+Set\+:
-\nopagebreak
+Inheritance diagram for model\+Set\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -16,8 +15,7 @@ Inheritance diagram for model\+Set\+:
 \end{figure}
 
 
-Collaboration diagram for model\+Set\+:
-\nopagebreak
+Collaboration diagram for model\+Set\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -28,6 +26,8 @@ Collaboration diagram for model\+Set\+:
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classmodel_set_ae44cba85f4c52e7d05e0f622b3ea9030}{model\+Set} ()
+\item 
+\hyperlink{classmodel_set_a21eadb6e6cdd54dda57a4a94582bfe7b}{$\sim$model\+Set} ()
 \item 
 virtual bool \hyperlink{classmodel_set_ab0b16ec988c8077158de1c3d8986df03}{train} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set)
 \item 
@@ -46,20 +46,15 @@ bool \hyperlink{classmodel_set_a8f7a837515889c6bddb3184a022b1727}{read\+J\+S\+ON
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classmodel_set_a390b0b864a8e727f481537b3c37aa721}\label{classmodel_set_a390b0b864a8e727f481537b3c37aa721}} 
-std\+::vector$<$ \hyperlink{classbase_model}{base\+Model} $\ast$ $>$ {\bfseries my\+Model\+Set}
+std\+::vector$<$ \hyperlink{classbase_model}{base\+Model} $\ast$ $>$ \hyperlink{classmodel_set_a390b0b864a8e727f481537b3c37aa721}{my\+Model\+Set}
 \item 
-\mbox{\Hypertarget{classmodel_set_ad10fbc1228a85f1200cb89589ad92755}\label{classmodel_set_ad10fbc1228a85f1200cb89589ad92755}} 
-int {\bfseries num\+Inputs}
+int \hyperlink{classmodel_set_ad10fbc1228a85f1200cb89589ad92755}{num\+Inputs}
 \item 
-\mbox{\Hypertarget{classmodel_set_ab4b67d7dbdf0659ba6bd18af7247e2ad}\label{classmodel_set_ab4b67d7dbdf0659ba6bd18af7247e2ad}} 
-std\+::vector$<$ std\+::string $>$ {\bfseries input\+Names}
+std\+::vector$<$ std\+::string $>$ \hyperlink{classmodel_set_ab4b67d7dbdf0659ba6bd18af7247e2ad}{input\+Names}
 \item 
-\mbox{\Hypertarget{classmodel_set_addc0df56b9f1970c9816050634933716}\label{classmodel_set_addc0df56b9f1970c9816050634933716}} 
-int {\bfseries num\+Outputs}
+int \hyperlink{classmodel_set_addc0df56b9f1970c9816050634933716}{num\+Outputs}
 \item 
-\mbox{\Hypertarget{classmodel_set_a0029dc6f8ccfd77353ad38b48198ad7d}\label{classmodel_set_a0029dc6f8ccfd77353ad38b48198ad7d}} 
-bool {\bfseries created}
+bool \hyperlink{classmodel_set_a0029dc6f8ccfd77353ad38b48198ad7d}{created}
 \end{DoxyCompactItemize}
 
 
@@ -73,7 +68,13 @@ This class holds a set of models with the same or different algorithms.
 \subsubsection{\texorpdfstring{model\+Set()}{modelSet()}}
 {\footnotesize\ttfamily model\+Set\+::model\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-No arguments, don\textquotesingle{}t create any models yet 
+No arguments, don\textquotesingle{}t create any models yet \mbox{\Hypertarget{classmodel_set_a21eadb6e6cdd54dda57a4a94582bfe7b}\label{classmodel_set_a21eadb6e6cdd54dda57a4a94582bfe7b}} 
+\index{model\+Set@{model\+Set}!````~model\+Set@{$\sim$model\+Set}}
+\index{````~model\+Set@{$\sim$model\+Set}!model\+Set@{model\+Set}}
+\subsubsection{\texorpdfstring{$\sim$model\+Set()}{~modelSet()}}
+{\footnotesize\ttfamily model\+Set\+::$\sim$model\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
 
 \subsection{Member Function Documentation}
 \mbox{\Hypertarget{classmodel_set_a031987885b1462ec7d7dbeef0c803d97}\label{classmodel_set_a031987885b1462ec7d7dbeef0c803d97}} 
@@ -124,7 +125,40 @@ Reimplemented in \hyperlink{classclassification_a8e834c25309bc471c5bb8e8730874c8
 
 Write a J\+S\+ON model description to specified file path 
 
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classmodel_set_a0029dc6f8ccfd77353ad38b48198ad7d}\label{classmodel_set_a0029dc6f8ccfd77353ad38b48198ad7d}} 
+\index{model\+Set@{model\+Set}!created@{created}}
+\index{created@{created}!model\+Set@{model\+Set}}
+\subsubsection{\texorpdfstring{created}{created}}
+{\footnotesize\ttfamily bool model\+Set\+::created\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classmodel_set_ab4b67d7dbdf0659ba6bd18af7247e2ad}\label{classmodel_set_ab4b67d7dbdf0659ba6bd18af7247e2ad}} 
+\index{model\+Set@{model\+Set}!input\+Names@{input\+Names}}
+\index{input\+Names@{input\+Names}!model\+Set@{model\+Set}}
+\subsubsection{\texorpdfstring{input\+Names}{inputNames}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ model\+Set\+::input\+Names\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classmodel_set_a390b0b864a8e727f481537b3c37aa721}\label{classmodel_set_a390b0b864a8e727f481537b3c37aa721}} 
+\index{model\+Set@{model\+Set}!my\+Model\+Set@{my\+Model\+Set}}
+\index{my\+Model\+Set@{my\+Model\+Set}!model\+Set@{model\+Set}}
+\subsubsection{\texorpdfstring{my\+Model\+Set}{myModelSet}}
+{\footnotesize\ttfamily std\+::vector$<$\hyperlink{classbase_model}{base\+Model}$\ast$$>$ model\+Set\+::my\+Model\+Set\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classmodel_set_ad10fbc1228a85f1200cb89589ad92755}\label{classmodel_set_ad10fbc1228a85f1200cb89589ad92755}} 
+\index{model\+Set@{model\+Set}!num\+Inputs@{num\+Inputs}}
+\index{num\+Inputs@{num\+Inputs}!model\+Set@{model\+Set}}
+\subsubsection{\texorpdfstring{num\+Inputs}{numInputs}}
+{\footnotesize\ttfamily int model\+Set\+::num\+Inputs\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classmodel_set_addc0df56b9f1970c9816050634933716}\label{classmodel_set_addc0df56b9f1970c9816050634933716}} 
+\index{model\+Set@{model\+Set}!num\+Outputs@{num\+Outputs}}
+\index{num\+Outputs@{num\+Outputs}!model\+Set@{model\+Set}}
+\subsubsection{\texorpdfstring{num\+Outputs}{numOutputs}}
+{\footnotesize\ttfamily int model\+Set\+::num\+Outputs\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-model\+Set.\+h\item 
-model\+Set.\+cpp\end{DoxyCompactItemize}
+\hyperlink{model_set_8h}{model\+Set.\+h}\item 
+\hyperlink{model_set_8cpp}{model\+Set.\+cpp}\end{DoxyCompactItemize}

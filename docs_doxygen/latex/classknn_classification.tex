@@ -6,8 +6,7 @@
 
 
 
-Inheritance diagram for knn\+Classification\+:
-\nopagebreak
+Inheritance diagram for knn\+Classification\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -16,8 +15,7 @@ Inheritance diagram for knn\+Classification\+:
 \end{figure}
 
 
-Collaboration diagram for knn\+Classification\+:
-\nopagebreak
+Collaboration diagram for knn\+Classification\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -29,20 +27,19 @@ Collaboration diagram for knn\+Classification\+:
 \item 
 \hyperlink{classknn_classification_a93e0eda34ff02a37baaa8700b46ec5fd}{knn\+Classification} (int num\+\_\+inputs, std\+::vector$<$ int $>$ which\+\_\+inputs, std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set, int k)
 \item 
+\hyperlink{classknn_classification_a37e034151bb6d69c3952454df630dd80}{$\sim$knn\+Classification} ()
+\item 
 void \hyperlink{classknn_classification_a591f953b182fed995ebfb13c712b76d5}{add\+Neighbour} (int, std\+::vector$<$ double $>$)
 \item 
 double \hyperlink{classknn_classification_a909050a125c4bf5cc2e48db0202fcb79}{process} (std\+::vector$<$ double $>$)
 \item 
 void \hyperlink{classknn_classification_ae159e53f542d08d04c76760f2e25e843}{train} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set)
 \item 
-\mbox{\Hypertarget{classknn_classification_a3f9c8fb78c6a66f0ab9440629140400d}\label{classknn_classification_a3f9c8fb78c6a66f0ab9440629140400d}} 
-int {\bfseries get\+Num\+Inputs} ()
+int \hyperlink{classknn_classification_a3f9c8fb78c6a66f0ab9440629140400d}{get\+Num\+Inputs} ()
 \item 
-\mbox{\Hypertarget{classknn_classification_af7db9297f695e67df6af08719da37921}\label{classknn_classification_af7db9297f695e67df6af08719da37921}} 
-std\+::vector$<$ int $>$ {\bfseries get\+Which\+Inputs} ()
+std\+::vector$<$ int $>$ \hyperlink{classknn_classification_af7db9297f695e67df6af08719da37921}{get\+Which\+Inputs} ()
 \item 
-\mbox{\Hypertarget{classknn_classification_a456b4b1b0fedb8f8fbe6d810bd80ceb8}\label{classknn_classification_a456b4b1b0fedb8f8fbe6d810bd80ceb8}} 
-void {\bfseries get\+J\+S\+O\+N\+Description} (Json\+::\+Value \&current\+Model)
+void \hyperlink{classknn_classification_a456b4b1b0fedb8f8fbe6d810bd80ceb8}{get\+J\+S\+O\+N\+Description} (Json\+::\+Value \&current\+Model)
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -68,6 +65,12 @@ Constructor that takes training examples in
 {\em how} & many near neighbours to evaluate \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classknn_classification_a37e034151bb6d69c3952454df630dd80}\label{classknn_classification_a37e034151bb6d69c3952454df630dd80}} 
+\index{knn\+Classification@{knn\+Classification}!````~knn\+Classification@{$\sim$knn\+Classification}}
+\index{````~knn\+Classification@{$\sim$knn\+Classification}!knn\+Classification@{knn\+Classification}}
+\subsubsection{\texorpdfstring{$\sim$knn\+Classification()}{~knnClassification()}}
+{\footnotesize\ttfamily knn\+Classification\+::$\sim$knn\+Classification (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
 
 
 \subsection{Member Function Documentation}
@@ -84,6 +87,36 @@ add another example to the existing training set
 {\em feature} & vector of example \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classknn_classification_a456b4b1b0fedb8f8fbe6d810bd80ceb8}\label{classknn_classification_a456b4b1b0fedb8f8fbe6d810bd80ceb8}} 
+\index{knn\+Classification@{knn\+Classification}!get\+J\+S\+O\+N\+Description@{get\+J\+S\+O\+N\+Description}}
+\index{get\+J\+S\+O\+N\+Description@{get\+J\+S\+O\+N\+Description}!knn\+Classification@{knn\+Classification}}
+\subsubsection{\texorpdfstring{get\+J\+S\+O\+N\+Description()}{getJSONDescription()}}
+{\footnotesize\ttfamily void knn\+Classification\+::get\+J\+S\+O\+N\+Description (\begin{DoxyParamCaption}\item[{Json\+::\+Value \&}]{current\+Model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classbase_model_a54c7ba2132721c2f990ea2fe2313f863}{base\+Model}.
+
+\mbox{\Hypertarget{classknn_classification_a3f9c8fb78c6a66f0ab9440629140400d}\label{classknn_classification_a3f9c8fb78c6a66f0ab9440629140400d}} 
+\index{knn\+Classification@{knn\+Classification}!get\+Num\+Inputs@{get\+Num\+Inputs}}
+\index{get\+Num\+Inputs@{get\+Num\+Inputs}!knn\+Classification@{knn\+Classification}}
+\subsubsection{\texorpdfstring{get\+Num\+Inputs()}{getNumInputs()}}
+{\footnotesize\ttfamily int knn\+Classification\+::get\+Num\+Inputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classbase_model_a1601088280ebe5be525fd1fe49d4b1e1}{base\+Model}.
+
+\mbox{\Hypertarget{classknn_classification_af7db9297f695e67df6af08719da37921}\label{classknn_classification_af7db9297f695e67df6af08719da37921}} 
+\index{knn\+Classification@{knn\+Classification}!get\+Which\+Inputs@{get\+Which\+Inputs}}
+\index{get\+Which\+Inputs@{get\+Which\+Inputs}!knn\+Classification@{knn\+Classification}}
+\subsubsection{\texorpdfstring{get\+Which\+Inputs()}{getWhichInputs()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ knn\+Classification\+::get\+Which\+Inputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classbase_model_a5d6b7579536f5713eed0b7b4a6687a16}{base\+Model}.
+
 \mbox{\Hypertarget{classknn_classification_a909050a125c4bf5cc2e48db0202fcb79}\label{classknn_classification_a909050a125c4bf5cc2e48db0202fcb79}} 
 \index{knn\+Classification@{knn\+Classification}!process@{process}}
 \index{process@{process}!knn\+Classification@{knn\+Classification}}
@@ -100,7 +133,7 @@ A single double, which is the result of the feed-\/forward operation
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classbase_model}{base\+Model}.
+Implements \hyperlink{classbase_model_a07d92b944728ff2b3339d6bceaecb6a3}{base\+Model}.
 
 \mbox{\Hypertarget{classknn_classification_ae159e53f542d08d04c76760f2e25e843}\label{classknn_classification_ae159e53f542d08d04c76760f2e25e843}} 
 \index{knn\+Classification@{knn\+Classification}!train@{train}}
@@ -117,11 +150,11 @@ Fill the model with a vector of examples.
 \end{DoxyParams}
 
 
-Implements \hyperlink{classbase_model}{base\+Model}.
+Implements \hyperlink{classbase_model_aed9192d6c0f17a1816a55b077baf2523}{base\+Model}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-knn\+Classification.\+h\item 
-knn\+Classification.\+cpp\end{DoxyCompactItemize}
+\hyperlink{knn_classification_8h}{knn\+Classification.\+h}\item 
+\hyperlink{knn_classification_8cpp}{knn\+Classification.\+cpp}\end{DoxyCompactItemize}

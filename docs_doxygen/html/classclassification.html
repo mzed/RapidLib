@@ -9,9 +9,19 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -27,6 +37,21 @@
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -36,15 +61,21 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
+$(document).ready(function(){initNavTree('classclassification.html','');});
 </script>
-<div id="main-nav"></div>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +90,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -93,13 +123,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a96cfefed3bbc9b8b61a44b9c6cc9e29a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a825ef0d6ba9ba826d22969be72a9011f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclassification.html#a825ef0d6ba9ba826d22969be72a9011f">classification</a> (std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; trainingSet)</td></tr>
 <tr class="separator:a825ef0d6ba9ba826d22969be72a9011f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab76d1e8c617be54ede9ea47dd3c128bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclassification.html#ab76d1e8c617be54ede9ea47dd3c128bf">classification</a> (int numInputs, int numOutputs)</td></tr>
+<tr class="memitem:ab76d1e8c617be54ede9ea47dd3c128bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclassification.html#ab76d1e8c617be54ede9ea47dd3c128bf">classification</a> (int <a class="el" href="classmodel_set.html#ad10fbc1228a85f1200cb89589ad92755">numInputs</a>, int <a class="el" href="classmodel_set.html#addc0df56b9f1970c9816050634933716">numOutputs</a>)</td></tr>
 <tr class="separator:ab76d1e8c617be54ede9ea47dd3c128bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e834c25309bc471c5bb8e8730874c82"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclassification.html#a8e834c25309bc471c5bb8e8730874c82">train</a> (std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; trainingSet)</td></tr>
 <tr class="separator:a8e834c25309bc471c5bb8e8730874c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classmodel_set"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classmodel_set')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classmodel_set.html">modelSet</a></td></tr>
 <tr class="memitem:ae44cba85f4c52e7d05e0f622b3ea9030 inherit pub_methods_classmodel_set"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#ae44cba85f4c52e7d05e0f622b3ea9030">modelSet</a> ()</td></tr>
 <tr class="separator:ae44cba85f4c52e7d05e0f622b3ea9030 inherit pub_methods_classmodel_set"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21eadb6e6cdd54dda57a4a94582bfe7b inherit pub_methods_classmodel_set"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a21eadb6e6cdd54dda57a4a94582bfe7b">~modelSet</a> ()</td></tr>
+<tr class="separator:a21eadb6e6cdd54dda57a4a94582bfe7b inherit pub_methods_classmodel_set"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afefb50a0fe8f45821c6a7599784d7eb4 inherit pub_methods_classmodel_set"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#afefb50a0fe8f45821c6a7599784d7eb4">initialize</a> ()</td></tr>
 <tr class="separator:afefb50a0fe8f45821c6a7599784d7eb4 inherit pub_methods_classmodel_set"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a232b11aa2987dd7db56c0f55edf868ea inherit pub_methods_classmodel_set"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a232b11aa2987dd7db56c0f55edf868ea">process</a> (std::vector&lt; double &gt; inputVector)</td></tr>
@@ -116,20 +148,15 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_classmodel_set"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classmodel_set')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classmodel_set.html">modelSet</a></td></tr>
-<tr class="memitem:a390b0b864a8e727f481537b3c37aa721 inherit pro_attribs_classmodel_set"><td class="memItemLeft" align="right" valign="top"><a id="a390b0b864a8e727f481537b3c37aa721"></a>
-std::vector&lt; <a class="el" href="classbase_model.html">baseModel</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>myModelSet</b></td></tr>
+<tr class="memitem:a390b0b864a8e727f481537b3c37aa721 inherit pro_attribs_classmodel_set"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classbase_model.html">baseModel</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a390b0b864a8e727f481537b3c37aa721">myModelSet</a></td></tr>
 <tr class="separator:a390b0b864a8e727f481537b3c37aa721 inherit pro_attribs_classmodel_set"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad10fbc1228a85f1200cb89589ad92755 inherit pro_attribs_classmodel_set"><td class="memItemLeft" align="right" valign="top"><a id="ad10fbc1228a85f1200cb89589ad92755"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>numInputs</b></td></tr>
+<tr class="memitem:ad10fbc1228a85f1200cb89589ad92755 inherit pro_attribs_classmodel_set"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#ad10fbc1228a85f1200cb89589ad92755">numInputs</a></td></tr>
 <tr class="separator:ad10fbc1228a85f1200cb89589ad92755 inherit pro_attribs_classmodel_set"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4b67d7dbdf0659ba6bd18af7247e2ad inherit pro_attribs_classmodel_set"><td class="memItemLeft" align="right" valign="top"><a id="ab4b67d7dbdf0659ba6bd18af7247e2ad"></a>
-std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>inputNames</b></td></tr>
+<tr class="memitem:ab4b67d7dbdf0659ba6bd18af7247e2ad inherit pro_attribs_classmodel_set"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#ab4b67d7dbdf0659ba6bd18af7247e2ad">inputNames</a></td></tr>
 <tr class="separator:ab4b67d7dbdf0659ba6bd18af7247e2ad inherit pro_attribs_classmodel_set"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addc0df56b9f1970c9816050634933716 inherit pro_attribs_classmodel_set"><td class="memItemLeft" align="right" valign="top"><a id="addc0df56b9f1970c9816050634933716"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>numOutputs</b></td></tr>
+<tr class="memitem:addc0df56b9f1970c9816050634933716 inherit pro_attribs_classmodel_set"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#addc0df56b9f1970c9816050634933716">numOutputs</a></td></tr>
 <tr class="separator:addc0df56b9f1970c9816050634933716 inherit pro_attribs_classmodel_set"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0029dc6f8ccfd77353ad38b48198ad7d inherit pro_attribs_classmodel_set"><td class="memItemLeft" align="right" valign="top"><a id="a0029dc6f8ccfd77353ad38b48198ad7d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>created</b></td></tr>
+<tr class="memitem:a0029dc6f8ccfd77353ad38b48198ad7d inherit pro_attribs_classmodel_set"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a0029dc6f8ccfd77353ad38b48198ad7d">created</a></td></tr>
 <tr class="separator:a0029dc6f8ccfd77353ad38b48198ad7d inherit pro_attribs_classmodel_set"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -234,14 +261,18 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>created</b></td></tr>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="classification_8h_source.html">classification.h</a></li>
-<li>classification.cpp</li>
+<li><a class="el" href="classification_8cpp.html">classification.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classclassification.html">classification</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>
