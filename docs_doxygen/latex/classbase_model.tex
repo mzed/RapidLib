@@ -1,0 +1,58 @@
+\hypertarget{classbase_model}{}\section{base\+Model Class Reference}
+\label{classbase_model}\index{base\+Model@{base\+Model}}
+
+
+{\ttfamily \#include $<$base\+Model.\+h$>$}
+
+
+
+Inheritance diagram for base\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{classbase_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for base\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{classbase_model__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbase_model_a07d92b944728ff2b3339d6bceaecb6a3}\label{classbase_model_a07d92b944728ff2b3339d6bceaecb6a3}} 
+virtual double {\bfseries process} (std\+::vector$<$ double $>$)=0
+\item 
+\mbox{\Hypertarget{classbase_model_aed9192d6c0f17a1816a55b077baf2523}\label{classbase_model_aed9192d6c0f17a1816a55b077baf2523}} 
+virtual void {\bfseries train} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$)=0
+\item 
+\mbox{\Hypertarget{classbase_model_a1601088280ebe5be525fd1fe49d4b1e1}\label{classbase_model_a1601088280ebe5be525fd1fe49d4b1e1}} 
+virtual int {\bfseries get\+Num\+Inputs} ()=0
+\item 
+\mbox{\Hypertarget{classbase_model_a5d6b7579536f5713eed0b7b4a6687a16}\label{classbase_model_a5d6b7579536f5713eed0b7b4a6687a16}} 
+virtual std\+::vector$<$ int $>$ {\bfseries get\+Which\+Inputs} ()=0
+\item 
+\mbox{\Hypertarget{classbase_model_a54c7ba2132721c2f990ea2fe2313f863}\label{classbase_model_a54c7ba2132721c2f990ea2fe2313f863}} 
+virtual void {\bfseries get\+J\+S\+O\+N\+Description} (Json\+::\+Value \&current\+Model)=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbase_model_a853d3a2d610c43fca37676ac1459e3b9}\label{classbase_model_a853d3a2d610c43fca37676ac1459e3b9}} 
+{\footnotesize template$<$typename T $>$ }\\Json\+::\+Value {\bfseries vector2json} (T vec)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base class for wekinator models. Implemented by NN and K\+NN classes 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+base\+Model.\+h\end{DoxyCompactItemize}

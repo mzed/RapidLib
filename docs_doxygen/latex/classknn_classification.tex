@@ -1,0 +1,127 @@
+\hypertarget{classknn_classification}{}\section{knn\+Classification Class Reference}
+\label{classknn_classification}\index{knn\+Classification@{knn\+Classification}}
+
+
+{\ttfamily \#include $<$knn\+Classification.\+h$>$}
+
+
+
+Inheritance diagram for knn\+Classification\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{classknn_classification__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for knn\+Classification\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{classknn_classification__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classknn_classification_a93e0eda34ff02a37baaa8700b46ec5fd}{knn\+Classification} (int num\+\_\+inputs, std\+::vector$<$ int $>$ which\+\_\+inputs, std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set, int k)
+\item 
+void \hyperlink{classknn_classification_a591f953b182fed995ebfb13c712b76d5}{add\+Neighbour} (int, std\+::vector$<$ double $>$)
+\item 
+double \hyperlink{classknn_classification_a909050a125c4bf5cc2e48db0202fcb79}{process} (std\+::vector$<$ double $>$)
+\item 
+void \hyperlink{classknn_classification_ae159e53f542d08d04c76760f2e25e843}{train} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set)
+\item 
+\mbox{\Hypertarget{classknn_classification_a3f9c8fb78c6a66f0ab9440629140400d}\label{classknn_classification_a3f9c8fb78c6a66f0ab9440629140400d}} 
+int {\bfseries get\+Num\+Inputs} ()
+\item 
+\mbox{\Hypertarget{classknn_classification_af7db9297f695e67df6af08719da37921}\label{classknn_classification_af7db9297f695e67df6af08719da37921}} 
+std\+::vector$<$ int $>$ {\bfseries get\+Which\+Inputs} ()
+\item 
+\mbox{\Hypertarget{classknn_classification_a456b4b1b0fedb8f8fbe6d810bd80ceb8}\label{classknn_classification_a456b4b1b0fedb8f8fbe6d810bd80ceb8}} 
+void {\bfseries get\+J\+S\+O\+N\+Description} (Json\+::\+Value \&current\+Model)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class for implementing a knn classifier 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classknn_classification_a93e0eda34ff02a37baaa8700b46ec5fd}\label{classknn_classification_a93e0eda34ff02a37baaa8700b46ec5fd}} 
+\index{knn\+Classification@{knn\+Classification}!knn\+Classification@{knn\+Classification}}
+\index{knn\+Classification@{knn\+Classification}!knn\+Classification@{knn\+Classification}}
+\subsubsection{\texorpdfstring{knn\+Classification()}{knnClassification()}}
+{\footnotesize\ttfamily knn\+Classification\+::knn\+Classification (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+inputs,  }\item[{std\+::vector$<$ int $>$}]{which\+\_\+inputs,  }\item[{std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$}]{training\+Set,  }\item[{int}]{k }\end{DoxyParamCaption})}
+
+Constructor that takes training examples in 
+\begin{DoxyParams}{Parameters}
+{\em number} & of inputs expected in the training and input vectors \\
+\hline
+{\em vector} & of input numbers to be fed into the classifer. \\
+\hline
+{\em vector} & of training examples \\
+\hline
+{\em how} & many near neighbours to evaluate \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classknn_classification_a591f953b182fed995ebfb13c712b76d5}\label{classknn_classification_a591f953b182fed995ebfb13c712b76d5}} 
+\index{knn\+Classification@{knn\+Classification}!add\+Neighbour@{add\+Neighbour}}
+\index{add\+Neighbour@{add\+Neighbour}!knn\+Classification@{knn\+Classification}}
+\subsubsection{\texorpdfstring{add\+Neighbour()}{addNeighbour()}}
+{\footnotesize\ttfamily void knn\+Classification\+::add\+Neighbour (\begin{DoxyParamCaption}\item[{int}]{class\+Num,  }\item[{std\+::vector$<$ double $>$}]{features }\end{DoxyParamCaption})}
+
+add another example to the existing training set 
+\begin{DoxyParams}{Parameters}
+{\em class} & number of example \\
+\hline
+{\em feature} & vector of example \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classknn_classification_a909050a125c4bf5cc2e48db0202fcb79}\label{classknn_classification_a909050a125c4bf5cc2e48db0202fcb79}} 
+\index{knn\+Classification@{knn\+Classification}!process@{process}}
+\index{process@{process}!knn\+Classification@{knn\+Classification}}
+\subsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily double knn\+Classification\+::process (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{input\+Vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Generate an output value from a single input vector. 
+\begin{DoxyParams}{Parameters}
+{\em A} & standard vector of doubles that feed-\/forward regression will run on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A single double, which is the result of the feed-\/forward operation 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classbase_model}{base\+Model}.
+
+\mbox{\Hypertarget{classknn_classification_ae159e53f542d08d04c76760f2e25e843}\label{classknn_classification_ae159e53f542d08d04c76760f2e25e843}} 
+\index{knn\+Classification@{knn\+Classification}!train@{train}}
+\index{train@{train}!knn\+Classification@{knn\+Classification}}
+\subsubsection{\texorpdfstring{train()}{train()}}
+{\footnotesize\ttfamily void knn\+Classification\+::train (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$}]{training\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Fill the model with a vector of examples.
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & training set is a vector of training examples that contain both a vector of input values and a double specifying desired output class. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classbase_model}{base\+Model}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+knn\+Classification.\+h\item 
+knn\+Classification.\+cpp\end{DoxyCompactItemize}

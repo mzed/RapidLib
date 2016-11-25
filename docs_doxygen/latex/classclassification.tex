@@ -1,0 +1,83 @@
+\hypertarget{classclassification}{}\section{classification Class Reference}
+\label{classclassification}\index{classification@{classification}}
+
+
+{\ttfamily \#include $<$classification.\+h$>$}
+
+
+
+Inheritance diagram for classification\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{classclassification__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for classification\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{classclassification__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classclassification_a96cfefed3bbc9b8b61a44b9c6cc9e29a}{classification} ()
+\item 
+\hyperlink{classclassification_a825ef0d6ba9ba826d22969be72a9011f}{classification} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set)
+\item 
+\hyperlink{classclassification_ab76d1e8c617be54ede9ea47dd3c128bf}{classification} (int num\+Inputs, int num\+Outputs)
+\item 
+bool \hyperlink{classclassification_a8e834c25309bc471c5bb8e8730874c82}{train} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class for implementing a set of classification models.
+
+This doesn\textquotesingle{}t do anything \hyperlink{classmodel_set}{model\+Set} can\textquotesingle{}t do. But, it\textquotesingle{}s simpler and more like wekinator. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classclassification_a96cfefed3bbc9b8b61a44b9c6cc9e29a}\label{classclassification_a96cfefed3bbc9b8b61a44b9c6cc9e29a}} 
+\index{classification@{classification}!classification@{classification}}
+\index{classification@{classification}!classification@{classification}}
+\subsubsection{\texorpdfstring{classification()}{classification()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily classification\+::classification (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+with no arguments, just make an empty vector \mbox{\Hypertarget{classclassification_a825ef0d6ba9ba826d22969be72a9011f}\label{classclassification_a825ef0d6ba9ba826d22969be72a9011f}} 
+\index{classification@{classification}!classification@{classification}}
+\index{classification@{classification}!classification@{classification}}
+\subsubsection{\texorpdfstring{classification()}{classification()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily classification\+::classification (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$}]{training\+Set }\end{DoxyParamCaption})}
+
+create based on training set inputs and outputs \mbox{\Hypertarget{classclassification_ab76d1e8c617be54ede9ea47dd3c128bf}\label{classclassification_ab76d1e8c617be54ede9ea47dd3c128bf}} 
+\index{classification@{classification}!classification@{classification}}
+\index{classification@{classification}!classification@{classification}}
+\subsubsection{\texorpdfstring{classification()}{classification()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily classification\+::classification (\begin{DoxyParamCaption}\item[{int}]{num\+Inputs,  }\item[{int}]{num\+Outputs }\end{DoxyParamCaption})}
+
+create with proper models, but not trained 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classclassification_a8e834c25309bc471c5bb8e8730874c82}\label{classclassification_a8e834c25309bc471c5bb8e8730874c82}} 
+\index{classification@{classification}!train@{train}}
+\index{train@{train}!classification@{classification}}
+\subsubsection{\texorpdfstring{train()}{train()}}
+{\footnotesize\ttfamily bool classification\+::train (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$}]{training\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Train on a specified set, causes creation if not created 
+
+Reimplemented from \hyperlink{classmodel_set_ab0b16ec988c8077158de1c3d8986df03}{model\+Set}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+classification.\+h\item 
+classification.\+cpp\end{DoxyCompactItemize}

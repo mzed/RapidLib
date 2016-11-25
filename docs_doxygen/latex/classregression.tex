@@ -1,0 +1,83 @@
+\hypertarget{classregression}{}\section{regression Class Reference}
+\label{classregression}\index{regression@{regression}}
+
+
+{\ttfamily \#include $<$regression.\+h$>$}
+
+
+
+Inheritance diagram for regression\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{classregression__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for regression\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{classregression__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classregression_a40993153659b1f637cf4d596df6e97ab}{regression} ()
+\item 
+\hyperlink{classregression_ad03f74e09d96f315de3933628e8f4138}{regression} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set)
+\item 
+\hyperlink{classregression_a9d38dcda0e5c99caf0faf85f98a5ebb3}{regression} (int num\+Inputs, int num\+Outputs)
+\item 
+bool \hyperlink{classregression_ae45d7dbf24cab75202d966d116829813}{train} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class for implementing a set of regression models.
+
+This doesn\textquotesingle{}t do anything \hyperlink{classmodel_set}{model\+Set} can\textquotesingle{}t do. But, it\textquotesingle{}s simpler and more like wekinator. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classregression_a40993153659b1f637cf4d596df6e97ab}\label{classregression_a40993153659b1f637cf4d596df6e97ab}} 
+\index{regression@{regression}!regression@{regression}}
+\index{regression@{regression}!regression@{regression}}
+\subsubsection{\texorpdfstring{regression()}{regression()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily regression\+::regression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+with no arguments, just make an empty vector \mbox{\Hypertarget{classregression_ad03f74e09d96f315de3933628e8f4138}\label{classregression_ad03f74e09d96f315de3933628e8f4138}} 
+\index{regression@{regression}!regression@{regression}}
+\index{regression@{regression}!regression@{regression}}
+\subsubsection{\texorpdfstring{regression()}{regression()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily regression\+::regression (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$}]{training\+Set }\end{DoxyParamCaption})}
+
+create based on training set inputs and outputs \mbox{\Hypertarget{classregression_a9d38dcda0e5c99caf0faf85f98a5ebb3}\label{classregression_a9d38dcda0e5c99caf0faf85f98a5ebb3}} 
+\index{regression@{regression}!regression@{regression}}
+\index{regression@{regression}!regression@{regression}}
+\subsubsection{\texorpdfstring{regression()}{regression()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily regression\+::regression (\begin{DoxyParamCaption}\item[{int}]{num\+Inputs,  }\item[{int}]{num\+Outputs }\end{DoxyParamCaption})}
+
+create with proper models, but not trained 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classregression_ae45d7dbf24cab75202d966d116829813}\label{classregression_ae45d7dbf24cab75202d966d116829813}} 
+\index{regression@{regression}!train@{train}}
+\index{train@{train}!regression@{regression}}
+\subsubsection{\texorpdfstring{train()}{train()}}
+{\footnotesize\ttfamily bool regression\+::train (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$}]{training\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Train on a specified set, causes creation if not created 
+
+Reimplemented from \hyperlink{classmodel_set_ab0b16ec988c8077158de1c3d8986df03}{model\+Set}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+regression.\+h\item 
+regression.\+cpp\end{DoxyCompactItemize}
