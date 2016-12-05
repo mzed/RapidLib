@@ -28,8 +28,8 @@ public:
     void addNeighbour(int, std::vector<double>);
     
     /** Generate an output value from a single input vector.
-     * @param A standard vector of doubles that feed-forward regression will run on.
-     * @return A single double, which is the result of the feed-forward operation
+     * @param A standard vector of doubles to be evaluated.
+     * @return A single double: the nearest class as determined by k-nearest neighbor.
      */
     double process(std::vector<double>);
     
