@@ -270,7 +270,7 @@ void neuralNetwork::getJSONDescription(Json::Value &jsonModelDescription) {
 }
 #endif
 
-double neuralNetwork::process(std::vector<double> &inputVector) {
+double neuralNetwork::process(const std::vector<double> &inputVector) {
     std::vector<double> pattern;
     for (int h = 0; h < numInputs; h++) {
         pattern.push_back(inputVector[whichInputs[h]]);
@@ -312,7 +312,7 @@ double neuralNetwork::process(std::vector<double> &inputVector) {
     return outputNeuron;
 }
 
-void neuralNetwork::train(std::vector<trainingExample> &trainingSet) {
+void neuralNetwork::train(const std::vector<trainingExample> &trainingSet) {
     //setup maxes and mins
     std::vector<double> inMax = trainingSet[0].input;
     std::vector<double> inMin = trainingSet[0].input;

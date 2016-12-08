@@ -118,6 +118,7 @@
 				BE325F3F1DB50BFE00F199A8 /* classificationEmbindings.h */,
 				BE325F401DB50BFE00F199A8 /* knnClassification.cpp */,
 				BE325F411DB50BFE00F199A8 /* knnClassification.h */,
+				BE325F421DB50BFE00F199A8 /* knnEmbindings.h */,
 				BE325F431DB50BFE00F199A8 /* modelSet.cpp */,
 				BE325F441DB50BFE00F199A8 /* modelSet.h */,
 				BE325F451DB50BFE00F199A8 /* modelSetEmbindings.h */,
@@ -126,7 +127,6 @@
 				BE325F481DB50BFE00F199A8 /* nnEmbindings.h */,
 				BE325F491DB50BFE00F199A8 /* rapidMix.js */,
 				BE325F4A1DB50BFE00F199A8 /* regression.cpp */,
-				BE325F421DB50BFE00F199A8 /* knnEmbindings.h */,
 				BE325F4B1DB50BFE00F199A8 /* regression.h */,
 				BE325F4C1DB50BFE00F199A8 /* regressionEmbindings.h */,
 			);

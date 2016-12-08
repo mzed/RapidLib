@@ -14,16 +14,16 @@ public:
     /** with no arguments, just make an empty vector */
     regression();
     /** create based on training set inputs and outputs */
-    regression(std::vector<trainingExample> trainingSet);
+    regression(const std::vector<trainingExample> &trainingSet);
     /** create with proper models, but not trained */
     regression(int numInputs, int numOutputs);
     
     /** destructor */
     ~regression() {};
-
+    
     /** Train on a specified set, causes creation if not created */
-    bool train(std::vector<trainingExample> trainingSet);    
-
+    bool train(const std::vector<trainingExample> &trainingSet);
+    
 };
 
 #endif

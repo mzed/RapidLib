@@ -12,8 +12,6 @@ EMSCRIPTEN_BINDINGS(regression_module) {
     .constructor< std::vector<trainingExample> >()
     .constructor<int, int>()
     .function("train", &regression::train)
-    //    .function("initialize", &regression::initialize)
-    //.function("process", &regression::process)
     ;
 
 };

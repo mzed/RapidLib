@@ -13,15 +13,16 @@ class classification : public modelSet {
 public:
     /** with no arguments, just make an empty vector */
     classification();
-    /** destructor */
-    ~classification() {}
     /** create based on training set inputs and outputs */
-    classification(std::vector<trainingExample> trainingSet);
+    classification(const std::vector<trainingExample> &trainingSet);
     /** create with proper models, but not trained */
     classification(int numInputs, int numOutputs);
     
+    /** destructor */
+    ~classification() {}
+    
     /** Train on a specified set, causes creation if not created */
-    bool train(std::vector<trainingExample> trainingSet);
+    bool train(const std::vector<trainingExample> &trainingSet);
     
 };
 

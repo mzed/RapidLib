@@ -26,14 +26,14 @@ regression::regression(int num_inputs, int num_outputs) {
     created = true;
 };
 
-regression::regression(std::vector<trainingExample> training_set) {
+regression::regression(const std::vector<trainingExample> &training_set) {
     numInputs = 0;
     numOutputs = 0;
     created = false;
     train(training_set);
 };
 
-bool regression::train(std::vector<trainingExample> training_set) {
+bool regression::train(const std::vector<trainingExample> &training_set) {
     //TODO: time this process?
     if (created) {
         return modelSet::train(training_set);

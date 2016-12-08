@@ -24,7 +24,7 @@ modelSet::~modelSet() {
     }
 };
 
-bool modelSet::train(std::vector<trainingExample> training_set) {
+bool modelSet::train(const std::vector<trainingExample> &training_set) {
     for (trainingExample example : training_set) {
         if (example.input.size() != numInputs) {
             return false;
@@ -59,7 +59,7 @@ bool modelSet::initialize() {
     return true;
 }
 
-std::vector<double> modelSet::process(std::vector<double> inputVector) {
+std::vector<double> modelSet::process(const std::vector<double> &inputVector) {
     std::vector<double> returnVector;
     if (created && inputVector.size() == numInputs) {
         for (auto model : myModelSet) {

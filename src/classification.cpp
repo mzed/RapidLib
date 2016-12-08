@@ -10,9 +10,9 @@ classification::classification() {
     created = false;
 };
 
-classification::classification(int num_inputs, int num_outputs) {
-    numInputs = 0;
-    numOutputs = 0;
+classification::classification(int num_inputs, int num_outputs) { //TODO: this feature isn't really useful
+    numInputs = num_inputs;
+    numOutputs = num_outputs;
     created = false;
     std::vector<int> whichInputs;
     for (int i = 0; i < numInputs; ++i) {
@@ -25,14 +25,14 @@ classification::classification(int num_inputs, int num_outputs) {
     created = true;
 };
 
-classification::classification(std::vector<trainingExample> training_set) {
+classification::classification(const std::vector<trainingExample> &training_set) {
     numInputs = 0;
     numOutputs = 0;
     created = false;
     train(training_set);
 };
 
-bool classification::train(std::vector<trainingExample> training_set) {
+bool classification::train(const std::vector<trainingExample> &training_set) {
     //TODO: time this process?
     if (created) {
       return modelSet::train(training_set);

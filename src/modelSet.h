@@ -17,11 +17,11 @@ public:
     modelSet();
     virtual ~modelSet();
     /** Train on a specified set, causes creation if not created */
-    virtual bool train(std::vector<trainingExample> trainingSet);
+    virtual bool train(const std::vector<trainingExample> &trainingSet);
     /** reset to pre-training state */
     bool initialize();
     /** run regression or classification for each model */
-    std::vector<double> process(std::vector<double> inputVector);
+    std::vector<double> process(const std::vector<double> &inputVector);
     
 protected:
     std::vector<baseModel*> myModelSet;
