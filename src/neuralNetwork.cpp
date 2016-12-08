@@ -338,39 +338,37 @@ void neuralNetwork::train(std::vector<trainingExample> trainingSet) {
     }
     outRange = (outMax - outMin) * 0.5;
     outBase = (outMax + outMin) * 0.5;
+    
     //train
-    int epoch = 0;
-    while (epoch < numEpochs) {
-        //run through every training instance
-        for (int ti = 0; ti < (int) trainingSet.size(); ++ti) {
-            process(trainingSet[ti].input);
-            backpropagate(trainingSet[ti].output[0]);
+    if (outRange) {//Don't need to do any training if output never changes
+        for (int epoch = 0; epoch < numEpochs; ++epoch) {
+            //run through every training instance
+            for (int ti = 0; ti < (int) trainingSet.size(); ++ti) {
+                process(trainingSet[ti].input);
+                backpropagate(trainingSet[ti].output[0]);
+            }
         }
-        epoch++;
     }
 }
 
 void neuralNetwork::backpropagate(double desiredOutput) {
-    
     //deltas between output and hidden
-    if (desiredOutput != outputNeuron && outRange != 0) { //protect against case where the output is a constant
-        outputErrorGradient = (desiredOutput - outputNeuron) / outRange;
-        for (int i = 0; i <= numHiddenNodes; ++i) {
-            deltaHiddenOutput[i] = (learningRate * hiddenNeurons[numHiddenLayers - 1][i] * outputErrorGradient) + (momentum * deltaHiddenOutput[i]);
-        }
-        
-        //deltas between hidden
-        for (int i = 0; i < numHiddenLayers; ++i) {
-            for (int j = 0; j < numHiddenNodes; ++j) {
-                hiddenErrorGradients[j] = getHiddenErrorGradient(0, j);
-                int numDeltas = (i == 0) ? numInputs : numHiddenNodes;
-                for (int k = 0; k <= numDeltas; ++k) {
-                    deltaWeights[i][j][k] = (learningRate * inputNeurons[k] * hiddenErrorGradients[j]) + momentum * deltaWeights[i][j][k];
-                }
+    outputErrorGradient = (desiredOutput - outputNeuron) / outRange;
+    for (int i = 0; i <= numHiddenNodes; ++i) {
+        deltaHiddenOutput[i] = (learningRate * hiddenNeurons[numHiddenLayers - 1][i] * outputErrorGradient) + (momentum * deltaHiddenOutput[i]);
+    }
+    
+    //deltas between hidden
+    for (int i = 0; i < numHiddenLayers; ++i) {
+        for (int j = 0; j < numHiddenNodes; ++j) {
+            hiddenErrorGradients[j] = getHiddenErrorGradient(0, j);
+            int numDeltas = (i == 0) ? numInputs : numHiddenNodes;
+            for (int k = 0; k <= numDeltas; ++k) {
+                deltaWeights[i][j][k] = (learningRate * inputNeurons[k] * hiddenErrorGradients[j]) + momentum * deltaWeights[i][j][k];
             }
         }
-        updateWeights();
     }
+    updateWeights();
 }
 
 void neuralNetwork::updateWeights() {
