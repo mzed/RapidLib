@@ -353,22 +353,24 @@ void neuralNetwork::train(std::vector<trainingExample> trainingSet) {
 void neuralNetwork::backpropagate(double desiredOutput) {
     
     //deltas between output and hidden
-    outputErrorGradient = (desiredOutput - outputNeuron) / outRange;
-    for (int i = 0; i <= numHiddenNodes; ++i) {
-        deltaHiddenOutput[i] = (learningRate * hiddenNeurons[numHiddenLayers - 1][i] * outputErrorGradient) + (momentum * deltaHiddenOutput[i]);
-    }
-    
-    //deltas between hidden
-    for (int i = 0; i < numHiddenLayers; ++i) {
-        for (int j = 0; j < numHiddenNodes; ++j) {
-            hiddenErrorGradients[j] = getHiddenErrorGradient(0, j);
-            int numDeltas = (i == 0) ? numInputs : numHiddenNodes;
-            for (int k = 0; k <= numDeltas; ++k) {
-                deltaWeights[i][j][k] = (learningRate * inputNeurons[k] * hiddenErrorGradients[j]) + momentum * deltaWeights[i][j][k];
+    if (desiredOutput != outputNeuron && outRange != 0) { //protect against case where the output is a constant
+        outputErrorGradient = (desiredOutput - outputNeuron) / outRange;
+        for (int i = 0; i <= numHiddenNodes; ++i) {
+            deltaHiddenOutput[i] = (learningRate * hiddenNeurons[numHiddenLayers - 1][i] * outputErrorGradient) + (momentum * deltaHiddenOutput[i]);
+        }
+        
+        //deltas between hidden
+        for (int i = 0; i < numHiddenLayers; ++i) {
+            for (int j = 0; j < numHiddenNodes; ++j) {
+                hiddenErrorGradients[j] = getHiddenErrorGradient(0, j);
+                int numDeltas = (i == 0) ? numInputs : numHiddenNodes;
+                for (int k = 0; k <= numDeltas; ++k) {
+                    deltaWeights[i][j][k] = (learningRate * inputNeurons[k] * hiddenErrorGradients[j]) + momentum * deltaWeights[i][j][k];
+                }
             }
         }
+        updateWeights();
     }
-    updateWeights();
 }
 
 void neuralNetwork::updateWeights() {
