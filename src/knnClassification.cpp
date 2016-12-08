@@ -35,12 +35,12 @@ void knnClassification::addNeighbour(int classNum, std::vector<double> features)
     neighbours.push_back(newNeighbour);
 };
 
-void knnClassification::train(std::vector<trainingExample> trainingSet) {
+void knnClassification::train(std::vector<trainingExample> &trainingSet) {
     neighbours.clear();
     neighbours = trainingSet;
 };
 
-double knnClassification::process(std::vector<double> inputVector) {
+double knnClassification::process(std::vector<double> &inputVector) {
     for (int i = 0; i < numNeighbours; ++i) {
         nearestNeighbours[i] = {0, 0.};
     };
@@ -87,7 +87,7 @@ double knnClassification::process(std::vector<double> inputVector) {
     std::map<int, int> classVoteMap;
     typedef std::pair<int, int> classVotePair;
     for (int i = 0; i < numNeighbours; ++i){
-        int classNum = std::round(neighbours[nearestNeighbours[i].first].output[0]);
+      int classNum = (int) std::round(neighbours[nearestNeighbours[i].first].output[0]);
         if ( classVoteMap.find(classNum) == classVoteMap.end() ) {
             classVoteMap.insert(classVotePair(classNum, 1));
         } else {

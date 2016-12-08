@@ -77,7 +77,7 @@ std::vector<double> modelSet::process(std::vector<double> inputVector) {
 //In emscripten, we do the JSON parsing with native JavaScript
 std::vector<double> json2vector(Json::Value json) {
     std::vector<double> returnVec;
-    for (int i = 0; i < json.size(); ++i) {
+    for (unsigned int i = 0; i < json.size(); ++i) {
         returnVec.push_back(json[i].asDouble());
     }
     return returnVec;
@@ -136,7 +136,7 @@ bool modelSet::putJSON(std::string jsonMessage) {
 
 void modelSet::json2modelSet(Json::Value root) {
     numInputs = root["metadata"]["numInputs"].asInt();
-    for (int i = 0; i < root["metadata"]["inputNames"].size(); ++i) {
+    for (unsigned int i = 0; i < root["metadata"]["inputNames"].size(); ++i) {
         inputNames.push_back(root["metadata"]["inputNames"][i].asString());
     }
     numOutputs = root["metadata"]["numOutputs"].asInt();
@@ -145,7 +145,7 @@ void modelSet::json2modelSet(Json::Value root) {
         int modelNumInputs = model["numInputs"].asInt();
         std::vector<int> whichInputs;
         std::vector<std::string> modelInputNames;
-        for (int i = 0; i < model["inputNames"].size(); ++i) {
+        for (unsigned int i = 0; i < model["inputNames"].size(); ++i) {
             modelInputNames.push_back(model["inputNames"][i].asString());
         }
         for (int i = 0; i < inputNames.size(); ++i) {
@@ -167,7 +167,7 @@ void modelSet::json2modelSet(Json::Value root) {
                     }
                     wHiddenOutput.push_back(node["Threshold"].asDouble());
                 } else { //FIXME: this will break if nodes are out of order
-                    int currentLayer = floor((nodeIndex - 1)/numHiddenNodes);
+		  int currentLayer = (int) floor((nodeIndex - 1.0)/ (double)numHiddenNodes);
                     if (currentLayer < 1) { //Nodes connected to input
                         for (int i = 0; i < numInputs; ++i) {
                             std::string whichNode = "Attrib " + model["inputNames"][i].asString();
@@ -192,7 +192,7 @@ void modelSet::json2modelSet(Json::Value root) {
         } else if (model["modelType"].asString() == "kNN Classificiation") {
             std::vector<trainingExample> trainingSet;
             const Json::Value examples = model["examples"];
-            for (int i = 0; i < examples.size(); ++i) {
+            for (unsigned int i = 0; i < examples.size(); ++i) {
                 trainingExample tempExample;
                 tempExample.input = json2vector(examples[i]["features"]);
                 tempExample.output.push_back(examples[i]["class"].asDouble());

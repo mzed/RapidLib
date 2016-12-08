@@ -8,6 +8,10 @@
 #include "nnEmbindings.h"
 #endif
 
+/*!
+ * This is the constructor for a model imported from JSON.
+ */
+
 neuralNetwork::neuralNetwork(int num_inputs,
                              std::vector<int> which_inputs,
                              int num_hidden_layers,
@@ -43,7 +47,7 @@ outputErrorGradient(0)
         std::vector<std::vector<double>> layer;
         for (int j = 0; j < numHiddenNodes; ++j){
             std::vector<double> node;
-            for(int k = 0; k <= numInputs; ++k){ //FIXME if numInputs =/= numHiddenNodes
+            for(int k = 0; k <= numInputs; ++k){ //FIXME if numInputs != numHiddenNodes
                 if (randomize) {
                     node.push_back(distribution(generator));
                 } else {
@@ -113,7 +117,7 @@ outputErrorGradient(0)
         std::vector<std::vector<double>> layer;
         for (int j = 0; j < numHiddenNodes; ++j){
             std::vector<double> node;
-            for(int k = 0; k <= numInputs; ++k){ //FIXME if numInputs =/= numHiddenNodes
+            for(int k = 0; k <= numInputs; ++k){ //FIXME if numInputs != numHiddenNodes
                 node.push_back(distribution(generator));
             }
             layer.push_back(node);
@@ -132,7 +136,7 @@ outputErrorGradient(0)
         std::vector<std::vector<double>> layer;
         for (int j = 0; j < numHiddenNodes; ++j) {
             std::vector<double> node;
-            for (int k = 0; k <= numInputs; ++k) { //FIXME if numInputs =/=numHiddenNodes
+            for (int k = 0; k <= numInputs; ++k) { //FIXME if numInputs !=n umHiddenNodes
                 node.push_back(0);
             }
             layer.push_back(node);
@@ -266,7 +270,7 @@ void neuralNetwork::getJSONDescription(Json::Value &jsonModelDescription) {
 }
 #endif
 
-double neuralNetwork::process(std::vector<double> inputVector) {
+double neuralNetwork::process(std::vector<double> &inputVector) {
     std::vector<double> pattern;
     for (int h = 0; h < numInputs; h++) {
         pattern.push_back(inputVector[whichInputs[h]]);
@@ -308,7 +312,7 @@ double neuralNetwork::process(std::vector<double> inputVector) {
     return outputNeuron;
 }
 
-void neuralNetwork::train(std::vector<trainingExample> trainingSet) {
+void neuralNetwork::train(std::vector<trainingExample> &trainingSet) {
     //setup maxes and mins
     std::vector<double> inMax = trainingSet[0].input;
     std::vector<double> inMin = trainingSet[0].input;

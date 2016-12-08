@@ -18,6 +18,9 @@ public:
     /** create with proper models, but not trained */
     regression(int numInputs, int numOutputs);
     
+    /** destructor */
+    ~regression() {};
+
     /** Train on a specified set, causes creation if not created */
     bool train(std::vector<trainingExample> trainingSet);    
 

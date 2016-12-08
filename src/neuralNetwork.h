@@ -37,7 +37,7 @@ public:
      * @param A standard vector of doubles that feed-forward regression will run on.
      * @return A single double, which is the result of the feed-forward operation
      */
-    double process(std::vector<double> inputVector);
+    double process(std::vector<double> &inputVector);
     
     int getNumInputs();
     std::vector<int> getWhichInputs();
@@ -89,7 +89,7 @@ public:
      * @param The training set is a vector of training examples that contain both a vector of input values and a double specifying desired output.
      *
      */
-    void train(std::vector<trainingExample> trainingSet);
+    void train(std::vector<trainingExample> &trainingSet);
     
 private:
     /** Parameters that influence learning */

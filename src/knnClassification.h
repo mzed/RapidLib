@@ -31,14 +31,14 @@ public:
      * @param A standard vector of doubles to be evaluated.
      * @return A single double: the nearest class as determined by k-nearest neighbor.
      */
-    double process(std::vector<double>);
+    double process(std::vector<double> &inputVector);
     
     /** Fill the model with a vector of examples.
      *
      * @param The training set is a vector of training examples that contain both a vector of input values and a double specifying desired output class.
      *
      */
-    void train(std::vector<trainingExample> trainingSet);
+    void train(std::vector<trainingExample> &trainingSet);
     
     int getNumInputs();
     std::vector<int> getWhichInputs();
