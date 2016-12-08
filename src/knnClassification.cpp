@@ -7,7 +7,7 @@
 #include "knnEmbindings.h"
 #endif
 
-knnClassification::knnClassification(int num_inputs, std::vector<int> which_inputs, std::vector<trainingExample> _neighbours, int k)
+knnClassification::knnClassification(const int &num_inputs, const std::vector<int> &which_inputs, const std::vector<trainingExample> &_neighbours, const int &k)
 : numInputs(num_inputs),
 whichInputs(which_inputs),
 neighbours(_neighbours),
@@ -28,7 +28,7 @@ std::vector<int> knnClassification::getWhichInputs() {
     return whichInputs;
 }
 
-void knnClassification::addNeighbour(int classNum, std::vector<double> features) {
+void knnClassification::addNeighbour(const int &classNum, const std::vector<double> &features) {
     std::vector<double> classVec;
     classVec.push_back(double(classNum));
     trainingExample newNeighbour = {features, classVec};

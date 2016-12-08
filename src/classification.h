@@ -16,7 +16,7 @@ public:
     /** create based on training set inputs and outputs */
     classification(const std::vector<trainingExample> &trainingSet);
     /** create with proper models, but not trained */
-    classification(int numInputs, int numOutputs);
+    classification(const int &numInputs, const int &numOutputs);
     
     /** destructor */
     ~classification() {}

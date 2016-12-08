@@ -18,14 +18,14 @@ public:
      * @param vector of training examples
      * @param how many near neighbours to evaluate
      */
-    knnClassification(int num_inputs, std::vector<int> which_inputs, std::vector<trainingExample> trainingSet, int k);
+    knnClassification(const int &num_inputs, const std::vector<int> &which_inputs, const std::vector<trainingExample> &trainingSet, const int &k);
     ~knnClassification();
     
     /** add another example to the existing training set
      * @param class number of example
      * @param feature vector of example
      */
-    void addNeighbour(int, std::vector<double>);
+    void addNeighbour(const int &classNum, const std::vector<double> &features);
     
     /** Generate an output value from a single input vector.
      * @param A standard vector of doubles to be evaluated.

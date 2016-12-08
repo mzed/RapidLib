@@ -12,9 +12,9 @@ regression::regression() {
     created = false;
 };
 
-regression::regression(int num_inputs, int num_outputs) {
-    numInputs = 0;
-    numOutputs = 0;
+regression::regression(const int &num_inputs, const int &num_outputs) {
+    numInputs = num_inputs;
+    numOutputs = num_outputs;
     created = false;
     std::vector<int> whichInputs;
     for (int i = 0; i < numInputs; ++i) {

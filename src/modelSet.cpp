@@ -113,7 +113,7 @@ std::string modelSet::getJSON() {
     return root.toStyledString();
 }
 
-void modelSet::writeJSON(std::string filepath) {
+void modelSet::writeJSON(const std::string &filepath) {
     Json::Value root = parse2json();
     std::ofstream jsonOut;
     jsonOut.open (filepath);
@@ -123,7 +123,7 @@ void modelSet::writeJSON(std::string filepath) {
     
 }
 
-bool modelSet::putJSON(std::string jsonMessage) {
+bool modelSet::putJSON(const std::string &jsonMessage) {
     Json::Value parsedFromString;
     Json::Reader reader;
     bool parsingSuccessful = reader.parse(jsonMessage, parsedFromString);
@@ -134,7 +134,7 @@ bool modelSet::putJSON(std::string jsonMessage) {
     return parsingSuccessful;
 }
 
-void modelSet::json2modelSet(Json::Value root) {
+void modelSet::json2modelSet(const Json::Value &root) {
     numInputs = root["metadata"]["numInputs"].asInt();
     for (unsigned int i = 0; i < root["metadata"]["inputNames"].size(); ++i) {
         inputNames.push_back(root["metadata"]["inputNames"][i].asString());
@@ -205,7 +205,7 @@ void modelSet::json2modelSet(Json::Value root) {
     created = true;
 }
 
-bool modelSet::readJSON(std::string filepath) {
+bool modelSet::readJSON(const std::string &filepath) {
     Json::Value root;
     std::ifstream file(filepath);
     file >> root;

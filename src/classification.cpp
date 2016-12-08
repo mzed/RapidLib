@@ -10,7 +10,7 @@ classification::classification() {
     created = false;
 };
 
-classification::classification(int num_inputs, int num_outputs) { //TODO: this feature isn't really useful
+classification::classification(const int &num_inputs, const int &num_outputs) { //TODO: this feature isn't really useful
     numInputs = num_inputs;
     numOutputs = num_outputs;
     created = false;

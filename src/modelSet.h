@@ -35,15 +35,15 @@ public:
     /** Get a JSON representation of the model in the form of a styled string */
     std::string getJSON();
     /** Write a JSON model description to specified file path */
-    void writeJSON(std::string filepath);
+    void writeJSON(const std::string &filepath);
     /** configure empty model with string. See getJSON() */
-    bool putJSON(std::string jsonMessage);
+    bool putJSON(const std::string &jsonMessage);
     /** read a JSON file at file path and build a modelSet from it */
-    bool readJSON(std::string filepath);
+    bool readJSON(const std::string &filepath);
         
 private:
     Json::Value parse2json();
-    void json2modelSet(Json::Value);
+    void json2modelSet(const Json::Value &root);
 
 #endif
 };

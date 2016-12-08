@@ -16,7 +16,7 @@ public:
     /** create based on training set inputs and outputs */
     regression(const std::vector<trainingExample> &trainingSet);
     /** create with proper models, but not trained */
-    regression(int numInputs, int numOutputs);
+    regression(const int &numInputs, const int &numOutputs);
     
     /** destructor */
     ~regression() {};

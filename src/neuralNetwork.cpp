@@ -12,16 +12,16 @@
  * This is the constructor for a model imported from JSON.
  */
 
-neuralNetwork::neuralNetwork(int num_inputs,
-                             std::vector<int> which_inputs,
-                             int num_hidden_layers,
-                             int num_hidden_nodes,
-                             std::vector<double> _weights,
-                             std::vector<double> w_hidden_output,
-                             std::vector<double> in_ranges,
-                             std::vector<double> in_bases,
-                             double out_range,
-                             double out_base
+neuralNetwork::neuralNetwork(const int &num_inputs,
+                             const std::vector<int> &which_inputs,
+                             const int &num_hidden_layers,
+                             const int &num_hidden_nodes,
+                             const std::vector<double> &_weights,
+                             const std::vector<double> &w_hidden_output,
+                             const std::vector<double> &in_ranges,
+                             const std::vector<double> &in_bases,
+                             const double &out_range,
+                             const double &out_base
                              )
 :
 numInputs(num_inputs),

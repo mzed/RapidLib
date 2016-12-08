@@ -19,7 +19,16 @@ class neuralNetwork : public baseModel {
     
 public:
     /** This is the constructor for building a trained model from JSON. */
-    neuralNetwork(int num_inputs, std::vector<int> which_inputs, int num_hidden_layers, int num_hidden_nodes, std::vector<double>, std::vector<double>, std::vector<double>, std::vector<double>, double, double);
+    neuralNetwork(const int &num_inputs,
+                  const std::vector<int> &which_inputs,
+                  const int &num_hidden_layers,
+                  const int &num_hidden_nodes,
+                  const std::vector<double> &weights,
+                  const std::vector<double> &wHiddenOutput,
+                  const std::vector<double> &inRanges,
+                  const std::vector<double> &inBases,
+                  const double &outRange,
+                  const double &outBase);
     
     /** This constructor creates a neural network that needs to be trained.
      *
