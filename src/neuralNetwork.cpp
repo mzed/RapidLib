@@ -95,10 +95,10 @@ outputErrorGradient(0)
  * This is the constructor for a model that needs to be trained.
  */
 
-neuralNetwork::neuralNetwork(int num_inputs,
-                             std::vector<int> which_inputs,
-                             int num_hidden_layers,
-                             int num_hidden_nodes
+neuralNetwork::neuralNetwork(const int &num_inputs,
+                             const std::vector<int> &which_inputs,
+                             const int &num_hidden_layers,
+                             const int &num_hidden_nodes
                              )
 :
 numInputs(num_inputs),
@@ -355,7 +355,7 @@ void neuralNetwork::train(const std::vector<trainingExample> &trainingSet) {
     }
 }
 
-void neuralNetwork::backpropagate(double desiredOutput) {
+void neuralNetwork::backpropagate(const double &desiredOutput) {
     //deltas between output and hidden
     outputErrorGradient = (desiredOutput - outputNeuron) / outRange;
     for (int i = 0; i <= numHiddenNodes; ++i) {

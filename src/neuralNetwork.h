@@ -39,7 +39,12 @@ public:
      *
      * @return A neuralNetwork instance with randomized weights and no normalization values. These will be set or adjusted during training.
      */
-    neuralNetwork(int num_inputs, std::vector<int> which_inputs, int num_hidden_layer, int num_hidden_nodes);
+    neuralNetwork(const int &num_inputs,
+                  const std::vector<int> &which_inputs,
+                  const int &num_hidden_layer,
+                  const int &num_hidden_nodes);
+    
+    /** destructor */
     ~neuralNetwork();
     
     /** Generate an output value from a single input vector.
@@ -113,12 +118,12 @@ private:
     /** Parameters and functions for calculating amount of change for each weight */
     std::vector<double> hiddenErrorGradients;
     double outputErrorGradient;
-    inline double getHiddenErrorGradient(int, int);
+    inline double getHiddenErrorGradient(int layer, int neuron);
     
     /** Propagate output error back through the network.
      * @param The desired output of the network is fed into the function, and compared with the actual output
      */
-    void backpropagate(double);
+    void backpropagate(const double &desiredOutput);
     
     /** Apply corrections to network weights, based on output error */
     void updateWeights();

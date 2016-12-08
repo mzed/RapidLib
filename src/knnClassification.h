@@ -18,7 +18,10 @@ public:
      * @param vector of training examples
      * @param how many near neighbours to evaluate
      */
-    knnClassification(const int &num_inputs, const std::vector<int> &which_inputs, const std::vector<trainingExample> &trainingSet, const int &k);
+    knnClassification(const int &num_inputs,
+                      const std::vector<int> &which_inputs,
+                      const std::vector<trainingExample> &trainingSet,
+                      const int &k);
     ~knnClassification();
     
     /** add another example to the existing training set
