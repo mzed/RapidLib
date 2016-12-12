@@ -24,6 +24,10 @@ public:
     /** Train on a specified set, causes creation if not created */
     bool train(const std::vector<trainingExample> &trainingSet);
     
+    /** Check the K values for each model. This feature is temporary, and will be replaced by a different design. */
+    std::vector<int> getK();
+    /** Get the K values for each model. This feature is temporary, and will be replaced by a different design. */
+    void setK(int newK);
 };
 
 #endif

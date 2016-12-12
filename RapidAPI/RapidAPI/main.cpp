@@ -61,6 +61,10 @@ int main(int argc, const char * argv[]) {
     
     assert(myKnn.process(inputVec)[0] == myKnnFromString.process(inputVec)[0]);
     assert(myKnn.process(inputVec)[0] == myKnnFromFile.process(inputVec)[0]);
-
+    
+    std::cout << "k " << myKnn.getK()[0] << std::endl;
+    myKnn.setK(2);
+    std::cout << "k " << myKnn.getK()[0] << std::endl;
+    
     return 0;
 }

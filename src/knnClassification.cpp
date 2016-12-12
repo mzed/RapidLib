@@ -2,12 +2,13 @@
 #include <utility>
 #include <map>
 #include <vector>
+#include <algorithm>
 #include "knnClassification.h"
 #ifdef EMSCRIPTEN
 #include "knnEmbindings.h"
 #endif
 
-knnClassification::knnClassification(const int &num_inputs, const std::vector<int> &which_inputs, const std::vector<trainingExample> &_neighbours, const int &k)
+knnClassification::knnClassification(const int &num_inputs, const std::vector<int> &which_inputs, const std::vector<trainingExample> &_neighbours, const int k)
 : numInputs(num_inputs),
 whichInputs(which_inputs),
 neighbours(_neighbours),
@@ -28,6 +29,14 @@ std::vector<int> knnClassification::getWhichInputs() {
     return whichInputs;
 }
 
+int knnClassification::getK() {
+    return numNeighbours;
+}
+
+void knnClassification::setK(int newK) {
+    numNeighbours = newK;
+}
+
 void knnClassification::addNeighbour(const int &classNum, const std::vector<double> &features) {
     std::vector<double> classVec;
     classVec.push_back(double(classNum));
@@ -38,6 +47,7 @@ void knnClassification::addNeighbour(const int &classNum, const std::vector<doub
 void knnClassification::train(const std::vector<trainingExample> &trainingSet) {
     neighbours.clear();
     neighbours = trainingSet;
+    numNeighbours = std::min(numNeighbours, (int) neighbours.size());
 };
 
 double knnClassification::process(const std::vector<double> &inputVector) {
@@ -87,7 +97,7 @@ double knnClassification::process(const std::vector<double> &inputVector) {
     std::map<int, int> classVoteMap;
     typedef std::pair<int, int> classVotePair;
     for (int i = 0; i < numNeighbours; ++i){
-      int classNum = (int) std::round(neighbours[nearestNeighbours[i].first].output[0]);
+        int classNum = (int) std::round(neighbours[nearestNeighbours[i].first].output[0]);
         if ( classVoteMap.find(classNum) == classVoteMap.end() ) {
             classVoteMap.insert(classVotePair(classNum, 1));
         } else {

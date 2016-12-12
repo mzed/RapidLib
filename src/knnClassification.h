@@ -21,7 +21,7 @@ public:
     knnClassification(const int &num_inputs,
                       const std::vector<int> &which_inputs,
                       const std::vector<trainingExample> &trainingSet,
-                      const int &k);
+                      const int k);
     ~knnClassification();
     
     /** add another example to the existing training set
@@ -45,6 +45,13 @@ public:
     
     int getNumInputs();
     std::vector<int> getWhichInputs();
+    
+    /** Get the number of nearest neighbours used by the kNN algorithm. */
+    int getK();
+    /** Change the number of nearest neighbours used by the kNN algorithm.
+     * @param new value for k
+     */
+    void setK(int newK);
     
 #ifndef EMSCRIPTEN
     void getJSONDescription(Json::Value &currentModel);
