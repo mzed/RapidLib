@@ -66,15 +66,15 @@ bool classification::train(const std::vector<trainingExample> &training_set) {
 std::vector<int> classification::getK() {
     std::vector<int> kVector;
     for (baseModel* model : myModelSet) {
-        knnClassification* foo = static_cast<knnClassification*>(model); //FIXME: I really dislike this design
-        kVector.push_back(foo->getK());
+        knnClassification* kNNModel = dynamic_cast<knnClassification*>(model); //FIXME: I really dislike this design
+        kVector.push_back(kNNModel->getK());
     }
     return kVector;
 }
 
 void classification::setK(int newK) {
     for (baseModel* model : myModelSet) {
-        knnClassification* foo = static_cast<knnClassification*>(model); //FIXME: I really dislike this design
-        foo->setK(newK);
+        knnClassification* kNNModel = dynamic_cast<knnClassification*>(model); //FIXME: I really dislike this design
+        kNNModel->setK(newK);
     }
 }
