@@ -6,20 +6,22 @@
 
 
 
-Inheritance diagram for regression\+:\nopagebreak
+Inheritance diagram for regression\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=160pt]{classregression__inherit__graph}
+\includegraphics[width=164pt]{classregression__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for regression\+:\nopagebreak
+Collaboration diagram for regression\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=160pt]{classregression__coll__graph}
+\includegraphics[width=164pt]{classregression__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -27,11 +29,13 @@ Collaboration diagram for regression\+:\nopagebreak
 \item 
 \hyperlink{classregression_a40993153659b1f637cf4d596df6e97ab}{regression} ()
 \item 
-\hyperlink{classregression_ad03f74e09d96f315de3933628e8f4138}{regression} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set)
+\hyperlink{classregression_a029d23d2403773148373bb091d2734c2}{regression} (const std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ \&training\+Set)
 \item 
-\hyperlink{classregression_a9d38dcda0e5c99caf0faf85f98a5ebb3}{regression} (int \hyperlink{classmodel_set_ad10fbc1228a85f1200cb89589ad92755}{num\+Inputs}, int \hyperlink{classmodel_set_addc0df56b9f1970c9816050634933716}{num\+Outputs})
+\hyperlink{classregression_ae3474e3fbc7c31a80ad862dd18f7489d}{regression} (const int \&\hyperlink{classmodel_set_ad10fbc1228a85f1200cb89589ad92755}{num\+Inputs}, const int \&\hyperlink{classmodel_set_addc0df56b9f1970c9816050634933716}{num\+Outputs})
 \item 
-bool \hyperlink{classregression_ae45d7dbf24cab75202d966d116829813}{train} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set)
+\hyperlink{classregression_abde9f6759b404a8fe6db7d2a96acda0c}{$\sim$regression} ()
+\item 
+bool \hyperlink{classregression_afb1956067fda0d20d2ed755086c9f592}{train} (const std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ \&training\+Set)
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -48,30 +52,36 @@ This doesn\textquotesingle{}t do anything \hyperlink{classmodel_set}{model\+Set}
 \subsubsection{\texorpdfstring{regression()}{regression()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily regression\+::regression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-with no arguments, just make an empty vector \mbox{\Hypertarget{classregression_ad03f74e09d96f315de3933628e8f4138}\label{classregression_ad03f74e09d96f315de3933628e8f4138}} 
+with no arguments, just make an empty vector \mbox{\Hypertarget{classregression_a029d23d2403773148373bb091d2734c2}\label{classregression_a029d23d2403773148373bb091d2734c2}} 
 \index{regression@{regression}!regression@{regression}}
 \index{regression@{regression}!regression@{regression}}
 \subsubsection{\texorpdfstring{regression()}{regression()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily regression\+::regression (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$}]{training\+Set }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily regression\+::regression (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ \&}]{training\+Set }\end{DoxyParamCaption})}
 
-create based on training set inputs and outputs \mbox{\Hypertarget{classregression_a9d38dcda0e5c99caf0faf85f98a5ebb3}\label{classregression_a9d38dcda0e5c99caf0faf85f98a5ebb3}} 
+create based on training set inputs and outputs \mbox{\Hypertarget{classregression_ae3474e3fbc7c31a80ad862dd18f7489d}\label{classregression_ae3474e3fbc7c31a80ad862dd18f7489d}} 
 \index{regression@{regression}!regression@{regression}}
 \index{regression@{regression}!regression@{regression}}
 \subsubsection{\texorpdfstring{regression()}{regression()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily regression\+::regression (\begin{DoxyParamCaption}\item[{int}]{num\+Inputs,  }\item[{int}]{num\+Outputs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily regression\+::regression (\begin{DoxyParamCaption}\item[{const int \&}]{num\+Inputs,  }\item[{const int \&}]{num\+Outputs }\end{DoxyParamCaption})}
 
-create with proper models, but not trained 
+create with proper models, but not trained \mbox{\Hypertarget{classregression_abde9f6759b404a8fe6db7d2a96acda0c}\label{classregression_abde9f6759b404a8fe6db7d2a96acda0c}} 
+\index{regression@{regression}!````~regression@{$\sim$regression}}
+\index{````~regression@{$\sim$regression}!regression@{regression}}
+\subsubsection{\texorpdfstring{$\sim$regression()}{~regression()}}
+{\footnotesize\ttfamily regression\+::$\sim$regression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+destructor 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classregression_ae45d7dbf24cab75202d966d116829813}\label{classregression_ae45d7dbf24cab75202d966d116829813}} 
+\mbox{\Hypertarget{classregression_afb1956067fda0d20d2ed755086c9f592}\label{classregression_afb1956067fda0d20d2ed755086c9f592}} 
 \index{regression@{regression}!train@{train}}
 \index{train@{train}!regression@{regression}}
 \subsubsection{\texorpdfstring{train()}{train()}}
-{\footnotesize\ttfamily bool regression\+::train (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$}]{training\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily bool regression\+::train (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ \&}]{training\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Train on a specified set, causes creation if not created 
 
-Reimplemented from \hyperlink{classmodel_set_ab0b16ec988c8077158de1c3d8986df03}{model\+Set}.
+Reimplemented from \hyperlink{classmodel_set_a7620f95e8e29d547e7c688da51b33d9c}{model\+Set}.
 
 
 

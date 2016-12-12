@@ -6,20 +6,22 @@
 
 
 
-Inheritance diagram for classification\+:\nopagebreak
+Inheritance diagram for classification\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=168pt]{classclassification__inherit__graph}
+\includegraphics[width=174pt]{classclassification__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for classification\+:\nopagebreak
+Collaboration diagram for classification\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=168pt]{classclassification__coll__graph}
+\includegraphics[width=174pt]{classclassification__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -27,11 +29,13 @@ Collaboration diagram for classification\+:\nopagebreak
 \item 
 \hyperlink{classclassification_a96cfefed3bbc9b8b61a44b9c6cc9e29a}{classification} ()
 \item 
-\hyperlink{classclassification_a825ef0d6ba9ba826d22969be72a9011f}{classification} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set)
+\hyperlink{classclassification_abbc5335e5c1536a0c202a79b46dc8f23}{classification} (const std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ \&training\+Set)
 \item 
-\hyperlink{classclassification_ab76d1e8c617be54ede9ea47dd3c128bf}{classification} (int \hyperlink{classmodel_set_ad10fbc1228a85f1200cb89589ad92755}{num\+Inputs}, int \hyperlink{classmodel_set_addc0df56b9f1970c9816050634933716}{num\+Outputs})
+\hyperlink{classclassification_ab50d95013f5266aa5cc4595f69e62c71}{classification} (const int \&\hyperlink{classmodel_set_ad10fbc1228a85f1200cb89589ad92755}{num\+Inputs}, const int \&\hyperlink{classmodel_set_addc0df56b9f1970c9816050634933716}{num\+Outputs})
 \item 
-bool \hyperlink{classclassification_a8e834c25309bc471c5bb8e8730874c82}{train} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set)
+\hyperlink{classclassification_ac65a474682b7c3b8661585de8b8f8f8b}{$\sim$classification} ()
+\item 
+bool \hyperlink{classclassification_ac7f8a3ad1a0f4f466cd6f5ed041615d9}{train} (const std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ \&training\+Set)
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -48,30 +52,36 @@ This doesn\textquotesingle{}t do anything \hyperlink{classmodel_set}{model\+Set}
 \subsubsection{\texorpdfstring{classification()}{classification()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily classification\+::classification (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-with no arguments, just make an empty vector \mbox{\Hypertarget{classclassification_a825ef0d6ba9ba826d22969be72a9011f}\label{classclassification_a825ef0d6ba9ba826d22969be72a9011f}} 
+with no arguments, just make an empty vector \mbox{\Hypertarget{classclassification_abbc5335e5c1536a0c202a79b46dc8f23}\label{classclassification_abbc5335e5c1536a0c202a79b46dc8f23}} 
 \index{classification@{classification}!classification@{classification}}
 \index{classification@{classification}!classification@{classification}}
 \subsubsection{\texorpdfstring{classification()}{classification()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily classification\+::classification (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$}]{training\+Set }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily classification\+::classification (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ \&}]{training\+Set }\end{DoxyParamCaption})}
 
-create based on training set inputs and outputs \mbox{\Hypertarget{classclassification_ab76d1e8c617be54ede9ea47dd3c128bf}\label{classclassification_ab76d1e8c617be54ede9ea47dd3c128bf}} 
+create based on training set inputs and outputs \mbox{\Hypertarget{classclassification_ab50d95013f5266aa5cc4595f69e62c71}\label{classclassification_ab50d95013f5266aa5cc4595f69e62c71}} 
 \index{classification@{classification}!classification@{classification}}
 \index{classification@{classification}!classification@{classification}}
 \subsubsection{\texorpdfstring{classification()}{classification()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily classification\+::classification (\begin{DoxyParamCaption}\item[{int}]{num\+Inputs,  }\item[{int}]{num\+Outputs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily classification\+::classification (\begin{DoxyParamCaption}\item[{const int \&}]{num\+Inputs,  }\item[{const int \&}]{num\+Outputs }\end{DoxyParamCaption})}
 
-create with proper models, but not trained 
+create with proper models, but not trained \mbox{\Hypertarget{classclassification_ac65a474682b7c3b8661585de8b8f8f8b}\label{classclassification_ac65a474682b7c3b8661585de8b8f8f8b}} 
+\index{classification@{classification}!````~classification@{$\sim$classification}}
+\index{````~classification@{$\sim$classification}!classification@{classification}}
+\subsubsection{\texorpdfstring{$\sim$classification()}{~classification()}}
+{\footnotesize\ttfamily classification\+::$\sim$classification (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+destructor 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classclassification_a8e834c25309bc471c5bb8e8730874c82}\label{classclassification_a8e834c25309bc471c5bb8e8730874c82}} 
+\mbox{\Hypertarget{classclassification_ac7f8a3ad1a0f4f466cd6f5ed041615d9}\label{classclassification_ac7f8a3ad1a0f4f466cd6f5ed041615d9}} 
 \index{classification@{classification}!train@{train}}
 \index{train@{train}!classification@{classification}}
 \subsubsection{\texorpdfstring{train()}{train()}}
-{\footnotesize\ttfamily bool classification\+::train (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$}]{training\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily bool classification\+::train (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ \&}]{training\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Train on a specified set, causes creation if not created 
 
-Reimplemented from \hyperlink{classmodel_set_ab0b16ec988c8077158de1c3d8986df03}{model\+Set}.
+Reimplemented from \hyperlink{classmodel_set_a7620f95e8e29d547e7c688da51b33d9c}{model\+Set}.
 
 
 

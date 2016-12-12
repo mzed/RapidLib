@@ -6,11 +6,12 @@
 
 
 
-Inheritance diagram for model\+Set\+:\nopagebreak
+Inheritance diagram for model\+Set\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=264pt]{classmodel_set__inherit__graph}
+\includegraphics[width=276pt]{classmodel_set__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -27,21 +28,21 @@ Collaboration diagram for model\+Set\+:\nopagebreak
 \item 
 \hyperlink{classmodel_set_ae44cba85f4c52e7d05e0f622b3ea9030}{model\+Set} ()
 \item 
-\hyperlink{classmodel_set_a21eadb6e6cdd54dda57a4a94582bfe7b}{$\sim$model\+Set} ()
+virtual \hyperlink{classmodel_set_a21eadb6e6cdd54dda57a4a94582bfe7b}{$\sim$model\+Set} ()
 \item 
-virtual bool \hyperlink{classmodel_set_ab0b16ec988c8077158de1c3d8986df03}{train} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ training\+Set)
+virtual bool \hyperlink{classmodel_set_a7620f95e8e29d547e7c688da51b33d9c}{train} (const std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ \&training\+Set)
 \item 
 bool \hyperlink{classmodel_set_afefb50a0fe8f45821c6a7599784d7eb4}{initialize} ()
 \item 
-std\+::vector$<$ double $>$ \hyperlink{classmodel_set_a232b11aa2987dd7db56c0f55edf868ea}{process} (std\+::vector$<$ double $>$ input\+Vector)
+std\+::vector$<$ double $>$ \hyperlink{classmodel_set_a3b95db9f976d19764665e0761cae4a3c}{process} (const std\+::vector$<$ double $>$ \&input\+Vector)
 \item 
 std\+::string \hyperlink{classmodel_set_a031987885b1462ec7d7dbeef0c803d97}{get\+J\+S\+ON} ()
 \item 
-void \hyperlink{classmodel_set_a805879b6c8ec54d16c2ac511c72442b9}{write\+J\+S\+ON} (std\+::string filepath)
+void \hyperlink{classmodel_set_a8e2b783240dded1be8fad921b10707bf}{write\+J\+S\+ON} (const std\+::string \&filepath)
 \item 
-bool \hyperlink{classmodel_set_a09b07168fbe9d9377eb26f30bf16884c}{put\+J\+S\+ON} (std\+::string json\+Message)
+bool \hyperlink{classmodel_set_a37dfe2eb4164986ccba8617da63a1dbc}{put\+J\+S\+ON} (const std\+::string \&json\+Message)
 \item 
-bool \hyperlink{classmodel_set_a8f7a837515889c6bddb3184a022b1727}{read\+J\+S\+ON} (std\+::string filepath)
+bool \hyperlink{classmodel_set_afd7886381e98dabea0771d9e7badc4da}{read\+J\+S\+ON} (const std\+::string \&filepath)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -72,7 +73,7 @@ No arguments, don\textquotesingle{}t create any models yet \mbox{\Hypertarget{cl
 \index{model\+Set@{model\+Set}!````~model\+Set@{$\sim$model\+Set}}
 \index{````~model\+Set@{$\sim$model\+Set}!model\+Set@{model\+Set}}
 \subsubsection{\texorpdfstring{$\sim$model\+Set()}{~modelSet()}}
-{\footnotesize\ttfamily model\+Set\+::$\sim$model\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily model\+Set\+::$\sim$model\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
@@ -89,39 +90,39 @@ Get a J\+S\+ON representation of the model in the form of a styled string \mbox{
 \subsubsection{\texorpdfstring{initialize()}{initialize()}}
 {\footnotesize\ttfamily bool model\+Set\+::initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-reset to pre-\/training state \mbox{\Hypertarget{classmodel_set_a232b11aa2987dd7db56c0f55edf868ea}\label{classmodel_set_a232b11aa2987dd7db56c0f55edf868ea}} 
+reset to pre-\/training state \mbox{\Hypertarget{classmodel_set_a3b95db9f976d19764665e0761cae4a3c}\label{classmodel_set_a3b95db9f976d19764665e0761cae4a3c}} 
 \index{model\+Set@{model\+Set}!process@{process}}
 \index{process@{process}!model\+Set@{model\+Set}}
 \subsubsection{\texorpdfstring{process()}{process()}}
-{\footnotesize\ttfamily std\+::vector$<$ double $>$ model\+Set\+::process (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{input\+Vector }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::vector$<$ double $>$ model\+Set\+::process (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{input\+Vector }\end{DoxyParamCaption})}
 
-run regression or classification for each model \mbox{\Hypertarget{classmodel_set_a09b07168fbe9d9377eb26f30bf16884c}\label{classmodel_set_a09b07168fbe9d9377eb26f30bf16884c}} 
+run regression or classification for each model \mbox{\Hypertarget{classmodel_set_a37dfe2eb4164986ccba8617da63a1dbc}\label{classmodel_set_a37dfe2eb4164986ccba8617da63a1dbc}} 
 \index{model\+Set@{model\+Set}!put\+J\+S\+ON@{put\+J\+S\+ON}}
 \index{put\+J\+S\+ON@{put\+J\+S\+ON}!model\+Set@{model\+Set}}
 \subsubsection{\texorpdfstring{put\+J\+S\+O\+N()}{putJSON()}}
-{\footnotesize\ttfamily bool model\+Set\+::put\+J\+S\+ON (\begin{DoxyParamCaption}\item[{std\+::string}]{json\+Message }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool model\+Set\+::put\+J\+S\+ON (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{json\+Message }\end{DoxyParamCaption})}
 
-configure empty model with string. See \hyperlink{classmodel_set_a031987885b1462ec7d7dbeef0c803d97}{get\+J\+S\+O\+N()} \mbox{\Hypertarget{classmodel_set_a8f7a837515889c6bddb3184a022b1727}\label{classmodel_set_a8f7a837515889c6bddb3184a022b1727}} 
+configure empty model with string. See \hyperlink{classmodel_set_a031987885b1462ec7d7dbeef0c803d97}{get\+J\+S\+O\+N()} \mbox{\Hypertarget{classmodel_set_afd7886381e98dabea0771d9e7badc4da}\label{classmodel_set_afd7886381e98dabea0771d9e7badc4da}} 
 \index{model\+Set@{model\+Set}!read\+J\+S\+ON@{read\+J\+S\+ON}}
 \index{read\+J\+S\+ON@{read\+J\+S\+ON}!model\+Set@{model\+Set}}
 \subsubsection{\texorpdfstring{read\+J\+S\+O\+N()}{readJSON()}}
-{\footnotesize\ttfamily bool model\+Set\+::read\+J\+S\+ON (\begin{DoxyParamCaption}\item[{std\+::string}]{filepath }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool model\+Set\+::read\+J\+S\+ON (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filepath }\end{DoxyParamCaption})}
 
-read a J\+S\+ON file at file path and build a \hyperlink{classmodel_set}{model\+Set} from it \mbox{\Hypertarget{classmodel_set_ab0b16ec988c8077158de1c3d8986df03}\label{classmodel_set_ab0b16ec988c8077158de1c3d8986df03}} 
+read a J\+S\+ON file at file path and build a \hyperlink{classmodel_set}{model\+Set} from it \mbox{\Hypertarget{classmodel_set_a7620f95e8e29d547e7c688da51b33d9c}\label{classmodel_set_a7620f95e8e29d547e7c688da51b33d9c}} 
 \index{model\+Set@{model\+Set}!train@{train}}
 \index{train@{train}!model\+Set@{model\+Set}}
 \subsubsection{\texorpdfstring{train()}{train()}}
-{\footnotesize\ttfamily bool model\+Set\+::train (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$}]{training\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily bool model\+Set\+::train (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ \&}]{training\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Train on a specified set, causes creation if not created 
 
-Reimplemented in \hyperlink{classclassification_a8e834c25309bc471c5bb8e8730874c82}{classification}, and \hyperlink{classregression_ae45d7dbf24cab75202d966d116829813}{regression}.
+Reimplemented in \hyperlink{classclassification_ac7f8a3ad1a0f4f466cd6f5ed041615d9}{classification}, and \hyperlink{classregression_afb1956067fda0d20d2ed755086c9f592}{regression}.
 
-\mbox{\Hypertarget{classmodel_set_a805879b6c8ec54d16c2ac511c72442b9}\label{classmodel_set_a805879b6c8ec54d16c2ac511c72442b9}} 
+\mbox{\Hypertarget{classmodel_set_a8e2b783240dded1be8fad921b10707bf}\label{classmodel_set_a8e2b783240dded1be8fad921b10707bf}} 
 \index{model\+Set@{model\+Set}!write\+J\+S\+ON@{write\+J\+S\+ON}}
 \index{write\+J\+S\+ON@{write\+J\+S\+ON}!model\+Set@{model\+Set}}
 \subsubsection{\texorpdfstring{write\+J\+S\+O\+N()}{writeJSON()}}
-{\footnotesize\ttfamily void model\+Set\+::write\+J\+S\+ON (\begin{DoxyParamCaption}\item[{std\+::string}]{filepath }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void model\+Set\+::write\+J\+S\+ON (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filepath }\end{DoxyParamCaption})}
 
 Write a J\+S\+ON model description to specified file path 
 

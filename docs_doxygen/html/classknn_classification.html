@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v0.1.1</span>
+   &#160;<span id="projectnumber">v0.1.2</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -119,16 +119,16 @@ Collaboration diagram for knnClassification:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a93e0eda34ff02a37baaa8700b46ec5fd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a93e0eda34ff02a37baaa8700b46ec5fd">knnClassification</a> (int num_inputs, std::vector&lt; int &gt; which_inputs, std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; trainingSet, int k)</td></tr>
-<tr class="separator:a93e0eda34ff02a37baaa8700b46ec5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37873bbb03dea575d878b0205a4d1b39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a37873bbb03dea575d878b0205a4d1b39">knnClassification</a> (const int &amp;num_inputs, const std::vector&lt; int &gt; &amp;which_inputs, const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; &amp;trainingSet, const int &amp;k)</td></tr>
+<tr class="separator:a37873bbb03dea575d878b0205a4d1b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37e034151bb6d69c3952454df630dd80"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a37e034151bb6d69c3952454df630dd80">~knnClassification</a> ()</td></tr>
 <tr class="separator:a37e034151bb6d69c3952454df630dd80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a591f953b182fed995ebfb13c712b76d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a591f953b182fed995ebfb13c712b76d5">addNeighbour</a> (int, std::vector&lt; double &gt;)</td></tr>
-<tr class="separator:a591f953b182fed995ebfb13c712b76d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a909050a125c4bf5cc2e48db0202fcb79"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a909050a125c4bf5cc2e48db0202fcb79">process</a> (std::vector&lt; double &gt;)</td></tr>
-<tr class="separator:a909050a125c4bf5cc2e48db0202fcb79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae159e53f542d08d04c76760f2e25e843"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#ae159e53f542d08d04c76760f2e25e843">train</a> (std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; trainingSet)</td></tr>
-<tr class="separator:ae159e53f542d08d04c76760f2e25e843"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6b10f1d20066e81e93c8172b4a7e44d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#aa6b10f1d20066e81e93c8172b4a7e44d">addNeighbour</a> (const int &amp;classNum, const std::vector&lt; double &gt; &amp;features)</td></tr>
+<tr class="separator:aa6b10f1d20066e81e93c8172b4a7e44d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedeef4367ed652c768eaf5682c8ec276"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#aedeef4367ed652c768eaf5682c8ec276">process</a> (const std::vector&lt; double &gt; &amp;inputVector)</td></tr>
+<tr class="separator:aedeef4367ed652c768eaf5682c8ec276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04ce32741a132d39839d33d0d79e6c8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a04ce32741a132d39839d33d0d79e6c8f">train</a> (const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; &amp;trainingSet)</td></tr>
+<tr class="separator:a04ce32741a132d39839d33d0d79e6c8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f9c8fb78c6a66f0ab9440629140400d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a3f9c8fb78c6a66f0ab9440629140400d">getNumInputs</a> ()</td></tr>
 <tr class="separator:a3f9c8fb78c6a66f0ab9440629140400d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7db9297f695e67df6af08719da37921"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#af7db9297f695e67df6af08719da37921">getWhichInputs</a> ()</td></tr>
@@ -149,8 +149,8 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for implementing a knn classifier </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a93e0eda34ff02a37baaa8700b46ec5fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93e0eda34ff02a37baaa8700b46ec5fd">&sect;&nbsp;</a></span>knnClassification()</h2>
+<a id="a37873bbb03dea575d878b0205a4d1b39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37873bbb03dea575d878b0205a4d1b39">&sect;&nbsp;</a></span>knnClassification()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -158,25 +158,25 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">knnClassification::knnClassification </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>num_inputs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; int &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;&#160;</td>
           <td class="paramname"><em>which_inputs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>k</em>&#160;</td>
         </tr>
         <tr>
@@ -216,8 +216,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a591f953b182fed995ebfb13c712b76d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a591f953b182fed995ebfb13c712b76d5">&sect;&nbsp;</a></span>addNeighbour()</h2>
+<a id="aa6b10f1d20066e81e93c8172b4a7e44d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6b10f1d20066e81e93c8172b4a7e44d">&sect;&nbsp;</a></span>addNeighbour()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -225,13 +225,13 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void knnClassification::addNeighbour </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>classNum</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
           <td class="paramname"><em>features</em>&#160;</td>
         </tr>
         <tr>
@@ -333,8 +333,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a909050a125c4bf5cc2e48db0202fcb79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a909050a125c4bf5cc2e48db0202fcb79">&sect;&nbsp;</a></span>process()</h2>
+<a id="aedeef4367ed652c768eaf5682c8ec276"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedeef4367ed652c768eaf5682c8ec276">&sect;&nbsp;</a></span>process()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -345,7 +345,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">double knnClassification::process </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
           <td class="paramname"><em>inputVector</em></td><td>)</td>
           <td></td>
         </tr>
@@ -364,12 +364,12 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A single double: the nearest class as determined by k-nearest neighbor. </dd></dl>
 
-<p>Implements <a class="el" href="classbase_model.html#a07d92b944728ff2b3339d6bceaecb6a3">baseModel</a>.</p>
+<p>Implements <a class="el" href="classbase_model.html#a95ef1dffc2857cdd1a57c23f5f9ee2d1">baseModel</a>.</p>
 
 </div>
 </div>
-<a id="ae159e53f542d08d04c76760f2e25e843"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae159e53f542d08d04c76760f2e25e843">&sect;&nbsp;</a></span>train()</h2>
+<a id="a04ce32741a132d39839d33d0d79e6c8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04ce32741a132d39839d33d0d79e6c8f">&sect;&nbsp;</a></span>train()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -380,7 +380,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void knnClassification::train </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em></td><td>)</td>
           <td></td>
         </tr>
@@ -399,7 +399,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classbase_model.html#aed9192d6c0f17a1816a55b077baf2523">baseModel</a>.</p>
+<p>Implements <a class="el" href="classbase_model.html#ab6cbd549d6742029ab9768bc88467b4f">baseModel</a>.</p>
 
 </div>
 </div>

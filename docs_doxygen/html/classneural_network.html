@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v0.1.1</span>
+   &#160;<span id="projectnumber">v0.1.2</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -119,14 +119,14 @@ Collaboration diagram for neuralNetwork:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aee6fd482cd0b6b4004759bb57d4b14db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#aee6fd482cd0b6b4004759bb57d4b14db">neuralNetwork</a> (int num_inputs, std::vector&lt; int &gt; which_inputs, int num_hidden_layers, int num_hidden_nodes, std::vector&lt; double &gt;, std::vector&lt; double &gt;, std::vector&lt; double &gt;, std::vector&lt; double &gt;, double, double)</td></tr>
-<tr class="separator:aee6fd482cd0b6b4004759bb57d4b14db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5cad1e6ac86745ab47fceeb8d42cbd9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#ad5cad1e6ac86745ab47fceeb8d42cbd9">neuralNetwork</a> (int num_inputs, std::vector&lt; int &gt; which_inputs, int num_hidden_layer, int num_hidden_nodes)</td></tr>
-<tr class="separator:ad5cad1e6ac86745ab47fceeb8d42cbd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56aa499b1f9aaa80c7c21d41dce96f4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#a56aa499b1f9aaa80c7c21d41dce96f4e">neuralNetwork</a> (const int &amp;num_inputs, const std::vector&lt; int &gt; &amp;which_inputs, const int &amp;num_hidden_layers, const int &amp;num_hidden_nodes, const std::vector&lt; double &gt; &amp;weights, const std::vector&lt; double &gt; &amp;wHiddenOutput, const std::vector&lt; double &gt; &amp;inRanges, const std::vector&lt; double &gt; &amp;inBases, const double &amp;outRange, const double &amp;outBase)</td></tr>
+<tr class="separator:a56aa499b1f9aaa80c7c21d41dce96f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a43fb0fb07a2cde9234fd1b4dbc7f91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#a4a43fb0fb07a2cde9234fd1b4dbc7f91">neuralNetwork</a> (const int &amp;num_inputs, const std::vector&lt; int &gt; &amp;which_inputs, const int &amp;num_hidden_layer, const int &amp;num_hidden_nodes)</td></tr>
+<tr class="separator:a4a43fb0fb07a2cde9234fd1b4dbc7f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0967982cb0345a610f78d225d812086f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#a0967982cb0345a610f78d225d812086f">~neuralNetwork</a> ()</td></tr>
 <tr class="separator:a0967982cb0345a610f78d225d812086f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2da76293dbe590594e79e96768c02a29"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#a2da76293dbe590594e79e96768c02a29">process</a> (std::vector&lt; double &gt; inputVector)</td></tr>
-<tr class="separator:a2da76293dbe590594e79e96768c02a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d93cf6790db969ea067e8588b10d204"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#a2d93cf6790db969ea067e8588b10d204">process</a> (const std::vector&lt; double &gt; &amp;inputVector)</td></tr>
+<tr class="separator:a2d93cf6790db969ea067e8588b10d204"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf9ff8b1a88126fcffc1e9f07a4ffe49"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#aaf9ff8b1a88126fcffc1e9f07a4ffe49">getNumInputs</a> ()</td></tr>
 <tr class="separator:aaf9ff8b1a88126fcffc1e9f07a4ffe49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc93cb28c3897d4d1faa4ac8fbf0c1f8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#afc93cb28c3897d4d1faa4ac8fbf0c1f8">getWhichInputs</a> ()</td></tr>
@@ -149,8 +149,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4524958a9de02bd5e48d0c991d634788"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83f5c57ed3f555cd534a6f4ea425dfb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#a83f5c57ed3f555cd534a6f4ea425dfb7">getJSONDescription</a> (Json::Value &amp;currentModel)</td></tr>
 <tr class="separator:a83f5c57ed3f555cd534a6f4ea425dfb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae35def98392b0d0a51f2c82afc48efc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#aae35def98392b0d0a51f2c82afc48efc">train</a> (std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; trainingSet)</td></tr>
-<tr class="separator:aae35def98392b0d0a51f2c82afc48efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0da201b2b09bef38471f5ceaca7c2ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#af0da201b2b09bef38471f5ceaca7c2ea">train</a> (const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; &amp;trainingSet)</td></tr>
+<tr class="separator:af0da201b2b09bef38471f5ceaca7c2ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classbase_model"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classbase_model')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classbase_model.html">baseModel</a></td></tr>
 <tr class="memitem:a7c96328a8eda015d7f1b3d195e2fd567 inherit pub_methods_classbase_model"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a7c96328a8eda015d7f1b3d195e2fd567">~baseModel</a> ()</td></tr>
 <tr class="separator:a7c96328a8eda015d7f1b3d195e2fd567 inherit pub_methods_classbase_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,8 +166,8 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>Class for implementing a Neural Network.</p>
 <p>This class includes both running and training, and constructors for reading trained models from JSON. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aee6fd482cd0b6b4004759bb57d4b14db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee6fd482cd0b6b4004759bb57d4b14db">&sect;&nbsp;</a></span>neuralNetwork() <span class="overload">[1/2]</span></h2>
+<a id="a56aa499b1f9aaa80c7c21d41dce96f4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56aa499b1f9aaa80c7c21d41dce96f4e">&sect;&nbsp;</a></span>neuralNetwork() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -175,61 +175,61 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">neuralNetwork::neuralNetwork </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>num_inputs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; int &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;&#160;</td>
           <td class="paramname"><em>which_inputs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>num_hidden_layers</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>num_hidden_nodes</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
           <td class="paramname"><em>_weights</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
           <td class="paramname"><em>w_hidden_output</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
           <td class="paramname"><em>in_ranges</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
           <td class="paramname"><em>in_bases</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">const double &amp;&#160;</td>
           <td class="paramname"><em>out_range</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">const double &amp;&#160;</td>
           <td class="paramname"><em>out_base</em>&#160;</td>
         </tr>
         <tr>
@@ -239,12 +239,13 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This is the constructor for building a trained model from JSON. </p>
+<p>This is the constructor for building a trained model from JSON.</p>
+<p>This is the constructor for a model imported from JSON. </p>
 
 </div>
 </div>
-<a id="ad5cad1e6ac86745ab47fceeb8d42cbd9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5cad1e6ac86745ab47fceeb8d42cbd9">&sect;&nbsp;</a></span>neuralNetwork() <span class="overload">[2/2]</span></h2>
+<a id="a4a43fb0fb07a2cde9234fd1b4dbc7f91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a43fb0fb07a2cde9234fd1b4dbc7f91">&sect;&nbsp;</a></span>neuralNetwork() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -252,25 +253,25 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">neuralNetwork::neuralNetwork </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>num_inputs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; int &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;&#160;</td>
           <td class="paramname"><em>which_inputs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>num_hidden_layers</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>num_hidden_nodes</em>&#160;</td>
         </tr>
         <tr>
@@ -309,6 +310,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>destructor</p>
 <p>This destructor is not needed. </p>
 
 </div>
@@ -532,8 +534,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a2da76293dbe590594e79e96768c02a29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2da76293dbe590594e79e96768c02a29">&sect;&nbsp;</a></span>process()</h2>
+<a id="a2d93cf6790db969ea067e8588b10d204"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d93cf6790db969ea067e8588b10d204">&sect;&nbsp;</a></span>process()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -544,7 +546,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">double neuralNetwork::process </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
           <td class="paramname"><em>inputVector</em></td><td>)</td>
           <td></td>
         </tr>
@@ -563,12 +565,12 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A single double, which is the result of the feed-forward operation </dd></dl>
 
-<p>Implements <a class="el" href="classbase_model.html#a07d92b944728ff2b3339d6bceaecb6a3">baseModel</a>.</p>
+<p>Implements <a class="el" href="classbase_model.html#a95ef1dffc2857cdd1a57c23f5f9ee2d1">baseModel</a>.</p>
 
 </div>
 </div>
-<a id="aae35def98392b0d0a51f2c82afc48efc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae35def98392b0d0a51f2c82afc48efc">&sect;&nbsp;</a></span>train()</h2>
+<a id="af0da201b2b09bef38471f5ceaca7c2ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0da201b2b09bef38471f5ceaca7c2ea">&sect;&nbsp;</a></span>train()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -579,7 +581,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void neuralNetwork::train </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em></td><td>)</td>
           <td></td>
         </tr>
@@ -598,7 +600,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classbase_model.html#aed9192d6c0f17a1816a55b077baf2523">baseModel</a>.</p>
+<p>Implements <a class="el" href="classbase_model.html#ab6cbd549d6742029ab9768bc88467b4f">baseModel</a>.</p>
 
 </div>
 </div>

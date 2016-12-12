@@ -1,7 +1,7 @@
 var classneural_network =
 [
-    [ "neuralNetwork", "classneural_network.html#aee6fd482cd0b6b4004759bb57d4b14db", null ],
-    [ "neuralNetwork", "classneural_network.html#ad5cad1e6ac86745ab47fceeb8d42cbd9", null ],
+    [ "neuralNetwork", "classneural_network.html#a56aa499b1f9aaa80c7c21d41dce96f4e", null ],
+    [ "neuralNetwork", "classneural_network.html#a4a43fb0fb07a2cde9234fd1b4dbc7f91", null ],
     [ "~neuralNetwork", "classneural_network.html#a0967982cb0345a610f78d225d812086f", null ],
     [ "getInBases", "classneural_network.html#af3fdc1c2bdf4794680ccc4cd845fb47e", null ],
     [ "getInRanges", "classneural_network.html#a876638749a0c7027e82da294947f1840", null ],
@@ -14,6 +14,6 @@ var classneural_network =
     [ "getWeights", "classneural_network.html#a9822cd69469d7b2a946a9f87c8bebe5f", null ],
     [ "getWhichInputs", "classneural_network.html#afc93cb28c3897d4d1faa4ac8fbf0c1f8", null ],
     [ "getWHiddenOutput", "classneural_network.html#ac372190f6eabf0af27e5c317f2a1d51b", null ],
-    [ "process", "classneural_network.html#a2da76293dbe590594e79e96768c02a29", null ],
-    [ "train", "classneural_network.html#aae35def98392b0d0a51f2c82afc48efc", null ]
+    [ "process", "classneural_network.html#a2d93cf6790db969ea067e8588b10d204", null ],
+    [ "train", "classneural_network.html#af0da201b2b09bef38471f5ceaca7c2ea", null ]
 ];

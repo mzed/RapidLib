@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v0.1.1</span>
+   &#160;<span id="projectnumber">v0.1.2</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -106,15 +106,16 @@ $(document).ready(function(){initNavTree('classregression.html','');});
   <tr><td class="entry"><a class="el" href="classmodel_set.html#a390b0b864a8e727f481537b3c37aa721">myModelSet</a></td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classmodel_set.html#ad10fbc1228a85f1200cb89589ad92755">numInputs</a></td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="classmodel_set.html#addc0df56b9f1970c9816050634933716">numOutputs</a></td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classmodel_set.html#a232b11aa2987dd7db56c0f55edf868ea">process</a>(std::vector&lt; double &gt; inputVector)</td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classmodel_set.html#a09b07168fbe9d9377eb26f30bf16884c">putJSON</a>(std::string jsonMessage)</td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classmodel_set.html#a8f7a837515889c6bddb3184a022b1727">readJSON</a>(std::string filepath)</td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmodel_set.html#a3b95db9f976d19764665e0761cae4a3c">process</a>(const std::vector&lt; double &gt; &amp;inputVector)</td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classmodel_set.html#a37dfe2eb4164986ccba8617da63a1dbc">putJSON</a>(const std::string &amp;jsonMessage)</td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmodel_set.html#afd7886381e98dabea0771d9e7badc4da">readJSON</a>(const std::string &amp;filepath)</td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classregression.html#a40993153659b1f637cf4d596df6e97ab">regression</a>()</td><td class="entry"><a class="el" href="classregression.html">regression</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classregression.html#ad03f74e09d96f315de3933628e8f4138">regression</a>(std::vector&lt; trainingExample &gt; trainingSet)</td><td class="entry"><a class="el" href="classregression.html">regression</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classregression.html#a9d38dcda0e5c99caf0faf85f98a5ebb3">regression</a>(int numInputs, int numOutputs)</td><td class="entry"><a class="el" href="classregression.html">regression</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classregression.html#ae45d7dbf24cab75202d966d116829813">train</a>(std::vector&lt; trainingExample &gt; trainingSet)</td><td class="entry"><a class="el" href="classregression.html">regression</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classmodel_set.html#a805879b6c8ec54d16c2ac511c72442b9">writeJSON</a>(std::string filepath)</td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classmodel_set.html#a21eadb6e6cdd54dda57a4a94582bfe7b">~modelSet</a>()</td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classregression.html#a029d23d2403773148373bb091d2734c2">regression</a>(const std::vector&lt; trainingExample &gt; &amp;trainingSet)</td><td class="entry"><a class="el" href="classregression.html">regression</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classregression.html#ae3474e3fbc7c31a80ad862dd18f7489d">regression</a>(const int &amp;numInputs, const int &amp;numOutputs)</td><td class="entry"><a class="el" href="classregression.html">regression</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classregression.html#afb1956067fda0d20d2ed755086c9f592">train</a>(const std::vector&lt; trainingExample &gt; &amp;trainingSet)</td><td class="entry"><a class="el" href="classregression.html">regression</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classmodel_set.html#a8e2b783240dded1be8fad921b10707bf">writeJSON</a>(const std::string &amp;filepath)</td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmodel_set.html#a21eadb6e6cdd54dda57a4a94582bfe7b">~modelSet</a>()</td><td class="entry"><a class="el" href="classmodel_set.html">modelSet</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classregression.html#abde9f6759b404a8fe6db7d2a96acda0c">~regression</a>()</td><td class="entry"><a class="el" href="classregression.html">regression</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

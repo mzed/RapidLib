@@ -27,9 +27,9 @@ Collaboration diagram for base\+Model\+:\nopagebreak
 \item 
 virtual \hyperlink{classbase_model_a7c96328a8eda015d7f1b3d195e2fd567}{$\sim$base\+Model} ()
 \item 
-virtual double \hyperlink{classbase_model_a07d92b944728ff2b3339d6bceaecb6a3}{process} (std\+::vector$<$ double $>$)=0
+virtual double \hyperlink{classbase_model_a95ef1dffc2857cdd1a57c23f5f9ee2d1}{process} (const std\+::vector$<$ double $>$ \&input\+Vector)=0
 \item 
-virtual void \hyperlink{classbase_model_aed9192d6c0f17a1816a55b077baf2523}{train} (std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$)=0
+virtual void \hyperlink{classbase_model_ab6cbd549d6742029ab9768bc88467b4f}{train} (const std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ \&training\+Set)=0
 \item 
 virtual int \hyperlink{classbase_model_a1601088280ebe5be525fd1fe49d4b1e1}{get\+Num\+Inputs} ()=0
 \item 
@@ -75,7 +75,7 @@ Implemented in \hyperlink{classneural_network_a83f5c57ed3f555cd534a6f4ea425dfb7}
 
 
 
-Implemented in \hyperlink{classknn_classification_a3f9c8fb78c6a66f0ab9440629140400d}{knn\+Classification}, and \hyperlink{classneural_network_aaf9ff8b1a88126fcffc1e9f07a4ffe49}{neural\+Network}.
+Implemented in \hyperlink{classneural_network_aaf9ff8b1a88126fcffc1e9f07a4ffe49}{neural\+Network}, and \hyperlink{classknn_classification_a3f9c8fb78c6a66f0ab9440629140400d}{knn\+Classification}.
 
 \mbox{\Hypertarget{classbase_model_a5d6b7579536f5713eed0b7b4a6687a16}\label{classbase_model_a5d6b7579536f5713eed0b7b4a6687a16}} 
 \index{base\+Model@{base\+Model}!get\+Which\+Inputs@{get\+Which\+Inputs}}
@@ -85,27 +85,27 @@ Implemented in \hyperlink{classknn_classification_a3f9c8fb78c6a66f0ab94406291404
 
 
 
-Implemented in \hyperlink{classknn_classification_af7db9297f695e67df6af08719da37921}{knn\+Classification}, and \hyperlink{classneural_network_afc93cb28c3897d4d1faa4ac8fbf0c1f8}{neural\+Network}.
+Implemented in \hyperlink{classneural_network_afc93cb28c3897d4d1faa4ac8fbf0c1f8}{neural\+Network}, and \hyperlink{classknn_classification_af7db9297f695e67df6af08719da37921}{knn\+Classification}.
 
-\mbox{\Hypertarget{classbase_model_a07d92b944728ff2b3339d6bceaecb6a3}\label{classbase_model_a07d92b944728ff2b3339d6bceaecb6a3}} 
+\mbox{\Hypertarget{classbase_model_a95ef1dffc2857cdd1a57c23f5f9ee2d1}\label{classbase_model_a95ef1dffc2857cdd1a57c23f5f9ee2d1}} 
 \index{base\+Model@{base\+Model}!process@{process}}
 \index{process@{process}!base\+Model@{base\+Model}}
 \subsubsection{\texorpdfstring{process()}{process()}}
-{\footnotesize\ttfamily virtual double base\+Model\+::process (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual double base\+Model\+::process (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{input\+Vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
-Implemented in \hyperlink{classneural_network_a2da76293dbe590594e79e96768c02a29}{neural\+Network}, and \hyperlink{classknn_classification_a909050a125c4bf5cc2e48db0202fcb79}{knn\+Classification}.
+Implemented in \hyperlink{classneural_network_a2d93cf6790db969ea067e8588b10d204}{neural\+Network}, and \hyperlink{classknn_classification_aedeef4367ed652c768eaf5682c8ec276}{knn\+Classification}.
 
-\mbox{\Hypertarget{classbase_model_aed9192d6c0f17a1816a55b077baf2523}\label{classbase_model_aed9192d6c0f17a1816a55b077baf2523}} 
+\mbox{\Hypertarget{classbase_model_ab6cbd549d6742029ab9768bc88467b4f}\label{classbase_model_ab6cbd549d6742029ab9768bc88467b4f}} 
 \index{base\+Model@{base\+Model}!train@{train}}
 \index{train@{train}!base\+Model@{base\+Model}}
 \subsubsection{\texorpdfstring{train()}{train()}}
-{\footnotesize\ttfamily virtual void base\+Model\+::train (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual void base\+Model\+::train (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{structtraining_example}{training\+Example} $>$ \&}]{training\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
-Implemented in \hyperlink{classneural_network_aae35def98392b0d0a51f2c82afc48efc}{neural\+Network}, and \hyperlink{classknn_classification_ae159e53f542d08d04c76760f2e25e843}{knn\+Classification}.
+Implemented in \hyperlink{classneural_network_af0da201b2b09bef38471f5ceaca7c2ea}{neural\+Network}, and \hyperlink{classknn_classification_a04ce32741a132d39839d33d0d79e6c8f}{knn\+Classification}.
 
 \mbox{\Hypertarget{classbase_model_a853d3a2d610c43fca37676ac1459e3b9}\label{classbase_model_a853d3a2d610c43fca37676ac1459e3b9}} 
 \index{base\+Model@{base\+Model}!vector2json@{vector2json}}

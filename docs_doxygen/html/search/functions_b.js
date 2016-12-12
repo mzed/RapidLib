@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['train',['train',['../classbase_model.html#aed9192d6c0f17a1816a55b077baf2523',1,'baseModel::train()'],['../classclassification.html#a8e834c25309bc471c5bb8e8730874c82',1,'classification::train()'],['../classknn_classification.html#ae159e53f542d08d04c76760f2e25e843',1,'knnClassification::train()'],['../classmodel_set.html#ab0b16ec988c8077158de1c3d8986df03',1,'modelSet::train()'],['../classneural_network.html#aae35def98392b0d0a51f2c82afc48efc',1,'neuralNetwork::train()'],['../classregression.html#ae45d7dbf24cab75202d966d116829813',1,'regression::train()']]]
+  ['train',['train',['../classbase_model.html#ab6cbd549d6742029ab9768bc88467b4f',1,'baseModel::train()'],['../classclassification.html#ac7f8a3ad1a0f4f466cd6f5ed041615d9',1,'classification::train()'],['../classknn_classification.html#a04ce32741a132d39839d33d0d79e6c8f',1,'knnClassification::train()'],['../classmodel_set.html#a7620f95e8e29d547e7c688da51b33d9c',1,'modelSet::train()'],['../classneural_network.html#af0da201b2b09bef38471f5ceaca7c2ea',1,'neuralNetwork::train()'],['../classregression.html#afb1956067fda0d20d2ed755086c9f592',1,'regression::train()']]]
 ];

@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v0.1.1</span>
+   &#160;<span id="projectnumber">v0.1.2</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -106,8 +106,8 @@ Inheritance diagram for modelSet:</div>
 <div class="dyncontent">
 <div class="center"><img src="classmodel_set__inherit__graph.png" border="0" usemap="#model_set_inherit__map" alt="Inheritance graph"/></div>
 <map name="model_set_inherit__map" id="model_set_inherit__map">
-<area shape="rect" id="node2" href="classclassification.html" title="{classification\n||+ classification()\l+ classification()\l+ classification()\l+ train()\l}" alt="" coords="5,287,123,400"/>
-<area shape="rect" id="node3" href="classregression.html" title="{regression\n||+ regression()\l+ regression()\l+ regression()\l+ train()\l}" alt="" coords="147,287,251,400"/>
+<area shape="rect" id="node2" href="classclassification.html" title="{classification\n||+ classification()\l+ classification()\l+ classification()\l+ ~classification()\l+ train()\l}" alt="" coords="5,287,130,413"/>
+<area shape="rect" id="node3" href="classregression.html" title="{regression\n||+ regression()\l+ regression()\l+ regression()\l+ ~regression()\l+ train()\l}" alt="" coords="155,287,266,413"/>
 </map>
 </div>
 <div class="dynheader">
@@ -120,22 +120,22 @@ Collaboration diagram for modelSet:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae44cba85f4c52e7d05e0f622b3ea9030"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#ae44cba85f4c52e7d05e0f622b3ea9030">modelSet</a> ()</td></tr>
 <tr class="separator:ae44cba85f4c52e7d05e0f622b3ea9030"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21eadb6e6cdd54dda57a4a94582bfe7b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a21eadb6e6cdd54dda57a4a94582bfe7b">~modelSet</a> ()</td></tr>
+<tr class="memitem:a21eadb6e6cdd54dda57a4a94582bfe7b"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a21eadb6e6cdd54dda57a4a94582bfe7b">~modelSet</a> ()</td></tr>
 <tr class="separator:a21eadb6e6cdd54dda57a4a94582bfe7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0b16ec988c8077158de1c3d8986df03"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#ab0b16ec988c8077158de1c3d8986df03">train</a> (std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; trainingSet)</td></tr>
-<tr class="separator:ab0b16ec988c8077158de1c3d8986df03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7620f95e8e29d547e7c688da51b33d9c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a7620f95e8e29d547e7c688da51b33d9c">train</a> (const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; &amp;trainingSet)</td></tr>
+<tr class="separator:a7620f95e8e29d547e7c688da51b33d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afefb50a0fe8f45821c6a7599784d7eb4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#afefb50a0fe8f45821c6a7599784d7eb4">initialize</a> ()</td></tr>
 <tr class="separator:afefb50a0fe8f45821c6a7599784d7eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a232b11aa2987dd7db56c0f55edf868ea"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a232b11aa2987dd7db56c0f55edf868ea">process</a> (std::vector&lt; double &gt; inputVector)</td></tr>
-<tr class="separator:a232b11aa2987dd7db56c0f55edf868ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b95db9f976d19764665e0761cae4a3c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a3b95db9f976d19764665e0761cae4a3c">process</a> (const std::vector&lt; double &gt; &amp;inputVector)</td></tr>
+<tr class="separator:a3b95db9f976d19764665e0761cae4a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a031987885b1462ec7d7dbeef0c803d97"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a031987885b1462ec7d7dbeef0c803d97">getJSON</a> ()</td></tr>
 <tr class="separator:a031987885b1462ec7d7dbeef0c803d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a805879b6c8ec54d16c2ac511c72442b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a805879b6c8ec54d16c2ac511c72442b9">writeJSON</a> (std::string filepath)</td></tr>
-<tr class="separator:a805879b6c8ec54d16c2ac511c72442b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09b07168fbe9d9377eb26f30bf16884c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a09b07168fbe9d9377eb26f30bf16884c">putJSON</a> (std::string jsonMessage)</td></tr>
-<tr class="separator:a09b07168fbe9d9377eb26f30bf16884c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f7a837515889c6bddb3184a022b1727"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a8f7a837515889c6bddb3184a022b1727">readJSON</a> (std::string filepath)</td></tr>
-<tr class="separator:a8f7a837515889c6bddb3184a022b1727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e2b783240dded1be8fad921b10707bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a8e2b783240dded1be8fad921b10707bf">writeJSON</a> (const std::string &amp;filepath)</td></tr>
+<tr class="separator:a8e2b783240dded1be8fad921b10707bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37dfe2eb4164986ccba8617da63a1dbc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a37dfe2eb4164986ccba8617da63a1dbc">putJSON</a> (const std::string &amp;jsonMessage)</td></tr>
+<tr class="separator:a37dfe2eb4164986ccba8617da63a1dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd7886381e98dabea0771d9e7badc4da"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#afd7886381e98dabea0771d9e7badc4da">readJSON</a> (const std::string &amp;filepath)</td></tr>
+<tr class="separator:afd7886381e98dabea0771d9e7badc4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -176,6 +176,9 @@ Protected Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">modelSet::~modelSet </td>
@@ -184,6 +187,11 @@ Protected Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -225,8 +233,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a232b11aa2987dd7db56c0f55edf868ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a232b11aa2987dd7db56c0f55edf868ea">&sect;&nbsp;</a></span>process()</h2>
+<a id="a3b95db9f976d19764665e0761cae4a3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b95db9f976d19764665e0761cae4a3c">&sect;&nbsp;</a></span>process()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -234,7 +242,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">std::vector&lt; double &gt; modelSet::process </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
           <td class="paramname"><em>inputVector</em></td><td>)</td>
           <td></td>
         </tr>
@@ -244,8 +252,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a09b07168fbe9d9377eb26f30bf16884c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09b07168fbe9d9377eb26f30bf16884c">&sect;&nbsp;</a></span>putJSON()</h2>
+<a id="a37dfe2eb4164986ccba8617da63a1dbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37dfe2eb4164986ccba8617da63a1dbc">&sect;&nbsp;</a></span>putJSON()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -253,7 +261,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">bool modelSet::putJSON </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>jsonMessage</em></td><td>)</td>
           <td></td>
         </tr>
@@ -263,8 +271,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a8f7a837515889c6bddb3184a022b1727"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f7a837515889c6bddb3184a022b1727">&sect;&nbsp;</a></span>readJSON()</h2>
+<a id="afd7886381e98dabea0771d9e7badc4da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd7886381e98dabea0771d9e7badc4da">&sect;&nbsp;</a></span>readJSON()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -272,7 +280,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">bool modelSet::readJSON </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>filepath</em></td><td>)</td>
           <td></td>
         </tr>
@@ -282,8 +290,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ab0b16ec988c8077158de1c3d8986df03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab0b16ec988c8077158de1c3d8986df03">&sect;&nbsp;</a></span>train()</h2>
+<a id="a7620f95e8e29d547e7c688da51b33d9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7620f95e8e29d547e7c688da51b33d9c">&sect;&nbsp;</a></span>train()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -294,7 +302,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">bool modelSet::train </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em></td><td>)</td>
           <td></td>
         </tr>
@@ -307,12 +315,12 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Train on a specified set, causes creation if not created </p>
 
-<p>Reimplemented in <a class="el" href="classclassification.html#a8e834c25309bc471c5bb8e8730874c82">classification</a>, and <a class="el" href="classregression.html#ae45d7dbf24cab75202d966d116829813">regression</a>.</p>
+<p>Reimplemented in <a class="el" href="classclassification.html#ac7f8a3ad1a0f4f466cd6f5ed041615d9">classification</a>, and <a class="el" href="classregression.html#afb1956067fda0d20d2ed755086c9f592">regression</a>.</p>
 
 </div>
 </div>
-<a id="a805879b6c8ec54d16c2ac511c72442b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a805879b6c8ec54d16c2ac511c72442b9">&sect;&nbsp;</a></span>writeJSON()</h2>
+<a id="a8e2b783240dded1be8fad921b10707bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e2b783240dded1be8fad921b10707bf">&sect;&nbsp;</a></span>writeJSON()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -320,7 +328,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">void modelSet::writeJSON </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>filepath</em></td><td>)</td>
           <td></td>
         </tr>
