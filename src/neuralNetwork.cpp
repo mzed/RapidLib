@@ -177,23 +177,23 @@ inline double neuralNetwork::activationFunction(double x) {
     return x;
 }
 
-int neuralNetwork::getNumInputs() {
+int neuralNetwork::getNumInputs() const {
     return numInputs;
 }
 
-std::vector<int> neuralNetwork::getWhichInputs() {
+std::vector<int> neuralNetwork::getWhichInputs() const {
     return whichInputs;
 }
 
-int neuralNetwork::getNumHiddenLayers() {
+int neuralNetwork::getNumHiddenLayers() const {
     return numHiddenLayers;
 }
 
-int neuralNetwork::getNumHiddenNodes() {
+int neuralNetwork::getNumHiddenNodes() const {
     return numHiddenNodes;
 }
 
-std::vector<double> neuralNetwork::getWeights() {
+std::vector<double> neuralNetwork::getWeights() const{
     std::vector<double> flatWeights;
     for (int i = 0; i < weights.size(); ++i) {
         for (int j = 0; j < weights[i].size(); ++j) {
@@ -205,23 +205,23 @@ std::vector<double> neuralNetwork::getWeights() {
     return flatWeights;
 }
 
-std::vector<double> neuralNetwork::getWHiddenOutput() {
+std::vector<double> neuralNetwork::getWHiddenOutput() const {
     return wHiddenOutput;
 }
 
-std::vector<double> neuralNetwork::getInRanges() {
+std::vector<double> neuralNetwork::getInRanges() const {
     return inRanges;
 }
 
-std::vector<double> neuralNetwork::getInBases() {
+std::vector<double> neuralNetwork::getInBases() const {
     return inBases;
 }
 
-double neuralNetwork::getOutRange() {
+double neuralNetwork::getOutRange() const {
     return outRange;
 }
 
-double neuralNetwork::getOutBase() {
+double neuralNetwork::getOutBase() const {
     return outBase;
 }
 

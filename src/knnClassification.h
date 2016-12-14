@@ -43,11 +43,11 @@ public:
      */
     void train(const std::vector<trainingExample> &trainingSet);
     
-    int getNumInputs();
-    std::vector<int> getWhichInputs();
+    int getNumInputs() const;
+    std::vector<int> getWhichInputs() const;
     
     /** Get the number of nearest neighbours used by the kNN algorithm. */
-    int getK();
+    int getK() const;
     /** Change the number of nearest neighbours used by the kNN algorithm.
      * @param new value for k
      */

@@ -53,18 +53,18 @@ public:
      */
     double process(const std::vector<double> &inputVector);
     
-    int getNumInputs();
-    std::vector<int> getWhichInputs();
-    int getNumHiddenLayers();
-    int getNumHiddenNodes();
+    int getNumInputs() const;
+    std::vector<int> getWhichInputs() const;
+    int getNumHiddenLayers() const;
+    int getNumHiddenNodes() const;
     
-    std::vector<double> getWeights();
-    std::vector<double> getWHiddenOutput();
+    std::vector<double> getWeights() const;
+    std::vector<double> getWHiddenOutput() const;
     
-    std::vector<double> getInRanges();
-    std::vector<double> getInBases();
-    double getOutRange();
-    double getOutBase();
+    std::vector<double> getInRanges() const;
+    std::vector<double> getInBases() const;
+    double getOutRange() const;
+    double getOutBase() const;
 
 #ifndef EMSCRIPTEN
     void getJSONDescription(Json::Value &currentModel);

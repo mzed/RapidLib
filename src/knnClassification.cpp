@@ -22,15 +22,15 @@ knnClassification::~knnClassification() {
     delete[] nearestNeighbours;
 }
 
-int knnClassification::getNumInputs() {
+int knnClassification::getNumInputs() const {
     return numInputs;
 }
 
-std::vector<int> knnClassification::getWhichInputs() {
+std::vector<int> knnClassification::getWhichInputs() const {
     return whichInputs;
 }
 
-int knnClassification::getK() {
+int knnClassification::getK() const {
     return currentK;
 }
 
