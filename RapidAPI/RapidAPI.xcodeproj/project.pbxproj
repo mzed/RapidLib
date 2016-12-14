@@ -37,20 +37,14 @@
 		BE325F3C1DB50BFE00F199A8 /* baseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = baseModel.h; sourceTree = "<group>"; };
 		BE325F3D1DB50BFE00F199A8 /* classification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = classification.cpp; sourceTree = "<group>"; };
 		BE325F3E1DB50BFE00F199A8 /* classification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = classification.h; sourceTree = "<group>"; };
-		BE325F3F1DB50BFE00F199A8 /* classificationEmbindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = classificationEmbindings.h; sourceTree = "<group>"; };
 		BE325F401DB50BFE00F199A8 /* knnClassification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = knnClassification.cpp; sourceTree = "<group>"; };
 		BE325F411DB50BFE00F199A8 /* knnClassification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = knnClassification.h; sourceTree = "<group>"; };
-		BE325F421DB50BFE00F199A8 /* knnEmbindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = knnEmbindings.h; sourceTree = "<group>"; };
 		BE325F431DB50BFE00F199A8 /* modelSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = modelSet.cpp; sourceTree = "<group>"; };
 		BE325F441DB50BFE00F199A8 /* modelSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modelSet.h; sourceTree = "<group>"; };
-		BE325F451DB50BFE00F199A8 /* modelSetEmbindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modelSetEmbindings.h; sourceTree = "<group>"; };
 		BE325F461DB50BFE00F199A8 /* neuralNetwork.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = neuralNetwork.cpp; sourceTree = "<group>"; };
 		BE325F471DB50BFE00F199A8 /* neuralNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neuralNetwork.h; sourceTree = "<group>"; };
-		BE325F481DB50BFE00F199A8 /* nnEmbindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nnEmbindings.h; sourceTree = "<group>"; };
-		BE325F491DB50BFE00F199A8 /* rapidMix.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = rapidMix.js; sourceTree = "<group>"; };
 		BE325F4A1DB50BFE00F199A8 /* regression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = regression.cpp; sourceTree = "<group>"; };
 		BE325F4B1DB50BFE00F199A8 /* regression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regression.h; sourceTree = "<group>"; };
-		BE325F4C1DB50BFE00F199A8 /* regressionEmbindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regressionEmbindings.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,20 +109,14 @@
 				BE325F3C1DB50BFE00F199A8 /* baseModel.h */,
 				BE325F3D1DB50BFE00F199A8 /* classification.cpp */,
 				BE325F3E1DB50BFE00F199A8 /* classification.h */,
-				BE325F3F1DB50BFE00F199A8 /* classificationEmbindings.h */,
 				BE325F401DB50BFE00F199A8 /* knnClassification.cpp */,
 				BE325F411DB50BFE00F199A8 /* knnClassification.h */,
-				BE325F421DB50BFE00F199A8 /* knnEmbindings.h */,
 				BE325F431DB50BFE00F199A8 /* modelSet.cpp */,
 				BE325F441DB50BFE00F199A8 /* modelSet.h */,
-				BE325F451DB50BFE00F199A8 /* modelSetEmbindings.h */,
 				BE325F461DB50BFE00F199A8 /* neuralNetwork.cpp */,
 				BE325F471DB50BFE00F199A8 /* neuralNetwork.h */,
-				BE325F481DB50BFE00F199A8 /* nnEmbindings.h */,
-				BE325F491DB50BFE00F199A8 /* rapidMix.js */,
 				BE325F4A1DB50BFE00F199A8 /* regression.cpp */,
 				BE325F4B1DB50BFE00F199A8 /* regression.h */,
-				BE325F4C1DB50BFE00F199A8 /* regressionEmbindings.h */,
 			);
 			name = src;
 			path = ../../src;

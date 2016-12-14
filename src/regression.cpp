@@ -3,7 +3,7 @@
 
 
 #ifdef EMSCRIPTEN
-#include "regressionEmbindings.h"
+#include "emscripten/regressionEmbindings.h"
 #endif
 
 regression::regression() {

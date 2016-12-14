@@ -5,7 +5,7 @@
 #include <algorithm>
 #include "knnClassification.h"
 #ifdef EMSCRIPTEN
-#include "knnEmbindings.h"
+#include "emscripten/knnEmbindings.h"
 #endif
 
 knnClassification::knnClassification(const int &num_inputs, const std::vector<int> &which_inputs, const std::vector<trainingExample> &_neighbours, const int k)

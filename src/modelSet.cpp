@@ -7,7 +7,7 @@
 #ifndef EMSCRIPTEN
 #include "json.h"
 #else
-#include "modelSetEmbindings.h"
+#include "emscripten/modelSetEmbindings.h"
 #endif
 
 /** No arguments, don't create any models yet */

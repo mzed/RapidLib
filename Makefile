@@ -2,7 +2,7 @@ EMSCR=em++
 
 # ----------------------------------------
 #javascript for loading JSON
-RAPID_JS = src/rapidMix.js
+RAPID_JS = src/emscripten/rapidMix.js
 
 #the .cpp files that are used
 WEKI_KNN=src/knnClassification.cpp src/classification.cpp

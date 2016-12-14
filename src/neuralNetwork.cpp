@@ -5,7 +5,7 @@
 
 #include "neuralNetwork.h"
 #ifdef EMSCRIPTEN
-#include "nnEmbindings.h"
+#include "emscripten/nnEmbindings.h"
 #endif
 
 /*!

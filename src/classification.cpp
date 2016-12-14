@@ -1,7 +1,7 @@
 #include <vector>
 #include "classification.h"
 #ifdef EMSCRIPTEN
-#include "classificationEmbindings.h"
+#include "emscripten/classificationEmbindings.h"
 #endif
 
 classification::classification() {
