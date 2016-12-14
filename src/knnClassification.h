@@ -61,7 +61,9 @@ private:
     int numInputs;
     std::vector<int> whichInputs;
     std::vector<trainingExample> neighbours;
-    int numNeighbours; //aka "k"
+    int desiredK; //K that user asked for might be limited but number of examples
+    int currentK; //K minimum of desiredK or neighbours.size()
+    inline void updateK();
     std::pair<int, double>* nearestNeighbours;
 };
 
