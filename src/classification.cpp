@@ -72,9 +72,7 @@ std::vector<int> classification::getK() {
     return kVector;
 }
 
-void classification::setK(int newK) {
-    for (baseModel* model : myModelSet) {
-        knnClassification* kNNModel = dynamic_cast<knnClassification*>(model); //FIXME: I really dislike this design
+void classification::setK(const int whichModel, const int newK) {
+        knnClassification* kNNModel = dynamic_cast<knnClassification*>(myModelSet[whichModel]); //FIXME: I really dislike this design
         kNNModel->setK(newK);
-    }
 }

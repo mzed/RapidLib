@@ -144,8 +144,8 @@ describe('RapidAPI', function () {
             let trained = myClass2.train(testSet2);
             expect(trained).to.be.true;
             let response1 = myClass2.process([0, 0]);
-            expect(response1[0]).to.be.equal(0);
-            expect(response1[1]).to.be.equal(9);
+            expect(response1[0]).to.equal(0);
+            expect(response1[1]).to.equal(9);
             let response2 = myClass2.process([0.8789, 0.1574]);
             expect(response2[0]).to.equal(1);
             expect(response2[1]).to.equal(2);
@@ -157,7 +157,23 @@ describe('RapidAPI', function () {
             myClassification.initialize();
             let response2 = myClassification.process([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0); //initialized models return 0
-        })
+        });
+        it('can get k', function() {
+            let myClass = new rapidMix.Classification();
+            myClass.train(testSet2);
+            let response3 = myClass.getK();
+            expect(response3[0]).to.equal(1);
+        });
+        it('can set k', function() {
+            let myClass = new rapidMix.Classification();
+            myClass.train(testSet2);
+            myClass.setK(0,3);
+            let response3 = myClass.getK();
+            expect(response3[0]).to.equal(3);
+            myClass.setK(0,999);
+            response3 = myClass.getK();
+            expect(response3[0]).to.equal(4);
+        });
     });
 
     describe('ModelSet', function () {

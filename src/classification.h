@@ -27,7 +27,7 @@ public:
     /** Check the K values for each model. This feature is temporary, and will be replaced by a different design. */
     std::vector<int> getK();
     /** Get the K values for each model. This feature is temporary, and will be replaced by a different design. */
-    void setK(int newK);
+    void setK(const int whichModel, const int newK);
 };
 
 #endif

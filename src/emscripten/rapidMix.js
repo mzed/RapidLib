@@ -103,6 +103,27 @@ Module.Classification.prototype = {
         return this.modelSet.train(Module.prepTrainingSet(trainingSet));
     },
     /**
+     * Returns a vector of current k values for each model.
+     * @returns {Array} k values
+     */
+    getK: function () {
+        var outputVector = new Module.VectorInt();
+        outputVector = this.modelSet.getK();
+        var output = [];
+        for (var i = 0; i < outputVector.size(); ++i) {
+            output.push(outputVector.get(i));
+        }
+        return output;
+    },
+    /**
+     * Sets the k values for a particular model model.
+     * @param {Number} which model
+     * @param {Number} newK
+     */
+    setK: function (whichModel, newK) {
+        this.modelSet.setK(whichModel, newK);
+    },
+    /**
      * Returns the model set to it's initial configuration.
      * @returns {Boolean} true indicates successful initialization
      */
