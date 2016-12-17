@@ -71,8 +71,8 @@ int main(int argc, const char * argv[]) {
     std::vector<trainingExample> trainingSet2;
     trainingExample tempExample2;
     std::default_random_engine generator;
-    std::uniform_real_distribution<double> distribution(-5.5,5.5);
-    int vecLength = 1024;
+    std::uniform_real_distribution<double> distribution(-0.5,0.5);
+    int vecLength = 64;
     for (int j = 0; j < vecLength; ++j) {
         tempExample2.input.clear();
         tempExample2.output.clear();
@@ -87,7 +87,7 @@ int main(int argc, const char * argv[]) {
     for (int i=0; i < vecLength; ++i) {
         inputVec2.push_back(distribution(generator));
     }
-    std::cout << "biggy " << bigVector.getJSON() << std::endl;
+    std::cout << "biggy " << bigVector.process(inputVec2)[0] << std::endl;
     
     
     return 0;
