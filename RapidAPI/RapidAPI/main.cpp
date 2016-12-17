@@ -1,12 +1,13 @@
 #include <vector>
 #include <iostream>
 #include <cassert>
+#include <random>
+#include <algorithm>
 #include "regression.h"
 #include "classification.h"
 #include "json.h"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
     
     regression myNN;
     classification myKnn;
@@ -16,7 +17,7 @@ int main(int argc, const char * argv[]) {
     tempExample.input = { 0.2, 0.7 };
     tempExample.output = { 3.0 };
     trainingSet.push_back(tempExample);
-
+    
     tempExample.input = { 2.0, 44.2 };
     tempExample.output = { 20.14 };
     trainingSet.push_back(tempExample);
@@ -25,7 +26,7 @@ int main(int argc, const char * argv[]) {
     std::cout << myNN.getJSON() << std::endl;
     std::string filepath = "/var/tmp/modelSetDescription.json";
     myNN.writeJSON(filepath);
-
+    
     
     regression myNNfromString;
     myNNfromString.putJSON(myNN.getJSON());
@@ -65,6 +66,29 @@ int main(int argc, const char * argv[]) {
     std::cout << "k " << myKnn.getK()[0] << std::endl;
     myKnn.setK(0, 2);
     std::cout << "k " << myKnn.getK()[0] << std::endl;
+
+    regression bigVector;
+    std::vector<trainingExample> trainingSet2;
+    trainingExample tempExample2;
+    std::default_random_engine generator;
+    std::uniform_real_distribution<double> distribution(-5.5,5.5);
+    int vecLength = 1024;
+    for (int j = 0; j < vecLength; ++j) {
+        tempExample2.input.clear();
+        tempExample2.output.clear();
+        for (int i = 0; i < vecLength; ++i) {
+            tempExample2.input.push_back(distribution(generator));
+        }
+        tempExample2.output = { distribution(generator) };
+        trainingSet2.push_back(tempExample2);
+    }
+    bigVector.train(trainingSet2);
+    std::vector<double> inputVec2;
+    for (int i=0; i < vecLength; ++i) {
+        inputVec2.push_back(distribution(generator));
+    }
+    std::cout << "biggy " << bigVector.getJSON() << std::endl;
+    
     
     return 0;
 }

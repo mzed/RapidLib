@@ -356,10 +356,18 @@ void neuralNetwork::train(const std::vector<trainingExample> &trainingSet) {
 }
 
 void neuralNetwork::backpropagate(const double &desiredOutput) {
-    //deltas between output and hidden
     outputErrorGradient = (desiredOutput - outputNeuron) / outRange;
+    
+    //correction based on size of last layer. Is this right? -MZ
+    double length = 0;
+    for (int i = 0; i < numHiddenNodes; ++i) {
+        length += hiddenNeurons[numHiddenLayers - 1][i]*hiddenNeurons[numHiddenLayers - 1][i];
+    }
+    length = (length <= 2.0) ? 1.0 : length;
+    
+    //deltas between hidden and output
     for (int i = 0; i <= numHiddenNodes; ++i) {
-        deltaHiddenOutput[i] = (learningRate * hiddenNeurons[numHiddenLayers - 1][i] * outputErrorGradient) + (momentum * deltaHiddenOutput[i]);
+        deltaHiddenOutput[i] = (learningRate * (hiddenNeurons[numHiddenLayers - 1][i]/length) * outputErrorGradient) + (momentum * deltaHiddenOutput[i]);
     }
     
     //deltas between hidden
