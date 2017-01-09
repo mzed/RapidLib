@@ -65,6 +65,12 @@ outputErrorGradient(0)
             wHiddenOutput.push_back(distribution(generator));
         }
     }
+
+    for (int i = 0; i < inRanges.size(); ++i) {
+        if (inRanges[i] == 0.) {
+            inRanges[i] = 1.0; //Prevent divide by zero later.
+        }
+    }
     
     //////////////////////////////////////////trainer
     
