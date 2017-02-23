@@ -11,8 +11,14 @@
 
 class classification : public modelSet {
 public:
+    enum classificationTypes { knn, svm };
+    
     /** with no arguments, just make an empty vector */
     classification();
+    
+    /** speciify classification type */
+    classification(classificationTypes classificationType);
+    
     /** create based on training set inputs and outputs */
     classification(const std::vector<trainingExample> &trainingSet);
     /** create with proper models, but not trained */
@@ -28,6 +34,11 @@ public:
     std::vector<int> getK();
     /** Get the K values for each model. This feature is temporary, and will be replaced by a different design. */
     void setK(const int whichModel, const int newK);
+    
+    
+    
+private:
+    classificationTypes classificationType;
 };
 
 #endif

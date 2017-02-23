@@ -8,6 +8,14 @@ classification::classification() {
     numInputs = 0;
     numOutputs = 0;
     created = false;
+    classificationType = knn; //this is the default algorithm
+};
+
+classification::classification(classificationTypes classification_type) {
+    numInputs = 0;
+    numOutputs = 0;
+    created = false;
+    classificationType = classification_type;
 };
 
 classification::classification(const int &num_inputs, const int &num_outputs) { //TODO: this feature isn't really useful
@@ -35,7 +43,7 @@ classification::classification(const std::vector<trainingExample> &training_set)
 bool classification::train(const std::vector<trainingExample> &training_set) {
     //TODO: time this process?
     if (created) {
-      return modelSet::train(training_set);
+        return modelSet::train(training_set);
     } else {
         //create model(s) here
         numInputs = int(training_set[0].input.size());
@@ -56,7 +64,11 @@ bool classification::train(const std::vector<trainingExample> &training_set) {
             whichInputs.push_back(j);
         }
         for (int i = 0; i < numOutputs; ++i) {
-            myModelSet.push_back(new knnClassification(numInputs, whichInputs, training_set, 1));
+            if (classificationType == svm) {
+                myModelSet.push_back(new class svm());
+            } else {
+                myModelSet.push_back(new knnClassification(numInputs, whichInputs, training_set, 1));
+            }
         }
         created = true;
         return modelSet::train(training_set);
@@ -73,6 +85,6 @@ std::vector<int> classification::getK() {
 }
 
 void classification::setK(const int whichModel, const int newK) {
-        knnClassification* kNNModel = dynamic_cast<knnClassification*>(myModelSet[whichModel]); //FIXME: I really dislike this design
-        kNNModel->setK(newK);
+    knnClassification* kNNModel = dynamic_cast<knnClassification*>(myModelSet[whichModel]); //FIXME: I really dislike this design
+    kNNModel->setK(newK);
 }

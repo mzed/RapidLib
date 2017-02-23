@@ -6,6 +6,7 @@
 #include "baseModel.h"
 #include "neuralNetwork.h"
 #include "knnClassification.h"
+#include "svm.h"
 #ifndef EMSCRIPTEN
 #include "json.h"
 #endif
@@ -19,7 +20,7 @@ public:
     /** Train on a specified set, causes creation if not created */
     virtual bool train(const std::vector<trainingExample> &trainingSet);
     /** reset to pre-training state */
-    bool initialize();
+    bool reset();
     /** run regression or classification for each model */
     std::vector<double> process(const std::vector<double> &inputVector);
     

@@ -1,4 +1,3 @@
-#include <iostream>
 #include <fstream>
 #include <vector>
 #include <cmath>
@@ -49,7 +48,7 @@ bool modelSet::train(const std::vector<trainingExample> &training_set) {
     return true;
 }
 
-bool modelSet::initialize() {
+bool modelSet::reset() {
     for (std::vector<baseModel*>::iterator i = myModelSet.begin(); i != myModelSet.end(); ++i) {
         delete *i;
     }
@@ -181,7 +180,6 @@ void modelSet::json2modelSet(const Json::Value &root) {
                     weights.push_back(node["Threshold"].asDouble());
                 }
                 nodeIndex++;
-                std::cout << "name " << node["name"].asString() << std::endl;
             }
             std::vector<double> inBases = json2vector(model["inBases"]);
             std::vector<double> inRanges = json2vector(model["inRanges"]);
