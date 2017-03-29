@@ -1,7 +1,8 @@
 /* globals Module */
 
 "use strict";
-console.log("RapidLib: 27 Feb 2017");
+var currentDate = new Date();
+console.log("RapidLib: " + currentDate);
 
 /**
  * Utility function to convert js objects into something emscripten likes
