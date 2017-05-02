@@ -87,7 +87,7 @@ int main(int argc, const char * argv[]) {
     for (int i=0; i < vecLength; ++i) {
         inputVec2.push_back(distribution(generator));
     }
-    std::cout << "biggy " << bigVector.process(inputVec2)[0] << std::endl;
+    assert (isfinite(bigVector.process(inputVec2)[0]));
     
     
     return 0;
