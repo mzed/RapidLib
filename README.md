@@ -1,4 +1,7 @@
-# Global
+# Link to [C++ documentation](http://doc.gold.ac.uk/eavi/rapidmix/docs_cpp/annotated.html)
+
+
+# JavaScript documentation:
 
 
 
