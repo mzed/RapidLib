@@ -346,6 +346,11 @@ void neuralNetwork::train(const std::vector<trainingExample> &trainingSet) {
         inRanges.push_back((inMax[i] - inMin[i]) * 0.5);
         inBases.push_back((inMax[i] + inMin[i]) * 0.5);
     }
+    for (int i = 0; i < inRanges.size(); ++i) {
+        if (inRanges[i] == 0.) {
+            inRanges[i] = 1.0; //Prevent divide by zero later.
+        }
+    }
     outRange = (outMax - outMin) * 0.5;
     outBase = (outMax + outMin) * 0.5;
     

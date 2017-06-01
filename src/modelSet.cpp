@@ -52,6 +52,7 @@ bool modelSet::reset() {
     for (std::vector<baseModel*>::iterator i = myModelSet.begin(); i != myModelSet.end(); ++i) {
         delete *i;
     }
+    myModelSet.clear();
     numInputs = 0;
     numOutputs = 0;
     created = false;

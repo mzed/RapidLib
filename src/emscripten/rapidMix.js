@@ -4,6 +4,7 @@
 var currentDate = new Date();
 console.log("RapidLib: " + currentDate);
 
+console.log("RapidLib 1.6.2017")
 /**
  * Utility function to convert js objects into something emscripten likes
  * @param {Object} trainingSet - JS Object representing a training set
@@ -302,4 +303,60 @@ Module.ModelSet.prototype.process = function (input) {
         output.push(this.myModelSet[i].process(modelSetInput));
     }
     return output;
+};
+
+/////////////////////////////////////////////////
+
+/**
+ * Creates a circular buffer that can return various statistics
+ * @constructor
+ * @property {function} Module.rapidStreamCpp - constructor from emscripten
+ */
+
+Module.StreamProcess = function (windowSize) {
+    if (windowSize) {
+	this.rapidStream = new Module.RapidStreamCpp(windowSize); 
+    } else {
+	this.rapidStream = new Module.RapidStreamCpp();
+    }
+};
+
+/**
+ * TODO: Add documentation -mz
+ */
+Module.StreamProcess.prototype = {
+    push: function(input) {
+	    this.rapidStream.pushToWindow(parseFloat(input));
+    },
+    clear: function() {
+        this.rapidStream.clear();
+    },
+    velocity: function() {
+        return this.rapidStream.velocity();
+    },
+    acceleration: function() {
+        return this.rapidStream.acceleration();
+    },
+    sum: function() {
+        return this.rapidStream.sum();
+    },
+    mean: function() {
+        return this.rapidStream.mean();
+    },
+    standardDeviation: function() {
+        return this.rapidStream.standardDeviation();
+    },
+    minVelocity: function() {
+        return this.rapidStream.minVelocity();
+    },
+    maxVelocity: function() {
+        return this.rapidStream.maxVelocity();
+    },
+    minAcceleration: function() {
+        return this.rapidStream.minAcceleration();
+    },
+    maxAcceleration: function() {
+        return this.rapidStream.maxAcceleration();
+    }
+
 };
