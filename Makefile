@@ -5,10 +5,11 @@ EMSCR=em++
 RAPID_JS = src/emscripten/rapidMix.js
 
 #the .cpp files that are used
-WEKI_KNN=src/knnClassification.cpp src/classification.cpp
-WEKI_NN=src/neuralNetwork.cpp src/regression.cpp
-WEKI_MS=src/modelSet.cpp 
-SOURCE_WEKI = $(WEKI_MS) $(WEKI_NN) $(WEKI_KNN)
+RL_KNN=src/knnClassification.cpp src/classification.cpp
+RL_NN=src/neuralNetwork.cpp src/regression.cpp
+RL_MS=src/modelSet.cpp
+RL_STREAM=src/rapidStream.cpp 
+SOURCE_RAPID = $(RL_MS) $(RL_NN) $(RL_KNN) $(RL_STREAM)
 
 # destination .js file
 OUTPUT_RAPID=rapidLib/RapidLib.js
@@ -21,11 +22,11 @@ CFLAGS=-O3 -s DISABLE_EXCEPTION_CATCHING=0 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTION
 
 # ----------------------------------------
 # Final paths
-full: $(SOURCE_WEKI)
-	$(EMSCR) $(CFLAGS) -s MODULARIZE=1 --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_WEKI)
+full: $(SOURCE_RAPID)
+	$(EMSCR) $(CFLAGS) -s MODULARIZE=1 --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID)
 
-test: $(SOURCE_WEKI)
-	$(EMSCR) $(CFLAGS) --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_WEKI) --profiling
+test: $(SOURCE_RAPID)
+	$(EMSCR) $(CFLAGS) --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID) --profiling
 	mocha
 
 dev: full
