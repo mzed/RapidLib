@@ -2,6 +2,7 @@
 
 "use strict";
 
+console.log("RapidLib 1.6.2017")
 /**
  * Utility function to convert js objects into something emscripten likes
  * @param {Object} trainingSet - JS Object representing a training set
@@ -323,7 +324,7 @@ Module.StreamProcess = function (windowSize) {
  */
 Module.StreamProcess.prototype = {
     push: function(input) {
-	this.rapidStream.pushToWindow(input);
+	    this.rapidStream.pushToWindow(parseFloat(input));
     },
     clear: function() {
         this.rapidStream.clear();
