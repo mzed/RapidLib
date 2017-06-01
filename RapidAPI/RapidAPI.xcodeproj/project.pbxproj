@@ -15,7 +15,7 @@
 		BE325F501DB50BFE00F199A8 /* neuralNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F461DB50BFE00F199A8 /* neuralNetwork.cpp */; };
 		BE325F511DB50BFE00F199A8 /* regression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F4A1DB50BFE00F199A8 /* regression.cpp */; };
 		BE553E2C1EE05ED2004EB00F /* libsvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE553E2A1EE05ED2004EB00F /* libsvm.cpp */; };
-		BE553E2F1EE05FE1004EB00F /* svm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE553E2E1EE05FE1004EB00F /* svm.cpp */; };
+		BE553E2F1EE05FE1004EB00F /* svmClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE553E2E1EE05FE1004EB00F /* svmClassification.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,8 +49,8 @@
 		BE325F4B1DB50BFE00F199A8 /* regression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regression.h; sourceTree = "<group>"; };
 		BE553E2A1EE05ED2004EB00F /* libsvm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = libsvm.cpp; sourceTree = "<group>"; };
 		BE553E2B1EE05ED2004EB00F /* libsvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libsvm.h; sourceTree = "<group>"; };
-		BE553E2D1EE05F03004EB00F /* svm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svm.h; sourceTree = "<group>"; };
-		BE553E2E1EE05FE1004EB00F /* svm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svm.cpp; sourceTree = "<group>"; };
+		BE553E2D1EE05F03004EB00F /* svmClassification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svmClassification.h; sourceTree = "<group>"; };
+		BE553E2E1EE05FE1004EB00F /* svmClassification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svmClassification.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,8 +113,8 @@
 		BE325F3B1DB50BFE00F199A8 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				BE553E2E1EE05FE1004EB00F /* svm.cpp */,
-				BE553E2D1EE05F03004EB00F /* svm.h */,
+				BE553E2E1EE05FE1004EB00F /* svmClassification.cpp */,
+				BE553E2D1EE05F03004EB00F /* svmClassification.h */,
 				BE325F3C1DB50BFE00F199A8 /* baseModel.h */,
 				BE325F3D1DB50BFE00F199A8 /* classification.cpp */,
 				BE325F3E1DB50BFE00F199A8 /* classification.h */,
@@ -196,7 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE553E2F1EE05FE1004EB00F /* svm.cpp in Sources */,
+				BE553E2F1EE05FE1004EB00F /* svmClassification.cpp in Sources */,
 				BE553E2C1EE05ED2004EB00F /* libsvm.cpp in Sources */,
 				BE325F351DB50BE100F199A8 /* main.cpp in Sources */,
 				BE325F4E1DB50BFE00F199A8 /* knnClassification.cpp in Sources */,

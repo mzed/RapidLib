@@ -6,7 +6,7 @@
 #include "baseModel.h"
 #include "neuralNetwork.h"
 #include "knnClassification.h"
-#include "svm.h"
+#include "svmClassification.h"
 #ifndef EMSCRIPTEN
 #include "json.h"
 #endif

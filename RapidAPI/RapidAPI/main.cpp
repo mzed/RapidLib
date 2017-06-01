@@ -11,6 +11,7 @@ int main(int argc, const char * argv[]) {
     
     regression myNN;
     classification myKnn;
+    classification mySVM(classification::svm);
     
     std::vector<trainingExample> trainingSet;
     trainingExample tempExample;
@@ -23,7 +24,7 @@ int main(int argc, const char * argv[]) {
     trainingSet.push_back(tempExample);
     
     myNN.train(trainingSet);
-    std::cout << myNN.getJSON() << std::endl;
+//    std::cout << myNN.getJSON() << std::endl;
     std::string filepath = "/var/tmp/modelSetDescription.json";
     myNN.writeJSON(filepath);
     
@@ -37,7 +38,7 @@ int main(int argc, const char * argv[]) {
     
     std::cout << "before: " << myNN.process(inputVec)[0] << std::endl;
     std::cout << "from string: " << myNNfromString.process(inputVec)[0] << std::endl;
-    std::cout << myNNfromString.getJSON() << std::endl;
+ //   std::cout << myNNfromString.getJSON() << std::endl;
     std::cout << "from file: " << myNNfromFile.process(inputVec)[0] << std::endl;
     
     assert(myNN.process(inputVec)[0] == myNNfromString.process(inputVec)[0]);
@@ -46,11 +47,13 @@ int main(int argc, const char * argv[]) {
     ///////////////////////////
     
     myKnn.train(trainingSet);
-    std::cout << myKnn.getJSON() << std::endl;
+    mySVM.train(trainingSet);
+    
+ //   std::cout << myKnn.getJSON() << std::endl;
     std::string filepath2 = "/var/tmp/modelSetDescription_knn.json";
     myKnn.writeJSON(filepath2);
     
-    classification myKnnFromString;
+    classification myKnnFromString(classification::knn);
     myKnnFromString.putJSON(myKnn.getJSON());
     
     classification myKnnFromFile;

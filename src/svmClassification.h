@@ -6,7 +6,7 @@
 #include "libsvm.h"
 
 
-class svm : public baseModel {
+class svmClassification : public baseModel {
     
 public:
     enum SVMType{ C_SVC = 0, NU_SVC, ONE_CLASS, EPSILON_SVR, NU_SVR };
@@ -31,7 +31,7 @@ public:
      @param kFoldValue: sets the number of folds that will be used for cross validation. The default value is kFoldValue=10
      */
     
-    svm(
+    svmClassification(
         KernelType kernelType = LINEAR_KERNEL,
         SVMType svmType = C_SVC,
         bool useScaling = true,
@@ -47,7 +47,7 @@ public:
         );
     
     /** Destructor */
-    ~svm();
+    ~svmClassification();
     
     /** Fill the model with a vector of examples.
      *

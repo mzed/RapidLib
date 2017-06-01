@@ -1,7 +1,7 @@
 #include <iostream>
-#include "svm.h"
+#include "svmClassification.h"
 
-svm::svm(
+svmClassification::svmClassification(
          KernelType kernelType,
          SVMType svmType,
          bool useScaling,
@@ -57,11 +57,11 @@ svm::svm(
     init(kernelType,svmType,useScaling,useNullRejection,useAutoGamma,gamma,degree,coef0,nu,C,useCrossValidation,kFoldValue);
 }
 
-svm::~svm() {
+svmClassification::~svmClassification() {
     
 }
 
-bool svm::init(
+bool svmClassification::init(
                KernelType kernelType,
                SVMType svmType,
                bool useScaling,
@@ -119,23 +119,23 @@ bool svm::init(
     return true;
 }
 
-void svm::train(const std::vector<trainingExample> &trainingSet) {
+void svmClassification::train(const std::vector<trainingExample> &trainingSet) {
     std::cout << "SVM could be training" << std::endl;
 };
 
-double svm::process(const std::vector<double> &inputVector) {
+double svmClassification::process(const std::vector<double> &inputVector) {
     return 0;
 }
 
-int svm::getNumInputs() const {
+int svmClassification::getNumInputs() const {
     return 0;
 };
 
-std::vector<int> svm::getWhichInputs() const {
+std::vector<int> svmClassification::getWhichInputs() const {
     std::vector<int> returnVec;
     return returnVec;
 };
 
-void svm::getJSONDescription(Json::Value &currentModel){
+void svmClassification::getJSONDescription(Json::Value &currentModel){
     
 };
