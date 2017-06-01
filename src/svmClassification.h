@@ -98,7 +98,9 @@ private:
     bool problemSet;
     struct LIBSVM::svm_model *model;
     struct LIBSVM::svm_parameter param;
-    struct LIBSVM::svm_problem prob;
+    struct LIBSVM::svm_problem problem;
+    
+    void trainingSet2svmProblem(const std::vector<trainingExample> &trainingSet);
     
     bool trained;
 };

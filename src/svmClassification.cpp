@@ -2,28 +2,28 @@
 #include "svmClassification.h"
 
 svmClassification::svmClassification(
-         KernelType kernelType,
-         SVMType svmType,
-         bool useScaling,
-         bool useNullRejection,
-         bool useAutoGamma,
-         float gamma,
-         unsigned int degree,
-         float coef0,
-         float nu,
-         float C,
-         bool useCrossValidation,
-         unsigned int kFoldValue
-         )
+                                     KernelType kernelType,
+                                     SVMType svmType,
+                                     bool useScaling,
+                                     bool useNullRejection,
+                                     bool useAutoGamma,
+                                     float gamma,
+                                     unsigned int degree,
+                                     float coef0,
+                                     float nu,
+                                     float C,
+                                     bool useCrossValidation,
+                                     unsigned int kFoldValue
+                                     )
 {
     
     //Setup the default SVM parameters
     model = NULL;
     param.weight_label = NULL;
     param.weight = NULL;
-    prob.l = 0;
-    prob.x = NULL;
-    prob.y = NULL;
+    problem.l = 0;
+    problem.x = NULL;
+    problem.y = NULL;
     trained = false;
     problemSet = false;
     param.svm_type = C_SVC;
@@ -62,35 +62,35 @@ svmClassification::~svmClassification() {
 }
 
 bool svmClassification::init(
-               KernelType kernelType,
-               SVMType svmType,
-               bool useScaling,
-               bool useNullRejection,
-               bool useAutoGamma,
-               float gamma,
-               unsigned int degree,
-               float coef0,
-               float nu,
-               float C,
-               bool useCrossValidation,
-               unsigned int kFoldValue
-               ){
+                             KernelType kernelType,
+                             SVMType svmType,
+                             bool useScaling,
+                             bool useNullRejection,
+                             bool useAutoGamma,
+                             float gamma,
+                             unsigned int degree,
+                             float coef0,
+                             float nu,
+                             float C,
+                             bool useCrossValidation,
+                             unsigned int kFoldValue
+                             ){
     
     /*
-    //Clear any previous models or problems
-    clear();
-    
-    //Validate the kernerlType
-    if( !validateKernelType(kernelType) ){
-        errorLog << __GRT_LOG__ << " Unknown kernelType!\n";
-        return false;
-    }
-    
-    if( !validateSVMType(svmType) ){
-        errorLog << __GRT_LOG__ << " Unknown kernelType!\n";
-        return false;
-    }
-    */
+     //Clear any previous models or problems
+     clear();
+     
+     //Validate the kernerlType
+     if( !validateKernelType(kernelType) ){
+     errorLog << __GRT_LOG__ << " Unknown kernelType!\n";
+     return false;
+     }
+     
+     if( !validateSVMType(svmType) ){
+     errorLog << __GRT_LOG__ << " Unknown kernelType!\n";
+     return false;
+     }
+     */
     
     param.svm_type = (int)svmType;
     param.kernel_type = (int)kernelType;
@@ -108,20 +108,35 @@ bool svmClassification::init(
     param.weight_label = NULL;
     param.weight = NULL;
     /*
-    this->useScaling = useScaling;
-    this->useCrossValidation = useCrossValidation;
-    this->useNullRejection = useNullRejection;
-    this->useAutoGamma = useAutoGamma;
-    classificationThreshold = 0.5;
-    crossValidationResult = 0;
-    */
+     this->useScaling = useScaling;
+     this->useCrossValidation = useCrossValidation;
+     this->useNullRejection = useNullRejection;
+     this->useAutoGamma = useAutoGamma;
+     classificationThreshold = 0.5;
+     crossValidationResult = 0;
+     */
     
     return true;
 }
 
 void svmClassification::train(const std::vector<trainingExample> &trainingSet) {
+    trainingSet2svmProblem(trainingSet);
     std::cout << "SVM could be training" << std::endl;
 };
+
+void svmClassification::trainingSet2svmProblem(const std::vector<trainingExample> &trainingSet) {
+    //initialize problem
+    
+    //SVM problem has:
+    // l = num of examples (int)
+    int numOfExamples = int(trainingSet.size());
+    problem.l = numOfExamples;
+    problem.y = new double[numOfExamples];
+    for (int i = 0; i < numOfExamples; i++) {
+        problem.y[i] = trainingSet[i].output[0]; //model set makes this a one item list
+        // x = svn_nodes[]  == index and value pairs
+    }
+}
 
 double svmClassification::process(const std::vector<double> &inputVector) {
     return 0;

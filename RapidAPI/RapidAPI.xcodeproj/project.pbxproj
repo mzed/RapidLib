@@ -51,6 +51,7 @@
 		BE553E2B1EE05ED2004EB00F /* libsvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libsvm.h; sourceTree = "<group>"; };
 		BE553E2D1EE05F03004EB00F /* svmClassification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svmClassification.h; sourceTree = "<group>"; };
 		BE553E2E1EE05FE1004EB00F /* svmClassification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svmClassification.cpp; sourceTree = "<group>"; };
+		BE553E301EE06AB0004EB00F /* trainingExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trainingExample.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +114,7 @@
 		BE325F3B1DB50BFE00F199A8 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				BE553E301EE06AB0004EB00F /* trainingExample.h */,
 				BE553E2E1EE05FE1004EB00F /* svmClassification.cpp */,
 				BE553E2D1EE05F03004EB00F /* svmClassification.h */,
 				BE325F3C1DB50BFE00F199A8 /* baseModel.h */,
