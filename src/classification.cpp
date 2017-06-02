@@ -65,7 +65,7 @@ bool classification::train(const std::vector<trainingExample> &trainingSet) {
         }
         for (int i = 0; i < numOutputs; ++i) {
             if (classificationType == svm) {
-                myModelSet.push_back(new svmClassification());
+                myModelSet.push_back(new svmClassification(numInputs));
             } else {
                 myModelSet.push_back(new knnClassification(numInputs, whichInputs, trainingSet, 1));
             }
