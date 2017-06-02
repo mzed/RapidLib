@@ -121,25 +121,56 @@ bool svmClassification::init(
 
 void svmClassification::train(const std::vector<trainingExample> &trainingSet) {
     trainingSet2svmProblem(trainingSet);
-    std::cout << "SVM could be training" << std::endl;
+    model = LIBSVM::svm_train(&problem, &param);
+    trained = true;
 };
 
 void svmClassification::trainingSet2svmProblem(const std::vector<trainingExample> &trainingSet) {
     //initialize problem
+    problem.l = 0;
+    problem.x = NULL;
+    problem.y = NULL;
     
     //SVM problem has:
-    // l = num of examples (int)
-    int numOfExamples = int(trainingSet.size());
-    problem.l = numOfExamples;
-    problem.y = new double[numOfExamples];
-    for (int i = 0; i < numOfExamples; i++) {
+    int numberOfExamples = int(trainingSet.size());
+    int numberOfFeatures = int(trainingSet[0].input.size());
+    problem.l = numberOfExamples;
+    problem.x = new LIBSVM::svm_node*[numberOfExamples];
+    problem.y = new double[numberOfExamples];
+    for (int i = 0; i < numberOfExamples; i++) {
         problem.y[i] = trainingSet[i].output[0]; //model set makes this a one item list
+        problem.x[i] = new LIBSVM::svm_node[numberOfFeatures + 1]; //dummy node at the end of array
+        for (int j = 0; j < numberOfFeatures; j++) {
         // x = svn_nodes[]  == index and value pairs
+            problem.x[i][j].index = j + 1;
+            problem.x[i][j].value = trainingSet[i].input[j];
+        }
+        problem.x[i][numberOfFeatures].index = -1; //Assign the final node value
+        problem.x[i][numberOfFeatures].value = 0;
     }
 }
 
 double svmClassification::process(const std::vector<double> &inputVector) {
-    return 0;
+    if (trained) {
+        double predictedClass = 0.;
+        
+        //Change to LIBSVM format
+        int numberOfFeatures = int(inputVector.size()); //TODO: make sure this is the same as what was trained. -mz
+        LIBSVM::svm_node *inputNodes = NULL;
+        inputNodes = new LIBSVM::svm_node[numberOfFeatures + 1];
+        for (int i = 0; i < numberOfFeatures; i++) {
+            inputNodes[i].index = i +1;
+            inputNodes[i].value = inputVector[i];
+        }
+        inputNodes[numberOfFeatures].index = -1;
+        inputNodes[numberOfFeatures].value = 0;
+        
+        predictedClass = LIBSVM::svm_predict(model, inputNodes);
+        
+        return predictedClass;
+    } else {
+        return 0;
+    }
 }
 
 int svmClassification::getNumInputs() const {

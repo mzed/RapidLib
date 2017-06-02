@@ -60,6 +60,7 @@ int main(int argc, const char * argv[]) {
     myKnnFromFile.readJSON(filepath2);
     
     std::cout << "knn before: " << myKnn.process(inputVec)[0] << std::endl;
+    std::cout << "svm: " << mySVM.process(inputVec)[0] << std::endl;
     std::cout << "knn from string: " << myKnnFromString.process(inputVec)[0] << std::endl;
     std::cout << "knn from file: " << myKnnFromFile.process(inputVec)[0] << std::endl;
     
