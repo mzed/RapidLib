@@ -1,5 +1,8 @@
 #include <iostream>
 #include "svmClassification.h"
+#ifdef EMSCRIPTEN
+#include "emscripten/svmEmbindings.h"
+#endif
 
 svmClassification::svmClassification(
                                      KernelType kernelType,
@@ -238,6 +241,8 @@ std::vector<int> svmClassification::getWhichInputs() const {
     return returnVec;
 };
 
+#ifndef EMSCRIPTEN
 void svmClassification::getJSONDescription(Json::Value &currentModel){
     
 };
+#endif

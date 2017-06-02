@@ -6,11 +6,11 @@ RAPID_JS = src/emscripten/rapidMix.js
 
 #the .cpp files that are used
 RL_KNN=src/knnClassification.cpp src/classification.cpp
-RL_SVM=src/svmClassification dependancies/libsvm/libsvm.cpp
+RL_SVM=src/svmClassification.cpp dependancies/libsvm/libsvm.cpp
 RL_NN=src/neuralNetwork.cpp src/regression.cpp
 RL_MS=src/modelSet.cpp
 RL_STREAM=src/rapidStream.cpp 
-SOURCE_RAPID = $(RL_MS) $(RL_NN) $(RL_KNN) $(RL_STREAM)
+SOURCE_RAPID = $(RL_MS) $(RL_NN) $(RL_KNN) $(RL_SVM) $(RL_STREAM)
 
 # destination .js file
 OUTPUT_RAPID=rapidLib/RapidLib.js

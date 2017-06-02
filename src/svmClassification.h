@@ -32,19 +32,19 @@ public:
      */
     
     svmClassification(
-        KernelType kernelType = LINEAR_KERNEL,
-        SVMType svmType = C_SVC,
-        bool useScaling = true,
-        bool useNullRejection = false,
-        bool useAutoGamma = true,
-        float gamma = 0.1,
-        unsigned int degree = 3,
-        float coef0 = 0,
-        float nu = 0.5,
-        float C = 1,
-        bool useCrossValidation = false,
-        unsigned int kFoldValue = 10
-        );
+                      KernelType kernelType = LINEAR_KERNEL,
+                      SVMType svmType = C_SVC,
+                      bool useScaling = true,
+                      bool useNullRejection = false,
+                      bool useAutoGamma = true,
+                      float gamma = 0.1,
+                      unsigned int degree = 3,
+                      float coef0 = 0,
+                      float nu = 0.5,
+                      float C = 1,
+                      bool useCrossValidation = false,
+                      unsigned int kFoldValue = 10
+                      );
     
     svmClassification(int numInputs);
     
@@ -57,7 +57,7 @@ public:
      *
      */
     void train(const std::vector<trainingExample> &trainingSet);
-        
+    
     /** Generate an output value from a single input vector.
      * @param A standard vector of doubles to be evaluated.
      * @return A single double: the nearest class as determined by k-nearest neighbor.
@@ -67,7 +67,7 @@ public:
     /**
      This initializes the SVM settings and parameters.  Any previous model, settings, or problems will be cleared.
      
-     @param kernelType: this sets the SVM kernelType. Options are LINEAR_KERNEL, POLY_KERNEL, RBF_KERNEL, SIGMOID_KERNEL, PRECOMPUTED_KERNEL     
+     @param kernelType: this sets the SVM kernelType. Options are LINEAR_KERNEL, POLY_KERNEL, RBF_KERNEL, SIGMOID_KERNEL, PRECOMPUTED_KERNEL
      @param UINT svmType: this sets the SVM type. Options are C_SVC, NU_SVC, ONE_CLASS, EPSILON_SVR, NU_SVR
      @param useScaling: sets if the training/prediction data will be scaled to the default range of [-1. 1.]. The SVM algorithm commonly achieves a better classification result if scaling is turned on
      @param useNullRejection: sets if a predicted class will be rejected if the classes' probability is below the classificationThreshold
@@ -94,7 +94,9 @@ public:
     int getNumInputs() const;
     std::vector<int> getWhichInputs() const;
     
-    //void getJSONDescription(Json::Value &currentModel);
+#ifndef EMSCRIPTEN
+    void getJSONDescription(Json::Value &currentModel);
+#endif
     
 private:
     bool problemSet;
@@ -107,7 +109,7 @@ private:
     /** Normalization parameters */
     std::vector<double> inRanges;
     std::vector<double> inBases;
-        
+    
     void trainingSet2svmProblem(const std::vector<trainingExample> &trainingSet);
     
     bool trained;

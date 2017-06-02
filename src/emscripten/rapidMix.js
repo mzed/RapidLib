@@ -92,8 +92,12 @@ Module.Regression.prototype = {
  * @property {function} Module.ClassificationCpp - constructor from emscripten
  */
 
-Module.Classification = function () {
-    this.modelSet = new Module.ClassificationCpp(); //TODO implement optional arguments
+Module.Classification = function (type) {
+    if (type) {
+        this.modelSet = new Module.ClassificationCpp(type);
+    } else {
+        this.modelSet = new Module.ClassificationCpp();
+    }
 };
 
 Module.Classification.prototype = {
