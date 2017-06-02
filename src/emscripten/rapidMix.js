@@ -54,8 +54,8 @@ Module.Regression.prototype = {
      * Returns the model set to it's initial configuration.
      * @returns {Boolean} true indicates successful initialization
      */
-    initialize: function () {
-        return this.modelSet.initialize();
+    reset: function () {
+        return this.modelSet.reset();
     },
     /**
      * Runs feed-forward regression on input
@@ -130,8 +130,8 @@ Module.Classification.prototype = {
      * Returns the model set to it's initial configuration.
      * @returns {Boolean} true indicates successful initialization
      */
-    initialize: function () {
-        return this.modelSet.initialize();
+    reset: function () {
+        return this.modelSet.reset();
     },
     /**
      * Does classifications on an input vector.

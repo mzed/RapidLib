@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "baseModel.h"
-#include "libsvm.h"
+#include "../dependancies/libsvm/libsvm.h"
 
 
 class svmClassification : public baseModel {
@@ -94,7 +94,7 @@ public:
     int getNumInputs() const;
     std::vector<int> getWhichInputs() const;
     
-    void getJSONDescription(Json::Value &currentModel);
+    //void getJSONDescription(Json::Value &currentModel);
     
 private:
     bool problemSet;

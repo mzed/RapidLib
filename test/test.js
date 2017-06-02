@@ -101,7 +101,7 @@ describe('RapidLib Machine Learning', function () {
             expect(response3[1]).to.equal(3.40508769608171);
         });
         it('can be initialized', function () {
-            myRegression.initialize();
+            myRegression.reset();
             let response2 = myRegression.process([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0); //initialized models return 0
         })
@@ -154,7 +154,7 @@ describe('RapidLib Machine Learning', function () {
             expect(response3[1]).to.equal(4);
         });
         it('can be initialized', function () {
-            myClassification.initialize();
+            myClassification.reset();
             let response2 = myClassification.process([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0); //initialized models return 0
         });
