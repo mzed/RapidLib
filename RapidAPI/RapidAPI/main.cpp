@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "regression.h"
 #include "classification.h"
+#include "dtw.h"
 #include "json.h"
 
 int main(int argc, const char * argv[]) {
@@ -128,6 +129,29 @@ int main(int argc, const char * argv[]) {
     
     std::vector<double> inputVec3 = { 0., 0. };
     std::cout << "svm2: " << mySVM2.process(inputVec3)[0] << std::endl;
+    
+
+    
+    ////////////
+    
+    dtw myDtw;
+    
+    std::vector<std::vector<double>> trainingSeries;
+    trainingSeries.push_back( { 1., 5.} );
+    trainingSeries.push_back( { 2., 4.} );
+    trainingSeries.push_back( { 3., 3.} );
+    trainingSeries.push_back( { 4., 2.} );
+    trainingSeries.push_back( { 5., 1.} );
+    myDtw.setSeries(trainingSeries);
+    
+    std::vector<std::vector<double>> inputSeries;
+    inputSeries.push_back( { 1., 4. } );
+    inputSeries.push_back( { 2., 3. } );
+    inputSeries.push_back( { 3., 2. } );
+    inputSeries.push_back( { 4., 1. } );
+    
+    std::cout << "dtw: " << myDtw.process(inputSeries) << std::endl;
+    std::cout << "dtw: " << myDtw.process(trainingSeries) << std::endl;
     
     return 0;
 }
