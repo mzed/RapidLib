@@ -22,8 +22,6 @@ svmClassification::svmClassification(
     
     //Setup the default SVM parameters
     model = NULL;
-    param.weight_label = NULL;
-    param.weight = NULL;
     problem.l = 0;
     problem.x = NULL;
     problem.y = NULL;
@@ -56,7 +54,6 @@ svmClassification::svmClassification(
      
      classifierMode = STANDARD_CLASSIFIER_MODE;
      */
-    
     init(kernelType,svmType,useScaling,useNullRejection,useAutoGamma,gamma,degree,coef0,nu,C,useCrossValidation,kFoldValue);
 }
 
@@ -179,13 +176,7 @@ void svmClassification::train(const std::vector<trainingExample> &trainingSet) {
             inRanges[i] = 1.0; //Prevent divide by zero later.
         }
     }
-    
-    trainingSet2svmProblem(trainingSet);
-    model = LIBSVM::svm_train(&problem, &param);
-    trained = true;
-};
 
-void svmClassification::trainingSet2svmProblem(const std::vector<trainingExample> &trainingSet) {
     //initialize problem
     problem.l = 0;
     problem.x = NULL;
@@ -208,7 +199,10 @@ void svmClassification::trainingSet2svmProblem(const std::vector<trainingExample
         problem.x[i][numberOfFeatures].index = -1; //Assign the final node value
         problem.x[i][numberOfFeatures].value = 0;
     }
-}
+  
+    model = LIBSVM::svm_train(&problem, &param);
+    trained = true;
+};
 
 double svmClassification::process(const std::vector<double> &inputVector) {
     if (trained) {
@@ -225,7 +219,7 @@ double svmClassification::process(const std::vector<double> &inputVector) {
         inputNodes[numInputs].value = 0;
 
         predictedClass = LIBSVM::svm_predict(model, inputNodes);
-        
+        delete[] inputNodes;
         return predictedClass;
     } else {
         return 0;

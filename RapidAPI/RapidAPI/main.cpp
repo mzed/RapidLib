@@ -67,9 +67,9 @@ int main(int argc, const char * argv[]) {
     assert(myKnn.process(inputVec)[0] == myKnnFromString.process(inputVec)[0]);
     assert(myKnn.process(inputVec)[0] == myKnnFromFile.process(inputVec)[0]);
     
-    std::cout << "k " << myKnn.getK()[0] << std::endl;
+    assert(myKnn.getK()[0] == 1);
     myKnn.setK(0, 2);
-    std::cout << "k " << myKnn.getK()[0] << std::endl;
+    assert(myKnn.getK()[0] == 2);
 
     regression bigVector;
     std::vector<trainingExample> trainingSet2;
@@ -93,6 +93,41 @@ int main(int argc, const char * argv[]) {
     }
     assert (isfinite(bigVector.process(inputVec2)[0]));
     
+    
+    /////////
+
+    classification mySVM2(classification::svm);
+    
+    std::vector<trainingExample> trainingSet3;
+    trainingExample tempExample3;
+    
+    tempExample3.input = { 0., 0. };
+    tempExample3.output = { 0. };
+    trainingSet3.push_back(tempExample3);
+    
+    tempExample3.input = { 1., 0. };
+    tempExample3.output = { 1. };
+    trainingSet3.push_back(tempExample3);
+    
+    tempExample3.input = { 1., 8. };
+    tempExample3.output = { 5. };
+    trainingSet3.push_back(tempExample3);
+    
+    
+
+    /*
+    tempExample3.input = { 1., 1. };
+    tempExample3.output = { 2. };
+    trainingSet3.push_back(tempExample3);
+    */
+    
+    mySVM2.train(trainingSet3);
+
+    std::vector<double>inputVec4 = { 1., 0. };
+    std::cout << "svm: " << mySVM2.process(inputVec4)[0] << std::endl;
+    
+    std::vector<double> inputVec3 = { 0., 0. };
+    std::cout << "svm2: " << mySVM2.process(inputVec3)[0] << std::endl;
     
     return 0;
 }

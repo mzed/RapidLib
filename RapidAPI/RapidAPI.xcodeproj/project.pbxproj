@@ -14,6 +14,7 @@
 		BE325F4F1DB50BFE00F199A8 /* modelSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F431DB50BFE00F199A8 /* modelSet.cpp */; };
 		BE325F501DB50BFE00F199A8 /* neuralNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F461DB50BFE00F199A8 /* neuralNetwork.cpp */; };
 		BE325F511DB50BFE00F199A8 /* regression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F4A1DB50BFE00F199A8 /* regression.cpp */; };
+		BE3852881EE847730008E1BD /* dtw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE3852871EE847730008E1BD /* dtw.cpp */; };
 		BE553E2C1EE05ED2004EB00F /* libsvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE553E2A1EE05ED2004EB00F /* libsvm.cpp */; };
 		BE553E2F1EE05FE1004EB00F /* svmClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE553E2E1EE05FE1004EB00F /* svmClassification.cpp */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,8 @@
 		BE325F471DB50BFE00F199A8 /* neuralNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neuralNetwork.h; sourceTree = "<group>"; };
 		BE325F4A1DB50BFE00F199A8 /* regression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = regression.cpp; sourceTree = "<group>"; };
 		BE325F4B1DB50BFE00F199A8 /* regression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regression.h; sourceTree = "<group>"; };
+		BE3852861EE8415E0008E1BD /* dtw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dtw.h; sourceTree = "<group>"; };
+		BE3852871EE847730008E1BD /* dtw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dtw.cpp; sourceTree = "<group>"; };
 		BE553E2A1EE05ED2004EB00F /* libsvm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = libsvm.cpp; sourceTree = "<group>"; };
 		BE553E2B1EE05ED2004EB00F /* libsvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libsvm.h; sourceTree = "<group>"; };
 		BE553E2D1EE05F03004EB00F /* svmClassification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svmClassification.h; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 				BE325F471DB50BFE00F199A8 /* neuralNetwork.h */,
 				BE325F4A1DB50BFE00F199A8 /* regression.cpp */,
 				BE325F4B1DB50BFE00F199A8 /* regression.h */,
+				BE3852861EE8415E0008E1BD /* dtw.h */,
+				BE3852871EE847730008E1BD /* dtw.cpp */,
 			);
 			name = src;
 			path = ../../src;
@@ -207,6 +212,7 @@
 				BE325F511DB50BFE00F199A8 /* regression.cpp in Sources */,
 				BE325F501DB50BFE00F199A8 /* neuralNetwork.cpp in Sources */,
 				BE15ECE31DBA4E1000E88F7C /* jsoncpp.cpp in Sources */,
+				BE3852881EE847730008E1BD /* dtw.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

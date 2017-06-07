@@ -94,6 +94,7 @@ public:
     int getNumInputs() const;
     std::vector<int> getWhichInputs() const;
     
+    
 #ifndef EMSCRIPTEN
     void getJSONDescription(Json::Value &currentModel);
 #endif
@@ -109,8 +110,6 @@ private:
     /** Normalization parameters */
     std::vector<double> inRanges;
     std::vector<double> inBases;
-    
-    void trainingSet2svmProblem(const std::vector<trainingExample> &trainingSet);
     
     bool trained;
 };
