@@ -151,8 +151,8 @@ int main(int argc, const char * argv[]) {
     seriesTwo.push_back( { -2., 1. } );
     myDtw.addSeries(seriesTwo);
     
-    std::cout << "dtw: " << myDtw.process(seriesOne) << std::endl;
-    std::cout << "dtw: " << myDtw.process(seriesTwo) << std::endl;
+    assert(myDtw.process(seriesOne) == 0);
+    assert(myDtw.process(seriesTwo) == 1);
     
     
     seriesClassification myDtw2;
@@ -163,45 +163,37 @@ int main(int argc, const char * argv[]) {
     tsOne.push_back(tempExample);
     
     tempExample.input = { 2., 4. };
-    tempExample.output = { 0.0 };
     tsOne.push_back(tempExample);
     
     tempExample.input = { 3., 3. };
-    tempExample.output = { 0.0 };
     tsOne.push_back(tempExample);
     
     tempExample.input = { 4., 2. };
-    tempExample.output = { 0.0 };
     tsOne.push_back(tempExample);
     
     tempExample.input = { 5., 1. };
-    tempExample.output = { 0.0 };
     tsOne.push_back(tempExample);
     
     myDtw2.addTrainingSet(tsOne);
     
     std::vector<trainingExample> tsTwo;
     tempExample.input = { 1., 4. };
-    tempExample.output = { 0.0 };
     tsTwo.push_back(tempExample);
     
     tempExample.input = { 2., -3. };
-    tempExample.output = { 0.0 };
     tsTwo.push_back(tempExample);
     
     tempExample.input = { 1., 5. };
-    tempExample.output = { 0.0 };
     tsTwo.push_back(tempExample);
     
     tempExample.input = { -2., 1. };
-    tempExample.output = { 0.0 };
     tsTwo.push_back(tempExample);
     
     myDtw2.addTrainingSet(tsTwo);
 
     
     std::cout << "dtw2: " << myDtw2.processTrainingSet(tsOne) << std::endl;
-    std::cout << "dtw2: " << myDtw2.processTrainingSet(tsTwo) << std::endl;
+    assert(myDtw2.processTrainingSet(tsTwo) == 1);
     
     return 0;
 }

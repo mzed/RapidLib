@@ -53,7 +53,7 @@ var badSet = [
     }
 ];
 
-let testSeries = [
+var testSeries = [
     {
         input: [1., 5.],
         output: [0]
@@ -76,7 +76,7 @@ let testSeries = [
     }
 ];
 
-let testSeries2 = [
+var testSeries2 = [
     {
         input: [1., 4.],
         output: [0]
@@ -303,19 +303,16 @@ describe('RapidLib Machine Learning', function () {
             expect(added).to.be.true;
         });
         let myDTW2 = new rapidMix.SeriesClassification();
-        myDTW2.addSeries(testSeries);
-        myDTW2.addSeries(testSeries);
-        myDTW2.addSeries(testSeries2);
-        myDTW2.addSeries(testSeries);
+
         myDTW2.addSeries(testSeries);
         myDTW2.addSeries(testSeries2);
 
         it('should correctly identify series 1', function () {
             expect(myDTW2.process(testSeries)).to.equal(0);
         });
-       // it('should correctly identify series 2', function () {
-       //     expect(myDTW2.process(testSeries2)).to.equal(1);
-       // });
+       it('should correctly identify series 2', function () {
+            expect(myDTW2.process(testSeries2)).to.equal(1);
+        });
         it('should test clear');
     });
 });

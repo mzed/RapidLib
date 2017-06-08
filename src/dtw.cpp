@@ -16,7 +16,7 @@ dtw::~dtw() {};
 
 void dtw::setSeries(std::vector<std::vector<double>> newSeries) {
     storedSeries = newSeries;
-    numFeatures = int(storedSeries.size());
+    numFeatures = int(storedSeries[0].size());
 };
 
 inline double dtw::distanceFunction(std::vector<double> x, std::vector<double> y) {

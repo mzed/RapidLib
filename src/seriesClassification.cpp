@@ -40,7 +40,8 @@ int seriesClassification::process(std::vector<std::vector<double>> inputSeries) 
     //TODO: check vector sizes and reject bad data
     int closestSeries = 0;
     double lowestCost = dtwClassifiers[0].process(inputSeries);
-    for (int i = 1; i < dtwClassifiers.size(); ++i) {
+    for (int i = 0; i < dtwClassifiers.size(); ++i) {
+        
         double currentCost = dtwClassifiers[i].process(inputSeries);
         if (currentCost < lowestCost) {
             lowestCost = currentCost;

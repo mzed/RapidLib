@@ -1,10 +1,9 @@
 /* globals Module */
 
 "use strict";
-var currentDate = new Date();
-console.log("RapidLib: " + currentDate);
 
-console.log("RapidLib 1.6.2017")
+console.log("RapidLib 8.6.2017")
+
 /**
  * Utility function to convert js objects into something emscripten likes
  * @param {Object} trainingSet - JS Object representing a training set
