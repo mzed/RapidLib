@@ -12,7 +12,6 @@
 #include "emscripten/seriesClassificationEmbindings.h"
 #endif
 
-
 seriesClassification::seriesClassification() {};
 
 seriesClassification::~seriesClassification() {};
@@ -23,6 +22,14 @@ bool seriesClassification::addSeries(std::vector<std::vector<double>> newSeries)
     dtwClassifiers.push_back(newDTW);
     return true;
 }
+
+bool seriesClassification::addTrainingSet(const std::vector<trainingExample> &trainingSet) {
+    std::vector<std::vector<double>> newSeries;
+    for (int i = 0; i < trainingSet.size(); ++i) {
+        newSeries.push_back(trainingSet[i].input);
+    }
+    return addSeries(newSeries);
+};
 
 void seriesClassification::clear() {
     dtwClassifiers.clear();
@@ -42,4 +49,12 @@ int seriesClassification::process(std::vector<std::vector<double>> inputSeries) 
     }
     
     return closestSeries;
+};
+
+int seriesClassification::processTrainingSet(const std::vector<trainingExample> &trainingSet) {
+    std::vector<std::vector<double>> newSeries;
+    for (int i = 0; i < trainingSet.size(); ++i) {
+        newSeries.push_back(trainingSet[i].input);
+    }
+    return process(newSeries);
 };

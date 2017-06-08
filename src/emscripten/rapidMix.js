@@ -308,6 +308,31 @@ Module.ModelSet.prototype.process = function (input) {
     }
     return output;
 };
+////////////////////////////////////////////////
+
+/**
+ * Creates a series classification object using the constructor from emscripten
+ * @constructor
+ * @property {function} Module.SeriesClassificationCpp - constructor from emscripten
+ */
+
+
+Module.SeriesClassification = function () {
+    this.seriesClassification = new Module.SeriesClassificationCpp(); //TODO implement optional arguments
+};
+
+Module.SeriesClassification.prototype = {
+    addSeries: function (newSeries) {
+        return this.seriesClassification.addTrainingSet(Module.prepTrainingSet(newSeries));
+    },
+    clear: function () {
+        this.seriesClassification.clear();
+    },
+    process: function (inputSeries) {
+        return this.seriesClassification.processTrainingSet(Module.prepTrainingSet(inputSeries));
+    }
+};
+
 
 /////////////////////////////////////////////////
 
@@ -319,9 +344,9 @@ Module.ModelSet.prototype.process = function (input) {
 
 Module.StreamProcess = function (windowSize) {
     if (windowSize) {
-	this.rapidStream = new Module.RapidStreamCpp(windowSize); 
+        this.rapidStream = new Module.RapidStreamCpp(windowSize);
     } else {
-	this.rapidStream = new Module.RapidStreamCpp();
+        this.rapidStream = new Module.RapidStreamCpp();
     }
 };
 
@@ -329,37 +354,37 @@ Module.StreamProcess = function (windowSize) {
  * TODO: Add documentation -mz
  */
 Module.StreamProcess.prototype = {
-    push: function(input) {
-	    this.rapidStream.pushToWindow(parseFloat(input));
+    push: function (input) {
+        this.rapidStream.pushToWindow(parseFloat(input));
     },
-    clear: function() {
+    clear: function () {
         this.rapidStream.clear();
     },
-    velocity: function() {
+    velocity: function () {
         return this.rapidStream.velocity();
     },
-    acceleration: function() {
+    acceleration: function () {
         return this.rapidStream.acceleration();
     },
-    sum: function() {
+    sum: function () {
         return this.rapidStream.sum();
     },
-    mean: function() {
+    mean: function () {
         return this.rapidStream.mean();
     },
-    standardDeviation: function() {
+    standardDeviation: function () {
         return this.rapidStream.standardDeviation();
     },
-    minVelocity: function() {
+    minVelocity: function () {
         return this.rapidStream.minVelocity();
     },
-    maxVelocity: function() {
+    maxVelocity: function () {
         return this.rapidStream.maxVelocity();
     },
-    minAcceleration: function() {
+    minAcceleration: function () {
         return this.rapidStream.minAcceleration();
     },
-    maxAcceleration: function() {
+    maxAcceleration: function () {
         return this.rapidStream.maxAcceleration();
     }
 

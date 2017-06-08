@@ -15,7 +15,7 @@ var testSet = [
     },
     {
         input: [1, 0],
-        output: [1 ]
+        output: [1]
     },
     {
         input: [1, 1],
@@ -51,7 +51,49 @@ var badSet = [
         input: [6],
         output: [7]
     }
-]
+];
+
+let testSeries = [
+    {
+        input: [1., 5.],
+        output: [0]
+    },
+    {
+        input: [2., 4.],
+        output: [0]
+    },
+    {
+        input: [3., 3.],
+        output: [0]
+    },
+    {
+        input: [4., 2.],
+        output: [0]
+    },
+    {
+        input: [1., 5.],
+        output: []
+    }
+];
+
+let testSeries2 = [
+    {
+        input: [1., 4.],
+        output: [0]
+    },
+    {
+        input: [2., -3.],
+        output: [0]
+    },
+    {
+        input: [1., 5.],
+        output: [0]
+    },
+    {
+        input: [-2., 1.],
+        output: [0]
+    },
+];
 
 describe('RapidLib Machine Learning', function () {
     describe('Regression', function () {
@@ -175,7 +217,7 @@ describe('RapidLib Machine Learning', function () {
             expect(response3[0]).to.equal(4);
         });
     });
-
+/*
     describe('SVM Classification', function () {
         let mySVM = new rapidMix.Classification(rapidMix.ClassificationTypes.SVM);
         it('should create a new Classification object', function () {
@@ -195,7 +237,7 @@ describe('RapidLib Machine Learning', function () {
             expect(trained).to.be.true;
         });
 
-        it('process() should return expected results', function () {
+        it('process() should return expected results' , function () {
             let response1 = mySVM.process([0, 0]);
             expect(response1[0]).to.be.equal(0);
             let response2 = mySVM.process([0.8789, 0.1574]);
@@ -208,30 +250,31 @@ describe('RapidLib Machine Learning', function () {
             expect(response1[0]).to.equal(0);
             let response2 = mySVM.process([1]);
             expect(response2[0]).to.equal(0);
-        });/*
-        it('should work with multiple outputs', function () {
-            let mySVM2 = new rapidMix.Classification(rapidMix.ClassificationTypes.SVM);
-            expect(mySVM2).to.be.an.instanceof(rapidMix.Classification);
-            expect(mySVM2).to.have.property('modelSet');
-            let trained = mySVM2.train(testSet2);
-            expect(trained).to.be.true;
-            let response1 = mySVM2.process([0, 0]);
-            expect(response1[0]).to.equal(0);
-            expect(response1[1]).to.equal(9);
-            let response2 = mySVM2.process([0.8789, 0.1574]);
-            expect(response2[0]).to.equal(1);
-            expect(response2[1]).to.equal(2);
-            let response3 = mySVM2.process([0.9, 0.7]);
-            expect(response3[0]).to.equal(2);
-            expect(response3[1]).to.equal(4);
-        });*/
+        });
+
+         it('should work with multiple outputs', function () {
+         let mySVM2 = new rapidMix.Classification(rapidMix.ClassificationTypes.SVM);
+         expect(mySVM2).to.be.an.instanceof(rapidMix.Classification);
+         expect(mySVM2).to.have.property('modelSet');
+         let trained = mySVM2.train(testSet2);
+         expect(trained).to.be.true;
+         let response1 = mySVM2.process([0, 0]);
+         expect(response1[0]).to.equal(0);
+         expect(response1[1]).to.equal(9);
+         let response2 = mySVM2.process([0.8789, 0.1574]);
+         expect(response2[0]).to.equal(1);
+         expect(response2[1]).to.equal(2);
+         let response3 = mySVM2.process([0.9, 0.7]);
+         expect(response3[0]).to.equal(2);
+         expect(response3[1]).to.equal(4);
+         });
         it('can be initialized', function () {
             mySVM.reset();
             let response2 = mySVM.process([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0); //initialized models return 0
         });
     });
-
+*/
 
     describe('ModelSet', function () {
         let myModelSet = new rapidMix.ModelSet();
@@ -247,6 +290,33 @@ describe('RapidLib Machine Learning', function () {
             //myModelSet.loadJSON('modelSetDescription.json');
         });
         it('should process input');
+    });
+
+    describe('seriesClassification', function () {
+        let myDTW = new rapidMix.SeriesClassification();
+        it('should create a new seriesClassification object', function () {
+            expect(myDTW).to.be.an.instanceof(rapidMix.SeriesClassification);
+        });
+
+        it('should allow me to add a series', function () {
+            let added = myDTW.addSeries(testSeries);
+            expect(added).to.be.true;
+        });
+        let myDTW2 = new rapidMix.SeriesClassification();
+        myDTW2.addSeries(testSeries);
+        myDTW2.addSeries(testSeries);
+        myDTW2.addSeries(testSeries2);
+        myDTW2.addSeries(testSeries);
+        myDTW2.addSeries(testSeries);
+        myDTW2.addSeries(testSeries2);
+
+        it('should correctly identify series 1', function () {
+            expect(myDTW2.process(testSeries)).to.equal(0);
+        });
+       // it('should correctly identify series 2', function () {
+       //     expect(myDTW2.process(testSeries2)).to.equal(1);
+       // });
+        it('should test clear');
     });
 });
 
@@ -269,9 +339,9 @@ describe('RapidLib Signal Processing', function () {
     accelStream.push(0);
     accelStream.push(0);
     accelStream.push(11);
-    it('acceleration should be 10', function () {
-        //expect(accelStream.acceleration()).to.equal(10);
-    });
+    it('acceleration should be 10'/*, function () {
+        expect(accelStream.acceleration()).to.equal(10);
+    }*/);
     describe('when streaming to statStream', function () {
         let statStream = new rapidMix.StreamProcess(5);
         statStream.push(1.1);
