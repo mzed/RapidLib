@@ -16,7 +16,7 @@ seriesClassification::seriesClassification() {};
 
 seriesClassification::~seriesClassification() {};
 
-bool seriesClassification::addSeries(std::vector<std::vector<double>> newSeries) {
+bool seriesClassification::addSeries(const std::vector<std::vector<double>> &newSeries) {
     dtw newDTW;
     newDTW.setSeries(newSeries);
     dtwClassifiers.push_back(newDTW);
@@ -31,12 +31,33 @@ bool seriesClassification::addTrainingSet(const std::vector<trainingExample> &tr
     return addSeries(newSeries);
 };
 
+bool seriesClassification::train(const std::vector<std::vector<std::vector<double> > > &newSeriesSet) {
+    bool trained = true;
+    reset();
+    for (int i = 0; i < newSeriesSet.size(); ++i) {
+        if (!addSeries(newSeriesSet[i])) {
+            trained = false;
+        };
+    }
+    return trained;
+}
+
+bool seriesClassification::trainTrainingSet(const std::vector<std::vector<trainingExample> > &seriesSet) {
+    bool trained = true;
+    reset();
+    for (int i = 0; i < seriesSet.size(); ++i) {
+        if (!addTrainingSet(seriesSet[i])) {
+            trained = false;
+        };
+    }
+    return trained;
+}
+
 void seriesClassification::reset() {
     dtwClassifiers.clear();
 }
 
-
-int seriesClassification::run(std::vector<std::vector<double>> inputSeries) {
+int seriesClassification::run(const std::vector<std::vector<double>> &inputSeries) {
     //TODO: check vector sizes and reject bad data
     int closestSeries = 0;
     double lowestCost = dtwClassifiers[0].run(inputSeries);

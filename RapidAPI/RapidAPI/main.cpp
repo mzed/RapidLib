@@ -135,6 +135,7 @@ int main(int argc, const char * argv[]) {
     ////////////
     
     seriesClassification myDtw;
+    seriesClassification myDtwTrain;
     
     std::vector<std::vector<double>> seriesOne;
     seriesOne.push_back( { 1., 5.} );
@@ -153,6 +154,14 @@ int main(int argc, const char * argv[]) {
     
     assert(myDtw.run(seriesOne) == 0);
     assert(myDtw.run(seriesTwo) == 1);
+    
+    std::vector<std::vector<std::vector<double>>> seriesSet;
+    seriesSet.push_back(seriesOne);
+    seriesSet.push_back(seriesTwo);
+    myDtwTrain.train(seriesSet);
+    
+    assert(myDtwTrain.run(seriesOne) == 0);
+    assert(myDtwTrain.run(seriesTwo) == 1);
     
     
     seriesClassification myDtw2;
@@ -192,8 +201,17 @@ int main(int argc, const char * argv[]) {
     myDtw2.addTrainingSet(tsTwo);
 
     
-    std::cout << "dtw2: " << myDtw2.runTrainingSet(tsOne) << std::endl;
+    assert(myDtw2.runTrainingSet(tsOne) == 0);
     assert(myDtw2.runTrainingSet(tsTwo) == 1);
+    
+    seriesClassification myDtw2T;
+    seriesSet.clear();
+    seriesSet.push_back(seriesOne);
+    seriesSet.push_back(seriesTwo);
+    myDtw2T.train(seriesSet);
+    
+    assert(myDtw2T.runTrainingSet(tsOne) == 0);
+    assert(myDtw2T.runTrainingSet(tsTwo) == 1);
     
     return 0;
 }
