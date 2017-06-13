@@ -56,19 +56,19 @@ var badSet = [
 var testSeries = [
     {
         input: [1., 5.],
-        output: [0]
+        output: []
     },
     {
         input: [2., 4.],
-        output: [0]
+        output: []
     },
     {
         input: [3., 3.],
-        output: [0]
+        output: []
     },
     {
         input: [4., 2.],
-        output: [0]
+        output: []
     },
     {
         input: [1., 5.],
@@ -78,21 +78,17 @@ var testSeries = [
 
 var testSeries2 = [
     {
-        input: [1., 4.],
-        output: [0]
+        input: [1., 4.]
     },
     {
-        input: [2., -3.],
-        output: [0]
+        input: [2., -3.]
     },
     {
-        input: [1., 5.],
-        output: [0]
+        input: [1., 5.]
     },
     {
-        input: [-2., 1.],
-        output: [0]
-    },
+        input: [-2., 1.]
+    }
 ];
 
 describe('RapidLib Machine Learning', function () {
@@ -303,15 +299,23 @@ describe('RapidLib Machine Learning', function () {
             expect(added).to.be.true;
         });
         let myDTW2 = new rapidMix.SeriesClassification();
+        let myDTW3 = new rapidMix.SeriesClassification();
 
         myDTW2.addSeries(testSeries);
         myDTW2.addSeries(testSeries2);
 
+        let seriesSet = [testSeries, testSeries2];
+        myDTW3.train(seriesSet);
+
+        it('should let me train on a series set', function () {
+            expect(myDTW3.run(testSeries2)).to.equal(1);
+        });
+
         it('should correctly identify series 1', function () {
-            expect(myDTW2.process(testSeries)).to.equal(0);
+            expect(myDTW2.run(testSeries)).to.equal(0);
         });
        it('should correctly identify series 2', function () {
-            expect(myDTW2.process(testSeries2)).to.equal(1);
+            expect(myDTW2.run(testSeries2)).to.equal(1);
         });
         it('should test clear');
     });
@@ -327,6 +331,8 @@ describe('RapidLib Signal Processing', function () {
 
     myStream.clear();
     myStream.push(0);
+
+
     myStream.push(1);
     it('velocity should be 1', function () {
         expect(myStream.velocity()).to.equal(1);

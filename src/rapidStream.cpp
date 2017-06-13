@@ -7,6 +7,7 @@
 #include "rapidStream.h"
 #include <iostream>
 #include <cmath>
+#include <limits>
 
 #ifdef EMSCRIPTEN
 #include "emscripten/rapidStreamEmbindings.h"

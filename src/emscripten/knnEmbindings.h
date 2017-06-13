@@ -25,7 +25,7 @@ EMSCRIPTEN_BINDINGS(knn_module) {
   class_<knnClassification>("KnnClassification")
     .constructor<int, std::vector<int>, std::vector<trainingExample>, int>()
     .function("addNeighbour", &knnClassification::addNeighbour)
-    .function("process", &knnClassification::process)
+    .function("run", &knnClassification::run)
     ;
 };
 

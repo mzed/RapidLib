@@ -2,7 +2,7 @@
 
 "use strict";
 
-console.log("RapidLib 8.6.2017")
+console.log("RapidLib 13.6.2017")
 
 /**
  * Utility function to convert js objects into something emscripten likes
@@ -28,6 +28,14 @@ Module.prepTrainingSet = function (trainingSet) {
     return rmTrainingSet;
 };
 
+Module.checkOutput = function (jsInput) {
+    for (var i = 0; i < jsInput.length; ++i) {
+        if (typeof jsInput[i].output === "undefined") {
+            jsInput[i].output = [];
+        }
+    }
+    return jsInput;
+}
 ////////////////////////////////////////////////
 
 /**
@@ -61,6 +69,31 @@ Module.Regression.prototype = {
      * @param {Array} input - An array of features to be processed. Non-arrays are converted.
      * @returns {Array} output - One number for each model in the set
      */
+    run: function (input) {
+        //I'll assume that the args should have been an array
+        if (arguments.length > 1) {
+            input = Array.from(arguments);
+        }
+        //change input to vectors of doubles
+        var inputVector = new Module.VectorDouble();
+        for (var i = 0; i < input.length; ++i) {
+            inputVector.push_back(input[i]);
+        }
+        //get the output
+        var outputVector = new Module.VectorDouble();
+        outputVector = this.modelSet.run(inputVector);
+        //change back to javascript array
+        var output = [];
+        for (var i = 0; i < outputVector.size(); ++i) {
+            output.push(outputVector.get(i));
+        }
+        return output;
+    },
+    /**
+     * Deprecated!!
+     * @param input
+     * @returns {Array}
+     */
     process: function (input) {
         //I'll assume that the args should have been an array
         if (arguments.length > 1) {
@@ -73,7 +106,7 @@ Module.Regression.prototype = {
         }
         //get the output
         var outputVector = new Module.VectorDouble();
-        outputVector = this.modelSet.process(inputVector);
+        outputVector = this.modelSet.run(inputVector);
         //change back to javascript array
         var output = [];
         for (var i = 0; i < outputVector.size(); ++i) {
@@ -82,6 +115,7 @@ Module.Regression.prototype = {
         return output;
     }
 };
+
 
 /////////////////////////////////////////////////
 
@@ -141,7 +175,7 @@ Module.Classification.prototype = {
      * @param {Array} input - An array of features to be processed. Non-arrays are converted.
      * @returns {Array} output - One number for each model in the set
      */
-    process: function (input) {
+    run: function (input) {
         //I'll assume that the args should have been an array
         if (arguments.length > 1) {
             input = Array.from(arguments);
@@ -153,14 +187,38 @@ Module.Classification.prototype = {
         }
         //get the output
         var outputVector = new Module.VectorDouble();
-        outputVector = this.modelSet.process(inputVector);
+        outputVector = this.modelSet.run(inputVector);
         //change back to javascript array
         var output = [];
         for (var i = 0; i < outputVector.size(); ++i) {
             output.push(outputVector.get(i));
         }
         return output;
-    }
+    },
+    /**
+     * Deprecated!
+     * @param input
+     */
+    process: function(input) {
+        //I'll assume that the args should have been an array
+        if (arguments.length > 1) {
+            input = Array.from(arguments);
+        }
+        //change input to vectors of doubles
+        var inputVector = new Module.VectorDouble();
+        for (var i = 0; i < input.length; ++i) {
+            inputVector.push_back(input[i]);
+        }
+        //get the output
+        var outputVector = new Module.VectorDouble();
+        outputVector = this.modelSet.run(inputVector);
+        //change back to javascript array
+        var output = [];
+        for (var i = 0; i < outputVector.size(); ++i) {
+            output.push(outputVector.get(i));
+        }
+        return output;
+    },
 };
 
 //////////////////////////////////////////////////
@@ -296,17 +354,21 @@ Module.ModelSet.prototype.addkNNModel = function (model) {
  * @param {Array} input - An array of features to be processed.
  * @returns {Array} output - One number for each model in the set
  */
-Module.ModelSet.prototype.process = function (input) {
+Module.ModelSet.prototype.run = function (input) {
     var modelSetInput = new Module.VectorDouble();
     for (var i = 0; i < input.length; ++i) {
         modelSetInput.push_back(input[i]);
     }
     var output = [];
     for (var i = 0; i < this.myModelSet.length; ++i) {
-        output.push(this.myModelSet[i].process(modelSetInput));
+        output.push(this.myModelSet[i].run(modelSetInput));
     }
     return output;
 };
+
+Module.ModelSet.prototype.process = function (input) {
+    return run(input);
+}
 ////////////////////////////////////////////////
 
 /**
@@ -322,13 +384,24 @@ Module.SeriesClassification = function () {
 
 Module.SeriesClassification.prototype = {
     addSeries: function (newSeries) {
+        newSeries = Module.checkOutput(newSeries);
         return this.seriesClassification.addTrainingSet(Module.prepTrainingSet(newSeries));
+    },
+    train: function (newSeriesSet) {
+        for (var i = 0; i < newSeriesSet.length; ++i) {
+            this.seriesClassification.addTrainingSet(Module.prepTrainingSet(newSeriesSet[i]));
+        }
     },
     clear: function () {
         this.seriesClassification.clear();
     },
+    run: function (inputSeries) {
+        inputSeries = Module.checkOutput(inputSeries);
+        return this.seriesClassification.runTrainingSet(Module.prepTrainingSet(inputSeries));
+    },
     process: function (inputSeries) {
-        return this.seriesClassification.processTrainingSet(Module.prepTrainingSet(inputSeries));
+        inputSeries = Module.checkOutput(inputSeries);
+        return this.seriesClassification.runTrainingSet(Module.prepTrainingSet(inputSeries));
     }
 };
 

@@ -11,7 +11,7 @@ EMSCRIPTEN_BINDINGS(modelSet_module) {
     .constructor()
     .function("train", &modelSet::train)
     .function("reset", &modelSet::reset)
-    .function("process", &modelSet::process)
+    .function("run", &modelSet::run)
     ;
   
 };
