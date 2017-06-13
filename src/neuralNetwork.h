@@ -51,7 +51,9 @@ public:
      * @param A standard vector of doubles that feed-forward regression will run on.
      * @return A single double, which is the result of the feed-forward operation
      */
-    double process(const std::vector<double> &inputVector);
+    double run(const std::vector<double> &inputVector);
+    
+    void reset();
     
     int getNumInputs() const;
     std::vector<int> getWhichInputs() const;

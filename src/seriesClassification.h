@@ -22,10 +22,10 @@ public:
     bool addSeries(std::vector<std::vector<double>> newSeries);
     bool addTrainingSet(const std::vector<trainingExample> &trainingSet); //hacky solution for JavaScipt. -mz
     
-    void clear();
+    void reset();
     
-    int process(std::vector<std::vector<double>> inputSeries);
-    int processTrainingSet(const std::vector<trainingExample> &trainingSet);
+    int run(std::vector<std::vector<double>> inputSeries);
+    int runTrainingSet(const std::vector<trainingExample> &trainingSet);
     
 private:
     std::vector<dtw> dtwClassifiers;

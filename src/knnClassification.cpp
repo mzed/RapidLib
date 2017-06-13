@@ -22,6 +22,10 @@ knnClassification::~knnClassification() {
     delete[] nearestNeighbours;
 }
 
+void knnClassification::reset() {
+    //TODO: implement this
+}
+
 int knnClassification::getNumInputs() const {
     return numInputs;
 }
@@ -59,7 +63,7 @@ void knnClassification::train(const std::vector<trainingExample> &trainingSet) {
     updateK();
 };
 
-double knnClassification::process(const std::vector<double> &inputVector) {
+double knnClassification::run(const std::vector<double> &inputVector) {
     for (int i = 0; i < currentK; ++i) {
         nearestNeighbours[i] = {0, 0.};
     };

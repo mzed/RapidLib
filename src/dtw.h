@@ -18,7 +18,8 @@ public:
     ~dtw();
     
     void setSeries(std::vector<std::vector<double>> newSeries);
-    double process(std::vector<std::vector<double>> inputSeries);
+    double run(std::vector<std::vector<double>> inputSeries);
+    void reset();
     
 private:
     std::vector<std::vector<double>> storedSeries;

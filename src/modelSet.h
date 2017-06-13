@@ -22,7 +22,7 @@ public:
     /** reset to pre-training state */
     bool reset();
     /** run regression or classification for each model */
-    std::vector<double> process(const std::vector<double> &inputVector);
+    std::vector<double> run(const std::vector<double> &inputVector);
     
 protected:
     std::vector<baseModel*> myModelSet;

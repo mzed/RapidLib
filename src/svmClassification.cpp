@@ -92,6 +92,10 @@ svmClassification::~svmClassification() {
     
 }
 
+void svmClassification::reset() {
+    //TODO: implement me
+}
+
 bool svmClassification::init(
                              KernelType kernelType,
                              SVMType svmType,
@@ -204,7 +208,7 @@ void svmClassification::train(const std::vector<trainingExample> &trainingSet) {
     trained = true;
 };
 
-double svmClassification::process(const std::vector<double> &inputVector) {
+double svmClassification::run(const std::vector<double> &inputVector) {
     if (trained) {
         double predictedClass = 0.;
         

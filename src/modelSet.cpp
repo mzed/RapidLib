@@ -59,11 +59,11 @@ bool modelSet::reset() {
     return true;
 }
 
-std::vector<double> modelSet::process(const std::vector<double> &inputVector) {
+std::vector<double> modelSet::run(const std::vector<double> &inputVector) {
     std::vector<double> returnVector;
     if (created && inputVector.size() == numInputs) {
         for (auto model : myModelSet) {
-            returnVector.push_back(model->process(inputVector));
+            returnVector.push_back(model->run(inputVector));
         }
     } else {
         returnVector.push_back(0);

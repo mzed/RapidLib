@@ -37,13 +37,13 @@ int main(int argc, const char * argv[]) {
     myNNfromFile.readJSON(filepath);
     std::vector<double> inputVec = { 2.0, 44.2 };
     
-    std::cout << "before: " << myNN.process(inputVec)[0] << std::endl;
-    std::cout << "from string: " << myNNfromString.process(inputVec)[0] << std::endl;
+    std::cout << "before: " << myNN.run(inputVec)[0] << std::endl;
+    std::cout << "from string: " << myNNfromString.run(inputVec)[0] << std::endl;
  //   std::cout << myNNfromString.getJSON() << std::endl;
-    std::cout << "from file: " << myNNfromFile.process(inputVec)[0] << std::endl;
+    std::cout << "from file: " << myNNfromFile.run(inputVec)[0] << std::endl;
     
-    assert(myNN.process(inputVec)[0] == myNNfromString.process(inputVec)[0]);
-    assert(myNN.process(inputVec)[0] == myNNfromFile.process(inputVec)[0]);
+    assert(myNN.run(inputVec)[0] == myNNfromString.run(inputVec)[0]);
+    assert(myNN.run(inputVec)[0] == myNNfromFile.run(inputVec)[0]);
     
     ///////////////////////////
     
@@ -60,13 +60,13 @@ int main(int argc, const char * argv[]) {
     classification myKnnFromFile;
     myKnnFromFile.readJSON(filepath2);
     
-    std::cout << "knn before: " << myKnn.process(inputVec)[0] << std::endl;
-    std::cout << "svm: " << mySVM.process(inputVec)[0] << std::endl;
-    std::cout << "knn from string: " << myKnnFromString.process(inputVec)[0] << std::endl;
-    std::cout << "knn from file: " << myKnnFromFile.process(inputVec)[0] << std::endl;
+    std::cout << "knn before: " << myKnn.run(inputVec)[0] << std::endl;
+    std::cout << "svm: " << mySVM.run(inputVec)[0] << std::endl;
+    std::cout << "knn from string: " << myKnnFromString.run(inputVec)[0] << std::endl;
+    std::cout << "knn from file: " << myKnnFromFile.run(inputVec)[0] << std::endl;
     
-    assert(myKnn.process(inputVec)[0] == myKnnFromString.process(inputVec)[0]);
-    assert(myKnn.process(inputVec)[0] == myKnnFromFile.process(inputVec)[0]);
+    assert(myKnn.run(inputVec)[0] == myKnnFromString.run(inputVec)[0]);
+    assert(myKnn.run(inputVec)[0] == myKnnFromFile.run(inputVec)[0]);
     
     assert(myKnn.getK()[0] == 1);
     myKnn.setK(0, 2);
@@ -92,7 +92,7 @@ int main(int argc, const char * argv[]) {
     for (int i=0; i < vecLength; ++i) {
         inputVec2.push_back(distribution(generator));
     }
-    assert (isfinite(bigVector.process(inputVec2)[0]));
+    assert (isfinite(bigVector.run(inputVec2)[0]));
     
     
     /////////
@@ -125,10 +125,10 @@ int main(int argc, const char * argv[]) {
     mySVM2.train(trainingSet3);
 
     std::vector<double>inputVec4 = { 1., 0. };
-    std::cout << "svm: " << mySVM2.process(inputVec4)[0] << std::endl;
+    std::cout << "svm: " << mySVM2.run(inputVec4)[0] << std::endl;
     
     std::vector<double> inputVec3 = { 0., 0. };
-    std::cout << "svm2: " << mySVM2.process(inputVec3)[0] << std::endl;
+    std::cout << "svm2: " << mySVM2.run(inputVec3)[0] << std::endl;
     
 
     
@@ -151,8 +151,8 @@ int main(int argc, const char * argv[]) {
     seriesTwo.push_back( { -2., 1. } );
     myDtw.addSeries(seriesTwo);
     
-    assert(myDtw.process(seriesOne) == 0);
-    assert(myDtw.process(seriesTwo) == 1);
+    assert(myDtw.run(seriesOne) == 0);
+    assert(myDtw.run(seriesTwo) == 1);
     
     
     seriesClassification myDtw2;
@@ -192,8 +192,8 @@ int main(int argc, const char * argv[]) {
     myDtw2.addTrainingSet(tsTwo);
 
     
-    std::cout << "dtw2: " << myDtw2.processTrainingSet(tsOne) << std::endl;
-    assert(myDtw2.processTrainingSet(tsTwo) == 1);
+    std::cout << "dtw2: " << myDtw2.runTrainingSet(tsOne) << std::endl;
+    assert(myDtw2.runTrainingSet(tsTwo) == 1);
     
     return 0;
 }

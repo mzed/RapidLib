@@ -62,7 +62,9 @@ public:
      * @param A standard vector of doubles to be evaluated.
      * @return A single double: the nearest class as determined by k-nearest neighbor.
      */
-    double process(const std::vector<double> &inputVector);
+    double run(const std::vector<double> &inputVector);
+    
+    void reset();
     
     /**
      This initializes the SVM settings and parameters.  Any previous model, settings, or problems will be cleared.

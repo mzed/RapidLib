@@ -166,6 +166,10 @@ outputErrorGradient(0)
 neuralNetwork::~neuralNetwork() {
 }
 
+void neuralNetwork::reset() {
+    //TODO: implement this
+}
+
 inline double neuralNetwork::getHiddenErrorGradient(int layer, int neuron) {
     double wGradient = wHiddenOutput[neuron] * outputErrorGradient;
     return hiddenNeurons[layer][neuron] * (1 - hiddenNeurons[layer][neuron]) * wGradient;
@@ -276,7 +280,7 @@ void neuralNetwork::getJSONDescription(Json::Value &jsonModelDescription) {
 }
 #endif
 
-double neuralNetwork::process(const std::vector<double> &inputVector) {
+double neuralNetwork::run(const std::vector<double> &inputVector) {
     std::vector<double> pattern;
     for (int h = 0; h < numInputs; h++) {
         pattern.push_back(inputVector[whichInputs[h]]);
@@ -359,7 +363,7 @@ void neuralNetwork::train(const std::vector<trainingExample> &trainingSet) {
         for (int epoch = 0; epoch < numEpochs; ++epoch) {
             //run through every training instance
             for (int ti = 0; ti < (int) trainingSet.size(); ++ti) {
-                process(trainingSet[ti].input);
+                run(trainingSet[ti].input);
                 backpropagate(trainingSet[ti].output[0]);
             }
         }
