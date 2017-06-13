@@ -2,7 +2,7 @@
 
 "use strict";
 
-console.log("RapidLib 13.6.2017")
+console.log("RapidLib 13.6.2017 12:41")
 
 /**
  * Utility function to convert js objects into something emscripten likes
@@ -389,11 +389,12 @@ Module.SeriesClassification.prototype = {
     },
     train: function (newSeriesSet) {
         for (var i = 0; i < newSeriesSet.length; ++i) {
+            newSeriesSet[i] = Module.checkOutput(newSeriesSet[i]);
             this.seriesClassification.addTrainingSet(Module.prepTrainingSet(newSeriesSet[i]));
         }
     },
-    clear: function () {
-        this.seriesClassification.clear();
+    reset: function () {
+        this.seriesClassification.reset();
     },
     run: function (inputSeries) {
         inputSeries = Module.checkOutput(inputSeries);
