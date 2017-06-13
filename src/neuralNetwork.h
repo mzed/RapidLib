@@ -82,7 +82,7 @@ private:
     
     /** Neurons: state is updated on each process(). */
     std::vector<double> inputNeurons;
-    std::vector<std::vector<double>> hiddenNeurons;
+    std::vector<std::vector<double> > hiddenNeurons;
     double outputNeuron;
     
     /** Weights between layers and nodes are kept here. */
