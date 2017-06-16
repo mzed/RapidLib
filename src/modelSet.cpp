@@ -1,6 +1,7 @@
 #include <fstream>
 #include <vector>
 #include <cmath>
+#include <algorithm>
 #include "modelSet.h"
 
 #ifndef EMSCRIPTEN
