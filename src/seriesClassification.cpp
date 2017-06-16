@@ -60,16 +60,17 @@ void seriesClassification::reset() {
 int seriesClassification::run(const std::vector<std::vector<double>> &inputSeries) {
     //TODO: check vector sizes and reject bad data
     int closestSeries = 0;
+    allCosts.clear();
     double lowestCost = dtwClassifiers[0].run(inputSeries);
-    for (int i = 0; i < dtwClassifiers.size(); ++i) {
-        
+    allCosts.push_back(lowestCost);
+    for (int i = 1; i < dtwClassifiers.size(); ++i) {
         double currentCost = dtwClassifiers[i].run(inputSeries);
+        allCosts.push_back(currentCost);
         if (currentCost < lowestCost) {
             lowestCost = currentCost;
             closestSeries = i;
         }
     }
-    
     return closestSeries;
 };
 
@@ -80,3 +81,12 @@ int seriesClassification::runTrainingSet(const std::vector<trainingExample> &tra
     }
     return run(newSeries);
 };
+
+std::vector<double> seriesClassification::getCosts() {
+    return allCosts;
+}
+
+std::vector<double> seriesClassification::getCosts(const std::vector<trainingExample> &trainingSet) {
+    runTrainingSet(trainingSet);
+    return allCosts;
+}

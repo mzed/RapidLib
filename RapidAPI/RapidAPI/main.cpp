@@ -153,6 +153,9 @@ int main(int argc, const char * argv[]) {
     myDtw.addSeries(seriesTwo);
     
     assert(myDtw.run(seriesOne) == 0);
+    assert(myDtw.getCosts()[0] == 0);
+    assert(myDtw.getCosts()[1] == 19.325403217417502);
+    
     assert(myDtw.run(seriesTwo) == 1);
     
     std::vector<std::vector<std::vector<double>>> seriesSet;
@@ -211,6 +214,9 @@ int main(int argc, const char * argv[]) {
     
     assert(myDtw2T.runTrainingSet(tsOne) == 0);
     assert(myDtw2T.runTrainingSet(tsTwo) == 1);
+    assert(myDtw.getCosts()[0] == 19.325403217417502);
+    assert(myDtw2T.getCosts(tsOne)[0] == 0);
     
+   
     return 0;
 }

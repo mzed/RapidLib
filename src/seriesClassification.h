@@ -30,8 +30,12 @@ public:
     int run(const std::vector<std::vector<double>> &inputSeries);
     int runTrainingSet(const std::vector<trainingExample> &inputSet);
     
+    std::vector<double> getCosts();
+    std::vector<double> getCosts(const std::vector<trainingExample> &inputSet);
+    
 private:
     std::vector<dtw> dtwClassifiers;
+    std::vector<double> allCosts;
     
 };
 
