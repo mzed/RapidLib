@@ -13,6 +13,7 @@ EMSCRIPTEN_BINDINGS(seriesClassification_module) {
     .function("train", &seriesClassification::train)
     .function("reset", &seriesClassification::reset)
     .function("runTrainingSet", &seriesClassification::runTrainingSet)
+    .function("getCosts", select_overload<std::vector<double>()>(&seriesClassification::getCosts))
     ;
 
 };

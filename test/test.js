@@ -314,8 +314,14 @@ describe('RapidLib Machine Learning', function () {
         it('should correctly identify series 1', function () {
             expect(myDTW2.run(testSeries)).to.equal(0);
         });
-       it('should correctly identify series 2', function () {
+        it('should correctly identify series 2', function () {
             expect(myDTW2.run(testSeries2)).to.equal(1);
+        });
+        it('should report costs', function () {
+            expect(myDTW2.getCosts()[0]).to.equal(17.325403217417502);
+        });
+        it('should report new costs', function () {
+            expect(myDTW2.getCosts(testSeries)[0]).to.equal(0);
         });
         it('should test clear');
     });

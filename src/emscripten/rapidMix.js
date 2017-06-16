@@ -403,6 +403,18 @@ Module.SeriesClassification.prototype = {
     process: function (inputSeries) {
         inputSeries = Module.checkOutput(inputSeries);
         return this.seriesClassification.runTrainingSet(Module.prepTrainingSet(inputSeries));
+    },
+    getCosts: function (inputSeries) {
+        if (inputSeries) {
+            inputSeries = Module.checkOutput(inputSeries);
+            this.seriesClassification.runTrainingSet(Module.prepTrainingSet(inputSeries));
+        }
+        var returnArray = [];
+        var VecDouble = this.seriesClassification.getCosts();
+        for (var i = 0; i < VecDouble.size(); ++i) {
+            returnArray[i] = VecDouble.get(i);
+        }
+        return returnArray;
     }
 };
 
