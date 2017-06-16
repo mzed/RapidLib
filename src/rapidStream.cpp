@@ -103,6 +103,15 @@ double rapidStream::standardDeviation() {
     return sqrt(standardDeviation / windowSize);
 }
 
+double rapidStream::rms() {
+    double rms;
+    for (int i = 0; i < windowSize; ++i) {
+        rms += (circularWindow[i] * circularWindow[i]);
+    }
+    rms = rms/windowSize;
+    return sqrt(rms);
+}
+
 double rapidStream::minVelocity() {
     double minVel = std::numeric_limits<double>::infinity();
     for (int i = 0; i < windowSize; ++i) {

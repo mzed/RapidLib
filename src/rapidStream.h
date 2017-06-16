@@ -68,6 +68,11 @@ public:
      */
     double standardDeviation();
     
+    /** Calulate the root mean square of the values in the buffer
+     * @return double: rms
+     */
+     double rms();
+    
     /** Calculate the minimum first-order difference over consecutive inputs in the buffer.
      * @return double: minimum velocity.
      */

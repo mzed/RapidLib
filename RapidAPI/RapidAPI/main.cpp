@@ -168,7 +168,6 @@ int main(int argc, const char * argv[]) {
     std::vector<trainingExample> tsOne;
     
     tempExample.input = { 1., 5. };
-    tempExample.output = { 0.0 };
     tsOne.push_back(tempExample);
     
     tempExample.input = { 2., 4. };
