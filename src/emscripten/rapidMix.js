@@ -448,6 +448,9 @@ Module.StreamProcess.prototype = {
     standardDeviation: function () {
         return this.rapidStream.standardDeviation();
     },
+    rms: function () {
+        return this.rapidStream.rms();
+    },
     minVelocity: function () {
         return this.rapidStream.minVelocity();
     },

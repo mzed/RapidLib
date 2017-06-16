@@ -19,6 +19,7 @@ EMSCRIPTEN_BINDINGS(rapidStream_module) {
     .function("sum", &rapidStream::sum)
     .function("mean", &rapidStream::mean)
     .function("standardDeviation", &rapidStream::standardDeviation)
+    .function("rms", &rapidStream::rms)
     .function("minVelocity", &rapidStream::minVelocity)
     .function("maxVelocity", &rapidStream::maxVelocity)
     .function("minAcceleration", &rapidStream::minAcceleration)

@@ -361,6 +361,9 @@ describe('RapidLib Signal Processing', function () {
         it('the standard deviation should be 13.592889906123716', function () {
             expect(statStream.standardDeviation()).to.equal(13.592889906123716);
         });
+        it('the should rms be 15.385770048977072', function () {
+            expect(statStream.rms()).to.equal(15.385770048977072);
+        });
     });
     describe('when streaming to velStream', function () {
         let velStream = new rapidMix.StreamProcess(5);
