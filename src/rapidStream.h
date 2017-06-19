@@ -68,7 +68,7 @@ public:
      */
     double standardDeviation();
     
-    /** Calulate the root mean square of the values in the buffer
+    /** Calculate the root mean square of the values in the buffer
      * @return double: rms
      */
      double rms();

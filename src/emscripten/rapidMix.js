@@ -424,6 +424,7 @@ Module.SeriesClassification.prototype = {
 /**
  * Creates a circular buffer that can return various statistics
  * @constructor
+ * @param {number} windowSize - specify the size of the buffer
  * @property {function} Module.rapidStreamCpp - constructor from emscripten
  */
 
@@ -435,43 +436,88 @@ Module.StreamProcess = function (windowSize) {
     }
 };
 
-/**
- * TODO: Add documentation -mz
- */
 Module.StreamProcess.prototype = {
+    /** Add a value to a circular buffer whose size is defined at creation.
+     * @param {number} input - value to be pushed into circular buffer.
+     */
     push: function (input) {
         this.rapidStream.pushToWindow(parseFloat(input));
     },
+    /**
+    * Resets all the values in the buffer to zero.
+    */
     clear: function () {
         this.rapidStream.clear();
     },
+    /** Calculate the first-order difference (aka velocity) between the last two inputs.
+     * @return {number} difference between last two inputs.
+     */
     velocity: function () {
         return this.rapidStream.velocity();
     },
+    /** Calculate the second-order difference (aka acceleration) over the last three inputs.
+     * @return {number} acceleration over the last three inputs.
+     */
     acceleration: function () {
         return this.rapidStream.acceleration();
     },
+    /** Find the minimum value in the buffer.
+     * @return {number} minimum.
+     */
+    minimum: function () {
+        return this.rapidStream.minimum();
+    },
+    /** Find the maximum value in the buffer.
+     * @return {number} maximum.
+     */
+    maximum: function () {
+      return this.rapidStream.maximum();
+    },
+    /** Calculate the sum of all values in the buffer.
+     * @return {number} sum.
+     */
     sum: function () {
         return this.rapidStream.sum();
     },
+    /** Calculate the mean of all values in the buffer.
+     * @return {number} mean.
+     */
     mean: function () {
         return this.rapidStream.mean();
     },
+    /** Calculate the standard deviation of all values in the buffer.
+     * @return {number} standard deviation.
+     */
     standardDeviation: function () {
         return this.rapidStream.standardDeviation();
     },
+    /** Calculate the root mean square of the values in the buffer
+     * @return {number} rms
+     */
     rms: function () {
         return this.rapidStream.rms();
     },
+    /** Calculate the minimum first-order difference over consecutive inputs in the buffer.
+     * @return {number} minimum velocity.
+     */
     minVelocity: function () {
         return this.rapidStream.minVelocity();
     },
+    /** Calculate the maximum first-order difference over consecutive inputs in the buffer.
+     * @return {number} maximum velocity.
+     */
     maxVelocity: function () {
         return this.rapidStream.maxVelocity();
     },
+    /** Calculate the minimum second-order difference over consecutive inputs in the buffer.
+     * @return {number} minimum acceleration.
+     */
     minAcceleration: function () {
         return this.rapidStream.minAcceleration();
     },
+    /** Calculate the maximum second-order difference over consecutive inputs in the buffer.
+     * @return {number} maximum acceleration.
+     */
     maxAcceleration: function () {
         return this.rapidStream.maxAcceleration();
     }
