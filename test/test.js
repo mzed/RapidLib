@@ -358,6 +358,12 @@ describe('RapidLib Signal Processing', function () {
         statStream.push(3.14);
         statStream.push(-4.3);
         statStream.push(33.9);
+        it('the max should be 33.9', function () {
+            expect(statStream.maximum()).to.equal(33.9);
+        });
+        it('the min should be -4.3', function () {
+           expect(statStream.minimum()).to.equal(-4.3);
+        });
         it('should sum to 36.04', function () {
             expect(statStream.sum()).to.equal(36.04);
         });
