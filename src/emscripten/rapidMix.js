@@ -2,7 +2,7 @@
 
 "use strict";
 
-console.log("RapidLib 13.6.2017 12:41")
+console.log("RapidLib 18.6.2017 15:31")
 
 /**
  * Utility function to convert js objects into something emscripten likes
@@ -28,6 +28,12 @@ Module.prepTrainingSet = function (trainingSet) {
     return rmTrainingSet;
 };
 
+/**
+ * Utility function to add an empty output to a "training set" if it is undefined
+ * @param jsInput
+ * @returns {*}
+ */
+
 Module.checkOutput = function (jsInput) {
     for (var i = 0; i < jsInput.length; ++i) {
         if (typeof jsInput[i].output === "undefined") {
@@ -35,8 +41,8 @@ Module.checkOutput = function (jsInput) {
         }
     }
     return jsInput;
-}
-////////////////////////////////////////////////
+};
+////////////////////////////////////////////////   Regression
 
 /**
  * Creates a set of regression objects using the constructor from emscripten
@@ -117,7 +123,7 @@ Module.Regression.prototype = {
 };
 
 
-/////////////////////////////////////////////////
+/////////////////////////////////////////////////  Classification
 
 /**
  * Creates a set of classification objects using the constructor from emscripten
@@ -164,7 +170,7 @@ Module.Classification.prototype = {
         this.modelSet.setK(whichModel, newK);
     },
     /**
-     * Returns the model set to it's initial configuration.
+     * Returns the model set to its initial configuration.
      * @returns {Boolean} true indicates successful initialization
      */
     reset: function () {
@@ -218,10 +224,10 @@ Module.Classification.prototype = {
             output.push(outputVector.get(i));
         }
         return output;
-    },
+    }
 };
 
-//////////////////////////////////////////////////
+//////////////////////////////////////////////////  ModelSet
 
 /**
  * Creates a set of machine learning objects using constructors from emscripten. Could be any mix of regression and classification.
@@ -368,7 +374,7 @@ Module.ModelSet.prototype.run = function (input) {
 
 Module.ModelSet.prototype.process = function (input) {
     return run(input);
-}
+};
 ////////////////////////////////////////////////
 
 /**
@@ -428,7 +434,7 @@ Module.SeriesClassification.prototype = {
  * @property {function} Module.rapidStreamCpp - constructor from emscripten
  */
 
-Module.StreamProcess = function (windowSize) {
+Module.StreamBuffer = function (windowSize) {
     if (windowSize) {
         this.rapidStream = new Module.RapidStreamCpp(windowSize);
     } else {
@@ -436,7 +442,7 @@ Module.StreamProcess = function (windowSize) {
     }
 };
 
-Module.StreamProcess.prototype = {
+Module.StreamBuffer.prototype = {
     /** Add a value to a circular buffer whose size is defined at creation.
      * @param {number} input - value to be pushed into circular buffer.
      */

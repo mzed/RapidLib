@@ -280,11 +280,8 @@ describe('RapidLib Machine Learning', function () {
         it('should create a new object with a modelSet', function () {
             expect(myModelSet).to.have.property('modelSet');
         });
-        it('should load from JSON?', function () {
-            //
-            // TODO: need to stub XMLHttpRequest
-            //myModelSet.loadJSON('modelSetDescription.json');
-        });
+       // console.log(myModelSet.getJSON());
+        it('should load from JSON?');
         it('should process input');
     });
 
@@ -328,11 +325,11 @@ describe('RapidLib Machine Learning', function () {
 });
 
 describe('RapidLib Signal Processing', function () {
-    let myStream = new rapidMix.StreamProcess;
-    let myStream10 = new rapidMix.StreamProcess(10);
-    it('should create a new StreamProcess object', function () {
-        expect(myStream).to.be.an.instanceof(rapidMix.StreamProcess);
-        expect(myStream10).to.be.instanceof(rapidMix.StreamProcess);
+    let myStream = new rapidMix.StreamBuffer;
+    let myStream10 = new rapidMix.StreamBuffer(10);
+    it('should create a new StreamBuffer object', function () {
+        expect(myStream).to.be.an.instanceof(rapidMix.StreamBuffer);
+        expect(myStream10).to.be.instanceof(rapidMix.StreamBuffer);
     });
 
     myStream.clear();
@@ -344,7 +341,7 @@ describe('RapidLib Signal Processing', function () {
         expect(myStream.velocity()).to.equal(1);
     });
 
-    let accelStream = new rapidMix.StreamProcess;
+    let accelStream = new rapidMix.StreamBuffer;
     accelStream.push(0);
     accelStream.push(0);
     accelStream.push(11);
@@ -352,7 +349,7 @@ describe('RapidLib Signal Processing', function () {
         expect(accelStream.acceleration()).to.equal(10);
     }*/);
     describe('when streaming to statStream', function () {
-        let statStream = new rapidMix.StreamProcess(5);
+        let statStream = new rapidMix.StreamBuffer(5);
         statStream.push(1.1);
         statStream.push(2.2);
         statStream.push(3.14);
@@ -378,7 +375,7 @@ describe('RapidLib Signal Processing', function () {
         });
     });
     describe('when streaming to velStream', function () {
-        let velStream = new rapidMix.StreamProcess(5);
+        let velStream = new rapidMix.StreamBuffer(5);
         velStream.push(1.1);
         velStream.push(2.2);
         velStream.push(3.14);
