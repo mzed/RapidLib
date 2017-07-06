@@ -320,7 +320,7 @@ describe('RapidLib Machine Learning', function () {
         it('should report new costs', function () {
             expect(myDTW2.getCosts(testSeries)[0]).to.equal(0);
         });
-        it('should test clear');
+        it('should test reset');
     });
 });
 
@@ -332,7 +332,7 @@ describe('RapidLib Signal Processing', function () {
         expect(myStream10).to.be.instanceof(rapidMix.StreamBuffer);
     });
 
-    myStream.clear();
+    myStream.reset();
     myStream.push(0);
 
 
