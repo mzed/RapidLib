@@ -35,31 +35,34 @@ regression::regression(const std::vector<trainingExample> &training_set) {
 
 bool regression::train(const std::vector<trainingExample> &training_set) {
     //TODO: time this process?
-    if (created) {
-        return modelSet::train(training_set);
-    } else {
-        //create model(s) here
-        numInputs = int(training_set[0].input.size());
-        for (int i = 0; i < numInputs; ++i) {
-            inputNames.push_back("inputs-" + std::to_string(i + 1));
-        }
-        numOutputs = int(training_set[0].output.size());
-        for ( auto example : training_set) {
-            if (example.input.size() != numInputs) {
-                return false;
+    if (training_set.size() > 0) {
+        if (created) {
+            return modelSet::train(training_set);
+        } else {
+            //create model(s) here
+            numInputs = int(training_set[0].input.size());
+            for (int i = 0; i < numInputs; ++i) {
+                inputNames.push_back("inputs-" + std::to_string(i + 1));
             }
-            if (example.output.size() != numOutputs) {
-                return false;
+            numOutputs = int(training_set[0].output.size());
+            for ( auto example : training_set) {
+                if (example.input.size() != numInputs) {
+                    return false;
+                }
+                if (example.output.size() != numOutputs) {
+                    return false;
+                }
             }
+            std::vector<int> whichInputs;
+            for (int j = 0; j < numInputs; ++j) {
+                whichInputs.push_back(j);
+            }
+            for (int i = 0; i < numOutputs; ++i) {
+                myModelSet.push_back(new neuralNetwork(numInputs, whichInputs, 1, numInputs));
+            }
+            created = true;
+            return modelSet::train(training_set);
         }
-        std::vector<int> whichInputs;
-        for (int j = 0; j < numInputs; ++j) {
-            whichInputs.push_back(j);
-        }
-        for (int i = 0; i < numOutputs; ++i) {
-            myModelSet.push_back(new neuralNetwork(numInputs, whichInputs, 1, numInputs));
-	}
-        created = true;
-        return modelSet::train(training_set);
     }
+    return false;
 }
