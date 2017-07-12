@@ -98,6 +98,7 @@ private:
     /** Sigmoid function for activating hidden nodes. */
     inline double activationFunction(double);
     
+    ////////////////////////////////////////////////////////////////////////////
     /** These pertain to the training, and aren't need to run a trained model */
 public:
     /** Train a model using backpropagation.
