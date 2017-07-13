@@ -2,7 +2,7 @@
 
 "use strict";
 
-console.log("RapidLib 29.6.2017 12:12")
+console.log("RapidLib 13.7.2017 11:52")
 
 /**
  * Utility function to convert js objects into something emscripten likes
