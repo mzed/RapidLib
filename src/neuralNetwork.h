@@ -4,7 +4,7 @@
 #include "baseModel.h"
 
 #ifndef EMSCRIPTEN
-#include "json.h"
+#include "../dependencies/json/json.h"
 #endif
 
 #define LEARNING_RATE 0.3
@@ -98,6 +98,7 @@ private:
     /** Sigmoid function for activating hidden nodes. */
     inline double activationFunction(double);
     
+    ////////////////////////////////////////////////////////////////////////////
     /** These pertain to the training, and aren't need to run a trained model */
 public:
     /** Train a model using backpropagation.
@@ -114,13 +115,15 @@ private:
     int numEpochs;
     
     /** These deltas are applied to the weights in the network */
-    std::vector<std::vector< std::vector<double>>> deltaWeights;
+    std::vector<std::vector< std::vector<double> > > deltaWeights;
     std::vector<double> deltaHiddenOutput;
     
     /** Parameters and functions for calculating amount of change for each weight */
     std::vector<double> hiddenErrorGradients;
     double outputErrorGradient;
     inline double getHiddenErrorGradient(int layer, int neuron);
+    
+    void initTrainer();
     
     /** Propagate output error back through the network.
      * @param The desired output of the network is fed into the function, and compared with the actual output

@@ -6,7 +6,7 @@ RAPID_JS = src/emscripten/rapidMix.js
 
 #the .cpp files that are used
 RL_KNN=src/knnClassification.cpp src/classification.cpp
-RL_SVM=src/svmClassification.cpp dependancies/libsvm/libsvm.cpp
+RL_SVM=src/svmClassification.cpp dependencies/libsvm/libsvm.cpp
 RL_NN=src/neuralNetwork.cpp src/regression.cpp
 RL_MS=src/modelSet.cpp
 RL_DTW = src/dtw.cpp src/seriesClassification.cpp

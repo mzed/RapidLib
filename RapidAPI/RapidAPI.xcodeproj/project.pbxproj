@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BE15ECE31DBA4E1000E88F7C /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE15ECE21DBA4E1000E88F7C /* jsoncpp.cpp */; };
 		BE325F351DB50BE100F199A8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F341DB50BE100F199A8 /* main.cpp */; };
 		BE325F4D1DB50BFE00F199A8 /* classification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F3D1DB50BFE00F199A8 /* classification.cpp */; };
 		BE325F4E1DB50BFE00F199A8 /* knnClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F401DB50BFE00F199A8 /* knnClassification.cpp */; };
@@ -16,8 +15,9 @@
 		BE325F511DB50BFE00F199A8 /* regression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F4A1DB50BFE00F199A8 /* regression.cpp */; };
 		BE3852881EE847730008E1BD /* dtw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE3852871EE847730008E1BD /* dtw.cpp */; };
 		BE38528B1EE94D740008E1BD /* seriesClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE3852891EE94D740008E1BD /* seriesClassification.cpp */; };
-		BE553E2C1EE05ED2004EB00F /* libsvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE553E2A1EE05ED2004EB00F /* libsvm.cpp */; };
 		BE553E2F1EE05FE1004EB00F /* svmClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE553E2E1EE05FE1004EB00F /* svmClassification.cpp */; };
+		BE59A4521F1698E500B26E85 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE59A44E1F1698E500B26E85 /* jsoncpp.cpp */; };
+		BE59A4531F1698E500B26E85 /* libsvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE59A4501F1698E500B26E85 /* libsvm.cpp */; };
 		BE92865D1EF40BBD006847CF /* rapidStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE92865C1EF40BBD006847CF /* rapidStream.cpp */; };
 /* End PBXBuildFile section */
 
@@ -34,9 +34,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BE15ECE01DBA4E1000E88F7C /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
-		BE15ECE11DBA4E1000E88F7C /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
-		BE15ECE21DBA4E1000E88F7C /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		BE325F311DB50BE100F199A8 /* RapidAPI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RapidAPI; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE325F341DB50BE100F199A8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		BE325F3C1DB50BFE00F199A8 /* baseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = baseModel.h; sourceTree = "<group>"; };
@@ -54,11 +51,14 @@
 		BE3852871EE847730008E1BD /* dtw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dtw.cpp; sourceTree = "<group>"; };
 		BE3852891EE94D740008E1BD /* seriesClassification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = seriesClassification.cpp; sourceTree = "<group>"; };
 		BE38528A1EE94D740008E1BD /* seriesClassification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = seriesClassification.h; sourceTree = "<group>"; };
-		BE553E2A1EE05ED2004EB00F /* libsvm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = libsvm.cpp; sourceTree = "<group>"; };
-		BE553E2B1EE05ED2004EB00F /* libsvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libsvm.h; sourceTree = "<group>"; };
 		BE553E2D1EE05F03004EB00F /* svmClassification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svmClassification.h; sourceTree = "<group>"; };
 		BE553E2E1EE05FE1004EB00F /* svmClassification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svmClassification.cpp; sourceTree = "<group>"; };
 		BE553E301EE06AB0004EB00F /* trainingExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trainingExample.h; sourceTree = "<group>"; };
+		BE59A44C1F1698E500B26E85 /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
+		BE59A44D1F1698E500B26E85 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		BE59A44E1F1698E500B26E85 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
+		BE59A4501F1698E500B26E85 /* libsvm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = libsvm.cpp; sourceTree = "<group>"; };
+		BE59A4511F1698E500B26E85 /* libsvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libsvm.h; sourceTree = "<group>"; };
 		BE92865B1EF40BB4006847CF /* rapidStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rapidStream.h; sourceTree = "<group>"; };
 		BE92865C1EF40BBD006847CF /* rapidStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rapidStream.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,26 +74,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BE15ECDE1DBA4E1000E88F7C /* dependancies */ = {
-			isa = PBXGroup;
-			children = (
-				BE553E291EE05ED2004EB00F /* libsvm */,
-				BE15ECDF1DBA4E1000E88F7C /* json */,
-				BE15ECE21DBA4E1000E88F7C /* jsoncpp.cpp */,
-			);
-			name = dependancies;
-			path = ../../dependancies;
-			sourceTree = "<group>";
-		};
-		BE15ECDF1DBA4E1000E88F7C /* json */ = {
-			isa = PBXGroup;
-			children = (
-				BE15ECE01DBA4E1000E88F7C /* json-forwards.h */,
-				BE15ECE11DBA4E1000E88F7C /* json.h */,
-			);
-			path = json;
-			sourceTree = "<group>";
-		};
 		BE325F281DB50BE100F199A8 = {
 			isa = PBXGroup;
 			children = (
@@ -113,8 +93,8 @@
 		BE325F331DB50BE100F199A8 /* RapidAPI */ = {
 			isa = PBXGroup;
 			children = (
+				BE59A44A1F1698E500B26E85 /* dependencies */,
 				BE325F341DB50BE100F199A8 /* main.cpp */,
-				BE15ECDE1DBA4E1000E88F7C /* dependancies */,
 				BE325F3B1DB50BFE00F199A8 /* src */,
 			);
 			path = RapidAPI;
@@ -148,11 +128,31 @@
 			path = ../../src;
 			sourceTree = "<group>";
 		};
-		BE553E291EE05ED2004EB00F /* libsvm */ = {
+		BE59A44A1F1698E500B26E85 /* dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				BE553E2A1EE05ED2004EB00F /* libsvm.cpp */,
-				BE553E2B1EE05ED2004EB00F /* libsvm.h */,
+				BE59A44B1F1698E500B26E85 /* json */,
+				BE59A44E1F1698E500B26E85 /* jsoncpp.cpp */,
+				BE59A44F1F1698E500B26E85 /* libsvm */,
+			);
+			name = dependencies;
+			path = ../../dependencies;
+			sourceTree = "<group>";
+		};
+		BE59A44B1F1698E500B26E85 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				BE59A44C1F1698E500B26E85 /* json-forwards.h */,
+				BE59A44D1F1698E500B26E85 /* json.h */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		BE59A44F1F1698E500B26E85 /* libsvm */ = {
+			isa = PBXGroup;
+			children = (
+				BE59A4501F1698E500B26E85 /* libsvm.cpp */,
+				BE59A4511F1698E500B26E85 /* libsvm.h */,
 			);
 			path = libsvm;
 			sourceTree = "<group>";
@@ -215,15 +215,15 @@
 			files = (
 				BE92865D1EF40BBD006847CF /* rapidStream.cpp in Sources */,
 				BE553E2F1EE05FE1004EB00F /* svmClassification.cpp in Sources */,
-				BE553E2C1EE05ED2004EB00F /* libsvm.cpp in Sources */,
 				BE325F351DB50BE100F199A8 /* main.cpp in Sources */,
 				BE325F4E1DB50BFE00F199A8 /* knnClassification.cpp in Sources */,
+				BE59A4531F1698E500B26E85 /* libsvm.cpp in Sources */,
 				BE325F4F1DB50BFE00F199A8 /* modelSet.cpp in Sources */,
 				BE325F4D1DB50BFE00F199A8 /* classification.cpp in Sources */,
 				BE325F511DB50BFE00F199A8 /* regression.cpp in Sources */,
+				BE59A4521F1698E500B26E85 /* jsoncpp.cpp in Sources */,
 				BE38528B1EE94D740008E1BD /* seriesClassification.cpp in Sources */,
 				BE325F501DB50BFE00F199A8 /* neuralNetwork.cpp in Sources */,
-				BE15ECE31DBA4E1000E88F7C /* jsoncpp.cpp in Sources */,
 				BE3852881EE847730008E1BD /* dtw.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
