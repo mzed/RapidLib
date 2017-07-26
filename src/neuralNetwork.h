@@ -57,7 +57,10 @@ public:
     
     int getNumInputs() const;
     std::vector<int> getWhichInputs() const;
+    
     int getNumHiddenLayers() const;
+    void setNumHiddenLayers(int num_hidden_layers);
+    
     int getNumHiddenNodes() const;
     
     std::vector<double> getWeights() const;

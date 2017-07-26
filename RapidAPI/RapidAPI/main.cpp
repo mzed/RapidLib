@@ -10,6 +10,25 @@
 
 int main(int argc, const char * argv[]) {
     
+    //simple test
+    regression myNN1;
+    regression myNN2;
+    
+    std::vector<trainingExample> trainingSet1;
+    trainingExample tempExample1;
+    tempExample1.input = { 1.0, 1.0, 1.0 };
+    tempExample1.output = { 10.0 };
+    trainingSet1.push_back(tempExample1);
+    tempExample1.input = { 2.0, 2.0, 2.0 };
+    tempExample1.output = { 1.3 };
+    trainingSet1.push_back(tempExample1);
+    myNN1.train(trainingSet1);
+    myNN2.setNumHiddenLayers(2);
+    myNN2.train(trainingSet1);
+    std::vector<double> inputVec1 = { 2.0, 2.0, 2.0 };
+    std::cout << "foo: " << myNN1.run(inputVec1)[0] << std::endl;
+    std::cout << "bar: " << myNN2.run(inputVec1)[0] << std::endl;
+    
     regression myNN;
     classification myKnn;
     classification mySVM(classification::svm);
@@ -25,7 +44,7 @@ int main(int argc, const char * argv[]) {
     trainingSet.push_back(tempExample);
     
     myNN.train(trainingSet);
-//    std::cout << myNN.getJSON() << std::endl;
+    //    std::cout << myNN.getJSON() << std::endl;
     std::string filepath = "/var/tmp/modelSetDescription.json";
     myNN.writeJSON(filepath);
     
@@ -39,18 +58,30 @@ int main(int argc, const char * argv[]) {
     
     std::cout << "before: " << myNN.run(inputVec)[0] << std::endl;
     std::cout << "from string: " << myNNfromString.run(inputVec)[0] << std::endl;
- //   std::cout << myNNfromString.getJSON() << std::endl;
+    //   std::cout << myNNfromString.getJSON() << std::endl;
     std::cout << "from file: " << myNNfromFile.run(inputVec)[0] << std::endl;
     
     assert(myNN.run(inputVec)[0] == myNNfromString.run(inputVec)[0]);
     assert(myNN.run(inputVec)[0] == myNNfromFile.run(inputVec)[0]);
+    
+    //Changing number of hidden layers
+    std::cout << "works?: " << myNN.run(inputVec)[0] << std::endl;
+    regression myNN_HL;
+    assert(myNN_HL.getNumHiddenLayers()[0] == 1);
+    myNN_HL.setNumHiddenLayers(3);
+    assert(myNN_HL.getNumHiddenLayers()[0] == 3);
+    myNN_HL.train(trainingSet);
+    std::cout << "works?: " << myNN_HL.run(inputVec)[0] << std::endl;
+    std::cout << myNN.getJSON() << std::endl;
+    std::cout << myNN_HL.getJSON() << std::endl;
+    
     
     ///////////////////////////
     
     myKnn.train(trainingSet);
     mySVM.train(trainingSet);
     
- //   std::cout << myKnn.getJSON() << std::endl;
+    //   std::cout << myKnn.getJSON() << std::endl;
     std::string filepath2 = "/var/tmp/modelSetDescription_knn.json";
     myKnn.writeJSON(filepath2);
     
@@ -71,7 +102,7 @@ int main(int argc, const char * argv[]) {
     assert(myKnn.getK()[0] == 1);
     myKnn.setK(0, 2);
     assert(myKnn.getK()[0] == 2);
-
+    
     regression bigVector;
     std::vector<trainingExample> trainingSet2;
     trainingExample tempExample2;
@@ -96,7 +127,7 @@ int main(int argc, const char * argv[]) {
     
     
     /////////
-
+    
     classification mySVM2(classification::svm);
     
     std::vector<trainingExample> trainingSet3;
@@ -115,22 +146,22 @@ int main(int argc, const char * argv[]) {
     trainingSet3.push_back(tempExample3);
     
     
-
+    
     /*
-    tempExample3.input = { 1., 1. };
-    tempExample3.output = { 2. };
-    trainingSet3.push_back(tempExample3);
-    */
+     tempExample3.input = { 1., 1. };
+     tempExample3.output = { 2. };
+     trainingSet3.push_back(tempExample3);
+     */
     
     mySVM2.train(trainingSet3);
-
+    
     std::vector<double>inputVec4 = { 1., 0. };
     std::cout << "svm: " << mySVM2.run(inputVec4)[0] << std::endl;
     
     std::vector<double> inputVec3 = { 0., 0. };
     std::cout << "svm2: " << mySVM2.run(inputVec3)[0] << std::endl;
     
-
+    
     
     ////////////
     
@@ -201,7 +232,7 @@ int main(int argc, const char * argv[]) {
     tsTwo.push_back(tempExample);
     
     myDtw2.addTrainingSet(tsTwo);
-
+    
     
     assert(myDtw2.runTrainingSet(tsOne) == 0);
     assert(myDtw2.runTrainingSet(tsTwo) == 1);
@@ -217,6 +248,6 @@ int main(int argc, const char * argv[]) {
     assert(myDtw.getCosts()[0] == 19.325403217417502);
     assert(myDtw2T.getCosts(tsOne)[0] == 0);
     
-   
+    
     return 0;
 }
