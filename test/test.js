@@ -42,6 +42,17 @@ var testSet2 = [
     },
 ];
 
+var testSet3 = [
+    {
+        input: [8],
+        output: [5]
+    },
+    {
+        input: [2],
+        output: [3]
+    },
+];
+
 var badSet = [
     {
         input: [1, 2, 3, 4],
@@ -143,6 +154,16 @@ describe('RapidLib Machine Learning', function () {
             let response2 = myRegression.process([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0); //initialized models return 0
         })
+        it('clears properly when retraining', function () {
+            let myReg = new rapidMix.Regression();
+            myReg.train(testSet);
+            let response = myReg.process([1, 1]);
+            expect(response[0]).to.equal(2.0000000127072584);
+            myReg.train(testSet3);
+            let response2 = myReg.process([8]);
+            expect(response2[0]).to.equal(5);
+
+        })
     });
 
     describe('KNN Classification', function () {
@@ -212,6 +233,16 @@ describe('RapidLib Machine Learning', function () {
             response3 = myClass.getK();
             expect(response3[0]).to.equal(4);
         });
+        it('clears properly when retraining', function () {
+            let myClass = new rapidMix.Classification();
+            myClass.train(testSet);
+            let response = myClass.process([1, 1]);
+            expect(response[0]).to.equal(2);
+            myClass.train(testSet3);
+            let response2 = myClass.process([8]);
+            expect(response2[0]).to.equal(5);
+
+        })
     });
 /*
     describe('SVM Classification', function () {

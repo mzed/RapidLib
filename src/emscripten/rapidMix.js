@@ -2,7 +2,7 @@
 
 "use strict";
 
-console.log("RapidLib 13.7.2017 11:52")
+console.log("RapidLib 14.8.2017 13:23")
 
 /**
  * Utility function to convert js objects into something emscripten likes
@@ -149,6 +149,7 @@ Module.Classification.prototype = {
      * @returns {Boolean} true indicates successful training
      */
     train: function (trainingSet) {
+        this.modelSet.reset();
         return this.modelSet.train(Module.prepTrainingSet(trainingSet));
     },
     /**

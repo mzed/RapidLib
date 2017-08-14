@@ -248,6 +248,34 @@ int main(int argc, const char * argv[]) {
     assert(myDtw.getCosts()[0] == 19.325403217417502);
     assert(myDtw2T.getCosts(tsOne)[0] == 0);
     
+    //Test for training bug
+    classification myClassification;
+    std::vector<trainingExample> trainingSetBug;
+    trainingExample tempExampleBug;
+    tempExampleBug.input = { 2, 4 };
+    tempExampleBug.output = { 0 };
+    trainingSetBug.push_back(tempExampleBug);
+    tempExampleBug.input = { 1, 5 };
+    tempExampleBug.output = { 1 };
+    trainingSetBug.push_back(tempExampleBug);
+    
+    myClassification.train(trainingSetBug);
+    std::vector<double> bugInput = { 2, 4 };
+    std::cout << "should be 0: " << myClassification.run(bugInput)[0] << std::endl;
+    bugInput = { 1, 5 };
+    std::cout << "should be 1: " << myClassification.run(bugInput)[0] << std::endl;
+    
+    trainingSetBug.clear();
+    tempExampleBug.input = { 8 };
+    tempExampleBug.output = { 5 };
+    trainingSetBug.push_back(tempExampleBug);
+    
+    myClassification.train(trainingSetBug);
+    bugInput = { 8 };
+    std::cout << "should be 5: " << myClassification.run(bugInput)[0] << std::endl;
+
+    
+
     
     return 0;
 }
