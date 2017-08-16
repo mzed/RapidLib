@@ -287,6 +287,7 @@ double neuralNetwork::run(const std::vector<double> &inputVector) {
     for (int k=0; k <= numHiddenNodes; ++k){
         outputNeuron += hiddenNeurons[numHiddenLayers - 1][k] * wHiddenOutput[k];
     }
+    //if classifier, outputNeuron = activationFunction(outputNeuron), else...
     outputNeuron = (outputNeuron * outRange) + outBase;
     return outputNeuron;
 }

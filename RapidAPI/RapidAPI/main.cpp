@@ -137,6 +137,7 @@ int main(int argc, const char * argv[]) {
     seriesClassification myDtw;
     seriesClassification myDtwTrain;
     
+    //Testing addSeries()
     std::vector<std::vector<double>> seriesOne;
     seriesOne.push_back( { 1., 5.} );
     seriesOne.push_back( { 2., 4.} );
@@ -155,8 +156,9 @@ int main(int argc, const char * argv[]) {
     assert(myDtw.run(seriesOne) == 0);
     assert(myDtw.getCosts()[0] == 0);
     assert(myDtw.getCosts()[1] == 19.325403217417502);
-    
     assert(myDtw.run(seriesTwo) == 1);
+    
+    //testing train()
     
     std::vector<std::vector<std::vector<double>>> seriesSet;
     seriesSet.push_back(seriesOne);
@@ -166,7 +168,7 @@ int main(int argc, const char * argv[]) {
     assert(myDtwTrain.run(seriesOne) == 0);
     assert(myDtwTrain.run(seriesTwo) == 1);
     
-    
+    //Testing with training examples... probably don't neet this?
     seriesClassification myDtw2;
     std::vector<trainingExample> tsOne;
     
@@ -185,7 +187,7 @@ int main(int argc, const char * argv[]) {
     tempExample.input = { 5., 1. };
     tsOne.push_back(tempExample);
     
-    myDtw2.addTrainingSet(tsOne);
+    myDtw2.addSeries(tsOne);
     
     std::vector<trainingExample> tsTwo;
     tempExample.input = { 1., 4. };
@@ -200,11 +202,11 @@ int main(int argc, const char * argv[]) {
     tempExample.input = { -2., 1. };
     tsTwo.push_back(tempExample);
     
-    myDtw2.addTrainingSet(tsTwo);
+    myDtw2.addSeries(tsTwo);
 
     
-    assert(myDtw2.runTrainingSet(tsOne) == 0);
-    assert(myDtw2.runTrainingSet(tsTwo) == 1);
+    assert(myDtw2.run(tsOne) == 0);
+    assert(myDtw2.run(tsTwo) == 1);
     
     seriesClassification myDtw2T;
     seriesSet.clear();
@@ -212,11 +214,35 @@ int main(int argc, const char * argv[]) {
     seriesSet.push_back(seriesTwo);
     myDtw2T.train(seriesSet);
     
-    assert(myDtw2T.runTrainingSet(tsOne) == 0);
-    assert(myDtw2T.runTrainingSet(tsTwo) == 1);
+    assert(myDtw2T.run(tsOne) == 0);
+    assert(myDtw2T.run(tsTwo) == 1);
     assert(myDtw.getCosts()[0] == 19.325403217417502);
     assert(myDtw2T.getCosts(tsOne)[0] == 0);
     
+    ///////////////////////////////////////////////////////////Testing with labels
+    seriesClassification myDtwLabel;
+    std::vector<trainingSeries> seriesVector;
+    trainingSeries tempSeries;
+
+    tempSeries.input.push_back( { 1., 5.} );
+    tempSeries.input.push_back( { 2., 4.} );
+    tempSeries.input.push_back( { 3., 3.} );
+    tempSeries.input.push_back( { 4., 2.} );
+    tempSeries.input.push_back( { 5., 1.} );
+    tempSeries.label = "first series";
+    seriesVector.push_back(tempSeries);
+    
+    tempSeries = {};
+    tempSeries.input.push_back( { 1., 4.} );
+    tempSeries.input.push_back( { 2., -3.} );
+    tempSeries.input.push_back( { 1., 5.} );
+    tempSeries.input.push_back( { -2., 1.} );
+    tempSeries.label = "second series";
+    seriesVector.push_back(tempSeries);
+
+    myDtwLabel.trainLabel(seriesVector);
+    std::cout << "label test 1: " << myDtwLabel.runLabel(seriesOne) << std::endl;
+    std::cout << "label test 2: " << myDtwLabel.runLabel(seriesTwo) << std::endl;
    
     return 0;
 }
