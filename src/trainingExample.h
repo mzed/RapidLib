@@ -10,6 +10,7 @@ struct trainingExample {
   std::vector<double> output;
 };
 
+/** This is used by DTW models for training */
 struct trainingSeries {
     std::vector<std::vector<double> > input;
     std::string label;

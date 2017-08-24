@@ -5,7 +5,7 @@
 console.log("RapidLib 14.8.2017 13:23")
 
 /**
- * Utility function to convert js objects into something emscripten likes
+ * Utility function to convert js objects into C++ trainingSets
  * @param {Object} trainingSet - JS Object representing a training set
  * @property {function} Module.TrainingSet - constructor for emscripten version of this struct
  * @property {function} Module.VectorDouble - constructor for the emscripten version of std::vector<double>
@@ -26,6 +26,23 @@ Module.prepTrainingSet = function (trainingSet) {
         rmTrainingSet.push_back(tempObj);
     }
     return rmTrainingSet;
+};
+
+Module.prepTrainingSeriesSet = function (trainingSeriesSet) {
+    var rmTrainingSeriesSet = new Module.TrainingSeriesSet();
+    for (var i = 0; i < trainingSeriesSet.length; ++i) {
+        var input = new Module.VectorVectorDouble();
+        for (var j = 0; j < trainingSeriesSet[i].input.length; ++j) {
+            var tempVector = new Module.VectorDouble();
+            for (var k = 0; k < trainingSeriesSet[i].input[j].length; ++k) {
+                tempVector.push_back(parseFloat(trainingSeriesSet[i].input[j][k]));
+            }
+            input.push_back(tempVector);
+        }
+        var tempObj = {'input': input, 'label': trainingSeriesSet[i].label};
+        rmTrainingSeriesSet.push_back(tempObj);
+    }
+    return rmTrainingSeriesSet;
 };
 
 /**
@@ -209,7 +226,7 @@ Module.Classification.prototype = {
      * Deprecated! USe run() instead
      * @param input
      */
-    process: function(input) {
+    process: function (input) {
         //return this.run(input); //why doesn't this work?
         //I'll assume that the args should have been an array
         if (arguments.length > 1) {
@@ -251,7 +268,7 @@ Module.ModelSet = function () {
  * @returns {Boolean} true indicates successful training
  */
 Module.ModelSet.prototype = {
-    loadJSON: function(url) {
+    loadJSON: function (url) {
         var that = this;
         console.log('url ', url);
         var request = new XMLHttpRequest();
@@ -385,7 +402,6 @@ Module.ModelSet.prototype = {
 };
 
 
-
 ////////////////////////////////////////////////
 
 /**
@@ -403,21 +419,22 @@ Module.SeriesClassification.prototype = {
      * @param {Object} newSeries - An array of arrays
      * @returns {Number} - index of the example series that best matches the input
      */
-    addSeries: function (newSeries) {
-        newSeries = Module.checkOutput(newSeries);
-        return this.seriesClassification.addTrainingSet(Module.prepTrainingSet(newSeries));
-    },
+    // addSeries: function (newSeries) {
+    //     newSeries = Module.checkOutput(newSeries);
+    //     return this.seriesClassification.addTrainingSet(Module.prepTrainingSet(newSeries));
+    // },
     /**
      * Resets the model, and adds a set of series to be evaluated
-     * @param {Object} newSeriesSet - a set of arrays of arrays
+     * @param {Object} newSeriesSet - an array of objects, each with input: <array of arrays> and label: <string>
      * @return {Boolean} True indicates successful training.
      */
     train: function (newSeriesSet) {
         this.reset();
-        for (var i = 0; i < newSeriesSet.length; ++i) {
-            newSeriesSet[i] = Module.checkOutput(newSeriesSet[i]);
-            this.seriesClassification.addTrainingSet(Module.prepTrainingSet(newSeriesSet[i]));
-        }
+        this.seriesClassification.trainLabel(Module.prepTrainingSeriesSet(newSeriesSet));
+        //     for (var i = 0; i < newSeriesSet.length; ++i) {
+        //         newSeriesSet[i] = Module.checkOutput(newSeriesSet[i]);
+        //         this.seriesClassification.addTrainingSet(Module.prepTrainingSet(newSeriesSet[i]));
+        //     }
         return true;
     },
     /**
@@ -425,7 +442,7 @@ Module.SeriesClassification.prototype = {
      * @returns {Boolean} true indicates successful initialization
      */
     reset: function () {
-       return this.seriesClassification.reset();
+        return this.seriesClassification.reset();
     },
     /**
      * Evaluates an input series and returns the index of the closet example
@@ -433,8 +450,16 @@ Module.SeriesClassification.prototype = {
      * @returns {Number} The index of the closest matching series
      */
     run: function (inputSeries) {
-        inputSeries = Module.checkOutput(inputSeries);
-        return this.seriesClassification.runTrainingSet(Module.prepTrainingSet(inputSeries));
+        var vecInputSeries = new Module.VectorVectorDouble();
+        for (var i = 0; i < inputSeries.length; ++i) {
+            var tempVector = new Module.VectorDouble();
+            for (var j = 0; j < inputSeries[i].length; ++j) {
+                tempVector.push_back(inputSeries[i][j]);
+            }
+            vecInputSeries.push_back(tempVector);
+        }
+        return this.seriesClassification.runLabel(vecInputSeries);
+
     },
     /**
      * Deprecated! Use run()

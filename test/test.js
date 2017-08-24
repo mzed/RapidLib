@@ -64,43 +64,24 @@ var badSet = [
     }
 ];
 
-var testSeries = [
-    {
-        input: [1., 5.],
-        output: []
-    },
-    {
-        input: [2., 4.],
-        output: []
-    },
-    {
-        input: [3., 3.],
-        output: []
-    },
-    {
-        input: [4., 2.],
-        output: []
-    },
-    {
-        input: [1., 5.],
-        output: []
-    }
-];
+var testSeries = {
+    input: [[1., 5.],
+        [2., 4.],
+        [3., 3.],
+        [4., 2.],
+        [1., 5.]],
+    label: "testSeries"
+};
 
-var testSeries2 = [
-    {
-        input: [1., 4.]
-    },
-    {
-        input: [2., -3.]
-    },
-    {
-        input: [1., 5.]
-    },
-    {
-        input: [-2., 1.]
-    }
-];
+var testSeries2 = {
+    input: [[1., 4.],
+        [2., -3.],
+        [1., 5.],
+        [-2., 1.]],
+    label: "testSeries2"
+};
+
+var inputSeries = [[1., 4.], [2., -3.], [1., 5.], [-2., 1.]];
 
 describe('RapidLib Machine Learning', function () {
     describe('Regression', function () {
@@ -244,64 +225,64 @@ describe('RapidLib Machine Learning', function () {
 
         })
     });
-/*
-    describe('SVM Classification', function () {
-        let mySVM = new rapidMix.Classification(rapidMix.ClassificationTypes.SVM);
-        it('should create a new Classification object', function () {
-            expect(mySVM).to.be.an.instanceof(rapidMix.Classification);
-        });
-        it('should create a new object with a modelSet', function () {
-            expect(mySVM).to.have.property('modelSet');
-        });
+    /*
+        describe('SVM Classification', function () {
+            let mySVM = new rapidMix.Classification(rapidMix.ClassificationTypes.SVM);
+            it('should create a new Classification object', function () {
+                expect(mySVM).to.be.an.instanceof(rapidMix.Classification);
+            });
+            it('should create a new object with a modelSet', function () {
+                expect(mySVM).to.have.property('modelSet');
+            });
 
-        it('should reject malformed training data', function () {
-            let trained = mySVM.train(badSet);
-            expect(trained).to.be.false;
-        });
+            it('should reject malformed training data', function () {
+                let trained = mySVM.train(badSet);
+                expect(trained).to.be.false;
+            });
 
-        it('should train the modelSet with good data', function () {
-            let trained = mySVM.train(testSet);
-            expect(trained).to.be.true;
-        });
+            it('should train the modelSet with good data', function () {
+                let trained = mySVM.train(testSet);
+                expect(trained).to.be.true;
+            });
 
-        it('process() should return expected results' , function () {
-            let response1 = mySVM.process([0, 0]);
-            expect(response1[0]).to.be.equal(0);
-            let response2 = mySVM.process([0.8789, 0.1574]);
-            expect(response2[0]).to.equal(1);
-            let response3 = mySVM.process([0.9, 0.7]);
-            expect(response3[0]).to.equal(2);
-        });
-        it('should return zero on input that doesn\'t match numInputs', function () {
-            let response1 = mySVM.process([33, 2, 44, 9]);
-            expect(response1[0]).to.equal(0);
-            let response2 = mySVM.process([1]);
-            expect(response2[0]).to.equal(0);
-        });
+            it('process() should return expected results' , function () {
+                let response1 = mySVM.process([0, 0]);
+                expect(response1[0]).to.be.equal(0);
+                let response2 = mySVM.process([0.8789, 0.1574]);
+                expect(response2[0]).to.equal(1);
+                let response3 = mySVM.process([0.9, 0.7]);
+                expect(response3[0]).to.equal(2);
+            });
+            it('should return zero on input that doesn\'t match numInputs', function () {
+                let response1 = mySVM.process([33, 2, 44, 9]);
+                expect(response1[0]).to.equal(0);
+                let response2 = mySVM.process([1]);
+                expect(response2[0]).to.equal(0);
+            });
 
-         it('should work with multiple outputs', function () {
-         let mySVM2 = new rapidMix.Classification(rapidMix.ClassificationTypes.SVM);
-         expect(mySVM2).to.be.an.instanceof(rapidMix.Classification);
-         expect(mySVM2).to.have.property('modelSet');
-         let trained = mySVM2.train(testSet2);
-         expect(trained).to.be.true;
-         let response1 = mySVM2.process([0, 0]);
-         expect(response1[0]).to.equal(0);
-         expect(response1[1]).to.equal(9);
-         let response2 = mySVM2.process([0.8789, 0.1574]);
-         expect(response2[0]).to.equal(1);
-         expect(response2[1]).to.equal(2);
-         let response3 = mySVM2.process([0.9, 0.7]);
-         expect(response3[0]).to.equal(2);
-         expect(response3[1]).to.equal(4);
-         });
-        it('can be initialized', function () {
-            mySVM.reset();
-            let response2 = mySVM.process([0.2789, 0.4574]);
-            expect(response2[0]).to.equal(0); //initialized models return 0
+             it('should work with multiple outputs', function () {
+             let mySVM2 = new rapidMix.Classification(rapidMix.ClassificationTypes.SVM);
+             expect(mySVM2).to.be.an.instanceof(rapidMix.Classification);
+             expect(mySVM2).to.have.property('modelSet');
+             let trained = mySVM2.train(testSet2);
+             expect(trained).to.be.true;
+             let response1 = mySVM2.process([0, 0]);
+             expect(response1[0]).to.equal(0);
+             expect(response1[1]).to.equal(9);
+             let response2 = mySVM2.process([0.8789, 0.1574]);
+             expect(response2[0]).to.equal(1);
+             expect(response2[1]).to.equal(2);
+             let response3 = mySVM2.process([0.9, 0.7]);
+             expect(response3[0]).to.equal(2);
+             expect(response3[1]).to.equal(4);
+             });
+            it('can be initialized', function () {
+                mySVM.reset();
+                let response2 = mySVM.process([0.2789, 0.4574]);
+                expect(response2[0]).to.equal(0); //initialized models return 0
+            });
         });
-    });
-*/
+    */
 
     describe('ModelSet', function () {
         let myModelSet = new rapidMix.ModelSet();
@@ -311,7 +292,7 @@ describe('RapidLib Machine Learning', function () {
         it('should create a new object with a modelSet', function () {
             expect(myModelSet).to.have.property('modelSet');
         });
-       // console.log(myModelSet.getJSON());
+        // console.log(myModelSet.getJSON());
         it('should load from JSON?');
         it('should process input');
     });
@@ -322,35 +303,24 @@ describe('RapidLib Machine Learning', function () {
             expect(myDTW).to.be.an.instanceof(rapidMix.SeriesClassification);
         });
 
-        it('should allow me to add a series', function () {
-            let added = myDTW.addSeries(testSeries);
-            expect(added).to.be.true;
-        });
-        let myDTW2 = new rapidMix.SeriesClassification();
-        let myDTW3 = new rapidMix.SeriesClassification();
-
-        myDTW2.addSeries(testSeries);
-        myDTW2.addSeries(testSeries2);
-
         let seriesSet = [testSeries, testSeries2];
-        myDTW3.train(seriesSet);
-
+        var trained = myDTW.train(seriesSet);
         it('should let me train on a series set', function () {
-            expect(myDTW3.run(testSeries2)).to.equal(1);
+            expect(trained).to.be.true;
         });
 
-        it('should correctly identify series 1', function () {
-            expect(myDTW2.run(testSeries)).to.equal(0);
-        });
         it('should correctly identify series 2', function () {
-            expect(myDTW2.run(testSeries2)).to.equal(1);
+            expect(myDTW.run(inputSeries)).to.equal("testSeries2");
         });
+
         it('should report costs', function () {
-            expect(myDTW2.getCosts()[0]).to.equal(17.325403217417502);
+            expect(myDTW.getCosts()[0]).to.equal(17.325403217417502);
+            expect(myDTW.getCosts()[1]).to.equal(0);
         });
-        it('should report new costs', function () {
-            expect(myDTW2.getCosts(testSeries)[0]).to.equal(0);
-        });
+        it('should report new costs');
+        // it('should report new costs', function () {
+        //     expect(myDTW2.getCosts(testSeries)[0]).to.equal(0);
+        // });
         it('should test reset');
     });
 });
@@ -390,7 +360,7 @@ describe('RapidLib Signal Processing', function () {
             expect(statStream.maximum()).to.equal(33.9);
         });
         it('the min should be -4.3', function () {
-           expect(statStream.minimum()).to.equal(-4.3);
+            expect(statStream.minimum()).to.equal(-4.3);
         });
         it('should sum to 36.04', function () {
             expect(statStream.sum()).to.equal(36.04);
