@@ -4,6 +4,7 @@ BABEL=./node_modules/.bin/babel
 # ----------------------------------------
 #javascript for loading JSON
 RAPID_JS = babel/src/emscripten/rapidMix.js
+NODE_ENV_JS = src/emscripten/nodeEnv.js
 
 #the .cpp files that are used
 RL_KNN=src/knnClassification.cpp src/classification.cpp
@@ -32,6 +33,11 @@ full: $(SOURCE_RAPID)
 test: $(SOURCE_RAPID)
 	$(BABEL) $(RAPID_JS) -d babel
 	$(EMSCR) $(CFLAGS) --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID) --profiling
+	mocha
+
+node: $(SOURCE_RAPID)
+	$(BABEL) $(RAPID_JS) -d babel
+	$(EMSCR) $(CFLAGS) --pre-js $(NODE_ENV_JS) --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID) --profiling
 	mocha
 
 dev: full
