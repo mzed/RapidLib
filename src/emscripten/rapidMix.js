@@ -2,7 +2,7 @@
 
 "use strict";
 
-console.log("RapidLib 14.8.2017 13:23")
+console.log("RapidLib 14.8.2017 13:23");
 
 /**
  * Utility function to convert js objects into C++ trainingSets
@@ -12,34 +12,34 @@ console.log("RapidLib 14.8.2017 13:23")
  * @returns {Module.TrainingSet}
  */
 Module.prepTrainingSet = function (trainingSet) {
-    var rmTrainingSet = new Module.TrainingSet();
-    for (var i = 0; i < trainingSet.length; ++i) {
-        var tempInput = new Module.VectorDouble();
-        var tempOutput = new Module.VectorDouble();
-        for (var j = 0; j < trainingSet[i].input.length; ++j) {
+    let rmTrainingSet = new Module.TrainingSet();
+    for (let i = 0; i < trainingSet.length; ++i) {
+        let tempInput = new Module.VectorDouble();
+        let tempOutput = new Module.VectorDouble();
+        for (let j = 0; j < trainingSet[i].input.length; ++j) {
             tempInput.push_back(parseFloat(trainingSet[i].input[j]));
         }
-        for (var j = 0; j < trainingSet[i].output.length; ++j) {
+        for (let j = 0; j < trainingSet[i].output.length; ++j) {
             tempOutput.push_back(parseFloat(trainingSet[i].output[j]));
         }
-        var tempObj = {'input': tempInput, 'output': tempOutput};
+        let tempObj = {'input': tempInput, 'output': tempOutput};
         rmTrainingSet.push_back(tempObj);
     }
     return rmTrainingSet;
 };
 
 Module.prepTrainingSeriesSet = function (trainingSeriesSet) {
-    var rmTrainingSeriesSet = new Module.TrainingSeriesSet();
-    for (var i = 0; i < trainingSeriesSet.length; ++i) {
-        var input = new Module.VectorVectorDouble();
-        for (var j = 0; j < trainingSeriesSet[i].input.length; ++j) {
-            var tempVector = new Module.VectorDouble();
-            for (var k = 0; k < trainingSeriesSet[i].input[j].length; ++k) {
+    let rmTrainingSeriesSet = new Module.TrainingSeriesSet();
+    for (let i = 0; i < trainingSeriesSet.length; ++i) {
+        let input = new Module.VectorVectorDouble();
+        for (let j = 0; j < trainingSeriesSet[i].input.length; ++j) {
+            let tempVector = new Module.VectorDouble();
+            for (let k = 0; k < trainingSeriesSet[i].input[j].length; ++k) {
                 tempVector.push_back(parseFloat(trainingSeriesSet[i].input[j][k]));
             }
             input.push_back(tempVector);
         }
-        var tempObj = {'input': input, 'label': trainingSeriesSet[i].label};
+        let tempObj = {'input': input, 'label': trainingSeriesSet[i].label};
         rmTrainingSeriesSet.push_back(tempObj);
     }
     return rmTrainingSeriesSet;
@@ -52,7 +52,7 @@ Module.prepTrainingSeriesSet = function (trainingSeriesSet) {
  */
 
 Module.checkOutput = function (jsInput) {
-    for (var i = 0; i < jsInput.length; ++i) {
+    for (let i = 0; i < jsInput.length; ++i) {
         if (typeof jsInput[i].output === "undefined") {
             jsInput[i].output = [];
         }
@@ -99,16 +99,15 @@ Module.Regression.prototype = {
             input = Array.from(arguments);
         }
         //change input to vectors of doubles
-        var inputVector = new Module.VectorDouble();
-        for (var i = 0; i < input.length; ++i) {
+        let inputVector = new Module.VectorDouble();
+        for (let i = 0; i < input.length; ++i) {
             inputVector.push_back(input[i]);
         }
         //get the output
-        var outputVector = new Module.VectorDouble();
-        outputVector = this.modelSet.run(inputVector);
+        let outputVector = this.modelSet.run(inputVector);
         //change back to javascript array
-        var output = [];
-        for (var i = 0; i < outputVector.size(); ++i) {
+        let output = [];
+        for (let i = 0; i < outputVector.size(); ++i) {
             output.push(outputVector.get(i));
         }
         return output;
@@ -125,22 +124,21 @@ Module.Regression.prototype = {
             input = Array.from(arguments);
         }
         //change input to vectors of doubles
-        var inputVector = new Module.VectorDouble();
-        for (var i = 0; i < input.length; ++i) {
+        let inputVector = new Module.VectorDouble();
+        for (let i = 0; i < input.length; ++i) {
             inputVector.push_back(input[i]);
         }
         //get the output
-        var outputVector = new Module.VectorDouble();
+        let outputVector = new Module.VectorDouble();
         outputVector = this.modelSet.run(inputVector);
         //change back to javascript array
-        var output = [];
-        for (var i = 0; i < outputVector.size(); ++i) {
+        let output = [];
+        for (let i = 0; i < outputVector.size(); ++i) {
             output.push(outputVector.get(i));
         }
         return output;
     }
 };
-
 
 /////////////////////////////////////////////////  Classification
 
@@ -174,10 +172,9 @@ Module.Classification.prototype = {
      * @returns {Array} k values
      */
     getK: function () {
-        var outputVector = new Module.VectorInt();
-        outputVector = this.modelSet.getK();
-        var output = [];
-        for (var i = 0; i < outputVector.size(); ++i) {
+        let outputVector = this.modelSet.getK();
+        let output = [];
+        for (let i = 0; i < outputVector.size(); ++i) {
             output.push(outputVector.get(i));
         }
         return output;
@@ -208,16 +205,16 @@ Module.Classification.prototype = {
             input = Array.from(arguments);
         }
         //change input to vectors of doubles
-        var inputVector = new Module.VectorDouble();
-        for (var i = 0; i < input.length; ++i) {
+        let inputVector = new Module.VectorDouble();
+        for (let i = 0; i < input.length; ++i) {
             inputVector.push_back(input[i]);
         }
         //get the output
-        var outputVector = new Module.VectorDouble();
+        let outputVector = new Module.VectorDouble();
         outputVector = this.modelSet.run(inputVector);
         //change back to javascript array
-        var output = [];
-        for (var i = 0; i < outputVector.size(); ++i) {
+        let output = [];
+        for (let i = 0; i < outputVector.size(); ++i) {
             output.push(outputVector.get(i));
         }
         return output;
@@ -233,16 +230,15 @@ Module.Classification.prototype = {
             input = Array.from(arguments);
         }
         //change input to vectors of doubles
-        var inputVector = new Module.VectorDouble();
-        for (var i = 0; i < input.length; ++i) {
+        let inputVector = new Module.VectorDouble();
+        for (let i = 0; i < input.length; ++i) {
             inputVector.push_back(input[i]);
         }
         //get the output
-        var outputVector = new Module.VectorDouble();
-        outputVector = this.modelSet.run(inputVector);
+        let outputVector = this.modelSet.run(inputVector);
         //change back to javascript array
-        var output = [];
-        for (var i = 0; i < outputVector.size(); ++i) {
+        let output = [];
+        for (let i = 0; i < outputVector.size(); ++i) {
             output.push(outputVector.get(i));
         }
         return output;
@@ -269,31 +265,31 @@ Module.ModelSet = function () {
  */
 Module.ModelSet.prototype = {
     loadJSON: function (url) {
-        var that = this;
+        let that = this;
         console.log('url ', url);
-        var request = new XMLHttpRequest();
+        let request = new XMLHttpRequest();
         request.open("GET", url, true);
         request.responseType = "json";
         request.onload = function () {
-            var modelSet = this.response;
+            let modelSet = this.response;
             console.log("loaded: ", modelSet);
-            var allInputs = modelSet.metadata.inputNames;
+            let allInputs = modelSet.metadata.inputNames;
             modelSet.modelSet.forEach(function (value) {
-                var numInputs = value.numInputs;
-                var whichInputs = new Module.VectorInt();
+                let numInputs = value.numInputs;
+                let whichInputs = new Module.VectorInt();
                 switch (value.modelType) {
                     case 'kNN classification':
-                        var neighbours = new Module.TrainingSet();
-                        var k = value.k;
-                        for (var i = 0; i < allInputs.length; ++i) {
+                        let neighbours = new Module.TrainingSet();
+                        let k = value.k;
+                        for (let i = 0; i < allInputs.length; ++i) {
                             if (value.inputNames.includes(allInputs[i])) {
                                 whichInputs.push_back(i);
                             }
                         }
-                        var myKnn = new Module.KnnClassification(numInputs, whichInputs, neighbours, k);
+                        let myKnn = new Module.KnnClassification(numInputs, whichInputs, neighbours, k);
                         value.examples.forEach(function (value) {
-                            var features = new Module.VectorDouble();
-                            for (var i = 0; i < numInputs; ++i) {
+                            let features = new Module.VectorDouble();
+                            for (let i = 0; i < numInputs; ++i) {
                                 features.push_back(parseFloat(value.features[i]));
                             }
                             myKnn.addNeighbour(parseInt(value.class), features);
@@ -301,37 +297,37 @@ Module.ModelSet.prototype = {
                         that.addkNNModel(myKnn);
                         break;
                     case 'Neural Network':
-                        var numLayers = value.numHiddenLayers;
-                        var numNodes = value.numHiddenNodes;
-                        var weights = new Module.VectorDouble();
-                        var wHiddenOutput = new Module.VectorDouble();
-                        var inRanges = new Module.VectorDouble();
-                        var inBases = new Module.VectorDouble();
+                        let numLayers = value.numHiddenLayers;
+                        let numNodes = value.numHiddenNodes;
+                        let weights = new Module.VectorDouble();
+                        let wHiddenOutput = new Module.VectorDouble();
+                        let inRanges = new Module.VectorDouble();
+                        let inBases = new Module.VectorDouble();
 
-                        var localWhichInputs = [];
-                        for (var i = 0; i < allInputs.length; ++i) {
+                        let localWhichInputs = [];
+                        for (let i = 0; i < allInputs.length; ++i) {
                             if (value.inputNames.includes(allInputs[i])) {
                                 whichInputs.push_back(i);
                                 localWhichInputs.push(i);
                             }
                         }
 
-                        var currentLayer = 0;
+                        let currentLayer = 0;
                         value.nodes.forEach(function (value, i) {
                             if (value.name === 'Linear Node 0') { //Output Node
-                                for (var j = 1; j <= numNodes; ++j) {
-                                    var whichNode = 'Node ' + (j + (numNodes * (numLayers - 1)));
+                                for (let j = 1; j <= numNodes; ++j) {
+                                    let whichNode = 'Node ' + (j + (numNodes * (numLayers - 1)));
                                     wHiddenOutput.push_back(parseFloat(value[whichNode]));
                                 }
                                 wHiddenOutput.push_back(parseFloat(value.Threshold));
                             } else {
                                 currentLayer = Math.floor((i - 1) / numNodes); //FIXME: This will break if node is out or order.
                                 if (currentLayer < 1) { //Nodes connected to input
-                                    for (var j = 0; j < numInputs; ++j) {
+                                    for (let j = 0; j < numInputs; ++j) {
                                         weights.push_back(parseFloat(value['Attrib ' + allInputs[localWhichInputs[j]]]));
                                     }
                                 } else { //Hidden Layers
-                                    for (var j = 1; j <= numNodes; ++j) {
+                                    for (let j = 1; j <= numNodes; ++j) {
                                         weights.push_back(parseFloat(value['Node ' + (j + (numNodes * (currentLayer - 1)))]));
                                     }
                                 }
@@ -339,15 +335,15 @@ Module.ModelSet.prototype = {
                             }
                         });
 
-                        for (var i = 0; i < numInputs; ++i) {
+                        for (let i = 0; i < numInputs; ++i) {
                             inRanges.push_back(value.inRanges[i]);
                             inBases.push_back(value.Bases[i]);
                         }
 
-                        var outRange = value.outRange;
-                        var outBase = value.outBase;
+                        let outRange = value.outRange;
+                        let outBase = value.outBase;
 
-                        var myNN = new Module.NeuralNetwork(numInputs, whichInputs, numLayers, numNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase);
+                        let myNN = new Module.NeuralNetwork(numInputs, whichInputs, numLayers, numNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase);
                         that.addNNModel(myNN);
                         break;
                     default:
@@ -381,12 +377,12 @@ Module.ModelSet.prototype = {
      * @returns {Array} output - One number for each model in the set
      */
     run: function (input) {
-        var modelSetInput = new Module.VectorDouble();
-        for (var i = 0; i < input.length; ++i) {
+        let modelSetInput = new Module.VectorDouble();
+        for (let i = 0; i < input.length; ++i) {
             modelSetInput.push_back(input[i]);
         }
-        var output = [];
-        for (var i = 0; i < this.myModelSet.length; ++i) {
+        let output = [];
+        for (let i = 0; i < this.myModelSet.length; ++i) {
             output.push(this.myModelSet[i].run(modelSetInput));
         }
         return output;
@@ -450,10 +446,10 @@ Module.SeriesClassification.prototype = {
      * @returns {Number} The index of the closest matching series
      */
     run: function (inputSeries) {
-        var vecInputSeries = new Module.VectorVectorDouble();
-        for (var i = 0; i < inputSeries.length; ++i) {
-            var tempVector = new Module.VectorDouble();
-            for (var j = 0; j < inputSeries[i].length; ++j) {
+        let vecInputSeries = new Module.VectorVectorDouble();
+        for (let i = 0; i < inputSeries.length; ++i) {
+            let tempVector = new Module.VectorDouble();
+            for (let j = 0; j < inputSeries[i].length; ++j) {
                 tempVector.push_back(inputSeries[i][j]);
             }
             vecInputSeries.push_back(tempVector);
@@ -479,9 +475,9 @@ Module.SeriesClassification.prototype = {
             inputSeries = Module.checkOutput(inputSeries);
             this.seriesClassification.runTrainingSet(Module.prepTrainingSet(inputSeries));
         }
-        var returnArray = [];
-        var VecDouble = this.seriesClassification.getCosts();
-        for (var i = 0; i < VecDouble.size(); ++i) {
+        let returnArray = [];
+        let VecDouble = this.seriesClassification.getCosts();
+        for (let i = 0; i < VecDouble.size(); ++i) {
             returnArray[i] = VecDouble.get(i);
         }
         return returnArray;

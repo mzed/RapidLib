@@ -1,8 +1,9 @@
 EMSCR=em++
+BABEL=./node_modules/.bin/babel
 
 # ----------------------------------------
 #javascript for loading JSON
-RAPID_JS = src/emscripten/rapidMix.js
+RAPID_JS = babel/src/emscripten/rapidMix.js
 
 #the .cpp files that are used
 RL_KNN=src/knnClassification.cpp src/classification.cpp
@@ -25,9 +26,11 @@ CFLAGS=-O3 -s DISABLE_EXCEPTION_CATCHING=0 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTION
 # ----------------------------------------
 # Final paths
 full: $(SOURCE_RAPID)
+	$(BABEL) $(RAPID_JS) -d babel
 	$(EMSCR) $(CFLAGS) -s MODULARIZE=1 --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID)
 
 test: $(SOURCE_RAPID)
+	$(BABEL) $(RAPID_JS) -d babel
 	$(EMSCR) $(CFLAGS) --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID) --profiling
 	mocha
 
