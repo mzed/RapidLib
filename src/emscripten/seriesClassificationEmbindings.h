@@ -1,8 +1,7 @@
 #ifndef seriesClassificationEmbindings_h
 #define seriesClassificationEmbindings_h
 
-#include <emscripten.h>
-#include <bind.h>
+#include <emscripten/bind.h>
 
 using namespace emscripten;
 

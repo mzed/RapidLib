@@ -1,6 +1,7 @@
 "use strict";
 let expect = require('chai').expect;
 var rapidMix = require('../rapidLib/RapidLib.js');
+//import RapidLib from '../rapidLib/RapidLib.js';
 
 var jsons = require('./modelSetDescription.json');
 

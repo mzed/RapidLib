@@ -1,8 +1,7 @@
 #ifndef classificationEmbindings_h
 #define classificationEmbindings_h
 
-#include <emscripten.h>
-#include <bind.h>
+#include <emscripten/bind.h>
 
 using namespace emscripten;
 

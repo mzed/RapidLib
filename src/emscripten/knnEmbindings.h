@@ -2,11 +2,9 @@
 #define knnEmbindings_h
 
 #include <vector>
-#include <emscripten.h>
-#include <bind.h>
+#include <emscripten/bind.h>
 
 using namespace emscripten;
-
 
 EMSCRIPTEN_BINDINGS(stl_wrappers) {
   register_vector<int>("VectorInt");

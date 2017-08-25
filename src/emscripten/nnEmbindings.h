@@ -6,8 +6,7 @@ bindings for use with emscripten. -22 Aug 2016, mz
 #define nnEmbindings_h
 
 #include <vector>
-#include <emscripten.h>
-#include <bind.h>
+#include <emscripten/bind.h>
 
 using namespace emscripten;
 
