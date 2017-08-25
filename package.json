@@ -1,0 +1,35 @@
+{
+  "name": "rapidlib",
+  "version": "0.2.0",
+  "description": "A simple machine learning library, inspired by Wekinator.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "dependencies": {
+    "jsdoc": "^3.4.3",
+    "babel-preset-env": "^1.6.0",
+    "chai": "^3.5.0",
+    "babel-cli": "^6.26.0",
+    "should": "^11.1.1",
+    "jsdoc-to-markdown": "^2.0.1",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.1.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.doc.gold.ac.uk/rapid-mix/RapidLib.git"
+  },
+  "keywords": [
+    "machine",
+    "learning"
+  ],
+  "author": "Michael Zbyszynski",
+  "license": "MIT"
+}
