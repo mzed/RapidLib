@@ -3,7 +3,8 @@ BABEL=./node_modules/.bin/babel
 
 # ----------------------------------------
 #javascript for loading JSON
-RAPID_JS = babel/src/emscripten/rapidMix.js
+RAPID_JS = src/emscripten/rapidLibPost.js
+RAPID_JS_BABEL = babel/$(RAPID_JS)
 NODE_ENV_JS = src/emscripten/nodeEnv.js
 
 #the .cpp files that are used
@@ -28,16 +29,16 @@ CFLAGS=-O3 -s DISABLE_EXCEPTION_CATCHING=0 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTION
 # Final paths
 full: $(SOURCE_RAPID)
 	$(BABEL) $(RAPID_JS) -d babel
-	$(EMSCR) $(CFLAGS) -s MODULARIZE=1 --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID)
+	$(EMSCR) $(CFLAGS) -s MODULARIZE=1 --post-js $(RAPID_JS_BABEL) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID)
 
 test: $(SOURCE_RAPID)
 	$(BABEL) $(RAPID_JS) -d babel
-	$(EMSCR) $(CFLAGS) --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID) --profiling
+	$(EMSCR) $(CFLAGS) --pre-js $(NODE_ENV_JS) --post-js $(RAPID_JS_BABEL) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID) --profiling
 	mocha
 
 node: $(SOURCE_RAPID)
 	$(BABEL) $(RAPID_JS) -d babel
-	$(EMSCR) $(CFLAGS) --pre-js $(NODE_ENV_JS) --post-js $(RAPID_JS) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID) --profiling
+	$(EMSCR) $(CFLAGS) --pre-js $(NODE_ENV_JS) --post-js $(RAPID_JS_BABEL) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID) --profiling
 	mocha
 
 dev: full
