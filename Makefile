@@ -41,6 +41,10 @@ node: $(SOURCE_RAPID)
 	$(EMSCR) $(CFLAGS) --pre-js $(NODE_ENV_JS) --post-js $(RAPID_JS_BABEL) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID) --profiling
 	mocha
 
+universal: $(SOURCE_RAPID)
+	$(BABEL) $(RAPID_JS) -d babel --presets env --no-babelrc --module-id RapidLib
+	$(EMSCR) $(CFLAGS) -s MODULARIZE=1 --pre-js $(NODE_ENV_JS) --post-js $(RAPID_JS_BABEL) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID)
+
 dev: full
 	scp $(OUTPUT_RAPID) mzbys001@igor.doc.gold.ac.uk:/home/mzbys001/public_html/RapidMixLib.js
 
