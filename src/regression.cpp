@@ -9,6 +9,7 @@
 regression::regression() {
     numInputs = 0;
     numOutputs = 0;
+    numHiddenLayers = 1;
     created = false;
 };
 
@@ -21,7 +22,7 @@ regression::regression(const int &num_inputs, const int &num_outputs) {
         whichInputs.push_back(i);
     }
     for (int i = 0; i < numOutputs; ++i) {
-        myModelSet.push_back(new neuralNetwork(numInputs, whichInputs, 1, numInputs));
+        myModelSet.push_back(new neuralNetwork(numInputs, whichInputs, numHiddenLayers, numInputs));
     }
     created = true;
 };
@@ -32,6 +33,30 @@ regression::regression(const std::vector<trainingExample> &training_set) {
     created = false;
     train(training_set);
 };
+
+std::vector<int> regression::getNumHiddenLayers() {
+    std::vector<int> vecNumHiddenLayers;
+    if (std::begin(myModelSet) != std::end(myModelSet)) {
+        for (baseModel* model : myModelSet) {
+            neuralNetwork* nnModel = dynamic_cast<neuralNetwork*>(model); //FIXME: I really dislike this design
+            vecNumHiddenLayers.push_back(nnModel->getNumHiddenLayers());
+        }
+    } else {
+        vecNumHiddenLayers = { numHiddenLayers };
+    }
+    return vecNumHiddenLayers;
+}
+
+void regression::setNumHiddenLayers(const int &num_hidden_layers){
+    numHiddenLayers = num_hidden_layers;
+    //Set any existing models
+    if (std::begin(myModelSet) != std::end(myModelSet)) {
+        for (baseModel* model : myModelSet) {
+            neuralNetwork* nnModel = dynamic_cast<neuralNetwork*>(model); //FIXME: I really dislike this design
+            nnModel->setNumHiddenLayers(num_hidden_layers);
+        }
+    }
+}
 
 bool regression::train(const std::vector<trainingExample> &training_set) {
     //TODO: time this process?
@@ -58,7 +83,7 @@ bool regression::train(const std::vector<trainingExample> &training_set) {
                 whichInputs.push_back(j);
             }
             for (int i = 0; i < numOutputs; ++i) {
-                myModelSet.push_back(new neuralNetwork(numInputs, whichInputs, 1, numInputs));
+                myModelSet.push_back(new neuralNetwork(numInputs, whichInputs, numHiddenLayers, numInputs));
             }
             created = true;
             return modelSet::train(training_set);
