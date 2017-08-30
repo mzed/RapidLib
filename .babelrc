@@ -1,0 +1,5 @@
+{
+  "compact":    true,
+  "sourceMap":  "inline",
+  "presets":    [ "env" ],
+}
