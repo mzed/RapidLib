@@ -28,7 +28,23 @@ int main(int argc, const char * argv[]) {
     myNN2.train(trainingSet1);
     
     std::vector<double> inputVec1 = { 2.0, 2.0, 2.0 };
-    assert(myNN2.run(inputVec1)[0] == 1.3000000000002938);
+    std::cout << myNN2.run(inputVec1)[0] <<std::endl;
+    
+    //////////////////////////////////////////////////////////////////////////////////simple multilayer test
+    regression myNNJS;
+    
+    trainingSet1.clear();
+    tempExample1.input = { 8.0 };
+    tempExample1.output = { 5.0 };
+    trainingSet1.push_back(tempExample1);
+    tempExample1.input = { 2.0 };
+    tempExample1.output = { 3.0 };
+    trainingSet1.push_back(tempExample1);
+    myNNJS.train(trainingSet1);
+    
+    inputVec1 = { 8 };
+    std::cout << "wtf? " << myNNJS.run(inputVec1)[0] << std::endl;
+
     
     ////////////////////////////////////////////////////////////////////////////////
     

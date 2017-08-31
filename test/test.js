@@ -126,10 +126,10 @@ describe('RapidLib Machine Learning', function () {
             expect(response1[1]).to.be.above(8.99); //close enough
             let response2 = myReg2.process([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0.6737399669524929);
-            expect(response2[1]).to.equal(2.2184955630745575);
+            expect(response2[1]).to.equal(2.2184955630745637);
             let response3 = myReg2.process(0.9, 0.7); //NB: this is not an array
             expect(response3[0]).to.equal(1.6932444207337964);
-            expect(response3[1]).to.equal(3.40508769608171);
+            expect(response3[1]).to.equal(3.4050876960817114);
         });
         it('can be initialized', function () {
             myRegression.reset();

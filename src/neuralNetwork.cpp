@@ -377,7 +377,7 @@ void neuralNetwork::backpropagate(const double &desiredOutput) {
     length = (length <= 2.0) ? 1.0 : length;
     
     //deltas between hidden and output
-    for (int i = 0; i < numHiddenNodes; ++i) {
+    for (int i = 0; i <= numHiddenNodes; ++i) {
         deltaHiddenOutput[i] = (learningRate * (hiddenNeurons[numHiddenLayers - 1][i]/length) * outputErrorGradient) + (momentum * deltaHiddenOutput[i]);
     }
     
