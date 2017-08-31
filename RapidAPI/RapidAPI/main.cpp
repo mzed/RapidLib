@@ -23,7 +23,7 @@ int main(int argc, const char * argv[]) {
     tempExample1.output = { 1.3 };
     trainingSet1.push_back(tempExample1);
     myNN1.train(trainingSet1);
-    myNN2.setNumHiddenLayers(2);
+    myNN2.setNumHiddenLayers(20);
     myNN2.train(trainingSet1);
     std::vector<double> inputVec1 = { 2.0, 2.0, 2.0 };
     std::cout << "foo: " << myNN1.run(inputVec1)[0] << std::endl;
