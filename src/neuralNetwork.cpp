@@ -2,7 +2,6 @@
 #include <random>
 #include <algorithm>
 #include <vector>
-#include <iostream>
 
 #include "neuralNetwork.h"
 #ifdef EMSCRIPTEN
@@ -13,9 +12,6 @@ void neuralNetwork::initTrainer() {
     //initialize deltas
     deltaWeights = std::vector<std::vector<std::vector<double> > >(numHiddenLayers, std::vector<std::vector<double> >(numHiddenNodes, std::vector<double>((numInputs + 1), 0)));
     deltaHiddenOutput = std::vector<double>((numHiddenNodes + 1), 0);
-    
-    //initialize gradients
-    hiddenErrorGradients = std::vector<double>((numHiddenNodes + 1), 0);
 }
 
 /*!
@@ -390,9 +386,9 @@ void neuralNetwork::backpropagate(const double &desiredOutput) {
         for (int i = numHiddenLayers - 1; i > 0; --i) {
             int numDeltas = (i == 0) ? numInputs : numHiddenNodes;
             for (int j = 0; j < numHiddenNodes; ++j) {
-                hiddenErrorGradients[j] = getHiddenErrorGradient(i, j); //FIXME: Don't need to keep these
+                double hiddenErrorGradient = getHiddenErrorGradient(i, j);
                 for (int k = 0; k <= numDeltas; ++k) {
-                    deltaWeights[i][j][k] = (learningRate * hiddenNeurons[i][j] * hiddenErrorGradients[j]) + (momentum * deltaWeights[i][j][k]);
+                    deltaWeights[i][j][k] = (learningRate * hiddenNeurons[i][j] * hiddenErrorGradient) + (momentum * deltaWeights[i][j][k]);
                 }
             }
         }
@@ -400,9 +396,9 @@ void neuralNetwork::backpropagate(const double &desiredOutput) {
     
     //deltas between hidden[0] and input
     for (int j = 0; j < numHiddenNodes; ++j) {
-        hiddenErrorGradients[j] = getHiddenErrorGradient(0, j); //FIXME: This could be folded into the loop above?
+        double hiddenErrorGradient = getHiddenErrorGradient(0, j); //FIXME: This could be folded into the loop above?
         for (int k = 0; k <= numInputs; ++k) {
-            deltaWeights[0][j][k] = (learningRate * inputNeurons[k] * hiddenErrorGradients[j]) + (momentum * deltaWeights[0][j][k]);
+            deltaWeights[0][j][k] = (learningRate * inputNeurons[k] * hiddenErrorGradient) + (momentum * deltaWeights[0][j][k]);
         }
     }
     

@@ -124,7 +124,6 @@ private:
     std::vector<double> deltaHiddenOutput;
     
     /** Parameters and functions for calculating amount of change for each weight */
-    std::vector<double> hiddenErrorGradients;
     double outputErrorGradient;
     inline double getHiddenErrorGradient(int layer, int neuron);
     
