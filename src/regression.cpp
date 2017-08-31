@@ -10,12 +10,15 @@ regression::regression() {
     numInputs = 0;
     numOutputs = 0;
     numHiddenLayers = 1;
+    numEpochs = 500;
     created = false;
 };
 
 regression::regression(const int &num_inputs, const int &num_outputs) {
     numInputs = num_inputs;
     numOutputs = num_outputs;
+    numHiddenLayers = 1;
+    numEpochs = 500;
     created = false;
     std::vector<int> whichInputs;
     for (int i = 0; i < numInputs; ++i) {
@@ -58,6 +61,18 @@ void regression::setNumHiddenLayers(const int &num_hidden_layers){
     }
 }
 
+void regression::setEpochs(const int &epochs) {
+    numEpochs = epochs;
+    //set any existing models
+    if (std::begin(myModelSet) != std::end(myModelSet)) {
+        for (baseModel* model : myModelSet) {
+            neuralNetwork* nnModel = dynamic_cast<neuralNetwork*>(model); //FIXME: I really dislike this design
+            nnModel->setEpochs(epochs);
+        }
+    }
+}
+
+
 bool regression::train(const std::vector<trainingExample> &training_set) {
     //TODO: time this process?
     if (training_set.size() > 0) {
@@ -84,6 +99,12 @@ bool regression::train(const std::vector<trainingExample> &training_set) {
             }
             for (int i = 0; i < numOutputs; ++i) {
                 myModelSet.push_back(new neuralNetwork(numInputs, whichInputs, numHiddenLayers, numInputs));
+            }
+            if (numEpochs != 500) {
+                for (baseModel* model : myModelSet) {
+                    neuralNetwork* nnModel = dynamic_cast<neuralNetwork*>(model); //FIXME: I really dislike this design
+                    nnModel->setEpochs(numEpochs);
+                }
             }
             created = true;
             return modelSet::train(training_set);

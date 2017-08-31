@@ -63,6 +63,8 @@ public:
     
     int getNumHiddenNodes() const;
     
+    void setEpochs(const int &epochs);
+    
     std::vector<double> getWeights() const;
     std::vector<double> getWHiddenOutput() const;
     

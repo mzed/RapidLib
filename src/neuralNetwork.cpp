@@ -147,19 +147,18 @@ void neuralNetwork::reset() {
 
 inline double neuralNetwork::getHiddenErrorGradient(int layer, int neuron) {
     double weightedSum = 0;
-    if (layer == 0) {
+    if (numHiddenLayers == 1 || layer == 0) {
+        double wGradient = wHiddenOutput[neuron] * outputErrorGradient;
+        return hiddenNeurons[layer][neuron] * (1 - hiddenNeurons[layer][neuron]) * wGradient;
+    }
+    if (layer == numHiddenLayers - 1) {
         for (int i = 0; i < numHiddenNodes; ++i) {
             weightedSum += wHiddenOutput[i] * outputErrorGradient;
         }
-    } else if (layer == numHiddenLayers - 2) {
+    } else {
         for (int i = 0; i < numHiddenNodes; ++i) {
-        weightedSum += deltaHiddenOutput[i] * outputErrorGradient;
+            weightedSum += deltaWeights[layer +1][neuron][i] * outputErrorGradient;
         }
-    }else {
-        for (int i = 0; i < numHiddenNodes; ++i) {
-            weightedSum += deltaWeights[layer+1][neuron][i] * outputErrorGradient; //FIXME: This is fucked? I think this number is too high?
-        }
-        std::cout << "ws2 " << weightedSum << std::endl;
     }
     return hiddenNeurons[layer][neuron] * (1 - hiddenNeurons[layer][neuron]) * weightedSum;
 }
@@ -196,6 +195,10 @@ void neuralNetwork::setNumHiddenLayers(int num_hidden_layers) {
 
 int neuralNetwork::getNumHiddenNodes() const {
     return numHiddenNodes;
+}
+
+void neuralNetwork::setEpochs(const int &epochs) {
+    numEpochs = epochs;
 }
 
 std::vector<double> neuralNetwork::getWeights() const{
@@ -319,6 +322,7 @@ double neuralNetwork::run(const std::vector<double> &inputVector) {
 }
 
 void neuralNetwork::train(const std::vector<trainingExample> &trainingSet) {
+    initTrainer();
     //setup maxes and mins
     std::vector<double> inMax = trainingSet[0].input;
     std::vector<double> inMin = trainingSet[0].input;
@@ -367,7 +371,7 @@ void neuralNetwork::train(const std::vector<trainingExample> &trainingSet) {
 }
 
 void neuralNetwork::backpropagate(const double &desiredOutput) {
-    outputErrorGradient = (desiredOutput - outputNeuron) / outRange;
+    outputErrorGradient = ((desiredOutput - outBase) / outRange) - ((outputNeuron - outBase)/ outRange); //FIXME: could be tighter -MZ
     
     //correction based on size of last layer. Is this right? -MZ
     double length = 0;
@@ -383,12 +387,12 @@ void neuralNetwork::backpropagate(const double &desiredOutput) {
     
     //deltas between hidden
     if (numHiddenLayers > 1) {
-        for (int i = numHiddenLayers - 2; i > 0; --i) {
+        for (int i = numHiddenLayers - 1; i > 0; --i) {
             int numDeltas = (i == 0) ? numInputs : numHiddenNodes;
             for (int j = 0; j < numHiddenNodes; ++j) {
-                hiddenErrorGradients[j] = getHiddenErrorGradient(i, j);
+                hiddenErrorGradients[j] = getHiddenErrorGradient(i, j); //FIXME: Don't need to keep these
                 for (int k = 0; k <= numDeltas; ++k) {
-                    deltaWeights[i][j][k] = (learningRate * (hiddenNeurons[i][j]/length) * hiddenErrorGradients[j]) + (momentum * deltaWeights[i][j][k]);
+                    deltaWeights[i][j][k] = (learningRate * hiddenNeurons[i][j] * hiddenErrorGradients[j]) + (momentum * deltaWeights[i][j][k]);
                 }
             }
         }
@@ -406,15 +410,6 @@ void neuralNetwork::backpropagate(const double &desiredOutput) {
 }
 
 void neuralNetwork::updateWeights() {
-    //input to hidden weights
-    /*
-    for (int j = 0; j < numHiddenNodes; ++j) {
-        for (int k = 0; k <= numInputs; ++k) {
-            weights[0][j][k] += deltaWeights[0][j][k];
-        }
-    }
-    */
-    
     //hidden to hidden weights
     for (int i = 0; i < numHiddenLayers; ++i) {
         int numDeltas = (i == 0) ? numInputs : numHiddenNodes;

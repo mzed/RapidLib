@@ -24,6 +24,9 @@ public:
     /** Train on a specified set, causes creation if not created */
     bool train(const std::vector<trainingExample> &trainingSet);
     
+    /** Call before train, to set the number of training epochs */
+    void setEpochs(const int &epochs);
+    
     /** Check how many hidden layers are in each model. This feature is temporary, and will be replaced by a different design. */
     std::vector<int> getNumHiddenLayers();
     
@@ -32,6 +35,7 @@ public:
     
 private:
     int numHiddenLayers; //Temporary -- this should be part of the nn class. -mz
+    int numEpochs; //Temporary -- also should be part of nn only. -mz
 };
 
 #endif
