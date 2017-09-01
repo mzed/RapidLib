@@ -25,7 +25,7 @@ public:
     bool train(const std::vector<trainingExample> &trainingSet);
     
     /** Call before train, to set the number of training epochs */
-    void setEpochs(const int &epochs);
+    void setNumEpochs(const int &epochs);
     
     /** Check how many hidden layers are in each model. This feature is temporary, and will be replaced by a different design. */
     std::vector<int> getNumHiddenLayers();

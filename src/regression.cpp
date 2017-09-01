@@ -61,7 +61,7 @@ void regression::setNumHiddenLayers(const int &num_hidden_layers){
     }
 }
 
-void regression::setEpochs(const int &epochs) {
+void regression::setNumEpochs(const int &epochs) {
     numEpochs = epochs;
     //set any existing models
     if (std::begin(myModelSet) != std::end(myModelSet)) {

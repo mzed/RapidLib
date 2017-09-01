@@ -2,7 +2,7 @@
 
 "use strict";
 
-console.log("RapidLib 25.8.2017 13:07");
+console.log("RapidLib 1.9.2017 13:07");
 
 /**
  * Utility function to convert js objects into C++ trainingSets
@@ -80,6 +80,33 @@ Module.Regression.prototype = {
         this.modelSet.reset();
         //change to vectorDoubles and send in
         return this.modelSet.train(Module.prepTrainingSet(trainingSet));
+    },
+    /**
+     * Returns the number of hidden layers in a MLP.
+     * @returns {Number} k values
+     */
+    getNumHiddenLayers: function () {
+        let outputVector = this.modelSet.getNumHiddenLayers();
+        //change back to javascript array
+        let output = [];
+        for (let i = 0; i < outputVector.size(); ++i) {
+            output.push(outputVector.get(i));
+        }
+        return output[0];
+    },
+    /**
+     * Sets the number of hidden layers for an MLP.
+     * @param {Number} numHiddenLayers
+     */
+    setNumHiddenLayers: function (numHiddenLayers) {
+        this.modelSet.setNumHiddenLayers(numHiddenLayers);
+    },
+    /**
+     * Sets the number of epochs for MLP training.
+     * @param {Number} numEpochs
+     */
+    setNumEpochs: function (numEpochs) {
+        this.modelSet.setNumEpochs(numEpochs);
     },
     /**
      * Returns the model set to its initial configuration.

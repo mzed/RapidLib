@@ -24,13 +24,38 @@ int main(int argc, const char * argv[]) {
     myNN2.setNumHiddenLayers(2);
     assert(myNN2.getNumHiddenLayers()[0] == 2);
 
-    myNN2.setEpochs(50000);
+    myNN2.setNumEpochs(50000);
     myNN2.train(trainingSet1);
     
     std::vector<double> inputVec1 = { 2.0, 2.0, 2.0 };
     std::cout << myNN2.run(inputVec1)[0] <<std::endl;
     
-    //////////////////////////////////////////////////////////////////////////////////simple multilayer test
+    myNN2.reset();
+    trainingSet1.clear();
+    tempExample1.input = {0., 0. };
+    tempExample1.output = { 0.0 };
+    trainingSet1.push_back(tempExample1);
+    tempExample1.input = {0., 1. };
+    tempExample1.output = { 1.0 };
+    trainingSet1.push_back(tempExample1);
+    tempExample1.input = {1., 0. };
+    tempExample1.output = { 1.0 };
+    trainingSet1.push_back(tempExample1);
+    tempExample1.input = {1., 1. };
+    tempExample1.output = { 2.0 };
+    trainingSet1.push_back(tempExample1);
+    myNN2.setNumHiddenLayers(2);
+    assert(myNN2.getNumHiddenLayers()[0] == 2);
+    
+    myNN2.setNumEpochs(500000);
+    myNN2.train(trainingSet1);
+    
+    inputVec1 = { 0.9, 0.7 };
+    std::cout << myNN2.run(inputVec1)[0] <<std::endl;
+    
+    
+    
+    //////////////////////////////////////////////////////////////////////////////////bug?
     regression myNNJS;
     
     trainingSet1.clear();

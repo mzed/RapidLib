@@ -1,11 +1,11 @@
 "use strict";
 let expect = require('chai').expect;
-var rapidMix = require('../rapidLib/RapidLib.js');
+let rapidMix = require('../rapidLib/RapidLib.js');
 //import RapidLib from '../rapidLib/RapidLib.js';
 
-var jsons = require('./modelSetDescription.json');
+//let jsons = require('./modelSetDescription.json');
 
-var testSet = [
+let testSet = [
     {
         input: [0, 0],
         output: [0]
@@ -24,7 +24,7 @@ var testSet = [
     },
 ];
 
-var testSet2 = [
+let testSet2 = [
     {
         input: [0, 0],
         output: [0, 9]
@@ -43,7 +43,7 @@ var testSet2 = [
     },
 ];
 
-var testSet3 = [
+let testSet3 = [
     {
         input: [8],
         output: [5]
@@ -54,7 +54,19 @@ var testSet3 = [
     },
 ];
 
-var badSet = [
+let testSet4 = [
+    {
+        input: [1.0, 1.0, 1.0],
+        output: [10.]
+    },
+    {
+        input: [2.0, 2.0, 2.0],
+    output: [1.3]
+    },
+];
+
+
+let badSet = [
     {
         input: [1, 2, 3, 4],
         output: [5]
@@ -65,7 +77,7 @@ var badSet = [
     }
 ];
 
-var testSeries = {
+let testSeries = {
     input: [[1., 5.],
         [2., 4.],
         [3., 3.],
@@ -74,7 +86,7 @@ var testSeries = {
     label: "testSeries"
 };
 
-var testSeries2 = {
+let testSeries2 = {
     input: [[1., 4.],
         [2., -3.],
         [1., 5.],
@@ -82,11 +94,11 @@ var testSeries2 = {
     label: "testSeries2"
 };
 
-var inputSeries = [[1., 4.], [2., -3.], [1., 5.], [-2., 1.]];
+let inputSeries = [[1., 4.], [2., -3.], [1., 5.], [-2., 1.]];
 
 describe('RapidLib Machine Learning', function () {
     describe('Regression', function () {
-        var myRegression = new rapidMix.Regression();
+        let myRegression = new rapidMix.Regression();
         it('should create a new Regression object', function () {
             expect(myRegression).to.be.an.instanceof(rapidMix.Regression);
         });
@@ -135,7 +147,7 @@ describe('RapidLib Machine Learning', function () {
             myRegression.reset();
             let response2 = myRegression.process([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0); //initialized models return 0
-        })
+        });
         it('clears properly when retraining', function () {
             let myReg = new rapidMix.Regression();
             myReg.train(testSet);
@@ -144,6 +156,18 @@ describe('RapidLib Machine Learning', function () {
             myReg.train(testSet3);
             let response2 = myReg.process([8]);
             expect(response2[0]).to.equal(5);
+
+        });
+        it('runs with multiple layers', function () {
+            let myMLP = new rapidMix.Regression();
+            let numLayers = 2;
+            myMLP.setNumHiddenLayers(numLayers);
+            expect(myMLP.getNumHiddenLayers()).to.equal(numLayers);
+            myMLP.setNumEpochs(5000);
+            let trained = myMLP.train(testSet4);
+            expect(trained).to.be.true;
+            let response = myMLP.process([2.0, 2.0, 2.0]);
+            expect(response[0]).to.equal(1.3000000000000007);
 
         })
     });
@@ -305,7 +329,7 @@ describe('RapidLib Machine Learning', function () {
         });
 
         let seriesSet = [testSeries, testSeries2];
-        var trained = myDTW.train(seriesSet);
+        let trained = myDTW.train(seriesSet);
         it('should let me train on a series set', function () {
             expect(trained).to.be.true;
         });
