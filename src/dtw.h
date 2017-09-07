@@ -17,14 +17,14 @@ public:
     dtw();
     ~dtw();
     
-    void setSeries(std::vector<std::vector<double>> newSeries);
-    double run(std::vector<std::vector<double>> inputSeries);
-    void reset();
+    //void setSeries(std::vector<std::vector<double>> newSeries);
+    double getCost(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY);
+    //void reset();
     
 private:
-    std::vector<std::vector<double>> storedSeries;
-    int numFeatures;
-    inline double distanceFunction(std::vector<double> seriesX, std::vector<double> seriesY);
+    //std::vector<std::vector<double>> storedSeries;
+    //int numFeatures;
+    inline double distanceFunction(const std::vector<double> &pointX, const std::vector<double> &point);
 
 };
 
