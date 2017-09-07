@@ -40,8 +40,8 @@ node: $(SOURCE_RAPID)
 	$(BABEL) $(RAPID_JS) -d babel
 	$(EMSCR) $(CFLAGS) --pre-js $(NODE_ENV_JS) --post-js $(RAPID_JS_BABEL) --bind -o $(OUTPUT_RAPID) $(SOURCE_RAPID) --profiling
 	mocha
-#fixme: need to zip output. -mz
-#scp RapidLib.js.zip eaviuser@igor.doc.gold.ac.uk:/home/eavi/public_html/rapidmixapi.com/examples/RapidLib.js.zip
+	zip rapidLib/RapidLibNode $(OUTPUT_RAPID)	
+	scp rapidLib/RapidLibNode.zip eaviuser@igor.doc.gold.ac.uk:/home/eavi/public_html/rapidmixapi.com/examples/RapidLib.js.zip
 
 universal: $(SOURCE_RAPID)
 	$(BABEL) $(RAPID_JS) -d babel --presets env --no-babelrc --module-id RapidLib
