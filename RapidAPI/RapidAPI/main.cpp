@@ -213,7 +213,7 @@ int main(int argc, const char * argv[]) {
     
         
     ///////////////////////////////////////////////////////////Testing with labels
-    seriesClassification myDtwLabel;
+    seriesClassification myDTW;
     std::vector<trainingSeries> seriesVector;
     trainingSeries tempSeries;
     
@@ -233,9 +233,10 @@ int main(int argc, const char * argv[]) {
     tempSeries.label = "second series";
     seriesVector.push_back(tempSeries);
     
-    myDtwLabel.trainLabel(seriesVector);
-    assert(myDtwLabel.runLabel(seriesOne) == "first series");
-    assert(myDtwLabel.runLabel(seriesTwo) == "second series");
+    myDTW.train(seriesVector);
+    assert(myDTW.run(seriesOne) == "first series");
+    assert(myDTW.run(seriesTwo) == "second series");
+    std::cout << myDTW.getCosts()[0] << std::endl;
 
     return 0;
 }

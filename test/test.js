@@ -339,7 +339,7 @@ describe('RapidLib Machine Learning', function () {
         });
 
         it('should report costs', function () {
-            expect(myDTW.getCosts()[0]).to.equal(17.325403217417502);
+            expect(myDTW.getCosts()[0]).to.equal(14.621232784634294);
             expect(myDTW.getCosts()[1]).to.equal(0);
         });
         it('should report new costs');

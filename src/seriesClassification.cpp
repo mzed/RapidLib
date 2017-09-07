@@ -15,7 +15,7 @@ seriesClassification::seriesClassification() {};
 
 seriesClassification::~seriesClassification() {};
 
-bool seriesClassification::trainLabel(const std::vector<trainingSeries> &seriesSet) {
+bool seriesClassification::train(const std::vector<trainingSeries> &seriesSet) {
     reset();
     bool trained = true;
     allTrainingSeries = seriesSet;
@@ -30,7 +30,7 @@ void seriesClassification::reset() {
     allTrainingSeries.clear();
 }
 
-std::string seriesClassification::runLabel(const std::vector<std::vector<double>> &inputSeries) {
+std::string seriesClassification::run(const std::vector<std::vector<double>> &inputSeries) {
     dtw dtw;
     int closestSeries = 0;
     allCosts.clear();
@@ -49,9 +49,10 @@ std::string seriesClassification::runLabel(const std::vector<std::vector<double>
 };
 
 
-//std::vector<double> seriesClassification::getCosts() {
-//    return allCosts;
-//}
+std::vector<double> seriesClassification::getCosts() {
+    return allCosts;
+}
+
 //
 //std::vector<double> seriesClassification::getCosts(const std::vector<trainingExample> &trainingSet) {
 //    run(trainingSet);

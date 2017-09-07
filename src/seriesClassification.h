@@ -20,12 +20,10 @@ public:
     seriesClassification();
     ~seriesClassification();
     
-    bool trainLabel(const std::vector<trainingSeries> &seriesSet);
-    
+    bool train(const std::vector<trainingSeries> &seriesSet);
     void reset();
-    
-    std::string runLabel(const std::vector<std::vector<double>> &inputSeries);
-    
+    std::string run(const std::vector<std::vector<double>> &inputSeries);
+    std::vector<double> getCosts();
     
 private:
     std::vector<trainingSeries> allTrainingSeries;
