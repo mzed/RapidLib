@@ -212,7 +212,7 @@ int main(int argc, const char * argv[]) {
     seriesTwo.push_back( { -2., 1. } );
     
         
-    ///////////////////////////////////////////////////////////Testing with labels
+    //Testing with labels
     seriesClassification myDTW;
     std::vector<trainingSeries> seriesVector;
     trainingSeries tempSeries;
@@ -237,6 +237,8 @@ int main(int argc, const char * argv[]) {
     assert(myDTW.run(seriesOne) == "first series");
     assert(myDTW.run(seriesTwo) == "second series");
     std::cout << myDTW.getCosts()[0] << std::endl;
+    
+    //////////////////////////////////////////////////////////////////////// 
 
     return 0;
 }

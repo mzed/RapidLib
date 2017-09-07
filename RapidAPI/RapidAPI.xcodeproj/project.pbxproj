@@ -18,6 +18,7 @@
 		BE553E2F1EE05FE1004EB00F /* svmClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE553E2E1EE05FE1004EB00F /* svmClassification.cpp */; };
 		BE59A4521F1698E500B26E85 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE59A44E1F1698E500B26E85 /* jsoncpp.cpp */; };
 		BE59A4531F1698E500B26E85 /* libsvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE59A4501F1698E500B26E85 /* libsvm.cpp */; };
+		BE720AF11F615C0E00675FCA /* fastDTW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE720AEF1F615C0E00675FCA /* fastDTW.cpp */; };
 		BE92865D1EF40BBD006847CF /* rapidStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE92865C1EF40BBD006847CF /* rapidStream.cpp */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,8 @@
 		BE59A44E1F1698E500B26E85 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		BE59A4501F1698E500B26E85 /* libsvm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = libsvm.cpp; sourceTree = "<group>"; };
 		BE59A4511F1698E500B26E85 /* libsvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libsvm.h; sourceTree = "<group>"; };
+		BE720AEF1F615C0E00675FCA /* fastDTW.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fastDTW.cpp; sourceTree = "<group>"; };
+		BE720AF01F615C0E00675FCA /* fastDTW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fastDTW.h; sourceTree = "<group>"; };
 		BE92865B1EF40BB4006847CF /* rapidStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rapidStream.h; sourceTree = "<group>"; };
 		BE92865C1EF40BBD006847CF /* rapidStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rapidStream.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +126,8 @@
 				BE3852871EE847730008E1BD /* dtw.cpp */,
 				BE3852891EE94D740008E1BD /* seriesClassification.cpp */,
 				BE38528A1EE94D740008E1BD /* seriesClassification.h */,
+				BE720AEF1F615C0E00675FCA /* fastDTW.cpp */,
+				BE720AF01F615C0E00675FCA /* fastDTW.h */,
 			);
 			name = src;
 			path = ../../src;
@@ -225,6 +230,7 @@
 				BE38528B1EE94D740008E1BD /* seriesClassification.cpp in Sources */,
 				BE325F501DB50BFE00F199A8 /* neuralNetwork.cpp in Sources */,
 				BE3852881EE847730008E1BD /* dtw.cpp in Sources */,
+				BE720AF11F615C0E00675FCA /* fastDTW.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
