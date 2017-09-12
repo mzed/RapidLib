@@ -11,7 +11,7 @@
 
 #include <vector>
 #include <string>
-#include "dtw.h"
+#include "fastDTW.h"
 #include "trainingExample.h"
 
 class seriesClassification {

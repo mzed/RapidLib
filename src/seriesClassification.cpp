@@ -31,14 +31,15 @@ void seriesClassification::reset() {
 }
 
 std::string seriesClassification::run(const std::vector<std::vector<double>> &inputSeries) {
-    dtw dtw;
+    fastDTW dtw;
+    int searchRadius = 1; //TODO: Define this properly, elsewhere?
     int closestSeries = 0;
     allCosts.clear();
-    double lowestCost = dtw.getCost(inputSeries, allTrainingSeries[0].input);
+    double lowestCost = dtw.getCost(inputSeries, allTrainingSeries[0].input, searchRadius);
     allCosts.push_back(lowestCost);
     
     for (int i = 1; i < allTrainingSeries.size(); ++i) {
-        double currentCost = dtw.getCost(inputSeries, allTrainingSeries[i].input);
+        double currentCost = dtw.getCost(inputSeries, allTrainingSeries[i].input, searchRadius);
         allCosts.push_back(currentCost);
         if (currentCost < lowestCost) {
             lowestCost = currentCost;
