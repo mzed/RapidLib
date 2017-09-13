@@ -10,18 +10,30 @@
 #define dtw_h
 
 #include <vector>
+#include "warpPath.h"
 
 class dtw {
-    
 public:
     dtw();
     ~dtw();
     
+    /* Calculates and returns a simple cost value between two input series */
     double getCost(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY);
+    
+    /* Calculates both cost and the warp path */
+    void dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY); //This returns everything, including a path
+    
+    /* Calculates both the cost and the warp path, with a given window as a constraint */
+    void constrainedDTW(); //This takes a window object
+    
+    /* Returns the warp path that was found by one of the above methods. */
+    warpPath getPath();
     
 private:
     inline double distanceFunction(const std::vector<double> &pointX, const std::vector<double> &point);
-
+    std::vector<std::vector<double> > costMatrix;
+    warpPath warpPath;
+    double cost;
 };
 
 #endif /* dtw_h */

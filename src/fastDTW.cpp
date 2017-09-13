@@ -8,6 +8,7 @@
 
 #include "fastDTW.h"
 #include "dtw.h"
+#include "timeSeries.h"
 
 fastDTW::fastDTW() {};
 fastDTW::~fastDTW() {};
@@ -22,9 +23,20 @@ double fastDTW::getCost(const std::vector<std::vector<double>> &seriesX, const s
     }
     
     double resolution = 2.0;
+    std::vector<std::vector<double>> shrunkenX = downsample(seriesX, resolution);
+    std::vector<std::vector<double>> shrunkenY = downsample(seriesY, resolution);
     
     
     ///make it fast here
     
+    //SearchWindow window = new ExpandedResWindow(tsI, tsJ, shrunkI, shrunkJ, FastDTW.getWarpPathBetween(shrunkI, shrunkJ, searchRadius, distFn), searchRadius);
+    
     return dtw.getCost(seriesX, seriesY);
 };
+
+std::vector<std::vector<double> > fastDTW::downsample(const std::vector<std::vector<double>> &series, double resolution  = 2.0) {
+    std::vector<std::vector<double> > shrunkenSeries = series;
+    
+    
+    return shrunkenSeries;
+}

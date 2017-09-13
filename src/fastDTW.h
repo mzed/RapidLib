@@ -20,6 +20,7 @@ public:
 
     
 private:
+    std::vector<std::vector<double> > downsample(const std::vector<std::vector<double>> &series, double resolution);
     
 };
 

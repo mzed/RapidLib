@@ -61,6 +61,7 @@
 		BE59A44E1F1698E500B26E85 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		BE59A4501F1698E500B26E85 /* libsvm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = libsvm.cpp; sourceTree = "<group>"; };
 		BE59A4511F1698E500B26E85 /* libsvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libsvm.h; sourceTree = "<group>"; };
+		BE67831F1F69672C005E73D0 /* warpPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = warpPath.h; sourceTree = "<group>"; };
 		BE720AEF1F615C0E00675FCA /* fastDTW.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fastDTW.cpp; sourceTree = "<group>"; };
 		BE720AF01F615C0E00675FCA /* fastDTW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fastDTW.h; sourceTree = "<group>"; };
 		BE720AF21F67D87200675FCA /* timeSeries.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timeSeries.cpp; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 				BE720AF01F615C0E00675FCA /* fastDTW.h */,
 				BE720AF21F67D87200675FCA /* timeSeries.cpp */,
 				BE720AF31F67D87200675FCA /* timeSeries.h */,
+				BE67831F1F69672C005E73D0 /* warpPath.h */,
 			);
 			name = src;
 			path = ../../src;
