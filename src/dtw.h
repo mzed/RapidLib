@@ -11,6 +11,7 @@
 
 #include <vector>
 #include "warpPath.h"
+#include "searchWindow.h"
 
 class dtw {
 public:
@@ -21,10 +22,10 @@ public:
     double getCost(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY);
     
     /* Calculates both cost and the warp path */
-    void dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY); //This returns everything, including a path
+    warpInfo dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY); //This returns everything, including a path
     
     /* Calculates both the cost and the warp path, with a given window as a constraint */
-    void constrainedDTW(); //This takes a window object
+    warpInfo constrainedDTW(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY, searchWindow window); //This takes a window object
     
     /* Returns the warp path that was found by one of the above methods. */
     warpPath getPath();

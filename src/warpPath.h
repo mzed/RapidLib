@@ -20,4 +20,10 @@ public:
     }
 
 };
+
+class warpInfo {
+public:
+    warpPath path;
+    double cost;
+};
 #endif /* warpPath_h */

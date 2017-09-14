@@ -234,6 +234,9 @@ int main(int argc, const char * argv[]) {
     seriesVector.push_back(tempSeries);
     
     myDTW.train(seriesVector);
+    std::cout << "dtwrun " << myDTW.run(seriesOne) << std::endl;
+    std::cout << "dtwrun " << myDTW.run(seriesTwo) << std::endl;
+
     assert(myDTW.run(seriesOne) == "first series");
     assert(myDTW.run(seriesTwo) == "second series");
     std::cout << myDTW.getCosts()[0] << std::endl;

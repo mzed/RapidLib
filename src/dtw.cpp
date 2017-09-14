@@ -66,7 +66,7 @@ double dtw::getCost(const std::vector<std::vector<double> > &seriesX, const std:
 };
 
 /* calculates both the cost and the warp path*/
-void dtw::dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY) {
+warpInfo dtw::dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY) {
     
     //calculate cost matrix
     cost = getCost(seriesX, seriesY);
@@ -103,13 +103,20 @@ void dtw::dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, cons
         }
         warpPath.add(i, j);
     }
+    warpInfo info;
+    info.path = warpPath;
+    info.cost = cost;
+    return info;
 }
 
-/*
- void dtw::constrainedDTW(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY, window) {
+
+ warpInfo dtw::constrainedDTW(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY, searchWindow window) {
+//     costMatrix = new PartialWindowMatrix(window);
  
+     warpInfo info;
+     return info;
  }
- */
+
 
 warpPath dtw::getPath() {
     return warpPath;
