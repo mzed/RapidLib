@@ -15,11 +15,6 @@ dtw::dtw() {};
 
 dtw::~dtw() {};
 
-//void dtw::setSeries(std::vector<std::vector<double>> newSeries) {
-//    storedSeries = newSeries;
-//    numFeatures = int(storedSeries[0].size());
-//};
-
 inline double dtw::distanceFunction(const std::vector<double> &x, const std::vector<double> &y) {
     assert(x.size() == y.size());
     double euclidianDistance = 0;
@@ -110,12 +105,42 @@ warpInfo dtw::dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, 
 }
 
 
- warpInfo dtw::constrainedDTW(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY, searchWindow window) {
-//     costMatrix = new PartialWindowMatrix(window);
- 
-     warpInfo info;
-     return info;
- }
+/* calculates warp cost (only) based on window */
+warpInfo dtw::constrainedDTW(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY, searchWindow window) {
+    
+    //initialize cost matrix
+    costMatrix.clear();
+    for (int i = 0; i < seriesX.size(); ++i) { //TODO: this could be smaller, since most cells are unused
+        std::vector<double> tempVector;
+        for (int j = 0; j < seriesY.size(); ++j) {
+            tempVector.push_back(0);
+        }
+        costMatrix.push_back(tempVector);
+    }
+    int maxX = int(seriesX.size()) - 1;
+    int maxY = int(seriesY.size()) - 1;
+    
+    //fill cost matrix cells based on window
+    for (int currentX = 0; currentX < window.minValues.size(); ++currentX) {
+        for (int currentY = window.minValues[currentX]; currentY <= window.maxValues[currentX]; ++currentY) { //FIXME: should be <= ?
+            
+            if (currentX == 0 && currentY == 0) { //bottom left cell
+                costMatrix[0][0] = distanceFunction(seriesX[0], seriesY[0]);
+            } else if (currentX == 0) { //first column
+                costMatrix[0][currentY] = distanceFunction(seriesX[0], seriesY[currentY]) + costMatrix[0][currentY - 0];
+            } else if (currentY == 0) { //first row
+                costMatrix[currentX][0] = distanceFunction(seriesX[currentX], seriesY[0]) + costMatrix[currentX - 1][0];
+            } else {
+                double minGlobalCost = fmin(costMatrix[currentX - 1][currentY], fmin(costMatrix[currentX-1][currentY-1], costMatrix[currentX][currentY-1])); //Is this correct? What about unvisited cells?
+                costMatrix[currentX][currentY] = distanceFunction(seriesX[currentX], seriesY[currentY]) + minGlobalCost;
+            }
+        }
+    }
+    
+    warpInfo info;
+    info.cost = costMatrix[maxX][maxY];
+    return info;
+}
 
 
 warpPath dtw::getPath() {

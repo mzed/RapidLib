@@ -20,7 +20,6 @@
 		BE59A4531F1698E500B26E85 /* libsvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE59A4501F1698E500B26E85 /* libsvm.cpp */; };
 		BE6783221F6A9B9A005E73D0 /* searchWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6783211F6A9B9A005E73D0 /* searchWindow.cpp */; };
 		BE720AF11F615C0E00675FCA /* fastDTW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE720AEF1F615C0E00675FCA /* fastDTW.cpp */; };
-		BE720AF41F67D87200675FCA /* timeSeries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE720AF21F67D87200675FCA /* timeSeries.cpp */; };
 		BE92865D1EF40BBD006847CF /* rapidStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE92865C1EF40BBD006847CF /* rapidStream.cpp */; };
 /* End PBXBuildFile section */
 
@@ -67,8 +66,6 @@
 		BE6783211F6A9B9A005E73D0 /* searchWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = searchWindow.cpp; sourceTree = "<group>"; };
 		BE720AEF1F615C0E00675FCA /* fastDTW.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fastDTW.cpp; sourceTree = "<group>"; };
 		BE720AF01F615C0E00675FCA /* fastDTW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fastDTW.h; sourceTree = "<group>"; };
-		BE720AF21F67D87200675FCA /* timeSeries.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timeSeries.cpp; sourceTree = "<group>"; };
-		BE720AF31F67D87200675FCA /* timeSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timeSeries.h; sourceTree = "<group>"; };
 		BE92865B1EF40BB4006847CF /* rapidStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rapidStream.h; sourceTree = "<group>"; };
 		BE92865C1EF40BBD006847CF /* rapidStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rapidStream.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,8 +132,6 @@
 				BE38528A1EE94D740008E1BD /* seriesClassification.h */,
 				BE720AEF1F615C0E00675FCA /* fastDTW.cpp */,
 				BE720AF01F615C0E00675FCA /* fastDTW.h */,
-				BE720AF21F67D87200675FCA /* timeSeries.cpp */,
-				BE720AF31F67D87200675FCA /* timeSeries.h */,
 				BE67831F1F69672C005E73D0 /* warpPath.h */,
 				BE6783201F6A95FE005E73D0 /* searchWindow.h */,
 				BE6783211F6A9B9A005E73D0 /* searchWindow.cpp */,
@@ -233,7 +228,6 @@
 				BE92865D1EF40BBD006847CF /* rapidStream.cpp in Sources */,
 				BE553E2F1EE05FE1004EB00F /* svmClassification.cpp in Sources */,
 				BE325F351DB50BE100F199A8 /* main.cpp in Sources */,
-				BE720AF41F67D87200675FCA /* timeSeries.cpp in Sources */,
 				BE325F4E1DB50BFE00F199A8 /* knnClassification.cpp in Sources */,
 				BE59A4531F1698E500B26E85 /* libsvm.cpp in Sources */,
 				BE325F4F1DB50BFE00F199A8 /* modelSet.cpp in Sources */,

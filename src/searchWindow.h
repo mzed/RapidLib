@@ -20,10 +20,13 @@ public:
                  const std::vector<std::vector<double>> &shrunkenY,
                  warpPath shrunkenWarpPath,
                  int searchRadius);
-
-private:
+    
     std::vector<int> minValues;
     std::vector<int> maxValues;
+
+private:
+//    std::vector<int> minValues;
+//    std::vector<int> maxValues;
     int maxY;
     int size;
     void markVisited(int col, int row);

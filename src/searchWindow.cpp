@@ -7,12 +7,12 @@
 //
 
 
+#include <cassert>
 #include "searchWindow.h"
 
 
 searchWindow::searchWindow(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double>> &seriesY, const std::vector<std::vector<double>> &shrunkenX, const std::vector<std::vector<double>> &shrunkenY, warpPath shrunkenWarpPath, int searchRadius) :
-minValues(seriesX.size(), -1), maxValues(seriesX.size(), 0), maxY(seriesY.size() - 1), size(0), modCount(0) {
-    
+minValues(seriesX.size(), -1), maxValues(seriesX.size(), 0), maxY(int(seriesY.size() - 1)), size(0) {
     
     //Current location of higher resolution path
     int currentX = shrunkenWarpPath.xIndices[0];
@@ -24,8 +24,6 @@ minValues(seriesX.size(), -1), maxValues(seriesX.size(), 0), maxY(seriesY.size()
     
     //project each part of the low-res path to high res cells
     for (int i = 0; i < shrunkenWarpPath.xIndices.size(); ++i) {
-        
-        std::pair<int, int> currentCell = std::make_pair(shrunkenWarpPath.xIndices[i], shrunkenWarpPath.yIndices[i]); //FIXME: Do I need this?
         
         int warpedX = shrunkenWarpPath.xIndices[i];
         int warpedY = shrunkenWarpPath.yIndices[i];
@@ -48,7 +46,7 @@ minValues(seriesX.size(), -1), maxValues(seriesX.size(), 0), maxY(seriesY.size()
         
         for (int j = 0; j < blockXSize; ++j) {
             markVisited(currentX + j, currentY);
-            markVisited(currentX + j, currentY + blockYSize + 1);
+            markVisited(currentX + j, currentY + blockYSize - 1); //TODO: These are redundant?
         }
         
         lastWarpedX = warpedX;
@@ -61,21 +59,19 @@ minValues(seriesX.size(), -1), maxValues(seriesX.size(), 0), maxY(seriesY.size()
 }
 
 void searchWindow::markVisited(int col, int row) {
-    if (minValues[col] == -1) {
-        minValues[col] = row;
-        maxValues[col] = row;
-        size++;
-        modCount++;
-    } else if (minValues[col] > row) {
-        size += minValues[col] - row;
-        minValues[col] = row;
-        modCount++;
-    } else if (maxValues[col] < row) {
-        size += row - maxValues[col];
-        maxValues[col] = row;
-        modCount++;
+    if (row <= maxY) { //FIXME: This is kind of a hack. row shouln't be > maxY
+        if (minValues[col] == -1) {
+            minValues[col] = row;
+            maxValues[col] = row;
+            size++;
+        } else if (minValues[col] > row) {
+            size += minValues[col] - row;
+            minValues[col] = row;
+        } else if (maxValues[col] < row) {
+            size += row - maxValues[col];
+            maxValues[col] = row;
+        }
     }
-    
 }
 
 void searchWindow::expandWindow(int radius) {
@@ -84,14 +80,14 @@ void searchWindow::expandWindow(int radius) {
         //Add all cells in the current window to a vector.
         std::vector<std::pair<int, int>> windowCells;
         for (int currentX = 0; currentX < minValues.size(); ++currentX) {
-            for (int currentY = 0; currentY <= maxValues[currentX]; ++currentY) {
+            for (int currentY = minValues[currentX]; currentY <= maxValues[currentX]; ++currentY) {
                 std::pair<int, int> currentCell = std::make_pair(currentX, currentY);
                 windowCells.push_back(currentCell);
             }
         }
         //minX = 0;
         int maxX = int(minValues.size() - 1);
-
+        
         for (int cell = 0; cell < windowCells.size(); ++cell) {
             std::pair<int, int> currentCell = windowCells[cell]; //TODO: is pair necessary? easier to make currentX and currentY?
             
@@ -163,7 +159,7 @@ void searchWindow::expandWindow(int radius) {
                     markVisited(targetX + cellsPastEdge, targetY + cellsPastEdge);
                 }
             }
-
+            
             if (currentCell.second != 0) { //move down if possible
                 int targetX = currentCell.first;
                 int targetY = currentCell.second - radius;
@@ -174,7 +170,7 @@ void searchWindow::expandWindow(int radius) {
                     markVisited(targetX, targetY + cellsPastEdge);
                 }
             }
-
+            
             if (currentCell.first != maxX && currentCell.second != 0) { //move lower right if possible
                 int targetX = currentCell.first + radius;
                 int targetY = currentCell.second - radius;

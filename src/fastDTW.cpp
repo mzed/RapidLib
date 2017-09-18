@@ -8,9 +8,6 @@
 
 #include "fastDTW.h"
 #include "dtw.h"
-//#include "timeSeries.h" //I think this whole class can go?
-
-//TODO: create SearhWindow. Create expandedSearchwindow.
 
 fastDTW::fastDTW() {};
 
@@ -29,7 +26,7 @@ warpInfo fastDTW::fullFastDTW(const std::vector<std::vector<double>> &seriesX, c
     std::vector<std::vector<double>> shrunkenY = downsample(seriesY, resolution);
     
     //some nice recursion here
-    searchWindow window(seriesX, seriesX, shrunkenX, shrunkenY, getWarpPath(shrunkenX, shrunkenY, searchRadius), searchRadius);
+    searchWindow window(seriesX, seriesY, shrunkenX, shrunkenY, getWarpPath(shrunkenX, shrunkenY, searchRadius), searchRadius);
     
     return dtw.constrainedDTW(seriesX, seriesY, window);
     //return dtw.dynamicTimeWarp(seriesX, seriesY);
