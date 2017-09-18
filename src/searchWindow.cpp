@@ -7,9 +7,7 @@
 //
 
 
-#include <cassert>
 #include "searchWindow.h"
-
 
 searchWindow::searchWindow(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double>> &seriesY, const std::vector<std::vector<double>> &shrunkenX, const std::vector<std::vector<double>> &shrunkenY, warpPath shrunkenWarpPath, int searchRadius) :
 minValues(seriesX.size(), -1), maxValues(seriesX.size(), 0), maxY(int(seriesY.size() - 1)), size(0) {

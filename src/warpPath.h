@@ -9,21 +9,23 @@
 #ifndef warpPath_h
 #define warpPath_h
 
+#include <vector>
+
 class warpPath {
 public:
+    warpPath();
+    ~warpPath();
     std::vector<int> xIndices;
     std::vector<int> yIndices;
     
-    void add(int x, int y) {
-        xIndices.insert(xIndices.begin(), x);
-        yIndices.insert(yIndices.begin(), y);
-    }
+    void add(int x, int y);
 
 };
 
-class warpInfo {
+struct warpInfo {
 public:
     warpPath path;
     double cost;
+    
 };
 #endif /* warpPath_h */

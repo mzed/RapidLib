@@ -13,7 +13,6 @@ EMSCRIPTEN_BINDINGS(seriesClassification_module) {
     .function("run", &seriesClassification::run)
     .function("getCosts", select_overload<std::vector<double>()>(&seriesClassification::getCosts))
     ;
-
 };
 
 #endif
