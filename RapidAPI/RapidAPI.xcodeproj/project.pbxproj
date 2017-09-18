@@ -18,6 +18,9 @@
 		BE553E2F1EE05FE1004EB00F /* svmClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE553E2E1EE05FE1004EB00F /* svmClassification.cpp */; };
 		BE59A4521F1698E500B26E85 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE59A44E1F1698E500B26E85 /* jsoncpp.cpp */; };
 		BE59A4531F1698E500B26E85 /* libsvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE59A4501F1698E500B26E85 /* libsvm.cpp */; };
+		BE6783221F6A9B9A005E73D0 /* searchWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6783211F6A9B9A005E73D0 /* searchWindow.cpp */; };
+		BE6783241F6FFA5C005E73D0 /* warpPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6783231F6FFA5C005E73D0 /* warpPath.cpp */; };
+		BE720AF11F615C0E00675FCA /* fastDTW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE720AEF1F615C0E00675FCA /* fastDTW.cpp */; };
 		BE92865D1EF40BBD006847CF /* rapidStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE92865C1EF40BBD006847CF /* rapidStream.cpp */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +62,12 @@
 		BE59A44E1F1698E500B26E85 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		BE59A4501F1698E500B26E85 /* libsvm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = libsvm.cpp; sourceTree = "<group>"; };
 		BE59A4511F1698E500B26E85 /* libsvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libsvm.h; sourceTree = "<group>"; };
+		BE67831F1F69672C005E73D0 /* warpPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = warpPath.h; sourceTree = "<group>"; };
+		BE6783201F6A95FE005E73D0 /* searchWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = searchWindow.h; sourceTree = "<group>"; };
+		BE6783211F6A9B9A005E73D0 /* searchWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = searchWindow.cpp; sourceTree = "<group>"; };
+		BE6783231F6FFA5C005E73D0 /* warpPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = warpPath.cpp; sourceTree = "<group>"; };
+		BE720AEF1F615C0E00675FCA /* fastDTW.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fastDTW.cpp; sourceTree = "<group>"; };
+		BE720AF01F615C0E00675FCA /* fastDTW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fastDTW.h; sourceTree = "<group>"; };
 		BE92865B1EF40BB4006847CF /* rapidStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rapidStream.h; sourceTree = "<group>"; };
 		BE92865C1EF40BBD006847CF /* rapidStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rapidStream.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +132,12 @@
 				BE3852871EE847730008E1BD /* dtw.cpp */,
 				BE3852891EE94D740008E1BD /* seriesClassification.cpp */,
 				BE38528A1EE94D740008E1BD /* seriesClassification.h */,
+				BE720AEF1F615C0E00675FCA /* fastDTW.cpp */,
+				BE720AF01F615C0E00675FCA /* fastDTW.h */,
+				BE67831F1F69672C005E73D0 /* warpPath.h */,
+				BE6783231F6FFA5C005E73D0 /* warpPath.cpp */,
+				BE6783201F6A95FE005E73D0 /* searchWindow.h */,
+				BE6783211F6A9B9A005E73D0 /* searchWindow.cpp */,
 			);
 			name = src;
 			path = ../../src;
@@ -216,15 +231,18 @@
 				BE92865D1EF40BBD006847CF /* rapidStream.cpp in Sources */,
 				BE553E2F1EE05FE1004EB00F /* svmClassification.cpp in Sources */,
 				BE325F351DB50BE100F199A8 /* main.cpp in Sources */,
+				BE6783241F6FFA5C005E73D0 /* warpPath.cpp in Sources */,
 				BE325F4E1DB50BFE00F199A8 /* knnClassification.cpp in Sources */,
 				BE59A4531F1698E500B26E85 /* libsvm.cpp in Sources */,
 				BE325F4F1DB50BFE00F199A8 /* modelSet.cpp in Sources */,
 				BE325F4D1DB50BFE00F199A8 /* classification.cpp in Sources */,
 				BE325F511DB50BFE00F199A8 /* regression.cpp in Sources */,
+				BE6783221F6A9B9A005E73D0 /* searchWindow.cpp in Sources */,
 				BE59A4521F1698E500B26E85 /* jsoncpp.cpp in Sources */,
 				BE38528B1EE94D740008E1BD /* seriesClassification.cpp in Sources */,
 				BE325F501DB50BFE00F199A8 /* neuralNetwork.cpp in Sources */,
 				BE3852881EE847730008E1BD /* dtw.cpp in Sources */,
+				BE720AF11F615C0E00675FCA /* fastDTW.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

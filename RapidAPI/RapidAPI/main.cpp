@@ -195,95 +195,25 @@ int main(int argc, const char * argv[]) {
     
     
     
-    ////////////
+    //////////////////////////////////////////////////////////////////////// DTW
     
-    seriesClassification myDtw;
-    seriesClassification myDtwTrain;
-    
-    //Testing addSeries()
+    //Test series
     std::vector<std::vector<double>> seriesOne;
     seriesOne.push_back( { 1., 5.} );
     seriesOne.push_back( { 2., 4.} );
     seriesOne.push_back( { 3., 3.} );
     seriesOne.push_back( { 4., 2.} );
     seriesOne.push_back( { 5., 1.} );
-    myDtw.addSeries(seriesOne);
     
     std::vector<std::vector<double>> seriesTwo;
     seriesTwo.push_back( { 1., 4. } );
     seriesTwo.push_back( { 2., -3. } );
     seriesTwo.push_back( { 1., 5. } );
     seriesTwo.push_back( { -2., 1. } );
-    myDtw.addSeries(seriesTwo);
     
-    assert(myDtw.run(seriesOne) == 0);
-    assert(myDtw.getCosts()[0] == 0);
-    assert(myDtw.getCosts()[1] == 19.325403217417502);
-    assert(myDtw.run(seriesTwo) == 1);
-    
-    //testing train()
-    
-    std::vector<std::vector<std::vector<double>>> seriesSet;
-    seriesSet.push_back(seriesOne);
-    seriesSet.push_back(seriesTwo);
-    myDtwTrain.train(seriesSet);
-    
-    assert(myDtwTrain.run(seriesOne) == 0);
-    assert(myDtwTrain.run(seriesTwo) == 1);
-    
-    //Testing with training examples... probably don't neet this?
-    seriesClassification myDtw2;
-    std::vector<trainingExample> tsOne;
-    
-    tempExample.input = { 1., 5. };
-    tsOne.push_back(tempExample);
-    
-    tempExample.input = { 2., 4. };
-    tsOne.push_back(tempExample);
-    
-    tempExample.input = { 3., 3. };
-    tsOne.push_back(tempExample);
-    
-    tempExample.input = { 4., 2. };
-    tsOne.push_back(tempExample);
-    
-    tempExample.input = { 5., 1. };
-    tsOne.push_back(tempExample);
-    
-    myDtw2.addSeries(tsOne);
-    
-    std::vector<trainingExample> tsTwo;
-    tempExample.input = { 1., 4. };
-    tsTwo.push_back(tempExample);
-    
-    tempExample.input = { 2., -3. };
-    tsTwo.push_back(tempExample);
-    
-    tempExample.input = { 1., 5. };
-    tsTwo.push_back(tempExample);
-    
-    tempExample.input = { -2., 1. };
-    tsTwo.push_back(tempExample);
-    
-    myDtw2.addSeries(tsTwo);
-    
-    
-    assert(myDtw2.run(tsOne) == 0);
-    assert(myDtw2.run(tsTwo) == 1);
-    
-    seriesClassification myDtw2T;
-    seriesSet.clear();
-    seriesSet.push_back(seriesOne);
-    seriesSet.push_back(seriesTwo);
-    myDtw2T.train(seriesSet);
-    
-    assert(myDtw2T.run(tsOne) == 0);
-    assert(myDtw2T.run(tsTwo) == 1);
-    assert(myDtw.getCosts()[0] == 19.325403217417502);
-    assert(myDtw2T.getCosts(tsOne)[0] == 0);
-    
-    ///////////////////////////////////////////////////////////Testing with labels
-    seriesClassification myDtwLabel;
+        
+    //Testing with labels
+    seriesClassification myDTW;
     std::vector<trainingSeries> seriesVector;
     trainingSeries tempSeries;
     
@@ -303,9 +233,15 @@ int main(int argc, const char * argv[]) {
     tempSeries.label = "second series";
     seriesVector.push_back(tempSeries);
     
-    myDtwLabel.trainLabel(seriesVector);
-    assert(myDtwLabel.runLabel(seriesOne) == "first series");
-    assert(myDtwLabel.runLabel(seriesTwo) == "second series");
+    myDTW.train(seriesVector);
+    std::cout << "dtwrun " << myDTW.run(seriesOne) << std::endl;
+    std::cout << "dtwrun " << myDTW.run(seriesTwo) << std::endl;
+
+    assert(myDTW.run(seriesOne) == "first series");
+    assert(myDTW.run(seriesTwo) == "second series");
+    std::cout << myDTW.getCosts()[0] << std::endl;
+    
+    //////////////////////////////////////////////////////////////////////// 
 
     return 0;
 }

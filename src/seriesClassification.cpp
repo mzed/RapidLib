@@ -15,99 +15,47 @@ seriesClassification::seriesClassification() {};
 
 seriesClassification::~seriesClassification() {};
 
-bool seriesClassification::addSeries(const std::vector<std::vector<double>> &newSeries) {
-    dtw newDTW;
-    newDTW.setSeries(newSeries);
-    dtwClassifiers.push_back(newDTW);
-    return true;
-}
-
-bool seriesClassification::addSeries(const std::vector<trainingExample> &trainingSet) {
-    std::vector<std::vector<double>> newSeries;
-    for (int i = 0; i < trainingSet.size(); ++i) {
-        newSeries.push_back(trainingSet[i].input);
-    }
-    return addSeries(newSeries);
-};
-
-///////////////////////////////////////////////// Training
-//TODO: Refactor these
-
-bool seriesClassification::train(const std::vector<std::vector<std::vector<double> > > &vectorSet) {
-    bool trained = true;
+bool seriesClassification::train(const std::vector<trainingSeries> &seriesSet) {
     reset();
-    for (int i = 0; i < vectorSet.size(); ++i) {
-        if (!addSeries(vectorSet[i])) {
-            trained = false;
-        };
-    }
-    return trained;
-}
-
-bool seriesClassification::train(const std::vector<std::vector<trainingExample> > &exampleSet) {
     bool trained = true;
-    reset();
-    for (int i = 0; i < exampleSet.size(); ++i) {
-        if (!addSeries(exampleSet[i])) {
-            trained = false;
-        };
-    }
-    return trained;
-}
+    allTrainingSeries = seriesSet;
 
-bool seriesClassification::trainLabel(const std::vector<trainingSeries> &seriesSet) {
-    bool trained = true;
-    reset();
-    for (int i = 0; i < seriesSet.size(); ++i) {
-        if(!addSeries(seriesSet[i].input) ) {
-            trained = false;
-        }
-        labels.push_back(seriesSet[i].label);
-    }
+    //TODO: calculate some size statistics here?
+    
     return trained;
 };
-
-/////////////////////////////////////////////////
 
 void seriesClassification::reset() {
-    labels.clear();
-    dtwClassifiers.clear();
+    allCosts.clear();
+    allTrainingSeries.clear();
 }
 
-int seriesClassification::run(const std::vector<std::vector<double>> &inputSeries) {
-    //TODO: check vector sizes and reject bad data
+std::string seriesClassification::run(const std::vector<std::vector<double>> &inputSeries) {
+    fastDTW fastDtw;
+    int searchRadius = 1; //TODO: Define this properly, elsewhere?
     int closestSeries = 0;
     allCosts.clear();
-    double lowestCost = dtwClassifiers[0].run(inputSeries);
+    double lowestCost = fastDtw.getCost(inputSeries, allTrainingSeries[0].input, searchRadius);
     allCosts.push_back(lowestCost);
-    for (int i = 1; i < dtwClassifiers.size(); ++i) {
-        double currentCost = dtwClassifiers[i].run(inputSeries);
+    
+    for (int i = 1; i < allTrainingSeries.size(); ++i) {
+        double currentCost = fastDtw.getCost(inputSeries, allTrainingSeries[i].input, searchRadius);
         allCosts.push_back(currentCost);
         if (currentCost < lowestCost) {
             lowestCost = currentCost;
             closestSeries = i;
         }
     }
-    return closestSeries;
+    return allTrainingSeries[closestSeries].label;
 };
 
-int seriesClassification::run(const std::vector<trainingExample> &trainingSet) {
-    std::vector<std::vector<double>> newSeries;
-    for (int i = 0; i < trainingSet.size(); ++i) {
-        newSeries.push_back(trainingSet[i].input);
-    }
-    return run(newSeries);
-};
-
-std::string seriesClassification::runLabel(const std::vector<std::vector<double>> &inputSeries) {
-    return labels[run(inputSeries)];
-};
 
 std::vector<double> seriesClassification::getCosts() {
     return allCosts;
 }
 
-std::vector<double> seriesClassification::getCosts(const std::vector<trainingExample> &trainingSet) {
-    run(trainingSet);
-    return allCosts;
-}
+//
+//std::vector<double> seriesClassification::getCosts(const std::vector<trainingExample> &trainingSet) {
+//    run(trainingSet);
+//    return allCosts;
+//}

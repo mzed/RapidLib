@@ -438,26 +438,13 @@ Module.SeriesClassification = function () {
 
 Module.SeriesClassification.prototype = {
     /**
-     * Adds a series to the array examples
-     * @param {Object} newSeries - An array of arrays
-     * @returns {Number} - index of the example series that best matches the input
-     */
-    // addSeries: function (newSeries) {
-    //     newSeries = Module.checkOutput(newSeries);
-    //     return this.seriesClassification.addTrainingSet(Module.prepTrainingSet(newSeries));
-    // },
-    /**
      * Resets the model, and adds a set of series to be evaluated
      * @param {Object} newSeriesSet - an array of objects, each with input: <array of arrays> and label: <string>
      * @return {Boolean} True indicates successful training.
      */
     train: function (newSeriesSet) {
         this.reset();
-        this.seriesClassification.trainLabel(Module.prepTrainingSeriesSet(newSeriesSet));
-        //     for (var i = 0; i < newSeriesSet.length; ++i) {
-        //         newSeriesSet[i] = Module.checkOutput(newSeriesSet[i]);
-        //         this.seriesClassification.addTrainingSet(Module.prepTrainingSet(newSeriesSet[i]));
-        //     }
+        this.seriesClassification.train(Module.prepTrainingSeriesSet(newSeriesSet));
         return true;
     },
     /**
@@ -481,7 +468,7 @@ Module.SeriesClassification.prototype = {
             }
             vecInputSeries.push_back(tempVector);
         }
-        return this.seriesClassification.runLabel(vecInputSeries);
+        return this.seriesClassification.run(vecInputSeries);
 
     },
     /**
@@ -494,14 +481,9 @@ Module.SeriesClassification.prototype = {
     },
     /**
      * Returns an array of costs to match the input series to each example series. A lower cost is a closer match
-     * @param {Array} [inputSeries] - An array of arrays to be evaluated. (Optional)
      * @returns {Array}
      */
-    getCosts: function (inputSeries) {
-        if (inputSeries) {
-            inputSeries = Module.checkOutput(inputSeries);
-            this.seriesClassification.runTrainingSet(Module.prepTrainingSet(inputSeries));
-        }
+    getCosts: function () {
         let returnArray = [];
         let VecDouble = this.seriesClassification.getCosts();
         for (let i = 0; i < VecDouble.size(); ++i) {
