@@ -12,7 +12,7 @@ RL_KNN=src/knnClassification.cpp src/classification.cpp
 RL_SVM=src/svmClassification.cpp dependencies/libsvm/libsvm.cpp
 RL_NN=src/neuralNetwork.cpp src/regression.cpp
 RL_MS=src/modelSet.cpp
-RL_DTW = src/warpPath.cpp src/dtw.cpp src/fastDTW.cpp src/seriesClassification.cpp
+RL_DTW=src/warpPath.cpp src/dtw.cpp src/fastDTW.cpp src/seriesClassification.cpp
 RL_STREAM=src/rapidStream.cpp 
 SOURCE_RAPID = $(RL_MS) $(RL_NN) $(RL_KNN) $(RL_SVM) $(RL_DTW) $(RL_STREAM)
 
