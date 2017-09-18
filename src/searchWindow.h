@@ -25,8 +25,6 @@ public:
     std::vector<int> maxValues;
 
 private:
-//    std::vector<int> minValues;
-//    std::vector<int> maxValues;
     int maxY;
     int size;
     void markVisited(int col, int row);

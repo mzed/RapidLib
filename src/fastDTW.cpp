@@ -42,7 +42,6 @@ warpPath fastDTW::getWarpPath(const std::vector<std::vector<double>> &seriesX, c
     return info.path;
 };
 
-
 std::vector<std::vector<double> > fastDTW::downsample(const std::vector<std::vector<double>> &series, double resolution) {
     std::vector<std::vector<double> > shrunkenSeries;
     for (int i = 0; i < series.size(); ++i) {
