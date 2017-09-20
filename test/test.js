@@ -334,12 +334,16 @@ describe('RapidLib Machine Learning', function () {
             expect(trained).to.be.true;
         });
 
+        // it('should correctly identify series 1', function () {
+        //      expect(myDTW.run(testSeries.input)).to.equal("testSeries");
+        // });
+
         it('should correctly identify series 2', function () {
             expect(myDTW.run(inputSeries)).to.equal("testSeries2");
         });
 
         it('should report costs', function () {
-            expect(myDTW.getCosts()[0]).to.equal(11.082762530298218);
+            expect(myDTW.getCosts()[0]).to.equal(20.071067811865476);
             expect(myDTW.getCosts()[1]).to.equal(0);
         });
         it('should report new costs');

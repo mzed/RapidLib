@@ -113,7 +113,7 @@ warpInfo dtw::constrainedDTW(const std::vector<std::vector<double> > &seriesX, c
     for (int i = 0; i < seriesX.size(); ++i) { //TODO: this could be smaller, since most cells are unused
         std::vector<double> tempVector;
         for (int j = 0; j < seriesY.size(); ++j) {
-            tempVector.push_back(0);
+            tempVector.push_back(std::numeric_limits<double>::max());
         }
         costMatrix.push_back(tempVector);
     }

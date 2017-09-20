@@ -8,6 +8,9 @@
 #include "seriesClassification.h"
 #include "json.h"
 
+#include "dtw.h"
+#include "fastDTW.h"
+
 int main(int argc, const char * argv[]) {
     
     //////////////////////////////////////////////////////////////////////////////////simple multilayer test
@@ -240,6 +243,15 @@ int main(int argc, const char * argv[]) {
     assert(myDTW.run(seriesOne) == "first series");
     assert(myDTW.run(seriesTwo) == "second series");
     std::cout << myDTW.getCosts()[0] << std::endl;
+    std::cout << myDTW.getCosts()[1] << std::endl;
+
+    fastDTW fastDtw;
+    std::cout << "fast one-two cost " << fastDtw.getCost(seriesOne, seriesTwo, 1) << std::endl;
+    std::cout << "fast two-one cost " << fastDtw.getCost(seriesTwo, seriesOne, 1) << std::endl;
+
+    dtw slowDTW;
+    std::cout << "slow one-two cost " << slowDTW.getCost(seriesOne, seriesTwo) << std::endl;
+    
     
     //////////////////////////////////////////////////////////////////////// 
 

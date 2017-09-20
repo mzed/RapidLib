@@ -14,6 +14,13 @@ fastDTW::fastDTW() {};
 fastDTW::~fastDTW() {};
 
 warpInfo fastDTW::fullFastDTW(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY, int searchRadius){
+    
+#ifndef EMSCRIPTEN
+    if (seriesY.size() > seriesX.size()) {
+        return fullFastDTW(seriesY, seriesX, searchRadius); //TODO: I'm not sure why I need this. Also, not sure why it fails with Emscripten.
+    }
+#endif
+    
     dtw dtw;
     searchRadius = (searchRadius < 0) ? 0 : searchRadius;
     int minSeries = searchRadius + 2;
@@ -29,7 +36,6 @@ warpInfo fastDTW::fullFastDTW(const std::vector<std::vector<double>> &seriesX, c
     searchWindow window(seriesX, seriesY, shrunkenX, shrunkenY, getWarpPath(shrunkenX, shrunkenY, searchRadius), searchRadius);
     
     return dtw.constrainedDTW(seriesX, seriesY, window);
-    //return dtw.dynamicTimeWarp(seriesX, seriesY);
 };
 
 double fastDTW::getCost(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY, int searchRadius){

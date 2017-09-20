@@ -2,7 +2,7 @@
 
 "use strict";
 
-console.log("RapidLib 1.9.2017 13:07");
+console.log("RapidLib 18.9.2017 15:03");
 
 /**
  * Utility function to convert js objects into C++ trainingSets
