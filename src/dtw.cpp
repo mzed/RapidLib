@@ -60,15 +60,9 @@ double dtw::getCost(const std::vector<std::vector<double> > &seriesX, const std:
     return cost;
 };
 
-/* calculates both the cost and the warp path*/
-warpInfo dtw::dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY) {
-    
-    //calculate cost matrix
-    cost = getCost(seriesX, seriesY);
-    
-    //find path
-    int i = int(seriesX.size()) - 1;
-    int j = int(seriesY.size()) - 1;
+void dtw::calculatePath(int seriesXsize, int seriesYsize) {
+    int i = seriesXsize - 1;
+    int j = seriesYsize - 1;
     warpPath.add(i, j);
     
     while ((i > 0) || (j > 0)) {
@@ -98,9 +92,16 @@ warpInfo dtw::dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, 
         }
         warpPath.add(i, j);
     }
+    
+};
+
+/* calculates both the cost and the warp path*/
+warpInfo dtw::dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY) {
     warpInfo info;
+    //calculate cost matrix
+    info.cost = getCost(seriesX, seriesY);
+    calculatePath(int(seriesX.size()), int(seriesY.size()));
     info.path = warpPath;
-    info.cost = cost;
     return info;
 }
 
@@ -131,14 +132,16 @@ warpInfo dtw::constrainedDTW(const std::vector<std::vector<double> > &seriesX, c
             } else if (currentY == 0) { //first row
                 costMatrix[currentX][0] = distanceFunction(seriesX[currentX], seriesY[0]) + costMatrix[currentX - 1][0];
             } else {
-                double minGlobalCost = fmin(costMatrix[currentX - 1][currentY], fmin(costMatrix[currentX-1][currentY-1], costMatrix[currentX][currentY-1])); //Is this correct? What about unvisited cells?
+                double minGlobalCost = fmin(costMatrix[currentX - 1][currentY], fmin(costMatrix[currentX-1][currentY-1], costMatrix[currentX][currentY-1]));
                 costMatrix[currentX][currentY] = distanceFunction(seriesX[currentX], seriesY[currentY]) + minGlobalCost;
             }
         }
     }
     
+    calculatePath(int(seriesX.size()), int(seriesY.size()));
     warpInfo info;
     info.cost = costMatrix[maxX][maxY];
+    info.path = warpPath;
     return info;
 }
 

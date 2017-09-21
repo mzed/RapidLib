@@ -26,7 +26,7 @@ int main(int argc, const char * argv[]) {
     trainingSet1.push_back(tempExample1);
     myNN2.setNumHiddenLayers(2);
     assert(myNN2.getNumHiddenLayers()[0] == 2);
-
+    
     myNN2.setNumEpochs(50000);
     myNN2.train(trainingSet1);
     
@@ -72,7 +72,7 @@ int main(int argc, const char * argv[]) {
     
     inputVec1 = { 8 };
     std::cout << "wtf? " << myNNJS.run(inputVec1)[0] << std::endl;
-
+    
     
     ////////////////////////////////////////////////////////////////////////////////
     
@@ -214,7 +214,7 @@ int main(int argc, const char * argv[]) {
     seriesTwo.push_back( { 1., 5. } );
     seriesTwo.push_back( { -2., 1. } );
     
-        
+    
     //Testing with labels
     seriesClassification myDTW;
     std::vector<trainingSeries> seriesVector;
@@ -239,21 +239,46 @@ int main(int argc, const char * argv[]) {
     myDTW.train(seriesVector);
     std::cout << "dtwrun " << myDTW.run(seriesOne) << std::endl;
     std::cout << "dtwrun " << myDTW.run(seriesTwo) << std::endl;
-
+    
     assert(myDTW.run(seriesOne) == "first series");
     assert(myDTW.run(seriesTwo) == "second series");
     std::cout << myDTW.getCosts()[0] << std::endl;
     std::cout << myDTW.getCosts()[1] << std::endl;
-
-    fastDTW fastDtw;
-    std::cout << "fast one-two cost " << fastDtw.getCost(seriesOne, seriesTwo, 1) << std::endl;
-    std::cout << "fast two-one cost " << fastDtw.getCost(seriesTwo, seriesOne, 1) << std::endl;
-
-    dtw slowDTW;
-    std::cout << "slow one-two cost " << slowDTW.getCost(seriesOne, seriesTwo) << std::endl;
+    /*
+     fastDTW fastDtw;
+     std::cout << "fast one-two cost " << fastDtw.getCost(seriesOne, seriesTwo, 1) << std::endl;
+     std::cout << "fast two-one cost " << fastDtw.getCost(seriesTwo, seriesOne, 1) << std::endl;
+     
+     dtw slowDTW;
+     std::cout << "slow one-two cost " << slowDTW.getCost(seriesOne, seriesTwo) << std::endl;
+     */
+    
+    //Long dtw test
+    int testSize = 8;
+    seriesVector.clear();
+    std::vector<std::vector<double> > inputSeries;
+    tempSeries.input.clear();
+    for (int i = 0; i < testSize; ++i) {
+        tempSeries.input.push_back( { (double)i, (double)i } );
+    }
+    tempSeries.label ="long up";
+    seriesVector.push_back(tempSeries);
+    
+    tempSeries.input.clear();
+    for (int i = 0; i < testSize; ++i) {
+        tempSeries.input.push_back( { (double)i, double(testSize - i) } );
+    }
+    tempSeries.label ="long down";
+    seriesVector.push_back(tempSeries);
+    
+    myDTW.train(seriesVector);
+    inputSeries = tempSeries.input;
+    std::cout << "long match " << myDTW.run(inputSeries) << std::endl;
+    std::cout << myDTW.getCosts()[0] << std::endl;
+    std::cout << myDTW.getCosts()[1] << std::endl;
     
     
-    //////////////////////////////////////////////////////////////////////// 
-
+    ////////////////////////////////////////////////////////////////////////
+    
     return 0;
 }

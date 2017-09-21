@@ -35,6 +35,8 @@ private:
     std::vector<std::vector<double> > costMatrix;
     warpPath warpPath;
     double cost;
+    
+    void calculatePath(int seriesXsize, int seriesYsize);
 };
 
 #endif /* dtw_h */
