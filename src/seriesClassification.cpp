@@ -19,8 +19,19 @@ bool seriesClassification::train(const std::vector<trainingSeries> &seriesSet) {
     reset();
     bool trained = true;
     allTrainingSeries = seriesSet;
+    minLength = maxLength = int(allTrainingSeries[0].input.size());
+    for (int i = 0; i < allTrainingSeries.size(); ++i) {
+        if (allTrainingSeries[i].input.size() < minLength) {
+            minLength = int(allTrainingSeries[i].input.size());
+        }
+        if (allTrainingSeries[i].input.size() > maxLength) {
+            maxLength = int(allTrainingSeries[i].input.size());
+        }
+    }
 
     //TODO: calculate some size statistics here?
+    //min length per label
+    //max length per label
     
     return trained;
 };

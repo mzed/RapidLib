@@ -29,6 +29,8 @@ private:
     std::vector<trainingSeries> allTrainingSeries;
     std::vector<double> allCosts;
     
+    int maxLength;
+    int minLength;
 };
 
 #endif

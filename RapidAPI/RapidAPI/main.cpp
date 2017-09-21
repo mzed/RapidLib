@@ -254,7 +254,7 @@ int main(int argc, const char * argv[]) {
      */
     
     //Long dtw test
-    int testSize = 8;
+    int testSize = 800;
     seriesVector.clear();
     std::vector<std::vector<double> > inputSeries;
     tempSeries.input.clear();
