@@ -6,6 +6,7 @@
 //
 
 #include <vector>
+#include <cassert>
 #include "seriesClassification.h"
 #ifdef EMSCRIPTEN
 #include "emscripten/seriesClassificationEmbindings.h"
@@ -16,29 +17,45 @@ seriesClassification::seriesClassification() {};
 seriesClassification::~seriesClassification() {};
 
 bool seriesClassification::train(const std::vector<trainingSeries> &seriesSet) {
+    assert(seriesSet.size() > 0);
     reset();
     bool trained = true;
     allTrainingSeries = seriesSet;
     minLength = maxLength = int(allTrainingSeries[0].input.size());
     for (int i = 0; i < allTrainingSeries.size(); ++i) {
-        if (allTrainingSeries[i].input.size() < minLength) {
-            minLength = int(allTrainingSeries[i].input.size());
+        //Global
+        int newLength = int(allTrainingSeries[i].input.size());
+        if (newLength < minLength) {
+            minLength = newLength;
         }
-        if (allTrainingSeries[i].input.size() > maxLength) {
-            maxLength = int(allTrainingSeries[i].input.size());
+        if (newLength > maxLength) {
+            maxLength = newLength;
+        }
+        //Per Label
+        std::map<std::string, lengths>::iterator it = lengthsPerLabel.find(allTrainingSeries[i].label);
+        if (it != lengthsPerLabel.end()) {
+            int newLength = int(allTrainingSeries[i].input.size());
+            if (newLength < it->second.min) {
+                it->second.min = newLength;
+            }
+            if (newLength > it->second.max) {
+                it->second.max = newLength;
+            }
+        } else {
+            lengths tempLengths;
+            tempLengths.min = tempLengths.max = int(allTrainingSeries[i].input.size());
+            lengthsPerLabel[allTrainingSeries[i].label] = tempLengths;
         }
     }
-
-    //TODO: calculate some size statistics here?
-    //min length per label
-    //max length per label
-    
     return trained;
 };
 
 void seriesClassification::reset() {
     allCosts.clear();
     allTrainingSeries.clear();
+    lengthsPerLabel.clear();
+    minLength = -1;
+    maxLength = -1;
 }
 
 std::string seriesClassification::run(const std::vector<std::vector<double>> &inputSeries) {
@@ -63,6 +80,32 @@ std::string seriesClassification::run(const std::vector<std::vector<double>> &in
 
 std::vector<double> seriesClassification::getCosts() {
     return allCosts;
+}
+
+int seriesClassification::getMinLength() {
+    return minLength;
+}
+
+int seriesClassification::getMinLength(std::string label) {
+    int labelMinLength = -1;
+    std::map<std::string, lengths>::iterator it = lengthsPerLabel.find(label);
+    if (it != lengthsPerLabel.end()) {
+        labelMinLength = it->second.min;
+    }
+    return labelMinLength;
+}
+
+int seriesClassification::getMaxLength() {
+    return maxLength;
+}
+
+int seriesClassification::getMaxLength(std::string label) {
+    int labelMaxLength = -1;
+    std::map<std::string, lengths>::iterator it = lengthsPerLabel.find(label);
+    if (it != lengthsPerLabel.end()) {
+        labelMaxLength = it->second.max;
+    }
+    return labelMaxLength;
 }
 
 //

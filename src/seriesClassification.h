@@ -11,6 +11,7 @@
 
 #include <vector>
 #include <string>
+#include <map>
 #include "fastDTW.h"
 #include "trainingExample.h"
 
@@ -25,12 +26,22 @@ public:
     std::string run(const std::vector<std::vector<double>> &inputSeries);
     std::vector<double> getCosts();
     
+    int getMinLength();
+    int getMinLength(std::string label);
+    int getMaxLength();
+    int getMaxLength(std::string label);
+    
 private:
     std::vector<trainingSeries> allTrainingSeries;
     std::vector<double> allCosts;
     
     int maxLength;
     int minLength;
+    struct lengths {
+        int min;
+        int max;
+    };
+    std::map<std::string, lengths> lengthsPerLabel;
 };
 
 #endif

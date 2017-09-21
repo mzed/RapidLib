@@ -237,13 +237,18 @@ int main(int argc, const char * argv[]) {
     seriesVector.push_back(tempSeries);
     
     myDTW.train(seriesVector);
-    std::cout << "dtwrun " << myDTW.run(seriesOne) << std::endl;
-    std::cout << "dtwrun " << myDTW.run(seriesTwo) << std::endl;
-    
     assert(myDTW.run(seriesOne) == "first series");
     assert(myDTW.run(seriesTwo) == "second series");
-    std::cout << myDTW.getCosts()[0] << std::endl;
-    std::cout << myDTW.getCosts()[1] << std::endl;
+    //std::cout << myDTW.getCosts()[0] << std::endl;
+    //std::cout << myDTW.getCosts()[1] << std::endl;
+    
+    assert(myDTW.getMaxLength() == 5);
+    assert(myDTW.getMinLength() == 4);
+    assert(myDTW.getMaxLength("first series") == 5);
+    assert(myDTW.getMinLength("first series") == 5);
+    assert(myDTW.getMaxLength("second series") == 4);
+    assert(myDTW.getMinLength("second series") == 4);
+    
     /*
      fastDTW fastDtw;
      std::cout << "fast one-two cost " << fastDtw.getCost(seriesOne, seriesTwo, 1) << std::endl;
@@ -273,9 +278,9 @@ int main(int argc, const char * argv[]) {
     
     myDTW.train(seriesVector);
     inputSeries = tempSeries.input;
-    std::cout << "long match " << myDTW.run(inputSeries) << std::endl;
-    std::cout << myDTW.getCosts()[0] << std::endl;
-    std::cout << myDTW.getCosts()[1] << std::endl;
+    assert(myDTW.run(inputSeries) == "long down");
+    //std::cout << myDTW.getCosts()[0] << std::endl;
+    //std::cout << myDTW.getCosts()[1] << std::endl;
     
     
     ////////////////////////////////////////////////////////////////////////
