@@ -17,13 +17,13 @@ public:
     fastDTW();
     ~fastDTW();
     
-    double getCost(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY, int searchRadius);
-    warpInfo fullFastDTW(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY, int searchRadius);
+    static double getCost(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY, int searchRadius);
+    static warpInfo fullFastDTW(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY, int searchRadius);
 
-    warpPath getWarpPath(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY, int searchRadius);
+    static warpPath getWarpPath(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY, int searchRadius);
     
 private:
-    std::vector<std::vector<double> > downsample(const std::vector<std::vector<double>> &series, double resolution);
+    static std::vector<std::vector<double> > downsample(const std::vector<std::vector<double>> &series, double resolution);
     
 };
 
