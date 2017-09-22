@@ -31,17 +31,22 @@ public:
     int getMaxLength();
     int getMaxLength(std::string label);
     
+    template<typename T>
+    struct minMax {
+        T min;
+        T max;
+    };
+    
+    minMax<double> calculateCosts(std::string label);
+    minMax<double> calculateCosts(std::string label1, std::string label2);
+    
 private:
     std::vector<trainingSeries> allTrainingSeries;
     std::vector<double> allCosts;
     
     int maxLength;
     int minLength;
-    struct lengths {
-        int min;
-        int max;
-    };
-    std::map<std::string, lengths> lengthsPerLabel;
+    std::map<std::string, minMax<int> > lengthsPerLabel;
 };
 
 #endif

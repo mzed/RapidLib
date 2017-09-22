@@ -249,6 +249,29 @@ int main(int argc, const char * argv[]) {
     assert(myDTW.getMaxLength("second series") == 4);
     assert(myDTW.getMinLength("second series") == 4);
     
+    //costs inside of a series
+    tempSeries = {};
+    tempSeries.input.push_back( { 1., 5.1} );
+    tempSeries.input.push_back( { 2., 4.1} );
+    tempSeries.input.push_back( { 3., 3.1} );
+    tempSeries.input.push_back( { 4., 2.1} );
+    tempSeries.input.push_back( { 5., 1.1} );
+    tempSeries.label = "first series";
+    seriesVector.push_back(tempSeries);
+    
+    tempSeries = {};
+    tempSeries.input.push_back( { 1.3, 5.1} );
+    tempSeries.input.push_back( { 2.3, 4.1} );
+    tempSeries.input.push_back( { 3.3, 3.1} );
+    tempSeries.input.push_back( { 4.3, 2.1} );
+    tempSeries.input.push_back( { 5.3, 1.1} );
+    tempSeries.label = "first series";
+    seriesVector.push_back(tempSeries);
+    
+    myDTW.train(seriesVector);
+    std::cout << "mincost " << myDTW.calculateCosts("first series").min << std::endl;
+    std::cout << "maxcost " << myDTW.calculateCosts("first series").max << std::endl;
+    
     /*
      fastDTW fastDtw;
      std::cout << "fast one-two cost " << fastDtw.getCost(seriesOne, seriesTwo, 1) << std::endl;
