@@ -27,16 +27,10 @@ public:
     /* Calculates both the cost and the warp path, with a given window as a constraint */
     warpInfo constrainedDTW(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY, searchWindow window); //This takes a window object
     
-    /* Returns the warp path that was found by one of the above methods. */
-    warpPath getPath();
-    
 private:
     inline double distanceFunction(const std::vector<double> &pointX, const std::vector<double> &point);
     std::vector<std::vector<double> > costMatrix;
-    warpPath warpPath;
-    double cost;
-    
-    void calculatePath(int seriesXsize, int seriesYsize);
+    warpPath calculatePath(int seriesXsize, int seriesYsize);
 };
 
 #endif /* dtw_h */

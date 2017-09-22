@@ -56,11 +56,11 @@ double dtw::getCost(const std::vector<std::vector<double> > &seriesX, const std:
             costMatrix[i][j] = minGlobalCost + distanceFunction(seriesX[i], seriesY[j]);
         }
     }
-    cost = costMatrix[maxX][maxY];
-    return cost;
+    return costMatrix[maxX][maxY];
 };
 
-void dtw::calculatePath(int seriesXsize, int seriesYsize) {
+warpPath dtw::calculatePath(int seriesXsize, int seriesYsize) {
+    warpPath warpPath;
     int i = seriesXsize - 1;
     int j = seriesYsize - 1;
     warpPath.add(i, j);
@@ -92,7 +92,7 @@ void dtw::calculatePath(int seriesXsize, int seriesYsize) {
         }
         warpPath.add(i, j);
     }
-    
+    return warpPath;
 };
 
 /* calculates both the cost and the warp path*/
@@ -100,13 +100,11 @@ warpInfo dtw::dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, 
     warpInfo info;
     //calculate cost matrix
     info.cost = getCost(seriesX, seriesY);
-    calculatePath(int(seriesX.size()), int(seriesY.size()));
-    info.path = warpPath;
+    info.path = calculatePath(int(seriesX.size()), int(seriesY.size()));
     return info;
 }
 
-
-/* calculates warp cost (only) based on window */
+/* calculates warp info based on window */
 warpInfo dtw::constrainedDTW(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY, searchWindow window) {
     
     //initialize cost matrix
@@ -124,7 +122,6 @@ warpInfo dtw::constrainedDTW(const std::vector<std::vector<double> > &seriesX, c
     //fill cost matrix cells based on window
     for (int currentX = 0; currentX < window.minValues.size(); ++currentX) {
         for (int currentY = window.minValues[currentX]; currentY <= window.maxValues[currentX]; ++currentY) { //FIXME: should be <= ?
-            
             if (currentX == 0 && currentY == 0) { //bottom left cell
                 costMatrix[0][0] = distanceFunction(seriesX[0], seriesY[0]);
             } else if (currentX == 0) { //first column
@@ -137,15 +134,8 @@ warpInfo dtw::constrainedDTW(const std::vector<std::vector<double> > &seriesX, c
             }
         }
     }
-    
-    calculatePath(int(seriesX.size()), int(seriesY.size()));
     warpInfo info;
     info.cost = costMatrix[maxX][maxY];
-    info.path = warpPath;
+    info.path = calculatePath(int(seriesX.size()), int(seriesY.size()));
     return info;
-}
-
-
-warpPath dtw::getPath() {
-    return warpPath;
 }
