@@ -56,13 +56,13 @@ public:
      * @param The training set is a vector of training examples that contain both a vector of input values and a double specifying desired output class.
      *
      */
-    void train(const std::vector<trainingExample<double> > &trainingSet);
+    void train(const std::vector<trainingExample<T> > &trainingSet);
     
     /** Generate an output value from a single input vector.
      * @param A standard vector of doubles to be evaluated.
      * @return A single double: the nearest class as determined by k-nearest neighbor.
      */
-    double run(const std::vector<double> &inputVector);
+    T run(const std::vector<T> &inputVector);
     
     void reset();
     

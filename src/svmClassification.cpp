@@ -160,11 +160,11 @@ bool svmClassification<T>::init(
 }
 
 template<typename T>
-void svmClassification<T>::train(const std::vector<trainingExample<double> > &trainingSet) {
+void svmClassification<T>::train(const std::vector<trainingExample<T> > &trainingSet) {
     //TODO: should be scaling data -1 to 1
     //Get normalization parameters
-    std::vector<double> inMax = trainingSet[0].input;
-    std::vector<double> inMin = trainingSet[0].input;
+    std::vector<T> inMax = trainingSet[0].input;
+    std::vector<T> inMin = trainingSet[0].input;
     for (int ti = 1; ti < (int) trainingSet.size(); ++ti) {
         for (int i = 0; i < numInputs; ++i) {
             if (trainingSet[ti].input[i] > inMax[i]) {
@@ -215,7 +215,7 @@ void svmClassification<T>::train(const std::vector<trainingExample<double> > &tr
 };
 
 template<typename T>
-double svmClassification<T>::run(const std::vector<double> &inputVector) {
+T svmClassification<T>::run(const std::vector<T> &inputVector) {
     if (trained) {
         double predictedClass = 0.;
         

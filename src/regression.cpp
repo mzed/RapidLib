@@ -129,4 +129,4 @@ bool regression<T>::train(const std::vector<trainingExample<T> > &training_set) 
 
 //explicit instantiation
 template class regression<double>;
-//template class regression<float>;
+template class regression<float>;

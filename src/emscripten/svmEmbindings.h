@@ -1,3 +1,12 @@
+//
+//  svmEmbindings.cpp
+//  RapidLib
+//
+//  Created by mzed on 25/08/2017.
+//  Copyright © 2017 Goldsmiths. All rights reserved.
+//
+
+
 #ifndef svmEmbindings_h
 #define svmEmbindings_h
 
@@ -7,10 +16,10 @@
 using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(svm_module) {
-  class_<svmClassification>("svmClassificationCPP")
+  class_<svmClassification<double>>("svmClassificationCPP")
     .constructor<int>()
-    .function("train", &svmClassification::train)
-    .function("run", &svmClassification::run)
+    .function("train", &svmClassification<double>::train)
+    .function("run", &svmClassification<double>::run)
     ;
 };
 

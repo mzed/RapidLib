@@ -10,7 +10,7 @@
  */
 
 template<typename T>
-class classification : public modelSet<double> {
+class classification : public modelSet<T> {
 public:
     enum classificationTypes { knn, svm };
     
