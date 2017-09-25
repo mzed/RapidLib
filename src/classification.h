@@ -1,3 +1,11 @@
+//
+//  classification.h
+//  RapidLib
+//
+//  Created by mzed on 26/09/2016.
+//  Copyright © 2016 Goldsmiths. All rights reserved.
+//
+
 #ifndef classification_h
 #define classification_h
 
