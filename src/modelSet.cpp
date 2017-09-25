@@ -11,21 +11,24 @@
 #endif
 
 /** No arguments, don't create any models yet */
-modelSet::modelSet() :
+template<typename T>
+modelSet<T>::modelSet() :
 numInputs(0),
 numOutputs(0),
 created(false)
 {
 };
 
-modelSet::~modelSet() {
-    for (std::vector<baseModel*>::iterator i = myModelSet.begin(); i != myModelSet.end(); ++i) {
+template<typename T>
+modelSet<T>::~modelSet() {
+    for (typename std::vector<baseModel<T>*>::iterator i = myModelSet.begin(); i != myModelSet.end(); ++i) {
         delete *i;
     }
 };
 
-bool modelSet::train(const std::vector<trainingExample<double> > &training_set) {
-    for (trainingExample<double> example : training_set) {
+template<typename T>
+bool modelSet<T>::train(const std::vector<trainingExample<T> > &training_set) {
+    for (trainingExample<T> example : training_set) {
         if (example.input.size() != numInputs) {
             return false;
         }
@@ -35,7 +38,7 @@ bool modelSet::train(const std::vector<trainingExample<double> > &training_set) 
     }
     for (int i = 0; i < myModelSet.size(); ++i) {
         std::vector<trainingExample<double> > modelTrainingSet; //just one output
-        for (trainingExample<double> example : training_set) {
+        for (trainingExample<T> example : training_set) {
             std::vector<double> tempDouble;
             for (int j = 0; j < numInputs; ++j) {
                 tempDouble.push_back(example.input[j]);
@@ -49,8 +52,9 @@ bool modelSet::train(const std::vector<trainingExample<double> > &training_set) 
     return true;
 }
 
-bool modelSet::reset() {
-    for (std::vector<baseModel*>::iterator i = myModelSet.begin(); i != myModelSet.end(); ++i) {
+template<typename T>
+bool modelSet<T>::reset() {
+    for (typename std::vector<baseModel<T>*>::iterator i = myModelSet.begin(); i != myModelSet.end(); ++i) {
         delete *i;
     }
     myModelSet.clear();
@@ -60,8 +64,9 @@ bool modelSet::reset() {
     return true;
 }
 
-std::vector<double> modelSet::run(const std::vector<double> &inputVector) {
-    std::vector<double> returnVector;
+template<typename T>
+std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector) {
+    std::vector<T> returnVector;
     if (created && inputVector.size() == numInputs) {
         for (auto model : myModelSet) {
             returnVector.push_back(model->run(inputVector));
@@ -84,7 +89,8 @@ std::vector<double> json2vector(Json::Value json) {
     return returnVec;
 }
 
-Json::Value modelSet::parse2json() {
+template<typename T>
+Json::Value modelSet<T>::parse2json() {
     Json::Value root;
     Json::Value metadata;
     Json::Value modelSet;
@@ -109,12 +115,14 @@ Json::Value modelSet::parse2json() {
     return root;
 }
 
-std::string modelSet::getJSON() {
+template<typename T>
+std::string modelSet<T>::getJSON() {
     Json::Value root = parse2json();
     return root.toStyledString();
 }
 
-void modelSet::writeJSON(const std::string &filepath) {
+template<typename T>
+void modelSet<T>::writeJSON(const std::string &filepath) {
     Json::Value root = parse2json();
     std::ofstream jsonOut;
     jsonOut.open (filepath);
@@ -124,7 +132,8 @@ void modelSet::writeJSON(const std::string &filepath) {
     
 }
 
-bool modelSet::putJSON(const std::string &jsonMessage) {
+template<typename T>
+bool modelSet<T>::putJSON(const std::string &jsonMessage) {
     Json::Value parsedFromString;
     Json::Reader reader;
     bool parsingSuccessful = reader.parse(jsonMessage, parsedFromString);
@@ -135,7 +144,8 @@ bool modelSet::putJSON(const std::string &jsonMessage) {
     return parsingSuccessful;
 }
 
-void modelSet::json2modelSet(const Json::Value &root) {
+template<typename T>
+void modelSet<T>::json2modelSet(const Json::Value &root) {
     numInputs = root["metadata"]["numInputs"].asInt();
     for (unsigned int i = 0; i < root["metadata"]["inputNames"].size(); ++i) {
         inputNames.push_back(root["metadata"]["inputNames"][i].asString());
@@ -188,7 +198,7 @@ void modelSet::json2modelSet(const Json::Value &root) {
             double outRange = model["outRange"].asDouble();
             double outBase = model["outBase"].asDouble();
             
-            myModelSet.push_back(new neuralNetwork<double>(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
+            myModelSet.push_back(new neuralNetwork<T>(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
         } else if (model["modelType"].asString() == "kNN Classificiation") {
             std::vector<trainingExample<double> > trainingSet;
             const Json::Value examples = model["examples"];
@@ -205,7 +215,8 @@ void modelSet::json2modelSet(const Json::Value &root) {
     created = true;
 }
 
-bool modelSet::readJSON(const std::string &filepath) {
+template<typename T>
+bool modelSet<T>::readJSON(const std::string &filepath) {
     Json::Value root;
     std::ifstream file(filepath);
     file >> root;
@@ -213,3 +224,8 @@ bool modelSet::readJSON(const std::string &filepath) {
     return created; //TODO: check something first
 }
 #endif
+
+//explicit instantiation
+template class modelSet<double>;
+//template class modelSet<float>;
+

@@ -153,13 +153,13 @@ template<typename T>
 void knnClassification<T>::getJSONDescription(Json::Value &jsonModelDescription) {
     jsonModelDescription["modelType"] = "kNN Classificiation";
     jsonModelDescription["numInputs"] = numInputs;
-    jsonModelDescription["whichInputs"] = vector2json(whichInputs);
+    jsonModelDescription["whichInputs"] = this->vector2json(whichInputs);
     jsonModelDescription["k"] = desiredK;
     Json::Value examples;
     for (typename std::vector<trainingExample<T> >::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {
         Json::Value oneExample;
         oneExample["class"] = it->output[0];
-        oneExample["features"] = vector2json(it->input);
+        oneExample["features"] = this->vector2json(it->input);
         examples.append(oneExample);
     }
     jsonModelDescription["examples"] = examples;

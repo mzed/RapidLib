@@ -17,12 +17,13 @@
  * This doesn't do anything modelSet can't do. But, it's simpler and more like wekinator.
  */
 
-class regression : public modelSet {
+template<typename T>
+class regression : public modelSet<T> {
 public:
     /** with no arguments, just make an empty vector */
     regression();
     /** create based on training set inputs and outputs */
-    regression(const std::vector<trainingExample<double> > &trainingSet);
+    regression(const std::vector<trainingExample<T> > &trainingSet);
     /** create with proper models, but not trained */
     regression(const int &numInputs, const int &numOutputs);
     
@@ -30,7 +31,7 @@ public:
     ~regression() {};
     
     /** Train on a specified set, causes creation if not created */
-    bool train(const std::vector<trainingExample<double> > &trainingSet);
+    bool train(const std::vector<trainingExample<T> > &trainingSet);
     
     /** Call before train, to set the number of training epochs */
     void setNumEpochs(const int &epochs);

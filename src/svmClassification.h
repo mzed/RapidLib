@@ -5,8 +5,8 @@
 #include "baseModel.h"
 #include "../dependencies/libsvm/libsvm.h"
 
-
-class svmClassification : public baseModel {
+template<typename T>
+class svmClassification : public baseModel<T> {
     
 public:
     enum SVMType{ C_SVC = 0, NU_SVC, ONE_CLASS, EPSILON_SVR, NU_SVR };

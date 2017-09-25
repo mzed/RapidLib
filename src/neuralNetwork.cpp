@@ -259,12 +259,12 @@ template<typename T>
 void neuralNetwork<T>::getJSONDescription(Json::Value &jsonModelDescription) {
     jsonModelDescription["modelType"] = "Neural Network";
     jsonModelDescription["numInputs"] = numInputs;
-    jsonModelDescription["whichInputs"] = vector2json(whichInputs);
+    jsonModelDescription["whichInputs"] = this->vector2json(whichInputs);
     jsonModelDescription["numHiddenLayers"] = numHiddenLayers;
     jsonModelDescription["numHiddenNodes"] = numHiddenNodes;
     jsonModelDescription["numHiddenOutputs"] = 1;
-    jsonModelDescription["inRanges"] = vector2json(inRanges);
-    jsonModelDescription["inBases"] = vector2json(inBases);
+    jsonModelDescription["inRanges"] = this->vector2json(inRanges);
+    jsonModelDescription["inBases"] = this->vector2json(inBases);
     jsonModelDescription["outRange"] = outRange;
     jsonModelDescription["outBase"] = outBase;
     

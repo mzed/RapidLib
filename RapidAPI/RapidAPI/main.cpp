@@ -14,7 +14,7 @@
 int main(int argc, const char * argv[]) {
     
     //////////////////////////////////////////////////////////////////////////////////simple multilayer test
-    regression myNN2;
+    regression<double> myNN2;
     
     std::vector<trainingExample<double> > trainingSet1;
     trainingExample<double>  tempExample1;
@@ -59,7 +59,7 @@ int main(int argc, const char * argv[]) {
     
     
     //////////////////////////////////////////////////////////////////////////////////bug?
-    regression myNNJS;
+    regression<double> myNNJS;
     
     trainingSet1.clear();
     tempExample1.input = { 8.0 };
@@ -76,9 +76,9 @@ int main(int argc, const char * argv[]) {
     
     ////////////////////////////////////////////////////////////////////////////////
     
-    regression myNN;
-    classification myKnn;
-    classification mySVM(classification::svm);
+    regression<double> myNN;
+    classification<double> myKnn;
+    classification<double> mySVM(classification<double>::svm);
     
     std::vector<trainingExample<double> > trainingSet;
     trainingExample<double>  tempExample;
@@ -96,10 +96,10 @@ int main(int argc, const char * argv[]) {
     myNN.writeJSON(filepath);
     
     
-    regression myNNfromString;
+    regression<double> myNNfromString;
     myNNfromString.putJSON(myNN.getJSON());
     
-    regression myNNfromFile;
+    regression<double> myNNfromFile;
     myNNfromFile.readJSON(filepath);
     std::vector<double> inputVec = { 2.0, 44.2 };
     
@@ -120,10 +120,10 @@ int main(int argc, const char * argv[]) {
     std::string filepath2 = "/var/tmp/modelSetDescription_knn.json";
     myKnn.writeJSON(filepath2);
     
-    classification myKnnFromString(classification::knn);
+    classification<double> myKnnFromString(classification<double>::knn);
     myKnnFromString.putJSON(myKnn.getJSON());
     
-    classification myKnnFromFile;
+    classification<double> myKnnFromFile;
     myKnnFromFile.readJSON(filepath2);
     
     std::cout << "knn before: " << myKnn.run(inputVec)[0] << std::endl;
@@ -138,11 +138,11 @@ int main(int argc, const char * argv[]) {
     myKnn.setK(0, 2);
     assert(myKnn.getK()[0] == 2);
     
-    regression bigVector;
-    std::vector<trainingExample<double> > trainingSet2;
-    trainingExample<double> tempExample2;
+//    regression<float> bigVector;
+    std::vector<trainingExample<float> > trainingSet2;
+    trainingExample<float> tempExample2;
     std::default_random_engine generator;
-    std::uniform_real_distribution<double> distribution(-0.5,0.5);
+    std::uniform_real_distribution<float> distribution(-0.5,0.5);
     int vecLength = 64;
     for (int j = 0; j < vecLength; ++j) {
         tempExample2.input.clear();
@@ -153,17 +153,17 @@ int main(int argc, const char * argv[]) {
         tempExample2.output = { distribution(generator) };
         trainingSet2.push_back(tempExample2);
     }
-    bigVector.train(trainingSet2);
-    std::vector<double> inputVec2;
+//    bigVector.train(trainingSet2);
+    std::vector<float> inputVec2;
     for (int i=0; i < vecLength; ++i) {
         inputVec2.push_back(distribution(generator));
     }
-    assert (isfinite(bigVector.run(inputVec2)[0]));
+//    assert (isfinite(bigVector.run(inputVec2)[0]));
     
     
     /////////
     
-    classification mySVM2(classification::svm);
+    classification<double> mySVM2(classification<double>::svm);
     
     std::vector<trainingExample<double> > trainingSet3;
     trainingExample<double> tempExample3;
