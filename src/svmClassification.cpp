@@ -1,3 +1,11 @@
+//
+//  svmClassification.cpp
+//  RapidLib
+//
+//  Created by mzed on 23/02/2017.
+//  Copyright © 2017 Goldsmiths. All rights reserved.
+//
+
 #include <iostream>
 #include "svmClassification.h"
 #ifdef EMSCRIPTEN

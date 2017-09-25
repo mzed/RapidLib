@@ -1,3 +1,11 @@
+//
+//  svmClassification.h
+//  RapidLib
+//
+//  Created by mzed on 23/02/2017.
+//  Copyright © 2017 Goldsmiths. All rights reserved.
+//
+
 #ifndef svm_h
 #define svm_h
 

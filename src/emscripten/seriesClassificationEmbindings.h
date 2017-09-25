@@ -1,3 +1,12 @@
+//
+//  seriesClassification.h
+//  RapidLib
+//
+//  Created by mzed on 13/06/2017.
+//  Copyright © 2017 Goldsmiths. All rights reserved.
+//
+
+
 #ifndef seriesClassificationEmbindings_h
 #define seriesClassificationEmbindings_h
 

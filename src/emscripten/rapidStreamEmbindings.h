@@ -1,3 +1,11 @@
+//
+//  rapidStreamEmbindings.h
+//  RapidLib
+//
+//  Created by mzed on 01/06/2017.
+//  Copyright © 2017 Goldsmiths. All rights reserved.
+//
+
 #ifndef rapidStreamEmbindings_h
 #define rapidStreamEmbindings_h
 

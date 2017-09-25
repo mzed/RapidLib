@@ -1,8 +1,16 @@
+//
+//  rapidLibPost.js
+//  RapidLib
+//
+//  Created by mzed on 05/09/2016.
+//  Copyright © 2016 Goldsmiths. All rights reserved.
+//
+
 /* globals Module */
 
 "use strict";
 
-console.log("RapidLib 21.9.2017 13:29");
+console.log("RapidLib 25.9.2017 13:57");
 
 /**
  * Utility function to convert js objects into C++ trainingSets
