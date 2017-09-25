@@ -14,23 +14,23 @@
 using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(rapidStream_module) {
-  class_<rapidStream>("RapidStreamCpp") //name change so that I can wrap it in Javascript. -mz
+  class_<rapidStream<double> >("RapidStreamCpp") //name change so that I can wrap it in Javascript. -mz
     .constructor()
     .constructor<int>()
-    .function("clear", &rapidStream::clear)
-    .function("pushToWindow", &rapidStream::pushToWindow)
-    .function("velocity", &rapidStream::velocity)
-    .function("acceleration", &rapidStream::acceleration)
-    .function("minimum", &rapidStream::minimum)
-    .function("maximum", &rapidStream::maximum)
-    .function("sum", &rapidStream::sum)
-    .function("mean", &rapidStream::mean)
-    .function("standardDeviation", &rapidStream::standardDeviation)
-    .function("rms", &rapidStream::rms)
-    .function("minVelocity", &rapidStream::minVelocity)
-    .function("maxVelocity", &rapidStream::maxVelocity)
-    .function("minAcceleration", &rapidStream::minAcceleration)
-    .function("maxAcceleration", &rapidStream::maxAcceleration)
+    .function("clear", &rapidStream<double>::clear)
+    .function("pushToWindow", &rapidStream<double>::pushToWindow)
+    .function("velocity", &rapidStream<double>::velocity)
+    .function("acceleration", &rapidStream<double>::acceleration)
+    .function("minimum", &rapidStream<double>::minimum)
+    .function("maximum", &rapidStream<double>::maximum)
+    .function("sum", &rapidStream<double>::sum)
+    .function("mean", &rapidStream<double>::mean)
+    .function("standardDeviation", &rapidStream<double>::standardDeviation)
+    .function("rms", &rapidStream<double>::rms)
+    .function("minVelocity", &rapidStream<double>::minVelocity)
+    .function("maxVelocity", &rapidStream<double>::maxVelocity)
+    .function("minAcceleration", &rapidStream<double>::minAcceleration)
+    .function("maxAcceleration", &rapidStream<double>::maxAcceleration)
     ;
   
 };
