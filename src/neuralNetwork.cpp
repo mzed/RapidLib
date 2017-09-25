@@ -1,3 +1,12 @@
+//
+//  neuralNetwork.cpp
+//  RapidLib
+//
+//  Created by mzed on 05/09/2016.
+//  Copyright © 2016 Goldsmiths. All rights reserved.
+//
+
+
 #include <math.h>
 #include <random>
 #include <algorithm>

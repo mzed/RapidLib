@@ -1,6 +1,6 @@
 //
 //  dtw.cpp
-//  RapidAPI
+//  RapidLib
 //
 //  Created by mzed on 07/06/2017.
 //  Copyright © 2017 Goldsmiths. All rights reserved.

@@ -1,3 +1,11 @@
+//
+//  regression.cpp
+//  RapidLib
+//
+//  Created by mzed on 26/09/2016.
+//  Copyright © 2016 Goldsmiths. All rights reserved.
+//
+
 #include <vector>
 #include "regression.h"
 

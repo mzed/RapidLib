@@ -1,3 +1,11 @@
+//
+//  neuralNetwork.h
+//  RapidLib
+//
+//  Created by mzed on 05/09/2016.
+//  Copyright © 2016 Goldsmiths. All rights reserved.
+//
+
 #ifndef neuralNetwork_h
 #define neuralNetwork_h
 #include <vector>

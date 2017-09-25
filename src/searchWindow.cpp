@@ -1,6 +1,6 @@
 //
 //  searchWindow.cpp
-//  RapidAPI
+//  RapidLib
 //
 //  Created by mzed on 14/09/2017.
 //  Copyright © 2017 Goldsmiths. All rights reserved.

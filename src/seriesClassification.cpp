@@ -1,5 +1,6 @@
 //
 //  seriesClassification.cpp
+//  RapidLib
 //
 //  Created by Michael Zbyszynski on 08/06/2017.
 //  Copyright © 2017 Goldsmiths. All rights reserved.
