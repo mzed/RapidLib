@@ -188,7 +188,7 @@ void modelSet::json2modelSet(const Json::Value &root) {
             double outRange = model["outRange"].asDouble();
             double outBase = model["outBase"].asDouble();
             
-            myModelSet.push_back(new neuralNetwork(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
+            myModelSet.push_back(new neuralNetwork<double>(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
         } else if (model["modelType"].asString() == "kNN Classificiation") {
             std::vector<trainingExample<double> > trainingSet;
             const Json::Value examples = model["examples"];
@@ -199,7 +199,7 @@ void modelSet::json2modelSet(const Json::Value &root) {
                 trainingSet.push_back(tempExample);
             }
             int k = model["k"].asInt();
-            myModelSet.push_back(new knnClassification(modelNumInputs, whichInputs, trainingSet, k));
+            myModelSet.push_back(new knnClassification<double>(modelNumInputs, whichInputs, trainingSet, k));
         }
     }
     created = true;

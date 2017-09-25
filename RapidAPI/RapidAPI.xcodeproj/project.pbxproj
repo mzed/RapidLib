@@ -11,7 +11,6 @@
 		BE325F4D1DB50BFE00F199A8 /* classification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F3D1DB50BFE00F199A8 /* classification.cpp */; };
 		BE325F4E1DB50BFE00F199A8 /* knnClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F401DB50BFE00F199A8 /* knnClassification.cpp */; };
 		BE325F4F1DB50BFE00F199A8 /* modelSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F431DB50BFE00F199A8 /* modelSet.cpp */; };
-		BE325F501DB50BFE00F199A8 /* neuralNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F461DB50BFE00F199A8 /* neuralNetwork.cpp */; };
 		BE325F511DB50BFE00F199A8 /* regression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F4A1DB50BFE00F199A8 /* regression.cpp */; };
 		BE3852881EE847730008E1BD /* dtw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE3852871EE847730008E1BD /* dtw.cpp */; };
 		BE38528B1EE94D740008E1BD /* seriesClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE3852891EE94D740008E1BD /* seriesClassification.cpp */; };
@@ -22,6 +21,7 @@
 		BE6783241F6FFA5C005E73D0 /* warpPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6783231F6FFA5C005E73D0 /* warpPath.cpp */; };
 		BE720AF11F615C0E00675FCA /* fastDTW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE720AEF1F615C0E00675FCA /* fastDTW.cpp */; };
 		BE92865D1EF40BBD006847CF /* rapidStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE92865C1EF40BBD006847CF /* rapidStream.cpp */; };
+		BEF47B181F790BC7005B0C35 /* neuralNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE325F461DB50BFE00F199A8 /* neuralNetwork.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -231,6 +231,7 @@
 				BE92865D1EF40BBD006847CF /* rapidStream.cpp in Sources */,
 				BE553E2F1EE05FE1004EB00F /* svmClassification.cpp in Sources */,
 				BE325F351DB50BE100F199A8 /* main.cpp in Sources */,
+				BEF47B181F790BC7005B0C35 /* neuralNetwork.cpp in Sources */,
 				BE6783241F6FFA5C005E73D0 /* warpPath.cpp in Sources */,
 				BE325F4E1DB50BFE00F199A8 /* knnClassification.cpp in Sources */,
 				BE59A4531F1698E500B26E85 /* libsvm.cpp in Sources */,
@@ -240,7 +241,6 @@
 				BE6783221F6A9B9A005E73D0 /* searchWindow.cpp in Sources */,
 				BE59A4521F1698E500B26E85 /* jsoncpp.cpp in Sources */,
 				BE38528B1EE94D740008E1BD /* seriesClassification.cpp in Sources */,
-				BE325F501DB50BFE00F199A8 /* neuralNetwork.cpp in Sources */,
 				BE3852881EE847730008E1BD /* dtw.cpp in Sources */,
 				BE720AF11F615C0E00675FCA /* fastDTW.cpp in Sources */,
 			);

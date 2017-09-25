@@ -28,7 +28,7 @@ classification::classification(const int &num_inputs, const int &num_outputs) { 
     }
     std::vector<trainingExample<double> > trainingSet;
     for (int i = 0; i < numOutputs; ++i) {
-        myModelSet.push_back(new knnClassification(numInputs, whichInputs, trainingSet, 1));
+        myModelSet.push_back(new knnClassification<double>(numInputs, whichInputs, trainingSet, 1));
     }
     created = true;
 };
@@ -65,7 +65,7 @@ bool classification::train(const std::vector<trainingExample<double> > &training
         if (classificationType == svm) {
             myModelSet.push_back(new svmClassification(numInputs));
         } else {
-            myModelSet.push_back(new knnClassification(numInputs, whichInputs, trainingSet, 1));
+            myModelSet.push_back(new knnClassification<double>(numInputs, whichInputs, trainingSet, 1));
         }
     }
     created = true;
@@ -75,13 +75,13 @@ bool classification::train(const std::vector<trainingExample<double> > &training
 std::vector<int> classification::getK() {
     std::vector<int> kVector;
     for (baseModel* model : myModelSet) {
-        knnClassification* kNNModel = dynamic_cast<knnClassification*>(model); //FIXME: I really dislike this design
+        knnClassification<double>* kNNModel = dynamic_cast<knnClassification<double>*>(model); //FIXME: I really dislike this design
         kVector.push_back(kNNModel->getK());
     }
     return kVector;
 }
 
 void classification::setK(const int whichModel, const int newK) {
-    knnClassification* kNNModel = dynamic_cast<knnClassification*>(myModelSet[whichModel]); //FIXME: I really dislike this design
+    knnClassification<double>* kNNModel = dynamic_cast<knnClassification<double>*>(myModelSet[whichModel]); //FIXME: I really dislike this design
     kNNModel->setK(newK);
 }

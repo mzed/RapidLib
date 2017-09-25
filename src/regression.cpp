@@ -33,7 +33,7 @@ regression::regression(const int &num_inputs, const int &num_outputs) {
         whichInputs.push_back(i);
     }
     for (int i = 0; i < numOutputs; ++i) {
-        myModelSet.push_back(new neuralNetwork(numInputs, whichInputs, numHiddenLayers, numInputs));
+        myModelSet.push_back(new neuralNetwork<double>(numInputs, whichInputs, numHiddenLayers, numInputs));
     }
     created = true;
 };
@@ -49,7 +49,7 @@ std::vector<int> regression::getNumHiddenLayers() {
     std::vector<int> vecNumHiddenLayers;
     if (std::begin(myModelSet) != std::end(myModelSet)) {
         for (baseModel* model : myModelSet) {
-            neuralNetwork* nnModel = dynamic_cast<neuralNetwork*>(model); //FIXME: I really dislike this design
+            neuralNetwork<double>* nnModel = dynamic_cast<neuralNetwork<double>*>(model); //FIXME: I really dislike this design
             vecNumHiddenLayers.push_back(nnModel->getNumHiddenLayers());
         }
     } else {
@@ -63,7 +63,7 @@ void regression::setNumHiddenLayers(const int &num_hidden_layers){
     //Set any existing models
     if (std::begin(myModelSet) != std::end(myModelSet)) {
         for (baseModel* model : myModelSet) {
-            neuralNetwork* nnModel = dynamic_cast<neuralNetwork*>(model); //FIXME: I really dislike this design
+            neuralNetwork<double>* nnModel = dynamic_cast<neuralNetwork<double>*>(model); //FIXME: I really dislike this design
             nnModel->setNumHiddenLayers(num_hidden_layers);
         }
     }
@@ -74,7 +74,7 @@ void regression::setNumEpochs(const int &epochs) {
     //set any existing models
     if (std::begin(myModelSet) != std::end(myModelSet)) {
         for (baseModel* model : myModelSet) {
-            neuralNetwork* nnModel = dynamic_cast<neuralNetwork*>(model); //FIXME: I really dislike this design
+            neuralNetwork<double>* nnModel = dynamic_cast<neuralNetwork<double>*>(model); //FIXME: I really dislike this design
             nnModel->setEpochs(epochs);
         }
     }
@@ -106,11 +106,11 @@ bool regression::train(const std::vector<trainingExample<double> > &training_set
                 whichInputs.push_back(j);
             }
             for (int i = 0; i < numOutputs; ++i) {
-                myModelSet.push_back(new neuralNetwork(numInputs, whichInputs, numHiddenLayers, numInputs));
+                myModelSet.push_back(new neuralNetwork<double>(numInputs, whichInputs, numHiddenLayers, numInputs));
             }
             if (numEpochs != 500) {
                 for (baseModel* model : myModelSet) {
-                    neuralNetwork* nnModel = dynamic_cast<neuralNetwork*>(model); //FIXME: I really dislike this design
+                    neuralNetwork<double>* nnModel = dynamic_cast<neuralNetwork<double>*>(model); //FIXME: I really dislike this design
                     nnModel->setEpochs(numEpochs);
                 }
             }

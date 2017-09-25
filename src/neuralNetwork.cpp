@@ -17,7 +17,8 @@
 #include "emscripten/nnEmbindings.h"
 #endif
 
-void neuralNetwork::initTrainer() {
+template<typename T>
+void neuralNetwork<T>::initTrainer() {
     //initialize deltas
     deltaWeights = std::vector<std::vector<std::vector<double> > >(numHiddenLayers, std::vector<std::vector<double> >(numHiddenNodes, std::vector<double>((numInputs + 1), 0)));
     deltaHiddenOutput = std::vector<double>((numHiddenNodes + 1), 0);
@@ -26,8 +27,8 @@ void neuralNetwork::initTrainer() {
 /*!
  * This is the constructor for a model imported from JSON.
  */
-
-neuralNetwork::neuralNetwork(const int &num_inputs,
+template<typename T>
+neuralNetwork<T>::neuralNetwork(const int &num_inputs,
                              const std::vector<int> &which_inputs,
                              const int &num_hidden_layers,
                              const int &num_hidden_nodes,
@@ -97,8 +98,8 @@ outputErrorGradient(0)
 /*!
  * This is the constructor for a model that needs to be trained.
  */
-
-neuralNetwork::neuralNetwork(const int &num_inputs,
+template<typename T>
+neuralNetwork<T>::neuralNetwork(const int &num_inputs,
                              const std::vector<int> &which_inputs,
                              const int &num_hidden_layers,
                              const int &num_hidden_nodes
@@ -123,10 +124,12 @@ outputErrorGradient(0)
 /*!
  * This destructor is not needed.
  */
-neuralNetwork::~neuralNetwork() {
+template<typename T>
+neuralNetwork<T>::~neuralNetwork() {
 }
 
-void neuralNetwork::reset() {
+template<typename T>
+void neuralNetwork<T>::reset() {
     std::default_random_engine generator;
     std::uniform_real_distribution<double> distribution(-0.5,0.5);
     
@@ -150,7 +153,8 @@ void neuralNetwork::reset() {
     }
 }
 
-inline double neuralNetwork::getHiddenErrorGradient(int layer, int neuron) {
+template<typename T>
+inline double neuralNetwork<T>::getHiddenErrorGradient(int layer, int neuron) {
     double weightedSum = 0;
     if (numHiddenLayers == 1 || layer == 0) {
         double wGradient = wHiddenOutput[neuron] * outputErrorGradient;
@@ -168,7 +172,8 @@ inline double neuralNetwork::getHiddenErrorGradient(int layer, int neuron) {
     return hiddenNeurons[layer][neuron] * (1 - hiddenNeurons[layer][neuron]) * weightedSum;
 }
 
-inline double neuralNetwork::activationFunction(double x) {
+template<typename T>
+inline double neuralNetwork<T>::activationFunction(double x) {
     //sigmoid
     if (x < -45) { //from weka, to combat overflow
         x = 0;
@@ -180,33 +185,39 @@ inline double neuralNetwork::activationFunction(double x) {
     return x;
 }
 
-int neuralNetwork::getNumInputs() const {
+template<typename T>
+int neuralNetwork<T>::getNumInputs() const {
     return numInputs;
 }
 
-std::vector<int> neuralNetwork::getWhichInputs() const {
+template<typename T>
+std::vector<int> neuralNetwork<T>::getWhichInputs() const {
     return whichInputs;
 }
-
-int neuralNetwork::getNumHiddenLayers() const {
+template<typename T>
+int neuralNetwork<T>::getNumHiddenLayers() const {
     return numHiddenLayers;
 }
 
-void neuralNetwork::setNumHiddenLayers(int num_hidden_layers) {
+template<typename T>
+void neuralNetwork<T>::setNumHiddenLayers(int num_hidden_layers) {
     numHiddenLayers = num_hidden_layers;
     reset();
     initTrainer();
 }
 
-int neuralNetwork::getNumHiddenNodes() const {
+template<typename T>
+int neuralNetwork<T>::getNumHiddenNodes() const {
     return numHiddenNodes;
 }
 
-void neuralNetwork::setEpochs(const int &epochs) {
+template<typename T>
+void neuralNetwork<T>::setEpochs(const int &epochs) {
     numEpochs = epochs;
 }
 
-std::vector<double> neuralNetwork::getWeights() const{
+template<typename T>
+std::vector<double> neuralNetwork<T>::getWeights() const{
     std::vector<double> flatWeights;
     for (int i = 0; i < weights.size(); ++i) {
         for (int j = 0; j < weights[i].size(); ++j) {
@@ -218,29 +229,34 @@ std::vector<double> neuralNetwork::getWeights() const{
     return flatWeights;
 }
 
-std::vector<double> neuralNetwork::getWHiddenOutput() const {
+template<typename T>
+std::vector<double> neuralNetwork<T>::getWHiddenOutput() const {
     return wHiddenOutput;
 }
 
-std::vector<double> neuralNetwork::getInRanges() const {
+template<typename T>
+std::vector<double> neuralNetwork<T>::getInRanges() const {
     return inRanges;
 }
 
-std::vector<double> neuralNetwork::getInBases() const {
+template<typename T>
+std::vector<double> neuralNetwork<T>::getInBases() const {
     return inBases;
 }
 
-double neuralNetwork::getOutRange() const {
+template<typename T>
+double neuralNetwork<T>::getOutRange() const {
     return outRange;
 }
 
-double neuralNetwork::getOutBase() const {
+template<typename T>
+double neuralNetwork<T>::getOutBase() const {
     return outBase;
 }
 
 #ifndef EMSCRIPTEN
-
-void neuralNetwork::getJSONDescription(Json::Value &jsonModelDescription) {
+template<typename T>
+void neuralNetwork<T>::getJSONDescription(Json::Value &jsonModelDescription) {
     jsonModelDescription["modelType"] = "Neural Network";
     jsonModelDescription["numInputs"] = numInputs;
     jsonModelDescription["whichInputs"] = vector2json(whichInputs);
@@ -283,7 +299,8 @@ void neuralNetwork::getJSONDescription(Json::Value &jsonModelDescription) {
 }
 #endif
 
-double neuralNetwork::run(const std::vector<double> &inputVector) {
+template<typename T>
+double neuralNetwork<T>::run(const std::vector<double> &inputVector) {
     std::vector<double> pattern;
     for (int h = 0; h < numInputs; h++) {
         pattern.push_back(inputVector[whichInputs[h]]);
@@ -326,7 +343,8 @@ double neuralNetwork::run(const std::vector<double> &inputVector) {
     return outputNeuron;
 }
 
-void neuralNetwork::train(const std::vector<trainingExample<double > > &trainingSet) {
+template<typename T>
+void neuralNetwork<T>::train(const std::vector<trainingExample<double > > &trainingSet) {
     initTrainer();
     //setup maxes and mins
     std::vector<double> inMax = trainingSet[0].input;
@@ -375,7 +393,8 @@ void neuralNetwork::train(const std::vector<trainingExample<double > > &training
     }
 }
 
-void neuralNetwork::backpropagate(const double &desiredOutput) {
+template<typename T>
+void neuralNetwork<T>::backpropagate(const double &desiredOutput) {
     outputErrorGradient = ((desiredOutput - outBase) / outRange) - ((outputNeuron - outBase)/ outRange); //FIXME: could be tighter -MZ
     
     //correction based on size of last layer. Is this right? -MZ
@@ -414,7 +433,8 @@ void neuralNetwork::backpropagate(const double &desiredOutput) {
     updateWeights();
 }
 
-void neuralNetwork::updateWeights() {
+template<typename T>
+void neuralNetwork<T>::updateWeights() {
     //hidden to hidden weights
     for (int i = 0; i < numHiddenLayers; ++i) {
         int numDeltas = (i == 0) ? numInputs : numHiddenNodes;
@@ -429,3 +449,7 @@ void neuralNetwork::updateWeights() {
         wHiddenOutput[i] += deltaHiddenOutput[i];
     }
 }
+
+//explicit instantiation
+template class neuralNetwork<double>;
+template class neuralNetwork<float>;

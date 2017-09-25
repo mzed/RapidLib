@@ -23,6 +23,7 @@
  *
  * This class includes both running and training, and constructors for reading trained models from JSON.
  */
+template<typename T>
 class neuralNetwork : public baseModel {
     
 public:

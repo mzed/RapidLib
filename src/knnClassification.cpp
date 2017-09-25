@@ -1,3 +1,11 @@
+//
+//  knnClassification.cpp
+//  RapidLib
+//
+//  Created by mzed on 05/09/2016.
+//  Copyright © 2016 Goldsmiths. All rights reserved.
+//
+
 #include <cmath>
 #include <utility>
 #include <map>
@@ -8,7 +16,8 @@
 #include "emscripten/knnEmbindings.h"
 #endif
 
-knnClassification::knnClassification(const int &num_inputs, const std::vector<int> &which_inputs, const std::vector<trainingExample<double> > &_neighbours, const int k)
+template<typename T>
+knnClassification<T>::knnClassification(const int &num_inputs, const std::vector<int> &which_inputs, const std::vector<trainingExample<T> > &_neighbours, const int k)
 : numInputs(num_inputs),
 whichInputs(which_inputs),
 neighbours(_neighbours),
@@ -18,52 +27,62 @@ currentK(k)
     nearestNeighbours = new std::pair<int, double>[currentK];
 }
 
-knnClassification::~knnClassification() {
+template<typename T>
+knnClassification<T>::~knnClassification() {
     delete[] nearestNeighbours;
 }
 
-void knnClassification::reset() {
+template<typename T>
+void knnClassification<T>::reset() {
     //TODO: implement this
 }
 
-int knnClassification::getNumInputs() const {
+template<typename T>
+int knnClassification<T>::getNumInputs() const {
     return numInputs;
 }
 
-std::vector<int> knnClassification::getWhichInputs() const {
+template<typename T>
+std::vector<int> knnClassification<T>::getWhichInputs() const {
     return whichInputs;
 }
 
-int knnClassification::getK() const {
+template<typename T>
+int knnClassification<T>::getK() const {
     return currentK;
 }
 
-inline void knnClassification::updateK() {
+template<typename T>
+inline void knnClassification<T>::updateK() {
     if (currentK != desiredK) {
         currentK = std::min(desiredK, (int) neighbours.size());
     }
 }
 
-void knnClassification::setK(int newK) {
+template<typename T>
+void knnClassification<T>::setK(int newK) {
     desiredK = newK;
     updateK();
 }
 
-void knnClassification::addNeighbour(const int &classNum, const std::vector<double> &features) {
-    std::vector<double> classVec;
-    classVec.push_back(double(classNum));
-    trainingExample<double>  newNeighbour = {features, classVec};
+template<typename T>
+void knnClassification<T>::addNeighbour(const int &classNum, const std::vector<T> &features) {
+    std::vector<T> classVec;
+    classVec.push_back(T(classNum));
+    trainingExample<T>  newNeighbour = {features, classVec};
     neighbours.push_back(newNeighbour);
     updateK();
 };
 
-void knnClassification::train(const std::vector<trainingExample<double> > &trainingSet) { //FIXME: Does numInputs need to be reset here? -MZ
+template<typename T>
+void knnClassification<T>::train(const std::vector<trainingExample<T> > &trainingSet) { //FIXME: Does numInputs need to be reset here? -MZ
     neighbours.clear();
     neighbours = trainingSet;
     updateK();
 };
 
-double knnClassification::run(const std::vector<double> &inputVector) {
+template<typename T>
+double knnClassification<T>::run(const std::vector<T> &inputVector) {
     for (int i = 0; i < currentK; ++i) {
         nearestNeighbours[i] = {0, 0.};
     };
@@ -77,7 +96,7 @@ double knnClassification::run(const std::vector<double> &inputVector) {
     
     //Find k nearest neighbours
     int index = 0;
-    for (std::vector<trainingExample<double> >::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {
+    for (typename std::vector<trainingExample<T> >::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {
         //find Euclidian distance for this neighbor
         double euclidianDistance = 0;
         for(int j = 0; j < numInputs ; ++j){
@@ -131,13 +150,14 @@ double knnClassification::run(const std::vector<double> &inputVector) {
 }
 
 #ifndef EMSCRIPTEN
-void knnClassification::getJSONDescription(Json::Value &jsonModelDescription) {
+template<typename T>
+void knnClassification<T>::getJSONDescription(Json::Value &jsonModelDescription) {
     jsonModelDescription["modelType"] = "kNN Classificiation";
     jsonModelDescription["numInputs"] = numInputs;
     jsonModelDescription["whichInputs"] = vector2json(whichInputs);
     jsonModelDescription["k"] = desiredK;
     Json::Value examples;
-    for (std::vector<trainingExample<double> >::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {
+    for (typename std::vector<trainingExample<T> >::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {
         Json::Value oneExample;
         oneExample["class"] = it->output[0];
         oneExample["features"] = vector2json(it->input);
@@ -146,3 +166,7 @@ void knnClassification::getJSONDescription(Json::Value &jsonModelDescription) {
     jsonModelDescription["examples"] = examples;
 }
 #endif
+
+//explicit instantiation
+template class knnClassification<double>;
+template class knnClassification<float>;
