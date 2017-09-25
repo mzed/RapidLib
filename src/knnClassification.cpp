@@ -88,8 +88,7 @@ double knnClassification<T>::run(const std::vector<T> &inputVector) {
     };
     std::pair<int, double> farthestNN = {0, 0.};
     
-    std::vector<double> pattern;
-    
+    std::vector<T> pattern;
     for (int h = 0; h < numInputs; h++) {
         pattern.push_back(inputVector[whichInputs[h]]);
     }
@@ -100,7 +99,7 @@ double knnClassification<T>::run(const std::vector<T> &inputVector) {
         //find Euclidian distance for this neighbor
         double euclidianDistance = 0;
         for(int j = 0; j < numInputs ; ++j){
-            euclidianDistance = euclidianDistance + pow((pattern[j] - it->input[j]), 2);
+            euclidianDistance += pow((pattern[j] - it->input[j]), 2);
         }
         euclidianDistance = sqrt(euclidianDistance);
         if (index < currentK) {
