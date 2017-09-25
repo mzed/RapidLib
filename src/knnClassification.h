@@ -43,11 +43,11 @@ public:
      * @param A standard vector of type T to be evaluated.
      * @return A single value of type T: the nearest class as determined by k-nearest neighbor.
      */
-    double run(const std::vector<T> &inputVector);
+    T run(const std::vector<T> &inputVector);
     
     /** Fill the model with a vector of examples.
      *
-     * @param The training set is a vector of training examples that contain both a vector of input values and a double specifying desired output class.
+     * @param The training set is a vector of training examples that contain both a vector of input values and a value specifying desired output class.
      *
      */
     void train(const std::vector<trainingExample<T> > &trainingSet);
@@ -75,7 +75,7 @@ private:
     int desiredK; //K that user asked for might be limited but number of examples
     int currentK; //K minimum of desiredK or neighbours.size()
     inline void updateK();
-    std::pair<int, double>* nearestNeighbours;
+    std::pair<int, T>* nearestNeighbours;
 };
 
 #endif

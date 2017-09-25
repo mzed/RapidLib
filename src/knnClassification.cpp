@@ -24,7 +24,7 @@ neighbours(_neighbours),
 desiredK(k),
 currentK(k)
 {
-    nearestNeighbours = new std::pair<int, double>[currentK];
+    nearestNeighbours = new std::pair<int, T>[currentK];
 }
 
 template<typename T>
@@ -82,11 +82,11 @@ void knnClassification<T>::train(const std::vector<trainingExample<T> > &trainin
 };
 
 template<typename T>
-double knnClassification<T>::run(const std::vector<T> &inputVector) {
+T knnClassification<T>::run(const std::vector<T> &inputVector) {
     for (int i = 0; i < currentK; ++i) {
         nearestNeighbours[i] = {0, 0.};
     };
-    std::pair<int, double> farthestNN = {0, 0.};
+    std::pair<int, T> farthestNN = {0, 0.};
     
     std::vector<T> pattern;
     for (int h = 0; h < numInputs; h++) {
@@ -97,7 +97,7 @@ double knnClassification<T>::run(const std::vector<T> &inputVector) {
     int index = 0;
     for (typename std::vector<trainingExample<T> >::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {
         //find Euclidian distance for this neighbor
-        double euclidianDistance = 0;
+        T euclidianDistance = 0;
         for(int j = 0; j < numInputs ; ++j){
             euclidianDistance += pow((pattern[j] - it->input[j]), 2);
         }
@@ -112,7 +112,7 @@ double knnClassification<T>::run(const std::vector<T> &inputVector) {
             //replace farthest, if new neighbour is closer
             nearestNeighbours[farthestNN.first] = {index, euclidianDistance};
             int currentFarthest = 0;
-            double currentFarthestDistance = 0.;
+            T currentFarthestDistance = 0.;
             for (int n = 0; n < currentK; n++) {
                 if (nearestNeighbours[n].second > currentFarthestDistance) {
                     currentFarthest = n;
@@ -135,7 +135,7 @@ double knnClassification<T>::run(const std::vector<T> &inputVector) {
             classVoteMap[classNum]++;
         }
     }
-    double foundClass = 0;
+    T foundClass = 0;
     int mostVotes = 0;
     std::map<int, int>::iterator p;
     for(p = classVoteMap.begin(); p != classVoteMap.end(); ++p)
