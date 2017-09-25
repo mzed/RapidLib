@@ -20,7 +20,7 @@ public:
     classification(classificationTypes classificationType);
     
     /** create based on training set inputs and outputs */
-    classification(const std::vector<trainingExample> &trainingSet);
+    classification(const std::vector<trainingExample<double> > &trainingSet);
     /** create with proper models, but not trained */
     classification(const int &numInputs, const int &numOutputs);
     
@@ -28,7 +28,7 @@ public:
     ~classification() {}
     
     /** Train on a specified set, causes creation if not created */
-    bool train(const std::vector<trainingExample> &trainingSet);
+    bool train(const std::vector<trainingExample<double> > &trainingSet);
     
     /** Check the K values for each model. This feature is temporary, and will be replaced by a different design. */
     std::vector<int> getK();

@@ -16,8 +16,8 @@ int main(int argc, const char * argv[]) {
     //////////////////////////////////////////////////////////////////////////////////simple multilayer test
     regression myNN2;
     
-    std::vector<trainingExample> trainingSet1;
-    trainingExample tempExample1;
+    std::vector<trainingExample<double> > trainingSet1;
+    trainingExample<double>  tempExample1;
     tempExample1.input = { 1.0, 1.0, 1.0 };
     tempExample1.output = { 10.0 };
     trainingSet1.push_back(tempExample1);
@@ -80,8 +80,8 @@ int main(int argc, const char * argv[]) {
     classification myKnn;
     classification mySVM(classification::svm);
     
-    std::vector<trainingExample> trainingSet;
-    trainingExample tempExample;
+    std::vector<trainingExample<double> > trainingSet;
+    trainingExample<double>  tempExample;
     tempExample.input = { 0.2, 0.7 };
     tempExample.output = { 3.0 };
     trainingSet.push_back(tempExample);
@@ -139,8 +139,8 @@ int main(int argc, const char * argv[]) {
     assert(myKnn.getK()[0] == 2);
     
     regression bigVector;
-    std::vector<trainingExample> trainingSet2;
-    trainingExample tempExample2;
+    std::vector<trainingExample<double> > trainingSet2;
+    trainingExample<double> tempExample2;
     std::default_random_engine generator;
     std::uniform_real_distribution<double> distribution(-0.5,0.5);
     int vecLength = 64;
@@ -165,8 +165,8 @@ int main(int argc, const char * argv[]) {
     
     classification mySVM2(classification::svm);
     
-    std::vector<trainingExample> trainingSet3;
-    trainingExample tempExample3;
+    std::vector<trainingExample<double> > trainingSet3;
+    trainingExample<double> tempExample3;
     
     tempExample3.input = { 0., 0. };
     tempExample3.output = { 0. };
@@ -217,8 +217,8 @@ int main(int argc, const char * argv[]) {
     
     //Testing with labels
     seriesClassification myDTW;
-    std::vector<trainingSeries> seriesVector;
-    trainingSeries tempSeries;
+    std::vector<trainingSeries<double> > seriesVector;
+    trainingSeries<double> tempSeries;
     
     tempSeries.input.push_back( { 1., 5.} );
     tempSeries.input.push_back( { 2., 4.} );

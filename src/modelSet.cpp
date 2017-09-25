@@ -24,8 +24,8 @@ modelSet::~modelSet() {
     }
 };
 
-bool modelSet::train(const std::vector<trainingExample> &training_set) {
-    for (trainingExample example : training_set) {
+bool modelSet::train(const std::vector<trainingExample<double> > &training_set) {
+    for (trainingExample<double> example : training_set) {
         if (example.input.size() != numInputs) {
             return false;
         }
@@ -34,13 +34,13 @@ bool modelSet::train(const std::vector<trainingExample> &training_set) {
         }
     }
     for (int i = 0; i < myModelSet.size(); ++i) {
-        std::vector<trainingExample> modelTrainingSet; //just one output
-        for (trainingExample example : training_set) {
+        std::vector<trainingExample<double> > modelTrainingSet; //just one output
+        for (trainingExample<double> example : training_set) {
             std::vector<double> tempDouble;
             for (int j = 0; j < numInputs; ++j) {
                 tempDouble.push_back(example.input[j]);
             }
-            trainingExample tempObj = {tempDouble, std::vector<double> {example.output[i]}};
+            trainingExample<double> tempObj = {tempDouble, std::vector<double> {example.output[i]}};
             modelTrainingSet.push_back(tempObj);
         }
         myModelSet[i]->train(modelTrainingSet);
@@ -190,10 +190,10 @@ void modelSet::json2modelSet(const Json::Value &root) {
             
             myModelSet.push_back(new neuralNetwork(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
         } else if (model["modelType"].asString() == "kNN Classificiation") {
-            std::vector<trainingExample> trainingSet;
+            std::vector<trainingExample<double> > trainingSet;
             const Json::Value examples = model["examples"];
             for (unsigned int i = 0; i < examples.size(); ++i) {
-                trainingExample tempExample;
+                trainingExample<double> tempExample;
                 tempExample.input = json2vector(examples[i]["features"]);
                 tempExample.output.push_back(examples[i]["class"].asDouble());
                 trainingSet.push_back(tempExample);

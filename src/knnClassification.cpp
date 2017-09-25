@@ -8,7 +8,7 @@
 #include "emscripten/knnEmbindings.h"
 #endif
 
-knnClassification::knnClassification(const int &num_inputs, const std::vector<int> &which_inputs, const std::vector<trainingExample> &_neighbours, const int k)
+knnClassification::knnClassification(const int &num_inputs, const std::vector<int> &which_inputs, const std::vector<trainingExample<double> > &_neighbours, const int k)
 : numInputs(num_inputs),
 whichInputs(which_inputs),
 neighbours(_neighbours),
@@ -52,12 +52,12 @@ void knnClassification::setK(int newK) {
 void knnClassification::addNeighbour(const int &classNum, const std::vector<double> &features) {
     std::vector<double> classVec;
     classVec.push_back(double(classNum));
-    trainingExample newNeighbour = {features, classVec};
+    trainingExample<double>  newNeighbour = {features, classVec};
     neighbours.push_back(newNeighbour);
     updateK();
 };
 
-void knnClassification::train(const std::vector<trainingExample> &trainingSet) { //FIXME: Does numInputs need to be reset here? -MZ
+void knnClassification::train(const std::vector<trainingExample<double> > &trainingSet) { //FIXME: Does numInputs need to be reset here? -MZ
     neighbours.clear();
     neighbours = trainingSet;
     updateK();
@@ -77,7 +77,7 @@ double knnClassification::run(const std::vector<double> &inputVector) {
     
     //Find k nearest neighbours
     int index = 0;
-    for (std::vector<trainingExample>::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {
+    for (std::vector<trainingExample<double> >::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {
         //find Euclidian distance for this neighbor
         double euclidianDistance = 0;
         for(int j = 0; j < numInputs ; ++j){
@@ -137,7 +137,7 @@ void knnClassification::getJSONDescription(Json::Value &jsonModelDescription) {
     jsonModelDescription["whichInputs"] = vector2json(whichInputs);
     jsonModelDescription["k"] = desiredK;
     Json::Value examples;
-    for (std::vector<trainingExample>::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {
+    for (std::vector<trainingExample<double> >::iterator it = neighbours.begin(); it != neighbours.end(); ++it) {
         Json::Value oneExample;
         oneExample["class"] = it->output[0];
         oneExample["features"] = vector2json(it->input);

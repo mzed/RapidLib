@@ -1,6 +1,6 @@
 //
 //  seriesClassification.h
-//  RapidAPI
+//  RapidLib
 //
 //  Created by Michael Zbyszynski on 08/06/2017.
 //  Copyright © 2017 Goldsmiths. All rights reserved.
@@ -21,7 +21,7 @@ public:
     seriesClassification();
     ~seriesClassification();
     
-    bool train(const std::vector<trainingSeries> &seriesSet);
+    bool train(const std::vector<trainingSeries<double> > &seriesSet);
     void reset();
     std::string run(const std::vector<std::vector<double>> &inputSeries);
     std::vector<double> getCosts();
@@ -41,7 +41,7 @@ public:
     minMax<double> calculateCosts(std::string label1, std::string label2);
     
 private:
-    std::vector<trainingSeries> allTrainingSeries;
+    std::vector<trainingSeries<double > > allTrainingSeries;
     std::vector<double> allCosts;
     
     int maxLength;

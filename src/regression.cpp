@@ -30,7 +30,7 @@ regression::regression(const int &num_inputs, const int &num_outputs) {
     created = true;
 };
 
-regression::regression(const std::vector<trainingExample> &training_set) {
+regression::regression(const std::vector<trainingExample<double> > &training_set) {
     numInputs = 0;
     numOutputs = 0;
     created = false;
@@ -73,7 +73,7 @@ void regression::setNumEpochs(const int &epochs) {
 }
 
 
-bool regression::train(const std::vector<trainingExample> &training_set) {
+bool regression::train(const std::vector<trainingExample<double> > &training_set) {
     //TODO: time this process?
     if (training_set.size() > 0) {
         if (created) {

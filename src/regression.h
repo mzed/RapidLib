@@ -14,7 +14,7 @@ public:
     /** with no arguments, just make an empty vector */
     regression();
     /** create based on training set inputs and outputs */
-    regression(const std::vector<trainingExample> &trainingSet);
+    regression(const std::vector<trainingExample<double> > &trainingSet);
     /** create with proper models, but not trained */
     regression(const int &numInputs, const int &numOutputs);
     
@@ -22,7 +22,7 @@ public:
     ~regression() {};
     
     /** Train on a specified set, causes creation if not created */
-    bool train(const std::vector<trainingExample> &trainingSet);
+    bool train(const std::vector<trainingExample<double> > &trainingSet);
     
     /** Call before train, to set the number of training epochs */
     void setNumEpochs(const int &epochs);

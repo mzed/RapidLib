@@ -317,7 +317,7 @@ double neuralNetwork::run(const std::vector<double> &inputVector) {
     return outputNeuron;
 }
 
-void neuralNetwork::train(const std::vector<trainingExample> &trainingSet) {
+void neuralNetwork::train(const std::vector<trainingExample<double > > &trainingSet) {
     initTrainer();
     //setup maxes and mins
     std::vector<double> inMax = trainingSet[0].input;

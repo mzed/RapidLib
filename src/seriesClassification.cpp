@@ -18,7 +18,7 @@ seriesClassification::seriesClassification() {};
 
 seriesClassification::~seriesClassification() {};
 
-bool seriesClassification::train(const std::vector<trainingSeries> &seriesSet) {
+bool seriesClassification::train(const std::vector<trainingSeries<double> > &seriesSet) {
     assert(seriesSet.size() > 0);
     reset();
     bool trained = true;

@@ -154,7 +154,7 @@ bool svmClassification::init(
     return true;
 }
 
-void svmClassification::train(const std::vector<trainingExample> &trainingSet) {
+void svmClassification::train(const std::vector<trainingExample<double> > &trainingSet) {
     //TODO: should be scaling data -1 to 1
     //Get normalization parameters
     std::vector<double> inMax = trainingSet[0].input;

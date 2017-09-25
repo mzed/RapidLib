@@ -20,7 +20,7 @@ public:
      */
     knnClassification(const int &num_inputs,
                       const std::vector<int> &which_inputs,
-                      const std::vector<trainingExample> &trainingSet,
+                      const std::vector<trainingExample<double> > &trainingSet,
                       const int k);
     ~knnClassification();
     
@@ -41,7 +41,7 @@ public:
      * @param The training set is a vector of training examples that contain both a vector of input values and a double specifying desired output class.
      *
      */
-    void train(const std::vector<trainingExample> &trainingSet);
+    void train(const std::vector<trainingExample<double> > &trainingSet);
     
     void reset();
     
@@ -62,7 +62,7 @@ public:
 private:
     int numInputs;
     std::vector<int> whichInputs;
-    std::vector<trainingExample> neighbours;
+    std::vector<trainingExample<double>> neighbours;
     int desiredK; //K that user asked for might be limited but number of examples
     int currentK; //K minimum of desiredK or neighbours.size()
     inline void updateK();

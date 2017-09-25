@@ -26,21 +26,21 @@ classification::classification(const int &num_inputs, const int &num_outputs) { 
     for (int i = 0; i < numInputs; ++i) {
         whichInputs.push_back(i);
     }
-    std::vector<trainingExample> trainingSet;
+    std::vector<trainingExample<double> > trainingSet;
     for (int i = 0; i < numOutputs; ++i) {
         myModelSet.push_back(new knnClassification(numInputs, whichInputs, trainingSet, 1));
     }
     created = true;
 };
 
-classification::classification(const std::vector<trainingExample> &trainingSet) {
+classification::classification(const std::vector<trainingExample<double> > &trainingSet) {
     numInputs = 0;
     numOutputs = 0;
     created = false;
     train(trainingSet);
 };
 
-bool classification::train(const std::vector<trainingExample> &trainingSet) {
+bool classification::train(const std::vector<trainingExample<double> > &trainingSet) {
     //TODO: time this process?
     myModelSet.clear();
     //create model(s) here

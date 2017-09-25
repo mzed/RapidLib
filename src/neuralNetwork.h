@@ -111,7 +111,7 @@ public:
      * @param The training set is a vector of training examples that contain both a vector of input values and a double specifying desired output.
      *
      */
-    void train(const std::vector<trainingExample> &trainingSet);
+    void train(const std::vector<trainingExample<double> > &trainingSet);
     
 private:
     /** Parameters that influence learning */
