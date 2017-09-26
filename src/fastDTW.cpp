@@ -21,7 +21,7 @@ warpInfo fastDTW::fullFastDTW(const std::vector<std::vector<double>> &seriesX, c
     }
 #endif
     
-    dtw dtw;
+    dtw<double> dtw;
     searchRadius = (searchRadius < 0) ? 0 : searchRadius;
     int minSeries = searchRadius + 2;
     if (seriesX.size() <= minSeries || seriesY.size() <= minSeries) {

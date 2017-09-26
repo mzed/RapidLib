@@ -11,13 +11,16 @@
 #include <cassert>
 #include "dtw.h"
 
-dtw::dtw() {};
+template<typename T>
+dtw<T>::dtw() {};
 
-dtw::~dtw() {};
+template<typename T>
+dtw<T>::~dtw() {};
 
-inline double dtw::distanceFunction(const std::vector<double> &x, const std::vector<double> &y) {
+template<typename T>
+inline T dtw<T>::distanceFunction(const std::vector<T> &x, const std::vector<T> &y) {
     assert(x.size() == y.size());
-    double euclidianDistance = 0;
+    T euclidianDistance = 0;
     for(int j = 0; j < x.size() ; ++j){
         euclidianDistance = euclidianDistance + pow((x[j] - y[j]), 2);
     }
@@ -26,14 +29,15 @@ inline double dtw::distanceFunction(const std::vector<double> &x, const std::vec
 };
 
 /* Just returns the cost, doesn't calculate the path */
-double dtw::getCost(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY) {
+template<typename T>
+T dtw<T>::getCost(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY) {
     if (seriesX.size() < seriesY.size()) {
         return getCost(seriesY, seriesX);
     }
     
     costMatrix.clear();
     for (int i = 0; i < seriesX.size(); ++i) {
-        std::vector<double> tempVector;
+        std::vector<T> tempVector;
         for (int j = 0; j < seriesY.size(); ++j) {
             tempVector.push_back(0);
         }
@@ -52,23 +56,24 @@ double dtw::getCost(const std::vector<std::vector<double> > &seriesX, const std:
         //Bottom row of current column
         costMatrix[i][0] = costMatrix[i - 1][0] + distanceFunction(seriesX[i], seriesY[0]);
         for (int j = 1; j <= maxY; ++j) {
-            double minGlobalCost = fmin(costMatrix[i-1][j-1], costMatrix[i][j-1]);
+            T minGlobalCost = fmin(costMatrix[i-1][j-1], costMatrix[i][j-1]);
             costMatrix[i][j] = minGlobalCost + distanceFunction(seriesX[i], seriesY[j]);
         }
     }
     return costMatrix[maxX][maxY];
 };
 
-warpPath dtw::calculatePath(int seriesXsize, int seriesYsize) {
+template<typename T>
+warpPath dtw<T>::calculatePath(int seriesXsize, int seriesYsize) {
     warpPath warpPath;
     int i = seriesXsize - 1;
     int j = seriesYsize - 1;
     warpPath.add(i, j);
     
     while ((i > 0) || (j > 0)) {
-        double diagonalCost = std::numeric_limits<double>::infinity();
-        double leftCost = std::numeric_limits<double>::infinity();
-        double downCost = std::numeric_limits<double>::infinity();
+        T diagonalCost = std::numeric_limits<T>::infinity();
+        T leftCost = std::numeric_limits<T>::infinity();
+        T downCost = std::numeric_limits<T>::infinity();
         if ((i > 0) && (j > 0)) {
             diagonalCost = costMatrix[i - 1][j - 1];
         }
@@ -96,7 +101,8 @@ warpPath dtw::calculatePath(int seriesXsize, int seriesYsize) {
 };
 
 /* calculates both the cost and the warp path*/
-warpInfo dtw::dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY) {
+template<typename T>
+warpInfo dtw<T>::dynamicTimeWarp(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY) {
     warpInfo info;
     //calculate cost matrix
     info.cost = getCost(seriesX, seriesY);
@@ -105,14 +111,15 @@ warpInfo dtw::dynamicTimeWarp(const std::vector<std::vector<double> > &seriesX, 
 }
 
 /* calculates warp info based on window */
-warpInfo dtw::constrainedDTW(const std::vector<std::vector<double> > &seriesX, const std::vector<std::vector<double> > &seriesY, searchWindow window) {
+template<typename T>
+warpInfo dtw<T>::constrainedDTW(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY, searchWindow window) {
     
     //initialize cost matrix
     costMatrix.clear();
     for (int i = 0; i < seriesX.size(); ++i) { //TODO: this could be smaller, since most cells are unused
-        std::vector<double> tempVector;
+        std::vector<T> tempVector;
         for (int j = 0; j < seriesY.size(); ++j) {
-            tempVector.push_back(std::numeric_limits<double>::max());
+            tempVector.push_back(std::numeric_limits<T>::max());
         }
         costMatrix.push_back(tempVector);
     }
@@ -129,7 +136,7 @@ warpInfo dtw::constrainedDTW(const std::vector<std::vector<double> > &seriesX, c
             } else if (currentY == 0) { //first row
                 costMatrix[currentX][0] = distanceFunction(seriesX[currentX], seriesY[0]) + costMatrix[currentX - 1][0];
             } else {
-                double minGlobalCost = fmin(costMatrix[currentX - 1][currentY], fmin(costMatrix[currentX-1][currentY-1], costMatrix[currentX][currentY-1]));
+                T minGlobalCost = fmin(costMatrix[currentX - 1][currentY], fmin(costMatrix[currentX-1][currentY-1], costMatrix[currentX][currentY-1]));
                 costMatrix[currentX][currentY] = distanceFunction(seriesX[currentX], seriesY[currentY]) + minGlobalCost;
             }
         }
@@ -139,3 +146,7 @@ warpInfo dtw::constrainedDTW(const std::vector<std::vector<double> > &seriesX, c
     info.path = calculatePath(int(seriesX.size()), int(seriesY.size()));
     return info;
 }
+
+//explicit instantiation
+template class dtw<double>;
+template class dtw<float>;
