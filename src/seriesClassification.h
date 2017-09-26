@@ -15,34 +15,35 @@
 #include "fastDTW.h"
 #include "trainingExample.h"
 
+template<typename T>
 class seriesClassification {
     
 public:
     seriesClassification();
     ~seriesClassification();
     
-    bool train(const std::vector<trainingSeries<double> > &seriesSet);
+    bool train(const std::vector<trainingSeries<T> > &seriesSet);
     void reset();
-    std::string run(const std::vector<std::vector<double>> &inputSeries);
-    std::vector<double> getCosts();
+    std::string run(const std::vector<std::vector<T>> &inputSeries);
+    std::vector<T> getCosts();
     
     int getMinLength();
     int getMinLength(std::string label);
     int getMaxLength();
     int getMaxLength(std::string label);
     
-    template<typename T>
+    template<typename TT>
     struct minMax {
-        T min;
-        T max;
+        TT min;
+        TT max;
     };
     
-    minMax<double> calculateCosts(std::string label);
-    minMax<double> calculateCosts(std::string label1, std::string label2);
+    minMax<T> calculateCosts(std::string label);
+    minMax<T> calculateCosts(std::string label1, std::string label2);
     
 private:
-    std::vector<trainingSeries<double > > allTrainingSeries;
-    std::vector<double> allCosts;
+    std::vector<trainingSeries<T > > allTrainingSeries;
+    std::vector<T> allCosts;
     
     int maxLength;
     int minLength;

@@ -216,7 +216,7 @@ int main(int argc, const char * argv[]) {
     
     
     //Testing with labels
-    seriesClassification myDTW;
+    seriesClassification<double> myDTW;
     std::vector<trainingSeries<double> > seriesVector;
     trainingSeries<double> tempSeries;
     
