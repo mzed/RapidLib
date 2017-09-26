@@ -26,7 +26,7 @@ public:
     warpInfo dynamicTimeWarp(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY); //This returns everything, including a path
     
     /* Calculates both the cost and the warp path, with a given window as a constraint */
-    warpInfo constrainedDTW(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY, searchWindow window); //This takes a window object
+    warpInfo constrainedDTW(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY, searchWindow<T> window); //This takes a window object
     
 private:
     inline T distanceFunction(const std::vector<T> &pointX, const std::vector<T> &point);

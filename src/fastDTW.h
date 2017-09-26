@@ -12,18 +12,19 @@
 #include <vector>
 #include "warpPath.h"
 
+template<typename T>
 class fastDTW {
 public:
     fastDTW();
     ~fastDTW();
     
-    static double getCost(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY, int searchRadius);
-    static warpInfo fullFastDTW(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY, int searchRadius);
+    static T getCost(const std::vector<std::vector<T>> &seriesX, const std::vector<std::vector<T > > &seriesY, int searchRadius);
+    static warpInfo fullFastDTW(const std::vector<std::vector<T>> &seriesX, const std::vector<std::vector<T > > &seriesY, int searchRadius);
 
-    static warpPath getWarpPath(const std::vector<std::vector<double>> &seriesX, const std::vector<std::vector<double > > &seriesY, int searchRadius);
+    static warpPath getWarpPath(const std::vector<std::vector<T>> &seriesX, const std::vector<std::vector<T > > &seriesY, int searchRadius);
     
 private:
-    static std::vector<std::vector<double> > downsample(const std::vector<std::vector<double>> &series, double resolution);
+    static std::vector<std::vector<T> > downsample(const std::vector<std::vector<T>> &series, T resolution);
     
 };
 

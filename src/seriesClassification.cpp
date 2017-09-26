@@ -64,11 +64,11 @@ void seriesClassification::reset() {
 std::string seriesClassification::run(const std::vector<std::vector<double>> &inputSeries) {
     int closestSeries = 0;
     allCosts.clear();
-    double lowestCost = fastDTW::getCost(inputSeries, allTrainingSeries[0].input, SEARCH_RADIUS);
+    double lowestCost = fastDTW<double>::getCost(inputSeries, allTrainingSeries[0].input, SEARCH_RADIUS);
     allCosts.push_back(lowestCost);
     
     for (int i = 1; i < allTrainingSeries.size(); ++i) {
-        double currentCost = fastDTW::getCost(inputSeries, allTrainingSeries[i].input, SEARCH_RADIUS);
+        double currentCost = fastDTW<double>::getCost(inputSeries, allTrainingSeries[i].input, SEARCH_RADIUS);
         allCosts.push_back(currentCost);
         if (currentCost < lowestCost) {
             lowestCost = currentCost;
@@ -120,7 +120,7 @@ seriesClassification::minMax<double> seriesClassification::calculateCosts(std::s
             for (int j = (i + 1); j < allTrainingSeries.size(); ++j) {
                 if (allTrainingSeries[j].label == label) {
                     numSeries++;
-                    double currentCost = fastDTW::getCost(allTrainingSeries[i].input, allTrainingSeries[j].input, SEARCH_RADIUS);
+                    double currentCost = fastDTW<double>::getCost(allTrainingSeries[i].input, allTrainingSeries[j].input, SEARCH_RADIUS);
                     if (numSeries == 1) {
                         calculatedMinMax.min = calculatedMinMax.max = currentCost; //first match is both min and max
                     } else {
@@ -152,7 +152,7 @@ seriesClassification::minMax<double> seriesClassification::calculateCosts(std::s
             for (int j = 0; j < allTrainingSeries.size(); ++j) {
                 if (allTrainingSeries[j].label == label2) {
                     numSeries++;
-                    double currentCost = fastDTW::getCost(allTrainingSeries[i].input, allTrainingSeries[j].input, SEARCH_RADIUS);
+                    double currentCost = fastDTW<double>::getCost(allTrainingSeries[i].input, allTrainingSeries[j].input, SEARCH_RADIUS);
                     if (numSeries == 1) {
                         calculatedMinMax.min = calculatedMinMax.max = currentCost; //first match is both min and max
                     } else {

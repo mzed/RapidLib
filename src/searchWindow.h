@@ -12,12 +12,13 @@
 #include <vector>
 #include "warpPath.h"
 
+template<typename T>
 class searchWindow {
 public:
-    searchWindow(const std::vector<std::vector<double>> &seriesX,
-                 const std::vector<std::vector<double>> &seriesY,
-                 const std::vector<std::vector<double>> &shrunkenX,
-                 const std::vector<std::vector<double>> &shrunkenY,
+    searchWindow(const std::vector<std::vector<T>> &seriesX,
+                 const std::vector<std::vector<T>> &seriesY,
+                 const std::vector<std::vector<T>> &shrunkenX,
+                 const std::vector<std::vector<T>> &shrunkenY,
                  warpPath shrunkenWarpPath,
                  int searchRadius);
     
