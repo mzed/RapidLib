@@ -83,6 +83,23 @@ std::string seriesClassification<T>::run(const std::vector<std::vector<T>> &inpu
     return allTrainingSeries[closestSeries].label;
 };
 
+template<typename T>
+T seriesClassification<T>::run(const std::vector<std::vector<T>> &inputSeries, std::string label) {
+    int closestSeries = 0;
+    allCosts.clear();
+    T lowestCost = std::numeric_limits<T>::max();
+    for (int i = 0; i < allTrainingSeries.size(); ++i) {
+        if (allTrainingSeries[i].label == label) {
+            T currentCost = fastDTW<T>::getCost(inputSeries, allTrainingSeries[i].input, SEARCH_RADIUS);
+            allCosts.push_back(currentCost);
+            if (currentCost < lowestCost) {
+                lowestCost = currentCost;
+                closestSeries = i;
+            }
+        }
+    }
+    return lowestCost;
+};
 
 template<typename T>
 std::vector<T> seriesClassification<T>::getCosts() {

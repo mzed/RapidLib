@@ -241,7 +241,11 @@ int main(int argc, const char * argv[]) {
     assert(myDTW.run(seriesTwo) == "second series");
     //std::cout << myDTW.getCosts()[0] << std::endl;
     //std::cout << myDTW.getCosts()[1] << std::endl;
-    
+
+    //testing match against single label
+    assert(myDTW.run(seriesOne, "second series") == 19.325403217417502);
+   
+    //Training set stats
     assert(myDTW.getMaxLength() == 5);
     assert(myDTW.getMinLength() == 4);
     assert(myDTW.getMaxLength("first series") == 5);
