@@ -27,7 +27,7 @@ template<typename T>
 rapidStream<T>::rapidStream() {
     windowSize = 3;
     windowIndex = 0;
-    circularWindow = new double[windowSize];
+    circularWindow = new T[windowSize];
     for (int i = 0; i < windowSize; ++i) {
         circularWindow[i] = 0;
     }
@@ -178,3 +178,8 @@ T rapidStream<T>::maxAcceleration() {
     }
     return maxAccel;
 }
+
+//explicit instantiation
+template class rapidStream<double>;
+template class rapidStream<float>;
+
