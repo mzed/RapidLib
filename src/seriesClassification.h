@@ -25,8 +25,9 @@ public:
     bool train(const std::vector<trainingSeries<T> > &seriesSet);
     void reset();
     
-    std::string run(const std::vector<std::vector<T>> &inputSeries);
-    T run(const std::vector<std::vector<T>> &inputSeries, std::string label);
+    std::string run(const std::vector<std::vector<T> > &inputSeries);
+    T run(const std::vector<std::vector<T> > &inputSeries, std::string label);
+    std::string run(const std::vector<T> &foo);
     
     std::vector<T> getCosts();
     

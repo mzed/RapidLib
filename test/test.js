@@ -346,6 +346,11 @@ describe('RapidLib Machine Learning', function () {
             expect(myDTW.getCosts()[0]).to.equal(20.071067811865476);
             expect(myDTW.getCosts()[1]).to.equal(0);
         });
+
+        it('should run against one label', function () {
+            expect(myDTW.run(inputSeries, "testSeries2")).to.equal(0);
+        });
+
         it('should report new costs');
         // it('should report new costs', function () {
         //     expect(myDTW2.getCosts(testSeries)[0]).to.equal(0);

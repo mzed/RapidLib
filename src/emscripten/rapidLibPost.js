@@ -10,7 +10,7 @@
 
 "use strict";
 
-console.log("RapidLib 25.9.2017 13:57");
+console.log("RapidLib 26.9.2017 18:04");
 
 /**
  * Utility function to convert js objects into C++ trainingSets
@@ -467,7 +467,7 @@ Module.SeriesClassification.prototype = {
      * @param {Object} inputSeries - an array of arrays
      * @returns {Number} The index of the closest matching series
      */
-    run: function (inputSeries) {
+    run: function (inputSeries, label) {
         let vecInputSeries = new Module.VectorVectorDouble();
         for (let i = 0; i < inputSeries.length; ++i) {
             let tempVector = new Module.VectorDouble();
@@ -476,8 +476,11 @@ Module.SeriesClassification.prototype = {
             }
             vecInputSeries.push_back(tempVector);
         }
-        return this.seriesClassification.run(vecInputSeries);
-
+        if (arguments.length > 1) {
+            return this.seriesClassification.runLabel(vecInputSeries, label);
+        } else {
+            return this.seriesClassification.run(vecInputSeries);
+        }
     },
     /**
      * Deprecated! Use run()
