@@ -1,138 +1,18 @@
-# Link to [C++ documentation](http://doc.gold.ac.uk/eavi/rapidmix/docs_cpp/annotated.html)
-
-
-# JavaScript documentation:
-
-
-
-
-
-* * *
-
-### prepTrainingSet(trainingSet) 
-
-Utility function to convert js objects into something emscripten likes
-
-**Parameters**
-
-**trainingSet**: `Object`, JS Object representing a training set
-
-**Returns**: `Module.TrainingSet`
-
-
-## Class: Regression
-Creates a set of regression objects using the constructor from emscripten
-
-**Module.RegressionCpp**: `function` , constructor from emscripten
-### Regression.train(trainingSet) 
-
-Trains the models using the input. Starts training from the current state of the model: randomized or trained.
-
-**Parameters**
-
-**trainingSet**: `Object`, An array of training examples
-
-**Returns**: `Boolean`, true indicates successful training
-
-### Regression.initialize() 
-
-Returns the model set to it's initial configuration.
-
-**Returns**: `Boolean`, true indicates successful initialization
-
-### Regression.process(input) 
-
-Runs feed-forward regression on input
-
-**Parameters**
-
-**input**: `Array`, An array of features to be processed. Non-arrays are converted.
-
-**Returns**: `Array`, output - One number for each model in the set
-
-
-## Class: Classification
-Creates a set of classification objects using the constructor from emscripten
-
-**Module.ClassificationCpp**: `function` , constructor from emscripten
-### Classification.train(trainingSet) 
-
-Trains the models using the input. Clears previous training set.
-
-**Parameters**
-
-**trainingSet**: `Object`, An array of training examples.
-
-**Returns**: `Boolean`, true indicates successful training
-
-### Classification.initialize() 
-
-Returns the model set to it's initial configuration.
-
-**Returns**: `Boolean`, true indicates successful initialization
-
-### Classification.process(input) 
-
-Does classifications on an input vector.
-
-**Parameters**
-
-**input**: `Array`, An array of features to be processed. Non-arrays are converted.
-
-**Returns**: `Array`, output - One number for each model in the set
-
-
-## Class: ModelSet
-Creates a set of machine learning objects using constructors from emscripten. Could be any mix of regression and classification.
-
-### ModelSet.loadJSON(url) 
-
-Trains the models using the input. Clears previous training set.
-
-**Parameters**
-
-**url**: `string`, JSON loaded from a model set description document.
-
-**Returns**: `Boolean`, true indicates successful training
-
-### ModelSet.addNNModel(model) 
-
-Add a NN model to a modelSet. //TODO: this doesn't need it's own function
-
-**Parameters**
-
-**model**: , Add a NN model to a modelSet. //TODO: this doesn't need it's own function
-
-
-### ModelSet.addkNNModel(model) 
-
-Add a kNN model to a modelSet. //TODO: this doesn't need it's own function
-
-**Parameters**
-
-**model**: , Add a kNN model to a modelSet. //TODO: this doesn't need it's own function
-
-
-### ModelSet.process(input) 
-
-Applies regression and classification algorithms to an input vector.
-
-**Parameters**
-
-**input**: `Array`, An array of features to be processed.
-
-**Returns**: `Array`, output - One number for each model in the set
-
-
-
-* * *
-
-
-
-
-
-
-
-
-
-
+## C++ Library
+RapidLib is a lightweight library for interactive machine learning, inspired by [Wekinator](http://www.wekinator.org/).
+
+It currently features classification (using kNN), regression (multilayer perceptron), and series classification (using dynamic time warping).   
+
+**[Full C++ documentation can be found here](http://doc.gold.ac.uk/eavi/rapidmix/docs_cpp/annotated.html).**
+
+## Javascript   
+RapidLib has also been transpiled to JavaScript using Emscripten. It can be used in a browser through a script tag.
+```javascript
+<script src="https://www.doc.gold.ac.uk/eavi/rapidmix/RapidLib.js"></script>
+```
+It can also be used in Node.js via npm:
+```javascript
+npm install rapidlib
+```
+
+**[Full JavaScript documentation can be found here] (http://doc.gold.ac.uk/eavi/rapidmix/docs_js/)**
