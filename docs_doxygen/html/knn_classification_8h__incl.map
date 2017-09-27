@@ -1,4 +1,4 @@
-<map id="knnClassification.h" name="knnClassification.h">
-<area shape="rect" id="node3" href="$base_model_8h.html" title="baseModel.h" alt="" coords="87,79,184,104"/>
-<area shape="rect" id="node4" href="$training_example_8h.html" title="trainingExample.h" alt="" coords="71,152,200,177"/>
+<map id="src/knnClassification.h" name="src/knnClassification.h">
+<area shape="rect" id="node3" href="$base_model_8h.html" title="baseModel.h" alt="" coords="53,85,151,111"/>
+<area shape="rect" id="node4" href="$training_example_8h.html" title="trainingExample.h" alt="" coords="71,165,200,191"/>
 </map>

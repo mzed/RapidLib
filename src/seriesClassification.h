@@ -29,7 +29,7 @@ public:
     ~seriesClassification();
     
     /**  Train on a specified set of trainingSeries
-     * @param a vector of training series
+     * @param std::vector<trainingSeries> A vector of training series
      */
     bool train(const std::vector<trainingSeries<T> > &seriesSet);
     
@@ -37,14 +37,14 @@ public:
     void reset();
     
     /** Compare an input series to the stored training series
-     * @param vector of vectors, either float or double input data
+     * @param std::vector<std::vector> vector of vectors, either float or double input data
      * @return The label of the closest training series.
      */
     std::string run(const std::vector<std::vector<T> > &inputSeries);
     
     /** Compare an input series to all of the stored series with a specified label
-     * @param vector of vectors, either float or double input data
-     * @param String, label to compare with
+     * @param std::vector<std::vector> either float or double input data
+     * @param String label to compare with
      * @return The lowest cost match, float or double
      */
     T run(const std::vector<std::vector<T> > &inputSeries, std::string label);
@@ -60,7 +60,7 @@ public:
     int getMinLength() const;
     
     /** Get minimum training series length from a specified label
-     * @param The label to check
+     * @param string The label to check
      * @return The minimum length training series of that label
      */
     int getMinLength(std::string label) const;
@@ -71,7 +71,7 @@ public:
     int getMaxLength() const;
     
     /** Get maximum training series length from a specified label
-     * @param The label to check
+     * @param string The label to check
      * @return The maximum length training series of that label
      */
     int getMaxLength(std::string label) const;
@@ -84,14 +84,14 @@ public:
     };
     
     /** Calculate minimum and maximum cost between examples in a label.
-     * @param Label to calculate
+     * @param string Label to calculate
      * @return minMax struct containing min and max
      */
     minMax<T> calculateCosts(std::string label) const;
     
     /** Calculate minimum and maximum cost between examples in one label and examples in a second.
-     * @param first label to compare
-     * @param second label to compare
+     * @param string first label to compare
+     * @param string second label to compare
      * @return minMax struct containing min and max
      */
     minMax<T> calculateCosts(std::string label1, std::string label2) const;

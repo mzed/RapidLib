@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['modelset',['modelSet',['../classmodel_set.html#ae44cba85f4c52e7d05e0f622b3ea9030',1,'modelSet']]]
+  ['knnclassification',['knnClassification',['../classknn_classification.html#ac6c73eb7f625ad4e596c7a93b03b802c',1,'knnClassification']]]
 ];

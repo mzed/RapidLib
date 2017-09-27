@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['modelset',['modelSet',['../classmodel_set.html',1,'']]]
+  ['fastdtw',['fastDTW',['../classfast_d_t_w.html',1,'']]]
 ];

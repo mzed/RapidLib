@@ -1,11 +1,14 @@
 var classknn_classification =
 [
-    [ "knnClassification", "classknn_classification.html#a37873bbb03dea575d878b0205a4d1b39", null ],
-    [ "~knnClassification", "classknn_classification.html#a37e034151bb6d69c3952454df630dd80", null ],
-    [ "addNeighbour", "classknn_classification.html#aa6b10f1d20066e81e93c8172b4a7e44d", null ],
-    [ "getJSONDescription", "classknn_classification.html#a456b4b1b0fedb8f8fbe6d810bd80ceb8", null ],
-    [ "getNumInputs", "classknn_classification.html#a3f9c8fb78c6a66f0ab9440629140400d", null ],
-    [ "getWhichInputs", "classknn_classification.html#af7db9297f695e67df6af08719da37921", null ],
-    [ "process", "classknn_classification.html#aedeef4367ed652c768eaf5682c8ec276", null ],
-    [ "train", "classknn_classification.html#a04ce32741a132d39839d33d0d79e6c8f", null ]
+    [ "knnClassification", "classknn_classification.html#ac6c73eb7f625ad4e596c7a93b03b802c", null ],
+    [ "~knnClassification", "classknn_classification.html#a4ba014191f6af7fc093b85ce6f1b3cd7", null ],
+    [ "addNeighbour", "classknn_classification.html#a88e0fec44ac39d02890d0813db19a866", null ],
+    [ "getJSONDescription", "classknn_classification.html#a988e1cb0c28ed9bf43e194524f375dc5", null ],
+    [ "getK", "classknn_classification.html#a4a6a2b541e1172786d4f9af73d4eae78", null ],
+    [ "getNumInputs", "classknn_classification.html#a80c299fa0ddbc8ba9630cfead17f6d28", null ],
+    [ "getWhichInputs", "classknn_classification.html#a0f2d042cb9d5c6c97e6f7ed293e97752", null ],
+    [ "reset", "classknn_classification.html#a224974c08f139b0b746a33914ecc2d7e", null ],
+    [ "run", "classknn_classification.html#abc87d24b2ce2806f126800fc81936f56", null ],
+    [ "setK", "classknn_classification.html#a8c3d569112e964813ca0fb3e1d6597b5", null ],
+    [ "train", "classknn_classification.html#a040aa10672d162514bc58ba3d8b76c9d", null ]
 ];

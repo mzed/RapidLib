@@ -1,7 +1,8 @@
-<map id="classification.h" name="classification.h">
-<area shape="rect" id="node3" href="$model_set_8h.html" title="modelSet.h" alt="" coords="362,79,451,104"/>
-<area shape="rect" id="node4" href="$training_example_8h.html" title="trainingExample.h" alt="" coords="397,299,525,324"/>
-<area shape="rect" id="node5" href="$base_model_8h.html" title="baseModel.h" alt="" coords="261,225,359,251"/>
-<area shape="rect" id="node7" href="$neural_network_8h.html" title="neuralNetwork.h" alt="" coords="251,152,369,177"/>
-<area shape="rect" id="node8" href="$knn_classification_8h.html" title="knnClassification.h" alt="" coords="5,152,138,177"/>
+<map id="src/classification.h" name="src/classification.h">
+<area shape="rect" id="node3" href="$model_set_8h.html" title="modelSet.h" alt="" coords="328,79,416,104"/>
+<area shape="rect" id="node4" href="$training_example_8h.html" title="trainingExample.h" alt="" coords="483,312,611,337"/>
+<area shape="rect" id="node6" href="$base_model_8h.html" title="baseModel.h" alt="" coords="310,232,407,257"/>
+<area shape="rect" id="node8" href="$neural_network_8h.html" title="neuralNetwork.h" alt="" coords="111,152,230,177"/>
+<area shape="rect" id="node10" href="$knn_classification_8h.html" title="knnClassification.h" alt="" coords="254,152,386,177"/>
+<area shape="rect" id="node11" href="$svm_classification_8h.html" title="svmClassification.h" alt="" coords="462,152,597,177"/>
 </map>

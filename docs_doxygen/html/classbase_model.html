@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RapidLib: baseModel Class Reference</title>
+<title>RapidLib: baseModel&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v0.1.2</span>
+   &#160;<span id="projectnumber">v2.0.0</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -96,61 +96,69 @@ $(document).ready(function(){initNavTree('classbase_model.html','');});
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classbase_model-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">baseModel Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">baseModel&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="base_model_8h_source.html">baseModel.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for baseModel:</div>
+Inheritance diagram for baseModel&lt; T &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classbase_model__inherit__graph.png" border="0" usemap="#base_model_inherit__map" alt="Inheritance graph"/></div>
-<map name="base_model_inherit__map" id="base_model_inherit__map">
-<area shape="rect" id="node2" href="classknn_classification.html" title="{knnClassification\n||+ knnClassification()\l+ ~knnClassification()\l+ addNeighbour()\l+ process()\l+ train()\l+ getNumInputs()\l+ getWhichInputs()\l+ getJSONDescription()\l}" alt="" coords="5,227,168,393"/>
-<area shape="rect" id="node3" href="classneural_network.html" title="{neuralNetwork\n||+ neuralNetwork()\l+ neuralNetwork()\l+ ~neuralNetwork()\l+ process()\l+ getNumInputs()\l+ getWhichInputs()\l+ getNumHiddenLayers()\l+ getNumHiddenNodes()\l+ getWeights()\l+ getWHiddenOutput()\land 6 more...\l}" alt="" coords="192,207,363,413"/>
+<div class="center"><img src="classbase_model__inherit__graph.png" border="0" usemap="#base_model_3_01_t_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="base_model_3_01_t_01_4_inherit__map" id="base_model_3_01_t_01_4_inherit__map">
+<area shape="rect" id="node2" href="classknn_classification.html" title="{knnClassification\&lt; T \&gt;\n||+ knnClassification()\l+ ~knnClassification()\l+ addNeighbour()\l+ run()\l+ train()\l+ reset()\l+ getNumInputs()\l+ getWhichInputs()\l+ getK()\l+ setK()\l+ getJSONDescription()\l}" alt="" coords="5,220,168,427"/>
+<area shape="rect" id="node3" href="classneural_network.html" title="{neuralNetwork\&lt; T \&gt;\n||+ neuralNetwork()\l+ neuralNetwork()\l+ ~neuralNetwork()\l+ run()\l+ reset()\l+ getNumInputs()\l+ getWhichInputs()\l+ getNumHiddenLayers()\l+ setNumHiddenLayers()\l+ getNumHiddenNodes()\land 9 more...\l}" alt="" coords="192,220,363,427"/>
+<area shape="rect" id="node4" href="classsvm_classification.html" title="{svmClassification\&lt; T \&gt;\n||+ svmClassification()\l+ svmClassification()\l+ ~svmClassification()\l+ train()\l+ run()\l+ reset()\l+ init()\l+ getNumInputs()\l+ getWhichInputs()\l+ getJSONDescription()\l}" alt="" coords="387,227,549,420"/>
 </map>
 </div>
 <div class="dynheader">
-Collaboration diagram for baseModel:</div>
+Collaboration diagram for baseModel&lt; T &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classbase_model__coll__graph.png" border="0" usemap="#base_model_coll__map" alt="Collaboration graph"/></div>
+<div class="center"><img src="classbase_model__coll__graph.png" border="0" usemap="#base_model_3_01_t_01_4_coll__map" alt="Collaboration graph"/></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7c96328a8eda015d7f1b3d195e2fd567"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a7c96328a8eda015d7f1b3d195e2fd567">~baseModel</a> ()</td></tr>
-<tr class="separator:a7c96328a8eda015d7f1b3d195e2fd567"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95ef1dffc2857cdd1a57c23f5f9ee2d1"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a95ef1dffc2857cdd1a57c23f5f9ee2d1">process</a> (const std::vector&lt; double &gt; &amp;inputVector)=0</td></tr>
-<tr class="separator:a95ef1dffc2857cdd1a57c23f5f9ee2d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6cbd549d6742029ab9768bc88467b4f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#ab6cbd549d6742029ab9768bc88467b4f">train</a> (const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; &amp;trainingSet)=0</td></tr>
-<tr class="separator:ab6cbd549d6742029ab9768bc88467b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1601088280ebe5be525fd1fe49d4b1e1"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a1601088280ebe5be525fd1fe49d4b1e1">getNumInputs</a> ()=0</td></tr>
-<tr class="separator:a1601088280ebe5be525fd1fe49d4b1e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d6b7579536f5713eed0b7b4a6687a16"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a5d6b7579536f5713eed0b7b4a6687a16">getWhichInputs</a> ()=0</td></tr>
-<tr class="separator:a5d6b7579536f5713eed0b7b4a6687a16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54c7ba2132721c2f990ea2fe2313f863"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a54c7ba2132721c2f990ea2fe2313f863">getJSONDescription</a> (Json::Value &amp;currentModel)=0</td></tr>
-<tr class="separator:a54c7ba2132721c2f990ea2fe2313f863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac16b40e0a37c3ddc335d44b0668df4e2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#ac16b40e0a37c3ddc335d44b0668df4e2">~baseModel</a> ()</td></tr>
+<tr class="separator:ac16b40e0a37c3ddc335d44b0668df4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c57cc5edffbfd8ed959e049e5951ebf"><td class="memItemLeft" align="right" valign="top">virtual T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a4c57cc5edffbfd8ed959e049e5951ebf">run</a> (const std::vector&lt; T &gt; &amp;inputVector)=0</td></tr>
+<tr class="separator:a4c57cc5edffbfd8ed959e049e5951ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadfc4ee03fc17d923dc53721d05740d1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#aadfc4ee03fc17d923dc53721d05740d1">train</a> (const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a>&lt; T &gt; &gt; &amp;trainingSet)=0</td></tr>
+<tr class="separator:aadfc4ee03fc17d923dc53721d05740d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89434e0587b1c701f6abc4065e23e0a2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a89434e0587b1c701f6abc4065e23e0a2">reset</a> ()=0</td></tr>
+<tr class="separator:a89434e0587b1c701f6abc4065e23e0a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a237863c3daed90c372227797050c70b1"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a237863c3daed90c372227797050c70b1">getNumInputs</a> () const =0</td></tr>
+<tr class="separator:a237863c3daed90c372227797050c70b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c905a55228bdddf3823ce64ec23c38d"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a3c905a55228bdddf3823ce64ec23c38d">getWhichInputs</a> () const =0</td></tr>
+<tr class="separator:a3c905a55228bdddf3823ce64ec23c38d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e8f888087752fa3d353edd14eeb4858"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a7e8f888087752fa3d353edd14eeb4858">getJSONDescription</a> (Json::Value &amp;currentModel)=0</td></tr>
+<tr class="separator:a7e8f888087752fa3d353edd14eeb4858"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a853d3a2d610c43fca37676ac1459e3b9"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a853d3a2d610c43fca37676ac1459e3b9"><td class="memTemplItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classbase_model.html#a853d3a2d610c43fca37676ac1459e3b9">vector2json</a> (T vec)</td></tr>
-<tr class="separator:a853d3a2d610c43fca37676ac1459e3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b1ba32b01a20ff7f3a529ebfe0bee85"><td class="memTemplParams" colspan="2">template&lt;typename TT &gt; </td></tr>
+<tr class="memitem:a9b1ba32b01a20ff7f3a529ebfe0bee85"><td class="memTemplItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classbase_model.html#a9b1ba32b01a20ff7f3a529ebfe0bee85">vector2json</a> (TT vec)</td></tr>
+<tr class="separator:a9b1ba32b01a20ff7f3a529ebfe0bee85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Base class for wekinator models. Implemented by NN and KNN classes </p>
+<div class="textblock"><h3>template&lt;typename T&gt;<br />
+class baseModel&lt; T &gt;</h3>
+
+<p>Base class for wekinator models. Implemented by NN and KNN classes </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7c96328a8eda015d7f1b3d195e2fd567"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c96328a8eda015d7f1b3d195e2fd567">&sect;&nbsp;</a></span>~baseModel()</h2>
+<a id="ac16b40e0a37c3ddc335d44b0668df4e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac16b40e0a37c3ddc335d44b0668df4e2">&sect;&nbsp;</a></span>~baseModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual baseModel::~baseModel </td>
+          <td class="memname">virtual <a class="el" href="classbase_model.html">baseModel</a>&lt; T &gt;::~<a class="el" href="classbase_model.html">baseModel</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -166,17 +174,19 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a54c7ba2132721c2f990ea2fe2313f863"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54c7ba2132721c2f990ea2fe2313f863">&sect;&nbsp;</a></span>getJSONDescription()</h2>
+<a id="a7e8f888087752fa3d353edd14eeb4858"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e8f888087752fa3d353edd14eeb4858">&sect;&nbsp;</a></span>getJSONDescription()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void baseModel::getJSONDescription </td>
+          <td class="memname">virtual void <a class="el" href="classbase_model.html">baseModel</a>&lt; T &gt;::getJSONDescription </td>
           <td>(</td>
           <td class="paramtype">Json::Value &amp;&#160;</td>
           <td class="paramname"><em>currentModel</em></td><td>)</td>
@@ -190,21 +200,81 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classneural_network.html#a83f5c57ed3f555cd534a6f4ea425dfb7">neuralNetwork</a>, and <a class="el" href="classknn_classification.html#a456b4b1b0fedb8f8fbe6d810bd80ceb8">knnClassification</a>.</p>
+<p>Implemented in <a class="el" href="classsvm_classification.html#aed6303761a5802e65d270d75e6647372">svmClassification&lt; T &gt;</a>, <a class="el" href="classneural_network.html#aaeab4b0827dabb9c4b04603c784194f3">neuralNetwork&lt; T &gt;</a>, and <a class="el" href="classknn_classification.html#a988e1cb0c28ed9bf43e194524f375dc5">knnClassification&lt; T &gt;</a>.</p>
 
 </div>
 </div>
-<a id="a1601088280ebe5be525fd1fe49d4b1e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1601088280ebe5be525fd1fe49d4b1e1">&sect;&nbsp;</a></span>getNumInputs()</h2>
+<a id="a237863c3daed90c372227797050c70b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a237863c3daed90c372227797050c70b1">&sect;&nbsp;</a></span>getNumInputs()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual int baseModel::getNumInputs </td>
+          <td class="memname">virtual int <a class="el" href="classbase_model.html">baseModel</a>&lt; T &gt;::getNumInputs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classsvm_classification.html#ada5e9a9331e8d151e2a62f3451c9a92a">svmClassification&lt; T &gt;</a>, <a class="el" href="classneural_network.html#a40a0a76a6b772c26353c2408922d82dc">neuralNetwork&lt; T &gt;</a>, and <a class="el" href="classknn_classification.html#a80c299fa0ddbc8ba9630cfead17f6d28">knnClassification&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a3c905a55228bdddf3823ce64ec23c38d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c905a55228bdddf3823ce64ec23c38d">&sect;&nbsp;</a></span>getWhichInputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::vector&lt;int&gt; <a class="el" href="classbase_model.html">baseModel</a>&lt; T &gt;::getWhichInputs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classsvm_classification.html#a94f26f69f7a05e8e1eb4915197bbee07">svmClassification&lt; T &gt;</a>, <a class="el" href="classneural_network.html#adfabc05157a041e3b3c569486ae04011">neuralNetwork&lt; T &gt;</a>, and <a class="el" href="classknn_classification.html#a0f2d042cb9d5c6c97e6f7ed293e97752">knnClassification&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a89434e0587b1c701f6abc4065e23e0a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89434e0587b1c701f6abc4065e23e0a2">&sect;&nbsp;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classbase_model.html">baseModel</a>&lt; T &gt;::reset </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -217,50 +287,25 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classneural_network.html#aaf9ff8b1a88126fcffc1e9f07a4ffe49">neuralNetwork</a>, and <a class="el" href="classknn_classification.html#a3f9c8fb78c6a66f0ab9440629140400d">knnClassification</a>.</p>
+<p>Implemented in <a class="el" href="classsvm_classification.html#a83c576ed0a5978a5f6e529a8fd3362dc">svmClassification&lt; T &gt;</a>, <a class="el" href="classneural_network.html#a5715ad92265f39459c2036cda6ab31fe">neuralNetwork&lt; T &gt;</a>, and <a class="el" href="classknn_classification.html#a224974c08f139b0b746a33914ecc2d7e">knnClassification&lt; T &gt;</a>.</p>
 
 </div>
 </div>
-<a id="a5d6b7579536f5713eed0b7b4a6687a16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d6b7579536f5713eed0b7b4a6687a16">&sect;&nbsp;</a></span>getWhichInputs()</h2>
+<a id="a4c57cc5edffbfd8ed959e049e5951ebf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c57cc5edffbfd8ed959e049e5951ebf">&sect;&nbsp;</a></span>run()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::vector&lt;int&gt; baseModel::getWhichInputs </td>
+          <td class="memname">virtual T <a class="el" href="classbase_model.html">baseModel</a>&lt; T &gt;::run </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="classneural_network.html#afc93cb28c3897d4d1faa4ac8fbf0c1f8">neuralNetwork</a>, and <a class="el" href="classknn_classification.html#af7db9297f695e67df6af08719da37921">knnClassification</a>.</p>
-
-</div>
-</div>
-<a id="a95ef1dffc2857cdd1a57c23f5f9ee2d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95ef1dffc2857cdd1a57c23f5f9ee2d1">&sect;&nbsp;</a></span>process()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual double baseModel::process </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>inputVector</em></td><td>)</td>
           <td></td>
         </tr>
@@ -272,23 +317,25 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classneural_network.html#a2d93cf6790db969ea067e8588b10d204">neuralNetwork</a>, and <a class="el" href="classknn_classification.html#aedeef4367ed652c768eaf5682c8ec276">knnClassification</a>.</p>
+<p>Implemented in <a class="el" href="classsvm_classification.html#ac0e6f16cf122322314ffef1a987abad6">svmClassification&lt; T &gt;</a>, <a class="el" href="classneural_network.html#ae1bd02d3268b99a49b8e365afb2fa8b5">neuralNetwork&lt; T &gt;</a>, and <a class="el" href="classknn_classification.html#abc87d24b2ce2806f126800fc81936f56">knnClassification&lt; T &gt;</a>.</p>
 
 </div>
 </div>
-<a id="ab6cbd549d6742029ab9768bc88467b4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6cbd549d6742029ab9768bc88467b4f">&sect;&nbsp;</a></span>train()</h2>
+<a id="aadfc4ee03fc17d923dc53721d05740d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadfc4ee03fc17d923dc53721d05740d1">&sect;&nbsp;</a></span>train()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void baseModel::train </td>
+          <td class="memname">virtual void <a class="el" href="classbase_model.html">baseModel</a>&lt; T &gt;::train </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a>&lt; T &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em></td><td>)</td>
           <td></td>
         </tr>
@@ -300,25 +347,27 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classneural_network.html#af0da201b2b09bef38471f5ceaca7c2ea">neuralNetwork</a>, and <a class="el" href="classknn_classification.html#a04ce32741a132d39839d33d0d79e6c8f">knnClassification</a>.</p>
+<p>Implemented in <a class="el" href="classneural_network.html#ac7aca6e77be0d7ac14efee3f1bcd9bde">neuralNetwork&lt; T &gt;</a>, <a class="el" href="classsvm_classification.html#adcb616cddc6f05479562128fd850579d">svmClassification&lt; T &gt;</a>, and <a class="el" href="classknn_classification.html#a040aa10672d162514bc58ba3d8b76c9d">knnClassification&lt; T &gt;</a>.</p>
 
 </div>
 </div>
-<a id="a853d3a2d610c43fca37676ac1459e3b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a853d3a2d610c43fca37676ac1459e3b9">&sect;&nbsp;</a></span>vector2json()</h2>
+<a id="a9b1ba32b01a20ff7f3a529ebfe0bee85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b1ba32b01a20ff7f3a529ebfe0bee85">&sect;&nbsp;</a></span>vector2json()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename T &gt; </div>
+<div class="memtemplate">
+template&lt;typename TT &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Json::Value baseModel::vector2json </td>
+          <td class="memname">Json::Value <a class="el" href="classbase_model.html">baseModel</a>&lt; T &gt;::vector2json </td>
           <td>(</td>
-          <td class="paramtype">T&#160;</td>
+          <td class="paramtype">TT&#160;</td>
           <td class="paramname"><em>vec</em></td><td>)</td>
           <td></td>
         </tr>
@@ -333,7 +382,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="base_model_8h_source.html">baseModel.h</a></li>
+<li>src/<a class="el" href="base_model_8h_source.html">baseModel.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

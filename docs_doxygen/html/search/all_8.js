@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['learning_5frate',['LEARNING_RATE',['../neural_network_8h.html#ac9d3b34ee7e35eab6a81ed21f18f6e64',1,'neuralNetwork.h']]]
+  ['json2vector',['json2vector',['../model_set_8cpp.html#a4412c06b9ca0673dc734ef76bd19812e',1,'modelSet.cpp']]]
 ];

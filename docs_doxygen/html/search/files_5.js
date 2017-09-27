@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['regression_2ecpp',['regression.cpp',['../regression_8cpp.html',1,'']]],
-  ['regression_2eh',['regression.h',['../regression_8h.html',1,'']]],
-  ['regressionembindings_2eh',['regressionEmbindings.h',['../regression_embindings_8h.html',1,'']]]
+  ['modelset_2ecpp',['modelSet.cpp',['../model_set_8cpp.html',1,'']]],
+  ['modelset_2eh',['modelSet.h',['../model_set_8h.html',1,'']]]
 ];

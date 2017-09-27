@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['initialize',['initialize',['../classmodel_set.html#afefb50a0fe8f45821c6a7599784d7eb4',1,'modelSet']]],
-  ['input',['input',['../structtraining_example.html#a066378f49152305e496c0f76fb13246d',1,'trainingExample']]],
-  ['inputnames',['inputNames',['../classmodel_set.html#ab4b67d7dbdf0659ba6bd18af7247e2ad',1,'modelSet']]]
+  ['fastdtw',['fastDTW',['../classfast_d_t_w.html',1,'fastDTW&lt; T &gt;'],['../classfast_d_t_w.html#a684af845adef7a1cf5590715c1ea7187',1,'fastDTW::fastDTW()']]],
+  ['fastdtw_2ecpp',['fastDTW.cpp',['../fast_d_t_w_8cpp.html',1,'']]],
+  ['fastdtw_2eh',['fastDTW.h',['../fast_d_t_w_8h.html',1,'']]],
+  ['fullfastdtw',['fullFastDTW',['../classfast_d_t_w.html#aea875128c4f0bf990870d9013827c49d',1,'fastDTW']]]
 ];

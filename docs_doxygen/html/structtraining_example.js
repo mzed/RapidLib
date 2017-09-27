@@ -1,5 +1,5 @@
 var structtraining_example =
 [
-    [ "input", "structtraining_example.html#a066378f49152305e496c0f76fb13246d", null ],
-    [ "output", "structtraining_example.html#ae776963ea692ba5260d4d329f579c9fd", null ]
+    [ "input", "structtraining_example.html#a12c70103cf448e393588a1f7c837f6e9", null ],
+    [ "output", "structtraining_example.html#ab96334e1a91398762dbe6037a2063910", null ]
 ];
