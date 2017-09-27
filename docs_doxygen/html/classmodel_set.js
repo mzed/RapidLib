@@ -1,17 +1,17 @@
 var classmodel_set =
 [
-    [ "modelSet", "classmodel_set.html#ae44cba85f4c52e7d05e0f622b3ea9030", null ],
-    [ "~modelSet", "classmodel_set.html#a21eadb6e6cdd54dda57a4a94582bfe7b", null ],
-    [ "getJSON", "classmodel_set.html#a031987885b1462ec7d7dbeef0c803d97", null ],
-    [ "initialize", "classmodel_set.html#afefb50a0fe8f45821c6a7599784d7eb4", null ],
-    [ "process", "classmodel_set.html#a3b95db9f976d19764665e0761cae4a3c", null ],
-    [ "putJSON", "classmodel_set.html#a37dfe2eb4164986ccba8617da63a1dbc", null ],
-    [ "readJSON", "classmodel_set.html#afd7886381e98dabea0771d9e7badc4da", null ],
-    [ "train", "classmodel_set.html#a7620f95e8e29d547e7c688da51b33d9c", null ],
-    [ "writeJSON", "classmodel_set.html#a8e2b783240dded1be8fad921b10707bf", null ],
-    [ "created", "classmodel_set.html#a0029dc6f8ccfd77353ad38b48198ad7d", null ],
-    [ "inputNames", "classmodel_set.html#ab4b67d7dbdf0659ba6bd18af7247e2ad", null ],
-    [ "myModelSet", "classmodel_set.html#a390b0b864a8e727f481537b3c37aa721", null ],
-    [ "numInputs", "classmodel_set.html#ad10fbc1228a85f1200cb89589ad92755", null ],
-    [ "numOutputs", "classmodel_set.html#addc0df56b9f1970c9816050634933716", null ]
+    [ "modelSet", "classmodel_set.html#af4fd9213c198a53f1dc2140f423da147", null ],
+    [ "~modelSet", "classmodel_set.html#a9c3ccb8db82f57ba3c762ad5d8ccc77e", null ],
+    [ "getJSON", "classmodel_set.html#a41abbd0d02bb5d216824f661c63c3314", null ],
+    [ "putJSON", "classmodel_set.html#a10b6431ce7b4bc75f23a9f04f1666922", null ],
+    [ "readJSON", "classmodel_set.html#a0496666a49d6e1fd3a7c622c0ac136cc", null ],
+    [ "reset", "classmodel_set.html#a0b5e12da0d54af8cac659ca2e409736e", null ],
+    [ "run", "classmodel_set.html#ad312baf81fb587726a396a3f4666922e", null ],
+    [ "train", "classmodel_set.html#ae4b54a9fe07f17e70f5a8f0ab458ff05", null ],
+    [ "writeJSON", "classmodel_set.html#a98676ef4b61e0a3b596fe164344aeb4f", null ],
+    [ "created", "classmodel_set.html#a1fb785964ee3ed561ccaf743cfe1ac5b", null ],
+    [ "inputNames", "classmodel_set.html#abfecf38aea9d66c9becd61f9051f86fd", null ],
+    [ "myModelSet", "classmodel_set.html#a3125419e0d392b4bfab347389278f404", null ],
+    [ "numInputs", "classmodel_set.html#ad4cd50c1dd5fc1d4ef55a24dbddfda1c", null ],
+    [ "numOutputs", "classmodel_set.html#aa7a70546de7da2e8ba868ead39d592ca", null ]
 ];

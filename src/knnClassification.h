@@ -52,9 +52,17 @@ public:
      */
     void train(const std::vector<trainingExample<T> > &trainingSet);
     
+    /** Reset the model to its empty state. */
     void reset();
     
+    /** Find out how many inputs the model expects
+     * @return Integer number of intpus
+     */
     int getNumInputs() const;
+    
+    /** Find out which inputs in a vector will be used
+     * @return Vector of ints, specifying input indices.
+     */
     std::vector<int> getWhichInputs() const;
     
     /** Get the number of nearest neighbours used by the kNN algorithm. */
@@ -65,6 +73,9 @@ public:
     void setK(int newK);
     
 #ifndef EMSCRIPTEN
+    /** Populate a JSON value with a description of the current model
+     * @param A JSON value to be populated
+     */
     void getJSONDescription(Json::Value &currentModel);
 #endif
     

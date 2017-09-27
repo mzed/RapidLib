@@ -19,8 +19,9 @@ EMSCRIPTEN_BINDINGS(seriesClassification_module) {
     .constructor()
     .function("reset", &seriesClassification<double>::reset)
     .function("train", &seriesClassification<double>::train)
-    .function("run", &seriesClassification<double>::run)
-    .function("getCosts", select_overload<std::vector<double>()>(&seriesClassification<double>::getCosts))
+    .function("run", select_overload<std::string(const std::vector<std::vector<double>>&)>(&seriesClassification<double>::run))
+    .function("runLabel", select_overload<double(const std::vector<std::vector<double>>&, std::string)>(&seriesClassification<double>::run))
+    .function("getCosts", &seriesClassification<double>::getCosts)
     ;
 };
 

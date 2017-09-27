@@ -1,4 +1,4 @@
-<map id="modelSet" name="modelSet">
-<area shape="rect" id="node2" href="$classclassification.html" title="{classification\n||+ classification()\l+ classification()\l+ classification()\l+ ~classification()\l+ train()\l}" alt="" coords="5,287,130,413"/>
-<area shape="rect" id="node3" href="$classregression.html" title="{regression\n||+ regression()\l+ regression()\l+ regression()\l+ ~regression()\l+ train()\l}" alt="" coords="155,287,266,413"/>
+<map id="modelSet&lt; T &gt;" name="modelSet&lt; T &gt;">
+<area shape="rect" id="node2" href="$classclassification.html" title="{classification\&lt; T \&gt;\n||+ classification()\l+ classification()\l+ classification()\l+ classification()\l+ ~classification()\l+ train()\l+ getK()\l+ setK()\l}" alt="" coords="5,287,133,453"/>
+<area shape="rect" id="node3" href="$classregression.html" title="{regression\&lt; T \&gt;\n||+ regression()\l+ regression()\l+ regression()\l+ ~regression()\l+ train()\l+ setNumEpochs()\l+ getNumHiddenLayers()\l+ setNumHiddenLayers()\l}" alt="" coords="157,287,328,453"/>
 </map>

@@ -83,21 +83,38 @@ std::string seriesClassification<T>::run(const std::vector<std::vector<T>> &inpu
     return allTrainingSeries[closestSeries].label;
 };
 
+template<typename T>
+T seriesClassification<T>::run(const std::vector<std::vector<T>> &inputSeries, std::string label) {
+    int closestSeries = 0;
+    allCosts.clear();
+    T lowestCost = std::numeric_limits<T>::max();
+    for (int i = 0; i < allTrainingSeries.size(); ++i) {
+        if (allTrainingSeries[i].label == label) {
+            T currentCost = fastDTW<T>::getCost(inputSeries, allTrainingSeries[i].input, SEARCH_RADIUS);
+            allCosts.push_back(currentCost);
+            if (currentCost < lowestCost) {
+                lowestCost = currentCost;
+                closestSeries = i;
+            }
+        }
+    }
+    return lowestCost;
+};
 
 template<typename T>
-std::vector<T> seriesClassification<T>::getCosts() {
+std::vector<T> seriesClassification<T>::getCosts() const{
     return allCosts;
 }
 
 template<typename T>
-int seriesClassification<T>::getMinLength() {
+int seriesClassification<T>::getMinLength() const{
     return minLength;
 }
 
 template<typename T>
-int seriesClassification<T>::getMinLength(std::string label) {
+int seriesClassification<T>::getMinLength(std::string label) const {
     int labelMinLength = -1;
-    typename std::map<std::string, minMax<int> >::iterator it = lengthsPerLabel.find(label);
+    typename std::map<std::string, minMax<int> >::const_iterator it = lengthsPerLabel.find(label);
     if (it != lengthsPerLabel.end()) {
         labelMinLength = it->second.min;
     }
@@ -105,14 +122,14 @@ int seriesClassification<T>::getMinLength(std::string label) {
 }
 
 template<typename T>
-int seriesClassification<T>::getMaxLength() {
+int seriesClassification<T>::getMaxLength() const {
     return maxLength;
 }
 
 template<typename T>
-int seriesClassification<T>::getMaxLength(std::string label) {
+int seriesClassification<T>::getMaxLength(std::string label) const {
     int labelMaxLength = -1;
-    typename std::map<std::string, minMax<int> >::iterator it = lengthsPerLabel.find(label);
+    typename std::map<std::string, minMax<int> >::const_iterator it = lengthsPerLabel.find(label);
     if (it != lengthsPerLabel.end()) {
         labelMaxLength = it->second.max;
     }
@@ -120,64 +137,51 @@ int seriesClassification<T>::getMaxLength(std::string label) {
 }
 
 template<typename T>
-seriesClassification<T>::minMax<T> seriesClassification<T>::calculateCosts(std::string label) {
+seriesClassification<T>::minMax<T> seriesClassification<T>::calculateCosts(std::string label) const {
     minMax<T> calculatedMinMax;
-    calculatedMinMax.min = std::numeric_limits<T>::max();
-    calculatedMinMax.max = std::numeric_limits<T>::min();
-    int numSeries = 0;
-    
+    bool foundSeries = false;
+    std::vector<T> labelCosts;
     for (int i = 0; i < (allTrainingSeries.size() - 1); ++i) { //these loops are a little different than the two-label case
         if (allTrainingSeries[i].label == label) {
+            foundSeries = true;
             for (int j = (i + 1); j < allTrainingSeries.size(); ++j) {
                 if (allTrainingSeries[j].label == label) {
-                    numSeries++;
-                    T currentCost = fastDTW<T>::getCost(allTrainingSeries[i].input, allTrainingSeries[j].input, SEARCH_RADIUS);
-                    if (numSeries == 1) {
-                        calculatedMinMax.min = calculatedMinMax.max = currentCost; //first match is both min and max
-                    } else {
-                        if (currentCost < calculatedMinMax.min) {
-                            calculatedMinMax.min = currentCost;
-                        }
-                        if (currentCost > calculatedMinMax.max) {
-                            calculatedMinMax.max = currentCost;
-                        }
-                    }
+                    labelCosts.push_back(fastDTW<T>::getCost(allTrainingSeries[i].input, allTrainingSeries[j].input, SEARCH_RADIUS));
                 }
             }
         }
     }
-    if (numSeries == 0) {
+    if (foundSeries) {
+        auto minmax_result = std::minmax_element(std::begin(labelCosts), std::end(labelCosts));
+        calculatedMinMax.min = *minmax_result.first;
+        calculatedMinMax.max = *minmax_result.second;
+    } else {
         calculatedMinMax.min = calculatedMinMax.max = 0;
     }
     return calculatedMinMax;
 }
 
 template<typename T>
-seriesClassification<T>::minMax<T> seriesClassification<T>::calculateCosts(std::string label1, std::string label2) {
+seriesClassification<T>::minMax<T> seriesClassification<T>::calculateCosts(std::string label1, std::string label2) const {
     minMax<T> calculatedMinMax;
-    calculatedMinMax.min = std::numeric_limits<T>::max();
-    calculatedMinMax.max = std::numeric_limits<T>::min();
-    int numSeries = 0;
-    
+    bool foundSeries = false;
+    std::vector<T> labelCosts;
     for (int i = 0; i < (allTrainingSeries.size()); ++i) {
         if (allTrainingSeries[i].label == label1) {
             for (int j = 0; j < allTrainingSeries.size(); ++j) {
                 if (allTrainingSeries[j].label == label2) {
-                    numSeries++;
-                    T currentCost = fastDTW<T>::getCost(allTrainingSeries[i].input, allTrainingSeries[j].input, SEARCH_RADIUS);
-                    if (numSeries == 1) {
-                        calculatedMinMax.min = calculatedMinMax.max = currentCost; //first match is both min and max
-                    } else {
-                        if (currentCost < calculatedMinMax.min) {
-                            calculatedMinMax.min = currentCost;
-                        }
-                        if (currentCost > calculatedMinMax.max) {
-                            calculatedMinMax.max = currentCost;
-                        }
-                    }
+                    foundSeries = true;
+                    labelCosts.push_back(fastDTW<T>::getCost(allTrainingSeries[i].input, allTrainingSeries[j].input, SEARCH_RADIUS));
                 }
             }
         }
+    }
+    if (foundSeries) {
+        auto minmax_result = std::minmax_element(std::begin(labelCosts), std::end(labelCosts));
+        calculatedMinMax.min = *minmax_result.first;
+        calculatedMinMax.max = *minmax_result.second;
+    } else {
+        calculatedMinMax.min = calculatedMinMax.max = 0;
     }
     return calculatedMinMax;
 }

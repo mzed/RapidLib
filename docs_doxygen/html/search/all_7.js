@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['knnclassification',['knnClassification',['../classknn_classification.html',1,'knnClassification'],['../classknn_classification.html#a37873bbb03dea575d878b0205a4d1b39',1,'knnClassification::knnClassification()']]],
-  ['knnclassification_2ecpp',['knnClassification.cpp',['../knn_classification_8cpp.html',1,'']]],
-  ['knnclassification_2eh',['knnClassification.h',['../knn_classification_8h.html',1,'']]],
-  ['knnembindings_2eh',['knnEmbindings.h',['../knn_embindings_8h.html',1,'']]]
+  ['init',['init',['../classsvm_classification.html#aa3c095477366a40e13734788df155399',1,'svmClassification']]],
+  ['input',['input',['../structtraining_example.html#a12c70103cf448e393588a1f7c837f6e9',1,'trainingExample::input()'],['../structtraining_series.html#a66aa0299355a999a3a583c408cb7528c',1,'trainingSeries::input()']]],
+  ['inputnames',['inputNames',['../classmodel_set.html#abfecf38aea9d66c9becd61f9051f86fd',1,'modelSet']]]
 ];

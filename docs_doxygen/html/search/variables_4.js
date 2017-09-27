@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['output',['output',['../structtraining_example.html#ae776963ea692ba5260d4d329f579c9fd',1,'trainingExample']]]
+  ['numinputs',['numInputs',['../classmodel_set.html#ad4cd50c1dd5fc1d4ef55a24dbddfda1c',1,'modelSet']]],
+  ['numoutputs',['numOutputs',['../classmodel_set.html#aa7a70546de7da2e8ba868ead39d592ca',1,'modelSet']]]
 ];

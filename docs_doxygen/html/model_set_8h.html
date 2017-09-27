@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RapidLib: modelSet.h File Reference</title>
+<title>RapidLib: src/modelSet.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v0.1.2</span>
+   &#160;<span id="projectnumber">v2.0.0</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -102,28 +102,30 @@ $(document).ready(function(){initNavTree('model_set_8h.html','');});
 <code>#include &quot;<a class="el" href="base_model_8h_source.html">baseModel.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="neural_network_8h_source.html">neuralNetwork.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="knn_classification_8h_source.html">knnClassification.h</a>&quot;</code><br />
-<code>#include &quot;json.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="svm_classification_8h_source.html">svmClassification.h</a>&quot;</code><br />
+<code>#include &quot;../dependencies/json/json.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for modelSet.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="model_set_8h__incl.png" border="0" usemap="#model_set_8h" alt=""/></div>
-<map name="model_set_8h" id="model_set_8h">
-<area shape="rect" id="node3" href="training_example_8h.html" title="trainingExample.h" alt="" coords="5,225,133,251"/>
-<area shape="rect" id="node4" href="base_model_8h.html" title="baseModel.h" alt="" coords="86,152,184,177"/>
-<area shape="rect" id="node6" href="neural_network_8h.html" title="neuralNetwork.h" alt="" coords="125,79,243,104"/>
-<area shape="rect" id="node7" href="knn_classification_8h.html" title="knnClassification.h" alt="" coords="267,79,400,104"/>
+<div class="center"><img src="model_set_8h__incl.png" border="0" usemap="#src_2model_set_8h" alt=""/></div>
+<map name="src_2model_set_8h" id="src_2model_set_8h">
+<area shape="rect" id="node3" href="training_example_8h.html" title="trainingExample.h" alt="" coords="5,239,133,264"/>
+<area shape="rect" id="node5" href="base_model_8h.html" title="baseModel.h" alt="" coords="375,159,473,184"/>
+<area shape="rect" id="node7" href="neural_network_8h.html" title="neuralNetwork.h" alt="" coords="506,79,625,104"/>
+<area shape="rect" id="node9" href="knn_classification_8h.html" title="knnClassification.h" alt="" coords="648,79,781,104"/>
+<area shape="rect" id="node10" href="svm_classification_8h.html" title="svmClassification.h" alt="" coords="226,79,361,104"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="model_set_8h__dep__incl.png" border="0" usemap="#model_set_8hdep" alt=""/></div>
-<map name="model_set_8hdep" id="model_set_8hdep">
-<area shape="rect" id="node2" href="classification_8h.html" title="classification.h" alt="" coords="12,79,120,104"/>
-<area shape="rect" id="node4" href="model_set_8cpp.html" title="modelSet.cpp" alt="" coords="144,79,247,104"/>
-<area shape="rect" id="node5" href="regression_8h.html" title="regression.h" alt="" coords="271,79,366,104"/>
-<area shape="rect" id="node3" href="classification_8cpp.html" title="classification.cpp" alt="" coords="5,152,127,177"/>
-<area shape="rect" id="node6" href="regression_8cpp.html" title="regression.cpp" alt="" coords="264,152,373,177"/>
+<div class="center"><img src="model_set_8h__dep__incl.png" border="0" usemap="#src_2model_set_8hdep" alt=""/></div>
+<map name="src_2model_set_8hdep" id="src_2model_set_8hdep">
+<area shape="rect" id="node2" href="classification_8h.html" title="src/classification.h" alt="" coords="12,79,142,104"/>
+<area shape="rect" id="node4" href="model_set_8cpp.html" title="src/modelSet.cpp" alt="" coords="166,79,290,104"/>
+<area shape="rect" id="node5" href="regression_8h.html" title="src/regression.h" alt="" coords="314,79,430,104"/>
+<area shape="rect" id="node3" href="classification_8cpp.html" title="src/classification.cpp" alt="" coords="5,152,149,177"/>
+<area shape="rect" id="node6" href="regression_8cpp.html" title="src/regression.cpp" alt="" coords="307,152,437,177"/>
 </map>
 </div>
 </div>
@@ -131,7 +133,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html">modelSet</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html">modelSet&lt; T &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
@@ -139,7 +141,7 @@ Classes</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="model_set_8h.html">modelSet.h</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="model_set_8h.html">modelSet.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>

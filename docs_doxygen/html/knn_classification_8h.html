@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RapidLib: knnClassification.h File Reference</title>
+<title>RapidLib: src/knnClassification.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v0.1.2</span>
+   &#160;<span id="projectnumber">v2.0.0</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -99,28 +99,28 @@ $(document).ready(function(){initNavTree('knn_classification_8h.html','');});
 <div class="contents">
 <div class="textblock"><code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="base_model_8h_source.html">baseModel.h</a>&quot;</code><br />
-<code>#include &quot;json.h&quot;</code><br />
+<code>#include &quot;../dependencies/json/json.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for knnClassification.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="knn_classification_8h__incl.png" border="0" usemap="#knn_classification_8h" alt=""/></div>
-<map name="knn_classification_8h" id="knn_classification_8h">
-<area shape="rect" id="node3" href="base_model_8h.html" title="baseModel.h" alt="" coords="87,79,184,104"/>
-<area shape="rect" id="node4" href="training_example_8h.html" title="trainingExample.h" alt="" coords="71,152,200,177"/>
+<div class="center"><img src="knn_classification_8h__incl.png" border="0" usemap="#src_2knn_classification_8h" alt=""/></div>
+<map name="src_2knn_classification_8h" id="src_2knn_classification_8h">
+<area shape="rect" id="node3" href="base_model_8h.html" title="baseModel.h" alt="" coords="53,85,151,111"/>
+<area shape="rect" id="node4" href="training_example_8h.html" title="trainingExample.h" alt="" coords="71,165,200,191"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="knn_classification_8h__dep__incl.png" border="0" usemap="#knn_classification_8hdep" alt=""/></div>
-<map name="knn_classification_8hdep" id="knn_classification_8hdep">
-<area shape="rect" id="node2" href="model_set_8h.html" title="modelSet.h" alt="" coords="151,79,240,104"/>
-<area shape="rect" id="node8" href="knn_classification_8cpp.html" title="knnClassification.cpp" alt="" coords="264,79,410,104"/>
-<area shape="rect" id="node3" href="classification_8h.html" title="classification.h" alt="" coords="12,152,120,177"/>
-<area shape="rect" id="node5" href="model_set_8cpp.html" title="modelSet.cpp" alt="" coords="144,152,247,177"/>
-<area shape="rect" id="node6" href="regression_8h.html" title="regression.h" alt="" coords="271,152,366,177"/>
-<area shape="rect" id="node4" href="classification_8cpp.html" title="classification.cpp" alt="" coords="5,225,127,251"/>
-<area shape="rect" id="node7" href="regression_8cpp.html" title="regression.cpp" alt="" coords="264,225,373,251"/>
+<div class="center"><img src="knn_classification_8h__dep__incl.png" border="0" usemap="#src_2knn_classification_8hdep" alt=""/></div>
+<map name="src_2knn_classification_8hdep" id="src_2knn_classification_8hdep">
+<area shape="rect" id="node2" href="model_set_8h.html" title="src/modelSet.h" alt="" coords="173,79,283,104"/>
+<area shape="rect" id="node8" href="knn_classification_8cpp.html" title="src/knnClassification.cpp" alt="" coords="306,79,474,104"/>
+<area shape="rect" id="node3" href="classification_8h.html" title="src/classification.h" alt="" coords="12,152,142,177"/>
+<area shape="rect" id="node5" href="model_set_8cpp.html" title="src/modelSet.cpp" alt="" coords="166,152,290,177"/>
+<area shape="rect" id="node6" href="regression_8h.html" title="src/regression.h" alt="" coords="314,152,430,177"/>
+<area shape="rect" id="node4" href="classification_8cpp.html" title="src/classification.cpp" alt="" coords="5,225,149,251"/>
+<area shape="rect" id="node7" href="regression_8cpp.html" title="src/regression.cpp" alt="" coords="307,225,437,251"/>
 </map>
 </div>
 </div>
@@ -128,7 +128,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html">knnClassification</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html">knnClassification&lt; T &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
@@ -136,7 +136,7 @@ Classes</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="knn_classification_8h.html">knnClassification.h</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="knn_classification_8h.html">knnClassification.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>

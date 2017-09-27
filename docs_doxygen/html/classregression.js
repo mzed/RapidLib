@@ -1,8 +1,11 @@
 var classregression =
 [
-    [ "regression", "classregression.html#a40993153659b1f637cf4d596df6e97ab", null ],
-    [ "regression", "classregression.html#a029d23d2403773148373bb091d2734c2", null ],
-    [ "regression", "classregression.html#ae3474e3fbc7c31a80ad862dd18f7489d", null ],
-    [ "~regression", "classregression.html#abde9f6759b404a8fe6db7d2a96acda0c", null ],
-    [ "train", "classregression.html#afb1956067fda0d20d2ed755086c9f592", null ]
+    [ "regression", "classregression.html#af41e84fae0d909832ebcfcc9e8e715f9", null ],
+    [ "regression", "classregression.html#a3541e54c28a5a23094a0bce7459621a2", null ],
+    [ "regression", "classregression.html#a2d5b91aec66e3f9c8847d438dff96a9a", null ],
+    [ "~regression", "classregression.html#a7e84e18b1727ecd5a092310d07a1b392", null ],
+    [ "getNumHiddenLayers", "classregression.html#a329af3221e9111f539c2cf38d9574f3d", null ],
+    [ "setNumEpochs", "classregression.html#a9e27950d2f94757f7f12b6f2c9294f3f", null ],
+    [ "setNumHiddenLayers", "classregression.html#aec26cba61bc784e388016d4d49453698", null ],
+    [ "train", "classregression.html#afe5baeaea101622217af87c87e4ffd5d", null ]
 ];

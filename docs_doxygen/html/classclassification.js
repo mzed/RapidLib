@@ -1,8 +1,15 @@
 var classclassification =
 [
-    [ "classification", "classclassification.html#a96cfefed3bbc9b8b61a44b9c6cc9e29a", null ],
-    [ "classification", "classclassification.html#abbc5335e5c1536a0c202a79b46dc8f23", null ],
-    [ "classification", "classclassification.html#ab50d95013f5266aa5cc4595f69e62c71", null ],
-    [ "~classification", "classclassification.html#ac65a474682b7c3b8661585de8b8f8f8b", null ],
-    [ "train", "classclassification.html#ac7f8a3ad1a0f4f466cd6f5ed041615d9", null ]
+    [ "classificationTypes", "classclassification.html#a41d0dc191d7159c4e46ea24918cd650d", [
+      [ "knn", "classclassification.html#a41d0dc191d7159c4e46ea24918cd650daa97f0346083a1752190856e80b244b54", null ],
+      [ "svm", "classclassification.html#a41d0dc191d7159c4e46ea24918cd650dacf3bba950fb445ec33cacaee6f04f90b", null ]
+    ] ],
+    [ "classification", "classclassification.html#ab8fa0a1597bb540c92861ab5da8a4e7d", null ],
+    [ "classification", "classclassification.html#a536e68cbc31c5516db3df50f2bb375b9", null ],
+    [ "classification", "classclassification.html#ab88681015215e29b6fb93a082e366261", null ],
+    [ "classification", "classclassification.html#ae1903ee708229e5f2c34569600b655b7", null ],
+    [ "~classification", "classclassification.html#a95bd6a9eb4c1491cab5c78c7bcc98ca3", null ],
+    [ "getK", "classclassification.html#ac372123d4b2c8851232475ebd4b9a0c3", null ],
+    [ "setK", "classclassification.html#aeebac94bbfa7a8d857cb9f5e7680601b", null ],
+    [ "train", "classclassification.html#a0b687b07e67866af9295b40395379e2e", null ]
 ];

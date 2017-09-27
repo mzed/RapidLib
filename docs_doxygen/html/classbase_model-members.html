@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v0.1.2</span>
+   &#160;<span id="projectnumber">v2.0.0</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -92,19 +92,20 @@ $(document).ready(function(){initNavTree('classbase_model.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">baseModel Member List</div>  </div>
+<div class="title">baseModel&lt; T &gt; Member List</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="classbase_model.html">baseModel</a>, including all inherited members.</p>
+<p>This is the complete list of members for <a class="el" href="classbase_model.html">baseModel&lt; T &gt;</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classbase_model.html#a54c7ba2132721c2f990ea2fe2313f863">getJSONDescription</a>(Json::Value &amp;currentModel)=0</td><td class="entry"><a class="el" href="classbase_model.html">baseModel</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classbase_model.html#a1601088280ebe5be525fd1fe49d4b1e1">getNumInputs</a>()=0</td><td class="entry"><a class="el" href="classbase_model.html">baseModel</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classbase_model.html#a5d6b7579536f5713eed0b7b4a6687a16">getWhichInputs</a>()=0</td><td class="entry"><a class="el" href="classbase_model.html">baseModel</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classbase_model.html#a95ef1dffc2857cdd1a57c23f5f9ee2d1">process</a>(const std::vector&lt; double &gt; &amp;inputVector)=0</td><td class="entry"><a class="el" href="classbase_model.html">baseModel</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classbase_model.html#ab6cbd549d6742029ab9768bc88467b4f">train</a>(const std::vector&lt; trainingExample &gt; &amp;trainingSet)=0</td><td class="entry"><a class="el" href="classbase_model.html">baseModel</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classbase_model.html#a853d3a2d610c43fca37676ac1459e3b9">vector2json</a>(T vec)</td><td class="entry"><a class="el" href="classbase_model.html">baseModel</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classbase_model.html#a7c96328a8eda015d7f1b3d195e2fd567">~baseModel</a>()</td><td class="entry"><a class="el" href="classbase_model.html">baseModel</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classbase_model.html#a7e8f888087752fa3d353edd14eeb4858">getJSONDescription</a>(Json::Value &amp;currentModel)=0</td><td class="entry"><a class="el" href="classbase_model.html">baseModel&lt; T &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classbase_model.html#a237863c3daed90c372227797050c70b1">getNumInputs</a>() const =0</td><td class="entry"><a class="el" href="classbase_model.html">baseModel&lt; T &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classbase_model.html#a3c905a55228bdddf3823ce64ec23c38d">getWhichInputs</a>() const =0</td><td class="entry"><a class="el" href="classbase_model.html">baseModel&lt; T &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classbase_model.html#a89434e0587b1c701f6abc4065e23e0a2">reset</a>()=0</td><td class="entry"><a class="el" href="classbase_model.html">baseModel&lt; T &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classbase_model.html#a4c57cc5edffbfd8ed959e049e5951ebf">run</a>(const std::vector&lt; T &gt; &amp;inputVector)=0</td><td class="entry"><a class="el" href="classbase_model.html">baseModel&lt; T &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classbase_model.html#aadfc4ee03fc17d923dc53721d05740d1">train</a>(const std::vector&lt; trainingExample&lt; T &gt; &gt; &amp;trainingSet)=0</td><td class="entry"><a class="el" href="classbase_model.html">baseModel&lt; T &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classbase_model.html#a9b1ba32b01a20ff7f3a529ebfe0bee85">vector2json</a>(TT vec)</td><td class="entry"><a class="el" href="classbase_model.html">baseModel&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classbase_model.html#ac16b40e0a37c3ddc335d44b0668df4e2">~baseModel</a>()</td><td class="entry"><a class="el" href="classbase_model.html">baseModel&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
