@@ -14,7 +14,7 @@
 #include "trainingExample.h"
 
 #ifndef EMSCRIPTEN
-#include "json.h"
+#include "../dependencies/json/json.h"
 #endif
 
 /** Base class for wekinator models. Implemented by NN and KNN classes */

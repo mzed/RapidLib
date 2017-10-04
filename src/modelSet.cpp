@@ -14,7 +14,7 @@
 #include "modelSet.h"
 
 #ifndef EMSCRIPTEN
-#include "json.h"
+#include "../dependencies/json/json.h"
 #else
 #include "emscripten/modelSetEmbindings.h"
 #endif
