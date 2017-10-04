@@ -1,10 +1,10 @@
-//
-//  searchWindow.h
-//  RapidLib
-//
-//  Created by mzed on 14/09/2017.
-//  Copyright © 2017 Goldsmiths. All rights reserved.
-//
+/**
+ * @file    searchWindow.h
+ * RapidLib
+ * @author  Michael Zbyszynski
+ * @date    14 Sep 2017
+ * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
+ */
 
 #ifndef searchWindow_h
 #define searchWindow_h
@@ -24,12 +24,12 @@ public:
     
     std::vector<int> minValues;
     std::vector<int> maxValues;
-
+    
 private:
     int maxY;
     int size;
     void markVisited(int col, int row);
     void expandWindow(int searchRadius);
 };
-    
+
 #endif /* searchWindow_h */

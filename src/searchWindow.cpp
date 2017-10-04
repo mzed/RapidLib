@@ -1,10 +1,10 @@
-//
-//  searchWindow.cpp
-//  RapidLib
-//
-//  Created by mzed on 14/09/2017.
-//  Copyright © 2017 Goldsmiths. All rights reserved.
-//
+/**
+ * @file    searchWindow.cpp
+ * RapidLib
+ * @author  Michael Zbyszynski
+ * @date    14 Sep 2017
+ * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
+ */
 
 #include "searchWindow.h"
 

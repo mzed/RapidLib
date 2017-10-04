@@ -1,10 +1,11 @@
-//
-//  seriesClassification.h
-//  RapidLib
-//
-//  Created by Michael Zbyszynski on 08/06/2017.
-//  Copyright © 2017 Goldsmiths. All rights reserved.
-//
+/**
+ * @file seriesClassification.h
+ * RapidLib
+ *
+ * @author Michael Zbyszynski
+ * @date 08 Jun 2017
+ * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
+ */
 
 #ifndef seriesClassification_hpp
 #define seriesClassification_hpp
