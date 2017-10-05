@@ -6,10 +6,6 @@
 #include "regression.h"
 #include "classification.h"
 #include "seriesClassification.h"
-#include "json.h"
-
-#include "dtw.h"
-#include "fastDTW.h"
 
 int main(int argc, const char * argv[]) {
     
