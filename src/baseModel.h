@@ -1,10 +1,11 @@
-//
-//  baseModel.h
-//  RapidLib
-//
-//  Created by mzed on 05/09/2016.
-//  Copyright © 2016 Goldsmiths. All rights reserved.
-//
+/**
+ * @file baseModel.h
+ * RapidLib
+ *
+ * @author Michael Zbyszynski
+ * @date 5 Sep 2016
+ * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
+ */
 
 
 #ifndef baseModel_h

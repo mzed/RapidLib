@@ -1,10 +1,11 @@
-//
-//  regression.h
-//  RapidLib
-//
-//  Created by mzed on 26/09/2016.
-//  Copyright © 2016 Goldsmiths. All rights reserved.
-//
+/**
+ * @file regression.h
+ * RapidLib
+ *
+ * @author Michael Zbsyzynski
+ * @date 26 Sep 2016
+ * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
+ */
 
 #ifndef regression_h
 #define regression_h
