@@ -212,9 +212,9 @@ int main(int argc, const char * argv[]) {
     
     
     //Testing with labels
-    seriesClassification<double> myDTW;
-    std::vector<trainingSeries<double> > seriesVector;
-    trainingSeries<double> tempSeries;
+    seriesClassification myDTW;
+    std::vector<trainingSeries> seriesVector;
+    trainingSeries tempSeries;
     
     tempSeries.input.push_back( { 1., 5.} );
     tempSeries.input.push_back( { 2., 4.} );

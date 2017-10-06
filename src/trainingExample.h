@@ -25,9 +25,12 @@ typedef trainingExampleTemplate<float> trainingExampleFloat;
 
 /** This is used by DTW models for training */
 template<typename T>
-struct trainingSeries {
+struct trainingSeriesTemplate {
     std::vector<std::vector<T> > input;
     std::string label;
 };
+
+typedef trainingSeriesTemplate<double> trainingSeries;
+typedef trainingSeriesTemplate<float> trainingSeriesFloat;
 
 #endif
