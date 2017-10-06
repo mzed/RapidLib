@@ -36,6 +36,13 @@ Module.prepTrainingSet = function (trainingSet) {
     return rmTrainingSet;
 };
 
+/**
+ * Utility function to convert js objects into C++ trainingSeriesSets
+ * @param {Object} trainingSeriesSet - JS Object representing a training series
+ * @property {function} Module.TrainingSeriest - constructor for emscripten version of this struct
+ * @property {function} Module.VectorVectorDouble - constructor for the emscripten version of std::vector<std::vector<double>>
+ * @returns {Module.TrainingSeriesSet}
+ */
 Module.prepTrainingSeriesSet = function (trainingSeriesSet) {
     let rmTrainingSeriesSet = new Module.TrainingSeriesSet();
     for (let i = 0; i < trainingSeriesSet.length; ++i) {
