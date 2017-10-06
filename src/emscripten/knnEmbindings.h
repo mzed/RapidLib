@@ -19,24 +19,24 @@ EMSCRIPTEN_BINDINGS(stl_wrappers) {
   register_vector<double>("VectorDouble");
   register_vector<std::vector<double>>("VectorVectorDouble");
 
-  register_vector<trainingExample<double>>("TrainingSet");
-  register_vector<trainingSeries<double>>("TrainingSeriesSet");
+  register_vector<trainingExampleTemplate<double>>("TrainingSet");
+  register_vector<trainingSeriesTemplate<double>>("TrainingSeriesSet");
 
-  value_object<trainingExample<double>>("trainingExample")
-    .field("input", &trainingExample<double>::input)
-    .field("output", &trainingExample<double>::output)
+  value_object<trainingExampleTemplate<double>>("trainingExample")
+    .field("input", &trainingExampleTemplate<double>::input)
+    .field("output", &trainingExampleTemplate<double>::output)
     ;
 
-  value_object<trainingSeries<double>>("trainingSeries")
-    .field("input", &trainingSeries<double>::input)
-    .field("label", &trainingSeries<double>::label)
+  value_object<trainingSeriesTemplate<double>>("trainingSeries")
+    .field("input", &trainingSeriesTemplate<double>::input)
+    .field("label", &trainingSeriesTemplate<double>::label)
     ;
 }
 
 
 EMSCRIPTEN_BINDINGS(knn_module) {
   class_<knnClassification<double>>("KnnClassification")
-    .constructor<int, std::vector<int>, std::vector<trainingExample<double>>, int>()
+    .constructor<int, std::vector<int>, std::vector<trainingExampleTemplate<double>>, int>()
     .function("addNeighbour", &knnClassification<double>::addNeighbour)
     .function("run", &knnClassification<double>::run)
     ;
