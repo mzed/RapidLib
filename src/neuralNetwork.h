@@ -1,10 +1,10 @@
-//
-//  neuralNetwork.h
-//  RapidLib
-//
-//  Created by mzed on 05/09/2016.
-//  Copyright © 2016 Goldsmiths. All rights reserved.
-//
+/**
+ * @file neuralNetwork.h
+ *  RapidLib
+ *
+ * @date 05 Sep 2016
+ * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
+ */
 
 #ifndef neuralNetwork_h
 #define neuralNetwork_h
@@ -81,11 +81,11 @@ public:
     std::vector<T> getInBases() const;
     T getOutRange() const;
     T getOutBase() const;
-
+    
 #ifndef EMSCRIPTEN
     void getJSONDescription(Json::Value &currentModel);
 #endif
-
+    
     
 private:
     /** Parameters that describe the topography of the model */
@@ -120,7 +120,7 @@ public:
      * @param The training set is a vector of training examples that contain both a vector of input values and a value specifying desired output.
      *
      */
-    void train(const std::vector<trainingExample<T> > &trainingSet);
+    void train(const std::vector<trainingExampleTemplate<T> > &trainingSet);
     
 private:
     /** Parameters that influence learning */

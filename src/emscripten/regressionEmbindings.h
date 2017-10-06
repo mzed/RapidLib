@@ -14,14 +14,14 @@
 using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(regression_module) {
-  class_<regression<double>, base<modelSet<double> > >("RegressionCpp") //name change so that I can wrap it in Javascript. -mz
+  class_<regressionTemplate<double>, base<modelSet<double> > >("RegressionCpp") //name change so that I can wrap it in Javascript. -mz
     .constructor()
-    .constructor< std::vector<trainingExample<double> > >()
+    .constructor< std::vector<trainingExampleTemplate<double> > >()
     .constructor<int, int>()
-    .function("train", &regression<double>::train)
-    .function("getNumHiddenLayers", &regression<double>::getNumHiddenLayers)
-    .function("setNumHiddenLayers", &regression<double>::setNumHiddenLayers)
-    .function("setNumEpochs", &regression<double>::setNumEpochs)
+    .function("train", &regressionTemplate<double>::train)
+    .function("getNumHiddenLayers", &regressionTemplate<double>::getNumHiddenLayers)
+    .function("setNumHiddenLayers", &regressionTemplate<double>::setNumHiddenLayers)
+    .function("setNumEpochs", &regressionTemplate<double>::setNumEpochs)
     ;
 
 };
