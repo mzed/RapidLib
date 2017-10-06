@@ -50,6 +50,8 @@ private:
     classificationTypes classificationType;
 };
 
-typedef classificationTemplate<double> classification; //This is here so that the old API still works as expected.
-typedef classificationTemplate<float> classificationFloat;
+//This is here so that the old API still works as expected.
+using classification = classificationTemplate<double>;
+using classificationFloat = classificationTemplate<float>;
+
 #endif

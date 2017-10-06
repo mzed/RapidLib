@@ -20,8 +20,9 @@ struct trainingExampleTemplate {
     std::vector<T> output;
 };
 
-typedef trainingExampleTemplate<double> trainingExample; //This is here to keep the old API working
-typedef trainingExampleTemplate<float> trainingExampleFloat;
+//This is here to keep the old API working
+using trainingExample = trainingExampleTemplate<double>;
+using trainingExampleFloat = trainingExampleTemplate<float>;
 
 /** This is used by DTW models for training */
 template<typename T>
@@ -30,7 +31,8 @@ struct trainingSeriesTemplate {
     std::string label;
 };
 
-typedef trainingSeriesTemplate<double> trainingSeries;
-typedef trainingSeriesTemplate<float> trainingSeriesFloat;
+//This is here to keep the old API working
+using trainingSeries = trainingSeriesTemplate<double> ;
+using trainingSeriesFloat = trainingSeriesTemplate<float>;
 
 #endif

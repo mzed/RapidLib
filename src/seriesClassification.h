@@ -105,7 +105,8 @@ private:
     std::map<std::string, minMax<int> > lengthsPerLabel;
 };
 
-typedef seriesClassificationTemplate<double> seriesClassification; //This is here to keep the old API working
-typedef seriesClassificationTemplate<float> seriesClassificationFloat;
+//This is here to keep the old API working
+using seriesClassification = seriesClassificationTemplate<double>;
+using seriesClassificationFloat = seriesClassificationTemplate<float>;
 
 #endif
