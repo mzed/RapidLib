@@ -18,20 +18,20 @@
  */
 
 template<typename T>
-class regression : public modelSet<T> {
+class regressionTemplate : public modelSet<T> {
 public:
     /** with no arguments, just make an empty vector */
-    regression();
+    regressionTemplate();
     /** create based on training set inputs and outputs */
-    regression(const std::vector<trainingExample<T> > &trainingSet);
+    regressionTemplate(const std::vector<trainingExampleTemplate<T> > &trainingSet);
     /** create with proper models, but not trained */
-    regression(const int &numInputs, const int &numOutputs);
+    regressionTemplate(const int &numInputs, const int &numOutputs);
     
     /** destructor */
-    ~regression() {};
+    ~regressionTemplate() {};
     
     /** Train on a specified set, causes creation if not created */
-    bool train(const std::vector<trainingExample<T> > &trainingSet);
+    bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet);
     
     /** Call before train, to set the number of training epochs */
     void setNumEpochs(const int &epochs);
@@ -47,4 +47,6 @@ private:
     int numEpochs; //Temporary -- also should be part of nn only. -mz
 };
 
+typedef regressionTemplate<double> regression; //This is here so the old API still works
+typedef regressionTemplate<float> regressionFloat;
 #endif

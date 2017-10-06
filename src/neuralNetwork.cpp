@@ -344,7 +344,7 @@ T neuralNetwork<T>::run(const std::vector<T> &inputVector) {
 }
 
 template<typename T>
-void neuralNetwork<T>::train(const std::vector<trainingExample<T > > &trainingSet) {
+void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > > &trainingSet) {
     initTrainer();
     //setup maxes and mins
     std::vector<T> inMax = trainingSet[0].input;

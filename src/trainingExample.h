@@ -15,10 +15,13 @@
 
 /** This is used by both NN and KNN models for training */
 template<typename T>
-struct trainingExample {
+struct trainingExampleTemplate {
     std::vector<T> input;
     std::vector<T> output;
 };
+
+typedef trainingExampleTemplate<double> trainingExample; //This is here to keep the old API working
+typedef trainingExampleTemplate<float> trainingExampleFloat;
 
 /** This is used by DTW models for training */
 template<typename T>

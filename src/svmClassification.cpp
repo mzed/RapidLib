@@ -168,7 +168,7 @@ bool svmClassification<T>::init(
 }
 
 template<typename T>
-void svmClassification<T>::train(const std::vector<trainingExample<T> > &trainingSet) {
+void svmClassification<T>::train(const std::vector<trainingExampleTemplate<T> > &trainingSet) {
     //TODO: should be scaling data -1 to 1
     //Get normalization parameters
     std::vector<T> inMax = trainingSet[0].input;

@@ -23,7 +23,7 @@ class baseModel {
 public:
     virtual ~baseModel() {};
     virtual T run(const std::vector<T> &inputVector) = 0;
-    virtual void train(const std::vector<trainingExample<T> > &trainingSet) = 0;
+    virtual void train(const std::vector<trainingExampleTemplate<T> > &trainingSet) = 0;
     virtual void reset() = 0;;
     virtual int getNumInputs() const = 0;
     virtual std::vector<int> getWhichInputs() const = 0;
