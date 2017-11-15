@@ -10,8 +10,8 @@
 #include "searchWindow.h"
 
 template<typename T>
-searchWindow<T>::searchWindow(const std::vector<std::vector<T>> &seriesX, const std::vector<std::vector<T>> &seriesY, const std::vector<std::vector<T>> &shrunkenX, const std::vector<std::vector<T>> &shrunkenY, warpPath shrunkenWarpPath, int searchRadius) :
-minValues(seriesX.size(), -1), maxValues(seriesX.size(), 0), maxY(int(seriesY.size() - 1)), size(0) {
+searchWindow<T>::searchWindow(const int seriesXSize, const int seriesYSize, const warpPath &shrunkenWarpPath, const int searchRadius) :
+minValues(seriesXSize, -1), maxValues(seriesXSize, 0), maxY(int(seriesYSize - 1)), size(0) {
     
     //Current location of higher resolution path
     int currentX = shrunkenWarpPath.xIndices[0];
@@ -21,14 +21,13 @@ minValues(seriesX.size(), -1), maxValues(seriesX.size(), 0), maxY(int(seriesY.si
     int lastWarpedX = std::numeric_limits<int>::max();
     int lastWarpedY = std::numeric_limits<int>::max();
     
+    int blockSize = 2; //TODO: something other than 2? Different for x and y?
+    
     //project each part of the low-res path to high res cells
     for (int i = 0; i < shrunkenWarpPath.xIndices.size(); ++i) {
         
         int warpedX = shrunkenWarpPath.xIndices[i];
         int warpedY = shrunkenWarpPath.yIndices[i];
-        
-        int blockXSize = 2; //TODO: This could be something other than 2?
-        int blockYSize = 2;
         
         if (warpedX > lastWarpedX) {
             currentX += 2; //TODO: this should be the block size
@@ -43,9 +42,9 @@ minValues(seriesX.size(), -1), maxValues(seriesX.size(), 0), maxY(int(seriesY.si
             markVisited(currentX, currentY-1);
         }
         
-        for (int j = 0; j < blockXSize; ++j) {
+        for (int j = 0; j < blockSize; ++j) {
             markVisited(currentX + j, currentY);
-            markVisited(currentX + j, currentY + blockYSize - 1); //TODO: These are redundant?
+            markVisited(currentX + j, currentY + blockSize - 1); //TODO: These are redundant?
         }
         
         lastWarpedX = warpedX;
@@ -61,7 +60,7 @@ template<typename T>
 void searchWindow<T>::markVisited(int col, int row) {
     //assert(col < minValues.size()); //This is not always true, but should be
     //assert(row <= maxY); 
-    if (row <= maxY && col < minValues.size()) { //FIXME: This is kind of a hack. row shouln't be > maxY
+    if (row <= maxY && col < minValues.size()) { //FIXME: This is kind of a hack. row shouldn't be > maxY
         if (minValues[col] == -1) {
             minValues[col] = row;
             maxValues[col] = row;

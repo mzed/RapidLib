@@ -22,8 +22,7 @@ int main(int argc, const char * argv[]) {
     tempSeriesTest.label = "yyy";
     testVector.push_back(tempSeriesTest);
     
-    std::cout << testDTW.train(testVector) << std::endl;
-    
+    testDTW.train(testVector);
     std::cout << testDTW.run(tempSeriesTest.input) << std::endl;
     
     //////////////////////////////////////////////////////////////////////////////////simple multilayer test

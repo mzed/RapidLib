@@ -15,12 +15,10 @@
 template<typename T>
 class searchWindow {
 public:
-    searchWindow(const std::vector<std::vector<T>> &seriesX,
-                 const std::vector<std::vector<T>> &seriesY,
-                 const std::vector<std::vector<T>> &shrunkenX,
-                 const std::vector<std::vector<T>> &shrunkenY,
-                 warpPath shrunkenWarpPath,
-                 int searchRadius);
+    searchWindow(const int seriesXSize,
+                 const int seriesYSize,
+                 const warpPath &shrunkenWarpPath,
+                 const int searchRadius);
     
     std::vector<int> minValues;
     std::vector<int> maxValues;
