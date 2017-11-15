@@ -37,8 +37,7 @@ warpInfo fastDTW<T>::fullFastDTW(const std::vector<std::vector<T>> &seriesX, con
     std::vector<std::vector<T>> shrunkenY = downsample(seriesY, resolution);
     
     //some nice recursion here
-    searchWindow<T> window(seriesX, seriesY, shrunkenX, shrunkenY, getWarpPath(shrunkenX, shrunkenY, searchRadius), searchRadius);
-    
+    searchWindow<T> window(int(seriesX.size()), int(seriesY.size()), getWarpPath(shrunkenX, shrunkenY, searchRadius), searchRadius);
     return dtw.constrainedDTW(seriesX, seriesY, window);
 };
 

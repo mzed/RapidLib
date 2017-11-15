@@ -12,22 +12,23 @@
 #include <vector>
 #include "warpPath.h"
 
+/** For fastDTW, a window of cells to calculate costs for.
+ * These are cells within a specified search radius of a lower resolution path.
+ */
 template<typename T>
 class searchWindow {
 public:
-    searchWindow(const std::vector<std::vector<T>> &seriesX,
-                 const std::vector<std::vector<T>> &seriesY,
-                 const std::vector<std::vector<T>> &shrunkenX,
-                 const std::vector<std::vector<T>> &shrunkenY,
-                 warpPath shrunkenWarpPath,
-                 int searchRadius);
+    searchWindow(const int seriesXSize,
+                 const int seriesYSize,
+                 const warpPath &shrunkenWarpPath,
+                 const int searchRadius);
     
     std::vector<int> minValues;
     std::vector<int> maxValues;
     
 private:
     int maxY;
-    int size;
+    //int size;
     void markVisited(int col, int row);
     void expandWindow(int searchRadius);
 };

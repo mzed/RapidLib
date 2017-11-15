@@ -113,7 +113,8 @@ private:
     inline T activationFunction(T);
     
     ////////////////////////////////////////////////////////////////////////////
-    /** These pertain to the training, and aren't need to run a trained model */
+    /// These pertain to the training, and aren't need to run a trained model //
+    
 public:
     /** Train a model using backpropagation.
      *
