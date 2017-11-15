@@ -9,6 +9,23 @@
 
 int main(int argc, const char * argv[]) {
     
+    //vanAllenTesting
+    seriesClassification testDTW;
+    std::vector<trainingSeries> testVector;
+    trainingSeries tempSeriesTest;
+    
+    for (int i = 0; i < 5; ++i) {
+        tempSeriesTest.input.push_back({ 0.1, 0.1, 0.1 });
+    }
+    tempSeriesTest.label = "zzz";
+    testVector.push_back(tempSeriesTest);
+    tempSeriesTest.label = "yyy";
+    testVector.push_back(tempSeriesTest);
+    
+    std::cout << testDTW.train(testVector) << std::endl;
+    
+    std::cout << testDTW.run(tempSeriesTest.input) << std::endl;
+    
     //////////////////////////////////////////////////////////////////////////////////simple multilayer test
     regression myNN2;
     
@@ -308,5 +325,6 @@ int main(int argc, const char * argv[]) {
     
     ////////////////////////////////////////////////////////////////////////
     
+
     return 0;
 }

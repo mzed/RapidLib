@@ -5,6 +5,24 @@ let rapidMix = require('../rapidLib/RapidLib.js');
 
 //let jsons = require('./modelSetDescription.json');
 
+///////////////////////////////////////////// vanAllen bug
+var testDTW = new rapidMix.SeriesClassification();
+
+let testSetXXX = [];
+for (let i = 0; i < 5; ++i) {
+    testSetXXX.push([0.1, 0.1, 0.1]);
+}
+
+let series2 = {input: testSetXXX, label: "yyy"};
+let series1 = {input: testSetXXX, label: "zzz"};
+let sset = [series1, series2];
+
+console.log(testDTW.train(sset));
+console.log(testDTW.run(testSetXXX));
+
+///////////////////////////////////////////////
+
+
 let testSet = [
     {
         input: [0, 0],

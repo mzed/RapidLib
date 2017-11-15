@@ -6,6 +6,7 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
+#include <cassert>
 #include "searchWindow.h"
 
 template<typename T>
@@ -58,7 +59,8 @@ minValues(seriesX.size(), -1), maxValues(seriesX.size(), 0), maxY(int(seriesY.si
 
 template<typename T>
 void searchWindow<T>::markVisited(int col, int row) {
-    if (row <= maxY) { //FIXME: This is kind of a hack. row shouln't be > maxY
+    //assert(col < minValues.size());
+    if (row <= maxY && col < minValues.size()) { //FIXME: This is kind of a hack. row shouln't be > maxY
         if (minValues[col] == -1) {
             minValues[col] = row;
             maxValues[col] = row;
