@@ -12,6 +12,9 @@
 #include <vector>
 #include "warpPath.h"
 
+/** For fastDTW, a window of cells to calculate costs for.
+ * These are cells within a specified search radius of a lower resolution path.
+ */
 template<typename T>
 class searchWindow {
 public:
@@ -25,7 +28,7 @@ public:
     
 private:
     int maxY;
-    int size;
+    //int size;
     void markVisited(int col, int row);
     void expandWindow(int searchRadius);
 };

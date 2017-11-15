@@ -6,12 +6,11 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#include <cassert>
 #include "searchWindow.h"
 
 template<typename T>
 searchWindow<T>::searchWindow(const int seriesXSize, const int seriesYSize, const warpPath &shrunkenWarpPath, const int searchRadius) :
-minValues(seriesXSize, -1), maxValues(seriesXSize, 0), maxY(int(seriesYSize - 1)), size(0) {
+minValues(seriesXSize, -1), maxValues(seriesXSize, 0), maxY(seriesYSize - 1) {
     
     //Current location of higher resolution path
     int currentX = shrunkenWarpPath.xIndices[0];
@@ -30,10 +29,10 @@ minValues(seriesXSize, -1), maxValues(seriesXSize, 0), maxY(int(seriesYSize - 1)
         int warpedY = shrunkenWarpPath.yIndices[i];
         
         if (warpedX > lastWarpedX) {
-            currentX += 2; //TODO: this should be the block size
+            currentX += blockSize;
         }
         if (warpedY > lastWarpedY) {
-            currentY += 2;
+            currentY += blockSize;
         }
         
         if ((warpedX > lastWarpedX) && (warpedY > lastWarpedY))
@@ -50,6 +49,7 @@ minValues(seriesXSize, -1), maxValues(seriesXSize, 0), maxY(int(seriesYSize - 1)
         lastWarpedX = warpedX;
         lastWarpedY = warpedY;
     }
+    
     if (searchRadius > 0) {
         expandWindow(1);
         expandWindow(searchRadius-1);
@@ -58,18 +58,16 @@ minValues(seriesXSize, -1), maxValues(seriesXSize, 0), maxY(int(seriesYSize - 1)
 
 template<typename T>
 void searchWindow<T>::markVisited(int col, int row) {
-    //assert(col < minValues.size()); //This is not always true, but should be
-    //assert(row <= maxY); 
-    if (row <= maxY && col < minValues.size()) { //FIXME: This is kind of a hack. row shouldn't be > maxY
+    if (row <= maxY && col < minValues.size()) { //Don't mark beyond the edge of the window
         if (minValues[col] == -1) {
             minValues[col] = row;
             maxValues[col] = row;
-            size++;
+            //size++;
         } else if (minValues[col] > row) {
-            size += minValues[col] - row;
+            //size += minValues[col] - row;
             minValues[col] = row;
         } else if (maxValues[col] < row) {
-            size += row - maxValues[col];
+            //size += row - maxValues[col];
             maxValues[col] = row;
         }
     }
@@ -87,7 +85,7 @@ void searchWindow<T>::expandWindow(int radius) {
                 windowCells.push_back(currentCell);
             }
         }
-        //minX = 0;
+
         int maxX = int(minValues.size() - 1);
         
         for (int cell = 0; cell < windowCells.size(); ++cell) {
