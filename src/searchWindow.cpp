@@ -59,7 +59,8 @@ minValues(seriesX.size(), -1), maxValues(seriesX.size(), 0), maxY(int(seriesY.si
 
 template<typename T>
 void searchWindow<T>::markVisited(int col, int row) {
-    //assert(col < minValues.size());
+    //assert(col < minValues.size()); //This is not always true, but should be
+    //assert(row <= maxY); 
     if (row <= maxY && col < minValues.size()) { //FIXME: This is kind of a hack. row shouln't be > maxY
         if (minValues[col] == -1) {
             minValues[col] = row;
