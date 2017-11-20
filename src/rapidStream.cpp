@@ -118,7 +118,7 @@ T rapidStream<T>::standardDeviation() {
 
 template<typename T>
 T rapidStream<T>::rms() {
-    T rms;
+    T rms = 0;
     for (int i = 0; i < windowSize; ++i) {
         rms += (circularWindow[i] * circularWindow[i]);
     }
