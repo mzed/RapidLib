@@ -6,10 +6,10 @@ let rapidMix = require('../rapidLib/RapidLib.js');
 //let jsons = require('./modelSetDescription.json');
 
 ///////////////////////////////////////////// vanAllen bug
-var testDTW = new rapidMix.SeriesClassification();
+let testDTW = new rapidMix.SeriesClassification();
 
 let testSetXXX = [];
-for (let i = 0; i < 5; ++i) {
+for (let i = 0; i < 111; ++i) {
     testSetXXX.push([0.1, 0.1, 0.1]);
 }
 
@@ -17,8 +17,8 @@ let series2 = {input: testSetXXX, label: "yyy"};
 let series1 = {input: testSetXXX, label: "zzz"};
 let sset = [series1, series2];
 
-console.log(testDTW.train(sset));
-console.log(testDTW.run(testSetXXX));
+testDTW.train(sset);
+testDTW.run(testSetXXX);
 
 ///////////////////////////////////////////////
 
@@ -131,18 +131,18 @@ describe('RapidLib Machine Learning', function () {
             let trained = myRegression.train(testSet);
             expect(trained).to.be.true;
         });
-        it('process() should return expected results', function () {
-            let response1 = myRegression.process([0, 0]);
+        it('run() should return expected results', function () {
+            let response1 = myRegression.run([0, 0]);
             expect(response1[0]).to.be.below(0.000001); //close enough
-            let response2 = myRegression.process([0.2789, 0.4574]);
+            let response2 = myRegression.run([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0.6737399669524929);
-            let response3 = myRegression.process(0.9, 0.7); //likes a list as well as an array
+            let response3 = myRegression.run(0.9, 0.7); //likes a list as well as an array
             expect(response3[0]).to.equal(1.6932444207337964);
         });
         it('should return zero on input that doesn\'t match numInputs', function () {
-            let response1 = myRegression.process([33, 2, 44, 9]);
+            let response1 = myRegression.run([33, 2, 44, 9]);
             expect(response1[0]).to.equal(0);
-            let response2 = myRegression.process([1]);
+            let response2 = myRegression.run([1]);
             expect(response2[0]).to.equal(0);
         });
         it('should work with multiple outputs', function () {
@@ -151,28 +151,28 @@ describe('RapidLib Machine Learning', function () {
             expect(myReg2).to.have.property('modelSet');
             let trained = myReg2.train(testSet2);
             expect(trained).to.be.true;
-            let response1 = myReg2.process([0, 0]);
+            let response1 = myReg2.run([0, 0]);
             expect(response1[0]).to.be.below(0.000001); //close enough
             expect(response1[1]).to.be.above(8.99); //close enough
-            let response2 = myReg2.process([0.2789, 0.4574]);
+            let response2 = myReg2.run([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0.6737399669524929);
             expect(response2[1]).to.equal(2.2184955630745637);
-            let response3 = myReg2.process(0.9, 0.7); //NB: this is not an array
+            let response3 = myReg2.run(0.9, 0.7); //NB: this is not an array
             expect(response3[0]).to.equal(1.6932444207337964);
             expect(response3[1]).to.equal(3.4050876960817114);
         });
         it('can be initialized', function () {
             myRegression.reset();
-            let response2 = myRegression.process([0.2789, 0.4574]);
+            let response2 = myRegression.run([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0); //initialized models return 0
         });
         it('clears properly when retraining', function () {
             let myReg = new rapidMix.Regression();
             myReg.train(testSet);
-            let response = myReg.process([1, 1]);
+            let response = myReg.run([1, 1]);
             expect(response[0]).to.equal(2.0000000127072584);
             myReg.train(testSet3);
-            let response2 = myReg.process([8]);
+            let response2 = myReg.run([8]);
             expect(response2[0]).to.equal(5);
 
         });
@@ -184,7 +184,7 @@ describe('RapidLib Machine Learning', function () {
             myMLP.setNumEpochs(5000);
             let trained = myMLP.train(testSet4);
             expect(trained).to.be.true;
-            let response = myMLP.process([2.0, 2.0, 2.0]);
+            let response = myMLP.run([2.0, 2.0, 2.0]);
             expect(response[0]).to.equal(1.3000000000000007);
 
         })
@@ -206,18 +206,18 @@ describe('RapidLib Machine Learning', function () {
             let trained = myClassification.train(testSet);
             expect(trained).to.be.true;
         });
-        it('process() should return expected results', function () {
-            let response1 = myClassification.process([0, 0]);
+        it('run() should return expected results', function () {
+            let response1 = myClassification.run([0, 0]);
             expect(response1[0]).to.be.equal(0);
-            let response2 = myClassification.process([0.8789, 0.1574]);
+            let response2 = myClassification.run([0.8789, 0.1574]);
             expect(response2[0]).to.equal(1);
-            let response3 = myClassification.process([0.9, 0.7]);
+            let response3 = myClassification.run([0.9, 0.7]);
             expect(response3[0]).to.equal(2);
         });
         it('should return zero on input that doesn\'t match numInputs', function () {
-            let response1 = myClassification.process([33, 2, 44, 9]);
+            let response1 = myClassification.run([33, 2, 44, 9]);
             expect(response1[0]).to.equal(0);
-            let response2 = myClassification.process([1]);
+            let response2 = myClassification.run([1]);
             expect(response2[0]).to.equal(0);
         });
         it('should work with multiple outputs', function () {
@@ -226,19 +226,19 @@ describe('RapidLib Machine Learning', function () {
             expect(myClass2).to.have.property('modelSet');
             let trained = myClass2.train(testSet2);
             expect(trained).to.be.true;
-            let response1 = myClass2.process([0, 0]);
+            let response1 = myClass2.run([0, 0]);
             expect(response1[0]).to.equal(0);
             expect(response1[1]).to.equal(9);
-            let response2 = myClass2.process([0.8789, 0.1574]);
+            let response2 = myClass2.run([0.8789, 0.1574]);
             expect(response2[0]).to.equal(1);
             expect(response2[1]).to.equal(2);
-            let response3 = myClass2.process([0.9, 0.7]);
+            let response3 = myClass2.run([0.9, 0.7]);
             expect(response3[0]).to.equal(2);
             expect(response3[1]).to.equal(4);
         });
         it('can be initialized', function () {
             myClassification.reset();
-            let response2 = myClassification.process([0.2789, 0.4574]);
+            let response2 = myClassification.run([0.2789, 0.4574]);
             expect(response2[0]).to.equal(0); //initialized models return 0
         });
         it('can get k', function () {
@@ -260,10 +260,10 @@ describe('RapidLib Machine Learning', function () {
         it('clears properly when retraining', function () {
             let myClass = new rapidMix.Classification();
             myClass.train(testSet);
-            let response = myClass.process([1, 1]);
+            let response = myClass.run([1, 1]);
             expect(response[0]).to.equal(2);
             myClass.train(testSet3);
-            let response2 = myClass.process([8]);
+            let response2 = myClass.run([8]);
             expect(response2[0]).to.equal(5);
 
         })
@@ -288,18 +288,18 @@ describe('RapidLib Machine Learning', function () {
                 expect(trained).to.be.true;
             });
 
-            it('process() should return expected results' , function () {
-                let response1 = mySVM.process([0, 0]);
+            it('run() should return expected results' , function () {
+                let response1 = mySVM.run([0, 0]);
                 expect(response1[0]).to.be.equal(0);
-                let response2 = mySVM.process([0.8789, 0.1574]);
+                let response2 = mySVM.run([0.8789, 0.1574]);
                 expect(response2[0]).to.equal(1);
-                let response3 = mySVM.process([0.9, 0.7]);
+                let response3 = mySVM.run([0.9, 0.7]);
                 expect(response3[0]).to.equal(2);
             });
             it('should return zero on input that doesn\'t match numInputs', function () {
-                let response1 = mySVM.process([33, 2, 44, 9]);
+                let response1 = mySVM.run([33, 2, 44, 9]);
                 expect(response1[0]).to.equal(0);
-                let response2 = mySVM.process([1]);
+                let response2 = mySVM.run([1]);
                 expect(response2[0]).to.equal(0);
             });
 
@@ -309,19 +309,19 @@ describe('RapidLib Machine Learning', function () {
              expect(mySVM2).to.have.property('modelSet');
              let trained = mySVM2.train(testSet2);
              expect(trained).to.be.true;
-             let response1 = mySVM2.process([0, 0]);
+             let response1 = mySVM2.run([0, 0]);
              expect(response1[0]).to.equal(0);
              expect(response1[1]).to.equal(9);
-             let response2 = mySVM2.process([0.8789, 0.1574]);
+             let response2 = mySVM2.run([0.8789, 0.1574]);
              expect(response2[0]).to.equal(1);
              expect(response2[1]).to.equal(2);
-             let response3 = mySVM2.process([0.9, 0.7]);
+             let response3 = mySVM2.run([0.9, 0.7]);
              expect(response3[0]).to.equal(2);
              expect(response3[1]).to.equal(4);
              });
             it('can be initialized', function () {
                 mySVM.reset();
-                let response2 = mySVM.process([0.2789, 0.4574]);
+                let response2 = mySVM.run([0.2789, 0.4574]);
                 expect(response2[0]).to.equal(0); //initialized models return 0
             });
         });
