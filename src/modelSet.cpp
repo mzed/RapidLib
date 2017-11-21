@@ -38,11 +38,11 @@ template<typename T>
 bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set) {
     for (trainingExampleTemplate<T> example : training_set) {
         if (example.input.size() != numInputs) {
-            throw std::length_error("bad input size");
+            throw std::length_error("unequal feature vectors in input.");
             return false;
         }
         if (example.output.size() != numOutputs) {
-            throw std::length_error("bad output size");
+            throw std::length_error("unequal output vectors.");
             return false;
         }
     }

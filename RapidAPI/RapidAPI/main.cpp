@@ -111,6 +111,7 @@ int main(int argc, const char * argv[]) {
     //assert(myNN.run(inputVec)[0] == myNNfromString.run(inputVec)[0]);
     //assert(myNN.run(inputVec)[0] == myNNfromFile.run(inputVec)[0]);
     
+    //Testing exceptions for regression
     std::vector<double> emptyVec = {};
     try {
         myNN.run(emptyVec);
@@ -125,6 +126,40 @@ int main(int argc, const char * argv[]) {
     }
     catch (const std::length_error &e){
         assert(e.what() == std::string("bad input size: 6"));
+    }
+    
+    regression badNN;
+    std::vector<trainingExample> badSet;
+    trainingExample  badExample;
+    badExample.input = { 0.1, 0.2 };
+    badExample.output = { 3.0 };
+    badSet.push_back(badExample);
+    
+    badExample.input = { 1.0, 2.0, 3.0 };
+    badExample.output = { 4.0 };
+    badSet.push_back(badExample);
+    
+    try {
+        badNN.train(badSet);
+    }
+    catch (const std::length_error &e) {
+        assert(e.what() == std::string("unequal feature vectors in input."));
+    }
+    
+    badSet.clear();
+    badExample.input = { 0.1, 0.2 };
+    badExample.output = { 3.0 };
+    badSet.push_back(badExample);
+    
+    badExample.input = { 1.0, 2.0 };
+    badExample.output = { 4.0, 5.0 };
+    badSet.push_back(badExample);
+    
+    try {
+        badNN.train(badSet);
+    }
+    catch(const std::length_error &e) {
+        assert(e.what() == std::string("unequal output vectors."));
     }
     
     ///////////////////////////
@@ -196,23 +231,23 @@ int main(int argc, const char * argv[]) {
     /////////
     
     /*
-    classification mySVM2(classification::svm);
-    
-    std::vector<trainingExample> trainingSet3;
-    trainingExample tempExample3;
-    
-    tempExample3.input = { 0., 0. };
-    tempExample3.output = { 0. };
-    trainingSet3.push_back(tempExample3);
-    
-    tempExample3.input = { 1., 0. };
-    tempExample3.output = { 1. };
-    trainingSet3.push_back(tempExample3);
-    
-    tempExample3.input = { 1., 8. };
-    tempExample3.output = { 5. };
-    trainingSet3.push_back(tempExample3);
-    */
+     classification mySVM2(classification::svm);
+     
+     std::vector<trainingExample> trainingSet3;
+     trainingExample tempExample3;
+     
+     tempExample3.input = { 0., 0. };
+     tempExample3.output = { 0. };
+     trainingSet3.push_back(tempExample3);
+     
+     tempExample3.input = { 1., 0. };
+     tempExample3.output = { 1. };
+     trainingSet3.push_back(tempExample3);
+     
+     tempExample3.input = { 1., 8. };
+     tempExample3.output = { 5. };
+     trainingSet3.push_back(tempExample3);
+     */
     
     
     /*
