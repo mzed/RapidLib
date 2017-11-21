@@ -25,7 +25,11 @@ int main(int argc, const char * argv[]) {
     testDTW.train(testVector);
     std::cout << testDTW.run(tempSeriesTest.input) << std::endl;
     
-    //////////////////////////////////////////////////////////////////////////////////simple multilayer test
+    //////////////////////////////////////////////////////////////////////////////simple multilayer test
+    
+    //This takes forever, I don't always run it
+    //#define MULTILAYER 1
+#ifdef MULTILAYER
     regression myNN2;
     
     std::vector<trainingExample> trainingSet1;
@@ -67,30 +71,13 @@ int main(int argc, const char * argv[]) {
     
     inputVec1 = { 0.9, 0.7 };
     std::cout << myNN2.run(inputVec1)[0] <<std::endl;
-    
-    
-    
-    //////////////////////////////////////////////////////////////////////////////////bug?
-    regression myNNJS;
-    
-    trainingSet1.clear();
-    tempExample1.input = { 8.0 };
-    tempExample1.output = { 5.0 };
-    trainingSet1.push_back(tempExample1);
-    tempExample1.input = { 2.0 };
-    tempExample1.output = { 3.0 };
-    trainingSet1.push_back(tempExample1);
-    myNNJS.train(trainingSet1);
-    
-    inputVec1 = { 8 };
-    std::cout << "wtf? " << myNNJS.run(inputVec1)[0] << std::endl;
-    
+#endif
     
     ////////////////////////////////////////////////////////////////////////////////
     
     regression myNN;
     classification myKnn;
-    classification mySVM(classification::svm);
+    //classification mySVM(classification::svm);
     
     std::vector<trainingExample> trainingSet;
     trainingExample  tempExample;
@@ -115,18 +102,35 @@ int main(int argc, const char * argv[]) {
     myNNfromFile.readJSON(filepath);
     std::vector<double> inputVec = { 2.0, 44.2 };
     
-    std::cout << "before: " << myNN.run(inputVec)[0] << std::endl;
-    std::cout << "from string: " << myNNfromString.run(inputVec)[0] << std::endl;
-    //   std::cout << myNNfromString.getJSON() << std::endl;
-    std::cout << "from file: " << myNNfromFile.run(inputVec)[0] << std::endl;
     
-    assert(myNN.run(inputVec)[0] == myNNfromString.run(inputVec)[0]);
-    assert(myNN.run(inputVec)[0] == myNNfromFile.run(inputVec)[0]);
+    std::cout << "before: " << myNN.run(inputVec)[0] << std::endl;
+    //std::cout << "from string: " << myNNfromString.run(inputVec)[0] << std::endl;
+    //std::cout << "from file: " << myNNfromFile.run(inputVec)[0] << std::endl;
+    
+    assert(myNN.run(inputVec)[0] == 20.14);
+    //assert(myNN.run(inputVec)[0] == myNNfromString.run(inputVec)[0]);
+    //assert(myNN.run(inputVec)[0] == myNNfromFile.run(inputVec)[0]);
+    
+    std::vector<double> emptyVec = {};
+    try {
+        myNN.run(emptyVec);
+    }
+    catch (const std::length_error &e){
+        assert(e.what() == std::string("bad input size: 0"));
+    }
+    
+    std::vector<double> wrongSizeVector = {1, 1, 1, 1, 1, 1};
+    try {
+        myNN.run(wrongSizeVector);
+    }
+    catch (const std::length_error &e){
+        assert(e.what() == std::string("bad input size: 6"));
+    }
     
     ///////////////////////////
     
     myKnn.train(trainingSet);
-    mySVM.train(trainingSet);
+    //mySVM.train(trainingSet);
     
     //   std::cout << myKnn.getJSON() << std::endl;
     std::string filepath2 = "/var/tmp/modelSetDescription_knn.json";
@@ -139,18 +143,34 @@ int main(int argc, const char * argv[]) {
     myKnnFromFile.readJSON(filepath2);
     
     std::cout << "knn before: " << myKnn.run(inputVec)[0] << std::endl;
-    std::cout << "svm: " << mySVM.run(inputVec)[0] << std::endl;
-    std::cout << "knn from string: " << myKnnFromString.run(inputVec)[0] << std::endl;
-    std::cout << "knn from file: " << myKnnFromFile.run(inputVec)[0] << std::endl;
+    //std::cout << "svm: " << mySVM.run(inputVec)[0] << std::endl;
+    //std::cout << "knn from string: " << myKnnFromString.run(inputVec)[0] << std::endl;
+    //std::cout << "knn from file: " << myKnnFromFile.run(inputVec)[0] << std::endl;
     
-    assert(myKnn.run(inputVec)[0] == myKnnFromString.run(inputVec)[0]);
-    assert(myKnn.run(inputVec)[0] == myKnnFromFile.run(inputVec)[0]);
+    assert(myKnn.run(inputVec)[0] == 20);
+    //assert(myKnn.run(inputVec)[0] == myKnnFromString.run(inputVec)[0]);
+    //assert(myKnn.run(inputVec)[0] == myKnnFromFile.run(inputVec)[0]);
+    
+    try {
+        myKnn.run(emptyVec);
+    }
+    catch (const std::length_error &e){
+        std::cout << "error: " << e.what() << std::endl;
+        assert(e.what() == std::string("bad input size: 0"));
+    }
+    try {
+        myKnn.run(wrongSizeVector);
+    }
+    catch (const std::length_error &e){
+        std::cout << "error: " << e.what() << std::endl;
+        assert(e.what() == std::string("bad input size: 6"));
+    }
     
     assert(myKnn.getK()[0] == 1);
     myKnn.setK(0, 2);
     assert(myKnn.getK()[0] == 2);
     
-//    regression<float> bigVector;
+    //    regression<float> bigVector;
     std::vector<trainingExampleTemplate<float> > trainingSet2;
     trainingExampleTemplate<float> tempExample2;
     std::default_random_engine generator;
@@ -165,16 +185,17 @@ int main(int argc, const char * argv[]) {
         tempExample2.output = { distribution(generator) };
         trainingSet2.push_back(tempExample2);
     }
-//    bigVector.train(trainingSet2);
+    //    bigVector.train(trainingSet2);
     std::vector<float> inputVec2;
     for (int i=0; i < vecLength; ++i) {
         inputVec2.push_back(distribution(generator));
     }
-//    assert (isfinite(bigVector.run(inputVec2)[0]));
+    //    assert (isfinite(bigVector.run(inputVec2)[0]));
     
     
     /////////
     
+    /*
     classification mySVM2(classification::svm);
     
     std::vector<trainingExample> trainingSet3;
@@ -191,7 +212,7 @@ int main(int argc, const char * argv[]) {
     tempExample3.input = { 1., 8. };
     tempExample3.output = { 5. };
     trainingSet3.push_back(tempExample3);
-    
+    */
     
     
     /*
@@ -200,13 +221,13 @@ int main(int argc, const char * argv[]) {
      trainingSet3.push_back(tempExample3);
      */
     
-    mySVM2.train(trainingSet3);
+    //mySVM2.train(trainingSet3);
     
     std::vector<double>inputVec4 = { 1., 0. };
-    std::cout << "svm: " << mySVM2.run(inputVec4)[0] << std::endl;
+    //std::cout << "svm: " << mySVM2.run(inputVec4)[0] << std::endl;
     
     std::vector<double> inputVec3 = { 0., 0. };
-    std::cout << "svm2: " << mySVM2.run(inputVec3)[0] << std::endl;
+    //std::cout << "svm2: " << mySVM2.run(inputVec3)[0] << std::endl;
     
     
     
@@ -253,10 +274,10 @@ int main(int argc, const char * argv[]) {
     assert(myDTW.run(seriesTwo) == "second series");
     //std::cout << myDTW.getCosts()[0] << std::endl;
     //std::cout << myDTW.getCosts()[1] << std::endl;
-
+    
     //testing match against single label
     assert(myDTW.run(seriesOne, "second series") == 19.325403217417502);
-   
+    
     //Training set stats
     assert(myDTW.getMaxLength() == 5);
     assert(myDTW.getMinLength() == 4);
@@ -324,6 +345,6 @@ int main(int argc, const char * argv[]) {
     
     ////////////////////////////////////////////////////////////////////////
     
-
+    
     return 0;
 }
