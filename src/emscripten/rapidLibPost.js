@@ -10,7 +10,7 @@
 
 "use strict";
 
-console.log("RapidLib 15.11.2017 14:40");
+console.log("RapidLib 11.11.2017 11:01");
 
 /**
  * Utility function to convert js objects into C++ trainingSets
@@ -39,7 +39,7 @@ Module.prepTrainingSet = function (trainingSet) {
 /**
  * Utility function to convert js objects into C++ trainingSeriesSets
  * @param {Object} trainingSeriesSet - JS Object representing a training series
- * @property {function} Module.TrainingSeriest - constructor for emscripten version of this struct
+ * @property {function} Module.TrainingSeries - constructor for emscripten version of this struct
  * @property {function} Module.VectorVectorDouble - constructor for the emscripten version of std::vector<std::vector<double>>
  * @returns {Module.TrainingSeriesSet}
  */
@@ -94,7 +94,13 @@ Module.Regression.prototype = {
     train: function (trainingSet) {
         this.modelSet.reset();
         //change to vectorDoubles and send in
-        return this.modelSet.train(Module.prepTrainingSet(trainingSet));
+        try {
+            this.modelSet.train(Module.prepTrainingSet(trainingSet));
+        } catch (err) {
+            console.log(err);
+            return false;
+        }
+        return true;
     },
     /**
      * Returns the number of hidden layers in a MLP.
@@ -146,7 +152,13 @@ Module.Regression.prototype = {
             inputVector.push_back(input[i]);
         }
         //get the output
-        let outputVector = this.modelSet.run(inputVector);
+        let outputVector = new Module.VectorDouble();
+        try {
+            outputVector = this.modelSet.run(inputVector);
+        } catch (err) {
+            console.warn(err);
+            return [0];
+        }
         //change back to javascript array
         let output = [];
         for (let i = 0; i < outputVector.size(); ++i) {
@@ -207,7 +219,13 @@ Module.Classification.prototype = {
      */
     train: function (trainingSet) {
         this.modelSet.reset();
-        return this.modelSet.train(Module.prepTrainingSet(trainingSet));
+        try {
+            this.modelSet.train(Module.prepTrainingSet(trainingSet));
+        } catch (err) {
+            console.log(err);
+            return false;
+        }
+        return true;
     },
     /**
      * Returns a vector of current k values for each model.
@@ -253,7 +271,12 @@ Module.Classification.prototype = {
         }
         //get the output
         let outputVector = new Module.VectorDouble();
-        outputVector = this.modelSet.run(inputVector);
+        try {
+            outputVector = this.modelSet.run(inputVector);
+        } catch (err) {
+            console.log(err);
+            return [0];
+        }
         //change back to javascript array
         let output = [];
         for (let i = 0; i < outputVector.size(); ++i) {
@@ -472,6 +495,7 @@ Module.SeriesClassification.prototype = {
     /**
      * Evaluates an input series and returns the index of the closet example
      * @param {Object} inputSeries - an array of arrays
+     * @param {String} label to match against
      * @returns {Number} The index of the closest matching series
      */
     run: function (inputSeries, label) {
