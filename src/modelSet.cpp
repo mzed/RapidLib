@@ -38,11 +38,15 @@ template<typename T>
 bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set) {
     for (trainingExampleTemplate<T> example : training_set) {
         if (example.input.size() != numInputs) {
+#ifndef EMSCRIPTEN //JavaScript throws illegible errors
             throw std::length_error("unequal feature vectors in input.");
+#endif
             return false;
         }
         if (example.output.size() != numOutputs) {
+#ifndef EMSCRIPTEN //JavaScript throws illegible errors
             throw std::length_error("unequal output vectors.");
+#endif
             return false;
         }
     }
@@ -83,7 +87,9 @@ std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector) {
         }
     } else {
         std::string badSize = std::to_string(inputVector.size());
+#ifndef EMSCRIPTEN //JavaScript throws illegible errors
         throw std::length_error("bad input size: " + badSize);
+#endif
         returnVector.push_back(0);
     }
     return returnVector;

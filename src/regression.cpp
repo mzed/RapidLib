@@ -101,11 +101,15 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
         modelSet<T>::numOutputs = int(training_set[0].output.size());
         for ( auto example : training_set) {
             if (example.input.size() != modelSet<T>::numInputs) {
+#ifndef EMSCRIPTEN //JavaScript throws illegible errors
                 throw std::length_error("unequal feature vectors in input.");
+#endif
                 return false;
             }
             if (example.output.size() != modelSet<T>::numOutputs) {
+#ifndef EMSCRIPTEN //JavaScript throws illegible errors
                 throw std::length_error("unequal output vectors.");
+#endif
                 return false;
             }
         }
@@ -125,7 +129,9 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
         modelSet<T>::created = true;
         return modelSet<T>::train(training_set);
     }
+#ifndef EMSCRIPTEN //JavaScript throws illegible errors
     throw std::length_error("empty training set.");
+#endif
     return false;
 }
 
