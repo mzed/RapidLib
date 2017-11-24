@@ -17,7 +17,7 @@
 #define SEARCH_RADIUS 1
 
 template<typename T>
-seriesClassificationTemplate<T>::seriesClassificationTemplate() {};
+seriesClassificationTemplate<T>::seriesClassificationTemplate() : hopSize(1), counter(0) {};
 
 template<typename T>
 seriesClassificationTemplate<T>::~seriesClassificationTemplate() {};
@@ -53,6 +53,10 @@ bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemp
             tempLengths.min = tempLengths.max = int(allTrainingSeries[i].input.size());
             lengthsPerLabel[allTrainingSeries[i].label] = tempLengths;
         }
+    }
+    //TODO: make this size smarter?
+    for (int i = 0; i < maxLength; ++i ) {
+        seriesBuffer.push_back({0}); //set size of continuous buffer
     }
     return trained;
 };
@@ -103,6 +107,19 @@ T seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>> &inputS
     }
     return lowestCost;
 };
+
+template<typename T>
+std::string seriesClassificationTemplate<T>::runContinuous(const std::vector<T> &inputVector) {
+    seriesBuffer.erase(seriesBuffer.begin());
+    seriesBuffer.push_back(inputVector);
+    std::string returnString = "none";
+    if ((counter % hopSize) == 0 ) {
+        returnString =
+        counter = 0;
+    }
+    ++counter;
+    return returnString;
+}
 
 template<typename T>
 std::vector<T> seriesClassificationTemplate<T>::getCosts() const{
