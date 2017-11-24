@@ -6,9 +6,15 @@
 #include "regression.h"
 #include "classification.h"
 #include "seriesClassification.h"
+#include "rapidStream.h"
 
 int main(int argc, const char * argv[]) {
-    
+
+    rapidStream<double> rapidProcess;
+    for (int i = 0; i < 100; ++i) {
+        std::cout << "bayes " << rapidProcess.bayesFilter(i/100.) << std::endl;
+    }
+
     //vanAllenTesting
     seriesClassification testDTW;
     std::vector<trainingSeries> testVector;

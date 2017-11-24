@@ -447,4 +447,8 @@ describe('RapidLib Signal Processing', function () {
             expect(velStream.maxAcceleration()).to.equal(45.63999999999999);
         });
     });
+    describe('when streaming to bayesFilter', function() {
+        let bf = new rapidMix.StreamBuffer();
+        console.log("ok " + bf.bayesFilter(0.2));
+    });
 });

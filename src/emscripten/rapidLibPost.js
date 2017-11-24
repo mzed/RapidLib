@@ -623,6 +623,13 @@ Module.StreamBuffer.prototype = {
         return this.rapidStream.rms();
     },
     /**
+     * Non-linear Bayesian filtering for EMG
+     * @return {number} envelope
+     */
+    bayesFilter: function (input) {
+        return this.rapidStream.bayesFilter(parseFloat(input));
+    },
+    /**
      * Calculate the minimum first-order difference over consecutive inputs in the buffer.
      * @return {number} minimum velocity.
      */

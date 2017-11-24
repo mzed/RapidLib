@@ -9,6 +9,7 @@
 #define rapidStream_h
 
 #include <stdint.h>
+#include "../dependencies/bayesfilter/src/BayesianFilter.h"
 
 template<typename T>
 class rapidStream {
@@ -76,6 +77,11 @@ public:
      */
      T rms();
     
+    /** Non-linear Baysian filtering for EMG envelope extraction.
+     * @return current envelope value
+     */
+    T bayesFilter(T inputValue);
+    
     /** Calculate the minimum first-order difference over consecutive inputs in the buffer.
      * @return double: minimum velocity.
      */
@@ -102,6 +108,8 @@ private:
     T *circularWindow;
     
     T calcCurrentVel(int i);
+    
+    BayesianFilter bayesFilt;
 };
 
 

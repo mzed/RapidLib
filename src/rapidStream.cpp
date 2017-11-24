@@ -22,6 +22,13 @@ rapidStream<T>::rapidStream(int window_size) {
     for (int i = 0; i < windowSize; ++i) {
         circularWindow[i] = 0;
     }
+    
+    //Baysian Filter setup
+    bayesFilt.diffusion = powf(10., -2);
+    bayesFilt.jump_rate = powf(10., -5);
+    bayesFilt.mvc[0] = 1.;
+    bayesFilt.init();
+
 }
 
 template<typename T>
@@ -126,6 +133,12 @@ T rapidStream<T>::rms() {
     return sqrt(rms);
 }
 
+template<typename T>
+T rapidStream<T>::bayesFilter(T input) {
+    std::vector<float> inputVec = { float(input) };
+    bayesFilt.update(inputVec);
+    return T(bayesFilt.output[0]);
+}
 template<typename T>
 T rapidStream<T>::minVelocity() {
     T minVel = std::numeric_limits<T>::infinity();
