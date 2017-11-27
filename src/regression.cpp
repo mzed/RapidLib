@@ -8,6 +8,8 @@
  */
 
 #include <vector>
+#include <iostream>
+#include <time.h>
 #include "regression.h"
 
 
@@ -90,6 +92,8 @@ void regressionTemplate<T>::setNumEpochs(const int &epochs) {
 template<typename T>
 bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set) {
     //TODO: time this process?
+    clock_t timer;
+    timer = clock();
     modelSet<T>::reset();
     if (training_set.size() > 0) {
         //create model(s) here
@@ -123,6 +127,8 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
             }
         }
         modelSet<T>::created = true;
+        timer = clock() - timer;
+        std::cout << "Regression trained in " << (float)timer/CLOCKS_PER_SEC << " ms." << std::endl;
         return modelSet<T>::train(training_set);
     }
     throw std::length_error("empty training set.");
