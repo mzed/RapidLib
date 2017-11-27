@@ -91,7 +91,6 @@ void regressionTemplate<T>::setNumEpochs(const int &epochs) {
 
 template<typename T>
 bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set) {
-    //TODO: time this process?
     clock_t timer;
     timer = clock();
     modelSet<T>::reset();
