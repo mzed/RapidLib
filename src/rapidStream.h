@@ -105,7 +105,7 @@ public:
 
 private:
     uint32_t windowSize;
-    std::atomic_uint32_t windowIndex;
+    std::atomic<uint32_t> windowIndex;
     T *circularWindow;
     
     T calcCurrentVel(int i);
