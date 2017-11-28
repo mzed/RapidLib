@@ -27,6 +27,7 @@ EMSCRIPTEN_BINDINGS(rapidStream_module) {
     .function("mean", &rapidStream<double>::mean)
     .function("standardDeviation", &rapidStream<double>::standardDeviation)
     .function("rms", &rapidStream<double>::rms)
+    .function("bayesFilter", &rapidStream<double>::bayesFilter)
     .function("minVelocity", &rapidStream<double>::minVelocity)
     .function("maxVelocity", &rapidStream<double>::maxVelocity)
     .function("minAcceleration", &rapidStream<double>::minAcceleration)
