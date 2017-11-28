@@ -23,9 +23,7 @@ public:
                  const warpPath &shrunkenWarpPath,
                  const int searchRadius);
     
-    std::vector<int> minValues;
-    std::vector<int> maxValues;
-    std::vector< std::pair<int, int> > minMaxValues;
+     std::vector< std::pair<int, int> > minMaxValues;
     
 private:
     int maxY;

@@ -9,8 +9,7 @@
 #include "searchWindow.h"
 
 template<typename T>
-searchWindow<T>::searchWindow(const int seriesXSize, const int seriesYSize, const warpPath &shrunkenWarpPath, const int searchRadius) :
-minValues(seriesXSize, -1), maxValues(seriesXSize, 0), minMaxValues(seriesXSize, std::make_pair(-1, 0)), maxY(seriesYSize - 1) {
+searchWindow<T>::searchWindow(const int seriesXSize, const int seriesYSize, const warpPath &shrunkenWarpPath, const int searchRadius) : minMaxValues(seriesXSize, std::make_pair(-1, 0)), maxY(seriesYSize - 1) {
     
     //Current location of higher resolution path
     std::pair<int, int> currentIndex = shrunkenWarpPath.indices[0];
@@ -52,18 +51,14 @@ minValues(seriesXSize, -1), maxValues(seriesXSize, 0), minMaxValues(seriesXSize,
 
 template<typename T>
 void searchWindow<T>::markVisited(int col, int row) {
-    if (row <= maxY && col < minValues.size()) { //Don't mark beyond the edge of the window
-        if (minValues[col] == -1) {
-            minValues[col] = row;
-            maxValues[col] = row;
-            //size++;
-        } else if (minValues[col] > row) {
-            //size += minValues[col] - row;
-            minValues[col] = row;
-        } else if (maxValues[col] < row) {
-            //size += row - maxValues[col];
-            maxValues[col] = row;
+    if (row <= maxY && col < minMaxValues.size()) { //Don't mark beyond the edge of the window
+        if (minMaxValues[col].first == -1) {
+            minMaxValues[col].first = row;
             minMaxValues[col].second = row;
+        } else if (minMaxValues[col].first > row) {
+            minMaxValues[col].first = row;
+        } else if (minMaxValues[col].second < row) {
+             minMaxValues[col].second = row;
         }
     }
 }
@@ -74,13 +69,13 @@ void searchWindow<T>::expandWindow(int radius) {
         
         //Add all cells in the current window to a vector.
         std::vector<std::pair<int, int>> windowCells;
-        for (int currentX = 0; currentX < minValues.size(); ++currentX) {
-            for (int currentY = minValues[currentX]; currentY <= maxValues[currentX]; ++currentY) {
+        for (int currentX = 0; currentX < minMaxValues.size(); ++currentX) {
+            for (int currentY = minMaxValues[currentX].first; currentY <= minMaxValues[currentX].second; ++currentY) {
                 windowCells.push_back(std::make_pair(currentX, currentY));
             }
         }
         
-        int maxX = int(minValues.size() - 1);
+        int maxX = int(minMaxValues.size() - 1);
         
         for (auto &currentCell : windowCells) {
             
