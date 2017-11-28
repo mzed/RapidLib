@@ -67,7 +67,7 @@ std::vector<std::vector<T> > fastDTW<T>::downsample(const std::vector<std::vecto
         }
     }
     //TODO: implement downsampling by resolution
-    return shrunkenSeries;
+    return shrunkenSeries;size()
 }
 
 //explicit instantiation

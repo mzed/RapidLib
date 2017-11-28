@@ -9,6 +9,7 @@
 #define rapidStream_h
 
 #include <stdint.h>
+#include <atomic>
 #include "../dependencies/bayesfilter/src/BayesianFilter.h"
 
 template<typename T>
@@ -104,7 +105,7 @@ public:
 
 private:
     uint32_t windowSize;
-    uint32_t windowIndex;
+    std::atomic_uint32_t windowIndex;
     T *circularWindow;
     
     T calcCurrentVel(int i);

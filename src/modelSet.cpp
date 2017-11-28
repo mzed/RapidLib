@@ -96,8 +96,8 @@ std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector) {
 template<typename T>
 std::vector<T> json2vector(Json::Value json) {
     std::vector<T> returnVec;
-    for (unsigned int i = 0; i < json.size(); ++i) {
-        returnVec.push_back(json[i].asDouble());
+    for (auto jsonValue : json) {
+        returnVec.push_back(jsonValue.asDouble());
     }
     return returnVec;
 }
