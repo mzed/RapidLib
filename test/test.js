@@ -449,6 +449,9 @@ describe('RapidLib Signal Processing', function () {
     });
     describe('when streaming to bayesFilter', function() {
         let bf = new rapidMix.StreamBuffer();
+        bf.bayesSetDiffusion(-2.0);
+        bf.bayesSetJumpRate(-5.0);
+        bf.bayesSetMVC(1.0);
         console.log("ok " + bf.bayesFilter(0.2));
     });
 });

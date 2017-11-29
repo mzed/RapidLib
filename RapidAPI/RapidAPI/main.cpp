@@ -12,15 +12,15 @@ int main(int argc, const char * argv[]) {
 
     rapidStream<double> rapidProcess;
     rapidProcess.bayesSetDiffusion(-2.0);
-    rapidProcess.bayesSetJumpRate(-5.0);
+    rapidProcess.bayesSetJumpRate(-10.0);
     rapidProcess.bayesSetMVC(1.);
     
     double bayes = 0.;
     for (int i = 0; i < 100; ++i) {
         bayes = rapidProcess.bayesFilter(i/100.);
-        std::cout << "bayes: " << bayes <<std::endl;
+        //std::cout << "bayes: " << bayes <<std::endl;
     }
-  //  bayes > 0.99);
+    assert( bayes > 0.68 );
 
     //vanAllenTesting
     seriesClassification testDTW;

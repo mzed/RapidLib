@@ -25,7 +25,7 @@ rapidStream<T>::rapidStream(int window_size) {
     
     //Baysian Filter setup
     bayesFilt.diffusion = powf(10., -2);
-    bayesFilt.jump_rate = powf(10., -5);
+    bayesFilt.jump_rate = powf(10., -10);
     bayesFilt.mvc[0] = 1.;
     bayesFilt.init();
     
@@ -143,8 +143,6 @@ T rapidStream<T>::bayesFilter(T input) {
 template<typename T>
 void rapidStream<T>::bayesSetDiffusion(float diffusion) {
     bayesFilt.diffusion = powf(10., diffusion);
-    //bayesFilt.jump_rate = powf(10., -5);
-    //bayesFilt.mvc[0] = 1.;
     bayesFilt.init();
 }
 

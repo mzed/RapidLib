@@ -629,6 +629,15 @@ Module.StreamBuffer.prototype = {
     bayesFilter: function (input) {
         return this.rapidStream.bayesFilter(parseFloat(input));
     },
+    bayesSetDiffusion: function (input) {
+        this.rapidStream.bayesSetDiffusion(parseFloat(input));
+    },
+    bayesSetJumpRate: function (input) {
+        this.rapidStream.bayesSetJumpRate(parseFloat(input));
+    },
+    bayesSetMVC: function (input) {
+        this.rapidStream.bayesSetMVC(parseFloat(input));
+    },
     /**
      * Calculate the minimum first-order difference over consecutive inputs in the buffer.
      * @return {number} minimum velocity.
