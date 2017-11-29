@@ -11,9 +11,11 @@
 int main(int argc, const char * argv[]) {
 
     rapidStream<double> rapidProcess;
+    double bayes = 0.;
     for (int i = 0; i < 100; ++i) {
-        std::cout << "bayes " << rapidProcess.bayesFilter(i/100.) << std::endl;
+        bayes = rapidProcess.bayesFilter(i/100.);
     }
+    assert(bayes > 0.99);
 
     //vanAllenTesting
     seriesClassification testDTW;
