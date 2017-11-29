@@ -82,6 +82,9 @@ public:
      * @return current envelope value
      */
     T bayesFilter(T inputValue);
+    void bayesSetDiffusion(float logDiffusion);
+    void bayesSetJumpRate(float jump_rate);
+    void bayesSetMVC(float mvc);
     
     /** Calculate the minimum first-order difference over consecutive inputs in the buffer.
      * @return double: minimum velocity.
