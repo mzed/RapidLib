@@ -50,6 +50,12 @@ public:
      */
     T run(const std::vector<std::vector<T> > &inputSeries, std::string label);
     
+    /** Compare an input series to all of the stored series with a specified label
+     * @param std::vector<T> one frame either float or double input data
+     * @return The lowest cost match, float or double
+     */
+    std::string runContinuous(const std::vector<T> &inputVector);
+    
     /** Get the costs that were calculated by the run method
      * @return A vector of floats or doubles, the cost of matching to each training series
      */
@@ -103,6 +109,10 @@ private:
     int maxLength;
     int minLength;
     std::map<std::string, minMax<int> > lengthsPerLabel;
+    
+    std::vector<std::vector<T> > seriesBuffer;
+    int hopSize;
+    int counter;
 };
 
 //This is here to keep the old API working
