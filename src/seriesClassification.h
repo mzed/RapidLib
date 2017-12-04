@@ -105,6 +105,7 @@ public:
     
 private:
     std::vector<trainingSeriesTemplate<T> > allTrainingSeries;
+    int vectorLength;
     std::vector<T> allCosts;
     int maxLength;
     int minLength;

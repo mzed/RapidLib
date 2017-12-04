@@ -26,6 +26,7 @@ template<typename T>
 bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemplate<T> > &seriesSet) {
     assert(seriesSet.size() > 0);
     reset();
+    vectorLength = int(seriesSet[0].input[0].size()); //TODO: check that all vectors are the same size
     bool trained = true;
     allTrainingSeries = seriesSet;
     minLength = maxLength = int(allTrainingSeries[0].input.size());
@@ -56,8 +57,12 @@ bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemp
         }
     }
     //TODO: make this size smarter?
-    for (int i = 0; i < maxLength; ++i ) {
-        seriesBuffer.push_back({0}); //set size of continuous buffer
+    std::vector<T> zeroVector;
+    for (int i = 0; i < vectorLength; ++i) {
+        zeroVector.push_back(0.0);
+    }
+    for (int i = 0; i < minLength; ++i ) {
+        seriesBuffer.push_back(zeroVector); //set size of continuous buffer
     }
     return trained;
 };
@@ -115,7 +120,7 @@ std::string seriesClassificationTemplate<T>::runContinuous(const std::vector<T> 
     seriesBuffer.push_back(inputVector);
     std::string returnString = "none";
     if ((counter % hopSize) == 0 ) {
-        returnString =
+        returnString = run(seriesBuffer);
         counter = 0;
     }
     ++counter;
