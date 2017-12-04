@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v2.0.0</span>
+   &#160;<span id="projectnumber">v2.1.0</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -155,8 +155,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a340e673fb29a9faa2d66a9ad26434ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaeab4b0827dabb9c4b04603c784194f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#aaeab4b0827dabb9c4b04603c784194f3">getJSONDescription</a> (Json::Value &amp;currentModel)</td></tr>
 <tr class="separator:aaeab4b0827dabb9c4b04603c784194f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7aca6e77be0d7ac14efee3f1bcd9bde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#ac7aca6e77be0d7ac14efee3f1bcd9bde">train</a> (const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a>&lt; T &gt; &gt; &amp;trainingSet)</td></tr>
-<tr class="separator:ac7aca6e77be0d7ac14efee3f1bcd9bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2792324c7b6f093d0a2a301cc2bb9c1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#a2792324c7b6f093d0a2a301cc2bb9c1a">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet)</td></tr>
+<tr class="memdesc:a2792324c7b6f093d0a2a301cc2bb9c1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">These pertain to the training, and aren't need to run a trained model //.  <a href="#a2792324c7b6f093d0a2a301cc2bb9c1a">More...</a><br /></td></tr>
+<tr class="separator:a2792324c7b6f093d0a2a301cc2bb9c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classbase_model"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classbase_model')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classbase_model.html">baseModel&lt; T &gt;</a></td></tr>
 <tr class="memitem:ac16b40e0a37c3ddc335d44b0668df4e2 inherit pub_methods_classbase_model"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#ac16b40e0a37c3ddc335d44b0668df4e2">~baseModel</a> ()</td></tr>
 <tr class="separator:ac16b40e0a37c3ddc335d44b0668df4e2 inherit pub_methods_classbase_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -677,8 +678,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="ac7aca6e77be0d7ac14efee3f1bcd9bde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7aca6e77be0d7ac14efee3f1bcd9bde">&sect;&nbsp;</a></span>train()</h2>
+<a id="a2792324c7b6f093d0a2a301cc2bb9c1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2792324c7b6f093d0a2a301cc2bb9c1a">&sect;&nbsp;</a></span>train()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -691,7 +692,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classneural_network.html">neuralNetwork</a>&lt; T &gt;::train </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a>&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em></td><td>)</td>
           <td></td>
         </tr>
@@ -702,7 +703,9 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>These pertain to the training, and aren't need to run a trained model Train a model using backpropagation.</p>
+
+<p>These pertain to the training, and aren't need to run a trained model //. </p>
+<p>Train a model using backpropagation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">The</td><td>training set is a vector of training examples that contain both a vector of input values and a value specifying desired output. </td></tr>
@@ -710,7 +713,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classbase_model.html#aadfc4ee03fc17d923dc53721d05740d1">baseModel&lt; T &gt;</a>.</p>
+<p>Implements <a class="el" href="classbase_model.html#ae3f6b2b8ca325306be05a8929871dcd6">baseModel&lt; T &gt;</a>.</p>
 
 </div>
 </div>

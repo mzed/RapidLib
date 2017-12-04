@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v2.0.0</span>
+   &#160;<span id="projectnumber">v2.1.0</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -119,16 +119,16 @@ Collaboration diagram for knnClassification&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac6c73eb7f625ad4e596c7a93b03b802c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#ac6c73eb7f625ad4e596c7a93b03b802c">knnClassification</a> (const int &amp;num_inputs, const std::vector&lt; int &gt; &amp;which_inputs, const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a>&lt; T &gt; &gt; &amp;trainingSet, const int k)</td></tr>
-<tr class="separator:ac6c73eb7f625ad4e596c7a93b03b802c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43203bc1ae3bfead9bca5a488bf0036a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a43203bc1ae3bfead9bca5a488bf0036a">knnClassification</a> (const int &amp;num_inputs, const std::vector&lt; int &gt; &amp;which_inputs, const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet, const int k)</td></tr>
+<tr class="separator:a43203bc1ae3bfead9bca5a488bf0036a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ba014191f6af7fc093b85ce6f1b3cd7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a4ba014191f6af7fc093b85ce6f1b3cd7">~knnClassification</a> ()</td></tr>
 <tr class="separator:a4ba014191f6af7fc093b85ce6f1b3cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88e0fec44ac39d02890d0813db19a866"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a88e0fec44ac39d02890d0813db19a866">addNeighbour</a> (const int &amp;classNum, const std::vector&lt; T &gt; &amp;features)</td></tr>
 <tr class="separator:a88e0fec44ac39d02890d0813db19a866"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc87d24b2ce2806f126800fc81936f56"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#abc87d24b2ce2806f126800fc81936f56">run</a> (const std::vector&lt; T &gt; &amp;inputVector)</td></tr>
 <tr class="separator:abc87d24b2ce2806f126800fc81936f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a040aa10672d162514bc58ba3d8b76c9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a040aa10672d162514bc58ba3d8b76c9d">train</a> (const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a>&lt; T &gt; &gt; &amp;trainingSet)</td></tr>
-<tr class="separator:a040aa10672d162514bc58ba3d8b76c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a431e3f20deef059271be383612d0a89e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a431e3f20deef059271be383612d0a89e">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet)</td></tr>
+<tr class="separator:a431e3f20deef059271be383612d0a89e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a224974c08f139b0b746a33914ecc2d7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a224974c08f139b0b746a33914ecc2d7e">reset</a> ()</td></tr>
 <tr class="separator:a224974c08f139b0b746a33914ecc2d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80c299fa0ddbc8ba9630cfead17f6d28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a80c299fa0ddbc8ba9630cfead17f6d28">getNumInputs</a> () const</td></tr>
@@ -158,8 +158,8 @@ class knnClassification&lt; T &gt;</h3>
 
 <p>Class for implementing a knn classifier </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac6c73eb7f625ad4e596c7a93b03b802c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6c73eb7f625ad4e596c7a93b03b802c">&sect;&nbsp;</a></span>knnClassification()</h2>
+<a id="a43203bc1ae3bfead9bca5a488bf0036a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43203bc1ae3bfead9bca5a488bf0036a">&sect;&nbsp;</a></span>knnClassification()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -181,7 +181,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a>&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em>, </td>
         </tr>
         <tr>
@@ -475,8 +475,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a040aa10672d162514bc58ba3d8b76c9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a040aa10672d162514bc58ba3d8b76c9d">&sect;&nbsp;</a></span>train()</h2>
+<a id="a431e3f20deef059271be383612d0a89e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a431e3f20deef059271be383612d0a89e">&sect;&nbsp;</a></span>train()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -489,7 +489,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classknn_classification.html">knnClassification</a>&lt; T &gt;::train </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a>&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em></td><td>)</td>
           <td></td>
         </tr>
@@ -508,7 +508,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classbase_model.html#aadfc4ee03fc17d923dc53721d05740d1">baseModel&lt; T &gt;</a>.</p>
+<p>Implements <a class="el" href="classbase_model.html#ae3f6b2b8ca325306be05a8929871dcd6">baseModel&lt; T &gt;</a>.</p>
 
 </div>
 </div>

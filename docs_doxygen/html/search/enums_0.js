@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['classificationtypes',['classificationTypes',['../classclassification.html#a41d0dc191d7159c4e46ea24918cd650d',1,'classification']]]
+  ['classificationtypes',['classificationTypes',['../classclassification_template.html#a8a1f10bbfb59643c7033ee8a3656f85b',1,'classificationTemplate']]]
 ];

@@ -4,9 +4,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
       [ "baseModel", "classbase_model.html", "classbase_model" ]
     ] ],
     [ "classification.cpp", "classification_8cpp.html", null ],
-    [ "classification.h", "classification_8h.html", [
-      [ "classification", "classclassification.html", "classclassification" ]
-    ] ],
+    [ "classification.h", "classification_8h.html", "classification_8h" ],
     [ "dtw.cpp", "dtw_8cpp.html", null ],
     [ "dtw.h", "dtw_8h.html", [
       [ "dtw", "classdtw.html", "classdtw" ]
@@ -30,26 +28,18 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
       [ "rapidStream", "classrapid_stream.html", "classrapid_stream" ]
     ] ],
     [ "regression.cpp", "regression_8cpp.html", null ],
-    [ "regression.h", "regression_8h.html", [
-      [ "regression", "classregression.html", "classregression" ]
-    ] ],
+    [ "regression.h", "regression_8h.html", "regression_8h" ],
     [ "searchWindow.cpp", "search_window_8cpp.html", null ],
     [ "searchWindow.h", "search_window_8h.html", [
       [ "searchWindow", "classsearch_window.html", "classsearch_window" ]
     ] ],
     [ "seriesClassification.cpp", "series_classification_8cpp.html", "series_classification_8cpp" ],
-    [ "seriesClassification.h", "series_classification_8h.html", [
-      [ "seriesClassification", "classseries_classification.html", "classseries_classification" ],
-      [ "minMax", "structseries_classification_1_1min_max.html", "structseries_classification_1_1min_max" ]
-    ] ],
+    [ "seriesClassification.h", "series_classification_8h.html", "series_classification_8h" ],
     [ "svmClassification.cpp", "svm_classification_8cpp.html", null ],
     [ "svmClassification.h", "svm_classification_8h.html", [
       [ "svmClassification", "classsvm_classification.html", "classsvm_classification" ]
     ] ],
-    [ "trainingExample.h", "training_example_8h.html", [
-      [ "trainingExample", "structtraining_example.html", "structtraining_example" ],
-      [ "trainingSeries", "structtraining_series.html", "structtraining_series" ]
-    ] ],
+    [ "trainingExample.h", "training_example_8h.html", "training_example_8h" ],
     [ "warpPath.cpp", "warp_path_8cpp.html", null ],
     [ "warpPath.h", "warp_path_8h.html", [
       [ "warpPath", "classwarp_path.html", "classwarp_path" ],

@@ -7,7 +7,7 @@ var classmodel_set =
     [ "readJSON", "classmodel_set.html#a0496666a49d6e1fd3a7c622c0ac136cc", null ],
     [ "reset", "classmodel_set.html#a0b5e12da0d54af8cac659ca2e409736e", null ],
     [ "run", "classmodel_set.html#ad312baf81fb587726a396a3f4666922e", null ],
-    [ "train", "classmodel_set.html#ae4b54a9fe07f17e70f5a8f0ab458ff05", null ],
+    [ "train", "classmodel_set.html#aac51c774642f28e7bdcafdf90abea4db", null ],
     [ "writeJSON", "classmodel_set.html#a98676ef4b61e0a3b596fe164344aeb4f", null ],
     [ "created", "classmodel_set.html#a1fb785964ee3ed561ccaf743cfe1ac5b", null ],
     [ "inputNames", "classmodel_set.html#abfecf38aea9d66c9becd61f9051f86fd", null ],

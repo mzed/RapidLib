@@ -23,5 +23,5 @@ var classsvm_classification =
     [ "init", "classsvm_classification.html#aa3c095477366a40e13734788df155399", null ],
     [ "reset", "classsvm_classification.html#a83c576ed0a5978a5f6e529a8fd3362dc", null ],
     [ "run", "classsvm_classification.html#ac0e6f16cf122322314ffef1a987abad6", null ],
-    [ "train", "classsvm_classification.html#adcb616cddc6f05479562128fd850579d", null ]
+    [ "train", "classsvm_classification.html#ac889008c40737b17ee833183a3a4b3e2", null ]
 ];

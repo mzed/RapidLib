@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v2.0.0</span>
+   &#160;<span id="projectnumber">v2.1.0</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -105,6 +105,8 @@ $(document).ready(function(){initNavTree('classwarp_path.html','');});
 Collaboration diagram for warpPath:</div>
 <div class="dyncontent">
 <div class="center"><img src="classwarp_path__coll__graph.png" border="0" usemap="#warp_path_coll__map" alt="Collaboration graph"/></div>
+<map name="warp_path_coll__map" id="warp_path_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -118,12 +120,12 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a7db6df08cf3c5650200d8bc1854a6271"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwarp_path.html#a7db6df08cf3c5650200d8bc1854a6271">xIndices</a></td></tr>
-<tr class="separator:a7db6df08cf3c5650200d8bc1854a6271"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d2301cde20a21c871106ec8bb8185f7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwarp_path.html#a8d2301cde20a21c871106ec8bb8185f7">yIndices</a></td></tr>
-<tr class="separator:a8d2301cde20a21c871106ec8bb8185f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa772779caea3971fda4afd599e4f52d5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; int, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwarp_path.html#aa772779caea3971fda4afd599e4f52d5">indices</a></td></tr>
+<tr class="separator:aa772779caea3971fda4afd599e4f52d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class to hold warp paths through a cost matrix </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8fce9071c84eaddd6c5cc1b904debb69"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8fce9071c84eaddd6c5cc1b904debb69">&sect;&nbsp;</a></span>warpPath()</h2>
 
@@ -184,32 +186,19 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Add a point to the beginning of the warp path. (Paths are calculated starting from the end) </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a7db6df08cf3c5650200d8bc1854a6271"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7db6df08cf3c5650200d8bc1854a6271">&sect;&nbsp;</a></span>xIndices</h2>
+<a id="aa772779caea3971fda4afd599e4f52d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa772779caea3971fda4afd599e4f52d5">&sect;&nbsp;</a></span>indices</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;int&gt; warpPath::xIndices</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8d2301cde20a21c871106ec8bb8185f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d2301cde20a21c871106ec8bb8185f7">&sect;&nbsp;</a></span>yIndices</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;int&gt; warpPath::yIndices</td>
+          <td class="memname">std::vector&lt; std::pair&lt;int, int&gt; &gt; warpPath::indices</td>
         </tr>
       </table>
 </div><div class="memdoc">

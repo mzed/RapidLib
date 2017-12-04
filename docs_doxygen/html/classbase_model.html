@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v2.0.0</span>
+   &#160;<span id="projectnumber">v2.1.0</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -123,8 +123,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac16b40e0a37c3ddc335d44b0668df4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c57cc5edffbfd8ed959e049e5951ebf"><td class="memItemLeft" align="right" valign="top">virtual T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a4c57cc5edffbfd8ed959e049e5951ebf">run</a> (const std::vector&lt; T &gt; &amp;inputVector)=0</td></tr>
 <tr class="separator:a4c57cc5edffbfd8ed959e049e5951ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadfc4ee03fc17d923dc53721d05740d1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#aadfc4ee03fc17d923dc53721d05740d1">train</a> (const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a>&lt; T &gt; &gt; &amp;trainingSet)=0</td></tr>
-<tr class="separator:aadfc4ee03fc17d923dc53721d05740d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3f6b2b8ca325306be05a8929871dcd6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#ae3f6b2b8ca325306be05a8929871dcd6">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet)=0</td></tr>
+<tr class="separator:ae3f6b2b8ca325306be05a8929871dcd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89434e0587b1c701f6abc4065e23e0a2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a89434e0587b1c701f6abc4065e23e0a2">reset</a> ()=0</td></tr>
 <tr class="separator:a89434e0587b1c701f6abc4065e23e0a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a237863c3daed90c372227797050c70b1"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a237863c3daed90c372227797050c70b1">getNumInputs</a> () const =0</td></tr>
@@ -321,8 +321,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="aadfc4ee03fc17d923dc53721d05740d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadfc4ee03fc17d923dc53721d05740d1">&sect;&nbsp;</a></span>train()</h2>
+<a id="ae3f6b2b8ca325306be05a8929871dcd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3f6b2b8ca325306be05a8929871dcd6">&sect;&nbsp;</a></span>train()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -335,7 +335,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">virtual void <a class="el" href="classbase_model.html">baseModel</a>&lt; T &gt;::train </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example.html">trainingExample</a>&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em></td><td>)</td>
           <td></td>
         </tr>
@@ -347,7 +347,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classneural_network.html#ac7aca6e77be0d7ac14efee3f1bcd9bde">neuralNetwork&lt; T &gt;</a>, <a class="el" href="classsvm_classification.html#adcb616cddc6f05479562128fd850579d">svmClassification&lt; T &gt;</a>, and <a class="el" href="classknn_classification.html#a040aa10672d162514bc58ba3d8b76c9d">knnClassification&lt; T &gt;</a>.</p>
+<p>Implemented in <a class="el" href="classneural_network.html#a2792324c7b6f093d0a2a301cc2bb9c1a">neuralNetwork&lt; T &gt;</a>, <a class="el" href="classsvm_classification.html#ac889008c40737b17ee833183a3a4b3e2">svmClassification&lt; T &gt;</a>, and <a class="el" href="classknn_classification.html#a431e3f20deef059271be383612d0a89e">knnClassification&lt; T &gt;</a>.</p>
 
 </div>
 </div>

@@ -1,7 +1,11 @@
 var searchData=
 [
-  ['train',['train',['../classbase_model.html#aadfc4ee03fc17d923dc53721d05740d1',1,'baseModel::train()'],['../classclassification.html#a0b687b07e67866af9295b40395379e2e',1,'classification::train()'],['../classknn_classification.html#a040aa10672d162514bc58ba3d8b76c9d',1,'knnClassification::train()'],['../classmodel_set.html#ae4b54a9fe07f17e70f5a8f0ab458ff05',1,'modelSet::train()'],['../classneural_network.html#ac7aca6e77be0d7ac14efee3f1bcd9bde',1,'neuralNetwork::train()'],['../classregression.html#afe5baeaea101622217af87c87e4ffd5d',1,'regression::train()'],['../classseries_classification.html#ab4da655a00f6d852836aef6af991fc32',1,'seriesClassification::train()'],['../classsvm_classification.html#adcb616cddc6f05479562128fd850579d',1,'svmClassification::train()']]],
-  ['trainingexample',['trainingExample',['../structtraining_example.html',1,'']]],
+  ['train',['train',['../classbase_model.html#ae3f6b2b8ca325306be05a8929871dcd6',1,'baseModel::train()'],['../classclassification_template.html#afd47432b7fdaccfa7523cbd24d3c7096',1,'classificationTemplate::train()'],['../classknn_classification.html#a431e3f20deef059271be383612d0a89e',1,'knnClassification::train()'],['../classmodel_set.html#aac51c774642f28e7bdcafdf90abea4db',1,'modelSet::train()'],['../classneural_network.html#a2792324c7b6f093d0a2a301cc2bb9c1a',1,'neuralNetwork::train()'],['../classregression_template.html#ac36b0de0be9e4d75082b5fa89173c073',1,'regressionTemplate::train()'],['../classseries_classification_template.html#af9763109d14e2a8baefd491c01043cf9',1,'seriesClassificationTemplate::train()'],['../classsvm_classification.html#ac889008c40737b17ee833183a3a4b3e2',1,'svmClassification::train()']]],
+  ['trainingexample',['trainingExample',['../training_example_8h.html#a0bb207589af8d149b05ad13bc092c71f',1,'trainingExample.h']]],
   ['trainingexample_2eh',['trainingExample.h',['../training_example_8h.html',1,'']]],
-  ['trainingseries',['trainingSeries',['../structtraining_series.html',1,'']]]
+  ['trainingexamplefloat',['trainingExampleFloat',['../training_example_8h.html#a2cd923732ec41c40c0d938ceffc690fa',1,'trainingExample.h']]],
+  ['trainingexampletemplate',['trainingExampleTemplate',['../structtraining_example_template.html',1,'']]],
+  ['trainingseries',['trainingSeries',['../training_example_8h.html#a698f8109e2a60bfa71137ce4e4de5be1',1,'trainingExample.h']]],
+  ['trainingseriesfloat',['trainingSeriesFloat',['../training_example_8h.html#a807bcf4d76d86c046102aa48fc54e036',1,'trainingExample.h']]],
+  ['trainingseriestemplate',['trainingSeriesTemplate',['../structtraining_series_template.html',1,'']]]
 ];

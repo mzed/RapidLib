@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['max',['max',['../structseries_classification_1_1min_max.html#a6712fa3f0befd83c194e2b10e13f1bdc',1,'seriesClassification::minMax']]],
-  ['maxvalues',['maxValues',['../classsearch_window.html#afc1eaac02f0874f9e482819721337e5d',1,'searchWindow']]],
-  ['min',['min',['../structseries_classification_1_1min_max.html#a7c88850bdcb56d821633b1b1a84b58db',1,'seriesClassification::minMax']]],
-  ['minvalues',['minValues',['../classsearch_window.html#a9871c01691e3d28304fa8c0ad20272a8',1,'searchWindow']]],
+  ['max',['max',['../structseries_classification_template_1_1min_max.html#a6679fda24768931e0193b08d4f24b698',1,'seriesClassificationTemplate::minMax']]],
+  ['min',['min',['../structseries_classification_template_1_1min_max.html#a85dde028d472907d4937e6a2e244dedb',1,'seriesClassificationTemplate::minMax']]],
+  ['minmaxvalues',['minMaxValues',['../classsearch_window.html#a733e67f2f5d08bd079b2370bfe72f2c3',1,'searchWindow']]],
   ['mymodelset',['myModelSet',['../classmodel_set.html#a3125419e0d392b4bfab347389278f404',1,'modelSet']]]
 ];

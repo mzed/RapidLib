@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v2.0.0</span>
+   &#160;<span id="projectnumber">v2.1.0</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -105,23 +105,28 @@ $(document).ready(function(){initNavTree('classsearch_window.html','');});
 Collaboration diagram for searchWindow&lt; T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsearch_window__coll__graph.png" border="0" usemap="#search_window_3_01_t_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="search_window_3_01_t_01_4_coll__map" id="search_window_3_01_t_01_4_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5d1ca48f40d846a222585c3d080fb245"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsearch_window.html#a5d1ca48f40d846a222585c3d080fb245">searchWindow</a> (const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;seriesX, const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;seriesY, const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;shrunkenX, const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;shrunkenY, <a class="el" href="classwarp_path.html">warpPath</a> shrunkenWarpPath, int searchRadius)</td></tr>
-<tr class="separator:a5d1ca48f40d846a222585c3d080fb245"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac56dbd68c251c30985673be40eb5932a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsearch_window.html#ac56dbd68c251c30985673be40eb5932a">searchWindow</a> (const int seriesXSize, const int seriesYSize, const <a class="el" href="classwarp_path.html">warpPath</a> &amp;shrunkenWarpPath, const int searchRadius)</td></tr>
+<tr class="separator:ac56dbd68c251c30985673be40eb5932a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a9871c01691e3d28304fa8c0ad20272a8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsearch_window.html#a9871c01691e3d28304fa8c0ad20272a8">minValues</a></td></tr>
-<tr class="separator:a9871c01691e3d28304fa8c0ad20272a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc1eaac02f0874f9e482819721337e5d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsearch_window.html#afc1eaac02f0874f9e482819721337e5d">maxValues</a></td></tr>
-<tr class="separator:afc1eaac02f0874f9e482819721337e5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a733e67f2f5d08bd079b2370bfe72f2c3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; int, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsearch_window.html#a733e67f2f5d08bd079b2370bfe72f2c3">minMaxValues</a></td></tr>
+<tr class="separator:a733e67f2f5d08bd079b2370bfe72f2c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a5d1ca48f40d846a222585c3d080fb245"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d1ca48f40d846a222585c3d080fb245">&sect;&nbsp;</a></span>searchWindow()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename T&gt;<br />
+class searchWindow&lt; T &gt;</h3>
+
+<p>For <a class="el" href="classfast_d_t_w.html">fastDTW</a>, a window of cells to calculate costs for. These are cells within a specified search radius of a lower resolution path. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac56dbd68c251c30985673be40eb5932a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac56dbd68c251c30985673be40eb5932a">&sect;&nbsp;</a></span>searchWindow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -131,37 +136,25 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classsearch_window.html">searchWindow</a>&lt; T &gt;::<a class="el" href="classsearch_window.html">searchWindow</a> </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;&#160;</td>
-          <td class="paramname"><em>seriesX</em>, </td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>seriesXSize</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;&#160;</td>
-          <td class="paramname"><em>seriesY</em>, </td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>seriesYSize</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;&#160;</td>
-          <td class="paramname"><em>shrunkenX</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;&#160;</td>
-          <td class="paramname"><em>shrunkenY</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classwarp_path.html">warpPath</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="classwarp_path.html">warpPath</a> &amp;&#160;</td>
           <td class="paramname"><em>shrunkenWarpPath</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>searchRadius</em>&#160;</td>
         </tr>
         <tr>
@@ -175,8 +168,8 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="afc1eaac02f0874f9e482819721337e5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc1eaac02f0874f9e482819721337e5d">&sect;&nbsp;</a></span>maxValues</h2>
+<a id="a733e67f2f5d08bd079b2370bfe72f2c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a733e67f2f5d08bd079b2370bfe72f2c3">&sect;&nbsp;</a></span>minMaxValues</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -184,23 +177,7 @@ template&lt;typename T &gt; </div>
 template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;int&gt; <a class="el" href="classsearch_window.html">searchWindow</a>&lt; T &gt;::maxValues</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9871c01691e3d28304fa8c0ad20272a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9871c01691e3d28304fa8c0ad20272a8">&sect;&nbsp;</a></span>minValues</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;int&gt; <a class="el" href="classsearch_window.html">searchWindow</a>&lt; T &gt;::minValues</td>
+          <td class="memname">std::vector&lt; std::pair&lt;int, int&gt; &gt; <a class="el" href="classsearch_window.html">searchWindow</a>&lt; T &gt;::minMaxValues</td>
         </tr>
       </table>
 </div><div class="memdoc">

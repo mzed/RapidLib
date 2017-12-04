@@ -6,6 +6,6 @@ var classbase_model =
     [ "getWhichInputs", "classbase_model.html#a3c905a55228bdddf3823ce64ec23c38d", null ],
     [ "reset", "classbase_model.html#a89434e0587b1c701f6abc4065e23e0a2", null ],
     [ "run", "classbase_model.html#a4c57cc5edffbfd8ed959e049e5951ebf", null ],
-    [ "train", "classbase_model.html#aadfc4ee03fc17d923dc53721d05740d1", null ],
+    [ "train", "classbase_model.html#ae3f6b2b8ca325306be05a8929871dcd6", null ],
     [ "vector2json", "classbase_model.html#a9b1ba32b01a20ff7f3a529ebfe0bee85", null ]
 ];

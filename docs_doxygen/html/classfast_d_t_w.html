@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="rapidmix_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RapidLib
-   &#160;<span id="projectnumber">v2.0.0</span>
+   &#160;<span id="projectnumber">v2.1.0</span>
    </div>
    <div id="projectbrief">A simple library for interactive machine learning</div>
   </td>
@@ -105,6 +105,8 @@ $(document).ready(function(){initNavTree('classfast_d_t_w.html','');});
 Collaboration diagram for fastDTW&lt; T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfast_d_t_w__coll__graph.png" border="0" usemap="#fast_d_t_w_3_01_t_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="fast_d_t_w_3_01_t_01_4_coll__map" id="fast_d_t_w_3_01_t_01_4_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -118,12 +120,13 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a51614030b7b0dea90303042adba3c48c"><td class="memItemLeft" align="right" valign="top">static T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfast_d_t_w.html#a51614030b7b0dea90303042adba3c48c">getCost</a> (const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;seriesX, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesY, int searchRadius)</td></tr>
 <tr class="separator:a51614030b7b0dea90303042adba3c48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea875128c4f0bf990870d9013827c49d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structwarp_info.html">warpInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfast_d_t_w.html#aea875128c4f0bf990870d9013827c49d">fullFastDTW</a> (const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;seriesX, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesY, int searchRadius)</td></tr>
-<tr class="separator:aea875128c4f0bf990870d9013827c49d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cb138fca56ecb542f1b3ab70f9d46fd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classwarp_path.html">warpPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfast_d_t_w.html#a5cb138fca56ecb542f1b3ab70f9d46fd">getWarpPath</a> (const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;seriesX, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesY, int searchRadius)</td></tr>
-<tr class="separator:a5cb138fca56ecb542f1b3ab70f9d46fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename T&gt;<br />
+class fastDTW&lt; T &gt;</h3>
+
+<p>Class for performing an fast dynamic time warping between two time series </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a684af845adef7a1cf5590715c1ea7187"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a684af845adef7a1cf5590715c1ea7187">&sect;&nbsp;</a></span>fastDTW()</h2>
 
@@ -163,50 +166,6 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aea875128c4f0bf990870d9013827c49d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea875128c4f0bf990870d9013827c49d">&sect;&nbsp;</a></span>fullFastDTW()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structwarp_info.html">warpInfo</a> <a class="el" href="classfast_d_t_w.html">fastDTW</a>&lt; T &gt;::fullFastDTW </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;&#160;</td>
-          <td class="paramname"><em>seriesX</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>seriesY</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>searchRadius</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a51614030b7b0dea90303042adba3c48c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a51614030b7b0dea90303042adba3c48c">&sect;&nbsp;</a></span>getCost()</h2>
 
@@ -248,50 +207,15 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5cb138fca56ecb542f1b3ab70f9d46fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cb138fca56ecb542f1b3ab70f9d46fd">&sect;&nbsp;</a></span>getWarpPath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classwarp_path.html">warpPath</a> <a class="el" href="classfast_d_t_w.html">fastDTW</a>&lt; T &gt;::getWarpPath </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;&#160;</td>
-          <td class="paramname"><em>seriesX</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>seriesY</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>searchRadius</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>Returns just the cost of warping one series into a second. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seriesX</td><td>time series X </td></tr>
+    <tr><td class="paramname">seriesY</td><td>time series Y </td></tr>
+    <tr><td class="paramname">searchRadius</td><td>search radius (usually 1) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>cost to warp between series </dd></dl>
 
 </div>
 </div>

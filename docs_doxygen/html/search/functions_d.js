@@ -1,4 +1,12 @@
 var searchData=
 [
-  ['train',['train',['../classbase_model.html#aadfc4ee03fc17d923dc53721d05740d1',1,'baseModel::train()'],['../classclassification.html#a0b687b07e67866af9295b40395379e2e',1,'classification::train()'],['../classknn_classification.html#a040aa10672d162514bc58ba3d8b76c9d',1,'knnClassification::train()'],['../classmodel_set.html#ae4b54a9fe07f17e70f5a8f0ab458ff05',1,'modelSet::train()'],['../classneural_network.html#ac7aca6e77be0d7ac14efee3f1bcd9bde',1,'neuralNetwork::train()'],['../classregression.html#afe5baeaea101622217af87c87e4ffd5d',1,'regression::train()'],['../classseries_classification.html#ab4da655a00f6d852836aef6af991fc32',1,'seriesClassification::train()'],['../classsvm_classification.html#adcb616cddc6f05479562128fd850579d',1,'svmClassification::train()']]]
+  ['searchwindow',['searchWindow',['../classsearch_window.html#ac56dbd68c251c30985673be40eb5932a',1,'searchWindow']]],
+  ['seriesclassificationtemplate',['seriesClassificationTemplate',['../classseries_classification_template.html#ab2600f1c49d2d7a81ec36312670e3aeb',1,'seriesClassificationTemplate']]],
+  ['setepochs',['setEpochs',['../classneural_network.html#a0199104712b91d7349fa1e16339e1fc6',1,'neuralNetwork']]],
+  ['setk',['setK',['../classclassification_template.html#a937a80f445d4cf77a643f59e5fec5383',1,'classificationTemplate::setK()'],['../classknn_classification.html#a8c3d569112e964813ca0fb3e1d6597b5',1,'knnClassification::setK()']]],
+  ['setnumepochs',['setNumEpochs',['../classregression_template.html#a1c91775e2e271c0b2afa81703dbe39ba',1,'regressionTemplate']]],
+  ['setnumhiddenlayers',['setNumHiddenLayers',['../classneural_network.html#a6a8f3d3c08e067b13211bf8039581417',1,'neuralNetwork::setNumHiddenLayers()'],['../classregression_template.html#abc436bce22ede1014180e93779a25ba5',1,'regressionTemplate::setNumHiddenLayers()']]],
+  ['standarddeviation',['standardDeviation',['../classrapid_stream.html#aef71093e4e55fab939a16bb602d34c9e',1,'rapidStream']]],
+  ['sum',['sum',['../classrapid_stream.html#a8ac3108260c00d25fdd801090b2707c2',1,'rapidStream']]],
+  ['svmclassification',['svmClassification',['../classsvm_classification.html#a77cdca9d4d80f7a2f9b101e299574523',1,'svmClassification::svmClassification(KernelType kernelType=LINEAR_KERNEL, SVMType svmType=C_SVC, bool useScaling=true, bool useNullRejection=false, bool useAutoGamma=true, float gamma=0.1, unsigned int degree=3, float coef0=0, float nu=0.5, float C=1, bool useCrossValidation=false, unsigned int kFoldValue=10)'],['../classsvm_classification.html#ae6cfa10c4cc9fb22267320067bac5cd2',1,'svmClassification::svmClassification(int numInputs)']]]
 ];

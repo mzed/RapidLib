@@ -7,16 +7,16 @@ var hierarchy =
     ] ],
     [ "dtw< T >", "classdtw.html", null ],
     [ "fastDTW< T >", "classfast_d_t_w.html", null ],
-    [ "seriesClassification< T >::minMax< TT >", "structseries_classification_1_1min_max.html", null ],
+    [ "seriesClassificationTemplate< T >::minMax< TT >", "structseries_classification_template_1_1min_max.html", null ],
     [ "modelSet< T >", "classmodel_set.html", [
-      [ "classification< T >", "classclassification.html", null ],
-      [ "regression< T >", "classregression.html", null ]
+      [ "classificationTemplate< T >", "classclassification_template.html", null ],
+      [ "regressionTemplate< T >", "classregression_template.html", null ]
     ] ],
     [ "rapidStream< T >", "classrapid_stream.html", null ],
     [ "searchWindow< T >", "classsearch_window.html", null ],
-    [ "seriesClassification< T >", "classseries_classification.html", null ],
-    [ "trainingExample< T >", "structtraining_example.html", null ],
-    [ "trainingSeries< T >", "structtraining_series.html", null ],
+    [ "seriesClassificationTemplate< T >", "classseries_classification_template.html", null ],
+    [ "trainingExampleTemplate< T >", "structtraining_example_template.html", null ],
+    [ "trainingSeriesTemplate< T >", "structtraining_series_template.html", null ],
     [ "warpInfo", "structwarp_info.html", null ],
     [ "warpPath", "classwarp_path.html", null ]
 ];

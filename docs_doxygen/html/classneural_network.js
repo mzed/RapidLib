@@ -18,5 +18,5 @@ var classneural_network =
     [ "run", "classneural_network.html#ae1bd02d3268b99a49b8e365afb2fa8b5", null ],
     [ "setEpochs", "classneural_network.html#a0199104712b91d7349fa1e16339e1fc6", null ],
     [ "setNumHiddenLayers", "classneural_network.html#a6a8f3d3c08e067b13211bf8039581417", null ],
-    [ "train", "classneural_network.html#ac7aca6e77be0d7ac14efee3f1bcd9bde", null ]
+    [ "train", "classneural_network.html#a2792324c7b6f093d0a2a301cc2bb9c1a", null ]
 ];

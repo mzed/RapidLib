@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['output',['output',['../structtraining_example.html#ab96334e1a91398762dbe6037a2063910',1,'trainingExample']]]
+  ['output',['output',['../structtraining_example_template.html#a189772fb432ba895436ca7120072669d',1,'trainingExampleTemplate']]]
 ];
