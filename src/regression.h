@@ -43,16 +43,9 @@ public:
     /** Set how many hidden layers are in all models. This feature is temporary, and will be replaced by a different design. */
     void setNumHiddenLayers(const int &num_hidden_layers);
     
-    /** Check how many hidden nodes are in each model. This feature is temporary, and will be replaced by a different design. */
-    std::vector<int> getNumHiddenNodes();
-    
-    /** Set how many hidden layers are in all models. This feature is temporary, and will be replaced by a different design. */
-    void setNumHiddenNodes(const int &num_hidden_nodes);
-    
 private:
     int numHiddenLayers; //Temporary -- this should be part of the nn class. -mz
     int numEpochs; //Temporary -- also should be part of nn only. -mz
-    int numHiddenNodes; //Temporary -- also should be part of nn only. -mz
 };
 
 //This is here so the old API still works
