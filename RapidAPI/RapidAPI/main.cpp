@@ -397,7 +397,53 @@ int main(int argc, const char * argv[]) {
     
     
     ////////////////////////////////////////////////////////////////////////
+#define layerTest 1
+#ifdef layerTest
+    //Machine Learning
+    regression mtofRegression; //Create a machine learning object
+    mtofRegression.setNumHiddenLayers(3);
+    //mtofRegression.setNumEpochs(50000);
     
+    std::vector<trainingExample> trainingSet_mtof;
+    trainingExample  tempExample_mtof;
+    
+    //Setting up the first element of training data
+    tempExample_mtof.input = { 48 };
+    tempExample_mtof.output = { 130.81 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    //More elements
+    tempExample_mtof.input = { 54 };
+    tempExample_mtof.output = { 185.00 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    tempExample_mtof.input = { 60 };
+    tempExample_mtof.output = { 261.63 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    tempExample_mtof.input = { 66 };
+    tempExample_mtof.output = { 369.994 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    tempExample_mtof.input = { 72 };
+    tempExample_mtof.output = { 523.25 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    //Train the machine learning model with the data
+    mtofRegression.train(trainingSet_mtof);
+    
+    //Get some user input
+    int newNote = 0;
+    std::cout << "Type a MIDI note number.\n"; std::cin >> newNote;
+    
+    //Run the trained model on the user input
+    std::vector<double> inputVec_mtof = { double(newNote) };
+    double freqHz = mtofRegression.run(inputVec_mtof)[0];
+    
+    std::cout << "MIDI note " << newNote << " is " << freqHz << " Hertz" << std::endl;
+#endif
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     
     return 0;
 }
