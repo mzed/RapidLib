@@ -71,6 +71,7 @@ public:
     void setNumHiddenLayers(int num_hidden_layers);
     
     int getNumHiddenNodes() const;
+    void setNumHiddenNodes(int num_hidden_nodes);
     
     void setEpochs(const int &epochs);
     
