@@ -73,6 +73,7 @@ public:
     int getNumHiddenNodes() const;
     void setNumHiddenNodes(int num_hidden_nodes);
     
+    int getEpochs() const;
     void setEpochs(const int &epochs);
     
     std::vector<T> getWeights() const;

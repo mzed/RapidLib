@@ -79,7 +79,7 @@ let testSet4 = [
     },
     {
         input: [2.0, 2.0, 2.0],
-    output: [1.3]
+        output: [1.3]
     },
 ];
 
@@ -138,6 +138,14 @@ describe('RapidLib Machine Learning', function () {
             expect(response2[0]).to.equal(0.6737399669524929);
             let response3 = myRegression.run(0.9, 0.7); //likes a list as well as an array
             expect(response3[0]).to.equal(1.6932444207337964);
+        });
+        it('should get and set hidden nodes, and still return good results', function () {
+            let myRegNodes = new rapidMix.Regression();
+            myRegNodes.setNumHiddenNodes(12);
+            expect(myRegNodes.getNumHiddenNodes()).to.equal(12);
+            myRegNodes.train(testSet);
+            let response2 = myRegression.run([0.2789, 0.4574]);
+            expect(response2[0]).to.equal(0.6737399669524929);
         });
         it('should return zero on input that doesn\'t match numInputs', function () {
             let response1 = myRegression.run([33, 2, 44, 9]);
@@ -447,7 +455,7 @@ describe('RapidLib Signal Processing', function () {
             expect(velStream.maxAcceleration()).to.equal(45.63999999999999);
         });
     });
-    describe('when streaming to bayesFilter', function() {
+    describe('when streaming to bayesFilter', function () {
         let bf = new rapidMix.StreamBuffer();
         bf.bayesSetDiffusion(-2.0);
         bf.bayesSetJumpRate(-5.0);

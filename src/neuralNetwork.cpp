@@ -218,6 +218,12 @@ void neuralNetwork<T>::setNumHiddenNodes(int num_hidden_nodes) {
 }
 
 template<typename T>
+int neuralNetwork<T>::getEpochs() const {
+    return numEpochs;
+}
+
+
+template<typename T>
 void neuralNetwork<T>::setEpochs(const int &epochs) {
     numEpochs = epochs;
 }

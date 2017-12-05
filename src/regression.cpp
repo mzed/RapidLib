@@ -54,7 +54,7 @@ regressionTemplate<T>::regressionTemplate(const std::vector<trainingExampleTempl
 };
 
 template<typename T>
-std::vector<int> regressionTemplate<T>::getNumHiddenLayers() {
+std::vector<int> regressionTemplate<T>::getNumHiddenLayers() const {
     std::vector<int> vecNumHiddenLayers;
     if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet)) {
         for (baseModel<T>* model : modelSet<T>::myModelSet) {
@@ -80,7 +80,7 @@ void regressionTemplate<T>::setNumHiddenLayers(const int &num_hidden_layers){
 }
 
 template<typename T>
-std::vector<int> regressionTemplate<T>::getNumHiddenNodes() {
+std::vector<int> regressionTemplate<T>::getNumHiddenNodes() const {
     std::vector<int> vecNumHiddenNodes;
     if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet)) {
         for (baseModel<T>* model : modelSet<T>::myModelSet) {
@@ -105,6 +105,20 @@ void regressionTemplate<T>::setNumHiddenNodes(const int &num_hidden_nodes){
     }
 }
 
+
+template<typename T>
+std::vector<int> regressionTemplate<T>::getNumEpochs() const {
+    std::vector<int> vecEpochs;
+    if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet)) {
+        for (baseModel<T>* model : modelSet<T>::myModelSet) {
+            neuralNetwork<T>* nnModel = dynamic_cast<neuralNetwork<T>*>(model); //FIXME: I really dislike this design
+            vecEpochs.push_back(nnModel->getEpochs());
+        }
+    } else {
+        vecEpochs = { numEpochs };
+    }
+    return vecEpochs;
+}
 template<typename T>
 void regressionTemplate<T>::setNumEpochs(const int &epochs) {
     numEpochs = epochs;
@@ -147,8 +161,6 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
         for (int j = 0; j < modelSet<T>::numInputs; ++j) {
             whichInputs.push_back(j);
         }
-        std::cout << "numHiddenNodes: " << numHiddenNodes << std::endl;
-        std::cout << "modelSet<T>::numInputs: " << modelSet<T>::numInputs << std::endl;
         for (int i = 0; i < modelSet<T>::numOutputs; ++i) {
             modelSet<T>::myModelSet.push_back(new neuralNetwork<T>(modelSet<T>::numInputs, whichInputs, numHiddenLayers, numHiddenNodes));
         }
@@ -160,8 +172,9 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
         }
         modelSet<T>::created = true;
         timer = clock() - timer;
+        bool result = modelSet<T>::train(training_set);
         std::cout << "Regression trained in " << (float)timer/CLOCKS_PER_SEC << " ms." << std::endl;
-        return modelSet<T>::train(training_set);
+        return result;
     }
     throw std::length_error("empty training set.");
     return false;
