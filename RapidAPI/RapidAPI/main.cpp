@@ -89,6 +89,9 @@ int main(int argc, const char * argv[]) {
     ////////////////////////////////////////////////////////////////////////////////
     
     regression myNN;
+    regression myNN_nodes;
+    myNN_nodes.setNumHiddenNodes(10);
+    assert(myNN_nodes.getNumHiddenNodes()[0] == 10);
     classification myKnn;
     //classification mySVM(classification::svm);
     
@@ -103,6 +106,7 @@ int main(int argc, const char * argv[]) {
     trainingSet.push_back(tempExample);
     
     myNN.train(trainingSet);
+    myNN_nodes.train(trainingSet);
     //    std::cout << myNN.getJSON() << std::endl;
     std::string filepath = "/var/tmp/modelSetDescription.json";
     myNN.writeJSON(filepath);
@@ -121,6 +125,7 @@ int main(int argc, const char * argv[]) {
     //std::cout << "from file: " << myNNfromFile.run(inputVec)[0] << std::endl;
     
     assert(myNN.run(inputVec)[0] == 20.14);
+    assert(myNN_nodes.run(inputVec)[0] == 20.14);
     //assert(myNN.run(inputVec)[0] == myNNfromString.run(inputVec)[0]);
     //assert(myNN.run(inputVec)[0] == myNNfromFile.run(inputVec)[0]);
     
