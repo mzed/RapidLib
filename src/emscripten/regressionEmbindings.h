@@ -21,7 +21,10 @@ EMSCRIPTEN_BINDINGS(regression_module) {
     .function("train", &regressionTemplate<double>::train)
     .function("getNumHiddenLayers", &regressionTemplate<double>::getNumHiddenLayers)
     .function("setNumHiddenLayers", &regressionTemplate<double>::setNumHiddenLayers)
+    .function("getNumEpochs", &regressionTemplate<double>::getNumEpochs)
     .function("setNumEpochs", &regressionTemplate<double>::setNumEpochs)
+    .function("getNumHiddenNodes", &regressionTemplate<double>::getNumHiddenNodes)
+    .function("setNumHiddenNodes", &regressionTemplate<double>::setNumHiddenNodes)
     ;
 
 };
