@@ -8,8 +8,9 @@
 #include "seriesClassification.h"
 #include "rapidStream.h"
 
-int main(int argc, const char * argv[]) {
 
+int main(int argc, const char * argv[]) {
+ 
     rapidStream<double> rapidProcess;
     rapidProcess.bayesSetDiffusion(-2.0);
     rapidProcess.bayesSetJumpRate(-10.0);
@@ -21,7 +22,7 @@ int main(int argc, const char * argv[]) {
         //std::cout << "bayes: " << bayes <<std::endl;
     }
     assert( bayes > 0.68 );
-
+    
     //vanAllenTesting
     seriesClassification testDTW;
     std::vector<trainingSeries> testVector;
@@ -44,6 +45,7 @@ int main(int argc, const char * argv[]) {
     //#define MULTILAYER 1
 #ifdef MULTILAYER
     regression myNN2;
+    regression myNNsmall;
     
     std::vector<trainingExample> trainingSet1;
     trainingExample  tempExample1;
@@ -58,11 +60,14 @@ int main(int argc, const char * argv[]) {
     
     myNN2.setNumEpochs(50000);
     myNN2.train(trainingSet1);
+    myNNsmall.train(trainingSet1);
     
-    std::vector<double> inputVec1 = { 2.0, 2.0, 2.0 };
-    std::cout << myNN2.run(inputVec1)[0] <<std::endl;
+    std::vector<double> inputVec1 = {1.5, 1.5, 1.5 };
+    std::cout << "two layers1: " << myNN2.run(inputVec1)[0] <<std::endl;
+    std::cout << "one layer1: " << myNNsmall.run(inputVec1)[0] <<std::endl;
     
     myNN2.reset();
+    myNNsmall.reset();
     trainingSet1.clear();
     tempExample1.input = {0., 0. };
     tempExample1.output = { 0.0 };
@@ -83,12 +88,15 @@ int main(int argc, const char * argv[]) {
     myNN2.train(trainingSet1);
     
     inputVec1 = { 0.9, 0.7 };
-    std::cout << myNN2.run(inputVec1)[0] <<std::endl;
+    std::cout << "two layers2: " << myNN2.run(inputVec1)[0] <<std::endl;
+    std::cout << "one layer2: " << myNNsmall.run(inputVec1)[0] <<std::endl;
+    
 #endif
     
     ////////////////////////////////////////////////////////////////////////////////
     
     regression myNN;
+    myNN.setNumHiddenNodes(10);
     classification myKnn;
     //classification mySVM(classification::svm);
     
@@ -392,6 +400,49 @@ int main(int argc, const char * argv[]) {
     
     
     ////////////////////////////////////////////////////////////////////////
+
+    //Machine Learning
+    regression mtofRegression; //Create a machine learning object
+    mtofRegression.setNumHiddenLayers(3);
+    //mtofRegression.setNumEpochs(50000);
+    
+    std::vector<trainingExample> trainingSet_mtof;
+    trainingExample  tempExample_mtof;
+    
+    //Setting up the first element of training data
+    tempExample_mtof.input = { 48 };
+    tempExample_mtof.output = { 130.81 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    //More elements
+    tempExample_mtof.input = { 54 };
+    tempExample_mtof.output = { 185.00 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    tempExample_mtof.input = { 60 };
+    tempExample_mtof.output = { 261.63 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    tempExample_mtof.input = { 66 };
+    tempExample_mtof.output = { 369.994 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    tempExample_mtof.input = { 72 };
+    tempExample_mtof.output = { 523.25 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    //Train the machine learning model with the data
+    mtofRegression.train(trainingSet_mtof);
+    
+    //Get some user input
+    int newNote = 0;
+    std::cout << "Type a MIDI note number.\n"; std::cin >> newNote;
+    
+    //Run the trained model on the user input
+    std::vector<double> inputVec_mtof = { double(newNote) };
+    double freqHz = mtofRegression.run(inputVec_mtof)[0];
+    
+    std::cout << "MIDI note " << newNote << " is " << freqHz << " Hertz" << std::endl;
     
     
     return 0;
