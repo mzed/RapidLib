@@ -41,9 +41,10 @@ int main(int argc, const char * argv[]) {
     //////////////////////////////////////////////////////////////////////////////simple multilayer test
     
     //This takes forever, I don't always run it
-    //#define MULTILAYER 1
+    #define MULTILAYER 1
 #ifdef MULTILAYER
-    regression myNN2;
+    regression myNN_ML1;
+    regression myNN_ML2;
     
     std::vector<trainingExample> trainingSet1;
     trainingExample  tempExample1;
@@ -53,15 +54,21 @@ int main(int argc, const char * argv[]) {
     tempExample1.input = { 2.0, 2.0, 2.0 };
     tempExample1.output = { 1.3 };
     trainingSet1.push_back(tempExample1);
-    myNN2.setNumHiddenLayers(2);
-    assert(myNN2.getNumHiddenLayers()[0] == 2);
     
-    myNN2.setNumEpochs(50000);
-    myNN2.train(trainingSet1);
+    myNN_ML2.setNumHiddenLayers(2);
+    assert(myNN_ML2.getNumHiddenLayers()[0] == 2);
+    myNN_ML2.setNumEpochs(1000);
+    assert(myNN_ML2.getNumEpochs()[0] == 1000);
     
-    std::vector<double> inputVec1 = { 2.0, 2.0, 2.0 };
-    std::cout << myNN2.run(inputVec1)[0] <<std::endl;
+    myNN_ML1.train(trainingSet1);
+    myNN_ML2.train(trainingSet1);
     
+    std::vector<double> inputVec1 = { 1.1, 1.1, 1.1 };
+    std::cout << "single layer: " << myNN_ML1.run(inputVec1)[0] <<std::endl;
+    std::cout << "multilayer: " << myNN_ML2.run(inputVec1)[0] <<std::endl;
+    //assert(myNN_ML1.run(inputVec1)[0] == myNN_ML2.run(inputVec1)[0]);
+    
+    /*
     myNN2.reset();
     trainingSet1.clear();
     tempExample1.input = {0., 0. };
@@ -84,8 +91,8 @@ int main(int argc, const char * argv[]) {
     
     inputVec1 = { 0.9, 0.7 };
     std::cout << myNN2.run(inputVec1)[0] <<std::endl;
+     */
 #endif
-    
     ////////////////////////////////////////////////////////////////////////////////
     
     regression myNN;
@@ -397,12 +404,13 @@ int main(int argc, const char * argv[]) {
     
     
     ////////////////////////////////////////////////////////////////////////
-#define layerTest 1
+//#define layerTest 1
 #ifdef layerTest
     //Machine Learning
     regression mtofRegression; //Create a machine learning object
-    mtofRegression.setNumHiddenLayers(3);
-    //mtofRegression.setNumEpochs(50000);
+    mtofRegression.setNumHiddenLayers(2);
+    std::cout << "epochs: " << mtofRegression.getNumEpochs()[0] << std::endl;
+    mtofRegression.setNumEpochs(5000);
     
     std::vector<trainingExample> trainingSet_mtof;
     trainingExample  tempExample_mtof;
