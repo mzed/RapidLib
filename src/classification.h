@@ -37,7 +37,7 @@ public:
     ~classificationTemplate() {}
     
     /** Train on a specified set, causes creation if not created */
-    bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet);
+    bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
     
     /** Check the K values for each model. This feature is temporary, and will be replaced by a different design. */
     std::vector<int> getK();
