@@ -394,21 +394,36 @@ describe('RapidLib Signal Processing', function () {
     });
 
     myStream.reset();
-    myStream.push(0);
-
-
-    myStream.push(1);
+    myStream.push(3)
+    myStream.push(3)
+    myStream.push(-10)
+    myStream.push(3);
+    myStream.push(29);
     it('velocity should be 1', function () {
-        expect(myStream.velocity()).to.equal(1);
+        expect(myStream.velocity()).to.equal(26);
     });
 
     let accelStream = new rapidMix.StreamBuffer;
-    accelStream.push(0);
-    accelStream.push(0);
+    accelStream.push(-10);
+    accelStream.push(1);
+    accelStream.push(1);
     accelStream.push(11);
-    it('acceleration should be 10'/*, function () {
+    it('acceleration should be 10', function () {
         expect(accelStream.acceleration()).to.equal(10);
-    }*/);
+    });
+    
+    let zeroStream = new rapidMix.StreamBuffer(6);
+    zeroStream.push(1);
+    zeroStream.push(0);
+    zeroStream.push(-1);
+    zeroStream.push(0);
+    zeroStream.push(1);
+    zeroStream.push(-1);
+
+    it('zeroCrossings should be 3', function () {
+        expect(zeroStream.numZeroCrossings()).to.equal(3);
+    });
+
     describe('when streaming to statStream', function () {
         let statStream = new rapidMix.StreamBuffer(5);
         statStream.push(1.1);

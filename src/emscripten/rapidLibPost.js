@@ -615,6 +615,13 @@ Module.StreamBuffer.prototype = {
         return this.rapidStream.maximum();
     },
     /**
+     * Count the number of zero crossings in the buffer.
+     * @return {number} number of zero crossings.
+     */
+    numZeroCrossings: function () {
+        return this.rapidStream.numZeroCrossings();
+    },
+    /**
      * Calculate the sum of all values in the buffer.
      * @return {number} sum.
      */

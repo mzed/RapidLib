@@ -23,6 +23,7 @@ EMSCRIPTEN_BINDINGS(rapidStream_module) {
     .function("acceleration", &rapidStream<double>::acceleration)
     .function("minimum", &rapidStream<double>::minimum)
     .function("maximum", &rapidStream<double>::maximum)
+    .function("numZeroCrossings", &rapidStream<double>::numZeroCrossings)
     .function("sum", &rapidStream<double>::sum)
     .function("mean", &rapidStream<double>::mean)
     .function("standardDeviation", &rapidStream<double>::standardDeviation)
