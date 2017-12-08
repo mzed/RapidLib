@@ -411,17 +411,21 @@ describe('RapidLib Signal Processing', function () {
     it('acceleration should be 10', function () {
         expect(accelStream.acceleration()).to.equal(10);
     });
-    
-    let zeroStream = new rapidMix.StreamBuffer(6);
-    zeroStream.push(1);
-    zeroStream.push(0);
-    zeroStream.push(-1);
-    zeroStream.push(0);
-    zeroStream.push(1);
-    zeroStream.push(-1);
 
-    it('zeroCrossings should be 3', function () {
-        expect(zeroStream.numZeroCrossings()).to.equal(3);
+    let zeroStream = new rapidMix.StreamBuffer(7);
+    zeroStream.push(-.5);
+    zeroStream.push(0.707);
+    zeroStream.push(0.68);
+    zeroStream.push(1);
+    zeroStream.push(0);
+    zeroStream.push(-1);
+    zeroStream.push(0);
+    zeroStream.push(1);
+    zeroStream.push(-1);
+    zeroStream.push(0.01);
+
+    it('zeroCrossings should be 4', function () {
+        expect(zeroStream.numZeroCrossings()).to.equal(4);
     });
 
     describe('when streaming to statStream', function () {
