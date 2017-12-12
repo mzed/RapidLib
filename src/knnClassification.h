@@ -18,7 +18,7 @@
 
 /** Class for implementing a knn classifier */
 template<typename T>
-class knnClassification : public baseModel<T> {
+class knnClassification final : public baseModel<T> {
     
 public:
     /** Constructor that takes training examples in

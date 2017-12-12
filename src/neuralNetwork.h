@@ -24,7 +24,7 @@
  * This class includes both running and training, and constructors for reading trained models from JSON.
  */
 template<typename T>
-class neuralNetwork : public baseModel<T> {
+class neuralNetwork final : public baseModel<T> {
     
 public:
     /** This is the constructor for building a trained model from JSON. */
