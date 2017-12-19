@@ -41,9 +41,10 @@ int main(int argc, const char * argv[]) {
     //////////////////////////////////////////////////////////////////////////////simple multilayer test
     
     //This takes forever, I don't always run it
-    //#define MULTILAYER 1
+    #define MULTILAYER 1
 #ifdef MULTILAYER
-    regression myNN2;
+    regression myNN_ML1;
+    regression myNN_ML2;
     
     std::vector<trainingExample> trainingSet1;
     trainingExample  tempExample1;
@@ -53,15 +54,21 @@ int main(int argc, const char * argv[]) {
     tempExample1.input = { 2.0, 2.0, 2.0 };
     tempExample1.output = { 1.3 };
     trainingSet1.push_back(tempExample1);
-    myNN2.setNumHiddenLayers(2);
-    assert(myNN2.getNumHiddenLayers()[0] == 2);
     
-    myNN2.setNumEpochs(50000);
-    myNN2.train(trainingSet1);
+    myNN_ML2.setNumHiddenLayers(2);
+    assert(myNN_ML2.getNumHiddenLayers()[0] == 2);
+    myNN_ML2.setNumEpochs(1000);
+    assert(myNN_ML2.getNumEpochs()[0] == 1000);
     
-    std::vector<double> inputVec1 = { 2.0, 2.0, 2.0 };
-    std::cout << myNN2.run(inputVec1)[0] <<std::endl;
+    myNN_ML1.train(trainingSet1);
+    myNN_ML2.train(trainingSet1);
     
+    std::vector<double> inputVec1 = { 1.1, 1.1, 1.1 };
+    std::cout << "single layer: " << myNN_ML1.run(inputVec1)[0] <<std::endl;
+    std::cout << "multilayer: " << myNN_ML2.run(inputVec1)[0] <<std::endl;
+    //assert(myNN_ML1.run(inputVec1)[0] == myNN_ML2.run(inputVec1)[0]);
+    
+    /*
     myNN2.reset();
     trainingSet1.clear();
     tempExample1.input = {0., 0. };
@@ -84,8 +91,8 @@ int main(int argc, const char * argv[]) {
     
     inputVec1 = { 0.9, 0.7 };
     std::cout << myNN2.run(inputVec1)[0] <<std::endl;
+     */
 #endif
-    
     ////////////////////////////////////////////////////////////////////////////////
     
     regression myNN;
@@ -126,8 +133,8 @@ int main(int argc, const char * argv[]) {
     
     assert(myNN.run(inputVec)[0] == 20.14);
     assert(myNN_nodes.run(inputVec)[0] == 20.14);
-    //assert(myNN.run(inputVec)[0] == myNNfromString.run(inputVec)[0]);
-    //assert(myNN.run(inputVec)[0] == myNNfromFile.run(inputVec)[0]);
+    assert(myNN.run(inputVec)[0] == myNNfromString.run(inputVec)[0]);
+    assert(myNN.run(inputVec)[0] == myNNfromFile.run(inputVec)[0]);
     
     //Testing exceptions for regression
     std::vector<double> emptyVec = {};
@@ -201,8 +208,8 @@ int main(int argc, const char * argv[]) {
     //std::cout << "knn from file: " << myKnnFromFile.run(inputVec)[0] << std::endl;
     
     assert(myKnn.run(inputVec)[0] == 20);
-    //assert(myKnn.run(inputVec)[0] == myKnnFromString.run(inputVec)[0]);
-    //assert(myKnn.run(inputVec)[0] == myKnnFromFile.run(inputVec)[0]);
+    assert(myKnn.run(inputVec)[0] == myKnnFromString.run(inputVec)[0]);
+    assert(myKnn.run(inputVec)[0] == myKnnFromFile.run(inputVec)[0]);
     
     try {
         myKnn.run(emptyVec);
@@ -397,7 +404,54 @@ int main(int argc, const char * argv[]) {
     
     
     ////////////////////////////////////////////////////////////////////////
+//#define layerTest 1
+#ifdef layerTest
+    //Machine Learning
+    regression mtofRegression; //Create a machine learning object
+    mtofRegression.setNumHiddenLayers(2);
+    std::cout << "epochs: " << mtofRegression.getNumEpochs()[0] << std::endl;
+    mtofRegression.setNumEpochs(5000);
     
+    std::vector<trainingExample> trainingSet_mtof;
+    trainingExample  tempExample_mtof;
+    
+    //Setting up the first element of training data
+    tempExample_mtof.input = { 48 };
+    tempExample_mtof.output = { 130.81 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    //More elements
+    tempExample_mtof.input = { 54 };
+    tempExample_mtof.output = { 185.00 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    tempExample_mtof.input = { 60 };
+    tempExample_mtof.output = { 261.63 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    tempExample_mtof.input = { 66 };
+    tempExample_mtof.output = { 369.994 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    tempExample_mtof.input = { 72 };
+    tempExample_mtof.output = { 523.25 };
+    trainingSet_mtof.push_back(tempExample_mtof);
+    
+    //Train the machine learning model with the data
+    mtofRegression.train(trainingSet_mtof);
+    
+    //Get some user input
+    int newNote = 0;
+    std::cout << "Type a MIDI note number.\n"; std::cin >> newNote;
+    
+    //Run the trained model on the user input
+    std::vector<double> inputVec_mtof = { double(newNote) };
+    double freqHz = mtofRegression.run(inputVec_mtof)[0];
+    
+    std::cout << "MIDI note " << newNote << " is " << freqHz << " Hertz" << std::endl;
+#endif
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     
     return 0;
 }

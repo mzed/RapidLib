@@ -54,7 +54,7 @@ void even_ext(vector<datatype> const& src, vector<datatype> & dst, unsigned int 
     copy(src.begin(), src.end(), dst.begin()+n);
     
     t += src.size();
-    for (unsigned int i=src.size()-2; i>src.size()-n-2; i--) {
+    for (unsigned int i =  int (src.size()-2); i>src.size()-n-2; i--) {
         dst[t++] = src[i];
     }
 }
@@ -77,7 +77,7 @@ void odd_ext(vector<datatype> const& src, vector<datatype> & dst, unsigned int n
     copy(src.begin(), src.end(), dst.begin()+n);
     
     t += src.size();
-    for (unsigned int i=src.size()-2; i>src.size()-n-2; i--) {
+    for (unsigned int i = int (src.size() - 2); i>src.size()-n-2; i--) {
         dst[t++] = 2 * src[src.size()-1] - src[i];
     }
 }
@@ -100,7 +100,7 @@ void const_ext(vector<datatype> const& src, vector<datatype> & dst, unsigned int
     copy(src.begin(), src.end(), dst.begin()+n);
     
     t += src.size();
-    for (unsigned int i=src.size()-2; i>src.size()-n-2; i--) {
+    for (unsigned int i = int (src.size() - 2); i>src.size()-n-2; i--) {
         dst[t++] = src[src.size()-1];
     }
 }

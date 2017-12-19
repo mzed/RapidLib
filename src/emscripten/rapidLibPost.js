@@ -10,7 +10,7 @@
 
 "use strict";
 
-console.log("RapidLib 05.12.2017 14:05");
+console.log("RapidLib 19.12.2017 10:59");
 
 /**
  * Utility function to convert js objects into C++ trainingSets
@@ -566,7 +566,7 @@ Module.SeriesClassification.prototype = {
 
 Module.StreamBuffer = function (windowSize) {
     if (windowSize) {
-        this.rapidStream = new Module.RapidStreamCpp(windowSize);
+        this.rapidStream = new Module.RapidStreamCpp(parseFloat(windowSize));
     } else {
         this.rapidStream = new Module.RapidStreamCpp();
     }
@@ -613,6 +613,13 @@ Module.StreamBuffer.prototype = {
      */
     maximum: function () {
         return this.rapidStream.maximum();
+    },
+    /**
+     * Count the number of zero crossings in the buffer.
+     * @return {number} number of zero crossings.
+     */
+    numZeroCrossings: function () {
+        return this.rapidStream.numZeroCrossings();
     },
     /**
      * Calculate the sum of all values in the buffer.

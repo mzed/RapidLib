@@ -19,7 +19,7 @@
  */
 
 template<typename T>
-class regressionTemplate : public modelSet<T> {
+class regressionTemplate final : public modelSet<T> {
 public:
     /** with no arguments, just make an empty vector */
     regressionTemplate();
@@ -32,7 +32,7 @@ public:
     ~regressionTemplate() {};
     
     /** Train on a specified set, causes creation if not created */
-    bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet);
+    bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
     
     /** Check how many training epochs each model will run. This feature is temporary, and will be replaced by a different design. */
     std::vector<int> getNumEpochs() const;
