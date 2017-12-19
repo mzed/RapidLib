@@ -10,7 +10,7 @@
 
 "use strict";
 
-console.log("RapidLib 08.12.2017 16:54");
+console.log("RapidLib 12.12.2017 17:50");
 
 /**
  * Utility function to convert js objects into C++ trainingSets
@@ -566,7 +566,7 @@ Module.SeriesClassification.prototype = {
 
 Module.StreamBuffer = function (windowSize) {
     if (windowSize) {
-        this.rapidStream = new Module.RapidStreamCpp(windowSize);
+        this.rapidStream = new Module.RapidStreamCpp(parseFloat(windowSize));
     } else {
         this.rapidStream = new Module.RapidStreamCpp();
     }

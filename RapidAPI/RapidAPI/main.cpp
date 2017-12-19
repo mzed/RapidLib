@@ -208,8 +208,8 @@ int main(int argc, const char * argv[]) {
     //std::cout << "knn from file: " << myKnnFromFile.run(inputVec)[0] << std::endl;
     
     assert(myKnn.run(inputVec)[0] == 20);
-    //assert(myKnn.run(inputVec)[0] == myKnnFromString.run(inputVec)[0]);
-    //assert(myKnn.run(inputVec)[0] == myKnnFromFile.run(inputVec)[0]);
+    assert(myKnn.run(inputVec)[0] == myKnnFromString.run(inputVec)[0]);
+    assert(myKnn.run(inputVec)[0] == myKnnFromFile.run(inputVec)[0]);
     
     try {
         myKnn.run(emptyVec);
