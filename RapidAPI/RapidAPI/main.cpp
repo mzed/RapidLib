@@ -133,8 +133,8 @@ int main(int argc, const char * argv[]) {
     
     assert(myNN.run(inputVec)[0] == 20.14);
     assert(myNN_nodes.run(inputVec)[0] == 20.14);
-    //assert(myNN.run(inputVec)[0] == myNNfromString.run(inputVec)[0]);
-    //assert(myNN.run(inputVec)[0] == myNNfromFile.run(inputVec)[0]);
+    assert(myNN.run(inputVec)[0] == myNNfromString.run(inputVec)[0]);
+    assert(myNN.run(inputVec)[0] == myNNfromFile.run(inputVec)[0]);
     
     //Testing exceptions for regression
     std::vector<double> emptyVec = {};

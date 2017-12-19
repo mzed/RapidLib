@@ -226,6 +226,7 @@ void modelSet<T>::json2modelSet(const Json::Value &root) {
             myModelSet.push_back(new knnClassification<T>(modelNumInputs, whichInputs, trainingSet, k));
         }
     }
+    created = true;
 }
 
 template<typename T>
