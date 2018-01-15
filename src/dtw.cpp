@@ -10,6 +10,7 @@
 #include <vector>
 #include <cmath>
 #include <cassert>
+#include <limits>
 #include "dtw.h"
 
 template<typename T>
