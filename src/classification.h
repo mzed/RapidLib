@@ -18,7 +18,7 @@
  */
 
 template<typename T>
-class classificationTemplate final : public modelSet<T> {
+class classificationTemplate : public modelSet<T> {
 public:
     enum classificationTypes { knn, svm };
     

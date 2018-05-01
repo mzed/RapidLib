@@ -19,7 +19,7 @@
  */
 
 template<typename T>
-class regressionTemplate final : public modelSet<T> {
+class regressionTemplate : public modelSet<T> {
 public:
     /** with no arguments, just make an empty vector */
     regressionTemplate();
