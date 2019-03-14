@@ -8,14 +8,13 @@
  */
 
 
-#ifndef baseModel_h
-#define baseModel_h
+#pragma once
 
 #include <vector>
 #include "trainingExample.h"
 
 #ifndef EMSCRIPTEN
-#include "../dependencies/json/json.h"
+#include "../libs/dependencies/json/json.h"
 #endif
 
 #ifdef __ANDROID__
@@ -62,6 +61,4 @@ protected:
         return toReturn;
     }
 #endif
-    
 };
-#endif

@@ -7,16 +7,15 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#ifndef svm_h
-#define svm_h
+#pragma once
 
 #include <vector>
 #include "baseModel.h"
-#include "../dependencies/libsvm/libsvm.h"
+#include "../libs/dependencies/libsvm/libsvm.h"
 
 template<typename T>
-class svmClassification final : public baseModel<T> {
-    
+class svmClassification final : public baseModel<T>
+{
 public:
     enum SVMType{ C_SVC = 0, NU_SVC, ONE_CLASS, EPSILON_SVR, NU_SVR };
     enum KernelType{ LINEAR_KERNEL = 0, POLY_KERNEL, RBF_KERNEL, SIGMOID_KERNEL, PRECOMPUTED_KERNEL };
@@ -104,8 +103,7 @@ public:
     
     int getNumInputs() const override;
     std::vector<int> getWhichInputs() const override;
-    
-    
+        
 #ifndef EMSCRIPTEN
     void getJSONDescription(Json::Value &currentModel) override;
 #endif
@@ -124,10 +122,3 @@ private:
     
     bool trained;
 };
-
-#endif
-
-
-
-
-

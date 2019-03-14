@@ -6,14 +6,13 @@
 //  Copyright © 2016 Goldsmiths. All rights reserved.
 //
 
-#ifndef knnClassification_h
-#define knnClassification_h
+#pragma once
 
 #include <vector>
 #include "baseModel.h"
 
 #ifndef EMSCRIPTEN
-#include "../dependencies/json/json.h"
+#include "../libs/dependencies/json/json.h"
 #endif
 
 /** Class for implementing a knn classifier */
@@ -88,6 +87,3 @@ private:
     inline void updateK();
     std::pair<int, T>* nearestNeighbours;
 };
-
-#endif
-

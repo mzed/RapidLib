@@ -15,7 +15,7 @@
 #include "modelSet.h"
 
 #ifndef EMSCRIPTEN
-#include "../dependencies/json/json.h"
+#include "../libs/dependencies/json/json.h"
 #else
 #include "emscripten/modelSetEmbindings.h"
 #endif
@@ -63,17 +63,17 @@ bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training
 }
 
 template<typename T>
-void modelSet<T>::threadTrain(int whichModel, const std::vector<trainingExampleTemplate<T> > &training_set) {
+void modelSet<T>::threadTrain(int i, const std::vector<trainingExampleTemplate<T> > &training_set) {
     std::vector<trainingExampleTemplate<T> > modelTrainingSet; //just one output
     for (trainingExampleTemplate<T> example : training_set) {
         std::vector<T> tempT;
         for (int j = 0; j < numInputs; ++j) {
             tempT.push_back(example.input[j]);
         }
-        trainingExampleTemplate<T> tempObj = {tempT, std::vector<T> {example.output[whichModel]}};
+        trainingExampleTemplate<T> tempObj = {tempT, std::vector<T> {example.output[i]}};
         modelTrainingSet.push_back(tempObj);
     }
-    myModelSet[whichModel]->train(modelTrainingSet);
+    myModelSet[i]->train(modelTrainingSet);
 }
 
 template<typename T>

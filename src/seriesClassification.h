@@ -7,8 +7,7 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#ifndef seriesClassification_hpp
-#define seriesClassification_hpp
+#pragma once
 
 #include <vector>
 #include <string>
@@ -22,7 +21,8 @@
  */
 
 template<typename T>
-class seriesClassificationTemplate final {
+class seriesClassificationTemplate final
+{
 public:
     
     /** Constructor, no params */
@@ -114,10 +114,15 @@ private:
     std::vector<std::vector<T> > seriesBuffer;
     int hopSize;
     int counter;
+    
+    int findClosestSeries() const;
+    void runThread(const std::vector<std::vector<T>> &inputSeries, int i);
 };
 
-//This is here to keep the old API working
-using seriesClassification = seriesClassificationTemplate<double>;
-using seriesClassificationFloat = seriesClassificationTemplate<float>;
+namespace rapidlib
+{
+    //This is here to keep the old API working
+    using seriesClassification = seriesClassificationTemplate<double>;
+    using seriesClassificationFloat = seriesClassificationTemplate<float>;
+}
 
-#endif

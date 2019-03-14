@@ -7,8 +7,7 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
-#ifndef regression_h
-#define regression_h
+#pragma once
 
 #include <vector>
 #include "modelSet.h"
@@ -19,7 +18,8 @@
  */
 
 template<typename T>
-class regressionTemplate final : public modelSet<T> {
+class regressionTemplate final : public modelSet<T>
+{
 public:
     /** with no arguments, just make an empty vector */
     regressionTemplate();
@@ -58,8 +58,10 @@ private:
     int numHiddenNodes; //Temporary -- also should be part of nn only. -mz
 };
 
-//This is here so the old API still works
-using regression = regressionTemplate<double>;
-using regressionFloat = regressionTemplate<float>;
+namespace rapidlib
+{
+    //This is here so the old API still works
+    using regression = regressionTemplate<double>;
+    using regressionFloat = regressionTemplate<float>;
+}
 
-#endif

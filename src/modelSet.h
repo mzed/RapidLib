@@ -6,8 +6,7 @@
 //  Copyright © 2016 Goldsmiths. All rights reserved.
 //
 
-#ifndef modelSet_h
-#define modelSet_h
+#pragma once
 
 #include <vector>
 #include "trainingExample.h"
@@ -16,7 +15,7 @@
 #include "knnClassification.h"
 #include "svmClassification.h"
 #ifndef EMSCRIPTEN
-#include "../dependencies/json/json.h"
+#include "../libs/dependencies/json/json.h"
 #endif
 
 /** This class holds a set of models with the same or different algorithms. */
@@ -38,10 +37,6 @@ protected:
     std::vector<std::string> inputNames;
     int numOutputs;
     bool created;
-  
-private:
-    void threadTrain(int whichModel, const std::vector<trainingExampleTemplate<T> > &training_set);
-
 
 #ifndef EMSCRIPTEN //The javascript code will do its own JSON parsing
 public:
@@ -57,9 +52,7 @@ public:
 private:
     Json::Value parse2json();
     void json2modelSet(const Json::Value &root);
-    //void threadTrain(int whichModel, const std::vector<trainingExampleTemplate<T> > &training_set);
-    
-#endif
-};
+    void threadTrain(int i, const std::vector<trainingExampleTemplate<T> > &training_set);
 
 #endif
+};
