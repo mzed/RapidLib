@@ -3,10 +3,10 @@
 #include <cassert>
 #include <random>
 #include <algorithm>
-#include "regression.h"
-#include "classification.h"
-#include "seriesClassification.h"
-#include "rapidStream.h"
+#include "../../src/regression.h"
+#include "../../src/classification.h"
+#include "../../src/seriesClassification.h"
+#include "../../src/rapidStream.h"
 
 int main(int argc, const char * argv[]) {
 
