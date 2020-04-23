@@ -6,5 +6,5 @@ jobs:
     name: Linux build
     runs-on: ubuntu-latest
     steps:
-      - name: name: make
+      - name: make
         run: make LinuxCI
