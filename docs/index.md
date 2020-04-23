@@ -10,7 +10,7 @@ It currently features classification (using kNN), regression (multilayer percept
 
 ## Javascript   
 RapidLib has also been transpiled to JavaScript using Emscripten. It can be used in a browser through a script tag.
-```javascript
+```
 <script src="https://www.doc.gold.ac.uk/eavi/rapidmix/RapidLib.js"></script>
 ```
 It can also be used in Node.js via npm:
@@ -18,4 +18,4 @@ It can also be used in Node.js via npm:
 npm install rapidlib
 ```
 
-**[Full JavaScript documentation can be found here] (http://doc.gold.ac.uk/eavi/rapidmix/docs_js/)**
+**[Full JavaScript documentation can be found here](https://mzed.github.io/RapidLib/jsdoc/)**
