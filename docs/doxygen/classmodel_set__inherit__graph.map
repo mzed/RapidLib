@@ -1,0 +1,4 @@
+<map id="modelSet&lt; T &gt;" name="modelSet&lt; T &gt;">
+<area shape="rect" id="node2" href="$classclassification_template.html" title="{classificationTemplate\&lt; T \&gt;\n||+ classificationTemplate()\l+ classificationTemplate()\l+ classificationTemplate()\l+ classificationTemplate()\l+ ~classificationTemplate()\l+ train()\l+ getK()\l+ setK()\l}" alt="" coords="5,287,187,453"/>
+<area shape="rect" id="node3" href="$classregression_template.html" title="{regressionTemplate\&lt; T \&gt;\n||+ regressionTemplate()\l+ regressionTemplate()\l+ regressionTemplate()\l+ ~regressionTemplate()\l+ train()\l+ setNumEpochs()\l+ getNumHiddenLayers()\l+ setNumHiddenLayers()\l}" alt="" coords="211,287,382,453"/>
+</map>
