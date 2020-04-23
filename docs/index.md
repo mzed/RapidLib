@@ -6,7 +6,7 @@ RapidLib is a lightweight library for interactive machine learning, inspired by 
 
 It currently features classification (using kNN), regression (multilayer perceptron), and series classification (using dynamic time warping).   
 
-**[Full C++ documentation can be found here](http://doc.gold.ac.uk/eavi/rapidmix/docs_cpp/annotated.html).**
+**[Full C++ documentation can be found here](https://mzed.github.io/RapidLib/doxygen/annotated.html).**
 
 ## Javascript   
 RapidLib has also been transpiled to JavaScript using Emscripten. It can be used in a browser through a script tag.
