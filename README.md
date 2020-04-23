@@ -1,3 +1,6 @@
+
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mzed/RapidLib/blob/master/LICENSE)
+
 ## C++ Library
 RapidLib is a lightweight library for interactive machine learning, inspired by [Wekinator](http://www.wekinator.org/).
 
