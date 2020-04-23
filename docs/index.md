@@ -18,4 +18,4 @@ It can also be used in Node.js via npm:
 npm install rapidlib
 ```
 
-**[Full JavaScript documentation can be found here] (http://doc.gold.ac.uk/eavi/rapidmix/docs_js/)**
+**[Full JavaScript documentation can be found here](https://mzed.github.io/RapidLib/jsdoc/)**
