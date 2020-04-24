@@ -15,11 +15,11 @@
 #endif
 
 template<typename T>
-rapidStream<T>::rapidStream (int window_size) {
+rapidStream<T>::rapidStream (std::size_t window_size) {
     windowSize = window_size;
     windowIndex = 0;
     circularWindow = new T[window_size];
-    for (int i = 0; i < windowSize; ++i) {
+    for (std::size_t i = 0; i < windowSize; ++i) {
         circularWindow[i] = 0;
     }
     
@@ -36,7 +36,7 @@ rapidStream<T>::rapidStream() {
     windowSize = 3;
     windowIndex = 0;
     circularWindow = new T[windowSize];
-    for (int i = 0; i < windowSize; ++i) {
+    for (std::size_t i = 0; i < windowSize; ++i) {
         circularWindow[i] = 0;
     }
 }
@@ -62,7 +62,7 @@ void rapidStream<T>::pushToWindow(T input) {
 }
 
 template<typename T>
-inline T rapidStream<T>::calcCurrentVel(int i) const {
+inline T rapidStream<T>::calcCurrentVel(std::size_t i) const {
     return circularWindow[ (i + windowIndex) % windowSize] - circularWindow[ (i + windowIndex - 1) % windowSize];
 }
 
@@ -109,8 +109,8 @@ uint32_t rapidStream<T>::numZeroCrossings() const {
         ++zeroCrossings;
         previous = 0;
     }
-    for (int i =1; i < windowSize; ++i) {
-        int index = (windowIndex + i) % windowSize;
+    for (std::size_t i =1; i < windowSize; ++i) {
+        std::size_t index = (windowIndex + i) % windowSize;
         if (circularWindow[index] < 0 && previous >=0) { //Transition to negative
             ++zeroCrossings;
             previous = -1;
@@ -213,7 +213,7 @@ template<typename T>
 T rapidStream<T>::minAcceleration() const {
     T minAccel = std::numeric_limits<T>::infinity();
     T lastVel = calcCurrentVel (1);
-    for (int i = 2; i < windowSize; ++i) {
+    for (std::size_t i = 2; i < windowSize; ++i) {
         T currentVel = calcCurrentVel (i);
         T currentAccel =  currentVel - lastVel;
         lastVel = currentVel;
@@ -228,7 +228,7 @@ template<typename T>
 T rapidStream<T>::maxAcceleration() const {
     T maxAccel = std::numeric_limits<T>::lowest();
     T lastVel = calcCurrentVel(1);
-    for (int i = 2; i < windowSize; ++i) {
+    for (std::size_t i = 2; i < windowSize; ++i) {
         T currentVel = calcCurrentVel (i);
         T currentAccel = currentVel - lastVel;
         lastVel = currentVel;
@@ -239,7 +239,9 @@ T rapidStream<T>::maxAcceleration() const {
     return maxAccel;
 }
 
-//explicit instantiation
-template class rapidStream<double>;
-template class rapidStream<float>;
-
+namespace rapidLib 
+{
+    //explicit instantiation
+    template class rapidStream<double>;
+    template class rapidStream<float>;
+};

@@ -26,10 +26,11 @@ public:
 };
 
 /** return struct holding a warp path and the cost of that path */
+template<typename T>
 struct warpInfo {
 public:
     warpPath path;
-    double cost;
+    T cost;
     
 };
 

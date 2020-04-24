@@ -5,12 +5,10 @@
 #include <algorithm>
 #include <filesystem>
 
-#include "../../src/regression.h"
-#include "../../src/classification.h"
-#include "../../src/seriesClassification.h"
-#include "../../src/rapidStream.h"
+#include "../../src/rapidLib.h"
 
 #include <iostream>
+
 
 int main(int argc, const char * argv[]) 
 {
@@ -29,7 +27,7 @@ int main(int argc, const char * argv[])
     assert( bayes > 0.68 );
 
     //vanAllenTesting
-    seriesClassification testDTW;
+    rapidLib::seriesClassification testDTW;
     std::vector<trainingSeries> testVector;
     trainingSeries tempSeriesTest;
 
@@ -49,8 +47,8 @@ int main(int argc, const char * argv[])
     //This takes forever, I don't always run it
 //#define MULTILAYER 1
 #ifdef MULTILAYER
-    regression myNN_ML1;
-    regression myNN_ML2;
+    rapidlib::regression myNN_ML1;
+    rapidlib::regression myNN_ML2;
 
     std::vector<trainingExample> trainingSet1;
     trainingExample  tempExample1;
@@ -101,11 +99,11 @@ int main(int argc, const char * argv[])
 #endif
      ////////////////////////////////////////////////////////////////////////////////
 
-    regression myNN;
-    regression myNN_nodes;
+    rapidLib::regression myNN;
+    rapidLib::regression myNN_nodes;
     myNN_nodes.setNumHiddenNodes(10);
     assert(myNN_nodes.getNumHiddenNodes()[0] == 10);
-    classification myKnn;
+    rapidLib::classification myKnn;
     //classification mySVM(classification::svm);
 
     std::vector<trainingExample> trainingSet;
@@ -125,10 +123,10 @@ int main(int argc, const char * argv[])
     myNN.writeJSON(filepath);
 
 
-    regression myNNfromString;
+    rapidLib::regression myNNfromString;
     myNNfromString.putJSON(myNN.getJSON());
 
-    regression myNNfromFile;
+    rapidLib::regression myNNfromFile;
     myNNfromFile.readJSON(filepath);
     std::vector<double> inputVec = { 2.0, 44.2 };
 
@@ -159,7 +157,7 @@ int main(int argc, const char * argv[])
         assert(e.what() == std::string("bad input size: 6"));
     }
 
-    regression badNN;
+    rapidLib::regression badNN;
     std::vector<trainingExample> badSet;
     trainingExample  badExample;
     badExample.input = { 0.1, 0.2 };
@@ -202,10 +200,10 @@ int main(int argc, const char * argv[])
     std::string filepath2 = std::filesystem::temp_directory_path().string() + "modelSetDescription_knn.json";
     myKnn.writeJSON(filepath2);
 
-    classification myKnnFromString(classification::knn);
+    rapidLib::classification myKnnFromString(rapidLib::classification::knn);
     myKnnFromString.putJSON(myKnn.getJSON());
 
-    classification myKnnFromFile;
+    rapidLib::classification myKnnFromFile;
     myKnnFromFile.readJSON(filepath2);
 
     std::cout << "knn before: " << myKnn.run(inputVec)[0] << std::endl;
@@ -315,7 +313,7 @@ int main(int argc, const char * argv[])
 
 
     //Testing with labels
-    seriesClassification myDTW;
+    rapidLib::seriesClassification myDTW;
     std::vector<trainingSeries> seriesVector;
     trainingSeries tempSeries;
 
@@ -413,7 +411,7 @@ int main(int argc, const char * argv[])
 //#define layerTest 1
 #ifdef layerTest
     //Machine Learning
-    regression mtofRegression; //Create a machine learning object
+    rapidlib::regression mtofRegression; //Create a machine learning object
     mtofRegression.setNumHiddenLayers(2);
     std::cout << "epochs: " << mtofRegression.getNumEpochs()[0] << std::endl;
     mtofRegression.setNumEpochs(5000);

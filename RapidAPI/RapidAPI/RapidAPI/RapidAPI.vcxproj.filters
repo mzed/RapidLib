@@ -149,5 +149,8 @@
     <ClInclude Include="..\..\..\dependencies\libsvm\libsvm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\rapidLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

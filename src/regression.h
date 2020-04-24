@@ -58,8 +58,11 @@ private:
     int numHiddenNodes; //Temporary -- also should be part of nn only. -mz
 };
 
-//This is here so the old API still works
-using regression = regressionTemplate<double>;
-using regressionFloat = regressionTemplate<float>;
+namespace rapidLib
+{
+    //This is here so the old API still works
+    using regression = regressionTemplate<double>;
+    using regressionFloat = regressionTemplate<float>;
+};
 
 #endif
