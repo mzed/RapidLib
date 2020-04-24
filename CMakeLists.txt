@@ -39,4 +39,4 @@ set(RAPIDLIB_FULL_SRC
 add_library(RAPIDLIB SHARED ${RAPIDLIB_FULL_SRC})
 
 add_executable(rapidLibTest test/rapidLibTest.cpp)
-#target_link_libraries(rapidLibTest RAPIDLIB)
+target_link_libraries(rapidLibTest RAPIDLIB)
