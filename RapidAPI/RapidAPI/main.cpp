@@ -12,7 +12,7 @@
 
 int main(int argc, const char * argv[]) 
 {
-    rapidStream<double> rapidProcess;
+    rapidLib::rapidStream<double> rapidProcess;
     rapidProcess.bayesSetDiffusion(-2.0);
     rapidProcess.bayesSetJumpRate(-10.0);
     rapidProcess.bayesSetMVC(1.);

@@ -6,5 +6,7 @@ jobs:
     name: Linux build
     runs-on: ubuntu-latest
     steps:
-      - name: make
-        run: make all
+      - name: configure
+        run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ..
+      - name: build
+        run: cmake --build build
