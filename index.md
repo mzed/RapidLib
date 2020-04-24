@@ -1,37 +1,21 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/mzed/RapidLib/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+[![GitHub license](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/mzed/RapidLib/blob/master/LICENSE)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## C++ Library
+RapidLib is a lightweight library for interactive machine learning, inspired by [Wekinator](http://www.wekinator.org/).
 
-### Markdown
+It currently features classification (using kNN), regression (multilayer perceptron), and series classification (using dynamic time warping).   
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+**[Full C++ documentation can be found here](https://mzed.github.io/RapidLib/doxygen/annotated.html).**
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+## Javascript   
+RapidLib has also been transpiled to JavaScript using Emscripten. It can be used in a browser through a script tag.
+```
+<script src="https://www.doc.gold.ac.uk/eavi/rapidmix/RapidLib.js"></script>
+```
+It can also be used in Node.js via npm:
+```javascript
+npm install rapidlib
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mzed/RapidLib/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+**[Full JavaScript documentation can be found here](https://mzed.github.io/RapidLib/jsdoc/)**
