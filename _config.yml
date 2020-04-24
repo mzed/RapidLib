@@ -1,4 +1,4 @@
 theme: jekyll-theme-minimal
 
-logo: .images/Multilayer_Neural_Network.png
+logo: ./images/Multilayer_Neural_Network.png
 show_downloads: true
