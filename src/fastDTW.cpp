@@ -43,13 +43,13 @@ warpInfo<T> fastDTW<T>::fullFastDTW(const std::vector<std::vector<T>> &seriesX, 
 
 template<typename T>
 T fastDTW<T>::getCost(const std::vector<std::vector<T>> &seriesX, const std::vector<std::vector<T > > &seriesY, int searchRadius){
-    warpInfo info = fullFastDTW(seriesX, seriesY, searchRadius);
+    warpInfo<T> info = fullFastDTW(seriesX, seriesY, searchRadius);
     return info.cost;
 };
 
 template<typename T>
 warpPath fastDTW<T>::getWarpPath(const std::vector<std::vector<T>> &seriesX, const std::vector<std::vector<T > > &seriesY, int searchRadius){
-    warpInfo info = fullFastDTW(seriesX, seriesY, searchRadius);
+    warpInfo<T> info = fullFastDTW(seriesX, seriesY, searchRadius);
     return info.path;
 };
 
