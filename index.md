@@ -10,7 +10,7 @@ RapidLib is a lightweight library for interactive machine learning, inspired by 
 
 **[Full C++ documentation can be found here](https://mzed.github.io/RapidLib/doxygen/annotated.html).**
 
-## OpenFrameworks addon
+### OpenFrameworks addon
 
 [https://github.com/mzed/ofxRapidLib](https://github.com/mzed/ofxRapidLib)
 
