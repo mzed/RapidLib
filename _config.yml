@@ -1,1 +1,4 @@
 theme: jekyll-theme-minimal
+
+logo: ./rapidmix_small.png
+show_downloads: true
