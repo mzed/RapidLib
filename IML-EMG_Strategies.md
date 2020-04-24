@@ -1,3 +1,3 @@
-# Interactive Machine Learning: Strategies for live performance using Electromyograph
+# Interactive Machine Learning: Strategies for live performance using electromyography
 
-## Resources to support the springer chapter
+## Resources to support the Springer chapter
