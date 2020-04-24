@@ -4,4 +4,4 @@ permalink: /IML-EMG_Strategies/
 
 # Interactive Machine Learning: Strategies for live performance using Electromyography
 
-Resources to support the springer chapter
+## Resources to support the springer chapter
