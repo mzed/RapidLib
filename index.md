@@ -1,21 +1,43 @@
 
 [![GitHub license](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/mzed/RapidLib/blob/master/LICENSE)
 
-## C++ Library
-RapidLib is a lightweight library for interactive machine learning, inspired by [Wekinator](http://www.wekinator.org/).
+# RapidLib
 
-It currently features classification (using kNN), regression (multilayer perceptron), and series classification (using dynamic time warping).   
+RapidLib is a lightweight library for interactive machine learning, inspired by [Wekinator](http://www.wekinator.org/). It currently features classification (using kNN), regression (multilayer perceptron), and series classification (using dynamic time warping).   
+
+It is distributed in a few ways
+
+## C++
+
+### Library
 
 **[Full C++ documentation can be found here](https://mzed.github.io/RapidLib/doxygen/annotated.html).**
 
-## Javascript   
+## OpenFrameworks addon
+
+[https://github.com/mzed/ofxRapidLib](https://github.com/mzed/ofxRapidLib)
+
+## Javascript 
+
+### Library
 RapidLib has also been transpiled to JavaScript using Emscripten. It can be used in a browser through a script tag.
 ```
 <script src="https://www.doc.gold.ac.uk/eavi/rapidmix/RapidLib.js"></script>
 ```
-It can also be used in Node.js via npm:
+### Node module:
 ```javascript
 npm install rapidlib
 ```
-
 **[Full JavaScript documentation can be found here](https://mzed.github.io/RapidLib/jsdoc/)**
+
+## Max objects
+
+RapidLib has been wrapped in a Max object here.
+
+## Unity
+
+RapidLib is part of [InteractML](http://interactml.com/), for Unity.
+
+## MIMIC
+
+RapidLib is part of the code for Learner.js in the [MIMIC project](https://mimicproject.com/).
