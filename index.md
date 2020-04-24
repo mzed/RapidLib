@@ -17,17 +17,22 @@ It is distributed in a few ways
 
 [https://github.com/mzed/ofxRapidLib](https://github.com/mzed/ofxRapidLib)
 
-## Javascript 
+## Javascript
 
-### Library
+### Embeded Library
+
 RapidLib has also been transpiled to JavaScript using Emscripten. It can be used in a browser through a script tag.
-```
+
+```html
 <script src="https://www.doc.gold.ac.uk/eavi/rapidmix/RapidLib.js"></script>
 ```
-### Node module:
+
+### Node module
+
 ```javascript
 npm install rapidlib
 ```
+
 **[Full JavaScript documentation can be found here](https://mzed.github.io/RapidLib/jsdoc/)**
 
 ## Max objects
