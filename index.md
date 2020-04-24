@@ -45,3 +45,5 @@ RapidLib is part of [InteractML](http://interactml.com/), for Unity.
 ## MIMIC
 
 RapidLib is part of the code for Learner.js in the [MIMIC project](https://mimicproject.com/).
+
+[Here is a guide to using RapidLib on the MIMIC platform.](https://mimicproject.com/guides/RAPIDMIX)
