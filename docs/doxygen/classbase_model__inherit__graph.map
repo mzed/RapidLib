@@ -1,5 +1,0 @@
-<map id="baseModel&lt; T &gt;" name="baseModel&lt; T &gt;">
-<area shape="rect" id="node2" href="$classknn_classification.html" title="{knnClassification\&lt; T \&gt;\n||+ knnClassification()\l+ ~knnClassification()\l+ addNeighbour()\l+ run()\l+ train()\l+ reset()\l+ getNumInputs()\l+ getWhichInputs()\l+ getK()\l+ setK()\l+ getJSONDescription()\l}" alt="" coords="5,220,168,427"/>
-<area shape="rect" id="node3" href="$classneural_network.html" title="{neuralNetwork\&lt; T \&gt;\n||+ neuralNetwork()\l+ neuralNetwork()\l+ ~neuralNetwork()\l+ run()\l+ reset()\l+ getNumInputs()\l+ getWhichInputs()\l+ getNumHiddenLayers()\l+ setNumHiddenLayers()\l+ getNumHiddenNodes()\land 9 more...\l}" alt="" coords="192,220,363,427"/>
-<area shape="rect" id="node4" href="$classsvm_classification.html" title="{svmClassification\&lt; T \&gt;\n||+ svmClassification()\l+ svmClassification()\l+ ~svmClassification()\l+ train()\l+ run()\l+ reset()\l+ init()\l+ getNumInputs()\l+ getWhichInputs()\l+ getJSONDescription()\l}" alt="" coords="387,227,549,420"/>
-</map>
