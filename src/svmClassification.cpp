@@ -226,7 +226,7 @@ void svmClassification<T>::train(const std::vector<trainingExampleTemplate<T> > 
 template<typename T>
 T svmClassification<T>::run(const std::vector<T> &inputVector) {
     if (trained) {
-        double predictedClass = 0.;
+        T predictedClass = 0.; //TODO: What type should this really be?
         
         //Change to LIBSVM format
         LIBSVM::svm_node *inputNodes = NULL;
