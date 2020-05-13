@@ -19,8 +19,8 @@
 #include "filter_utilities.h"
 
 
-#pragma mark -
-#pragma mark Constructors
+//#pragma mark -
+//#pragma mark Constructors
 BayesianFilter::BayesianFilter()
 {
     mvc.assign(channels, 1.);
@@ -45,8 +45,8 @@ std::size_t BayesianFilter::size() const
     return channels;
 }
 
-#pragma mark -
-#pragma mark Main Algorithm
+//#pragma mark -
+//#pragma mark Main Algorithm
 void BayesianFilter::init()
 {
     mvc.resize(channels, 1.);

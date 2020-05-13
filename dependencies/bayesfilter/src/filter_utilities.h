@@ -47,7 +47,7 @@ void even_ext(vector<datatype> const& src, vector<datatype> & dst, unsigned int 
     
     dst.resize(2 * n + src.size());
     
-    int t(0);
+    std::size_t t(0);
     for (int i=n; i>0; i--) {
         dst[t++] = src[i];
     }
@@ -70,7 +70,7 @@ void odd_ext(vector<datatype> const& src, vector<datatype> & dst, unsigned int n
     
     dst.resize(2 * n + src.size());
     
-    int t(0);
+    std::size_t t(0);
     for (int i=n; i>0; i--) {
         dst[t++] = 2 * src[0] - src[i];
     }
@@ -93,7 +93,7 @@ void const_ext(vector<datatype> const& src, vector<datatype> & dst, unsigned int
     
     dst.resize(2 * n + src.size());
     
-    int t(0);
+    std::size_t t(0);
     for (int i=n; i>0; i--) {
         dst[t++] = src[0];
     }
