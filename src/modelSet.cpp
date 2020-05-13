@@ -219,7 +219,7 @@ void modelSet<T>::json2modelSet(const Json::Value &root) {
             for (unsigned int i = 0; i < examples.size(); ++i) {
                 trainingExampleTemplate<T> tempExample;
                 tempExample.input = json2vector<T>(examples[i]["features"]);
-                tempExample.output.push_back(examples[i]["class"].asDouble());
+                tempExample.output.push_back((T)examples[i]["class"].asDouble());
                 trainingSet.push_back(tempExample);
             }
             int k = model["k"].asInt();
