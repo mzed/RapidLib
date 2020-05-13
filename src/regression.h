@@ -7,8 +7,7 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
-#ifndef regression_h
-#define regression_h
+#pragma once
 
 #include <vector>
 #include "modelSet.h"
@@ -19,7 +18,8 @@
  */
 
 template<typename T>
-class regressionTemplate : public modelSet<T> {
+class regressionTemplate final : public modelSet<T>
+{
 public:
     /** with no arguments, just make an empty vector */
     regressionTemplate();
@@ -65,4 +65,3 @@ namespace rapidLib
     using regressionFloat = regressionTemplate<float>;
 };
 
-#endif

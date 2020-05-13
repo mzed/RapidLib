@@ -6,8 +6,7 @@
 //  Copyright © 2016 Goldsmiths. All rights reserved.
 //
 
-#ifndef modelSet_h
-#define modelSet_h
+#pragma once
 
 #include <vector>
 #include "trainingExample.h"
@@ -53,8 +52,7 @@ public:
 private:
     Json::Value parse2json();
     void json2modelSet(const Json::Value &root);
+    void threadTrain(int i, const std::vector<trainingExampleTemplate<T> > &training_set);
 
 #endif
 };
-
-#endif

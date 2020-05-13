@@ -23,7 +23,7 @@ OUTPUT_RAPID=rapidLib/RapidLib.js
 # General flags
 # https://kripken.github.io/emscripten-site/docs/tools_reference/emcc.html
 # -s DEMANGLE_SUPPORT=1 
-CFLAGS=-O3 -s DISABLE_EXCEPTION_CATCHING=0 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTIONS=1 -s EXPORT_NAME="'RapidLib'" --memory-init-file 0
+CFLAGS=-O3 -s WASM=1 -s USE_PTHREADS=1 -s DISABLE_EXCEPTION_CATCHING=0 -s ALLOW_MEMORY_GROWTH=0 -s ASSERTIONS=1 -s EXPORT_NAME="'RapidLib'" --memory-init-file 0
 
 # ----------------------------------------
 # Final paths

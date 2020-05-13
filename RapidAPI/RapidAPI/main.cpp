@@ -28,8 +28,8 @@ int main(int argc, const char * argv[])
 
     //vanAllenTesting
     rapidLib::seriesClassification testDTW;
-    std::vector<trainingSeries> testVector;
-    trainingSeries tempSeriesTest;
+    std::vector<rapidLib::trainingSeries> testVector;
+    rapidLib::trainingSeries tempSeriesTest;
 
     for (int i = 0; i < 5; ++i) {
         tempSeriesTest.input.push_back({ 0.1, 0.1, 0.1 });
@@ -45,8 +45,8 @@ int main(int argc, const char * argv[])
     //test for Louis
     rapidLib::regression hiddenNN;
 
-    std::vector<trainingExample> trainingSetHN;
-    trainingExample  tempExampleHN;
+    std::vector<rapidLib::trainingExample> trainingSetHN;
+    rapidLib::trainingExample  tempExampleHN;
 
     for (std::size_t i = 0; i < 1000; ++i)
     {
@@ -127,8 +127,8 @@ int main(int argc, const char * argv[])
     rapidLib::classification myKnn;
     //classification mySVM(classification::svm);
 
-    std::vector<trainingExample> trainingSet;
-    trainingExample  tempExample;
+    std::vector<rapidLib::trainingExample> trainingSet;
+    rapidLib::trainingExample  tempExample;
     tempExample.input = { 0.2, 0.7 };
     tempExample.output = { 3.0 };
     trainingSet.push_back(tempExample);
@@ -184,8 +184,8 @@ int main(int argc, const char * argv[])
     }
 
     rapidLib::regression badNN;
-    std::vector<trainingExample> badSet;
-    trainingExample  badExample;
+    std::vector<rapidLib::trainingExample> badSet;
+    rapidLib::trainingExample  badExample;
     badExample.input = { 0.1, 0.2 };
     badExample.output = { 3.0 };
     badSet.push_back(badExample);
@@ -340,8 +340,8 @@ int main(int argc, const char * argv[])
 
     //Testing with labels
     rapidLib::seriesClassification myDTW;
-    std::vector<trainingSeries> seriesVector;
-    trainingSeries tempSeries;
+    std::vector<rapidLib::trainingSeries> seriesVector;
+    rapidLib::trainingSeries tempSeries;
 
     tempSeries.input.push_back({ 1., 5. });
     tempSeries.input.push_back({ 2., 4. });

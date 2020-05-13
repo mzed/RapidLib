@@ -17,7 +17,7 @@
 #endif
 
 template<typename T>
-void neuralNetwork<T>::initTrainer() 
+void neuralNetwork<T>::initTrainer()
 {
     //initialize deltas
     //FIXME: This creates a vector of numHiddenLayers x numHiddenNodes x numInputs.  It fails between hidden vectors if numHiddenNodes > numInputs.
@@ -421,7 +421,7 @@ void neuralNetwork<T>::backpropagate(const T &desiredOutput) {
     for (int i = 0; i < numHiddenNodes; ++i) {
         length += hiddenNeurons[numHiddenLayers - 1][i] * hiddenNeurons[numHiddenLayers - 1][i];
     }
-    length = (length <= 2.0) ? (T)1.0 : length;
+    length = (length <= 2.0) ? 1.0 : length;
     
     //deltas between hidden and output
     for (int i = 0; i <= numHiddenNodes; ++i) {
