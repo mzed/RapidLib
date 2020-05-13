@@ -42,6 +42,27 @@ int main(int argc, const char * argv[])
     testDTW.train(testVector);
     std::cout << testDTW.run(tempSeriesTest.input) << std::endl;
 
+    //test for Louis
+    rapidLib::regression hiddenNN;
+
+    std::vector<trainingExample> trainingSetHN;
+    trainingExample  tempExampleHN;
+
+    for (std::size_t i = 0; i < 1000; ++i)
+    {
+        tempExampleHN.input = { double(i) };
+        tempExampleHN.output = { double(i) };
+        trainingSetHN.push_back(tempExampleHN);
+    }
+
+    hiddenNN.setNumHiddenLayers(2);
+    hiddenNN.setNumHiddenNodes(2);
+    hiddenNN.setNumEpochs(1000);
+
+    hiddenNN.train(trainingSetHN);
+    hiddenNN.train(trainingSetHN);
+
+
     //////////////////////////////////////////////////////////////////////////////simple multilayer test
 
     //This takes forever, I don't always run it
@@ -139,6 +160,11 @@ int main(int argc, const char * argv[])
     assert(myNN_nodes.run(inputVec)[0] == 20.14);
     assert(myNN.run(inputVec)[0] == myNNfromString.run(inputVec)[0]);
     assert(myNN.run(inputVec)[0] == myNNfromFile.run(inputVec)[0]);
+
+    //Training Bug 2020?
+    myNN_nodes.train(trainingSet);
+    assert(myNN_nodes.run(inputVec)[0] == 20.14);
+
 
     //Testing exceptions for regression
     std::vector<double> emptyVec = {};
