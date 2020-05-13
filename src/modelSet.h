@@ -15,7 +15,7 @@
 #include "knnClassification.h"
 #include "svmClassification.h"
 #ifndef EMSCRIPTEN
-#include "../libs/dependencies/json/json.h"
+#include "../dependencies/json/json.h"
 #endif
 
 /** This class holds a set of models with the same or different algorithms. */

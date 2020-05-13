@@ -39,7 +39,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BE325F311DB50BE100F199A8 /* RapidLib_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RapidLib_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE325F311DB50BE100F199A8 /* RapidAPI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RapidAPI; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE325F341DB50BE100F199A8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		BE325F3C1DB50BFE00F199A8 /* baseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = baseModel.h; sourceTree = "<group>"; };
 		BE325F3D1DB50BFE00F199A8 /* classification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = classification.cpp; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 		BE325F321DB50BE100F199A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BE325F311DB50BE100F199A8 /* RapidLib_test */,
+				BE325F311DB50BE100F199A8 /* RapidAPI */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,32 +118,32 @@
 		BE325F3B1DB50BFE00F199A8 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				BE92865C1EF40BBD006847CF /* rapidStream.cpp */,
+				BE92865B1EF40BB4006847CF /* rapidStream.h */,
+				BE553E301EE06AB0004EB00F /* trainingExample.h */,
+				BE553E2E1EE05FE1004EB00F /* svmClassification.cpp */,
+				BE553E2D1EE05F03004EB00F /* svmClassification.h */,
 				BE325F3C1DB50BFE00F199A8 /* baseModel.h */,
 				BE325F3D1DB50BFE00F199A8 /* classification.cpp */,
 				BE325F3E1DB50BFE00F199A8 /* classification.h */,
-				BE3852871EE847730008E1BD /* dtw.cpp */,
-				BE3852861EE8415E0008E1BD /* dtw.h */,
-				BE720AEF1F615C0E00675FCA /* fastDTW.cpp */,
-				BE720AF01F615C0E00675FCA /* fastDTW.h */,
 				BE325F401DB50BFE00F199A8 /* knnClassification.cpp */,
 				BE325F411DB50BFE00F199A8 /* knnClassification.h */,
 				BE325F431DB50BFE00F199A8 /* modelSet.cpp */,
 				BE325F441DB50BFE00F199A8 /* modelSet.h */,
 				BE325F461DB50BFE00F199A8 /* neuralNetwork.cpp */,
 				BE325F471DB50BFE00F199A8 /* neuralNetwork.h */,
-				BE92865C1EF40BBD006847CF /* rapidStream.cpp */,
-				BE92865B1EF40BB4006847CF /* rapidStream.h */,
 				BE325F4A1DB50BFE00F199A8 /* regression.cpp */,
 				BE325F4B1DB50BFE00F199A8 /* regression.h */,
-				BE6783211F6A9B9A005E73D0 /* searchWindow.cpp */,
-				BE6783201F6A95FE005E73D0 /* searchWindow.h */,
+				BE3852861EE8415E0008E1BD /* dtw.h */,
+				BE3852871EE847730008E1BD /* dtw.cpp */,
 				BE3852891EE94D740008E1BD /* seriesClassification.cpp */,
 				BE38528A1EE94D740008E1BD /* seriesClassification.h */,
-				BE553E2E1EE05FE1004EB00F /* svmClassification.cpp */,
-				BE553E2D1EE05F03004EB00F /* svmClassification.h */,
-				BE553E301EE06AB0004EB00F /* trainingExample.h */,
-				BE6783231F6FFA5C005E73D0 /* warpPath.cpp */,
+				BE720AEF1F615C0E00675FCA /* fastDTW.cpp */,
+				BE720AF01F615C0E00675FCA /* fastDTW.h */,
 				BE67831F1F69672C005E73D0 /* warpPath.h */,
+				BE6783231F6FFA5C005E73D0 /* warpPath.cpp */,
+				BE6783201F6A95FE005E73D0 /* searchWindow.h */,
+				BE6783211F6A9B9A005E73D0 /* searchWindow.cpp */,
 			);
 			name = src;
 			path = ../../src;
@@ -194,9 +194,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BE325F301DB50BE100F199A8 /* RapidLib_test */ = {
+		BE325F301DB50BE100F199A8 /* RapidAPI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BE325F381DB50BE100F199A8 /* Build configuration list for PBXNativeTarget "RapidLib_test" */;
+			buildConfigurationList = BE325F381DB50BE100F199A8 /* Build configuration list for PBXNativeTarget "RapidAPI" */;
 			buildPhases = (
 				BE325F2D1DB50BE100F199A8 /* Sources */,
 				BE325F2E1DB50BE100F199A8 /* Frameworks */,
@@ -206,9 +206,9 @@
 			);
 			dependencies = (
 			);
-			name = RapidLib_test;
+			name = RapidAPI;
 			productName = RapidAPI;
-			productReference = BE325F311DB50BE100F199A8 /* RapidLib_test */;
+			productReference = BE325F311DB50BE100F199A8 /* RapidAPI */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -225,7 +225,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BE325F2C1DB50BE100F199A8 /* Build configuration list for PBXProject "RapidLib_test" */;
+			buildConfigurationList = BE325F2C1DB50BE100F199A8 /* Build configuration list for PBXProject "RapidAPI" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -237,7 +237,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BE325F301DB50BE100F199A8 /* RapidLib_test */,
+				BE325F301DB50BE100F199A8 /* RapidAPI */,
 			);
 		};
 /* End PBXProject section */
@@ -384,7 +384,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BE325F2C1DB50BE100F199A8 /* Build configuration list for PBXProject "RapidLib_test" */ = {
+		BE325F2C1DB50BE100F199A8 /* Build configuration list for PBXProject "RapidAPI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BE325F361DB50BE100F199A8 /* Debug */,
@@ -393,7 +393,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BE325F381DB50BE100F199A8 /* Build configuration list for PBXNativeTarget "RapidLib_test" */ = {
+		BE325F381DB50BE100F199A8 /* Build configuration list for PBXNativeTarget "RapidAPI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BE325F391DB50BE100F199A8 /* Debug */,

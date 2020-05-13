@@ -20,7 +20,13 @@ template<typename T>
 void neuralNetwork<T>::initTrainer()
 {
     //initialize deltas
-    deltaWeights = std::vector<std::vector<std::vector<T> > >(numHiddenLayers, std::vector<std::vector<T> >(numHiddenNodes, std::vector<T>((numInputs + 1), 0)));
+    //FIXME: This creates a vector of numHiddenLayers x numHiddenNodes x numInputs.  It fails between hidden vectors if numHiddenNodes > numInputs.
+    //This hacky fix makes it too big if there are more hidden nodes. Shouldn't crash, though.
+    if (numHiddenNodes > numInputs) {
+        deltaWeights = std::vector<std::vector<std::vector<T> > >(numHiddenLayers, std::vector<std::vector<T> >(numHiddenNodes, std::vector<T>((numHiddenNodes + 1), 0)));
+    } else {
+        deltaWeights = std::vector<std::vector<std::vector<T> > >(numHiddenLayers, std::vector<std::vector<T> >(numHiddenNodes, std::vector<T>((numInputs + 1), 0)));
+    }
     deltaHiddenOutput = std::vector<T>((numHiddenNodes + 1), 0);
 }
 

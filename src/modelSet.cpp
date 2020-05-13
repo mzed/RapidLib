@@ -15,7 +15,7 @@
 #include "modelSet.h"
 
 #ifndef EMSCRIPTEN
-#include "../libs/dependencies/json/json.h"
+#include "../dependencies/json/json.h"
 #else
 #include "emscripten/modelSetEmbindings.h"
 #endif
@@ -30,15 +30,13 @@ numOutputs(-1)
 
 template<typename T>
 modelSet<T>::~modelSet() {
-    for (auto& model : myModelSet) {
-        delete model;
+    for (typename std::vector<baseModel<T>*>::const_iterator i = myModelSet.cbegin(); i != myModelSet.cend(); ++i) {
+        delete *i;
     }
 };
 
 template<typename T>
 bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set) {
-    
-    //Check to see if the set is consistant
     for (trainingExampleTemplate<T> example : training_set) {
         if (example.input.size() != numInputs) {
             throw std::length_error("unequal feature vectors in input.");

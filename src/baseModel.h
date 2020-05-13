@@ -14,7 +14,7 @@
 #include "trainingExample.h"
 
 #ifndef EMSCRIPTEN
-#include "../libs/dependencies/json/json.h"
+#include "../dependencies/json/json.h"
 #endif
 
 #ifdef __ANDROID__

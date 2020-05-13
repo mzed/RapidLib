@@ -99,6 +99,7 @@ std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T
 template<typename T>
 T seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>> &inputSeries, std::string label) {
     //TODO: Check to see if trained
+    int closestSeries = 0;
     allCosts.clear();
     std::vector<std::thread> runningThreads;
     int seriesIndex;

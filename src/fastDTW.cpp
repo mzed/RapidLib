@@ -17,7 +17,7 @@ template<typename T>
 fastDTW<T>::~fastDTW() {};
 
 template<typename T>
-warpInfo fastDTW<T>::fullFastDTW(const std::vector<std::vector<T>> &seriesX, const std::vector<std::vector<T > > &seriesY, int searchRadius)
+warpInfo<T> fastDTW<T>::fullFastDTW(const std::vector<std::vector<T>> &seriesX, const std::vector<std::vector<T > > &seriesY, int searchRadius)
 {
     
 #ifndef EMSCRIPTEN
@@ -38,19 +38,19 @@ warpInfo fastDTW<T>::fullFastDTW(const std::vector<std::vector<T>> &seriesX, con
     std::vector<std::vector<T>> shrunkenY = downsample(seriesY, resolution);
     
     //some nice recursion here
-    searchWindow<T> window(seriesX.size(), seriesY.size(), getWarpPath(shrunkenX, shrunkenY, searchRadius), searchRadius);
+    searchWindow<T> window(int(seriesX.size()), int(seriesY.size()), getWarpPath(shrunkenX, shrunkenY, searchRadius), searchRadius);
     return dtw.constrainedDTW(seriesX, seriesY, window);
 };
 
 template<typename T>
 T fastDTW<T>::getCost(const std::vector<std::vector<T>> &seriesX, const std::vector<std::vector<T > > &seriesY, int searchRadius){
-    warpInfo info = fullFastDTW(seriesX, seriesY, searchRadius);
+    warpInfo<T> info = fullFastDTW(seriesX, seriesY, searchRadius);
     return info.cost;
 };
 
 template<typename T>
 warpPath fastDTW<T>::getWarpPath(const std::vector<std::vector<T>> &seriesX, const std::vector<std::vector<T > > &seriesY, int searchRadius){
-    warpInfo info = fullFastDTW(seriesX, seriesY, searchRadius);
+    warpInfo<T> info = fullFastDTW(seriesX, seriesY, searchRadius);
     return info.path;
 };
 

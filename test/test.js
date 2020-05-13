@@ -127,10 +127,8 @@ describe('RapidLib Machine Learning', function () {
             let trained = myRegression.train(badSet);
             expect(trained).to.be.false;
         });
-        it('should train the modelSet with good data', function (done) {
             let trained = myRegression.train(testSet);
             expect(trained).to.be.true;
-            done();
         });
         it('run() should return expected results', function () {
             let response1 = myRegression.run([0, 0]);

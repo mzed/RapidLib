@@ -58,8 +58,7 @@ T dtw<T>::getCost(const std::vector<std::vector<T> > &seriesX, const std::vector
     
     //Calculate values for the first column
     costMatrix[0][0] = distanceFunction(seriesX[0], seriesY[0]);
-    for (std::size_t j = 1; j <= maxY; ++j)
-    {
+    for (int j = 1; j <= maxY; ++j) {
         costMatrix[0][j] = costMatrix[0][j - 1] + distanceFunction(seriesX[0], seriesY[j]);
     }
     
@@ -95,13 +94,13 @@ warpPath dtw<T>::calculatePath(std::size_t seriesXsize, std::size_t seriesYsize)
             if (i > 0) --i;
             if (j > 0) --j;
         } else if ((leftCost < diagonalCost) && (leftCost < downCost)){
-            if (i > 0) --i;
+            i--;
         } else if ((downCost < diagonalCost) && (downCost < leftCost)) {
-            if (j > 0) --j;
+            j--;
         } else if (i <= j) {
-            if (j > 0) --j;
+            j--;
         } else {
-            if (i > 0) --i;
+            i--;
         }
         warpPath.add(i, j);
     }
@@ -110,9 +109,9 @@ warpPath dtw<T>::calculatePath(std::size_t seriesXsize, std::size_t seriesYsize)
 
 /* calculates both the cost and the warp path*/
 template<typename T>
-warpInfo dtw<T>::dynamicTimeWarp(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY)
+warpInfo<T> dtw<T>::dynamicTimeWarp(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY)
 {
-    warpInfo info;
+    warpInfo<T> info;
     //calculate cost matrix
     info.cost = getCost(seriesX, seriesY);
     info.path = calculatePath(seriesX.size(), seriesY.size());
@@ -121,7 +120,7 @@ warpInfo dtw<T>::dynamicTimeWarp(const std::vector<std::vector<T> > &seriesX, co
 
 /* calculates warp info based on window */
 template<typename T>
-warpInfo dtw<T>::constrainedDTW(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY, searchWindow<T> window)
+warpInfo<T> dtw<T>::constrainedDTW(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY, searchWindow<T> window)
 {
     //initialize cost matrix
     costMatrix.clear();
@@ -154,7 +153,7 @@ warpInfo dtw<T>::constrainedDTW(const std::vector<std::vector<T> > &seriesX, con
             }
         }
     }
-    warpInfo info;
+    warpInfo<T> info;
     info.cost = costMatrix[maxX][maxY];
     info.path = calculatePath(seriesX.size(), seriesY.size());
     return info;
