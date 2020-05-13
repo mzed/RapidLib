@@ -20,6 +20,7 @@ template<typename T>
 knnClassification<T>::knnClassification(const int &num_inputs, const std::vector<int> &which_inputs, const std::vector<trainingExampleTemplate<T> > &_neighbours, const int k)
 : numInputs(num_inputs),
 whichInputs(which_inputs),
+whichOutput(0),
 neighbours(_neighbours),
 desiredK(k),
 currentK(k)
@@ -75,10 +76,17 @@ void knnClassification<T>::addNeighbour(const int &classNum, const std::vector<T
 };
 
 template<typename T>
-void knnClassification<T>::train(const std::vector<trainingExampleTemplate<T> > &trainingSet) { //FIXME: Does numInputs need to be reset here? -MZ
+void knnClassification<T>::train(const std::vector<trainingExampleTemplate<T> >& trainingSet) {
+    train(trainingSet, 0);
+}
+
+// FIXME: Not paying attention to whichOutput. 
+template<typename T>
+void knnClassification<T>::train(const std::vector<trainingExampleTemplate<T> > &trainingSet, const std::size_t which_output) { //FIXME: Does numInputs need to be reset here? -MZ
     neighbours.clear();
     neighbours = trainingSet;
     updateK();
+    whichOutput = which_output;
 };
 
 template<typename T>
@@ -128,7 +136,7 @@ T knnClassification<T>::run(const std::vector<T> &inputVector) {
     std::map<int, int> classVoteMap;
     using classVotePair = std::pair<int, int>;
     for (int i = 0; i < currentK; ++i) {
-        int classNum = (int) round(neighbours[nearestNeighbours[i].first].output[0]);
+        int classNum = (int) round(neighbours[nearestNeighbours[i].first].output[whichOutput]);
         if ( classVoteMap.find(classNum) == classVoteMap.end() ) {
             classVoteMap.insert(classVotePair(classNum, 1));
         } else {
@@ -156,7 +164,7 @@ void knnClassification<T>::getJSONDescription(Json::Value &jsonModelDescription)
     Json::Value examples;
     for (auto it = neighbours.cbegin(); it != neighbours.cend(); ++it) {
         Json::Value oneExample;
-        oneExample["class"] = it->output[0];
+        oneExample["class"] = it->output[whichOutput];
         oneExample["features"] = this->vector2json(it->input);
         examples.append(oneExample);
     }

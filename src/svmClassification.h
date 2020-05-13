@@ -65,6 +65,14 @@ public:
      *
      */
     void train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
+
+    /** Fill the model with a vector of examples. Use this when part of a modelSet
+     *
+     * @param The training set is a vector of training examples that contain both a vector of input values and a double specifying desired output class.
+     * @param The second argument specifies which output this model is using.
+     *
+     */
+    void train(const std::vector<trainingExampleTemplate<T> >& trainingSet, const std::size_t whichOutput) override;
     
     /** Generate an output value from a single input vector.
      * @param A standard vector of doubles to be evaluated.

@@ -52,7 +52,7 @@ public:
 private:
     Json::Value parse2json();
     void json2modelSet(const Json::Value &root);
-    void threadTrain(int i, const std::vector<trainingExampleTemplate<T> > &training_set);
+    void threadTrain(std::size_t i, const std::vector<trainingExampleTemplate<T> > &training_set);
 
 #endif
 };

@@ -124,6 +124,14 @@ public:
      *
      */
     void train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
+
+    /** Train a model using backpropagation. This function is used when the model is part of a modelSet.
+     *
+     * @param This triaining function takes examples that contain a vector of input values and a vector of output values. 
+     * @param The second argument specifies which output this model is using. 
+     *
+     */
+    void train(const std::vector<trainingExampleTemplate<T> >& trainingSet, const std::size_t whichOutput) override;
     
 private:
     /** Parameters that influence learning */

@@ -363,13 +363,19 @@ T neuralNetwork<T>::run(const std::vector<T> &inputVector) {
 }
 
 template<typename T>
-void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > > &trainingSet) {
+void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& trainingSet) {
+    train(trainingSet, 0);
+}
+
+
+template<typename T>
+void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > > &trainingSet, const std::size_t whichOutput) {
     initTrainer();
     //setup maxes and mins
     std::vector<T> inMax = trainingSet[0].input;
     std::vector<T> inMin = trainingSet[0].input;
-    T outMin = trainingSet[0].output[0];
-    T outMax = trainingSet[0].output[0];
+    T outMin = trainingSet[0].output[whichOutput];
+    T outMax = trainingSet[0].output[whichOutput];
     for (int ti = 1; ti < (int) trainingSet.size(); ++ti) {
         for (int i = 0; i < numInputs; ++i) {
             if (trainingSet[ti].input[i] > inMax[i]) {
@@ -378,11 +384,11 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > > &tr
             if (trainingSet[ti].input[i] < inMin[i]) {
                 inMin[i] = trainingSet[ti].input[i];
             }
-            if (trainingSet[ti].output[0] > outMax) {
-                outMax = trainingSet[ti].output[0];
+            if (trainingSet[ti].output[whichOutput] > outMax) {
+                outMax = trainingSet[ti].output[whichOutput];
             }
-            if (trainingSet[ti].output[0] < outMin) {
-                outMin = trainingSet[ti].output[0];
+            if (trainingSet[ti].output[whichOutput] < outMin) {
+                outMin = trainingSet[ti].output[whichOutput];
             }
         }
     }
@@ -406,7 +412,7 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > > &tr
             //run through every training instance
             for (int ti = 0; ti < (int) trainingSet.size(); ++ti) {
                 run(trainingSet[ti].input);
-                backpropagate(trainingSet[ti].output[0]);
+                backpropagate(trainingSet[ti].output[whichOutput]);
             }
         }
     }

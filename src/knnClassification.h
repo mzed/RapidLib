@@ -50,6 +50,13 @@ public:
      *
      */
     void train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
+
+    /** Fill the model with a vector of examples. Use this when the model is part of a modelSet.
+     *
+     * @param The training set is a vector of training examples that contain both a vector of input values and a value specifying desired output class.
+     *
+     */
+    void train(const std::vector<trainingExampleTemplate<T> >& trainingSet, const std::size_t whichOutput) override;
     
     /** Reset the model to its empty state. */
     void reset() override;
@@ -81,6 +88,7 @@ public:
 private:
     int numInputs;
     std::vector<int> whichInputs;
+    std::size_t whichOutput;
     std::vector<trainingExampleTemplate<T>> neighbours;
     int desiredK; //K that user asked for might be limited but number of examples
     int currentK; //K minimum of desiredK or neighbours.size()

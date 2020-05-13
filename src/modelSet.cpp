@@ -1,4 +1,5 @@
 //
+//
 //  modelSet.cpp
 //  RapidLib
 //
@@ -29,20 +30,26 @@ numOutputs(-1)
 };
 
 template<typename T>
-modelSet<T>::~modelSet() {
-    for (typename std::vector<baseModel<T>*>::const_iterator i = myModelSet.cbegin(); i != myModelSet.cend(); ++i) {
-        delete *i;
+modelSet<T>::~modelSet() 
+{
+    for (auto& model : myModelSet) 
+    {
+        delete model;
     }
 };
 
 template<typename T>
-bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set) {
-    for (trainingExampleTemplate<T> example : training_set) {
-        if (example.input.size() != numInputs) {
+bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set) 
+{
+    for (trainingExampleTemplate<T> example : training_set) 
+    {
+        if (example.input.size() != numInputs) 
+        {
             throw std::length_error("unequal feature vectors in input.");
             return false;
         }
-        if (example.output.size() != numOutputs) {
+        if (example.output.size() != numOutputs) 
+        {
             throw std::length_error("unequal output vectors.");
             return false;
         }
@@ -50,10 +57,13 @@ bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training
     
     // Multithreaded training
     std::vector<std::thread> trainingThreads;
-    for (int i = 0; i < myModelSet.size(); ++i) {
+    for (std::size_t i = 0; i < myModelSet.size(); ++i) 
+    {
         trainingThreads.push_back(std::thread(&modelSet<T>::threadTrain, this, i, training_set));
     }
-    for (int i = 0; i < myModelSet.size(); ++i) {
+
+    for (std::size_t i = 0; i < myModelSet.size(); ++i) 
+    {
         trainingThreads.at(i).join();
     }
     created = true;
@@ -61,17 +71,9 @@ bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training
 }
 
 template<typename T>
-void modelSet<T>::threadTrain(int i, const std::vector<trainingExampleTemplate<T> > &training_set) {
-    std::vector<trainingExampleTemplate<T> > modelTrainingSet; //just one output
-    for (trainingExampleTemplate<T> example : training_set) {
-        std::vector<T> tempT;
-        for (int j = 0; j < numInputs; ++j) {
-            tempT.push_back(example.input[j]);
-        }
-        trainingExampleTemplate<T> tempObj = {tempT, std::vector<T> {example.output[i]}};
-        modelTrainingSet.push_back(tempObj);
-    }
-    myModelSet[i]->train(modelTrainingSet);
+void modelSet<T>::threadTrain(std::size_t i, const std::vector<trainingExampleTemplate<T> > &training_set) 
+{
+    myModelSet[i]->train(training_set, i);
 }
 
 template<typename T>
