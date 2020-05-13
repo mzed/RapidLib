@@ -23,9 +23,10 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     ] ],
     [ "neuralNetwork.cpp", "neural_network_8cpp.html", null ],
     [ "neuralNetwork.h", "neural_network_8h.html", "neural_network_8h" ],
+    [ "rapidLib.h", "rapid_lib_8h.html", "rapid_lib_8h" ],
     [ "rapidStream.cpp", "rapid_stream_8cpp.html", null ],
     [ "rapidStream.h", "rapid_stream_8h.html", [
-      [ "rapidStream", "classrapid_stream.html", "classrapid_stream" ]
+      [ "rapidStream", "classrapid_lib_1_1rapid_stream.html", "classrapid_lib_1_1rapid_stream" ]
     ] ],
     [ "regression.cpp", "regression_8cpp.html", null ],
     [ "regression.h", "regression_8h.html", "regression_8h" ],

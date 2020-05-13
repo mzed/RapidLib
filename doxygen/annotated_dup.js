@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "rapidLib", "namespacerapid_lib.html", "namespacerapid_lib" ],
     [ "baseModel", "classbase_model.html", "classbase_model" ],
     [ "classificationTemplate", "classclassification_template.html", "classclassification_template" ],
     [ "dtw", "classdtw.html", "classdtw" ],
@@ -7,7 +8,6 @@ var annotated_dup =
     [ "knnClassification", "classknn_classification.html", "classknn_classification" ],
     [ "modelSet", "classmodel_set.html", "classmodel_set" ],
     [ "neuralNetwork", "classneural_network.html", "classneural_network" ],
-    [ "rapidStream", "classrapid_stream.html", "classrapid_stream" ],
     [ "regressionTemplate", "classregression_template.html", "classregression_template" ],
     [ "searchWindow", "classsearch_window.html", "classsearch_window" ],
     [ "seriesClassificationTemplate", "classseries_classification_template.html", "classseries_classification_template" ],

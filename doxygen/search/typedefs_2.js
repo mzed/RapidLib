@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['seriesclassification',['seriesClassification',['../series_classification_8h.html#ac517166f64908a5d01d2440173e08a8b',1,'seriesClassification.h']]],
-  ['seriesclassificationfloat',['seriesClassificationFloat',['../series_classification_8h.html#a522be252d8b1210f431cae28fafa9047',1,'seriesClassification.h']]]
+  ['seriesclassification_310',['seriesClassification',['../namespacerapid_lib.html#ab90148e2ccb6591842453f5574323878',1,'rapidLib']]],
+  ['seriesclassificationfloat_311',['seriesClassificationFloat',['../namespacerapid_lib.html#a3e0fd540e1d3cdb6e1ee92ea76fa86fb',1,'rapidLib']]]
 ];

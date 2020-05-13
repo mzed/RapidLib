@@ -17,11 +17,11 @@ var classsvm_classification =
     [ "svmClassification", "classsvm_classification.html#a77cdca9d4d80f7a2f9b101e299574523", null ],
     [ "svmClassification", "classsvm_classification.html#ae6cfa10c4cc9fb22267320067bac5cd2", null ],
     [ "~svmClassification", "classsvm_classification.html#a62acf39aee26586edc12f3fa764cdc51", null ],
-    [ "getJSONDescription", "classsvm_classification.html#aed6303761a5802e65d270d75e6647372", null ],
-    [ "getNumInputs", "classsvm_classification.html#ada5e9a9331e8d151e2a62f3451c9a92a", null ],
-    [ "getWhichInputs", "classsvm_classification.html#a94f26f69f7a05e8e1eb4915197bbee07", null ],
+    [ "getJSONDescription", "classsvm_classification.html#af724e989e4e7259a409c063a6b6b535e", null ],
+    [ "getNumInputs", "classsvm_classification.html#ae64fe436b55e2d2aac3c0988e796bb1d", null ],
+    [ "getWhichInputs", "classsvm_classification.html#a4d9cc5c17be70cd26f8c9ef6cd7b2914", null ],
     [ "init", "classsvm_classification.html#aa3c095477366a40e13734788df155399", null ],
-    [ "reset", "classsvm_classification.html#a83c576ed0a5978a5f6e529a8fd3362dc", null ],
-    [ "run", "classsvm_classification.html#ac0e6f16cf122322314ffef1a987abad6", null ],
-    [ "train", "classsvm_classification.html#ac889008c40737b17ee833183a3a4b3e2", null ]
+    [ "reset", "classsvm_classification.html#ad654279b9b8c11cf18242ad1d31cf8a1", null ],
+    [ "run", "classsvm_classification.html#a238f318cbd697bed95c6967aa5153cb0", null ],
+    [ "train", "classsvm_classification.html#a23de13e7fef307193249c259eab32a81", null ]
 ];

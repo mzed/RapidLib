@@ -1,3 +1,4 @@
-<map id="warpInfo" name="warpInfo">
-<area shape="rect" id="node2" href="$classwarp_path.html" title="{warpPath\n|+ indices\l|+ warpPath()\l+ ~warpPath()\l+ add()\l}" alt="" coords="5,5,111,105"/>
+<map id="warpInfo&lt; T &gt;" name="warpInfo&lt; T &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="6,175,123,252"/>
+<area shape="rect" id="node2" href="$classwarp_path.html" title=" " alt="" coords="5,5,124,112"/>
 </map>

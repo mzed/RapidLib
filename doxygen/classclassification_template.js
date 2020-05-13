@@ -11,5 +11,5 @@ var classclassification_template =
     [ "~classificationTemplate", "classclassification_template.html#a08b659332178a1922ca501ea94a924ed", null ],
     [ "getK", "classclassification_template.html#a3ed111f5d4cbba97ff388137ad37e30c", null ],
     [ "setK", "classclassification_template.html#a937a80f445d4cf77a643f59e5fec5383", null ],
-    [ "train", "classclassification_template.html#afd47432b7fdaccfa7523cbd24d3c7096", null ]
+    [ "train", "classclassification_template.html#af482a516ff68ad1eccab5dcedf9eec28", null ]
 ];
