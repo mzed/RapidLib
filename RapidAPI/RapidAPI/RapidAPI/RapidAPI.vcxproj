@@ -170,7 +170,7 @@
     <ClCompile Include="..\..\..\src\seriesClassification.cpp" />
     <ClCompile Include="..\..\..\src\svmClassification.cpp" />
     <ClCompile Include="..\..\..\src\warpPath.cpp" />
-    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\..\..\test\rapidLibTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\dependencies\bayesfilter\src\BayesianFilter.h" />

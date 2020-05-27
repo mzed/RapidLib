@@ -110,7 +110,7 @@ T seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>> &inputS
         }
     }
     for (std::size_t i = 0; i < runningThreads.size(); ++i) {
-        runningThreads.at(0).join(); //FIXME: not sure what's up here...
+        runningThreads.at(i).join(); //FIXME: not sure what's up here...
     }
     
     return allCosts.at(findClosestSeries());
