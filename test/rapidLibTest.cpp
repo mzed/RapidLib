@@ -3,7 +3,7 @@
 #include <cassert>
 #include <random>
 #include <algorithm>
-#include <filesystem> //FIXME: Get c++17 working
+#include <filesystem>
 
 #include "../src/rapidLib.h"
 
@@ -148,14 +148,13 @@ int main(int argc, const char * argv[])
     myNN.train(trainingSet);
     myNN_nodes.train(trainingSet);
     //std::cout << myNN.getJSON() << std::endl;
-    std::string filepath = std::filesystem::temp_directory_path().string() + "NN_test.json";
+    std::string filepath = std::filesystem::temp_directory_path().string() + "/NN_test.json";
     myNN.writeJSON(filepath);
-
-
+ 
     rapidLib::regression myNNfromString;
     myNNfromString.putJSON(myNN.getJSON());
 
-    rapidLib::regression myNNfromFile;
+    rapidLib::regression myNNfromFile;;
     myNNfromFile.readJSON(filepath);
     std::vector<double> inputVec = { 2.0, 44.2 };
 
@@ -232,7 +231,7 @@ int main(int argc, const char * argv[])
     //mySVM.train(trainingSet);
 
     //   std::cout << myKnn.getJSON() << std::endl;
-    std::string filepath2 = std::filesystem::temp_directory_path().string() + "modelSetDescription_knn.json";
+    std::string filepath2 = std::filesystem::temp_directory_path().string() + "/modelSetDescription_knn.json";
     myKnn.writeJSON(filepath2);
 
     rapidLib::classification myKnnFromString(rapidLib::classification::knn);
