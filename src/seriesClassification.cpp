@@ -103,14 +103,14 @@ T seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>> &inputS
     allCosts.clear();
     std::vector<std::thread> runningThreads;
     int seriesIndex;
-    for (int i = 0; i < allTrainingSeries.size(); ++i) {
+    for (std::size_t i = 0; i < allTrainingSeries.size(); ++i) {
         if (allTrainingSeries[i].label == label) {
             runningThreads.push_back(std::thread(&seriesClassificationTemplate<T>::runThread, this, inputSeries, seriesIndex));
             ++seriesIndex;
         }
     }
-    for (int i = 0; i < allTrainingSeries.size(); ++i) {
-        runningThreads.at(i).join();
+    for (std::size_t i = 0; i < runningThreads.size(); ++i) {
+        runningThreads.at(0).join(); //FIXME: not sure what's up here...
     }
     
     return allCosts.at(findClosestSeries());

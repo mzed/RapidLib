@@ -32,8 +32,8 @@ int main(int argc, const char * argv[])
 
     //vanAllenTesting
     rapidLib::seriesClassification testDTW;
-    std::vector<trainingSeries> testVector;
-    trainingSeries tempSeriesTest;
+    std::vector<rapidLib::trainingSeries> testVector;
+    rapidLib::trainingSeries tempSeriesTest;
 
     for (int i = 0; i < 5; ++i) {
         tempSeriesTest.input.push_back({ 0.1, 0.1, 0.1 });
@@ -54,8 +54,8 @@ int main(int argc, const char * argv[])
     rapidLib::regression myNN_ML1;
     rapidLib::regression myNN_ML2;
 
-    std::vector<trainingExample> trainingSet1;
-    trainingExample  tempExample1;
+    std::vector<rapidLib::trainingExample> trainingSet1;
+    rapidLib::trainingExample  tempExample1;
     tempExample1.input = { 1.0, 1.0, 1.0 };
     tempExample1.output = { 10.0 };
     trainingSet1.push_back(tempExample1);
@@ -109,9 +109,9 @@ int main(int argc, const char * argv[])
     assert(myNN_nodes.getNumHiddenNodes()[0] == 10);
     rapidLib::classification myKnn;
     //classification mySVM(classification::svm);
-
-    std::vector<trainingExample> trainingSet;
-    trainingExample  tempExample;
+    
+    std::vector<rapidLib::trainingExample> trainingSet;
+    rapidLib::trainingExample  tempExample;
     tempExample.input = { 0.2, 0.7 };
     tempExample.output = { 3.0 };
     trainingSet.push_back(tempExample);
@@ -163,8 +163,8 @@ int main(int argc, const char * argv[])
     }
 
     rapidLib::regression badNN;
-    std::vector<trainingExample> badSet;
-    trainingExample  badExample;
+    std::vector<rapidLib::trainingExample> badSet;
+    rapidLib::trainingExample  badExample;
     badExample.input = { 0.1, 0.2 };
     badExample.output = { 3.0 };
     badSet.push_back(badExample);
@@ -241,8 +241,8 @@ int main(int argc, const char * argv[])
     assert(myKnn.getK()[0] == 2);
 
     //    regression<float> bigVector;
-    std::vector<trainingExampleTemplate<float> > trainingSet2;
-    trainingExampleTemplate<float> tempExample2;
+    std::vector<rapidLib::trainingExampleFloat > trainingSet2;
+    rapidLib::trainingExampleFloat tempExample2;
     std::default_random_engine generator;
     std::uniform_real_distribution<float> distribution(-0.5, 0.5);
     int vecLength = 64;
@@ -268,8 +268,8 @@ int main(int argc, const char * argv[])
     /*
      classification mySVM2(classification::svm);
 
-     std::vector<trainingExample> trainingSet3;
-     trainingExample tempExample3;
+     std::vector<rapidLib::trainingExample> trainingSet3;
+     rapidLib::trainingExample tempExample3;
 
      tempExample3.input = { 0., 0. };
      tempExample3.output = { 0. };
@@ -320,8 +320,8 @@ int main(int argc, const char * argv[])
 
     //Testing with labels
     rapidLib::seriesClassification myDTW;
-    std::vector<trainingSeries> seriesVector;
-    trainingSeries tempSeries;
+    std::vector<rapidLib::trainingSeries> seriesVector;
+    rapidLib::trainingSeries tempSeries;
 
     tempSeries.input.push_back({ 1., 5. });
     tempSeries.input.push_back({ 2., 4. });
@@ -422,8 +422,8 @@ int main(int argc, const char * argv[])
     std::cout << "epochs: " << mtofRegression.getNumEpochs()[0] << std::endl;
     mtofRegression.setNumEpochs(5000);
 
-    std::vector<trainingExample> trainingSet_mtof;
-    trainingExample  tempExample_mtof;
+    std::vector<rapidLib::trainingExample> trainingSet_mtof;
+    rapidLib::trainingExample  tempExample_mtof;
 
     //Setting up the first element of training data
     tempExample_mtof.input = { 48 };
