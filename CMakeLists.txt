@@ -40,8 +40,8 @@ set(RAPIDLIB_FULL_SRC
 add_library(RAPIDLIB SHARED ${RAPIDLIB_FULL_SRC})
 add_executable(rapidLibTest test/rapidLibTest.cpp)
 
-include(GenerateExportHeader)
-generate_export_header(RAPIDLIB)
+#include(GenerateExportHeader)
+#generate_export_header(RAPIDLIB)
 
 target_link_libraries(rapidLibTest RAPIDLIB)
 target_link_libraries(rapidLibTest Threads::Threads)
