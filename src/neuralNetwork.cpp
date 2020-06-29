@@ -476,6 +476,7 @@ void neuralNetwork<T>::backpropagate(const T& desiredOutput) {
                 for (int k = 0; k <= numInputs; ++k) {
                     deltaWeights[0][j][k] = (learningRate * inputNeurons[k] * hiddenErrorGradient) + (momentum * deltaWeights[0][j][k]);
                 }
+
             }
         }
     }
@@ -503,7 +504,6 @@ void neuralNetwork<T>::updateWeights()
         wHiddenOutput[i] += deltaHiddenOutput[i];
     }
 }
-
 //explicit instantiation
 template class neuralNetwork<double>;
 template class neuralNetwork<float>;
