@@ -20,18 +20,18 @@
 #include <ostream>
 namespace std
 { // Workaround for android
-	template <typename T>
-	std::string to_string(T Value)
-	{
-		std::ostringstream TempStream;
-		TempStream << Value;
-		return TempStream.str();
-	}
+    template <typename T>
+    std::string to_string(T Value)
+    {
+        std::ostringstream TempStream;
+        TempStream << Value;
+        return TempStream.str();
+    }
 
-	inline long double strtold(const char* str, char** str_end)
-	{
-		return strtod(str, str_end);
-	}
+    inline long double strtold(const char* str, char** str_end)
+    {
+        return strtod(str, str_end);
+    }
 }
 #endif
 
@@ -40,26 +40,26 @@ template<typename T>
 class baseModel
 {
 public:
-	virtual ~baseModel() {};
-	virtual T run(const std::vector<T>& inputVector) = 0;
-	virtual void train(const std::vector<trainingExampleTemplate<T> >& trainingSet) = 0;
-	virtual void train(const std::vector<trainingExampleTemplate<T> >& trainingSet, const std::size_t whichOutput) = 0;
-	virtual void reset() = 0;;
-	virtual int getNumInputs() const = 0;
-	virtual std::vector<int> getWhichInputs() const = 0;
+    virtual ~baseModel() {};
+    virtual T run(const std::vector<T>& inputVector) = 0;
+    virtual void train(const std::vector<trainingExampleTemplate<T> >& trainingSet) = 0;
+    virtual void train(const std::vector<trainingExampleTemplate<T> >& trainingSet, const std::size_t whichOutput) = 0;
+    virtual void reset() = 0;;
+    virtual int getNumInputs() const = 0;
+    virtual std::vector<int> getWhichInputs() const = 0;
 
 #ifndef EMSCRIPTEN
-	virtual void getJSONDescription(Json::Value& currentModel) = 0;
+    virtual void getJSONDescription(Json::Value& currentModel) = 0;
 
 protected:
-	template<typename TT>
-	Json::Value vector2json(TT vec) {
-		Json::Value toReturn;
-		for (int i = 0; i < vec.size(); ++i) {
-			toReturn.append(vec[i]);
-		}
-		return toReturn;
-	}
+    template<typename TT>
+    Json::Value vector2json(TT vec) {
+        Json::Value toReturn;
+        for (int i = 0; i < vec.size(); ++i) {
+            toReturn.append(vec[i]);
+        }
+        return toReturn;
+    }
 #endif
 
 };
