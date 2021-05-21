@@ -17,8 +17,8 @@
 
 /** Class for implementing a knn classifier */
 template<typename T>
-class knnClassification final : public baseModel<T> {
-    
+class knnClassification final : public baseModel<T> 
+{    
 public:
     /** Constructor that takes training examples in
      * @param number of inputs expected in the training and input vectors
