@@ -403,41 +403,41 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
     std::vector<T> inMin = trainingSet[0].input;
     T outMin = trainingSet[0].output[whichOutput];
     T outMax = trainingSet[0].output[whichOutput];
-    for (int ti = 1; ti < (int)trainingSet.size(); ++ti) {
-        for (int i = 0; i < numInputs; ++i) {
-            if (trainingSet[ti].input[i] > inMax[i]) {
-                inMax[i] = trainingSet[ti].input[i];
-            }
-            if (trainingSet[ti].input[i] < inMin[i]) {
-                inMin[i] = trainingSet[ti].input[i];
-            }
-            if (trainingSet[ti].output[whichOutput] > outMax) {
-                outMax = trainingSet[ti].output[whichOutput];
-            }
-            if (trainingSet[ti].output[whichOutput] < outMin) {
-                outMin = trainingSet[ti].output[whichOutput];
-            }
+
+    for (size_t ti = 1; ti < trainingSet.size(); ++ti) 
+    {
+        for (int i = 0; i < numInputs; ++i) 
+        {
+            if (trainingSet[ti].input[i] > inMax[i]) inMax[i] = trainingSet[ti].input[i];
+            if (trainingSet[ti].input[i] < inMin[i]) inMin[i] = trainingSet[ti].input[i];
+            if (trainingSet[ti].output[whichOutput] > outMax) outMax = trainingSet[ti].output[whichOutput];
+            if (trainingSet[ti].output[whichOutput] < outMin) outMin = trainingSet[ti].output[whichOutput];
         }
     }
     inRanges.clear();
     inBases.clear();
-    for (int i = 0; i < numInputs; ++i) {
+
+    for (int i = 0; i < numInputs; ++i) 
+    {
         inRanges.push_back((inMax[i] - inMin[i]) * 0.5);
         inBases.push_back((inMax[i] + inMin[i]) * 0.5);
     }
-    for (int i = 0; i < inRanges.size(); ++i) {
-        if (inRanges[i] == 0.) {
-            inRanges[i] = 1.0; //Prevent divide by zero later.
-        }
+
+    for (size_t i = 0; i < inRanges.size(); ++i) 
+    {
+        if (inRanges[i] == 0.) inRanges[i] = 1.0; //Prevent divide by zero later.
     }
     outRange = (outMax - outMin) * 0.5;
     outBase = (outMax + outMin) * 0.5;
 
     //train
-    if (outRange) { //Don't need to do any training if output never changes
-        for (int epoch = 0; epoch < numEpochs; ++epoch) {
+    if (outRange) //Don't need to do any training if output never changes
+    { 
+        for (int epoch = 0; epoch < numEpochs; ++epoch) 
+        {
             //run through every training instance
-            for (int ti = 0; ti < (int)trainingSet.size(); ++ti) {
+            for (size_t ti = 0; ti < trainingSet.size(); ++ti) 
+            {
                 run(trainingSet[ti].input);
                 backpropagate(trainingSet[ti].output[whichOutput]);
             }
@@ -446,18 +446,21 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
 }
 
 template<typename T>
-void neuralNetwork<T>::backpropagate(const T& desiredOutput) {
+void neuralNetwork<T>::backpropagate(const T& desiredOutput) 
+{
     outputErrorGradient = ((desiredOutput - outBase) / outRange) - ((outputNeuron - outBase) / outRange); //FIXME: could be tighter -MZ
 
     //correction based on size of last layer. Is this right? -MZ
     T length = 0;
-    for (int i = 0; i < numHiddenNodes; ++i) {
+    for (int i = 0; i < numHiddenNodes; ++i) 
+    {
         length += hiddenNeurons[numHiddenLayers - 1][i] * hiddenNeurons[numHiddenLayers - 1][i];
     }
     length = (length <= 2.0) ? 1.0 : length;
 
     //deltas between hidden and output
-    for (int i = 0; i <= numHiddenNodes; ++i) {
+    for (int i = 0; i <= numHiddenNodes; ++i) 
+    {
         deltaHiddenOutput[i] = (learningRate * (hiddenNeurons[numHiddenLayers - 1][i] / length) * outputErrorGradient) + (momentum * deltaHiddenOutput[i]);
     }
 
@@ -467,13 +470,17 @@ void neuralNetwork<T>::backpropagate(const T& desiredOutput) {
         for (int j = 0; j < numHiddenNodes; ++j)
         {
             T hiddenErrorGradient = getHiddenErrorGradient(i, j);
-            if (i > 0) {
-                for (int k = 0; k <= numHiddenNodes; ++k) {
+            if (i > 0) 
+            {
+                for (int k = 0; k <= numHiddenNodes; ++k) 
+                {
                     deltaWeights[i][j][k] = (learningRate * hiddenNeurons[i][j] * hiddenErrorGradient) + (momentum * deltaWeights[i][j][k]);
                 }
             }
-            else { //hidden to input layer
-                for (int k = 0; k <= numInputs; ++k) {
+            else //hidden to input layer
+            { 
+                for (int k = 0; k <= numInputs; ++k) 
+                {
                     deltaWeights[0][j][k] = (learningRate * inputNeurons[k] * hiddenErrorGradient) + (momentum * deltaWeights[0][j][k]);
                 }
 
@@ -504,6 +511,7 @@ void neuralNetwork<T>::updateWeights()
         wHiddenOutput[i] += deltaHiddenOutput[i];
     }
 }
+
 //explicit instantiation
 template class neuralNetwork<double>;
 template class neuralNetwork<float>;
