@@ -120,7 +120,7 @@ T knnClassification<T>::run(const std::vector<T> &inputVector)
         T euclidianDistance = 0;
         for(int j = 0; j < numInputs ; ++j)
         {
-            euclidianDistance += pow((pattern[j] - it->input[j]), 2);
+            euclidianDistance += (T)pow((pattern[j] - it->input[j]), 2);
         }
         euclidianDistance = sqrt(euclidianDistance);
 
@@ -154,11 +154,11 @@ T knnClassification<T>::run(const std::vector<T> &inputVector)
     }
     
     //majority vote on nearest neighbours
-    std::map<int, int> classVoteMap;
+    std::map<T, int> classVoteMap;
     using classVotePair = std::pair<int, int>;
     for (int i = 0; i < currentK; ++i) 
     {
-        int classNum = (int) round(neighbours[nearestNeighbours[i].first].output[whichOutput]);
+        T classNum = (T)round(neighbours[nearestNeighbours[i].first].output[whichOutput]);
         if ( classVoteMap.find(classNum) == classVoteMap.end() ) 
         {
             classVoteMap.insert(classVotePair(classNum, 1));

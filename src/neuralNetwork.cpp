@@ -427,8 +427,8 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
     {
         if (inRanges[i] == 0.) inRanges[i] = 1.0; //Prevent divide by zero later.
     }
-    outRange = (outMax - outMin) * 0.5;
-    outBase = (outMax + outMin) * 0.5;
+    outRange = (outMax - outMin) * (T)0.5;
+    outBase = (outMax + outMin) * (T)0.5;
 
     //train
     if (outRange) //Don't need to do any training if output never changes
@@ -456,7 +456,7 @@ void neuralNetwork<T>::backpropagate(const T& desiredOutput)
     {
         length += hiddenNeurons[numHiddenLayers - 1][i] * hiddenNeurons[numHiddenLayers - 1][i];
     }
-    length = (length <= 2.0) ? 1.0 : length;
+    if (length <= 2.0) length = 1.0;
 
     //deltas between hidden and output
     for (int i = 0; i <= numHiddenNodes; ++i) 

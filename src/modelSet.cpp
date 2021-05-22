@@ -77,8 +77,10 @@ void modelSet<T>::threadTrain(std::size_t i, const std::vector<trainingExampleTe
 }
 
 template<typename T>
-bool modelSet<T>::reset() {
-    for (auto& model : myModelSet) {
+bool modelSet<T>::reset() 
+{
+    for (auto& model : myModelSet) 
+    {
         delete model;
     }
     myModelSet.clear();
@@ -89,13 +91,18 @@ bool modelSet<T>::reset() {
 }
 
 template<typename T>
-std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector) {
+std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector) 
+{
     std::vector<T> returnVector;
-    if (created && inputVector.size() == numInputs) {
-        for (auto model : myModelSet) {
+    if (created && inputVector.size() == numInputs) 
+    {
+        for (auto model : myModelSet)
+        {
             returnVector.push_back(model->run(inputVector));
         }
-    } else {
+    } 
+    else 
+    {
         std::string badSize = std::to_string(inputVector.size());
         throw std::length_error("bad input size: " + badSize);
         returnVector.push_back(0);
@@ -108,16 +115,19 @@ std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector) {
 #ifndef EMSCRIPTEN
 //In emscripten, we do the JSON parsing with native JavaScript
 template<typename T>
-std::vector<T> json2vector(Json::Value json) {
+std::vector<T> json2vector(Json::Value json) 
+{
     std::vector<T> returnVec;
-    for (auto jsonValue : json) {
-        returnVec.push_back(jsonValue.asDouble());
+    for (auto jsonValue : json) 
+    {
+        returnVec.push_back((T)jsonValue.asDouble());
     }
     return returnVec;
 }
 
 template<typename T>
-Json::Value modelSet<T>::parse2json() {
+Json::Value modelSet<T>::parse2json() 
+{
     Json::Value root;
     Json::Value metadata;
     Json::Value modelSet;
@@ -126,13 +136,17 @@ Json::Value modelSet<T>::parse2json() {
     metadata["version"] = "v0.1.1"; //TODO: This should be a macro someplace
     metadata["numInputs"] = numInputs;
     Json::Value inputNamesJSON;
-    for (int i = 0; i < inputNames.size(); ++i) {
+
+    for (size_t i = 0; i < inputNames.size(); ++i) 
+    {
         inputNamesJSON.append(inputNames[i]);
     }
     metadata["inputNames"] = inputNamesJSON;
     metadata["numOutputs"] = numOutputs;
     root["metadata"] = metadata;
-    for (auto model : myModelSet) {
+
+    for (auto model : myModelSet) 
+    {
         Json::Value currentModel;
         currentModel["inputNames"] = inputNamesJSON; //TODO: implment this feature
         model->getJSONDescription(currentModel);
@@ -143,13 +157,15 @@ Json::Value modelSet<T>::parse2json() {
 }
 
 template<typename T>
-std::string modelSet<T>::getJSON() {
+std::string modelSet<T>::getJSON() 
+{
     Json::Value root = parse2json();
     return root.toStyledString();
 }
 
 template<typename T>
-void modelSet<T>::writeJSON(const std::string &filepath) {
+void modelSet<T>::writeJSON(const std::string &filepath) 
+{
     Json::Value root = parse2json();
     std::ofstream jsonOut;
     jsonOut.open (filepath);
@@ -160,60 +176,79 @@ void modelSet<T>::writeJSON(const std::string &filepath) {
 }
 
 template<typename T>
-bool modelSet<T>::putJSON(const std::string &jsonMessage) {
+bool modelSet<T>::putJSON(const std::string &jsonMessage) 
+{
     Json::Value parsedFromString;
     Json::Reader reader;
     bool parsingSuccessful = reader.parse(jsonMessage, parsedFromString);
-    if (parsingSuccessful)
-    {
-        json2modelSet(parsedFromString);
-    }
+    if (parsingSuccessful) json2modelSet(parsedFromString);
     return parsingSuccessful;
 }
 
 template<typename T>
-void modelSet<T>::json2modelSet(const Json::Value &root) {
+void modelSet<T>::json2modelSet(const Json::Value &root) 
+{
     numInputs = root["metadata"]["numInputs"].asInt();
-    for (unsigned int i = 0; i < root["metadata"]["inputNames"].size(); ++i) {
+
+    for (size_t i = 0; i < root["metadata"]["inputNames"].size(); ++i) 
+    {
         inputNames.push_back(root["metadata"]["inputNames"][i].asString());
     }
     numOutputs = root["metadata"]["numOutputs"].asInt();
     
-    for (const Json::Value& model : root["modelSet"]) {
+    for (const Json::Value& model : root["modelSet"]) 
+    {
         int modelNumInputs = model["numInputs"].asInt();
         std::vector<int> whichInputs;
         std::vector<std::string> modelInputNames;
-        for (unsigned int i = 0; i < model["inputNames"].size(); ++i) {
+
+        for (size_t i = 0; i < model["inputNames"].size(); ++i) 
+        {
             modelInputNames.push_back(model["inputNames"][i].asString());
         }
-        for (int i = 0; i < inputNames.size(); ++i) {
+
+        for (size_t i = 0; i < inputNames.size(); ++i) 
+        {
             if (std::find(modelInputNames.begin(), modelInputNames.end(), inputNames[i]) != modelInputNames.end())
             {
                 whichInputs.push_back(i);
             }
         }
-        if (model["modelType"].asString() == "Neural Network") {
+
+        if (model["modelType"].asString() == "Neural Network") 
+        {
             int numHiddenLayers = model["numHiddenLayers"].asInt();
             int numHiddenNodes = model["numHiddenNodes"].asInt();
             std::vector<T> weights;
             std::vector<T> wHiddenOutput;
             int nodeIndex = 0;
-            for (const Json::Value& node : model["nodes"]) {
-                if (node["name"].asString() == "Linear Node 0") {
-                    for (int i = 1; i <= numHiddenNodes; ++i) {
+
+            for (const Json::Value& node : model["nodes"]) 
+            {
+                if (node["name"].asString() == "Linear Node 0") 
+                {
+                    for (int i = 1; i <= numHiddenNodes; ++i)
+                    {
                         std::string whichNode = "Node " + std::to_string(i + (numHiddenNodes * (numHiddenLayers - 1)));
                         wHiddenOutput.push_back(node[whichNode].asDouble());
                     }
                     wHiddenOutput.push_back(node["Threshold"].asDouble());
-                } else { //FIXME: this will break if nodes are out of order
+                } 
+                else 
+                { //FIXME: this will break if nodes are out of order
                     int currentLayer = (int) floor((nodeIndex - 1.0)/ (double)numHiddenNodes);
-                    if (currentLayer < 1) { //Nodes connected to input
-                        for (int i = 0; i < numInputs; ++i) {
+                    if (currentLayer < 1) //Nodes connected to input
+                    { 
+                        for (int i = 0; i < numInputs; ++i) 
+                        {
                             std::string whichNode = "Attrib " + model["inputNames"][i].asString();
                             weights.push_back(node[whichNode].asDouble());
                         }
-                    } else { //Hidden Layers
-                        for (int i = 0; i < numHiddenNodes; ++i) {
+                    } 
+                    else //Hidden Layers
+                    { 
+                        for (int i = 0; i < numHiddenNodes; ++i)
+                        {
                             std::string whichNode = "Node " + std::to_string(i + (numHiddenNodes * (currentLayer - 1)));
                             weights.push_back(node[whichNode].asDouble());
                         }                    }
@@ -223,17 +258,21 @@ void modelSet<T>::json2modelSet(const Json::Value &root) {
             }
             std::vector<T> inBases = json2vector<T>(model["inBases"]);
             std::vector<T> inRanges = json2vector<T>(model["inRanges"]);
-            T outRange = model["outRange"].asDouble();
-            T outBase = model["outBase"].asDouble();
+            T outRange = (T)model["outRange"].asDouble();
+            T outBase = (T)model["outBase"].asDouble();
             
             myModelSet.push_back(new neuralNetwork<T>(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
-        } else if (model["modelType"].asString() == "kNN Classificiation") {
+        } 
+        else if (model["modelType"].asString() == "kNN Classificiation") 
+        {
             std::vector<trainingExampleTemplate<T> > trainingSet;
             const Json::Value examples = model["examples"];
-            for (unsigned int i = 0; i < examples.size(); ++i) {
+
+            for (size_t i = 0; i < examples.size(); ++i) 
+            {
                 trainingExampleTemplate<T> tempExample;
                 tempExample.input = json2vector<T>(examples[i]["features"]);
-                tempExample.output.push_back(examples[i]["class"].asDouble());
+                tempExample.output.push_back((T)examples[i]["class"].asDouble());
                 trainingSet.push_back(tempExample);
             }
             int k = model["k"].asInt();
@@ -244,7 +283,8 @@ void modelSet<T>::json2modelSet(const Json::Value &root) {
 }
 
 template<typename T>
-bool modelSet<T>::readJSON(const std::string &filepath) {
+bool modelSet<T>::readJSON(const std::string &filepath) 
+{
     Json::Value root;
     std::ifstream file(filepath);
     file >> root;

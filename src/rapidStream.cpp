@@ -149,7 +149,7 @@ namespace rapidLib
         T newMean = mean();
         T standardDeviation = 0.;
         for (int i = 0; i < windowSize; ++i) {
-            standardDeviation += pow(circularWindow[i] - newMean, 2);
+            standardDeviation += (T)pow(circularWindow[i] - newMean, 2);
         }
         return sqrt(standardDeviation / windowSize);
     }

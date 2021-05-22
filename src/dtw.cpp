@@ -23,7 +23,7 @@ template<typename T>
 inline T dtw<T>::distanceFunction(const std::vector<T> &x, const std::vector<T> &y)
 {
     assert(x.size() == y.size());
-    T euclidianDistance = 0;
+    double euclidianDistance = 0;
     
     for(std::size_t j = 0; j < x.size() ; ++j)
     {
@@ -31,7 +31,7 @@ inline T dtw<T>::distanceFunction(const std::vector<T> &x, const std::vector<T> 
     }
     
     euclidianDistance = sqrt(euclidianDistance);
-    return euclidianDistance;
+    return (T)euclidianDistance;
 };
 
 /* Just returns the cost, doesn't calculate the path */
