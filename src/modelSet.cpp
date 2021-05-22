@@ -190,7 +190,7 @@ void modelSet<T>::json2modelSet(const Json::Value &root)
 {
     numInputs = root["metadata"]["numInputs"].asInt();
 
-    for (size_t i = 0; i < root["metadata"]["inputNames"].size(); ++i) 
+    for (unsigned int i = 0; i < root["metadata"]["inputNames"].size(); ++i) 
     {
         inputNames.push_back(root["metadata"]["inputNames"][i].asString());
     }
@@ -202,7 +202,7 @@ void modelSet<T>::json2modelSet(const Json::Value &root)
         std::vector<int> whichInputs;
         std::vector<std::string> modelInputNames;
 
-        for (size_t i = 0; i < model["inputNames"].size(); ++i) 
+        for (unsigned int i = 0; i < model["inputNames"].size(); ++i) 
         {
             modelInputNames.push_back(model["inputNames"][i].asString());
         }
@@ -230,7 +230,7 @@ void modelSet<T>::json2modelSet(const Json::Value &root)
                     for (int i = 1; i <= numHiddenNodes; ++i)
                     {
                         std::string whichNode = "Node " + std::to_string(i + (numHiddenNodes * (numHiddenLayers - 1)));
-                        wHiddenOutput.push_back(node[whichNode].asDouble());
+                        wHiddenOutput.push_back((T)node[whichNode].asDouble());
                     }
                     wHiddenOutput.push_back(node["Threshold"].asDouble());
                 } 
@@ -268,7 +268,7 @@ void modelSet<T>::json2modelSet(const Json::Value &root)
             std::vector<trainingExampleTemplate<T> > trainingSet;
             const Json::Value examples = model["examples"];
 
-            for (size_t i = 0; i < examples.size(); ++i) 
+            for (unsigned int i = 0; i < examples.size(); ++i) 
             {
                 trainingExampleTemplate<T> tempExample;
                 tempExample.input = json2vector<T>(examples[i]["features"]);
