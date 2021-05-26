@@ -107,16 +107,17 @@ private:
     std::vector<trainingSeriesTemplate<T> > allTrainingSeries;
     int vectorLength;
     std::vector<T> allCosts;
-    int maxLength;
-    int minLength;
+    size_t maxLength;
+    size_t minLength;
     std::map<std::string, minMax<int> > lengthsPerLabel;
+    bool isTrained;
     
     std::vector<std::vector<T> > seriesBuffer;
     int hopSize;
     int counter;
     
-    int findClosestSeries() const;
-    void runThread(const std::vector<std::vector<T>> &inputSeries, int i);
+    size_t findClosestSeries() const;
+    void runThread(const std::vector<std::vector<T>> &inputSeries, std::size_t i);
 };
 
 namespace rapidLib

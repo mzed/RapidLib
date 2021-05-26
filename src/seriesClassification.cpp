@@ -20,108 +20,134 @@
 #define SEARCH_RADIUS 1
 
 template<typename T>
-seriesClassificationTemplate<T>::seriesClassificationTemplate() : hopSize(1), counter(0) {};
+seriesClassificationTemplate<T>::seriesClassificationTemplate() : hopSize(1), counter(0), isTrained(false) {};
 
 template<typename T>
 seriesClassificationTemplate<T>::~seriesClassificationTemplate() {};
 
 template<typename T>
-bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemplate<T> > &seriesSet) {
+bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemplate<T> > &seriesSet) 
+{
     assert(seriesSet.size() > 0);
     reset();
     vectorLength = int(seriesSet[0].input[0].size()); //TODO: check that all vectors are the same size
     bool trained = true;
     allTrainingSeries = seriesSet;
     minLength = maxLength = int(allTrainingSeries[0].input.size());
-    for (int i = 0; i < allTrainingSeries.size(); ++i) {
+
+    for (size_t i = 0; i < allTrainingSeries.size(); ++i) 
+    {
         //for (auto trainingSeries : allTrainingSeries)
         //Global
-        int newLength = int(allTrainingSeries[i].input.size());
-        if (newLength < minLength) {
-            minLength = newLength;
-        }
-        if (newLength > maxLength) {
-            maxLength = newLength;
-        }
+        size_t newLength = allTrainingSeries[i].input.size();
+        if (newLength < minLength) minLength = newLength;
+        if (newLength > maxLength) maxLength = newLength;
+    
         //Per Label
         typename std::map<std::string, minMax<int> >::iterator it = lengthsPerLabel.find(allTrainingSeries[i].label);
-        if (it != lengthsPerLabel.end()) {
-            int newLength = int(allTrainingSeries[i].input.size());
-            if (newLength < it->second.min) {
-                it->second.min = newLength;
-            }
-            if (newLength > it->second.max) {
-                it->second.max = newLength;
-            }
-        } else {
+        if (it != lengthsPerLabel.end()) 
+        {
+            size_t newLength = allTrainingSeries[i].input.size();
+            if (newLength < it->second.min) it->second.min = newLength;
+            if (newLength > it->second.max) it->second.max = newLength;
+        } 
+        else 
+        {
             minMax<int> tempLengths;
-            tempLengths.min = tempLengths.max = int(allTrainingSeries[i].input.size());
+            tempLengths.min = tempLengths.max = allTrainingSeries[i].input.size();
             lengthsPerLabel[allTrainingSeries[i].label] = tempLengths;
         }
     }
     //TODO: make this size smarter?
     std::vector<T> zeroVector;
-    for (int i = 0; i < vectorLength; ++i) {
+    for (int i = 0; i < vectorLength; ++i) 
+    {
         zeroVector.push_back(0.0);
     }
-    for (int i = 0; i < minLength; ++i ) {
+    for (int i = 0; i < minLength; ++i ) 
+    {
         seriesBuffer.push_back(zeroVector); //set size of continuous buffer
     }
+    isTrained = true;
     return trained;
 };
 
 template<typename T>
-void seriesClassificationTemplate<T>::reset() {
+void seriesClassificationTemplate<T>::reset() 
+{
     allCosts.clear();
     allTrainingSeries.clear();
     lengthsPerLabel.clear();
     minLength = -1;
     maxLength = -1;
+    isTrained = false;
 }
 
 template<typename T>
-std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>> &inputSeries) {
-    //TODO: Check to see if trained
-    int closestSeries = 0;
-    allCosts.clear();
-    std::vector<std::thread> runningThreads;
-    for (int i = 0; i < allTrainingSeries.size(); ++i) {
-        runningThreads.push_back(std::thread(&seriesClassificationTemplate<T>::runThread, this, inputSeries, i));
+std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>> &inputSeries) 
+{
+    std::string returnLabel = "not trained";
+    if (!isTrained)
+    {
+        throw std::runtime_error("can't run a model during training");
     }
-    for (int i = 0; i < allTrainingSeries.size(); ++i) {
-        runningThreads.at(i).join();
-    }
-    
-    closestSeries = findClosestSeries();
-    return allTrainingSeries[closestSeries].label;
-};
-
-template<typename T>
-T seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>> &inputSeries, std::string label) {
-    //TODO: Check to see if trained
-    int closestSeries = 0;
-    allCosts.clear();
-    std::vector<std::thread> runningThreads;
-    int seriesIndex;
-    for (std::size_t i = 0; i < allTrainingSeries.size(); ++i) {
-        if (allTrainingSeries[i].label == label) {
-            runningThreads.push_back(std::thread(&seriesClassificationTemplate<T>::runThread, this, inputSeries, seriesIndex));
-            ++seriesIndex;
+    else
+    {
+        allCosts.clear();
+        std::vector<std::thread> runningThreads;
+        for (std::size_t i = 0; i < allTrainingSeries.size(); ++i) 
+        {
+            runningThreads.push_back(std::thread(&seriesClassificationTemplate<T>::runThread, this, inputSeries, i));
         }
+        for (std::size_t i = 0; i < allTrainingSeries.size(); ++i) 
+        {
+            runningThreads.at(i).join();
+        }
+        returnLabel = allTrainingSeries[findClosestSeries()].label;
     }
-    for (std::size_t i = 0; i < runningThreads.size(); ++i) {
-        runningThreads.at(i).join(); //FIXME: not sure what's up here...
-    }
-    
-    return allCosts.at(findClosestSeries());
+
+    return returnLabel;
 };
 
 template<typename T>
-int seriesClassificationTemplate<T>::findClosestSeries() const {
+T seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>> &inputSeries, std::string label) 
+{
+    T returnValue = 0;
+    if (!isTrained)
+    {
+        throw std::runtime_error("can't run a model during training");
+    }
+    else
+    {
+        allCosts.clear();
+        std::vector<std::thread> runningThreads;
+        int seriesIndex;
+        for (std::size_t i = 0; i < allTrainingSeries.size(); ++i) 
+        {
+            if (allTrainingSeries[i].label == label) 
+            {
+                runningThreads.push_back(std::thread(&seriesClassificationTemplate<T>::runThread, this, inputSeries, seriesIndex));
+                ++seriesIndex;
+            }
+        }
+        for (std::size_t i = 0; i < runningThreads.size(); ++i) 
+        {
+            runningThreads.at(i).join(); //FIXME: not sure what's up here...
+        }
+        returnValue = allCosts.at(findClosestSeries());
+    }
+    return returnValue;
+};
+
+template<typename T>
+size_t seriesClassificationTemplate<T>::findClosestSeries() const 
+{
     T lowestCost = allCosts[0];
-    int closestSeries = 0;
-    for (int i = 1; i < allCosts.size(); ++i) {
-        if (allCosts[i] < lowestCost) {
+    size_t closestSeries = 0;
+    for (std::size_t i = 1; i < allCosts.size(); ++i) 
+    {
+        if (allCosts[i] < lowestCost) 
+        {
             lowestCost = allCosts[i];
             closestSeries = i;
         }
@@ -130,13 +156,15 @@ int seriesClassificationTemplate<T>::findClosestSeries() const {
 }
 
 template<typename T>
-void seriesClassificationTemplate<T>::runThread(const std::vector<std::vector<T>> &inputSeries, int i) {
+void seriesClassificationTemplate<T>::runThread(const std::vector<std::vector<T>> &inputSeries, std::size_t i) 
+{
     allCosts.push_back(std::numeric_limits<T>::max()); //initialized cost
     allCosts[i] = fastDTW<T>::getCost(inputSeries, allTrainingSeries[i].input, SEARCH_RADIUS);
 }
 
 template<typename T>
-std::string seriesClassificationTemplate<T>::runContinuous(const std::vector<T> &inputVector) {
+std::string seriesClassificationTemplate<T>::runContinuous(const std::vector<T> &inputVector) 
+{
     seriesBuffer.erase(seriesBuffer.begin());
     seriesBuffer.push_back(inputVector);
     std::string returnString = "none";
