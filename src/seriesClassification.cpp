@@ -168,7 +168,8 @@ std::string seriesClassificationTemplate<T>::runContinuous(const std::vector<T> 
     seriesBuffer.erase(seriesBuffer.begin());
     seriesBuffer.push_back(inputVector);
     std::string returnString = "none";
-    if ((counter % hopSize) == 0 ) {
+    if ((counter % hopSize) == 0 ) 
+    {
         returnString = run(seriesBuffer);
         counter = 0;
     }
@@ -177,60 +178,71 @@ std::string seriesClassificationTemplate<T>::runContinuous(const std::vector<T> 
 }
 
 template<typename T>
-std::vector<T> seriesClassificationTemplate<T>::getCosts() const{
+std::vector<T> seriesClassificationTemplate<T>::getCosts() const
+{
     return allCosts;
 }
 
 template<typename T>
-int seriesClassificationTemplate<T>::getMinLength() const{
+std::size_t seriesClassificationTemplate<T>::getMinLength() const
+{
     return minLength;
 }
 
 template<typename T>
-int seriesClassificationTemplate<T>::getMinLength(std::string label) const {
-    int labelMinLength = -1;
+std::size_t seriesClassificationTemplate<T>::getMinLength(std::string label) const 
+{
+    std::size_t labelMinLength = -1;
     typename std::map<std::string, minMax<int> >::const_iterator it = lengthsPerLabel.find(label);
-    if (it != lengthsPerLabel.end()) {
-        labelMinLength = it->second.min;
-    }
+    if (it != lengthsPerLabel.end()) labelMinLength = it->second.min;
     return labelMinLength;
 }
 
 template<typename T>
-int seriesClassificationTemplate<T>::getMaxLength() const {
+std::size_t seriesClassificationTemplate<T>::getMaxLength() const 
+{
     return maxLength;
 }
 
 template<typename T>
-int seriesClassificationTemplate<T>::getMaxLength(std::string label) const {
-    int labelMaxLength = -1;
+std::size_t seriesClassificationTemplate<T>::getMaxLength(std::string label) const 
+{
+    std::size_t labelMaxLength = -1;
     typename std::map<std::string, minMax<int> >::const_iterator it = lengthsPerLabel.find(label);
-    if (it != lengthsPerLabel.end()) {
-        labelMaxLength = it->second.max;
-    }
+    if (it != lengthsPerLabel.end()) labelMaxLength = it->second.max;
     return labelMaxLength;
 }
 
 template<typename T>
-typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificationTemplate<T>::calculateCosts(std::string label) const {
+typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificationTemplate<T>::calculateCosts(std::string label) const 
+{
     minMax<T> calculatedMinMax;
     bool foundSeries = false;
     std::vector<T> labelCosts;
-    for (int i = 0; i < (allTrainingSeries.size() - 1); ++i) { //these loops are a little different than the two-label case
-        if (allTrainingSeries[i].label == label) {
+
+    for (size_t i = 0; i < (allTrainingSeries.size() - 1); ++i) //these loops are a little different than the two-label case
+    { 
+        if (allTrainingSeries[i].label == label) 
+        {
             foundSeries = true;
-            for (int j = (i + 1); j < allTrainingSeries.size(); ++j) {
-                if (allTrainingSeries[j].label == label) {
+            for (size_t j = (i + 1); j < allTrainingSeries.size(); ++j) 
+            {
+                if (allTrainingSeries[j].label == label) 
+                {
                     labelCosts.push_back(fastDTW<T>::getCost(allTrainingSeries[i].input, allTrainingSeries[j].input, SEARCH_RADIUS));
                 }
             }
         }
     }
-    if (foundSeries) {
+
+    if (foundSeries) 
+    {
         auto minmax_result = std::minmax_element(std::begin(labelCosts), std::end(labelCosts));
         calculatedMinMax.min = *minmax_result.first;
         calculatedMinMax.max = *minmax_result.second;
-    } else {
+    } 
+    else 
+    {
         calculatedMinMax.min = calculatedMinMax.max = 0;
     }
     return calculatedMinMax;
@@ -241,21 +253,29 @@ typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificatio
     minMax<T> calculatedMinMax;
     bool foundSeries = false;
     std::vector<T> labelCosts;
-    for (int i = 0; i < (allTrainingSeries.size()); ++i) {
+
+    for (size_t i = 0; i < (allTrainingSeries.size()); ++i) 
+    {
         if (allTrainingSeries[i].label == label1) {
-            for (int j = 0; j < allTrainingSeries.size(); ++j) {
-                if (allTrainingSeries[j].label == label2) {
+            for (size_t j = 0; j < allTrainingSeries.size(); ++j)
+            {
+                if (allTrainingSeries[j].label == label2) 
+                {
                     foundSeries = true;
                     labelCosts.push_back(fastDTW<T>::getCost(allTrainingSeries[i].input, allTrainingSeries[j].input, SEARCH_RADIUS));
                 }
             }
         }
     }
-    if (foundSeries) {
+
+    if (foundSeries) 
+    {
         auto minmax_result = std::minmax_element(std::begin(labelCosts), std::end(labelCosts));
         calculatedMinMax.min = *minmax_result.first;
         calculatedMinMax.max = *minmax_result.second;
-    } else {
+    } 
+    else 
+    {
         calculatedMinMax.min = calculatedMinMax.max = 0;
     }
     return calculatedMinMax;

@@ -15,15 +15,10 @@
 #include "../dependencies/json/json.h"
 #endif
 
-#define LEARNING_RATE 0.3
-#define MOMENTUM 0.2
-#define NUM_EPOCHS 500
-
  /*! Class for implementing a Neural Network.
   *
   * This class includes both running and training, and constructors for reading trained models from JSON.
   */
-
 template<typename T>
 class neuralNetwork final : public baseModel<T>
 {
@@ -136,9 +131,9 @@ public:
 
 private:
     /** Parameters that influence learning */
-    T learningRate;
-    T momentum;
-    int numEpochs;
+    T learningRate = 0.3;
+    T momentum = 0.2;
+    size_t numEpochs = 500;
 
     /** These deltas are applied to the weights in the network */
     std::vector<std::vector< std::vector<T> > > deltaWeights;

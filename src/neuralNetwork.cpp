@@ -58,9 +58,6 @@ neuralNetwork<T>::neuralNetwork(const int& num_inputs,
     inBases(in_bases),
     outRange(out_range),
     outBase(out_base),
-    learningRate(LEARNING_RATE),
-    momentum(MOMENTUM),
-    numEpochs(NUM_EPOCHS),
     outputErrorGradient(0)
 {
     bool randomize = _weights.size() ? false : true;
@@ -126,9 +123,6 @@ neuralNetwork<T>::neuralNetwork(const int& num_inputs,
     whichInputs(which_inputs),
     numHiddenLayers(num_hidden_layers),
     numHiddenNodes(num_hidden_nodes),
-    learningRate(LEARNING_RATE),
-    momentum(MOMENTUM),
-    numEpochs(NUM_EPOCHS),
     outputErrorGradient(0)
 {
     //randomize weights
@@ -417,7 +411,7 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
     inRanges.clear();
     inBases.clear();
 
-    for (int i = 0; i < numInputs; ++i) 
+    for (size_t i = 0; i < numInputs; ++i) 
     {
         inRanges.push_back((inMax[i] - inMin[i]) * 0.5);
         inBases.push_back((inMax[i] + inMin[i]) * 0.5);
