@@ -207,7 +207,7 @@ void modelSet<T>::json2modelSet(const Json::Value &root)
     for (const Json::Value& model : root["modelSet"]) 
     {
         int modelNumInputs = model["numInputs"].asInt();
-        std::vector<int> whichInputs;
+        std::vector<size_t> whichInputs;
         std::vector<std::string> modelInputNames;
 
         for (unsigned int i = 0; i < model["inputNames"].size(); ++i) 
@@ -269,6 +269,7 @@ void modelSet<T>::json2modelSet(const Json::Value &root)
             T outRange = (T)model["outRange"].asDouble();
             T outBase = (T)model["outBase"].asDouble();
             
+            //TODO: many of these arguments could be size_t
             myModelSet.push_back(new neuralNetwork<T>(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
         } 
         else if (model["modelType"].asString() == "kNN Classificiation") 
@@ -284,6 +285,7 @@ void modelSet<T>::json2modelSet(const Json::Value &root)
                 trainingSet.push_back(tempExample);
             }
             int k = model["k"].asInt();
+
             myModelSet.push_back(new knnClassification<T>(modelNumInputs, whichInputs, trainingSet, k));
         }
     }

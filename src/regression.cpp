@@ -38,7 +38,7 @@ regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_
     numHiddenNodes = num_inputs;
     modelSet<T>::isTraining = false;
     created = false;
-    std::vector<int> whichInputs;
+    std::vector<size_t> whichInputs;
 
     for (int i = 0; i < modelSet<T>::numInputs; ++i) 
     {
@@ -197,7 +197,7 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
         }
 
         if(numHiddenNodes == 0) numHiddenNodes = modelSet<T>::numInputs;
-        std::vector<int> whichInputs;
+        std::vector<size_t> whichInputs;
 
         for (int j = 0; j < modelSet<T>::numInputs; ++j) 
         {

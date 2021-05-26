@@ -37,15 +37,15 @@ classificationTemplate<T>::classificationTemplate(const int &num_inputs, const i
     modelSet<T>::numInputs = num_inputs;
     modelSet<T>::numOutputs = num_outputs;
     modelSet<T>::isTraining = false;
-    std::vector<int> whichInputs;
+    std::vector<size_t> whichInputs;
 
-    for (int i = 0; i < modelSet<T>::numInputs; ++i) 
+    for (size_t i = 0; i < modelSet<T>::numInputs; ++i) 
     {
         whichInputs.push_back(i);
     }
     std::vector<trainingExampleTemplate<T> > trainingSet;
 
-    for (int i = 0; i < modelSet<T>::numOutputs; ++i) 
+    for (size_t i = 0; i < modelSet<T>::numOutputs; ++i)
     {
         modelSet<T>::myModelSet.push_back(new knnClassification<T>(modelSet<T>::numInputs, whichInputs, trainingSet, 1));
     }
@@ -91,7 +91,7 @@ bool classificationTemplate<T>::train(const std::vector<trainingExampleTemplate<
                 return false;
             }
         }
-        std::vector<int> whichInputs;
+        std::vector<size_t> whichInputs;
 
         for (int j = 0; j < modelSet<T>::numInputs; ++j) 
         {

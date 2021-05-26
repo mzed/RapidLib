@@ -17,22 +17,21 @@
 #endif
 
 template<typename T>
-knnClassification<T>::knnClassification(const int &num_inputs, const std::vector<int> &which_inputs, const std::vector<trainingExampleTemplate<T> > &_neighbours, const int k)
-: numInputs(num_inputs),
-whichInputs(which_inputs),
-whichOutput(0),
-neighbours(_neighbours),
-desiredK(k),
-currentK(k)
+knnClassification<T>::knnClassification(const int &num_inputs, 
+    const std::vector<size_t> &which_inputs, 
+    const std::vector<trainingExampleTemplate<T> > &_neighbours, 
+    const int k) : 
+    numInputs(num_inputs), 
+    whichInputs(which_inputs),
+    whichOutput(0),
+    neighbours(_neighbours),
+    desiredK(k),
+    currentK(k)
 {
-    nearestNeighbours = new std::pair<int, T>[currentK];
 }
 
 template<typename T>
-knnClassification<T>::~knnClassification() 
-{
-    delete[] nearestNeighbours;
-}
+knnClassification<T>::~knnClassification() {}
 
 template<typename T>
 void knnClassification<T>::reset() 
@@ -47,7 +46,7 @@ int knnClassification<T>::getNumInputs() const
 }
 
 template<typename T>
-std::vector<int> knnClassification<T>::getWhichInputs() const 
+std::vector<size_t> knnClassification<T>::getWhichInputs() const 
 {
     return whichInputs;
 }
@@ -100,25 +99,27 @@ void knnClassification<T>::train(const std::vector<trainingExampleTemplate<T> > 
 template<typename T>
 T knnClassification<T>::run(const std::vector<T> &inputVector) 
 {
-    for (int i = 0; i < currentK; ++i) 
+    std::vector<std::pair<int, T>> nearestNeighbours; //These are our k nearest neighbours
+
+    for (size_t i = 0; i < currentK; ++i) 
     {
-        nearestNeighbours[i] = {0, 0.};
+        nearestNeighbours.push_back( std::make_pair(0, 0.) );
     };
-    std::pair<int, T> farthestNN {0, 0.};
+    std::pair<int, T> farthestNN {0, 0.}; //This one will be replaced if there's a closer one
     
-    std::vector<T> pattern;
-    for (int h = 0; h < numInputs; h++) 
+    std::vector<T> pattern; //This is what we're trying to match
+    for (size_t h = 0; h < numInputs; ++h) 
     {
         pattern.push_back(inputVector[whichInputs[h]]);
     }
     
     //Find k nearest neighbours
-    int index = 0;
+    size_t index = 0;
     for (auto it = neighbours.cbegin(); it != neighbours.cend(); ++it) 
     {
         //find Euclidian distance for this neighbor
         T euclidianDistance = 0;
-        for(int j = 0; j < numInputs ; ++j)
+        for(size_t j = 0; j < numInputs ; ++j)
         {
             euclidianDistance += (T)pow((pattern[j] - it->input[j]), 2);
         }
@@ -128,19 +129,16 @@ T knnClassification<T>::run(const std::vector<T> &inputVector)
         {
             //save the first k neighbours
             nearestNeighbours[index] = {index, euclidianDistance};
-            if (euclidianDistance > farthestNN.second) 
-            {
-                farthestNN = {index, euclidianDistance};
-            }
+            if (euclidianDistance > farthestNN.second) farthestNN = {index, euclidianDistance};
         } 
         else if (euclidianDistance < farthestNN.second) 
         {
             //replace farthest, if new neighbour is closer
             nearestNeighbours[farthestNN.first] = {index, euclidianDistance};
-            int currentFarthest = 0;
+            size_t currentFarthest = 0;
             T currentFarthestDistance = 0.;
 
-            for (int n = 0; n < currentK; n++) 
+            for (size_t n = 0; n < currentK; ++n) 
             {
                 if (nearestNeighbours[n].second > currentFarthestDistance) 
                 {
@@ -156,7 +154,7 @@ T knnClassification<T>::run(const std::vector<T> &inputVector)
     //majority vote on nearest neighbours
     std::map<T, int> classVoteMap;
     using classVotePair = std::pair<int, int>;
-    for (int i = 0; i < currentK; ++i) 
+    for (size_t i = 0; i < currentK; ++i) 
     {
         T classNum = (T)round(neighbours[nearestNeighbours[i].first].output[whichOutput]);
         if ( classVoteMap.find(classNum) == classVoteMap.end() ) 

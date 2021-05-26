@@ -20,7 +20,7 @@
 #define SEARCH_RADIUS 1
 
 template<typename T>
-seriesClassificationTemplate<T>::seriesClassificationTemplate() : hopSize(1), counter(0), isTrained(false) {};
+seriesClassificationTemplate<T>::seriesClassificationTemplate() : hopSize(1), counter(0), isTraining(false) {};
 
 template<typename T>
 seriesClassificationTemplate<T>::~seriesClassificationTemplate() {};
@@ -28,12 +28,13 @@ seriesClassificationTemplate<T>::~seriesClassificationTemplate() {};
 template<typename T>
 bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemplate<T> > &seriesSet) 
 {
+    isTraining = true;
     assert(seriesSet.size() > 0);
     reset();
-    vectorLength = int(seriesSet[0].input[0].size()); //TODO: check that all vectors are the same size
+    vectorLength = seriesSet[0].input[0].size(); //TODO: check that all vectors are the same size
     bool trained = true;
     allTrainingSeries = seriesSet;
-    minLength = maxLength = int(allTrainingSeries[0].input.size());
+    minLength = maxLength = allTrainingSeries[0].input.size();
 
     for (size_t i = 0; i < allTrainingSeries.size(); ++i) 
     {
@@ -68,7 +69,7 @@ bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemp
     {
         seriesBuffer.push_back(zeroVector); //set size of continuous buffer
     }
-    isTrained = true;
+    isTraining = false;
     return trained;
 };
 
@@ -80,14 +81,14 @@ void seriesClassificationTemplate<T>::reset()
     lengthsPerLabel.clear();
     minLength = -1;
     maxLength = -1;
-    isTrained = false;
+    isTraining = false;
 }
 
 template<typename T>
 std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>> &inputSeries) 
 {
-    std::string returnLabel = "not trained";
-    if (!isTrained)
+    std::string returnLabel = "none";
+    if (isTraining)
     {
         throw std::runtime_error("can't run a model during training");
     }
@@ -113,7 +114,7 @@ template<typename T>
 T seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>> &inputSeries, std::string label) 
 {
     T returnValue = 0;
-    if (!isTrained)
+    if (isTraining)
     {
         throw std::runtime_error("can't run a model during training");
     }
@@ -170,6 +171,10 @@ std::string seriesClassificationTemplate<T>::runContinuous(const std::vector<T> 
     std::string returnString = "none";
     if ((counter % hopSize) == 0 ) 
     {
+        if (isTraining)
+        {
+            throw std::runtime_error("can't run a model during training");
+        } 
         returnString = run(seriesBuffer);
         counter = 0;
     }

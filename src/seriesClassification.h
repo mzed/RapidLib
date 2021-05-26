@@ -105,12 +105,12 @@ public:
     
 private:
     std::vector<trainingSeriesTemplate<T> > allTrainingSeries;
-    int vectorLength;
+    size_t vectorLength;
     std::vector<T> allCosts;
     size_t maxLength;
     size_t minLength;
     std::map<std::string, minMax<int> > lengthsPerLabel;
-    bool isTrained;
+    bool isTraining;
     
     std::vector<std::vector<T> > seriesBuffer;
     int hopSize;
