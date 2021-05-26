@@ -36,7 +36,7 @@ protected:
     int numInputs;
     std::vector<std::string> inputNames;
     int numOutputs;
-    bool created;
+    bool isTraining; //This is true while the models are training, and will block running
 
 #ifndef EMSCRIPTEN //The javascript code will do its own JSON parsing
 public:

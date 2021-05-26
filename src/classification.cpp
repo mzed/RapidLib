@@ -18,7 +18,7 @@ classificationTemplate<T>::classificationTemplate()
 {
     modelSet<T>::numInputs = -1;
     modelSet<T>::numOutputs = -1;
-    modelSet<T>::created = false;
+    modelSet<T>::isTraining = false;
     classificationType = knn; //this is the default algorithm
 };
 
@@ -27,7 +27,7 @@ classificationTemplate<T>::classificationTemplate(classificationTypes classifica
 {
     modelSet<T>::numInputs = -1;
     modelSet<T>::numOutputs = -1;
-    modelSet<T>::created = false;
+    modelSet<T>::isTraining = false;
     classificationType = classification_type;
 };
 
@@ -36,7 +36,7 @@ classificationTemplate<T>::classificationTemplate(const int &num_inputs, const i
 { 
     modelSet<T>::numInputs = num_inputs;
     modelSet<T>::numOutputs = num_outputs;
-    modelSet<T>::created = false;
+    modelSet<T>::isTraining = false;
     std::vector<int> whichInputs;
 
     for (int i = 0; i < modelSet<T>::numInputs; ++i) 
@@ -49,7 +49,6 @@ classificationTemplate<T>::classificationTemplate(const int &num_inputs, const i
     {
         modelSet<T>::myModelSet.push_back(new knnClassification<T>(modelSet<T>::numInputs, whichInputs, trainingSet, 1));
     }
-    modelSet<T>::created = true;
 };
 
 template<typename T>
@@ -57,7 +56,7 @@ classificationTemplate<T>::classificationTemplate(const std::vector<trainingExam
 {
     modelSet<T>::numInputs = -1;
     modelSet<T>::numOutputs = -1;
-    modelSet<T>::created = false;
+    modelSet<T>::isTraining = false;
     train(trainingSet);
 };
 
@@ -110,7 +109,7 @@ bool classificationTemplate<T>::train(const std::vector<trainingExampleTemplate<
                 modelSet<T>::myModelSet.push_back(new knnClassification<T>(modelSet<T>::numInputs, whichInputs, training_set, 1));
             }
         }
-        modelSet<T>::created = true;
+
         return modelSet<T>::train(training_set);
     }
     return false;

@@ -56,6 +56,7 @@ private:
     int numHiddenLayers; //Temporary -- this should be part of the nn class. -mz
     int numEpochs; //Temporary -- also should be part of nn only. -mz
     int numHiddenNodes; //Temporary -- also should be part of nn only. -mz
+    bool created;
 };
 
 namespace rapidLib

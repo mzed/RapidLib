@@ -22,10 +22,11 @@
 #endif
 
 /** No arguments, don't create any models yet */
-template<typename T>
+template<typename T> 
 modelSet<T>::modelSet() :
-numInputs(-1),
-numOutputs(-1)
+    numInputs(-1),
+    numOutputs(-1),
+    isTraining(false)
 {
 };
 
@@ -41,6 +42,7 @@ modelSet<T>::~modelSet()
 template<typename T>
 bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set) 
 {
+    isTraining = true;
     for (trainingExampleTemplate<T> example : training_set) 
     {
         if (example.input.size() != numInputs) 
@@ -66,7 +68,7 @@ bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training
     {
         trainingThreads.at(i).join();
     }
-    created = true;
+    isTraining = false;
     return true;
 }
 
@@ -86,7 +88,7 @@ bool modelSet<T>::reset()
     myModelSet.clear();
     numInputs = -1;
     numOutputs = -1;
-    created = false;
+    isTraining = false;
     return true;
 }
 
@@ -94,18 +96,24 @@ template<typename T>
 std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector) 
 {
     std::vector<T> returnVector;
-    if (created && inputVector.size() == numInputs) 
+
+    if (isTraining)
+    {
+        throw std::runtime_error("can't run a model during training");
+        returnVector.push_back(0);
+    }
+    else if (inputVector.size() != numInputs) 
+    {
+        std::string badSize = std::to_string(inputVector.size());
+        throw std::length_error("bad input size: " + badSize);
+        returnVector.push_back(0);
+    } 
+    else 
     {
         for (auto model : myModelSet)
         {
             returnVector.push_back(model->run(inputVector));
         }
-    } 
-    else 
-    {
-        std::string badSize = std::to_string(inputVector.size());
-        throw std::length_error("bad input size: " + badSize);
-        returnVector.push_back(0);
     }
     return returnVector;
 }
@@ -279,7 +287,6 @@ void modelSet<T>::json2modelSet(const Json::Value &root)
             myModelSet.push_back(new knnClassification<T>(modelNumInputs, whichInputs, trainingSet, k));
         }
     }
-    created = true;
 }
 
 template<typename T>
