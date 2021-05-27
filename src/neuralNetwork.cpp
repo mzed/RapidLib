@@ -37,10 +37,10 @@ void neuralNetwork<T>::initTrainer()
  */
 
 template<typename T>
-neuralNetwork<T>::neuralNetwork(const int& num_inputs,
+neuralNetwork<T>::neuralNetwork(const size_t& num_inputs,
     const std::vector<size_t>& which_inputs,
-    const int& num_hidden_layers,
-    const int& num_hidden_nodes,
+    const size_t& num_hidden_layers,
+    const size_t& num_hidden_nodes,
     const std::vector<T>& _weights,
     const std::vector<T>& w_hidden_output,
     const std::vector<T>& in_ranges,
@@ -113,10 +113,10 @@ neuralNetwork<T>::neuralNetwork(const int& num_inputs,
  */
 
 template<typename T>
-neuralNetwork<T>::neuralNetwork(const int& num_inputs,
+neuralNetwork<T>::neuralNetwork(const size_t& num_inputs,
     const std::vector<size_t>& which_inputs,
-    const int& num_hidden_layers,
-    const int& num_hidden_nodes
+    const size_t& num_hidden_layers,
+    const size_t& num_hidden_nodes
 )
     :
     numInputs(num_inputs),
@@ -212,7 +212,8 @@ inline T neuralNetwork<T>::activationFunction(T x)
 }
 
 template<typename T>
-int neuralNetwork<T>::getNumInputs() const {
+size_t neuralNetwork<T>::getNumInputs() const 
+{
     return numInputs;
 }
 
@@ -221,7 +222,8 @@ std::vector<size_t> neuralNetwork<T>::getWhichInputs() const {
     return whichInputs;
 }
 template<typename T>
-int neuralNetwork<T>::getNumHiddenLayers() const {
+size_t neuralNetwork<T>::getNumHiddenLayers() const 
+{
     return numHiddenLayers;
 }
 
@@ -233,7 +235,8 @@ void neuralNetwork<T>::setNumHiddenLayers(int num_hidden_layers) {
 }
 
 template<typename T>
-int neuralNetwork<T>::getNumHiddenNodes() const {
+size_t neuralNetwork<T>::getNumHiddenNodes() const 
+{
     return numHiddenNodes;
 }
 

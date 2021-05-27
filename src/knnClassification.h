@@ -64,7 +64,7 @@ public:
     /** Find out how many inputs the model expects
      * @return Integer number of intpus
      */
-    int getNumInputs() const override;
+    size_t getNumInputs() const override;
     
     /** Find out which inputs in a vector will be used
      * @return Vector of ints, specifying input indices.

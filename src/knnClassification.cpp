@@ -40,7 +40,7 @@ void knnClassification<T>::reset()
 }
 
 template<typename T>
-int knnClassification<T>::getNumInputs() const 
+size_t knnClassification<T>::getNumInputs() const
 {
     return numInputs;
 }

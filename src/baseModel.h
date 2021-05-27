@@ -45,7 +45,7 @@ public:
     virtual void train(const std::vector<trainingExampleTemplate<T> >& trainingSet) = 0;
     virtual void train(const std::vector<trainingExampleTemplate<T> >& trainingSet, const std::size_t whichOutput) = 0;
     virtual void reset() = 0;;
-    virtual int getNumInputs() const = 0;
+    virtual size_t getNumInputs() const = 0;
     virtual std::vector<size_t> getWhichInputs() const = 0;
 
 #ifndef EMSCRIPTEN

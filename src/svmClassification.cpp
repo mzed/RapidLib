@@ -251,7 +251,7 @@ T svmClassification<T>::run(const std::vector<T> &inputVector) {
 }
 
 template<typename T>
-int svmClassification<T>::getNumInputs() const {
+size_t svmClassification<T>::getNumInputs() const {
     return 0;
 };
 
