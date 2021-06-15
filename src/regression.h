@@ -15,6 +15,7 @@
 /*! Class for implementing a set of regression models.
  *
  * This doesn't do anything modelSet can't do. But, it's simpler and more like wekinator.
+ * It has some calls that are specifc to neural networks
  */
 
 template<typename T>

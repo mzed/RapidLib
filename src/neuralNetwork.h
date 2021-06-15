@@ -53,8 +53,8 @@ public:
     ~neuralNetwork();
 
     /** Generate an output value from a single input vector.
-     * @param A standard vector of type T that feed-forward regression will run on.
-     * @return A single value, which is the result of the feed-forward operation
+     * @param vector A standard vector of type T that feed-forward regression will run on.
+     * @return T A single value, which is the result of the feed-forward operation
      */
     T run(const std::vector<T>& inputVector) override;
 

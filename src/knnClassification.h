@@ -21,10 +21,10 @@ class knnClassification final : public baseModel<T>
 {    
 public:
     /** Constructor that takes training examples in
-     * @param number of inputs expected in the training and input vectors
+     * @param int Number of inputs expected in the training and input vectors
      * @param vector of input numbers to be fed into the classifer.
      * @param vector of training examples
-     * @param how many near neighbours to evaluate
+     * @param int how many near neighbours to evaluate
      */
     knnClassification(const int &num_inputs,
                       const std::vector<size_t> &which_inputs,
