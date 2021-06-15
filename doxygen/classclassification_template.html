@@ -226,7 +226,8 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>with no arguments, just make an empty vector </p>
+<p>Create with no arguments</p>
+<p>Default classifier is kNN. </p>
 
 </div>
 </div>
@@ -247,7 +248,13 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>speciify classification type </p>
+<p>Specify classification type</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Enum</td><td>Classification type: knn or svm </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -345,7 +352,8 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Check the K values for each model. This feature is temporary, and will be replaced by a different design. </p>
+<p>Check the K values for each model.</p>
+<p>This feature is temporary, and will be replaced by a different design. </p><dl class="section return"><dt>Returns</dt><dd>vector K for every model </dd></dl>
 
 </div>
 </div>
@@ -376,7 +384,14 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get the K values for each model. This feature is temporary, and will be replaced by a different design. </p>
+<p>Set the K values for each model. This feature is temporary, and will be replaced by a different design.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">int</td><td>which model to set </td></tr>
+    <tr><td class="paramname">int</td><td>k value for that model </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -405,7 +420,14 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Train on a specified set, causes creation if not created </p>
+<p>Train on a specified set, causes creation if not created</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vector</td><td>Vector of training examples, type T </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool Successful training </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classmodel_set.html#aac51c774642f28e7bdcafdf90abea4db">modelSet&lt; T &gt;</a>.</p>
 
