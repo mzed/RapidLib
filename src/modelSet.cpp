@@ -26,7 +26,8 @@ template<typename T>
 modelSet<T>::modelSet() :
     numInputs(-1),
     numOutputs(-1),
-    isTraining(false)
+    isTraining(false),
+    isTrained(false)
 {
 };
 
@@ -75,7 +76,7 @@ bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training
             trainingThreads.at(i).join();
         }
         isTraining = false;
-        success = true;
+        success = isTrained = true;
     }
     return success;
 }

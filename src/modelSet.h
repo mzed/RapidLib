@@ -37,6 +37,8 @@ protected:
     std::vector<std::string> inputNames;
     int numOutputs;
     bool isTraining; //This is true while the models are training, and will block running
+    bool isTrained;
+    void threadTrain(std::size_t i, const std::vector<trainingExampleTemplate<T> >& training_set);
 
 #ifndef EMSCRIPTEN //The javascript code will do its own JSON parsing
 public:
@@ -52,7 +54,5 @@ public:
 private:
     Json::Value parse2json();
     void json2modelSet(const Json::Value &root);
-    void threadTrain(std::size_t i, const std::vector<trainingExampleTemplate<T> > &training_set);
-
 #endif
 };
