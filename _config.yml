@@ -1,4 +1,4 @@
-theme: jekyll-theme-minimal
+theme: jekyll-theme-merlot
 
 logo: ./images/MultiLayerPerceptron.png
 show_downloads: true
