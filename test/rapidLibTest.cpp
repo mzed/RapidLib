@@ -86,6 +86,8 @@ int main(int argc, const char * argv[])
     tempExample1.output = { 1.3 };
     trainingSet1.push_back(tempExample1);
 
+    assert(myNN_ML1.getTrainingProgress()[0] = 0);
+
     myNN_ML2.setNumHiddenLayers(2);
     assert(myNN_ML2.getNumHiddenLayers()[0] == 2);
     myNN_ML2.setNumEpochs(1000);
@@ -93,6 +95,8 @@ int main(int argc, const char * argv[])
 
     myNN_ML1.train(trainingSet1);
     myNN_ML2.train(trainingSet1);
+
+    assert(myNN_ML1.getTrainingProgress()[0] = 0); //TODO: Should test this in progress
 
     std::vector<double> inputVec1 = { 1.1, 1.1, 1.1 };
     std::cout << "single layer: " << myNN_ML1.run(inputVec1)[0] << std::endl;
