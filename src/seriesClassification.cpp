@@ -86,7 +86,36 @@ void seriesClassificationTemplate<T>::reset()
 }
 
 template<typename T>
-std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>> &inputSeries) 
+std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>>& inputSeries)
+{
+    std::string returnLabel = "none";
+    if (isTraining)
+    {
+        throw std::runtime_error("can't run a model during training");
+    }
+    else
+    {
+        size_t closestSeries = 0;
+        allCosts.clear();
+        T lowestCost = fastDTW<T>::getCost(inputSeries, allTrainingSeries[0].input, SEARCH_RADIUS);
+        allCosts.push_back(lowestCost);
+
+        for (size_t i = 1; i < allTrainingSeries.size(); ++i) {
+            T currentCost = fastDTW<T>::getCost(inputSeries, allTrainingSeries[i].input, SEARCH_RADIUS);
+            allCosts.push_back(currentCost);
+            if (currentCost < lowestCost) {
+                lowestCost = currentCost;
+                closestSeries = i;
+            }
+        }
+        returnLabel = allTrainingSeries[findClosestSeries()].label;
+    }
+
+    return returnLabel;
+};
+
+template<typename T>
+std::string seriesClassificationTemplate<T>::runParallel(const std::vector<std::vector<T>> &inputSeries) 
 {
     std::string returnLabel = "none";
     if (isTraining)
@@ -112,7 +141,7 @@ std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T
 };
 
 template<typename T>
-T seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>> &inputSeries, std::string label) 
+T seriesClassificationTemplate<T>::runParallel(const std::vector<std::vector<T>> &inputSeries, std::string label)
 {
     T returnValue = 0;
     if (isTraining)
@@ -176,7 +205,7 @@ std::string seriesClassificationTemplate<T>::runContinuous(const std::vector<T> 
         {
             throw std::runtime_error("can't run a model during training");
         } 
-        returnString = run(seriesBuffer);
+        returnString = run(seriesBuffer); //TODO: Have an option to run parallel here.
         counter = 0;
     }
     ++counter;
