@@ -1,4 +1,4 @@
-name: Linux Build
+name: Linux+Docs Build
 
 on: [push]
 
@@ -24,5 +24,6 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        enable_jekyll: true
         publish_dir: ./doxygen
         destination_dir: ./doxygen
