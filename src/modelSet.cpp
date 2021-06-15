@@ -42,34 +42,42 @@ modelSet<T>::~modelSet()
 template<typename T>
 bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set) 
 {
-    isTraining = true;
-    for (trainingExampleTemplate<T> example : training_set) 
+    bool success = false;
+    if (isTraining)
     {
-        if (example.input.size() != numInputs) 
-        {
-            throw std::length_error("unequal feature vectors in input.");
-            return false;
-        }
-        if (example.output.size() != numOutputs) 
-        {
-            throw std::length_error("unequal output vectors.");
-            return false;
-        }
+        throw std::runtime_error("model is already training");
     }
-    
-    // Multithreaded training
-    std::vector<std::thread> trainingThreads;
-    for (std::size_t i = 0; i < myModelSet.size(); ++i) 
+    else
     {
-        trainingThreads.push_back(std::thread(&modelSet<T>::threadTrain, this, i, training_set));
-    }
+        for (trainingExampleTemplate<T> example : training_set)
+        {
+            if (example.input.size() != numInputs)
+            {
+                throw std::length_error("unequal feature vectors in input.");
+                return false;
+            }
+            if (example.output.size() != numOutputs)
+            {
+                throw std::length_error("unequal output vectors.");
+                return false;
+            }
+        }
 
-    for (std::size_t i = 0; i < myModelSet.size(); ++i) 
-    {
-        trainingThreads.at(i).join();
+        // Multithreaded training
+        std::vector<std::thread> trainingThreads;
+        for (std::size_t i = 0; i < myModelSet.size(); ++i)
+        {
+            trainingThreads.push_back(std::thread(&modelSet<T>::threadTrain, this, i, training_set));
+        }
+
+        for (std::size_t i = 0; i < myModelSet.size(); ++i)
+        {
+            trainingThreads.at(i).join();
+        }
+        isTraining = false;
+        success = true;
     }
-    isTraining = false;
-    return true;
+    return success;
 }
 
 template<typename T>
@@ -152,7 +160,6 @@ Json::Value modelSet<T>::parse2json()
     metadata["inputNames"] = inputNamesJSON;
     metadata["numOutputs"] = numOutputs;
     root["metadata"] = metadata;
-
     for (auto model : myModelSet) 
     {
         Json::Value currentModel;
