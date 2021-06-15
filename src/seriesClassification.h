@@ -43,13 +43,20 @@ public:
      */
     std::string run(const std::vector<std::vector<T> > &inputSeries);
 
-    /** Compare an input series to the stored training series. Multithreaded
+    /** Compare an input series to all of the stored series with a specified label
+     * @param std::vector<std::vector> either float or double input data
+     * @param String label to compare with
+     * @return The lowest cost match, float or double
+     */
+    T run(const std::vector<std::vector<T> >& inputSeries, std::string label);
+
+    /** Compare an input series to the stored training series. Parallel processing
      * @param std::vector<std::vector> vector of vectors, either float or double input data
      * @return The label of the closest training series.
      */
     std::string runParallel(const std::vector<std::vector<T> >& inputSeries);
     
-    /** Compare an input series to all of the stored series with a specified label
+    /** Compare an input series to all of the stored series with a specified label. Parallel processing
      * @param std::vector<std::vector> either float or double input data
      * @param String label to compare with
      * @return The lowest cost match, float or double

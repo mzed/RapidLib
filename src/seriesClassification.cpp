@@ -115,6 +115,34 @@ std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T
 };
 
 template<typename T>
+T seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>>& inputSeries, std::string label)
+{
+    T returnValue = 0;
+    if (isTraining)
+    {
+        throw std::runtime_error("can't run a model during training");
+    }
+    else
+    {
+        int closestSeries = 0;
+        allCosts.clear();
+        T lowestCost = std::numeric_limits<T>::max();
+        for (int i = 0; i < allTrainingSeries.size(); ++i) {
+            if (allTrainingSeries[i].label == label) {
+                T currentCost = fastDTW<T>::getCost(inputSeries, allTrainingSeries[i].input, SEARCH_RADIUS);
+                allCosts.push_back(currentCost);
+                if (currentCost < lowestCost) {
+                    lowestCost = currentCost;
+                    closestSeries = i;
+                }
+            }
+        }
+        returnValue = lowestCost;
+    }
+    return returnValue;
+};
+
+template<typename T>
 std::string seriesClassificationTemplate<T>::runParallel(const std::vector<std::vector<T>> &inputSeries) 
 {
     std::string returnLabel = "none";

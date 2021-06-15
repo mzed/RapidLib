@@ -380,13 +380,22 @@ int main(int argc, const char * argv[])
     myDTW.train(seriesVector);
     assert(myDTW.run(seriesOne) == "first series");
     assert(myDTW.run(seriesTwo) == "second series");
-    std::cout << "----- More DTW tests passed." << std::endl;
-    //std::cout << myDTW.getCosts()[0] << std::endl;
-    //std::cout << myDTW.getCosts()[1] << std::endl;
+    std::cout << "----- Single thread DTW tests passed." << std::endl;
+    std::cout << myDTW.getCosts()[0] << std::endl;
+    std::cout << myDTW.getCosts()[1] << std::endl;
+
+    assert(myDTW.runParallel(seriesOne) == "first series");
+    assert(myDTW.runParallel(seriesTwo) == "second series");
+    std::cout << "----- Parallel DTW tests passed." << std::endl;
+    std::cout << myDTW.getCosts()[0] << std::endl;
+    std::cout << myDTW.getCosts()[1] << std::endl;
+    
 
     //testing match against single label
-    //assert(myDTW.run(seriesOne, "second series") == 19.325403217417502);
-    std::cout << "----- DTW single label CRASHES!!!!." << std::endl;
+    assert(myDTW.run(seriesOne, "second series") == 19.325403217417502);
+    std::cout << "----- DTW single label passed." << std::endl; //FIXME
+    //assert(myDTW.runParallel(seriesOne, "second series") == 19.325403217417502);
+    std::cout << "----- DTW parallel single label CRASHES!!!!." << std::endl; //FIXME
 
     //Training set stats
     assert(myDTW.getMaxLength() == 5);
