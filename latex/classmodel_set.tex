@@ -1,0 +1,204 @@
+\hypertarget{classmodel_set}{}\doxysection{model\+Set$<$ T $>$ Class Template Reference}
+\label{classmodel_set}\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+
+
+{\ttfamily \#include $<$model\+Set.\+h$>$}
+
+
+
+Inheritance diagram for model\+Set$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodel_set__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for model\+Set$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{classmodel_set__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmodel_set_af4fd9213c198a53f1dc2140f423da147}{model\+Set}} ()
+\item 
+virtual \mbox{\hyperlink{classmodel_set_a9c3ccb8db82f57ba3c762ad5d8ccc77e}{$\sim$model\+Set}} ()
+\item 
+virtual bool \mbox{\hyperlink{classmodel_set_aac51c774642f28e7bdcafdf90abea4db}{train}} (const std\+::vector$<$ \mbox{\hyperlink{structtraining_example_template}{training\+Example\+Template}}$<$ T $>$ $>$ \&training\+Set)
+\item 
+bool \mbox{\hyperlink{classmodel_set_a0b5e12da0d54af8cac659ca2e409736e}{reset}} ()
+\item 
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classmodel_set_ad312baf81fb587726a396a3f4666922e}{run}} (const std\+::vector$<$ T $>$ \&input\+Vector)
+\item 
+std\+::string \mbox{\hyperlink{classmodel_set_a41abbd0d02bb5d216824f661c63c3314}{get\+JSON}} ()
+\item 
+void \mbox{\hyperlink{classmodel_set_a98676ef4b61e0a3b596fe164344aeb4f}{write\+JSON}} (const std\+::string \&filepath)
+\item 
+bool \mbox{\hyperlink{classmodel_set_a10b6431ce7b4bc75f23a9f04f1666922}{put\+JSON}} (const std\+::string \&json\+Message)
+\item 
+bool \mbox{\hyperlink{classmodel_set_a0496666a49d6e1fd3a7c622c0ac136cc}{read\+JSON}} (const std\+::string \&filepath)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmodel_set_ab87ce937b4b2527d7fdf824251cac02a}{thread\+Train}} (std\+::size\+\_\+t i, const std\+::vector$<$ \mbox{\hyperlink{structtraining_example_template}{training\+Example\+Template}}$<$ T $>$ $>$ \&training\+\_\+set)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classbase_model}{base\+Model}}$<$ T $>$ $\ast$ $>$ \mbox{\hyperlink{classmodel_set_a3125419e0d392b4bfab347389278f404}{my\+Model\+Set}}
+\item 
+int \mbox{\hyperlink{classmodel_set_ad4cd50c1dd5fc1d4ef55a24dbddfda1c}{num\+Inputs}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classmodel_set_abfecf38aea9d66c9becd61f9051f86fd}{input\+Names}}
+\item 
+int \mbox{\hyperlink{classmodel_set_aa7a70546de7da2e8ba868ead39d592ca}{num\+Outputs}}
+\item 
+bool \mbox{\hyperlink{classmodel_set_af8f753a5c17edac2b16f10bc5c067698}{is\+Training}}
+\item 
+bool \mbox{\hyperlink{classmodel_set_a626880f47b82c9a6922803fb25f27f27}{is\+Trained}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class model\+Set$<$ T $>$}
+
+This class holds a set of models with the same or different algorithms. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodel_set_af4fd9213c198a53f1dc2140f423da147}\label{classmodel_set_af4fd9213c198a53f1dc2140f423da147}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!modelSet@{modelSet}}
+\index{modelSet@{modelSet}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{modelSet()}{modelSet()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::\mbox{\hyperlink{classmodel_set}{model\+Set}}}
+
+No arguments, don\textquotesingle{}t create any models yet \mbox{\Hypertarget{classmodel_set_a9c3ccb8db82f57ba3c762ad5d8ccc77e}\label{classmodel_set_a9c3ccb8db82f57ba3c762ad5d8ccc77e}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!````~modelSet@{$\sim$modelSet}}
+\index{````~modelSet@{$\sim$modelSet}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$modelSet()}{~modelSet()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::$\sim$\mbox{\hyperlink{classmodel_set}{model\+Set}}\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmodel_set_a41abbd0d02bb5d216824f661c63c3314}\label{classmodel_set_a41abbd0d02bb5d216824f661c63c3314}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!getJSON@{getJSON}}
+\index{getJSON@{getJSON}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getJSON()}{getJSON()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::get\+JSON}
+
+Get a JSON representation of the model in the form of a styled string \mbox{\Hypertarget{classmodel_set_a10b6431ce7b4bc75f23a9f04f1666922}\label{classmodel_set_a10b6431ce7b4bc75f23a9f04f1666922}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!putJSON@{putJSON}}
+\index{putJSON@{putJSON}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{putJSON()}{putJSON()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::put\+JSON (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{json\+Message }\end{DoxyParamCaption})}
+
+configure empty model with string. See \mbox{\hyperlink{classmodel_set_a41abbd0d02bb5d216824f661c63c3314}{get\+JSON()}} \mbox{\Hypertarget{classmodel_set_a0496666a49d6e1fd3a7c622c0ac136cc}\label{classmodel_set_a0496666a49d6e1fd3a7c622c0ac136cc}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!readJSON@{readJSON}}
+\index{readJSON@{readJSON}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{readJSON()}{readJSON()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::read\+JSON (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filepath }\end{DoxyParamCaption})}
+
+read a JSON file at file path and build a \mbox{\hyperlink{classmodel_set}{model\+Set}} from it \mbox{\Hypertarget{classmodel_set_a0b5e12da0d54af8cac659ca2e409736e}\label{classmodel_set_a0b5e12da0d54af8cac659ca2e409736e}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!reset@{reset}}
+\index{reset@{reset}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::reset}
+
+reset to pre-\/training state \mbox{\Hypertarget{classmodel_set_ad312baf81fb587726a396a3f4666922e}\label{classmodel_set_ad312baf81fb587726a396a3f4666922e}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!run@{run}}
+\index{run@{run}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::run (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{input\+Vector }\end{DoxyParamCaption})}
+
+run regression or classification for each model \mbox{\Hypertarget{classmodel_set_ab87ce937b4b2527d7fdf824251cac02a}\label{classmodel_set_ab87ce937b4b2527d7fdf824251cac02a}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!threadTrain@{threadTrain}}
+\index{threadTrain@{threadTrain}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{threadTrain()}{threadTrain()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::thread\+Train (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{i,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{structtraining_example_template}{training\+Example\+Template}}$<$ T $>$ $>$ \&}]{training\+\_\+set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classmodel_set_aac51c774642f28e7bdcafdf90abea4db}\label{classmodel_set_aac51c774642f28e7bdcafdf90abea4db}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!train@{train}}
+\index{train@{train}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{train()}{train()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::train (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{structtraining_example_template}{training\+Example\+Template}}$<$ T $>$ $>$ \&}]{training\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Train on a specified set, causes creation if not created 
+
+Reimplemented in \mbox{\hyperlink{classregression_template_aedc5dd1606cebd2dcbf878a36d22f94a}{regression\+Template$<$ T $>$}}, and \mbox{\hyperlink{classclassification_template_af482a516ff68ad1eccab5dcedf9eec28}{classification\+Template$<$ T $>$}}.
+
+\mbox{\Hypertarget{classmodel_set_a98676ef4b61e0a3b596fe164344aeb4f}\label{classmodel_set_a98676ef4b61e0a3b596fe164344aeb4f}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!writeJSON@{writeJSON}}
+\index{writeJSON@{writeJSON}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{writeJSON()}{writeJSON()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::write\+JSON (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filepath }\end{DoxyParamCaption})}
+
+Write a JSON model description to specified file path 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmodel_set_abfecf38aea9d66c9becd61f9051f86fd}\label{classmodel_set_abfecf38aea9d66c9becd61f9051f86fd}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!inputNames@{inputNames}}
+\index{inputNames@{inputNames}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{inputNames}{inputNames}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$std\+::string$>$ \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::input\+Names\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classmodel_set_a626880f47b82c9a6922803fb25f27f27}\label{classmodel_set_a626880f47b82c9a6922803fb25f27f27}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!isTrained@{isTrained}}
+\index{isTrained@{isTrained}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{isTrained}{isTrained}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::is\+Trained\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classmodel_set_af8f753a5c17edac2b16f10bc5c067698}\label{classmodel_set_af8f753a5c17edac2b16f10bc5c067698}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!isTraining@{isTraining}}
+\index{isTraining@{isTraining}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{isTraining}{isTraining}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::is\+Training\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classmodel_set_a3125419e0d392b4bfab347389278f404}\label{classmodel_set_a3125419e0d392b4bfab347389278f404}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!myModelSet@{myModelSet}}
+\index{myModelSet@{myModelSet}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{myModelSet}{myModelSet}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$\mbox{\hyperlink{classbase_model}{base\+Model}}$<$T$>$$\ast$$>$ \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::my\+Model\+Set\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classmodel_set_ad4cd50c1dd5fc1d4ef55a24dbddfda1c}\label{classmodel_set_ad4cd50c1dd5fc1d4ef55a24dbddfda1c}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!numInputs@{numInputs}}
+\index{numInputs@{numInputs}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{numInputs}{numInputs}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+int \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::num\+Inputs\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classmodel_set_aa7a70546de7da2e8ba868ead39d592ca}\label{classmodel_set_aa7a70546de7da2e8ba868ead39d592ca}} 
+\index{modelSet$<$ T $>$@{modelSet$<$ T $>$}!numOutputs@{numOutputs}}
+\index{numOutputs@{numOutputs}!modelSet$<$ T $>$@{modelSet$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{numOutputs}{numOutputs}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+int \mbox{\hyperlink{classmodel_set}{model\+Set}}$<$ T $>$\+::num\+Outputs\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{model_set_8h}{model\+Set.\+h}}\item 
+src/\mbox{\hyperlink{model_set_8cpp}{model\+Set.\+cpp}}\end{DoxyCompactItemize}

@@ -1,4 +1,0 @@
-var searchData=
-[
-  ['train_275',['train',['../classbase_model.html#ae3f6b2b8ca325306be05a8929871dcd6',1,'baseModel::train()'],['../classclassification_template.html#af482a516ff68ad1eccab5dcedf9eec28',1,'classificationTemplate::train()'],['../classknn_classification.html#ac953965e1cf8a1efa083ac5d67255a7d',1,'knnClassification::train()'],['../classmodel_set.html#aac51c774642f28e7bdcafdf90abea4db',1,'modelSet::train()'],['../classneural_network.html#a5522af308ee4bae154f58bbd2977be7b',1,'neuralNetwork::train()'],['../classregression_template.html#aedc5dd1606cebd2dcbf878a36d22f94a',1,'regressionTemplate::train()'],['../classseries_classification_template.html#af9763109d14e2a8baefd491c01043cf9',1,'seriesClassificationTemplate::train()'],['../classsvm_classification.html#a23de13e7fef307193249c259eab32a81',1,'svmClassification::train()']]]
-];

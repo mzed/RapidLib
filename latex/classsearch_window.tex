@@ -1,0 +1,58 @@
+\hypertarget{classsearch_window}{}\doxysection{search\+Window$<$ T $>$ Class Template Reference}
+\label{classsearch_window}\index{searchWindow$<$ T $>$@{searchWindow$<$ T $>$}}
+
+
+{\ttfamily \#include $<$search\+Window.\+h$>$}
+
+
+
+Collaboration diagram for search\+Window$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classsearch_window__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsearch_window_abe71a6ed802a6162648cd9f390d6a0c1}{search\+Window}} (const std\+::size\+\_\+t series\+XSize, const std\+::size\+\_\+t series\+YSize, const \mbox{\hyperlink{classwarp_path}{warp\+Path}} \&shrunken\+Warp\+Path, const int search\+Radius)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::pair$<$ std\+::size\+\_\+t, std\+::size\+\_\+t $>$ $>$ \mbox{\hyperlink{classsearch_window_ab5170b14a4b417f58bc9d8306c5bf98b}{min\+Max\+Values}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class search\+Window$<$ T $>$}
+
+For \mbox{\hyperlink{classfast_d_t_w}{fast\+DTW}}, a window of cells to calculate costs for. These are cells within a specified search radius of a lower resolution path. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsearch_window_abe71a6ed802a6162648cd9f390d6a0c1}\label{classsearch_window_abe71a6ed802a6162648cd9f390d6a0c1}} 
+\index{searchWindow$<$ T $>$@{searchWindow$<$ T $>$}!searchWindow@{searchWindow}}
+\index{searchWindow@{searchWindow}!searchWindow$<$ T $>$@{searchWindow$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{searchWindow()}{searchWindow()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classsearch_window}{search\+Window}}$<$ T $>$\+::\mbox{\hyperlink{classsearch_window}{search\+Window}} (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{series\+XSize,  }\item[{const std\+::size\+\_\+t}]{series\+YSize,  }\item[{const \mbox{\hyperlink{classwarp_path}{warp\+Path}} \&}]{shrunken\+Warp\+Path,  }\item[{const int}]{search\+Radius }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsearch_window_ab5170b14a4b417f58bc9d8306c5bf98b}\label{classsearch_window_ab5170b14a4b417f58bc9d8306c5bf98b}} 
+\index{searchWindow$<$ T $>$@{searchWindow$<$ T $>$}!minMaxValues@{minMaxValues}}
+\index{minMaxValues@{minMaxValues}!searchWindow$<$ T $>$@{searchWindow$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{minMaxValues}{minMaxValues}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$ std\+::pair$<$std\+::size\+\_\+t, std\+::size\+\_\+t$>$ $>$ \mbox{\hyperlink{classsearch_window}{search\+Window}}$<$ T $>$\+::min\+Max\+Values}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{search_window_8h}{search\+Window.\+h}}\item 
+src/\mbox{\hyperlink{search_window_8cpp}{search\+Window.\+cpp}}\end{DoxyCompactItemize}

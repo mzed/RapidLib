@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['rapidlib_93',['RapidLib',['../index.html',1,'']]],
+  ['rapidlib_94',['rapidLib',['../namespacerapid_lib.html',1,'']]],
+  ['rapidlib_2eh_95',['rapidLib.h',['../rapid_lib_8h.html',1,'']]],
+  ['rapidlib_5fjson_5fdoc_5fversion_96',['RAPIDLIB_JSON_DOC_VERSION',['../rapid_lib_8h.html#aa2cd7e2d8242bb5f7b044ab719b42478',1,'rapidLib.h']]],
+  ['rapidlib_5frevision_97',['RAPIDLIB_REVISION',['../rapid_lib_8h.html#a8b07bf8ab28891b4735a127ee7d4d30e',1,'rapidLib.h']]],
+  ['rapidlib_5fversion_98',['RAPIDLIB_VERSION',['../rapid_lib_8h.html#a885c3b7aad25ae395893be7b0359eda4',1,'rapidLib.h']]],
+  ['rapidlib_5fversion_5fmajor_99',['RAPIDLIB_VERSION_MAJOR',['../rapid_lib_8h.html#a101a33e93931944cf8907db02f52b5ba',1,'rapidLib.h']]],
+  ['rapidlib_5fversion_5fminor_100',['RAPIDLIB_VERSION_MINOR',['../rapid_lib_8h.html#aa9143c2e24aa36da0508343560567aeb',1,'rapidLib.h']]],
+  ['rapidlib_5fversion_5fpatch_101',['RAPIDLIB_VERSION_PATCH',['../rapid_lib_8h.html#a4231a8d4fe397390104cce61c5bb25c1',1,'rapidLib.h']]],
+  ['rapidstream_102',['rapidStream',['../classrapid_lib_1_1rapid_stream.html',1,'rapidLib::rapidStream&lt; T &gt;'],['../classrapid_lib_1_1rapid_stream.html#a61392455fbd0e472a1e1176919f988a8',1,'rapidLib::rapidStream::rapidStream(std::size_t windowSize)'],['../classrapid_lib_1_1rapid_stream.html#aac51aa472f26c84eeb98ac20198ef572',1,'rapidLib::rapidStream::rapidStream()']]],
+  ['rapidstream_2ecpp_103',['rapidStream.cpp',['../rapid_stream_8cpp.html',1,'']]],
+  ['rapidstream_2eh_104',['rapidStream.h',['../rapid_stream_8h.html',1,'']]],
+  ['rbf_5fkernel_105',['RBF_KERNEL',['../classsvm_classification.html#aee913f59a2aad7e1ea3f27ce9ef732e8a92b996d40e14ec28b0c88538bb5d7d70',1,'svmClassification']]],
+  ['readjson_106',['readJSON',['../classmodel_set.html#a0496666a49d6e1fd3a7c622c0ac136cc',1,'modelSet']]],
+  ['regression_107',['regression',['../namespacerapid_lib.html#afaf00cf1a93de1d7f539c5eb145d17d9',1,'rapidLib']]],
+  ['regression_2ecpp_108',['regression.cpp',['../regression_8cpp.html',1,'']]],
+  ['regression_2eh_109',['regression.h',['../regression_8h.html',1,'']]],
+  ['regressionfloat_110',['regressionFloat',['../namespacerapid_lib.html#a4886cff45e78046ef2f1b0e5401b4cdb',1,'rapidLib']]],
+  ['regressiontemplate_111',['regressionTemplate',['../classregression_template.html',1,'regressionTemplate&lt; T &gt;'],['../classregression_template.html#a64237d462724320f85a312310b194be4',1,'regressionTemplate::regressionTemplate()'],['../classregression_template.html#a4668db5d769a0ef09eb1a91ec1899591',1,'regressionTemplate::regressionTemplate(const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet)'],['../classregression_template.html#a61a66e9147f1d7cfaf1e31ca23950456',1,'regressionTemplate::regressionTemplate(const int &amp;numInputs, const int &amp;numOutputs)']]],
+  ['reset_112',['reset',['../classbase_model.html#a89434e0587b1c701f6abc4065e23e0a2',1,'baseModel::reset()'],['../classknn_classification.html#a41004e56b7fc3694e4e9e92bb82632b2',1,'knnClassification::reset()'],['../classmodel_set.html#a0b5e12da0d54af8cac659ca2e409736e',1,'modelSet::reset()'],['../classneural_network.html#a70bdc148e83484091bd3602c1f04949c',1,'neuralNetwork::reset()'],['../classseries_classification_template.html#a0631618c7d29eeca05605b98c3146186',1,'seriesClassificationTemplate::reset()'],['../classsvm_classification.html#ad654279b9b8c11cf18242ad1d31cf8a1',1,'svmClassification::reset()']]],
+  ['rms_113',['rms',['../classrapid_lib_1_1rapid_stream.html#a5d82289a80e6081ca7c92ce718ca5d15',1,'rapidLib::rapidStream']]],
+  ['run_114',['run',['../classbase_model.html#a4c57cc5edffbfd8ed959e049e5951ebf',1,'baseModel::run()'],['../classsvm_classification.html#a238f318cbd697bed95c6967aa5153cb0',1,'svmClassification::run()'],['../classseries_classification_template.html#a4521ff54adba307e43a5a88b580a4bd4',1,'seriesClassificationTemplate::run(const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;inputSeries, std::string label)'],['../classseries_classification_template.html#ad8f5aa1c36fa8077ec6b9a25f7670fc8',1,'seriesClassificationTemplate::run(const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;inputSeries)'],['../classneural_network.html#ab2f9ce776bec91038721686bafe02bf5',1,'neuralNetwork::run()'],['../classmodel_set.html#ad312baf81fb587726a396a3f4666922e',1,'modelSet::run()'],['../classknn_classification.html#ac78e863b01422553e6360caa13620fde',1,'knnClassification::run()']]],
+  ['runcontinuous_115',['runContinuous',['../classseries_classification_template.html#a72c1f59013389e65c5000b8b9b350da5',1,'seriesClassificationTemplate']]],
+  ['runparallel_116',['runParallel',['../classseries_classification_template.html#a77f6d3d6cfeff7c05015137e00d9dc82',1,'seriesClassificationTemplate::runParallel(const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;inputSeries, std::string label)'],['../classseries_classification_template.html#a9b2ff83c8df21d3091fff1d3d09e7a98',1,'seriesClassificationTemplate::runParallel(const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;inputSeries)']]]
+];
