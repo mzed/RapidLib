@@ -129,11 +129,15 @@ public:
      */
     void train(const std::vector<trainingExampleTemplate<T> >& trainingSet, const std::size_t whichOutput) override;
 
+    /** Returns current training epoch. */
+    size_t getCurrentEpoch() const;
+
 private:
     /** Parameters that influence learning */
     T learningRate = 0.3;
     T momentum = 0.2;
     size_t numEpochs = 500;
+    size_t currentEpoch = 0;
 
     /** These deltas are applied to the weights in the network */
     std::vector<std::vector< std::vector<T> > > deltaWeights;

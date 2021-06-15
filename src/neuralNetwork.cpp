@@ -436,7 +436,7 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
     //train
     if (outRange) //Don't need to do any training if output never changes
     { 
-        for (int epoch = 0; epoch < numEpochs; ++epoch) 
+        for (currentEpoch = 0; currentEpoch < numEpochs; ++currentEpoch)
         {
             //run through every training instance
             for (size_t ti = 0; ti < trainingSet.size(); ++ti) 
@@ -513,6 +513,12 @@ void neuralNetwork<T>::updateWeights()
     {
         wHiddenOutput[i] += deltaHiddenOutput[i];
     }
+}
+
+template<typename T>
+size_t neuralNetwork<T>::getCurrentEpoch() const
+{
+    return currentEpoch;
 }
 
 //explicit instantiation

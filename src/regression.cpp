@@ -131,9 +131,9 @@ void regressionTemplate<T>::setNumHiddenNodes(const int &num_hidden_nodes)
 
 
 template<typename T>
-std::vector<int> regressionTemplate<T>::getNumEpochs() const 
+std::vector<size_t> regressionTemplate<T>::getNumEpochs() const 
 {
-    std::vector<int> vecEpochs;
+    std::vector<size_t> vecEpochs;
     if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet)) 
     {
         for (baseModel<T>* model : modelSet<T>::myModelSet) 
@@ -150,7 +150,7 @@ std::vector<int> regressionTemplate<T>::getNumEpochs() const
 }
 
 template<typename T>
-void regressionTemplate<T>::setNumEpochs(const int &epochs) 
+void regressionTemplate<T>::setNumEpochs(const size_t &epochs) 
 {
     numEpochs = epochs;
     //set any existing models
@@ -225,6 +225,25 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
     }
     throw std::length_error("empty training set.");
     return false;
+}
+
+template<typename T>
+float regressionTemplate<T>::getTrainingProgress()
+{
+    float progress = 0.;
+
+    if (modelSet<T>::isTraining)
+    {
+        for (baseModel<T>* model : modelSet<T>::myModelSet)
+        {
+            neuralNetwork<T>* nnModel = dynamic_cast<neuralNetwork<T>*>(model); //FIXME: I really dislike this design
+            progress += (nnModel->getCurrentEpoch() / nnModel->getEpochs());
+        }
+
+        progress /= modelSet<T>::myModelSet.size();
+    }
+
+    return progress;
 }
 
 //explicit instantiation
