@@ -12,6 +12,7 @@
 #include <limits>
 #include <algorithm>
 #include <thread>
+#include <stdexcept>
 #include "seriesClassification.h"
 #ifdef EMSCRIPTEN
 #include "emscripten/seriesClassificationEmbindings.h"
