@@ -226,7 +226,8 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get a JSON representation of the model in the form of a styled string </p>
+<p>Get a JSON representation of the model</p>
+<dl class="section return"><dt>Returns</dt><dd>Styled string JSON representation </dd></dl>
 
 </div>
 </div>
@@ -306,7 +307,15 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>run regression or classification for each model </p>
+<p>Generate an output value from a single input vector.</p>
+<p>Will return an error if training in progress.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vector</td><td>A standard vector of type T that is the input for classification or regression. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>vector A vector type T that are the predictions for each model in the set. </dd></dl>
 
 </div>
 </div>
@@ -396,7 +405,13 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Write a JSON model description to specified file path </p>
+<p>Write a JSON model description to specified file path</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>path </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
