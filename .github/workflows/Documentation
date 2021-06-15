@@ -1,0 +1,2 @@
+- name: Doxygen Action
+  uses: mattnotmitt/doxygen-action@v1.3.1
