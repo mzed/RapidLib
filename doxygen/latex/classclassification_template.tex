@@ -1,0 +1,153 @@
+\hypertarget{classclassification_template}{}\doxysection{classification\+Template$<$ T $>$ Class Template Reference}
+\label{classclassification_template}\index{classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}}
+
+
+{\ttfamily \#include $<$classification.\+h$>$}
+
+
+
+Inheritance diagram for classification\+Template$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{classclassification_template__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for classification\+Template$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{classclassification_template__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classclassification_template_a8a1f10bbfb59643c7033ee8a3656f85b}{classification\+Types}} \{ \mbox{\hyperlink{classclassification_template_a8a1f10bbfb59643c7033ee8a3656f85bae290b5e76b860b6f6a80c8bc69a1ed09}{knn}}
+, \mbox{\hyperlink{classclassification_template_a8a1f10bbfb59643c7033ee8a3656f85bac41f6b23f4b3fb053c7d27067aa18582}{svm}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classclassification_template_a15295fc102a88710e1cdac654ad0c623}{classification\+Template}} ()
+\item 
+\mbox{\hyperlink{classclassification_template_afcf16a9c3d4dac87574507949f3dc56e}{classification\+Template}} (\mbox{\hyperlink{classclassification_template_a8a1f10bbfb59643c7033ee8a3656f85b}{classification\+Types}} classification\+Type)
+\item 
+\mbox{\hyperlink{classclassification_template_ab59c5f30d8a6c3fe28cf91605da60afe}{classification\+Template}} (const std\+::vector$<$ \mbox{\hyperlink{structtraining_example_template}{training\+Example\+Template}}$<$ T $>$ $>$ \&training\+Set)
+\item 
+\mbox{\hyperlink{classclassification_template_a21d90827bf4c9a99feb81287e53470ae}{classification\+Template}} (const int \&\mbox{\hyperlink{classmodel_set_ad4cd50c1dd5fc1d4ef55a24dbddfda1c}{num\+Inputs}}, const int \&\mbox{\hyperlink{classmodel_set_aa7a70546de7da2e8ba868ead39d592ca}{num\+Outputs}})
+\item 
+\mbox{\hyperlink{classclassification_template_a08b659332178a1922ca501ea94a924ed}{$\sim$classification\+Template}} ()
+\item 
+bool \mbox{\hyperlink{classclassification_template_af482a516ff68ad1eccab5dcedf9eec28}{train}} (const std\+::vector$<$ \mbox{\hyperlink{structtraining_example_template}{training\+Example\+Template}}$<$ T $>$ $>$ \&training\+Set) override
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classclassification_template_a3ed111f5d4cbba97ff388137ad37e30c}{getK}} ()
+\item 
+void \mbox{\hyperlink{classclassification_template_a937a80f445d4cf77a643f59e5fec5383}{setK}} (const int which\+Model, const int newK)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class classification\+Template$<$ T $>$}
+
+Class for implementing a set of classification models.
+
+This doesn\textquotesingle{}t do anything \mbox{\hyperlink{classmodel_set}{model\+Set}} can\textquotesingle{}t do. But, it\textquotesingle{}s simpler and more like wekinator. 
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classclassification_template_a8a1f10bbfb59643c7033ee8a3656f85b}\label{classclassification_template_a8a1f10bbfb59643c7033ee8a3656f85b}} 
+\index{classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}!classificationTypes@{classificationTypes}}
+\index{classificationTypes@{classificationTypes}!classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{classificationTypes}{classificationTypes}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+enum \mbox{\hyperlink{classclassification_template_a8a1f10bbfb59643c7033ee8a3656f85b}{classification\+Template\+::classification\+Types}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{knn@{knn}!classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}}\index{classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}!knn@{knn}}}\mbox{\Hypertarget{classclassification_template_a8a1f10bbfb59643c7033ee8a3656f85bae290b5e76b860b6f6a80c8bc69a1ed09}\label{classclassification_template_a8a1f10bbfb59643c7033ee8a3656f85bae290b5e76b860b6f6a80c8bc69a1ed09}} 
+knn&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{svm@{svm}!classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}}\index{classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}!svm@{svm}}}\mbox{\Hypertarget{classclassification_template_a8a1f10bbfb59643c7033ee8a3656f85bac41f6b23f4b3fb053c7d27067aa18582}\label{classclassification_template_a8a1f10bbfb59643c7033ee8a3656f85bac41f6b23f4b3fb053c7d27067aa18582}} 
+svm&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classclassification_template_a15295fc102a88710e1cdac654ad0c623}\label{classclassification_template_a15295fc102a88710e1cdac654ad0c623}} 
+\index{classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}!classificationTemplate@{classificationTemplate}}
+\index{classificationTemplate@{classificationTemplate}!classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{classificationTemplate()}{classificationTemplate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classclassification_template}{classification\+Template}}$<$ T $>$\+::\mbox{\hyperlink{classclassification_template}{classification\+Template}}}
+
+with no arguments, just make an empty vector \mbox{\Hypertarget{classclassification_template_afcf16a9c3d4dac87574507949f3dc56e}\label{classclassification_template_afcf16a9c3d4dac87574507949f3dc56e}} 
+\index{classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}!classificationTemplate@{classificationTemplate}}
+\index{classificationTemplate@{classificationTemplate}!classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{classificationTemplate()}{classificationTemplate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classclassification_template}{classification\+Template}}$<$ T $>$\+::\mbox{\hyperlink{classclassification_template}{classification\+Template}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classclassification_template_a8a1f10bbfb59643c7033ee8a3656f85b}{classification\+Types}}}]{classification\+Type }\end{DoxyParamCaption})}
+
+speciify classification type \mbox{\Hypertarget{classclassification_template_ab59c5f30d8a6c3fe28cf91605da60afe}\label{classclassification_template_ab59c5f30d8a6c3fe28cf91605da60afe}} 
+\index{classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}!classificationTemplate@{classificationTemplate}}
+\index{classificationTemplate@{classificationTemplate}!classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{classificationTemplate()}{classificationTemplate()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classclassification_template}{classification\+Template}}$<$ T $>$\+::\mbox{\hyperlink{classclassification_template}{classification\+Template}} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{structtraining_example_template}{training\+Example\+Template}}$<$ T $>$ $>$ \&}]{training\+Set }\end{DoxyParamCaption})}
+
+create based on training set inputs and outputs \mbox{\Hypertarget{classclassification_template_a21d90827bf4c9a99feb81287e53470ae}\label{classclassification_template_a21d90827bf4c9a99feb81287e53470ae}} 
+\index{classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}!classificationTemplate@{classificationTemplate}}
+\index{classificationTemplate@{classificationTemplate}!classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{classificationTemplate()}{classificationTemplate()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classclassification_template}{classification\+Template}}$<$ T $>$\+::\mbox{\hyperlink{classclassification_template}{classification\+Template}} (\begin{DoxyParamCaption}\item[{const int \&}]{num\+Inputs,  }\item[{const int \&}]{num\+Outputs }\end{DoxyParamCaption})}
+
+create with proper models, but not trained \mbox{\Hypertarget{classclassification_template_a08b659332178a1922ca501ea94a924ed}\label{classclassification_template_a08b659332178a1922ca501ea94a924ed}} 
+\index{classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}!````~classificationTemplate@{$\sim$classificationTemplate}}
+\index{````~classificationTemplate@{$\sim$classificationTemplate}!classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$classificationTemplate()}{~classificationTemplate()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classclassification_template}{classification\+Template}}$<$ T $>$\+::$\sim$\mbox{\hyperlink{classclassification_template}{classification\+Template}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classclassification_template_a3ed111f5d4cbba97ff388137ad37e30c}\label{classclassification_template_a3ed111f5d4cbba97ff388137ad37e30c}} 
+\index{classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}!getK@{getK}}
+\index{getK@{getK}!classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getK()}{getK()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classclassification_template}{classification\+Template}}$<$ T $>$\+::getK}
+
+Check the K values for each model. This feature is temporary, and will be replaced by a different design. \mbox{\Hypertarget{classclassification_template_a937a80f445d4cf77a643f59e5fec5383}\label{classclassification_template_a937a80f445d4cf77a643f59e5fec5383}} 
+\index{classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}!setK@{setK}}
+\index{setK@{setK}!classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setK()}{setK()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classclassification_template}{classification\+Template}}$<$ T $>$\+::setK (\begin{DoxyParamCaption}\item[{const int}]{which\+Model,  }\item[{const int}]{newK }\end{DoxyParamCaption})}
+
+Get the K values for each model. This feature is temporary, and will be replaced by a different design. \mbox{\Hypertarget{classclassification_template_af482a516ff68ad1eccab5dcedf9eec28}\label{classclassification_template_af482a516ff68ad1eccab5dcedf9eec28}} 
+\index{classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}!train@{train}}
+\index{train@{train}!classificationTemplate$<$ T $>$@{classificationTemplate$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{train()}{train()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classclassification_template}{classification\+Template}}$<$ T $>$\+::train (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{structtraining_example_template}{training\+Example\+Template}}$<$ T $>$ $>$ \&}]{training\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Train on a specified set, causes creation if not created 
+
+Reimplemented from \mbox{\hyperlink{classmodel_set_aac51c774642f28e7bdcafdf90abea4db}{model\+Set$<$ T $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{classification_8h}{classification.\+h}}\item 
+src/\mbox{\hyperlink{classification_8cpp}{classification.\+cpp}}\end{DoxyCompactItemize}

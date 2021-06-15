@@ -1,0 +1,79 @@
+\hypertarget{classfast_d_t_w}{}\doxysection{fast\+DTW$<$ T $>$ Class Template Reference}
+\label{classfast_d_t_w}\index{fastDTW$<$ T $>$@{fastDTW$<$ T $>$}}
+
+
+{\ttfamily \#include $<$fast\+DTW.\+h$>$}
+
+
+
+Collaboration diagram for fast\+DTW$<$ T $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classfast_d_t_w__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfast_d_t_w_a684af845adef7a1cf5590715c1ea7187}{fast\+DTW}} ()
+\item 
+\mbox{\hyperlink{classfast_d_t_w_a3058cb4ec9f0417e60904a03770b43d2}{$\sim$fast\+DTW}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static T \mbox{\hyperlink{classfast_d_t_w_a51614030b7b0dea90303042adba3c48c}{get\+Cost}} (const std\+::vector$<$ std\+::vector$<$ T $>$$>$ \&seriesX, const std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \&seriesY, int search\+Radius)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class fast\+DTW$<$ T $>$}
+
+Class for performing an fast dynamic time warping between two time series 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classfast_d_t_w_a684af845adef7a1cf5590715c1ea7187}\label{classfast_d_t_w_a684af845adef7a1cf5590715c1ea7187}} 
+\index{fastDTW$<$ T $>$@{fastDTW$<$ T $>$}!fastDTW@{fastDTW}}
+\index{fastDTW@{fastDTW}!fastDTW$<$ T $>$@{fastDTW$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{fastDTW()}{fastDTW()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classfast_d_t_w}{fast\+DTW}}$<$ T $>$\+::\mbox{\hyperlink{classfast_d_t_w}{fast\+DTW}}}
+
+\mbox{\Hypertarget{classfast_d_t_w_a3058cb4ec9f0417e60904a03770b43d2}\label{classfast_d_t_w_a3058cb4ec9f0417e60904a03770b43d2}} 
+\index{fastDTW$<$ T $>$@{fastDTW$<$ T $>$}!````~fastDTW@{$\sim$fastDTW}}
+\index{````~fastDTW@{$\sim$fastDTW}!fastDTW$<$ T $>$@{fastDTW$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$fastDTW()}{~fastDTW()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classfast_d_t_w}{fast\+DTW}}$<$ T $>$\+::$\sim$\mbox{\hyperlink{classfast_d_t_w}{fast\+DTW}}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classfast_d_t_w_a51614030b7b0dea90303042adba3c48c}\label{classfast_d_t_w_a51614030b7b0dea90303042adba3c48c}} 
+\index{fastDTW$<$ T $>$@{fastDTW$<$ T $>$}!getCost@{getCost}}
+\index{getCost@{getCost}!fastDTW$<$ T $>$@{fastDTW$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getCost()}{getCost()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{classfast_d_t_w}{fast\+DTW}}$<$ T $>$\+::get\+Cost (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ T $>$$>$ \&}]{seriesX,  }\item[{const std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \&}]{seriesY,  }\item[{int}]{search\+Radius }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Returns just the cost of warping one series into a second. 
+\begin{DoxyParams}{Parameters}
+{\em seriesX} & time series X \\
+\hline
+{\em seriesY} & time series Y \\
+\hline
+{\em search\+Radius} & search radius (usually 1) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+cost to warp between series 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{fast_d_t_w_8h}{fast\+DTW.\+h}}\item 
+src/\mbox{\hyperlink{fast_d_t_w_8cpp}{fast\+DTW.\+cpp}}\end{DoxyCompactItemize}

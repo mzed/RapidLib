@@ -1,3 +1,0 @@
-<map id="regression&lt; T &gt;" name="regression&lt; T &gt;">
-<area shape="rect" id="node2" href="$classmodel_set.html" title="{modelSet\&lt; T \&gt;\n|# myModelSet\l# numInputs\l# inputNames\l# numOutputs\l# created\l|+ modelSet()\l+ ~modelSet()\l+ train()\l+ reset()\l+ run()\l+ getJSON()\l+ writeJSON()\l+ putJSON()\l+ readJSON()\l}" alt="" coords="37,5,145,239"/>
-</map>
