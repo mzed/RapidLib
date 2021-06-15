@@ -234,10 +234,12 @@ float regressionTemplate<T>::getTrainingProgress()
 
     if (modelSet<T>::isTraining)
     {
-        for (std::size_t i = 0; i < modelSet<T>::myModelSet.size(); ++i)
+        for (baseModel<T>* model : modelSet<T>::myModelSet)
         {
-            progress += (modelSet<T>::myModelSet[i].getCurrentEpoch() / getNumEpochs()[i]);
+            neuralNetwork<T>* nnModel = dynamic_cast<neuralNetwork<T>*>(model); //FIXME: I really dislike this design
+            progress += (nnModel->getCurrentEpoch() / nnModel->getEpochs());
         }
+
         progress /= modelSet<T>::myModelSet.size();
     }
 
