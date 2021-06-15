@@ -29,49 +29,57 @@ seriesClassificationTemplate<T>::~seriesClassificationTemplate() {};
 template<typename T>
 bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemplate<T> > &seriesSet) 
 {
-    isTraining = true;
-    assert(seriesSet.size() > 0);
-    reset();
-    vectorLength = seriesSet[0].input[0].size(); //TODO: check that all vectors are the same size
-    bool trained = true;
-    allTrainingSeries = seriesSet;
-    minLength = maxLength = allTrainingSeries[0].input.size();
+    bool success = false;
+    if (isTraining)
+    {
+        throw std::runtime_error("model already training");
+    }
+    else
+    {
+        isTraining = true;
+        assert(seriesSet.size() > 0);
+        reset();
+        vectorLength = seriesSet[0].input[0].size(); //TODO: check that all vectors are the same size
+        allTrainingSeries = seriesSet;
+        minLength = maxLength = allTrainingSeries[0].input.size();
 
-    for (size_t i = 0; i < allTrainingSeries.size(); ++i) 
-    {
-        //for (auto trainingSeries : allTrainingSeries)
-        //Global
-        size_t newLength = allTrainingSeries[i].input.size();
-        if (newLength < minLength) minLength = newLength;
-        if (newLength > maxLength) maxLength = newLength;
-    
-        //Per Label
-        typename std::map<std::string, minMax<int> >::iterator it = lengthsPerLabel.find(allTrainingSeries[i].label);
-        if (it != lengthsPerLabel.end()) 
+        for (size_t i = 0; i < allTrainingSeries.size(); ++i)
         {
+            //for (auto trainingSeries : allTrainingSeries)
+            //Global
             size_t newLength = allTrainingSeries[i].input.size();
-            if (newLength < it->second.min) it->second.min = newLength;
-            if (newLength > it->second.max) it->second.max = newLength;
-        } 
-        else 
-        {
-            minMax<int> tempLengths;
-            tempLengths.min = tempLengths.max = allTrainingSeries[i].input.size();
-            lengthsPerLabel[allTrainingSeries[i].label] = tempLengths;
+            if (newLength < minLength) minLength = newLength;
+            if (newLength > maxLength) maxLength = newLength;
+
+            //Per Label
+            typename std::map<std::string, minMax<int> >::iterator it = lengthsPerLabel.find(allTrainingSeries[i].label);
+            if (it != lengthsPerLabel.end())
+            {
+                size_t newLength = allTrainingSeries[i].input.size();
+                if (newLength < it->second.min) it->second.min = newLength;
+                if (newLength > it->second.max) it->second.max = newLength;
+            }
+            else
+            {
+                minMax<int> tempLengths;
+                tempLengths.min = tempLengths.max = allTrainingSeries[i].input.size();
+                lengthsPerLabel[allTrainingSeries[i].label] = tempLengths;
+            }
         }
+        //TODO: make this size smarter?
+        std::vector<T> zeroVector;
+        for (int i = 0; i < vectorLength; ++i)
+        {
+            zeroVector.push_back(0.0);
+        }
+        for (int i = 0; i < minLength; ++i)
+        {
+            seriesBuffer.push_back(zeroVector); //set size of continuous buffer
+        }
+        isTraining = false;
+        success = true;
     }
-    //TODO: make this size smarter?
-    std::vector<T> zeroVector;
-    for (int i = 0; i < vectorLength; ++i) 
-    {
-        zeroVector.push_back(0.0);
-    }
-    for (int i = 0; i < minLength; ++i ) 
-    {
-        seriesBuffer.push_back(zeroVector); //set size of continuous buffer
-    }
-    isTraining = false;
-    return trained;
+    return success;
 };
 
 template<typename T>
