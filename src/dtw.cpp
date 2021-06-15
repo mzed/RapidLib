@@ -23,7 +23,7 @@ template<typename T>
 inline T dtw<T>::distanceFunction(const std::vector<T> &x, const std::vector<T> &y)
 {
     assert(x.size() == y.size());
-    T euclidianDistance = 0;
+    double euclidianDistance = 0;
     
     for(std::size_t j = 0; j < x.size() ; ++j)
     {
@@ -31,7 +31,7 @@ inline T dtw<T>::distanceFunction(const std::vector<T> &x, const std::vector<T> 
     }
     
     euclidianDistance = sqrt(euclidianDistance);
-    return euclidianDistance;
+    return (T)euclidianDistance;
 };
 
 /* Just returns the cost, doesn't calculate the path */
@@ -90,17 +90,26 @@ warpPath dtw<T>::calculatePath(std::size_t seriesXsize, std::size_t seriesYsize)
         T leftCost = (i > 0) ? costMatrix[i - 1][j] : std::numeric_limits<T>::infinity();
         T downCost = (j > 0) ? costMatrix[i][j - 1] : std::numeric_limits<T>::infinity();
 
-        if ((diagonalCost <= leftCost) && (diagonalCost <= downCost)) {
+        if ((diagonalCost <= leftCost) && (diagonalCost <= downCost)) 
+        {
             if (i > 0) --i;
             if (j > 0) --j;
-        } else if ((leftCost < diagonalCost) && (leftCost < downCost)){
-            i--;
-        } else if ((downCost < diagonalCost) && (downCost < leftCost)) {
-            j--;
-        } else if (i <= j) {
-            j--;
-        } else {
-            i--;
+        } 
+        else if ((leftCost < diagonalCost) && (leftCost < downCost))
+        {
+            --i;
+        } 
+        else if ((downCost < diagonalCost) && (downCost < leftCost)) 
+        {
+            --j;
+        } 
+        else if (i <= j) 
+        {
+            --j;
+        } 
+        else 
+        {
+            --i;
         }
         warpPath.add(i, j);
     }

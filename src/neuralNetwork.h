@@ -15,24 +15,19 @@
 #include "../dependencies/json/json.h"
 #endif
 
-#define LEARNING_RATE 0.3
-#define MOMENTUM 0.2
-#define NUM_EPOCHS 500
-
  /*! Class for implementing a Neural Network.
   *
   * This class includes both running and training, and constructors for reading trained models from JSON.
   */
-
 template<typename T>
 class neuralNetwork final : public baseModel<T>
 {
 public:
     /** This is the constructor for building a trained model from JSON. */
-    neuralNetwork(const int& num_inputs,
-        const std::vector<int>& which_inputs,
-        const int& num_hidden_layers,
-        const int& num_hidden_nodes,
+    neuralNetwork(const size_t& num_inputs,
+        const std::vector<size_t>& which_inputs,
+        const size_t& num_hidden_layers,
+        const size_t& num_hidden_nodes,
         const std::vector<T>& weights,
         const std::vector<T>& wHiddenOutput,
         const std::vector<T>& inRanges,
@@ -49,10 +44,10 @@ public:
      *
      * @return A neuralNetwork instance with randomized weights and no normalization values. These will be set or adjusted during training.
      */
-    neuralNetwork(const int& num_inputs,
-        const std::vector<int>& which_inputs,
-        const int& num_hidden_layer,
-        const int& num_hidden_nodes);
+    neuralNetwork(const size_t& num_inputs,
+        const std::vector<size_t>& which_inputs,
+        const size_t& num_hidden_layer,
+        const size_t& num_hidden_nodes);
 
     /** destructor */
     ~neuralNetwork();
@@ -65,17 +60,17 @@ public:
 
     void reset() override;
 
-    int getNumInputs() const override;
-    std::vector<int> getWhichInputs() const override;
+    size_t getNumInputs() const override;
+    std::vector<size_t> getWhichInputs() const override;
 
-    int getNumHiddenLayers() const;
+    size_t getNumHiddenLayers() const;
     void setNumHiddenLayers(int num_hidden_layers);
 
-    int getNumHiddenNodes() const;
+    size_t getNumHiddenNodes() const;
     void setNumHiddenNodes(int num_hidden_nodes);
 
-    int getEpochs() const;
-    void setEpochs(const int& epochs);
+    size_t getEpochs() const;
+    void setEpochs(const size_t& epochs);
 
     std::vector<T> getWeights() const;
     std::vector<T> getWHiddenOutput() const;
@@ -93,7 +88,7 @@ public:
 private:
     /** Parameters that describe the topography of the model */
     int numInputs;
-    std::vector<int> whichInputs;
+    std::vector<size_t> whichInputs;
     int numHiddenLayers;
     int numHiddenNodes;
 
@@ -136,9 +131,9 @@ public:
 
 private:
     /** Parameters that influence learning */
-    T learningRate;
-    T momentum;
-    int numEpochs;
+    T learningRate = 0.3;
+    T momentum = 0.2;
+    size_t numEpochs = 500;
 
     /** These deltas are applied to the weights in the network */
     std::vector<std::vector< std::vector<T> > > deltaWeights;

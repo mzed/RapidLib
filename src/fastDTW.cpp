@@ -19,7 +19,7 @@ fastDTW<T>::~fastDTW() {};
 template<typename T>
 warpInfo<T> fastDTW<T>::fullFastDTW(const std::vector<std::vector<T>> &seriesX, const std::vector<std::vector<T > > &seriesY, int searchRadius)
 {
-    
+   
 #ifndef EMSCRIPTEN
     if (seriesY.size() > seriesX.size()) {
         return fullFastDTW(seriesY, seriesX, searchRadius); //TODO: I'm not sure why I need this. Also, not sure why it fails with Emscripten.
@@ -63,7 +63,7 @@ inline std::vector<std::vector<T> > fastDTW<T>::downsample(const std::vector<std
         } else {
             int shrunkIndex = int(i * 0.5);
             for (std::size_t j = 0; j < series[i].size(); ++j) {
-                shrunkenSeries[shrunkIndex][j] = (shrunkenSeries[shrunkIndex][j] + series[i][j]) * 0.5;
+                shrunkenSeries[shrunkIndex][j] = (shrunkenSeries[shrunkIndex][j] + series[i][j]) * (T)0.5;
             }
         }
     }

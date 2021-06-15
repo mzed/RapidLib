@@ -109,8 +109,8 @@ public:
               unsigned int kFoldValue
               );
     
-    int getNumInputs() const override;
-    std::vector<int> getWhichInputs() const override;
+    size_t getNumInputs() const override;
+    std::vector<size_t> getWhichInputs() const override;
         
 #ifndef EMSCRIPTEN
     void getJSONDescription(Json::Value &currentModel) override;

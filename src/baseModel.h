@@ -41,12 +41,12 @@ class baseModel
 {
 public:
     virtual ~baseModel() {};
-    virtual T run(const std::vector<T>& inputVector) = 0;
+    virtual T run(const std::vector<T>& inputVector) = 0; //TODO: I'd like this to be const
     virtual void train(const std::vector<trainingExampleTemplate<T> >& trainingSet) = 0;
     virtual void train(const std::vector<trainingExampleTemplate<T> >& trainingSet, const std::size_t whichOutput) = 0;
     virtual void reset() = 0;;
-    virtual int getNumInputs() const = 0;
-    virtual std::vector<int> getWhichInputs() const = 0;
+    virtual size_t getNumInputs() const = 0;
+    virtual std::vector<size_t> getWhichInputs() const = 0;
 
 #ifndef EMSCRIPTEN
     virtual void getJSONDescription(Json::Value& currentModel) = 0;

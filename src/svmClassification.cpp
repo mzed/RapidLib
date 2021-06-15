@@ -251,13 +251,13 @@ T svmClassification<T>::run(const std::vector<T> &inputVector) {
 }
 
 template<typename T>
-int svmClassification<T>::getNumInputs() const {
+size_t svmClassification<T>::getNumInputs() const {
     return 0;
 };
 
 template<typename T>
-std::vector<int> svmClassification<T>::getWhichInputs() const {
-    std::vector<int> returnVec;
+std::vector<size_t> svmClassification<T>::getWhichInputs() const {
+    std::vector<size_t> returnVec;
     return returnVec;
 };
 

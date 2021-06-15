@@ -64,24 +64,24 @@ public:
     /** Get minimum training series length
      * @return The minimum length training series
      */
-    int getMinLength() const;
+    std::size_t getMinLength() const;
     
     /** Get minimum training series length from a specified label
      * @param string The label to check
      * @return The minimum length training series of that label
      */
-    int getMinLength(std::string label) const;
+    std::size_t getMinLength(std::string label) const;
     
     /** Get maximum training series length
      * @return The maximum length training series
      */
-    int getMaxLength() const;
+    std::size_t getMaxLength() const;
     
     /** Get maximum training series length from a specified label
      * @param string The label to check
      * @return The maximum length training series of that label
      */
-    int getMaxLength(std::string label) const;
+    std::size_t getMaxLength(std::string label) const;
     
     /** Return struct for calculate costs */
     template<typename TT>
@@ -105,18 +105,19 @@ public:
     
 private:
     std::vector<trainingSeriesTemplate<T> > allTrainingSeries;
-    int vectorLength;
+    size_t vectorLength;
     std::vector<T> allCosts;
-    int maxLength;
-    int minLength;
+    size_t maxLength;
+    size_t minLength;
     std::map<std::string, minMax<int> > lengthsPerLabel;
+    bool isTraining;
     
     std::vector<std::vector<T> > seriesBuffer;
     int hopSize;
     int counter;
     
-    int findClosestSeries() const;
-    void runThread(const std::vector<std::vector<T>> &inputSeries, int i);
+    size_t findClosestSeries() const;
+    void runThread(const std::vector<std::vector<T>> &inputSeries, std::size_t i);
 };
 
 namespace rapidLib

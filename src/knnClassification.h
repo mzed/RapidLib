@@ -27,7 +27,7 @@ public:
      * @param how many near neighbours to evaluate
      */
     knnClassification(const int &num_inputs,
-                      const std::vector<int> &which_inputs,
+                      const std::vector<size_t> &which_inputs,
                       const std::vector<trainingExampleTemplate<T> > &trainingSet,
                       const int k);
     ~knnClassification();
@@ -64,12 +64,12 @@ public:
     /** Find out how many inputs the model expects
      * @return Integer number of intpus
      */
-    int getNumInputs() const override;
+    size_t getNumInputs() const override;
     
     /** Find out which inputs in a vector will be used
      * @return Vector of ints, specifying input indices.
      */
-    std::vector<int> getWhichInputs() const override;
+    std::vector<size_t> getWhichInputs() const override;
     
     /** Get the number of nearest neighbours used by the kNN algorithm. */
     int getK() const;
@@ -87,11 +87,10 @@ public:
     
 private:
     int numInputs;
-    std::vector<int> whichInputs;
+    std::vector<size_t> whichInputs;
     std::size_t whichOutput;
     std::vector<trainingExampleTemplate<T>> neighbours;
     int desiredK; //K that user asked for might be limited but number of examples
     int currentK; //K minimum of desiredK or neighbours.size()
     inline void updateK();
-    std::pair<int, T>* nearestNeighbours;
 };
