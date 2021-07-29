@@ -53,7 +53,7 @@ public:
 
 protected:
     
-    template<typename TT>
+    template<typename TT, class Dummy=int>
     Json::Value vector2json(TT vec) 
     {
         Json::Value toReturn;
@@ -64,9 +64,9 @@ protected:
         return toReturn;
     }
 
-    //FIXME: This is a temporary hack because Json::Value doesn't knwo what to do with unsinged longs, and XCode cares
-    template<>
-    Json::Value vector2json<unsigned long>(unsigned long vec)
+    //FIXME: This is a temporary hack because Json::Value doesn't know what to do with unsinged longs, and XCode cares
+    template<class Dummy=int>
+    Json::Value vector2json(unsigned long vec)
     {
         Json::Value toReturn;
         for (size_t i = 0; i < vec.size(); ++i)
