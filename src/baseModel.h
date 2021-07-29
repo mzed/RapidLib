@@ -52,11 +52,26 @@ public:
     virtual void getJSONDescription(Json::Value& currentModel) = 0;
 
 protected:
+    
     template<typename TT>
-    Json::Value vector2json(TT vec) {
+    Json::Value vector2json(TT vec) 
+    {
         Json::Value toReturn;
-        for (int i = 0; i < vec.size(); ++i) {
-            toReturn.append(vec[i]);
+        for (size_t i = 0; i < vec.size(); ++i) 
+        {
+            toReturn.append( (Json::Value)vec[i] );
+        }
+        return toReturn;
+    }
+
+    //FIXME: This is a temporary hack because Json::Value doesn't knwo what to do with unsinged longs, and XCode cares
+    template<>
+    Json::Value vector2json<unsigned long>(unsigned long vec)
+    {
+        Json::Value toReturn;
+        for (size_t i = 0; i < vec.size(); ++i)
+        {
+            toReturn.append((double)vec[i]); //I chose double here because that's close to what JS uses
         }
         return toReturn;
     }
