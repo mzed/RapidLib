@@ -101,7 +101,7 @@ std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T
     {
         throw std::runtime_error("can't run a model during training");
     }
-    else
+    else if (allTrainingSeries.size() > 0)
     {
         size_t closestSeries = 0;
         allCosts.clear();
@@ -118,7 +118,6 @@ std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T
         }
         returnLabel = allTrainingSeries[findClosestSeries()].label;
     }
-
     return returnLabel;
 };
 
@@ -358,7 +357,8 @@ template class seriesClassificationTemplate<float>;
 
 
 //
-//std::vector<T> seriesClassification::getCosts(const std::vector<trainingExample> &trainingSet) {
+//std::vector<T> seriesClassification::getCosts(const std::vector<trainingExample> &trainingSet) 
+//{
 //    run(trainingSet);
 //    return allCosts;
 //}

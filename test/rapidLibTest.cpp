@@ -1,4 +1,5 @@
 #include <vector>
+#include <vector>
 #include <iostream>
 #include <cassert>
 #include <random>
@@ -26,6 +27,19 @@ int main(int argc, const char * argv[])
     }
     assert( bayes > 0.68 );
     std::cout << "----- Bayes test passed." << std::endl; // Bayes test
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    //test empty set
+    rapidLib::seriesClassification emptyDTW;
+    rapidLib::trainingSeries tempSeriesTestEmpty;
+
+    for (size_t i = 0; i < 5; ++i) 
+    {
+        tempSeriesTestEmpty.input.push_back({ 0.1, 0.1, 0.1 });
+    }
+
+    assert(emptyDTW.run(tempSeriesTestEmpty.input) == "none");
+    std::cout << "----- DTW empty test passed." << std::endl;
 
     ///////////////////////////////////////////////////////////////////////////////////////////
     //vanAllenTesting
