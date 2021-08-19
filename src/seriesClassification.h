@@ -7,7 +7,8 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#pragma once
+#ifndef SERIESCLASSIFICATION_H
+#define SERIESCLASSIFICATION_H
 
 #include <vector>
 #include <string>
@@ -140,3 +141,4 @@ namespace rapidLib
     using seriesClassificationFloat = seriesClassificationTemplate<float>;
 }
 
+#endif

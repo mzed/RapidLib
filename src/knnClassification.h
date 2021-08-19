@@ -6,7 +6,8 @@
 //  Copyright © 2016 Goldsmiths. All rights reserved.
 //
 
-#pragma once
+#ifndef KNNCLASSIFICATION_H
+#define KNNCLASSIFICATION_H
 
 #include <vector>
 #include "baseModel.h"
@@ -94,3 +95,5 @@ private:
     int currentK; //K minimum of desiredK or neighbours.size()
     inline void updateK();
 };
+
+#endif

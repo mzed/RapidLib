@@ -6,7 +6,8 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
-#pragma once
+#ifndef NEURALNETWORK_H
+#define NEURALNETWORK_H
 
 #include <vector>
 #include "baseModel.h"
@@ -157,3 +158,5 @@ private:
     /** Apply corrections to network weights, based on output error */
     void updateWeights();
 };
+
+#endif

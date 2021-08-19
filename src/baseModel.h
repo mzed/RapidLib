@@ -7,7 +7,8 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
-#pragma once
+#ifndef BASEMODEL_H
+#define BASEMODEL_H
 
 #include <vector>
 #include "trainingExample.h"
@@ -78,3 +79,5 @@ protected:
 #endif
 
 };
+
+#endif

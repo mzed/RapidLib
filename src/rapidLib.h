@@ -37,10 +37,10 @@
 
 #define RAPIDLIB_VERSION_MAJOR 2
 #define RAPIDLIB_VERSION_MINOR 2
-#define RAPIDLIB_VERSION_PATCH 0
-#define RAPIDLIB_VERSION "2.2.0"
+#define RAPIDLIB_VERSION_PATCH 1
+#define RAPIDLIB_VERSION "2.2.1"
 #define RAPIDLIB_JSON_DOC_VERSION "1.0.0"
-#define RAPIDLIB_REVISION "15-June-2021"
+#define RAPIDLIB_REVISION "19-August-2021"
 
 #include "regression.h"
 #include "classification.h"

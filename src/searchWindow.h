@@ -6,7 +6,8 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#pragma once
+#ifndef SEARCHWINDOW_H
+#define SEARCHWINDOW_H
 
 #include <vector>
 #include "warpPath.h"
@@ -30,3 +31,5 @@ private:
     inline void markVisited(std::size_t col, std::size_t row);
     void expandWindow(int searchRadius);
 };
+
+#endif
