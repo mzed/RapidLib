@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(rapidlib)
+project(rapidLib)
 
 # Threads
 set(THREADS_PREFER_PTHREAD_FLAG ON)
@@ -14,22 +14,22 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_SOURCE_DIR}/dependencies/bayesfilter/src)
 
 # RapidLib
-file(GLOB ${PROJECT_NAME}_SRC "${PROJECT_SOURCE_DIR}/src/*.cpp")
-file(GLOB ${PROJECT_NAME}_DEP "${PROJECT_SOURCE_DIR}/dependencies/libsvm/libsvm.cpp")
+file(GLOB RAPIDLIB_SRC "${PROJECT_SOURCE_DIR}/src/*.cpp")
+file(GLOB RAPIDLIB_DEP "${PROJECT_SOURCE_DIR}/dependencies/libsvm/libsvm.cpp")
 
 # Third party
 file(GLOB JSON_SRC "${PROJECT_SOURCE_DIR}/dependencies/jsoncpp.cpp")
 file(GLOB BAYES_SRC "${PROJECT_SOURCE_DIR}/dependencies/bayesfilter/src/*.cpp")
 
 # Set the source for the main library, using the groups defined above
-set(${PROJECT_NAME}_FULL_SRC 
-		${PROJECT_NAME}_SRC
-		${PROJECT_NAME}_DEP
+set(RAPIDLIB_FULL_SRC 
+		${RAPIDLIB_SRC}
+		${RAPIDLIB_DEP}
 		${JSON_SRC}
 		${BAYES_SRC}
 	)
 
-add_library(${PROJECT_NAME} SHARED ${PROJECT_NAME}_FULL_SRC)
+add_library(${PROJECT_NAME} SHARED ${RAPIDLIB_FULL_SRC})
 add_executable(rapidLibTest test/rapidLibTest.cpp)
 
 #include(GenerateExportHeader)
