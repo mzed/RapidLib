@@ -99,37 +99,34 @@ $(document).ready(function(){initNavTree('fast_d_t_w_8h_source.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <a href="fast_d_t_w_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef FASTDTW_H</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define FASTDTW_H</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="warp_path_8h.html">warpPath.h</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classfast_d_t_w.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classfast_d_t_w.html">fastDTW</a></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classfast_d_t_w.html#a684af845adef7a1cf5590715c1ea7187">fastDTW</a>();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classfast_d_t_w.html#a3058cb4ec9f0417e60904a03770b43d2">~fastDTW</a>();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> T <a class="code" href="classfast_d_t_w.html#a51614030b7b0dea90303042adba3c48c">getCost</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt;&gt; &amp;seriesX, <span class="keyword">const</span> std::vector&lt;std::vector&lt;T &gt; &gt; &amp;seriesY, <span class="keywordtype">int</span> searchRadius);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">static</span> <a class="code" href="structwarp_info.html">warpInfo&lt;T&gt;</a> fullFastDTW(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt;&gt; &amp;seriesX, <span class="keyword">const</span> std::vector&lt;std::vector&lt;T &gt; &gt; &amp;seriesY, <span class="keywordtype">int</span> searchRadius);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">static</span> <a class="code" href="classwarp_path.html">warpPath</a> getWarpPath(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt;&gt; &amp;seriesX, <span class="keyword">const</span> std::vector&lt;std::vector&lt;T &gt; &gt; &amp;seriesY, <span class="keywordtype">int</span> searchRadius);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">inline</span> <span class="keyword">static</span> std::vector&lt;std::vector&lt;T&gt; &gt; downsample(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt;&gt; &amp;series, T resolution);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;};</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassfast_d_t_w_html"><div class="ttname"><a href="classfast_d_t_w.html">fastDTW</a></div><div class="ttdef"><b>Definition:</b> fastDTW.h:18</div></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="warp_path_8h.html">warpPath.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classfast_d_t_w.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classfast_d_t_w.html">fastDTW</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classfast_d_t_w.html#a684af845adef7a1cf5590715c1ea7187">fastDTW</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classfast_d_t_w.html#a3058cb4ec9f0417e60904a03770b43d2">~fastDTW</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> T <a class="code" href="classfast_d_t_w.html#a51614030b7b0dea90303042adba3c48c">getCost</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt;&gt; &amp;seriesX, <span class="keyword">const</span> std::vector&lt;std::vector&lt;T &gt; &gt; &amp;seriesY, <span class="keywordtype">int</span> searchRadius);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">static</span> <a class="code" href="structwarp_info.html">warpInfo&lt;T&gt;</a> fullFastDTW(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt;&gt; &amp;seriesX, <span class="keyword">const</span> std::vector&lt;std::vector&lt;T &gt; &gt; &amp;seriesY, <span class="keywordtype">int</span> searchRadius);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">static</span> <a class="code" href="classwarp_path.html">warpPath</a> getWarpPath(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt;&gt; &amp;seriesX, <span class="keyword">const</span> std::vector&lt;std::vector&lt;T &gt; &gt; &amp;seriesY, <span class="keywordtype">int</span> searchRadius);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">inline</span> <span class="keyword">static</span> std::vector&lt;std::vector&lt;T&gt; &gt; downsample(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt;&gt; &amp;series, T resolution);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
+<div class="ttc" id="aclassfast_d_t_w_html"><div class="ttname"><a href="classfast_d_t_w.html">fastDTW</a></div><div class="ttdef"><b>Definition:</b> fastDTW.h:17</div></div>
 <div class="ttc" id="aclassfast_d_t_w_html_a3058cb4ec9f0417e60904a03770b43d2"><div class="ttname"><a href="classfast_d_t_w.html#a3058cb4ec9f0417e60904a03770b43d2">fastDTW::~fastDTW</a></div><div class="ttdeci">~fastDTW()</div><div class="ttdef"><b>Definition:</b> fastDTW.cpp:17</div></div>
 <div class="ttc" id="aclassfast_d_t_w_html_a51614030b7b0dea90303042adba3c48c"><div class="ttname"><a href="classfast_d_t_w.html#a51614030b7b0dea90303042adba3c48c">fastDTW::getCost</a></div><div class="ttdeci">static T getCost(const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;seriesX, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesY, int searchRadius)</div><div class="ttdef"><b>Definition:</b> fastDTW.cpp:46</div></div>
 <div class="ttc" id="aclassfast_d_t_w_html_a684af845adef7a1cf5590715c1ea7187"><div class="ttname"><a href="classfast_d_t_w.html#a684af845adef7a1cf5590715c1ea7187">fastDTW::fastDTW</a></div><div class="ttdeci">fastDTW()</div><div class="ttdef"><b>Definition:</b> fastDTW.cpp:14</div></div>
-<div class="ttc" id="aclasswarp_path_html"><div class="ttname"><a href="classwarp_path.html">warpPath</a></div><div class="ttdef"><b>Definition:</b> warpPath.h:16</div></div>
-<div class="ttc" id="astructwarp_info_html"><div class="ttname"><a href="structwarp_info.html">warpInfo</a></div><div class="ttdef"><b>Definition:</b> warpPath.h:33</div></div>
+<div class="ttc" id="aclasswarp_path_html"><div class="ttname"><a href="classwarp_path.html">warpPath</a></div><div class="ttdef"><b>Definition:</b> warpPath.h:15</div></div>
+<div class="ttc" id="astructwarp_info_html"><div class="ttname"><a href="structwarp_info.html">warpInfo</a></div><div class="ttdef"><b>Definition:</b> warpPath.h:32</div></div>
 <div class="ttc" id="awarp_path_8h_html"><div class="ttname"><a href="warp_path_8h.html">warpPath.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
