@@ -99,37 +99,40 @@ $(document).ready(function(){initNavTree('warp_path_8h_source.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <a href="warp_path_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classwarp_path.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="classwarp_path.html">warpPath</a> </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classwarp_path.html#a8fce9071c84eaddd6c5cc1b904debb69">warpPath</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classwarp_path.html#a9660d7ad1aafc7be66f91dfef807f268">~warpPath</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classwarp_path.html#a11500942cb19b8994d065248855c0225">add</a>(std::size_t x, std::size_t y);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    </div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classwarp_path.html#a8a36c379c80c782f60080f882288859d">   26</a></span>&#160;    std::vector&lt; std::pair&lt;std::size_t, std::size_t&gt; &gt; <a class="code" href="classwarp_path.html#a8a36c379c80c782f60080f882288859d">indices</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structwarp_info.html">   31</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structwarp_info.html">warpInfo</a> </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structwarp_info.html#a28ef01b16abcf855c7911b6d020d2dc8">   34</a></span>&#160;    <a class="code" href="classwarp_path.html">warpPath</a> <a class="code" href="structwarp_info.html#a28ef01b16abcf855c7911b6d020d2dc8">path</a>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structwarp_info.html#aa72d49476d2a04a09c8c94356f60056a">   35</a></span>&#160;    T <a class="code" href="structwarp_info.html#aa72d49476d2a04a09c8c94356f60056a">cost</a>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
-<div class="ttc" id="aclasswarp_path_html"><div class="ttname"><a href="classwarp_path.html">warpPath</a></div><div class="ttdef"><b>Definition:</b> warpPath.h:15</div></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef WARPPATH_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define WARPPATH_H</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classwarp_path.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="classwarp_path.html">warpPath</a> </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classwarp_path.html#a8fce9071c84eaddd6c5cc1b904debb69">warpPath</a>();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classwarp_path.html#a9660d7ad1aafc7be66f91dfef807f268">~warpPath</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classwarp_path.html#a11500942cb19b8994d065248855c0225">add</a>(std::size_t x, std::size_t y);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classwarp_path.html#a8a36c379c80c782f60080f882288859d">   27</a></span>&#160;    std::vector&lt; std::pair&lt;std::size_t, std::size_t&gt; &gt; <a class="code" href="classwarp_path.html#a8a36c379c80c782f60080f882288859d">indices</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structwarp_info.html">   32</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structwarp_info.html">warpInfo</a> </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structwarp_info.html#a28ef01b16abcf855c7911b6d020d2dc8">   35</a></span>&#160;    <a class="code" href="classwarp_path.html">warpPath</a> <a class="code" href="structwarp_info.html#a28ef01b16abcf855c7911b6d020d2dc8">path</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structwarp_info.html#aa72d49476d2a04a09c8c94356f60056a">   36</a></span>&#160;    T <a class="code" href="structwarp_info.html#aa72d49476d2a04a09c8c94356f60056a">cost</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclasswarp_path_html"><div class="ttname"><a href="classwarp_path.html">warpPath</a></div><div class="ttdef"><b>Definition:</b> warpPath.h:16</div></div>
 <div class="ttc" id="aclasswarp_path_html_a11500942cb19b8994d065248855c0225"><div class="ttname"><a href="classwarp_path.html#a11500942cb19b8994d065248855c0225">warpPath::add</a></div><div class="ttdeci">void add(std::size_t x, std::size_t y)</div><div class="ttdef"><b>Definition:</b> warpPath.cpp:15</div></div>
-<div class="ttc" id="aclasswarp_path_html_a8a36c379c80c782f60080f882288859d"><div class="ttname"><a href="classwarp_path.html#a8a36c379c80c782f60080f882288859d">warpPath::indices</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; std::size_t, std::size_t &gt; &gt; indices</div><div class="ttdef"><b>Definition:</b> warpPath.h:26</div></div>
+<div class="ttc" id="aclasswarp_path_html_a8a36c379c80c782f60080f882288859d"><div class="ttname"><a href="classwarp_path.html#a8a36c379c80c782f60080f882288859d">warpPath::indices</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; std::size_t, std::size_t &gt; &gt; indices</div><div class="ttdef"><b>Definition:</b> warpPath.h:27</div></div>
 <div class="ttc" id="aclasswarp_path_html_a8fce9071c84eaddd6c5cc1b904debb69"><div class="ttname"><a href="classwarp_path.html#a8fce9071c84eaddd6c5cc1b904debb69">warpPath::warpPath</a></div><div class="ttdeci">warpPath()</div><div class="ttdef"><b>Definition:</b> warpPath.cpp:12</div></div>
 <div class="ttc" id="aclasswarp_path_html_a9660d7ad1aafc7be66f91dfef807f268"><div class="ttname"><a href="classwarp_path.html#a9660d7ad1aafc7be66f91dfef807f268">warpPath::~warpPath</a></div><div class="ttdeci">~warpPath()</div><div class="ttdef"><b>Definition:</b> warpPath.cpp:13</div></div>
-<div class="ttc" id="astructwarp_info_html"><div class="ttname"><a href="structwarp_info.html">warpInfo</a></div><div class="ttdef"><b>Definition:</b> warpPath.h:32</div></div>
-<div class="ttc" id="astructwarp_info_html_a28ef01b16abcf855c7911b6d020d2dc8"><div class="ttname"><a href="structwarp_info.html#a28ef01b16abcf855c7911b6d020d2dc8">warpInfo::path</a></div><div class="ttdeci">warpPath path</div><div class="ttdef"><b>Definition:</b> warpPath.h:34</div></div>
-<div class="ttc" id="astructwarp_info_html_aa72d49476d2a04a09c8c94356f60056a"><div class="ttname"><a href="structwarp_info.html#aa72d49476d2a04a09c8c94356f60056a">warpInfo::cost</a></div><div class="ttdeci">T cost</div><div class="ttdef"><b>Definition:</b> warpPath.h:35</div></div>
+<div class="ttc" id="astructwarp_info_html"><div class="ttname"><a href="structwarp_info.html">warpInfo</a></div><div class="ttdef"><b>Definition:</b> warpPath.h:33</div></div>
+<div class="ttc" id="astructwarp_info_html_a28ef01b16abcf855c7911b6d020d2dc8"><div class="ttname"><a href="structwarp_info.html#a28ef01b16abcf855c7911b6d020d2dc8">warpInfo::path</a></div><div class="ttdeci">warpPath path</div><div class="ttdef"><b>Definition:</b> warpPath.h:35</div></div>
+<div class="ttc" id="astructwarp_info_html_aa72d49476d2a04a09c8c94356f60056a"><div class="ttname"><a href="structwarp_info.html#aa72d49476d2a04a09c8c94356f60056a">warpInfo::cost</a></div><div class="ttdeci">T cost</div><div class="ttdef"><b>Definition:</b> warpPath.h:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
