@@ -16,6 +16,6 @@ jobs:
     - name: configure
       run: mkdir build && cd build && cmake .. -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE -DBUILD_SHARED_LIBS=TRUE
     - name: build
-      run: cmake --build build --config Debug
+      run: cmake --build build --config Release
     - name: test
       run: cd build && ctest
