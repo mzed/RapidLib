@@ -2,11 +2,9 @@ cmake_minimum_required(VERSION 3.10)
 project(rapidLib)
 
 if (MSVC)
-    # warning level 4 and all warnings as errors
-    # add_compile_options(/W4 /WX)
+    # add_compile_options(/std:c++17 /O2)
 else()
-    # lots of warnings and all warnings as errors
-    add_compile_options(-std=c++17)
+    add_compile_options(-std=c++17 -O2)
 endif()
 
 # Threads
