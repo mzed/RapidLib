@@ -1,0 +1,29 @@
+name: Mac Build
+
+on: [push]
+
+jobs:
+  build-macos:
+
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: for cpp 17
+      run: export CXX="g++-8" CC="gcc-8" & gcc --version
+    - name: configure
+      run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ..
+    - name: build
+      run: cmake --build build
+    - name: test
+      run: cd build && ctest
+      
+    - name: Doxygen Action
+      uses: mattnotmitt/doxygen-action@v1.3.1
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        enable_jekyll: true
+        publish_dir: ./doxygen
+        destination_dir: ./doxygen
