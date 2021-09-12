@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
 project(rapidLib)
 
+if (MSVC)
+    # warning level 4 and all warnings as errors
+    # add_compile_options(/W4 /WX)
+else()
+    # lots of warnings and all warnings as errors
+    add_compile_options(-std=c++17)
+endif()
+
 # Threads
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
