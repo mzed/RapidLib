@@ -8,7 +8,6 @@
  */
 
 #include <vector>
-#include <cassert>
 #include <limits>
 #include <algorithm>
 #include <thread>
@@ -34,10 +33,13 @@ bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemp
     {
         throw std::runtime_error("model already training");
     }
+    else if (seriesSet.size() <= 0)
+    {
+        throw std::length_error("training on empty training set.");
+    }
     else
     {
         isTraining = true;
-        assert(seriesSet.size() > 0);
         reset();
         vectorLength = seriesSet[0].input[0].size(); //TODO: check that all vectors are the same size
         allTrainingSeries = seriesSet;
