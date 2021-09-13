@@ -65,7 +65,7 @@ public:
     std::vector<size_t> getWhichInputs() const override;
 
     size_t getNumHiddenLayers() const;
-    void setNumHiddenLayers(int num_hidden_layers);
+    void setNumHiddenLayers(size_t num_hidden_layers);
 
     size_t getNumHiddenNodes() const;
     void setNumHiddenNodes(size_t num_hidden_nodes);
@@ -90,7 +90,7 @@ private:
     /** Parameters that describe the topography of the model */
     size_t numInputs;
     std::vector<size_t> whichInputs;
-    int numHiddenLayers;
+    size_t numHiddenLayers;
     size_t numHiddenNodes;
 
     /** Neurons: state is updated on each process(). */
@@ -146,7 +146,7 @@ private:
 
     /** Parameters and functions for calculating amount of change for each weight */
     T outputErrorGradient;
-    inline T getHiddenErrorGradient(int layer, size_t neuron);
+    inline T getHiddenErrorGradient(size_t layer, size_t neuron);
 
     void initTrainer();
 
