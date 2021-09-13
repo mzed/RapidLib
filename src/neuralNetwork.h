@@ -68,7 +68,7 @@ public:
     void setNumHiddenLayers(int num_hidden_layers);
 
     size_t getNumHiddenNodes() const;
-    void setNumHiddenNodes(int num_hidden_nodes);
+    void setNumHiddenNodes(size_t num_hidden_nodes);
 
     size_t getEpochs() const;
     void setEpochs(const size_t& epochs);
@@ -88,10 +88,10 @@ public:
 
 private:
     /** Parameters that describe the topography of the model */
-    int numInputs;
+    size_t numInputs;
     std::vector<size_t> whichInputs;
     int numHiddenLayers;
-    int numHiddenNodes;
+    size_t numHiddenNodes;
 
     /** Neurons: state is updated on each process(). */
     std::vector<T> inputNeurons;

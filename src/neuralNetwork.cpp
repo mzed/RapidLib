@@ -64,15 +64,15 @@ neuralNetwork<T>::neuralNetwork(const size_t& num_inputs,
     std::default_random_engine generator;
     std::uniform_real_distribution<T> distribution(-0.5, 0.5);
     //winding up a long vector from javascript
-    int count = 0;
+    size_t count = 0;
     for (int i = 0; i < numHiddenLayers; ++i)
     {
         std::vector<std::vector<T>> layer;
-        for (int j = 0; j < numHiddenNodes; ++j)
+        for (size_t j = 0; j < numHiddenNodes; ++j)
         {
             std::vector<T> node;
-            int numConnections = (i == 0) ? numInputs : numHiddenNodes;
-            for (int k = 0; k <= numConnections; ++k)
+            size_t numConnections = (i == 0) ? numInputs : numHiddenNodes;
+            for (size_t k = 0; k <= numConnections; ++k)
             {
                 if (randomize)
                 {
@@ -90,13 +90,13 @@ neuralNetwork<T>::neuralNetwork(const size_t& num_inputs,
 
     if (randomize)
     {
-        for (int i = 0; i <= numHiddenNodes; ++i)
+        for (size_t i = 0; i <= numHiddenNodes; ++i)
         {
             wHiddenOutput.push_back(distribution(generator));
         }
     }
 
-    for (int i = 0; i < inRanges.size(); ++i)
+    for (size_t i = 0; i < inRanges.size(); ++i)
     {
         if (inRanges[i] == 0.)
         {
@@ -151,11 +151,11 @@ void neuralNetwork<T>::reset()
     for (int i = 0; i < numHiddenLayers; ++i)
     {
         std::vector<std::vector<T>> layer;
-        for (int j = 0; j < numHiddenNodes; ++j)
+        for (size_t j = 0; j < numHiddenNodes; ++j)
         {
             std::vector<T> node;
-            int numConnections = (i == 0) ? numInputs : numHiddenNodes;
-            for (int k = 0; k <= numConnections; ++k)
+            size_t numConnections = (i == 0) ? numInputs : numHiddenNodes;
+            for (size_t k = 0; k <= numConnections; ++k)
             {
                 node.push_back(distribution(generator));
             }
@@ -165,7 +165,7 @@ void neuralNetwork<T>::reset()
     }
 
     wHiddenOutput.clear();
-    for (int i = 0; i <= numHiddenNodes; ++i)
+    for (size_t i = 0; i <= numHiddenNodes; ++i)
     {
         wHiddenOutput.push_back(distribution(generator));
     }
@@ -181,13 +181,13 @@ inline T neuralNetwork<T>::getHiddenErrorGradient(int layer, int neuron)
         return hiddenNeurons[layer][neuron] * (1 - hiddenNeurons[layer][neuron]) * wGradient;
     }
     if (layer == numHiddenLayers - 1) {
-        for (int i = 0; i < numHiddenNodes; ++i)
+        for (size_t i = 0; i < numHiddenNodes; ++i)
         {
             weightedSum += wHiddenOutput[i] * outputErrorGradient;
         }
     }
     else {
-        for (int i = 0; i < numHiddenNodes; ++i)
+        for (size_t i = 0; i < numHiddenNodes; ++i)
         {
             weightedSum += deltaWeights[layer + 1][neuron][i] * outputErrorGradient;
         }
@@ -241,7 +241,7 @@ size_t neuralNetwork<T>::getNumHiddenNodes() const
 }
 
 template<typename T>
-void neuralNetwork<T>::setNumHiddenNodes(int num_hidden_nodes) {
+void neuralNetwork<T>::setNumHiddenNodes(size_t num_hidden_nodes) {
     numHiddenNodes = num_hidden_nodes;
     reset();
     initTrainer();
@@ -322,7 +322,7 @@ void neuralNetwork<T>::getJSONDescription(Json::Value& jsonModelDescription) {
     //Output Node
     Json::Value outNode;
     outNode["name"] = "Linear Node 0";
-    for (int i = 0; i < numHiddenNodes; ++i) {
+    for (size_t i = 0; i < numHiddenNodes; ++i) {
         std::string nodeName = "Node " + std::to_string(i + 1);
         outNode[nodeName] = wHiddenOutput[i];
     }
@@ -330,11 +330,11 @@ void neuralNetwork<T>::getJSONDescription(Json::Value& jsonModelDescription) {
     nodes.append(outNode);
 
     //Input nodes
-    for (int i = 0; i < weights.size(); ++i) { //layers
-        for (int j = 0; j < weights[i].size(); ++j) { //hidden nodes
+    for (size_t i = 0; i < weights.size(); ++i) { //layers
+        for (size_t j = 0; j < weights[i].size(); ++j) { //hidden nodes
             Json::Value tempNode;
             tempNode["name"] = "Sigmoid Node " + std::to_string((i * numHiddenNodes) + j + 1);
-            for (int k = 0; k < weights[i][j].size() - 1; ++k) { //inputs + threshold aka bias
+            for (size_t k = 0; k < weights[i][j].size() - 1; ++k) { //inputs + threshold aka bias
                 std::string connectNode = "Attrib inputs-" + std::to_string(k + 1);
                 tempNode[connectNode] = weights[i][j][k];
             }
@@ -350,12 +350,12 @@ void neuralNetwork<T>::getJSONDescription(Json::Value& jsonModelDescription) {
 template<typename T>
 T neuralNetwork<T>::run(const std::vector<T>& inputVector) {
     std::vector<T> pattern;
-    for (int h = 0; h < numInputs; h++) {
+    for (size_t h = 0; h < numInputs; h++) {
         pattern.push_back(inputVector[whichInputs[h]]);
     }
     //set input layer
     inputNeurons.clear();
-    for (int i = 0; i < numInputs; ++i) {
+    for (size_t i = 0; i < numInputs; ++i) {
         inputNeurons.push_back((pattern[i] - (inBases[i])) / inRanges[i]);
     }
     inputNeurons.push_back(1);
@@ -364,15 +364,15 @@ T neuralNetwork<T>::run(const std::vector<T>& inputVector) {
     hiddenNeurons.clear();
     for (int i = 0; i < numHiddenLayers; ++i) {
         std::vector<T> layer;
-        for (int j = 0; j < numHiddenNodes; ++j) {
+        for (size_t j = 0; j < numHiddenNodes; ++j) {
             layer.push_back(0);
             if (i == 0) { //first hidden layer
-                for (int k = 0; k <= numInputs; ++k) {
+                for (size_t k = 0; k <= numInputs; ++k) {
                     layer[j] += inputNeurons[k] * weights[0][j][k];
                 }
             }
             else {
-                for (int k = 0; k <= numHiddenNodes; ++k) {
+                for (size_t k = 0; k <= numHiddenNodes; ++k) {
                     layer[j] += hiddenNeurons[i - 1][k] * weights[i][j][k];
                 }
             }
@@ -384,7 +384,7 @@ T neuralNetwork<T>::run(const std::vector<T>& inputVector) {
 
     //calculate output
     outputNeuron = 0;
-    for (int k = 0; k <= numHiddenNodes; ++k) {
+    for (size_t k = 0; k <= numHiddenNodes; ++k) {
         outputNeuron += hiddenNeurons[numHiddenLayers - 1][k] * wHiddenOutput[k];
     }
     //if classifier, outputNeuron = activationFunction(outputNeuron), else...
@@ -409,7 +409,7 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
 
     for (size_t ti = 1; ti < trainingSet.size(); ++ti) 
     {
-        for (int i = 0; i < numInputs; ++i) 
+        for (size_t i = 0; i < numInputs; ++i)
         {
             if (trainingSet[ti].input[i] > inMax[i]) inMax[i] = trainingSet[ti].input[i];
             if (trainingSet[ti].input[i] < inMin[i]) inMin[i] = trainingSet[ti].input[i];
@@ -455,14 +455,14 @@ void neuralNetwork<T>::backpropagate(const T& desiredOutput)
 
     //correction based on size of last layer. Is this right? -MZ
     T length = 0;
-    for (int i = 0; i < numHiddenNodes; ++i) 
+    for (size_t i = 0; i < numHiddenNodes; ++i)
     {
         length += hiddenNeurons[numHiddenLayers - 1][i] * hiddenNeurons[numHiddenLayers - 1][i];
     }
     if (length <= 2.0) length = 1.0;
 
     //deltas between hidden and output
-    for (int i = 0; i <= numHiddenNodes; ++i) 
+    for (size_t i = 0; i <= numHiddenNodes; ++i)
     {
         deltaHiddenOutput[i] = (learningRate * (hiddenNeurons[numHiddenLayers - 1][i] / length) * outputErrorGradient) + (momentum * deltaHiddenOutput[i]);
     }
@@ -470,19 +470,19 @@ void neuralNetwork<T>::backpropagate(const T& desiredOutput)
     //deltas between hidden
     for (int i = numHiddenLayers - 1; i >= 0; --i)
     {
-        for (int j = 0; j < numHiddenNodes; ++j)
+        for (size_t j = 0; j < numHiddenNodes; ++j)
         {
             T hiddenErrorGradient = getHiddenErrorGradient(i, j);
             if (i > 0) 
             {
-                for (int k = 0; k <= numHiddenNodes; ++k) 
+                for (size_t k = 0; k <= numHiddenNodes; ++k)
                 {
                     deltaWeights[i][j][k] = (learningRate * hiddenNeurons[i][j] * hiddenErrorGradient) + (momentum * deltaWeights[i][j][k]);
                 }
             }
             else //hidden to input layer
             { 
-                for (int k = 0; k <= numInputs; ++k) 
+                for (size_t k = 0; k <= numInputs; ++k)
                 {
                     deltaWeights[0][j][k] = (learningRate * inputNeurons[k] * hiddenErrorGradient) + (momentum * deltaWeights[0][j][k]);
                 }
@@ -499,17 +499,17 @@ void neuralNetwork<T>::updateWeights()
     //hidden to hidden weights
     for (int i = 0; i < numHiddenLayers; ++i)
     {
-        int numDeltas = (i == 0) ? numInputs : numHiddenNodes;
-        for (int j = 0; j < numHiddenNodes; ++j)
+        size_t numDeltas = (i == 0) ? numInputs : numHiddenNodes;
+        for (size_t j = 0; j < numHiddenNodes; ++j)
         {
-            for (int k = 0; k <= numDeltas; ++k)
+            for (size_t k = 0; k <= numDeltas; ++k)
             {
                 weights[i][j][k] += deltaWeights[i][j][k];
             }
         }
     }
     //hidden to output weights
-    for (int i = 0; i <= numHiddenNodes; ++i)
+    for (size_t i = 0; i <= numHiddenNodes; ++i)
     {
         wHiddenOutput[i] += deltaHiddenOutput[i];
     }
