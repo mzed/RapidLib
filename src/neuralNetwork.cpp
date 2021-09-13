@@ -172,7 +172,7 @@ void neuralNetwork<T>::reset()
 }
 
 template<typename T>
-inline T neuralNetwork<T>::getHiddenErrorGradient(int layer, int neuron)
+inline T neuralNetwork<T>::getHiddenErrorGradient(int layer, size_t neuron)
 {
     T weightedSum = 0;
     if (numHiddenLayers == 1 || layer == 0)
@@ -306,10 +306,10 @@ T neuralNetwork<T>::getOutBase() const {
 template<typename T>
 void neuralNetwork<T>::getJSONDescription(Json::Value& jsonModelDescription) {
     jsonModelDescription["modelType"] = "Neural Network";
-    jsonModelDescription["numInputs"] = numInputs;
+    jsonModelDescription["numInputs"] = (int)numInputs;  //FIXME: Update json::cpp?
     jsonModelDescription["whichInputs"] = this->vector2json(whichInputs);
     jsonModelDescription["numHiddenLayers"] = numHiddenLayers;
-    jsonModelDescription["numHiddenNodes"] = numHiddenNodes;
+    jsonModelDescription["numHiddenNodes"] = (int)numHiddenNodes; //FIXME: Update json::cpp?
     jsonModelDescription["numHiddenOutputs"] = 1;
     jsonModelDescription["inRanges"] = this->vector2json(inRanges);
     jsonModelDescription["inBases"] = this->vector2json(inBases);
