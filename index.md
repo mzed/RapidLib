@@ -34,7 +34,7 @@ npm install rapidlib
 
 ## Max objects
 
-RapidLib has been wrapped in a Max object here.
+[RapidLib has been wrapped in a Max object here.](https://github.com/mzed/rapid)
 
 ## Unity
 
