@@ -2,7 +2,7 @@
 
 [![GitHub license](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/mzed/RapidLib/blob/master/LICENSE)
 
-RapidLib is a lightweight library for interactive machine learning, inspired by [Wekinator](http://www.wekinator.org/). It currently features classification (using [kNN](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)), regression ([multilayer perceptron](https://en.wikipedia.org/wiki/Multilayer_perceptron)), and series classification (using [dynamic time warping](https://en.wikipedia.org/wiki/Dynamic_time_warping)).
+RapidLib is a lightweight library for interactive machine learning, inspired by [Wekinator](http://www.wekinator.org/). It currently features classification (using [kNN](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)), regression ([multilayer perceptron](https://en.wikipedia.org/wiki/Multilayer_perceptron)), and series classification (using [dynamic time warping](https://en.wikipedia.org/wiki/Dynamic_time_warping)). It also includes rapidStream, a collection of utilities for buffering and signal processing on incoming streams of data.
 
 ## C++
 
