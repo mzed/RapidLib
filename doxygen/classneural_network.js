@@ -19,8 +19,8 @@ var classneural_network =
     [ "reset", "classneural_network.html#a70bdc148e83484091bd3602c1f04949c", null ],
     [ "run", "classneural_network.html#ab2f9ce776bec91038721686bafe02bf5", null ],
     [ "setEpochs", "classneural_network.html#aba035309d02ee4f85d394176d4082d68", null ],
-    [ "setNumHiddenLayers", "classneural_network.html#a873489b1600cbcb0b7e514125e03c87a", null ],
-    [ "setNumHiddenNodes", "classneural_network.html#a660b5d16d302083f754257d63af47d74", null ],
+    [ "setNumHiddenLayers", "classneural_network.html#a6a8f3d3c08e067b13211bf8039581417", null ],
+    [ "setNumHiddenNodes", "classneural_network.html#a78322e8a93ba97979b0e70752f8aa22a", null ],
     [ "train", "classneural_network.html#a5522af308ee4bae154f58bbd2977be7b", null ],
     [ "train", "classneural_network.html#a1006fede576315ea2d8b41c81aeedd7a", null ]
 ];

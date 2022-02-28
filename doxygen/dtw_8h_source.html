@@ -99,46 +99,43 @@ $(document).ready(function(){initNavTree('dtw_8h_source.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 <a href="dtw_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef DTW_H</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define DTW_H</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="warp_path_8h.html">warpPath.h</a>&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="search_window_8h.html">searchWindow.h</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classdtw.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classdtw.html">dtw</a> </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classdtw.html#a1efaf20d74df6a63e06460dbe35b1fe4">dtw</a>();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classdtw.html#a28b2a44d58eaa9ac256006ec0aee73f8">~dtw</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">/* Calculates and returns a simple cost value between two input series */</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    T <a class="code" href="classdtw.html#a881895aabfe90c814618b08912e74922">getCost</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt;&gt; &amp;seriesX, <span class="keyword">const</span> std::vector&lt;std::vector&lt;T &gt; &gt; &amp;seriesY);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">/* Calculates both cost and the warp path */</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="structwarp_info.html">warpInfo&lt;T&gt;</a> <a class="code" href="classdtw.html#a14487c85534eef31bb05201e2e9dce6e">dynamicTimeWarp</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt; &gt; &amp;seriesX, <span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt; &gt; &amp;seriesY); <span class="comment">//This returns everything, including a path</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">/* Calculates both the cost and the warp path, with a given window as a constraint */</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="structwarp_info.html">warpInfo&lt;T&gt;</a> <a class="code" href="classdtw.html#a5de4dcfa706c0b3df46c52f29334fe4a">constrainedDTW</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt; &gt; &amp;seriesX, <span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt; &gt; &amp;seriesY, <a class="code" href="classsearch_window.html">searchWindow&lt;T&gt;</a> window); <span class="comment">//This takes a window object</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">inline</span> T distanceFunction(<span class="keyword">const</span> std::vector&lt;T&gt; &amp;pointX, <span class="keyword">const</span> std::vector&lt;T&gt; &amp;point);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    std::vector&lt;std::vector&lt;T&gt; &gt; costMatrix;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classwarp_path.html">warpPath</a> calculatePath(std::size_t seriesXsize, std::size_t seriesYsize) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassdtw_html"><div class="ttname"><a href="classdtw.html">dtw</a></div><div class="ttdef"><b>Definition:</b> dtw.h:19</div></div>
-<div class="ttc" id="aclassdtw_html_a14487c85534eef31bb05201e2e9dce6e"><div class="ttname"><a href="classdtw.html#a14487c85534eef31bb05201e2e9dce6e">dtw::dynamicTimeWarp</a></div><div class="ttdeci">warpInfo&lt; T &gt; dynamicTimeWarp(const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesX, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesY)</div><div class="ttdef"><b>Definition:</b> dtw.cpp:126</div></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="warp_path_8h.html">warpPath.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="search_window_8h.html">searchWindow.h</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classdtw.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classdtw.html">dtw</a> </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classdtw.html#a1efaf20d74df6a63e06460dbe35b1fe4">dtw</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classdtw.html#a28b2a44d58eaa9ac256006ec0aee73f8">~dtw</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="comment">/* Calculates and returns a simple cost value between two input series */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    T <a class="code" href="classdtw.html#a881895aabfe90c814618b08912e74922">getCost</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt;&gt; &amp;seriesX, <span class="keyword">const</span> std::vector&lt;std::vector&lt;T &gt; &gt; &amp;seriesY);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">/* Calculates both cost and the warp path */</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="structwarp_info.html">warpInfo&lt;T&gt;</a> <a class="code" href="classdtw.html#a14487c85534eef31bb05201e2e9dce6e">dynamicTimeWarp</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt; &gt; &amp;seriesX, <span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt; &gt; &amp;seriesY); <span class="comment">//This returns everything, including a path</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">/* Calculates both the cost and the warp path, with a given window as a constraint */</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="structwarp_info.html">warpInfo&lt;T&gt;</a> <a class="code" href="classdtw.html#a5de4dcfa706c0b3df46c52f29334fe4a">constrainedDTW</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt; &gt; &amp;seriesX, <span class="keyword">const</span> std::vector&lt;std::vector&lt;T&gt; &gt; &amp;seriesY, <a class="code" href="classsearch_window.html">searchWindow&lt;T&gt;</a> window); <span class="comment">//This takes a window object</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">inline</span> T distanceFunction(<span class="keyword">const</span> std::vector&lt;T&gt; &amp;pointX, <span class="keyword">const</span> std::vector&lt;T&gt; &amp;point);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::vector&lt;std::vector&lt;T&gt; &gt; costMatrix;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classwarp_path.html">warpPath</a> calculatePath(std::size_t seriesXsize, std::size_t seriesYsize) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
+<div class="ttc" id="aclassdtw_html"><div class="ttname"><a href="classdtw.html">dtw</a></div><div class="ttdef"><b>Definition:</b> dtw.h:18</div></div>
+<div class="ttc" id="aclassdtw_html_a14487c85534eef31bb05201e2e9dce6e"><div class="ttname"><a href="classdtw.html#a14487c85534eef31bb05201e2e9dce6e">dtw::dynamicTimeWarp</a></div><div class="ttdeci">warpInfo&lt; T &gt; dynamicTimeWarp(const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesX, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesY)</div><div class="ttdef"><b>Definition:</b> dtw.cpp:121</div></div>
 <div class="ttc" id="aclassdtw_html_a1efaf20d74df6a63e06460dbe35b1fe4"><div class="ttname"><a href="classdtw.html#a1efaf20d74df6a63e06460dbe35b1fe4">dtw::dtw</a></div><div class="ttdeci">dtw()</div><div class="ttdef"><b>Definition:</b> dtw.cpp:17</div></div>
 <div class="ttc" id="aclassdtw_html_a28b2a44d58eaa9ac256006ec0aee73f8"><div class="ttname"><a href="classdtw.html#a28b2a44d58eaa9ac256006ec0aee73f8">dtw::~dtw</a></div><div class="ttdeci">~dtw()</div><div class="ttdef"><b>Definition:</b> dtw.cpp:20</div></div>
-<div class="ttc" id="aclassdtw_html_a5de4dcfa706c0b3df46c52f29334fe4a"><div class="ttname"><a href="classdtw.html#a5de4dcfa706c0b3df46c52f29334fe4a">dtw::constrainedDTW</a></div><div class="ttdeci">warpInfo&lt; T &gt; constrainedDTW(const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesX, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesY, searchWindow&lt; T &gt; window)</div><div class="ttdef"><b>Definition:</b> dtw.cpp:137</div></div>
-<div class="ttc" id="aclassdtw_html_a881895aabfe90c814618b08912e74922"><div class="ttname"><a href="classdtw.html#a881895aabfe90c814618b08912e74922">dtw::getCost</a></div><div class="ttdeci">T getCost(const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;seriesX, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesY)</div><div class="ttdef"><b>Definition:</b> dtw.cpp:44</div></div>
-<div class="ttc" id="aclasssearch_window_html"><div class="ttname"><a href="classsearch_window.html">searchWindow</a></div><div class="ttdef"><b>Definition:</b> searchWindow.h:20</div></div>
-<div class="ttc" id="aclasswarp_path_html"><div class="ttname"><a href="classwarp_path.html">warpPath</a></div><div class="ttdef"><b>Definition:</b> warpPath.h:16</div></div>
+<div class="ttc" id="aclassdtw_html_a5de4dcfa706c0b3df46c52f29334fe4a"><div class="ttname"><a href="classdtw.html#a5de4dcfa706c0b3df46c52f29334fe4a">dtw::constrainedDTW</a></div><div class="ttdeci">warpInfo&lt; T &gt; constrainedDTW(const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesX, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesY, searchWindow&lt; T &gt; window)</div><div class="ttdef"><b>Definition:</b> dtw.cpp:132</div></div>
+<div class="ttc" id="aclassdtw_html_a881895aabfe90c814618b08912e74922"><div class="ttname"><a href="classdtw.html#a881895aabfe90c814618b08912e74922">dtw::getCost</a></div><div class="ttdeci">T getCost(const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;seriesX, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;seriesY)</div><div class="ttdef"><b>Definition:</b> dtw.cpp:39</div></div>
+<div class="ttc" id="aclasssearch_window_html"><div class="ttname"><a href="classsearch_window.html">searchWindow</a></div><div class="ttdef"><b>Definition:</b> searchWindow.h:19</div></div>
+<div class="ttc" id="aclasswarp_path_html"><div class="ttname"><a href="classwarp_path.html">warpPath</a></div><div class="ttdef"><b>Definition:</b> warpPath.h:15</div></div>
 <div class="ttc" id="asearch_window_8h_html"><div class="ttname"><a href="search_window_8h.html">searchWindow.h</a></div></div>
-<div class="ttc" id="astructwarp_info_html"><div class="ttname"><a href="structwarp_info.html">warpInfo</a></div><div class="ttdef"><b>Definition:</b> warpPath.h:33</div></div>
+<div class="ttc" id="astructwarp_info_html"><div class="ttname"><a href="structwarp_info.html">warpInfo</a></div><div class="ttdef"><b>Definition:</b> warpPath.h:32</div></div>
 <div class="ttc" id="awarp_path_8h_html"><div class="ttname"><a href="warp_path_8h.html">warpPath.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
