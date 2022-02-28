@@ -36,9 +36,10 @@ npm install rapidlib
 
 [RapidLib has been wrapped in a Max object here.](https://github.com/mzed/rapid)
 
-## Unity
+## Game Engines
 
-RapidLib is part of [InteractML](http://interactml.com/), for Unity.
+RapidLib is part of [InteractML](http://interactml.com/), for Unity and [Unreal Engine](https://github.com/Interactml/iml-ue4)
+
 
 ## MIMIC
 
