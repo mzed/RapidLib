@@ -7,7 +7,8 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
-#pragma once
+#ifndef TRAININGEXAMPLE_H
+#define TRAININGEXAMPLE_H
 
 #include <vector>
 #include <string>
@@ -42,3 +43,4 @@ namespace rapidLib
     using trainingSeriesFloat = trainingSeriesTemplate<float>;
 }
 
+#endif

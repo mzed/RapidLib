@@ -6,7 +6,8 @@
 //  Copyright © 2016 Goldsmiths. All rights reserved.
 //
 
-#pragma once
+#ifndef MODELSET_H
+#define MODELSET_H
 
 #include <vector>
 #include "trainingExample.h"
@@ -73,3 +74,5 @@ private:
     void json2modelSet(const Json::Value &root);
 #endif
 };
+
+#endif

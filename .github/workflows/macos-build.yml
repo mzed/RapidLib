@@ -17,13 +17,4 @@ jobs:
       run: cmake --build build
     - name: test
       run: cd build && ctest
-      
-    - name: Doxygen Action
-      uses: mattnotmitt/doxygen-action@v1.3.1
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        enable_jekyll: true
-        publish_dir: ./doxygen
-        destination_dir: ./doxygen
+ 

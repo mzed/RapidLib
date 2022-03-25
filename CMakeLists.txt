@@ -1,21 +1,19 @@
 cmake_minimum_required(VERSION 3.10)
+project(rapidLib)
 
-if(COMPILER_SUPPORTS_CXX17)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+if (MSVC)
+    add_compile_options(/std:c++17)
 else()
-        message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++17 support. Please use a different C++ compiler.")
+    add_compile_options(-std=c++17 -O2)
 endif()
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -lstdc++fs")
-
-project(rapidlib C CXX)
 
 # Threads
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
 # The version number
-set (rapidmix_VERSION_MAJOR 2)
-set (rapidmix_VERSION_MINOR 2)
+set (${PROJECT_NAME}_VERSION_MAJOR 2)
+set (${PROJECT_NAME}_VERSION_MINOR 2)
 
 # Main lib
 include_directories(${PROJECT_SOURCE_DIR}/src)
@@ -37,13 +35,13 @@ set(RAPIDLIB_FULL_SRC
 		${BAYES_SRC}
 	)
 
-add_library(RAPIDLIB SHARED ${RAPIDLIB_FULL_SRC})
+add_library(${PROJECT_NAME} SHARED ${RAPIDLIB_FULL_SRC})
 add_executable(rapidLibTest test/rapidLibTest.cpp)
 
 #include(GenerateExportHeader)
-#generate_export_header(RAPIDLIB)
+#generate_export_header(${PROJECT_NAME})
 
-target_link_libraries(rapidLibTest RAPIDLIB)
+target_link_libraries(rapidLibTest ${PROJECT_NAME})
 target_link_libraries(rapidLibTest Threads::Threads)
 
 enable_testing()

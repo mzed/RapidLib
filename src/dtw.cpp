@@ -9,8 +9,8 @@
 
 #include <vector>
 #include <cmath>
-#include <cassert>
 #include <limits>
+#include <stdexcept>
 #include "dtw.h"
 
 template<typename T>
@@ -22,15 +22,20 @@ dtw<T>::~dtw() {};
 template<typename T>
 inline T dtw<T>::distanceFunction(const std::vector<T> &x, const std::vector<T> &y)
 {
-    assert(x.size() == y.size());
     double euclidianDistance = 0;
-    
-    for(std::size_t j = 0; j < x.size() ; ++j)
+    if (x.size() != y.size())
     {
-        euclidianDistance = euclidianDistance + pow((x[j] - y[j]), 2);
+        throw std::length_error("comparing different length series");
     }
-    
-    euclidianDistance = sqrt(euclidianDistance);
+    else
+    {
+        for (std::size_t i = 0; i < x.size(); ++i)
+        {
+            euclidianDistance = euclidianDistance + pow((x[i] - y[i]), 2);
+        }
+
+        euclidianDistance = sqrt(euclidianDistance);
+    }
     return (T)euclidianDistance;
 };
 

@@ -230,7 +230,7 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
 template<typename T>
 float regressionTemplate<T>::getTrainingProgress()
 {
-    float progress = modelSet<T>::isTrained ? 1. : 0.;
+    float progress = modelSet<T>::isTrained ? 1.f : 0.f;
 
     if (modelSet<T>::isTraining)
     {

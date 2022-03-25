@@ -6,7 +6,8 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
-#pragma once
+#ifndef NEURALNETWORK_H
+#define NEURALNETWORK_H
 
 #include <vector>
 #include "baseModel.h"
@@ -64,10 +65,10 @@ public:
     std::vector<size_t> getWhichInputs() const override;
 
     size_t getNumHiddenLayers() const;
-    void setNumHiddenLayers(int num_hidden_layers);
+    void setNumHiddenLayers(size_t num_hidden_layers);
 
     size_t getNumHiddenNodes() const;
-    void setNumHiddenNodes(int num_hidden_nodes);
+    void setNumHiddenNodes(size_t num_hidden_nodes);
 
     size_t getEpochs() const;
     void setEpochs(const size_t& epochs);
@@ -87,10 +88,10 @@ public:
 
 private:
     /** Parameters that describe the topography of the model */
-    int numInputs;
+    size_t numInputs;
     std::vector<size_t> whichInputs;
-    int numHiddenLayers;
-    int numHiddenNodes;
+    size_t numHiddenLayers;
+    size_t numHiddenNodes;
 
     /** Neurons: state is updated on each process(). */
     std::vector<T> inputNeurons;
@@ -145,7 +146,7 @@ private:
 
     /** Parameters and functions for calculating amount of change for each weight */
     T outputErrorGradient;
-    inline T getHiddenErrorGradient(int layer, int neuron);
+    inline T getHiddenErrorGradient(size_t layer, size_t neuron);
 
     void initTrainer();
 
@@ -157,3 +158,5 @@ private:
     /** Apply corrections to network weights, based on output error */
     void updateWeights();
 };
+
+#endif

@@ -7,7 +7,8 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#pragma once
+#ifndef SVMCLASSIFICATION_H
+#define SVMCLASSIFICATION_H
 
 #include <vector>
 #include "baseModel.h"
@@ -130,3 +131,5 @@ private:
     
     bool trained;
 };
+
+#endif

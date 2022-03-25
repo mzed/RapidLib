@@ -6,7 +6,8 @@
 //  Copyright © 2016 Goldsmiths. All rights reserved.
 //
 
-#pragma once
+#ifndef CLASSIFICATION_H
+#define CLASSIFICATION_H
 
 #include <vector>
 #include "modelSet.h"
@@ -76,3 +77,5 @@ namespace rapidLib
     using classification = classificationTemplate<double>;
     using classificationFloat = classificationTemplate<float>;
 }
+
+#endif

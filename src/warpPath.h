@@ -6,7 +6,8 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#pragma once
+#ifndef WARPPATH_H
+#define WARPPATH_H
 
 #include <vector>
 
@@ -35,3 +36,5 @@ public:
     T cost;
     
 };
+
+#endif

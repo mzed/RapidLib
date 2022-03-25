@@ -6,7 +6,8 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#pragma once
+#ifndef FASTDTW_H
+#define FASTDTW_H
 
 #include <vector>
 #include "warpPath.h"
@@ -56,3 +57,5 @@ private:
     inline static std::vector<std::vector<T> > downsample(const std::vector<std::vector<T>> &series, T resolution);
     
 };
+
+#endif
