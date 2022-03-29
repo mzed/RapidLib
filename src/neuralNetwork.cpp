@@ -422,8 +422,8 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
     {
         for (size_t i = 0; i < numInputs; ++i)
         {
-            if (trainingExample.input[i] > inMax[i]) inMax[i] = trainingSet[ti].input[i];
-            if (trainingExample.input[i] < inMin[i]) inMin[i] = trainingSet[ti].input[i];
+            if (trainingExample.input[i] > inMax[i]) inMax[i] = trainingExample.input[i];
+            if (trainingExample.input[i] < inMin[i]) inMin[i] = trainingExample.input[i];
             if (trainingExample.output[whichOutput] > outMax) outMax = trainingExample.output[whichOutput];
             if (trainingExample.output[whichOutput] < outMin) outMin = trainingExample.output[whichOutput];
         }
@@ -450,10 +450,10 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
         for (currentEpoch = 0; currentEpoch < numEpochs; ++currentEpoch)
         {
             //run through every training instance
-            for (size_t ti = 0; ti < trainingSet.size(); ++ti) 
+            for (auto trainingExample : trainingSet)
             {
-                run(trainingSet[ti].input);
-                backpropagate(trainingSet[ti].output[whichOutput]);
+                run(trainingExample.input);
+                backpropagate(trainingExample.output[whichOutput]);
             }
         }
     }
