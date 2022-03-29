@@ -45,27 +45,28 @@ bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemp
         allTrainingSeries = seriesSet;
         minLength = maxLength = allTrainingSeries[0].input.size();
 
-        for (size_t i = 0; i < allTrainingSeries.size(); ++i)
+        //for (size_t i = 0; i < allTrainingSeries.size(); ++i)
+        for (auto trainingSeries : allTrainingSeries)
         {
             //for (auto trainingSeries : allTrainingSeries)
             //Global
-            size_t newLength = allTrainingSeries[i].input.size();
+            size_t newLength = trainingSeries.input.size();
             if (newLength < minLength) minLength = newLength;
             if (newLength > maxLength) maxLength = newLength;
 
             //Per Label
-            typename std::map<std::string, minMax<int> >::iterator it = lengthsPerLabel.find(allTrainingSeries[i].label);
+            typename std::map<std::string, minMax<int> >::iterator it = lengthsPerLabel.find(trainingSeries.label);
             if (it != lengthsPerLabel.end())
             {
-                size_t newLength = allTrainingSeries[i].input.size();
+                size_t newLength = trainingSeries.input.size();
                 if (newLength < it->second.min) it->second.min = newLength;
                 if (newLength > it->second.max) it->second.max = newLength;
             }
             else
             {
                 minMax<int> tempLengths;
-                tempLengths.min = tempLengths.max = allTrainingSeries[i].input.size();
-                lengthsPerLabel[allTrainingSeries[i].label] = tempLengths;
+                tempLengths.min = tempLengths.max = trainingSeries.input.size();
+                lengthsPerLabel[trainingSeries.label] = tempLengths;
             }
         }
         //TODO: make this size smarter?
