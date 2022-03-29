@@ -1,6 +1,6 @@
 <map id="baseModel&lt; T &gt;" name="baseModel&lt; T &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="193,5,353,200"/>
-<area shape="rect" id="node2" href="$classknn_classification.html" title=" " alt="" coords="5,248,165,487"/>
-<area shape="rect" id="node3" href="$classneural_network.html" title=" " alt="" coords="190,255,357,479"/>
-<area shape="rect" id="node4" href="$classsvm_classification.html" title=" " alt="" coords="381,255,541,479"/>
+<area shape="rect" id="node1" title=" " alt="" coords="193,5,353,215"/>
+<area shape="rect" id="node2" href="$classknn_classification.html" title=" " alt="" coords="5,263,165,501"/>
+<area shape="rect" id="node3" href="$classneural_network.html" title=" " alt="" coords="190,270,357,494"/>
+<area shape="rect" id="node4" href="$classsvm_classification.html" title=" " alt="" coords="381,270,541,494"/>
 </map>
