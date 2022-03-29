@@ -70,9 +70,9 @@ protected:
     Json::Value vector2json(std::vector<unsigned long> vec)
     {
         Json::Value toReturn;
-        for (unsigned long value : vec)
+        for (auto value : vec)
         {
-            toReturn.append( (double)vec ); //I chose double here because that's close to what JS uses
+            toReturn.append( (double)value ); //I chose double here because that's close to what JS uses
         }
         return toReturn;
     }
