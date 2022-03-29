@@ -8,6 +8,5 @@ var classbase_model =
     [ "run", "classbase_model.html#a4c57cc5edffbfd8ed959e049e5951ebf", null ],
     [ "train", "classbase_model.html#ae3f6b2b8ca325306be05a8929871dcd6", null ],
     [ "train", "classbase_model.html#ab178dbf9969eb61ca9b53388d0348c19", null ],
-    [ "vector2json", "classbase_model.html#ad54efcf0ded07edeb12dbbd157a04e63", null ],
     [ "vector2json", "classbase_model.html#ab192da19c9cb056a5e83cfca5c38e603", null ]
 ];

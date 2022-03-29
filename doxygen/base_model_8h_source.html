@@ -149,29 +149,32 @@ $(document).ready(function(){initNavTree('base_model_8h_source.html',''); initRe
 <div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classbase_model.html#ab192da19c9cb056a5e83cfca5c38e603">   58</a></span>&#160;    Json::Value <a class="code" href="classbase_model.html#ab192da19c9cb056a5e83cfca5c38e603">vector2json</a>(TT vec) </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        Json::Value toReturn;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; vec.size(); ++i) </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            toReturn.append( (Json::Value)vec[i] );</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">return</span> toReturn;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">//FIXME: This is a temporary hack because Json::Value doesn&#39;t know what to do with unsinged longs, and XCode cares</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> Dummy=<span class="keywordtype">int</span>&gt;</div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classbase_model.html#ad54efcf0ded07edeb12dbbd157a04e63">   70</a></span>&#160;    Json::Value <a class="code" href="classbase_model.html#ad54efcf0ded07edeb12dbbd157a04e63">vector2json</a>(std::vector&lt;unsigned long&gt; vec)</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        Json::Value toReturn;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; vec.size(); ++i)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            toReturn.append((<span class="keywordtype">double</span>)vec[i]); <span class="comment">//I chose double here because that&#39;s close to what JS uses</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> toReturn;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">//for (size_t i = 0; i &lt; vec.size(); ++i) </span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> value : vec)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            toReturn.append( (Json::Value)value );</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span> toReturn;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">    //FIXME: This is a temporary hack because Json::Value doesn&#39;t know what to do with unsinged longs, and XCode cares</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">    template&lt;class Dummy=int&gt;</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">    Json::Value vector2json(std::vector&lt;unsigned long&gt; vec)</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">    {</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">        Json::Value toReturn;</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">        for (size_t i = 0; i &lt; vec.size(); ++i)</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">        {</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">            toReturn.append((double)vec[i]); //I chose double here because that&#39;s close to what JS uses</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">        }</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">        return toReturn;</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">    }</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">    */</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;};</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassbase_model_html"><div class="ttname"><a href="classbase_model.html">baseModel</a></div><div class="ttdef"><b>Definition:</b> baseModel.h:42</div></div>
 <div class="ttc" id="aclassbase_model_html_a0de01cfc108e8163d73fe8048955d771"><div class="ttname"><a href="classbase_model.html#a0de01cfc108e8163d73fe8048955d771">baseModel::getWhichInputs</a></div><div class="ttdeci">virtual std::vector&lt; size_t &gt; getWhichInputs() const =0</div></div>
 <div class="ttc" id="aclassbase_model_html_a4c57cc5edffbfd8ed959e049e5951ebf"><div class="ttname"><a href="classbase_model.html#a4c57cc5edffbfd8ed959e049e5951ebf">baseModel::run</a></div><div class="ttdeci">virtual T run(const std::vector&lt; T &gt; &amp;inputVector)=0</div></div>
@@ -181,7 +184,6 @@ $(document).ready(function(){initNavTree('base_model_8h_source.html',''); initRe
 <div class="ttc" id="aclassbase_model_html_ab178dbf9969eb61ca9b53388d0348c19"><div class="ttname"><a href="classbase_model.html#ab178dbf9969eb61ca9b53388d0348c19">baseModel::train</a></div><div class="ttdeci">virtual void train(const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet, const std::size_t whichOutput)=0</div></div>
 <div class="ttc" id="aclassbase_model_html_ab192da19c9cb056a5e83cfca5c38e603"><div class="ttname"><a href="classbase_model.html#ab192da19c9cb056a5e83cfca5c38e603">baseModel::vector2json</a></div><div class="ttdeci">Json::Value vector2json(TT vec)</div><div class="ttdef"><b>Definition:</b> baseModel.h:58</div></div>
 <div class="ttc" id="aclassbase_model_html_ac16b40e0a37c3ddc335d44b0668df4e2"><div class="ttname"><a href="classbase_model.html#ac16b40e0a37c3ddc335d44b0668df4e2">baseModel::~baseModel</a></div><div class="ttdeci">virtual ~baseModel()</div><div class="ttdef"><b>Definition:</b> baseModel.h:44</div></div>
-<div class="ttc" id="aclassbase_model_html_ad54efcf0ded07edeb12dbbd157a04e63"><div class="ttname"><a href="classbase_model.html#ad54efcf0ded07edeb12dbbd157a04e63">baseModel::vector2json</a></div><div class="ttdeci">Json::Value vector2json(std::vector&lt; unsigned long &gt; vec)</div><div class="ttdef"><b>Definition:</b> baseModel.h:70</div></div>
 <div class="ttc" id="aclassbase_model_html_ae3f6b2b8ca325306be05a8929871dcd6"><div class="ttname"><a href="classbase_model.html#ae3f6b2b8ca325306be05a8929871dcd6">baseModel::train</a></div><div class="ttdeci">virtual void train(const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet)=0</div></div>
 <div class="ttc" id="astructtraining_example_template_html"><div class="ttname"><a href="structtraining_example_template.html">trainingExampleTemplate</a></div><div class="ttdef"><b>Definition:</b> trainingExample.h:19</div></div>
 <div class="ttc" id="atraining_example_8h_html"><div class="ttname"><a href="training_example_8h.html">trainingExample.h</a></div></div>
