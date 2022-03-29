@@ -96,7 +96,6 @@ neuralNetwork<T>::neuralNetwork(const size_t& num_inputs,
         }
     }
 
-    for (size_t i = 0; i < inRanges.size(); ++i)
     for(auto inRange : inRanges)
     {
         if (inRange == 0.)
