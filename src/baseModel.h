@@ -58,13 +58,15 @@ protected:
     Json::Value vector2json(TT vec) 
     {
         Json::Value toReturn;
-        for (size_t i = 0; i < vec.size(); ++i) 
+        //for (size_t i = 0; i < vec.size(); ++i) 
+        for (auto value : vec)
         {
-            toReturn.append( (Json::Value)vec[i] );
+            toReturn.append( (Json::Value)value );
         }
         return toReturn;
     }
 
+    /*
     //FIXME: This is a temporary hack because Json::Value doesn't know what to do with unsinged longs, and XCode cares
     template<class Dummy=int>
     Json::Value vector2json(std::vector<unsigned long> vec)
@@ -76,6 +78,7 @@ protected:
         }
         return toReturn;
     }
+    */
 #endif
 
 };
