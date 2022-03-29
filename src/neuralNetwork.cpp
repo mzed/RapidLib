@@ -92,15 +92,15 @@ neuralNetwork<T>::neuralNetwork(const size_t& num_inputs,
     {
         for (size_t i = 0; i <= numHiddenNodes; ++i)
         {
-            wHiddenOutput.push_back(distribution(generator));
+            wHiddenOutput.push_back( distribution(generator) );
         }
     }
 
-    for (size_t i = 0; i < inRanges.size(); ++i)
+    for(auto inRange : inRanges)
     {
-        if (inRanges[i] == 0.)
+        if (inRange == 0.)
         {
-            inRanges[i] = 1.0; //Prevent divide by zero later.
+            inRange = 1.0; //Prevent divide by zero later.
         }
     }
 
@@ -263,14 +263,13 @@ template<typename T>
 std::vector<T> neuralNetwork<T>::getWeights() const 
 {
     std::vector<T> flatWeights;
-
-    for (size_t i = 0; i < weights.size(); ++i) 
+    for (auto weightsA : weights)
     {
-        for (size_t j = 0; j < weights[i].size(); ++j) 
+        for (auto weightsB : weightsA)
         {
-            for (size_t k = 0; k < weights[i][j].size(); ++k)
+            for (auto weightC : weightsB)
             {
-                flatWeights.push_back(weights[i][j][k]);
+                flatWeights.push_back(weightC);
             }
         }
     }
@@ -278,33 +277,39 @@ std::vector<T> neuralNetwork<T>::getWeights() const
 }
 
 template<typename T>
-std::vector<T> neuralNetwork<T>::getWHiddenOutput() const {
+std::vector<T> neuralNetwork<T>::getWHiddenOutput() const 
+{
     return wHiddenOutput;
 }
 
 template<typename T>
-std::vector<T> neuralNetwork<T>::getInRanges() const {
+std::vector<T> neuralNetwork<T>::getInRanges() const 
+{
     return inRanges;
 }
 
 template<typename T>
-std::vector<T> neuralNetwork<T>::getInBases() const {
+std::vector<T> neuralNetwork<T>::getInBases() const 
+{
     return inBases;
 }
 
 template<typename T>
-T neuralNetwork<T>::getOutRange() const {
+T neuralNetwork<T>::getOutRange() const 
+{
     return outRange;
 }
 
 template<typename T>
-T neuralNetwork<T>::getOutBase() const {
+T neuralNetwork<T>::getOutBase() const 
+{
     return outBase;
 }
 
 #ifndef EMSCRIPTEN
 template<typename T>
-void neuralNetwork<T>::getJSONDescription(Json::Value& jsonModelDescription) {
+void neuralNetwork<T>::getJSONDescription(Json::Value& jsonModelDescription) 
+{
     jsonModelDescription["modelType"] = "Neural Network";
     jsonModelDescription["numInputs"] = (int)numInputs;  //FIXME: Update json::cpp?
     jsonModelDescription["whichInputs"] = this->vector2json(whichInputs);
@@ -322,7 +327,8 @@ void neuralNetwork<T>::getJSONDescription(Json::Value& jsonModelDescription) {
     //Output Node
     Json::Value outNode;
     outNode["name"] = "Linear Node 0";
-    for (size_t i = 0; i < numHiddenNodes; ++i) {
+    for (size_t i = 0; i < numHiddenNodes; ++i) 
+    {
         std::string nodeName = "Node " + std::to_string(i + 1);
         outNode[nodeName] = wHiddenOutput[i];
     }
@@ -330,11 +336,14 @@ void neuralNetwork<T>::getJSONDescription(Json::Value& jsonModelDescription) {
     nodes.append(outNode);
 
     //Input nodes
-    for (size_t i = 0; i < weights.size(); ++i) { //layers
-        for (size_t j = 0; j < weights[i].size(); ++j) { //hidden nodes
+    for (size_t i = 0; i < weights.size(); ++i)
+    { //layers
+        for (size_t j = 0; j < weights[i].size(); ++j) 
+        { //hidden nodes
             Json::Value tempNode;
             tempNode["name"] = "Sigmoid Node " + std::to_string((i * numHiddenNodes) + j + 1);
-            for (size_t k = 0; k < weights[i][j].size() - 1; ++k) { //inputs + threshold aka bias
+            for (size_t k = 0; k < weights[i][j].size() - 1; ++k) 
+            { //inputs + threshold aka bias
                 std::string connectNode = "Attrib inputs-" + std::to_string(k + 1);
                 tempNode[connectNode] = weights[i][j][k];
             }
@@ -399,7 +408,8 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
 
 
 template<typename T>
-void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& trainingSet, const std::size_t whichOutput) {
+void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& trainingSet, const std::size_t whichOutput) 
+{
     initTrainer();
     //setup maxes and mins
     std::vector<T> inMax = trainingSet[0].input;
@@ -407,14 +417,14 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
     T outMin = trainingSet[0].output[whichOutput];
     T outMax = trainingSet[0].output[whichOutput];
 
-    for (size_t ti = 1; ti < trainingSet.size(); ++ti) 
+    for(auto trainingExample : trainingSet)
     {
         for (size_t i = 0; i < numInputs; ++i)
         {
-            if (trainingSet[ti].input[i] > inMax[i]) inMax[i] = trainingSet[ti].input[i];
-            if (trainingSet[ti].input[i] < inMin[i]) inMin[i] = trainingSet[ti].input[i];
-            if (trainingSet[ti].output[whichOutput] > outMax) outMax = trainingSet[ti].output[whichOutput];
-            if (trainingSet[ti].output[whichOutput] < outMin) outMin = trainingSet[ti].output[whichOutput];
+            if (trainingExample.input[i] > inMax[i]) inMax[i] = trainingExample.input[i];
+            if (trainingExample.input[i] < inMin[i]) inMin[i] = trainingExample.input[i];
+            if (trainingExample.output[whichOutput] > outMax) outMax = trainingExample.output[whichOutput];
+            if (trainingExample.output[whichOutput] < outMin) outMin = trainingExample.output[whichOutput];
         }
     }
     inRanges.clear();
@@ -426,9 +436,9 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
         inBases.push_back((inMax[i] + inMin[i]) * 0.5);
     }
 
-    for (size_t i = 0; i < inRanges.size(); ++i) 
+    for(auto inRange : inRanges)
     {
-        if (inRanges[i] == 0.) inRanges[i] = 1.0; //Prevent divide by zero later.
+        if (inRange == 0.) inRange = 1.0; //Prevent divide by zero later.
     }
     outRange = (outMax - outMin) * (T)0.5;
     outBase = (outMax + outMin) * (T)0.5;
@@ -439,10 +449,10 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
         for (currentEpoch = 0; currentEpoch < numEpochs; ++currentEpoch)
         {
             //run through every training instance
-            for (size_t ti = 0; ti < trainingSet.size(); ++ti) 
+            for (auto trainingExample : trainingSet)
             {
-                run(trainingSet[ti].input);
-                backpropagate(trainingSet[ti].output[whichOutput]);
+                run(trainingExample.input);
+                backpropagate(trainingExample.output[whichOutput]);
             }
         }
     }

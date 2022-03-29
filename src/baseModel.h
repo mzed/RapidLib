@@ -57,10 +57,10 @@ protected:
     template<typename TT, class Dummy=int>
     Json::Value vector2json(TT vec) 
     {
-        Json::Value toReturn;
-        for (size_t i = 0; i < vec.size(); ++i) 
+        Json::Value toReturn; 
+        for (auto value : vec)
         {
-            toReturn.append( (Json::Value)vec[i] );
+            toReturn.append( (Json::Value)value );
         }
         return toReturn;
     }
@@ -70,9 +70,9 @@ protected:
     Json::Value vector2json(std::vector<unsigned long> vec)
     {
         Json::Value toReturn;
-        for (size_t i = 0; i < vec.size(); ++i)
+        for (auto value : vec)
         {
-            toReturn.append((double)vec[i]); //I chose double here because that's close to what JS uses
+            toReturn.append( (double)value ); //I chose double here because that's close to what JS uses
         }
         return toReturn;
     }

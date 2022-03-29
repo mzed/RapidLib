@@ -49,10 +49,10 @@ T dtw<T>::getCost(const std::vector<std::vector<T> > &seriesX, const std::vector
     }
     
     costMatrix.clear();
-    for (std::size_t i = 0; i < seriesX.size(); ++i)
+    for (auto framesX : seriesX)
     {
         std::vector<T> tempVector;
-        for (std::size_t j = 0; j < seriesY.size(); ++j)
+        for (auto framesY : seriesY)
         {
             tempVector.push_back(0);
         }
@@ -138,15 +138,8 @@ warpInfo<T> dtw<T>::constrainedDTW(const std::vector<std::vector<T> > &seriesX, 
 {
     //initialize cost matrix
     costMatrix.clear();
-    for (std::size_t i = 0; i < seriesX.size(); ++i)  //TODO: this could be smaller, since most cells are unused
-    {
-        std::vector<T> tempVector;
-        for (std::size_t j = 0; j < seriesY.size(); ++j)
-        {
-            tempVector.push_back(std::numeric_limits<T>::max());
-        }
-        costMatrix.push_back(tempVector);
-    }
+    std::vector<T> tempVector(seriesY.size(), std::numeric_limits<T>::max());
+    costMatrix.assign(seriesX.size(), tempVector); //TODO: this could be smaller, since most cells are unused
     std::size_t maxX = seriesX.size() - 1;
     std::size_t maxY = seriesY.size() - 1;
     
