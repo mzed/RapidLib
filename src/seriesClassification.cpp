@@ -48,7 +48,7 @@ bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemp
         for (auto trainingSeries : allTrainingSeries)
         {
             //Global
-            size_t newLength = trainingSeries.input.size();
+            std::size_t newLength = trainingSeries.input.size();
             if (newLength < minLength) minLength = newLength;
             if (newLength > maxLength) maxLength = newLength;
 
@@ -56,7 +56,7 @@ bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemp
             typename std::map<std::string, minMax<int> >::iterator it = lengthsPerLabel.find(trainingSeries.label);
             if (it != lengthsPerLabel.end())
             {
-                size_t newLength = trainingSeries.input.size();
+                std::size_t newLength = trainingSeries.input.size();
                 if (newLength < it->second.min) it->second.min = newLength;
                 if (newLength > it->second.max) it->second.max = newLength;
             }
@@ -69,11 +69,11 @@ bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemp
         }
         //TODO: make this size smarter?
         std::vector<T> zeroVector;
-        for (int i = 0; i < vectorLength; ++i)
+        for (std::size_t i = 0; i < vectorLength; ++i)
         {
             zeroVector.push_back(0.0);
         }
-        for (int i = 0; i < minLength; ++i)
+        for (std::size_t i = 0; i < minLength; ++i)
         {
             seriesBuffer.push_back(zeroVector); //set size of continuous buffer
         }
@@ -104,12 +104,12 @@ std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T
     }
     else if (allTrainingSeries.size() > 0)
     {
-        size_t closestSeries = 0;
+        std::size_t closestSeries = 0;
         allCosts.clear();
         T lowestCost = fastDTW<T>::getCost(inputSeries, allTrainingSeries[0].input, SEARCH_RADIUS);
         allCosts.push_back(lowestCost);
 
-        for (size_t i = 1; i < allTrainingSeries.size(); ++i) 
+        for (std::size_t i = 1; i < allTrainingSeries.size(); ++i) 
         {
             T currentCost = fastDTW<T>::getCost(inputSeries, allTrainingSeries[i].input, SEARCH_RADIUS);
             allCosts.push_back(currentCost);
@@ -134,18 +134,17 @@ T seriesClassificationTemplate<T>::run(const std::vector< std::vector<T> >& inpu
     }
     else
     {
-        size_t closestSeries = 0;
         allCosts.clear();
         T lowestCost = std::numeric_limits<T>::max();
-        for (size_t i = 0; i < allTrainingSeries.size(); ++i) 
+        for (auto trainingSeries : allTrainingSeries)
         {
-            if (allTrainingSeries[i].label == label) 
+            if (trainingSeries.label == label) 
             {
-                T currentCost = fastDTW<T>::getCost(inputSeries, allTrainingSeries[i].input, SEARCH_RADIUS);
+                T currentCost = fastDTW<T>::getCost(inputSeries, trainingSeries.input, SEARCH_RADIUS);
                 allCosts.push_back(currentCost);
-                if (currentCost < lowestCost) {
+                if (currentCost < lowestCost) 
+                {
                     lowestCost = currentCost;
-                    closestSeries = i;
                 }
             }
         }
