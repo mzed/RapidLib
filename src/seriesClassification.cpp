@@ -67,12 +67,11 @@ bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemp
                 lengthsPerLabel[trainingSeries.label] = tempLengths;
             }
         }
+
         //TODO: make this size smarter?
-        std::vector<T> zeroVector;
-        for (std::size_t i = 0; i < vectorLength; ++i)
-        {
-            zeroVector.push_back(0.0);
-        }
+        seriesBuffer.clear();
+
+        std::vector<T> zeroVector(vectorLength, 0.0);
         for (std::size_t i = 0; i < minLength; ++i)
         {
             seriesBuffer.push_back(zeroVector); //set size of continuous buffer
@@ -214,21 +213,7 @@ T seriesClassificationTemplate<T>::runParallel(const std::vector< std::vector<T>
 template<typename T>
 size_t seriesClassificationTemplate<T>::findClosestSeries() const 
 {
-    /*
-    T lowestCost = allCosts[0];
-    std::size_t closestSeries = 0;
-    for (std::size_t i = 1; i < allCosts.size(); ++i) 
-    {
-        if (allCosts[i] < lowestCost) 
-        {
-            lowestCost = allCosts[i];
-            closestSeries = i;
-        }
-    }
-    return closestSeries;
-    */
-
-    auto lowestCost = std::min(allCosts);
+    auto lowestCost = std::min_element(allCosts.begin(), allCosts.end());
     return T(std::distance(allCosts.begin(), lowestCost));
 }
 
@@ -297,7 +282,7 @@ std::size_t seriesClassificationTemplate<T>::getMaxLength(std::string label) con
 template<typename T>
 typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificationTemplate<T>::calculateCosts(std::string label) const 
 {
-    minMax<T> calculatedMinMax;
+    minMax<T> calculatedMinMax = {0, 0};
     bool foundSeries = false;
     std::vector<T> labelCosts;
 
@@ -322,16 +307,13 @@ typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificatio
         calculatedMinMax.min = *minmax_result.first;
         calculatedMinMax.max = *minmax_result.second;
     } 
-    else 
-    {
-        calculatedMinMax.min = calculatedMinMax.max = 0;
-    }
+
     return calculatedMinMax;
 }
 
 template<typename T>
 typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificationTemplate<T>::calculateCosts(std::string label1, std::string label2) const {
-    minMax<T> calculatedMinMax;
+    minMax<T> calculatedMinMax = {0, 0};
     bool foundSeries = false;
     std::vector<T> labelCosts;
 
@@ -356,10 +338,7 @@ typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificatio
         calculatedMinMax.min = *minmax_result.first;
         calculatedMinMax.max = *minmax_result.second;
     } 
-    else 
-    {
-        calculatedMinMax.min = calculatedMinMax.max = 0;
-    }
+
     return calculatedMinMax;
 }
 

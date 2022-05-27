@@ -117,7 +117,7 @@ namespace rapidLib
     private:
         std::size_t windowSize;
         std::atomic<uint32_t> windowIndex;
-        T* circularWindow;
+        std::vector<T> circularWindow;
 
         inline T calcCurrentVel(std::size_t i) const;
 
