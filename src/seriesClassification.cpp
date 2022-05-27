@@ -69,13 +69,9 @@ bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemp
         }
 
         //TODO: make this size smarter?
-        seriesBuffer.clear();
-
         std::vector<T> zeroVector(vectorLength, 0.0);
-        for (std::size_t i = 0; i < minLength; ++i)
-        {
-            seriesBuffer.push_back(zeroVector); //set size of continuous buffer
-        }
+        seriesBuffer.clear();
+        seriesBuffer.resize(minLength, zeroVector);
         isTraining = false;
         success = true;
     }
@@ -211,10 +207,10 @@ T seriesClassificationTemplate<T>::runParallel(const std::vector< std::vector<T>
 };
 
 template<typename T>
-size_t seriesClassificationTemplate<T>::findClosestSeries() const 
+std::size_t seriesClassificationTemplate<T>::findClosestSeries() const 
 {
     auto lowestCost = std::min_element(allCosts.begin(), allCosts.end());
-    return T(std::distance(allCosts.begin(), lowestCost));
+    return std::size_t(std::distance(allCosts.begin(), lowestCost));
 }
 
 template<typename T>
