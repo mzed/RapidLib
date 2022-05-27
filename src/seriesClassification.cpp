@@ -329,15 +329,16 @@ typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificatio
     bool foundSeries = false;
     std::vector<T> labelCosts;
 
-    for (size_t i = 0; i < (allTrainingSeries.size()); ++i) 
+    for (auto series1 : allTrainingSeries)
     {
-        if (allTrainingSeries[i].label == label1) {
-            for (size_t j = 0; j < allTrainingSeries.size(); ++j)
+        if (series1.label == label1) 
+        {
+            for (auto series2 : allTrainingSeries)
             {
-                if (allTrainingSeries[j].label == label2) 
+                if (series2.label == label2)
                 {
                     foundSeries = true;
-                    labelCosts.push_back(fastDTW<T>::getCost(allTrainingSeries[i].input, allTrainingSeries[j].input, SEARCH_RADIUS));
+                    labelCosts.push_back(fastDTW<T>::getCost(series1.input, series2].input, SEARCH_RADIUS));
                 }
             }
         }
