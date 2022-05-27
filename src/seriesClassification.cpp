@@ -214,6 +214,7 @@ T seriesClassificationTemplate<T>::runParallel(const std::vector< std::vector<T>
 template<typename T>
 size_t seriesClassificationTemplate<T>::findClosestSeries() const 
 {
+    /*
     T lowestCost = allCosts[0];
     std::size_t closestSeries = 0;
     for (std::size_t i = 1; i < allCosts.size(); ++i) 
@@ -225,6 +226,10 @@ size_t seriesClassificationTemplate<T>::findClosestSeries() const
         }
     }
     return closestSeries;
+    */
+
+    auto lowestCost = std::min(allCosts);
+    return T(std::distance(allCosts.begin(), lowestCost));
 }
 
 template<typename T>
