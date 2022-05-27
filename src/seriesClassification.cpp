@@ -338,7 +338,7 @@ typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificatio
                 if (series2.label == label2)
                 {
                     foundSeries = true;
-                    labelCosts.push_back(fastDTW<T>::getCost(series1.input, series2].input, SEARCH_RADIUS));
+                    labelCosts.push_back(fastDTW<T>::getCost(series1.input, series2.input, SEARCH_RADIUS));
                 }
             }
         }
