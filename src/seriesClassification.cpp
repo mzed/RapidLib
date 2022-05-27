@@ -165,13 +165,15 @@ std::string seriesClassificationTemplate<T>::runParallel(const std::vector< std:
     {
         allCosts.clear();
         std::vector<std::thread> runningThreads;
+
         for (std::size_t i = 0; i < allTrainingSeries.size(); ++i) 
         {
             runningThreads.push_back(std::thread(&seriesClassificationTemplate<T>::runThread, this, inputSeries, i));
         }
-        for (std::size_t i = 0; i < allTrainingSeries.size(); ++i) 
+        //for (std::size_t i = 0; i < allTrainingSeries.size(); ++i) 
+        for (auto& thread:runningThreads)
         {
-            runningThreads.at(i).join();
+            thread.join();
         }
         returnLabel = allTrainingSeries[findClosestSeries()].label;
     }
