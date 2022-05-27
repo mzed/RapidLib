@@ -205,7 +205,7 @@ namespace rapidLib
     T rapidStream<T>::minVelocity() const
     {
         T minVel = std::numeric_limits<T>::infinity();
-        for (int i = 0; i < windowSize; ++i) 
+        for (std::size_t i = 0; i < windowSize; ++i) 
         {
             T currentVel = calcCurrentVel(i);
             if (currentVel < minVel) {
@@ -219,7 +219,7 @@ namespace rapidLib
     T rapidStream<T>::maxVelocity() const 
     {
         T maxVel = std::numeric_limits<T>::lowest();
-        for (int i = 0; i < windowSize; ++i) 
+        for (std::size_t i = 0; i < windowSize; ++i) 
         {
             T currentVel = calcCurrentVel(i);
             if (currentVel > maxVel) 
