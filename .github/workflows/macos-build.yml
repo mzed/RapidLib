@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: for cpp 17
-      run: export CXX="g++-8" CC="gcc-8" & gcc --version
+      run: gcc --version
     - name: configure
       run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ..
     - name: build
