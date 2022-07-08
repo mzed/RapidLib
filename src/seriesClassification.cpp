@@ -28,7 +28,7 @@ seriesClassificationTemplate<T>::~seriesClassificationTemplate() {};
 template<typename T>
 bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemplate<T> > &seriesSet) 
 {
-    bool success = false;
+    bool success { false };
     if (isTraining)
     {
         throw std::runtime_error("model already training");
@@ -45,7 +45,7 @@ bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemp
         allTrainingSeries = seriesSet;
         minLength = maxLength = allTrainingSeries[0].input.size();
 
-        for (auto trainingSeries : allTrainingSeries)
+        for (const auto trainingSeries : allTrainingSeries)
         {
             //Global
             std::size_t newLength = trainingSeries.input.size();
@@ -92,19 +92,19 @@ void seriesClassificationTemplate<T>::reset()
 template<typename T>
 std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>>& inputSeries)
 {
-    std::string returnLabel = "none";
+    std::string returnLabel { "none" };
     if (isTraining)
     {
         throw std::runtime_error("can't run a model during training");
     }
     else if (allTrainingSeries.size() > 0)
     {
-        std::size_t closestSeries = 0;
+        std::size_t closestSeries { 0 };
         allCosts.clear();
         T lowestCost = fastDTW<T>::getCost(inputSeries, allTrainingSeries[0].input, SEARCH_RADIUS);
         allCosts.push_back(lowestCost);
 
-        for (std::size_t i = 1; i < allTrainingSeries.size(); ++i) 
+        for (std::size_t i { 1 }; i < allTrainingSeries.size(); ++i) 
         {
             T currentCost = fastDTW<T>::getCost(inputSeries, allTrainingSeries[i].input, SEARCH_RADIUS);
             allCosts.push_back(currentCost);
@@ -130,12 +130,12 @@ T seriesClassificationTemplate<T>::run(const std::vector< std::vector<T> >& inpu
     else
     {
         allCosts.clear();
-        T lowestCost = std::numeric_limits<T>::max();
+        T lowestCost { std::numeric_limits<T>::max() };
         for (const auto trainingSeries : allTrainingSeries)
         {
             if (trainingSeries.label == label) 
             {
-                T currentCost = fastDTW<T>::getCost(inputSeries, trainingSeries.input, SEARCH_RADIUS);
+                T currentCost { fastDTW<T>::getCost(inputSeries, trainingSeries.input, SEARCH_RADIUS) };
                 allCosts.push_back(currentCost);
                 if (currentCost < lowestCost) 
                 {
@@ -151,7 +151,7 @@ T seriesClassificationTemplate<T>::run(const std::vector< std::vector<T> >& inpu
 template<typename T>
 std::string seriesClassificationTemplate<T>::runParallel(const std::vector< std::vector<T> >& inputSeries) 
 {
-    std::string returnLabel = "none";
+    std::string returnLabel { "none" };
     if (isTraining)
     {
         throw std::runtime_error("can't run a model during training");
@@ -161,7 +161,7 @@ std::string seriesClassificationTemplate<T>::runParallel(const std::vector< std:
         allCosts.clear();
         std::vector<std::thread> runningThreads;
 
-        for (std::size_t i = 0; i < allTrainingSeries.size(); ++i) 
+        for (std::size_t i { 0 }; i < allTrainingSeries.size(); ++i) 
         {
             runningThreads.push_back(std::thread(&seriesClassificationTemplate<T>::runThread, this, inputSeries, i));
         }
@@ -179,7 +179,7 @@ std::string seriesClassificationTemplate<T>::runParallel(const std::vector< std:
 template<typename T>
 T seriesClassificationTemplate<T>::runParallel(const std::vector< std::vector<T> > &inputSeries, std::string label)
 {
-    T returnValue = 0;
+    T returnValue { 0 };
     if (isTraining)
     {
         throw std::runtime_error("can't run a model during training");
@@ -188,7 +188,7 @@ T seriesClassificationTemplate<T>::runParallel(const std::vector< std::vector<T>
     {
         allCosts.clear();
         std::vector<std::thread> runningThreads;
-        int seriesIndex;
+        int seriesIndex { 0 };
         for (std::size_t i = 0; i < allTrainingSeries.size(); ++i) 
         {
             if (allTrainingSeries[i].label == label) 
@@ -218,7 +218,7 @@ T seriesClassificationTemplate<T>::runParallel(const std::vector< std::vector<T>
 template<typename T>
 std::size_t seriesClassificationTemplate<T>::findClosestSeries() const 
 {
-    auto lowestCost = std::min_element(allCosts.begin(), allCosts.end());
+    auto lowestCost { std::min_element(allCosts.begin(), allCosts.end()) };
     return std::size_t(std::distance(allCosts.begin(), lowestCost));
 }
 
@@ -234,7 +234,7 @@ std::string seriesClassificationTemplate<T>::runContinuous(const std::vector<T> 
 {
     seriesBuffer.erase(seriesBuffer.begin());
     seriesBuffer.push_back(inputVector);
-    std::string returnString = "none";
+    std::string returnString { "none" };
     if ((counter % hopSize) == 0 ) 
     {
         if (isTraining)
@@ -263,8 +263,8 @@ std::size_t seriesClassificationTemplate<T>::getMinLength() const
 template<typename T>
 std::size_t seriesClassificationTemplate<T>::getMinLength(std::string label) const 
 {
-    std::size_t labelMinLength = -1;
-    typename std::map<std::string, minMax<int> >::const_iterator it = lengthsPerLabel.find(label);
+    std::size_t labelMinLength { -1 };
+    typename std::map<std::string, minMax<int> >::const_iterator it { lengthsPerLabel.find(label) };
     if (it != lengthsPerLabel.end()) labelMinLength = it->second.min;
     return labelMinLength;
 }
@@ -278,7 +278,7 @@ std::size_t seriesClassificationTemplate<T>::getMaxLength() const
 template<typename T>
 std::size_t seriesClassificationTemplate<T>::getMaxLength(std::string label) const 
 {
-    std::size_t labelMaxLength = -1;
+    std::size_t labelMaxLength { -1 };
     typename std::map<std::string, minMax<int> >::const_iterator it = lengthsPerLabel.find(label);
     if (it != lengthsPerLabel.end()) labelMaxLength = it->second.max;
     return labelMaxLength;
@@ -288,10 +288,10 @@ template<typename T>
 typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificationTemplate<T>::calculateCosts(std::string label) const 
 {
     minMax<T> calculatedMinMax = {0, 0};
-    bool foundSeries = false;
+    bool foundSeries { false };
     std::vector<T> labelCosts;
 
-    for (size_t i = 0; i < (allTrainingSeries.size() - 1); ++i) //these loops are a little different than the two-label case
+    for (size_t i { 0 }; i < (allTrainingSeries.size() - 1); ++i) //these loops are a little different than the two-label case
     { 
         if (allTrainingSeries[i].label == label) 
         {
@@ -308,7 +308,7 @@ typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificatio
 
     if (foundSeries) 
     {
-        auto minmax_result = std::minmax_element(std::begin(labelCosts), std::end(labelCosts));
+        auto minmax_result { std::minmax_element(std::begin(labelCosts), std::end(labelCosts)) };
         calculatedMinMax.min = *minmax_result.first;
         calculatedMinMax.max = *minmax_result.second;
     } 
@@ -319,7 +319,7 @@ typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificatio
 template<typename T>
 typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificationTemplate<T>::calculateCosts(std::string label1, std::string label2) const {
     minMax<T> calculatedMinMax = {0, 0};
-    bool foundSeries = false;
+    bool foundSeries { false };
     std::vector<T> labelCosts;
 
     for (const auto series1 : allTrainingSeries)
@@ -339,7 +339,7 @@ typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificatio
 
     if (foundSeries) 
     {
-        auto minmax_result = std::minmax_element(std::begin(labelCosts), std::end(labelCosts));
+        auto minmax_result { std::minmax_element(std::begin(labelCosts), std::end(labelCosts)) };
         calculatedMinMax.min = *minmax_result.first;
         calculatedMinMax.max = *minmax_result.second;
     } 
