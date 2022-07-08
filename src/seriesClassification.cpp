@@ -131,7 +131,7 @@ T seriesClassificationTemplate<T>::run(const std::vector< std::vector<T> >& inpu
     {
         allCosts.clear();
         T lowestCost = std::numeric_limits<T>::max();
-        for (auto trainingSeries : allTrainingSeries)
+        for (const auto trainingSeries : allTrainingSeries)
         {
             if (trainingSeries.label == label) 
             {
@@ -165,8 +165,8 @@ std::string seriesClassificationTemplate<T>::runParallel(const std::vector< std:
         {
             runningThreads.push_back(std::thread(&seriesClassificationTemplate<T>::runThread, this, inputSeries, i));
         }
-        //for (std::size_t i = 0; i < allTrainingSeries.size(); ++i) 
-        for (auto& thread:runningThreads)
+       
+        for (const auto& thread : runningThreads)
         {
             thread.join();
         }
@@ -197,10 +197,19 @@ T seriesClassificationTemplate<T>::runParallel(const std::vector< std::vector<T>
                 ++seriesIndex;
             }
         }
+        
+        /*
         for (std::size_t i = 0; i < runningThreads.size(); ++i) 
         {
             runningThreads.at(i).join(); //FIXME: not sure what's up here...
         }
+        */
+        
+        for (const auto& thread : runningThreads)
+        {
+            thread.join();
+        }
+        
         returnValue = allCosts.at(findClosestSeries());
     }
     return returnValue;
@@ -313,7 +322,7 @@ typename seriesClassificationTemplate<T>::template minMax<T> seriesClassificatio
     bool foundSeries = false;
     std::vector<T> labelCosts;
 
-    for (auto series1 : allTrainingSeries)
+    for (const auto series1 : allTrainingSeries)
     {
         if (series1.label == label1) 
         {
