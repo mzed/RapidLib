@@ -36,7 +36,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "searchWindow.h", "search_window_8h.html", [
       [ "searchWindow", "classsearch_window.html", "classsearch_window" ]
     ] ],
-    [ "seriesClassification.cpp", "series_classification_8cpp.html", null ],
+    [ "seriesClassification.cpp", "series_classification_8cpp.html", "series_classification_8cpp" ],
     [ "seriesClassification.h", "series_classification_8h.html", "series_classification_8h" ],
     [ "svmClassification.cpp", "svm_classification_8cpp.html", null ],
     [ "svmClassification.h", "svm_classification_8h.html", [

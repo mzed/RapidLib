@@ -62,7 +62,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structseries_classification_template_1_1min_max.html"
+"series_classification_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
