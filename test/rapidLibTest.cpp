@@ -271,6 +271,7 @@ int main(int argc, const char * argv[])
     assert(myKnn.run(inputVec)[0] == myKnnFromString.run(inputVec)[0]);
     assert(myKnn.run(inputVec)[0] == myKnnFromFile.run(inputVec)[0]);
 
+    std::cout << "These errors are part of the test:" << std::endl;
     try {
         myKnn.run(emptyVec);
     }
