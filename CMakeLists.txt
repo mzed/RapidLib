@@ -5,8 +5,8 @@ if (MSVC)
     add_compile_options(/std:c++17)
 else()
     add_compile_options(-std=c++17 -O2)
-    export CXX=g++-8
-    export CC=gcc-8
+    #export CXX=g++-8
+    #export CC=gcc-8
 endif()
 
 # Threads
