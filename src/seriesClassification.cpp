@@ -263,7 +263,7 @@ std::size_t seriesClassificationTemplate<T>::getMinLength() const
 template<typename T>
 std::size_t seriesClassificationTemplate<T>::getMinLength(std::string label) const 
 {
-    std::size_t labelMinLength { -1 };
+    std::size_t labelMinLength { 0 };
     typename std::map<std::string, minMax<int> >::const_iterator it { lengthsPerLabel.find(label) };
     if (it != lengthsPerLabel.end()) labelMinLength = it->second.min;
     return labelMinLength;
@@ -278,7 +278,7 @@ std::size_t seriesClassificationTemplate<T>::getMaxLength() const
 template<typename T>
 std::size_t seriesClassificationTemplate<T>::getMaxLength(std::string label) const 
 {
-    std::size_t labelMaxLength { -1 };
+    std::size_t labelMaxLength { std::numeric_limits<std::size_t>::max() };
     typename std::map<std::string, minMax<int> >::const_iterator it = lengthsPerLabel.find(label);
     if (it != lengthsPerLabel.end()) labelMaxLength = it->second.max;
     return labelMaxLength;
