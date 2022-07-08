@@ -166,7 +166,7 @@ std::string seriesClassificationTemplate<T>::runParallel(const std::vector< std:
             runningThreads.push_back(std::thread(&seriesClassificationTemplate<T>::runThread, this, inputSeries, i));
         }
        
-        for (const auto& thread : runningThreads)
+        for (auto& thread : runningThreads)
         {
             thread.join();
         }
@@ -205,7 +205,7 @@ T seriesClassificationTemplate<T>::runParallel(const std::vector< std::vector<T>
         }
         */
         
-        for (const auto& thread : runningThreads)
+        for (auto& thread : runningThreads)
         {
             thread.join();
         }
