@@ -17,7 +17,7 @@
 #include "emscripten/seriesClassificationEmbindings.h"
 #endif
 
-#define SEARCH_RADIUS 1
+static constexpr std::size_t SEARCH_RADIUS { 1 };
 
 template<typename T>
 seriesClassificationTemplate<T>::seriesClassificationTemplate() : hopSize(1), counter(0), isTraining(false) {};
