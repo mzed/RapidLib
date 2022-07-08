@@ -101,25 +101,25 @@ T knnClassification<T>::run(const std::vector<T> &inputVector)
 {
     std::vector<std::pair<int, T>> nearestNeighbours; //These are our k nearest neighbours
 
-    for (size_t i = 0; i < currentK; ++i) 
+    for (size_t i { 0 }; i < currentK; ++i) 
     {
         nearestNeighbours.push_back( std::make_pair(0, 0.) );
     };
     std::pair<int, T> farthestNN {0, 0.}; //This one will be replaced if there's a closer one
     
     std::vector<T> pattern; //This is what we're trying to match
-    for (size_t h = 0; h < numInputs; ++h) 
+    for (size_t h { 0 }; h < numInputs; ++h) 
     {
         pattern.push_back(inputVector[whichInputs[h]]);
     }
     
     //Find k nearest neighbours
-    size_t index = 0;
-    for (auto it = neighbours.cbegin(); it != neighbours.cend(); ++it) 
+    size_t index { 0 };
+    for (const auto it = neighbours.cbegin(); it != neighbours.cend(); ++it) 
     {
         //find Euclidian distance for this neighbor
-        T euclidianDistance = 0;
-        for(size_t j = 0; j < numInputs ; ++j)
+        T euclidianDistance { 0 };
+        for (size_t j = 0; j < numInputs ; ++j)
         {
             euclidianDistance += (T)pow((pattern[j] - it->input[j]), 2);
         }
@@ -135,10 +135,10 @@ T knnClassification<T>::run(const std::vector<T> &inputVector)
         {
             //replace farthest, if new neighbour is closer
             nearestNeighbours[farthestNN.first] = {index, euclidianDistance};
-            size_t currentFarthest = 0;
-            T currentFarthestDistance = 0.;
+            size_t currentFarthest { 0 };
+            T currentFarthestDistance { 0.0 };
 
-            for (size_t n = 0; n < currentK; ++n) 
+            for (size_t n { 0 }; n < currentK; ++n) 
             {
                 if (nearestNeighbours[n].second > currentFarthestDistance) 
                 {
@@ -156,7 +156,7 @@ T knnClassification<T>::run(const std::vector<T> &inputVector)
     using classVotePair = std::pair<int, int>;
     for (size_t i = 0; i < currentK; ++i) 
     {
-        T classNum = (T)round(neighbours[nearestNeighbours[i].first].output[whichOutput]);
+        T classNum { (T)round(neighbours[nearestNeighbours[i].first].output[whichOutput]) };
         if ( classVoteMap.find(classNum) == classVoteMap.end() ) 
         {
             classVoteMap.insert(classVotePair(classNum, 1));
@@ -169,7 +169,7 @@ T knnClassification<T>::run(const std::vector<T> &inputVector)
 
     T foundClass = 0;
     int mostVotes = 0;
-    for (auto p = classVoteMap.cbegin(); p != classVoteMap.cend(); ++p) 
+    for (const auto p = classVoteMap.cbegin(); p != classVoteMap.cend(); ++p) 
     {
         if (p->second > mostVotes) 
         {
@@ -190,7 +190,7 @@ void knnClassification<T>::getJSONDescription(Json::Value &jsonModelDescription)
     jsonModelDescription["k"] = desiredK;
     Json::Value examples;
 
-    for (auto it = neighbours.cbegin(); it != neighbours.cend(); ++it) 
+    for (const auto it = neighbours.cbegin(); it != neighbours.cend(); ++it) 
     {
         Json::Value oneExample;
         oneExample["class"] = it->output[whichOutput];
