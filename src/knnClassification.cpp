@@ -115,7 +115,7 @@ T knnClassification<T>::run(const std::vector<T> &inputVector)
     
     //Find k nearest neighbours
     size_t index { 0 };
-    for (const auto it = neighbours.cbegin(); it != neighbours.cend(); ++it) 
+    for (auto it = neighbours.cbegin(); it != neighbours.cend(); ++it) 
     {
         //find Euclidian distance for this neighbor
         T euclidianDistance { 0 };
@@ -169,7 +169,7 @@ T knnClassification<T>::run(const std::vector<T> &inputVector)
 
     T foundClass = 0;
     int mostVotes = 0;
-    for (const auto p = classVoteMap.cbegin(); p != classVoteMap.cend(); ++p) 
+    for (auto p = classVoteMap.cbegin(); p != classVoteMap.cend(); ++p) 
     {
         if (p->second > mostVotes) 
         {
