@@ -190,7 +190,7 @@ void knnClassification<T>::getJSONDescription(Json::Value &jsonModelDescription)
     jsonModelDescription["k"] = desiredK;
     Json::Value examples;
 
-    for (const auto it = neighbours.cbegin(); it != neighbours.cend(); ++it) 
+    for (auto it = neighbours.cbegin(); it != neighbours.cend(); ++it) 
     {
         Json::Value oneExample;
         oneExample["class"] = it->output[whichOutput];
