@@ -24,8 +24,7 @@ regressionTemplate<T>::regressionTemplate()
     modelSet<T>::numOutputs (-1),
     numHiddenLayers (1),
     numHiddenNodes (0), //this will be changed by training
-    numEpochs (500),
-    modelSet<T>::isTraining (false);
+    modelSet<T>::isTraining (false)
 {};
 
 template<typename T>
@@ -34,10 +33,9 @@ regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_
     modelSet<T>::numInputs (num_inputs),
     modelSet<T>::numOutputs (num_outputs),
     numHiddenLayers (1),
-    numEpochs (500),
     numHiddenNodes (num_inputs),
     modelSet<T>::isTraining (false),
-    created(false);
+    created(false)
 {
     std::vector<size_t> whichInputs;
 
@@ -58,7 +56,7 @@ regressionTemplate<T>::regressionTemplate(const std::vector<trainingExampleTempl
     :
     modelSet<T>::numInputs (-1),
     modelSet<T>::numOutputs (-1),
-    modelSet<T>::isTraining (false);
+    modelSet<T>::isTraining (false)
 
 {
     train(training_set);
@@ -147,15 +145,14 @@ std::vector<size_t> regressionTemplate<T>::getNumEpochs() const
     } 
     else 
     {
-        vecEpochs = { numEpochs };
+        vecEpochs = { 0 };
     }
     return vecEpochs;
 }
 
 template<typename T>
-void regressionTemplate<T>::setNumEpochs(const size_t &epochs) 
+void regressionTemplate<T>::setNumEpochs(const size_t &numEpochs) 
 {
-    numEpochs = epochs;
     //set any existing models
     if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet)) 
     {
@@ -210,15 +207,6 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
         for (int i = 0; i < modelSet<T>::numOutputs; ++i) 
         {
             modelSet<T>::myModelSet.push_back(new neuralNetwork<T>(modelSet<T>::numInputs, whichInputs, numHiddenLayers, numHiddenNodes));
-        }
-
-        if (numEpochs != 500) 
-        {
-            for (baseModel<T>* model : modelSet<T>::myModelSet) 
-            {
-                neuralNetwork<T>* nnModel = dynamic_cast<neuralNetwork<T>*>(model); //FIXME: I really dislike this design
-                nnModel->setEpochs(numEpochs);
-            }
         }
 
         //timer = clock() - timer;
