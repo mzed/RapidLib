@@ -41,9 +41,9 @@ public:
     
 protected:
     std::vector<baseModel<T>*> myModelSet;
-    size_t numInputs;
+    int numInputs;
     std::vector<std::string> inputNames;
-    size_t numOutputs;
+    int numOutputs;
     bool isTraining; //This is true while the models are training, and will block running
     bool isTrained;
     void threadTrain(std::size_t i, const std::vector<trainingExampleTemplate<T> >& training_set);
