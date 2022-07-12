@@ -39,7 +39,7 @@ regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_
     }
 
     size_t numHiddenLayers { 1 }; //could set this in constructor
-    size_t numHiddenNodes { modelSet<T>::numInputs }
+    size_t numHiddenNodes { modelSet<T>::numInputs };
     for (size_t i = 0; i < modelSet<T>::numOutputs; ++i) 
     {
         modelSet<T>::myModelSet.push_back(new neuralNetwork<T>(modelSet<T>::numInputs, whichInputs, numHiddenLayers, numHiddenNodes));
@@ -77,7 +77,6 @@ std::vector<size_t> regressionTemplate<T>::getNumHiddenLayers() const
 template<typename T>
 void regressionTemplate<T>::setNumHiddenLayers(const int &num_hidden_layers)
 {
-    numHiddenLayers = num_hidden_layers;
     //Set any existing models
     if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet)) 
     {
@@ -111,7 +110,6 @@ std::vector<size_t> regressionTemplate<T>::getNumHiddenNodes() const
 template<typename T>
 void regressionTemplate<T>::setNumHiddenNodes(const int &num_hidden_nodes)
 {
-    numHiddenNodes = num_hidden_nodes;
     //Set any existing models
     if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet)) 
     {
@@ -163,8 +161,9 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
     //clock_t timer;
     //timer = clock();
     
-    size_t numHiddenLayers = 1;
-    size_t numHiddenNodes = modelSet<T>::numInputs;
+    size_t numHiddenLayers { 1 };
+    size_t numHiddenNodes { modelSet<T>::numInputs };
+    size_t numEpochs { 500 }; //should use this
     if (modelSet<T>::isTrained)
     { 
         numHiddenLayers = this->getNumHiddenNodes[0];
