@@ -24,8 +24,8 @@
 /** No arguments, don't create any models yet */
 template<typename T> 
 modelSet<T>::modelSet() :
-    numInputs(-1),
-    numOutputs(-1),
+    numInputs(0),
+    numOutputs(0),
     isTraining(false),
     isTrained(false)
 {
@@ -95,8 +95,8 @@ bool modelSet<T>::reset()
         delete model;
     }
     myModelSet.clear();
-    numInputs = -1;
-    numOutputs = -1;
+    numInputs = 0;
+    numOutputs = 0;
     isTraining = false;
     return true;
 }
@@ -126,8 +126,6 @@ std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector)
     }
     return returnVector;
 }
-
-
 
 #ifndef EMSCRIPTEN
 //In emscripten, we do the JSON parsing with native JavaScript
