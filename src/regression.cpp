@@ -73,7 +73,7 @@ std::vector<size_t> regressionTemplate<T>::getNumHiddenLayers() const
     } 
     else 
     {
-        vecNumHiddenLayers = { 0 };
+        vecNumHiddenLayers = { numHiddenLayers };
     }
     return vecNumHiddenLayers;
 }
@@ -94,9 +94,9 @@ void regressionTemplate<T>::setNumHiddenLayers(const int &num_hidden_layers)
 }
 
 template<typename T>
-std::vector<size_t> regressionTemplate<T>::getNumHiddenNodes() const 
+std::vector<int> regressionTemplate<T>::getNumHiddenNodes() const 
 {
-    std::vector<size_t> vecNumHiddenNodes;
+    std::vector<int> vecNumHiddenNodes;
     if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet)) 
     {
         for (baseModel<T>* model : modelSet<T>::myModelSet) 
@@ -107,7 +107,7 @@ std::vector<size_t> regressionTemplate<T>::getNumHiddenNodes() const
     } 
     else 
     {
-        vecNumHiddenNodes = { 0 };
+        vecNumHiddenNodes = { numHiddenNodes };
     }
     return vecNumHiddenNodes;
 }
