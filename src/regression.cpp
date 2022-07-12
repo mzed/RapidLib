@@ -20,25 +20,23 @@
 template<typename T>
 regressionTemplate<T>::regressionTemplate()
     : 
-    
+    modelSet<T>::numInputs (-1),
     modelSet<T>::numOutputs (-1),
     numHiddenLayers (1),
     numHiddenNodes (0), //this will be changed by training
     modelSet<T>::isTraining (false)
-{
-    modelSet<T>::numInputs = -1;
-};
+{};
 
 template<typename T>
 regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_outputs)
     :
+    modelSet<T>::numInputs (num_inputs),
     modelSet<T>::numOutputs (num_outputs),
     numHiddenLayers (1),
     numHiddenNodes (num_inputs),
     modelSet<T>::isTraining (false),
     created(false)
 {
-    modelSet<T>::numInputs = num_inputs;
     std::vector<size_t> whichInputs;
 
     for (size_t i = 0; i < modelSet<T>::numInputs; ++i) 
@@ -161,7 +159,7 @@ void regressionTemplate<T>::setNumEpochs(const size_t &numEpochs)
         for (baseModel<T>* model : modelSet<T>::myModelSet) 
         {
             neuralNetwork<T>* nnModel = dynamic_cast<neuralNetwork<T>*>(model); //FIXME: I really dislike this design
-            nnModel->setEpochs(numEpochs);
+            nnModel->setEpochs(epochs);
         }
     }
 }
