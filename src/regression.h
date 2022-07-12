@@ -60,6 +60,7 @@ public:
 private:
     size_t numHiddenLayers; //Temporary -- this should be part of the nn class. -mz
     size_t numHiddenNodes; //Temporary -- also should be part of nn only. -mz
+    bool created;
 };
 
 namespace rapidLib
