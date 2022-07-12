@@ -56,10 +56,6 @@ public:
     
     /** Set how many hidden layers are in all models. This feature is temporary, and will be replaced by a different design. */
     void setNumHiddenNodes(const int &num_hidden_nodes);
-    
-private:
-    size_t numHiddenLayers; //Temporary -- this should be part of the nn class. -mz
-    size_t numHiddenNodes; //Temporary -- also should be part of nn only. -mz
 };
 
 namespace rapidLib
