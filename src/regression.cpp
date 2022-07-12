@@ -166,8 +166,8 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
     size_t numEpochs { 500 }; //should use this
     if (modelSet<T>::isTrained)
     { 
-        numHiddenLayers = this->getNumHiddenNodes()[0];
-        numHiddenNodes = this->getNumHiddenLayers()[0];
+        numHiddenLayers = this->getNumHiddenNodes[0];
+        numHiddenNodes = this->getNumHiddenLayers[0];
     }
     modelSet<T>::reset(); //FIXME: Should use modelSet if already created? I think this blows away setEpochs.
     
