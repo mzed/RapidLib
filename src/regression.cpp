@@ -19,6 +19,9 @@
 
 template<typename T>
 regressionTemplate<T>::regressionTemplate()
+    : 
+    numHiddenLayers (1),
+    numHiddenNodes (0), //this will be changed by training
 {
     modelSet<T>::numInputs = -1;
     modelSet<T>::numOutputs = -1;
@@ -27,6 +30,9 @@ regressionTemplate<T>::regressionTemplate()
 
 template<typename T>
 regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_outputs)
+    :
+    numHiddenLayers (1),
+    numHiddenNodes (num_inputs)
 {
     modelSet<T>::numInputs = num_inputs;
     modelSet<T>::numOutputs = num_outputs;
@@ -38,8 +44,6 @@ regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_
         whichInputs.push_back(i);
     }
 
-    size_t numHiddenLayers { 1 }; //could set this in constructor
-    size_t numHiddenNodes { modelSet<T>::numInputs }
     for (size_t i = 0; i < modelSet<T>::numOutputs; ++i) 
     {
         modelSet<T>::myModelSet.push_back(new neuralNetwork<T>(modelSet<T>::numInputs, whichInputs, numHiddenLayers, numHiddenNodes));
@@ -162,17 +166,8 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
 {
     //clock_t timer;
     //timer = clock();
-    
-    size_t numHiddenLayers = 1;
-    size_t numHiddenNodes = modelSet<T>::numInputs;
-    if (modelSet<T>::isTrained)
-    { 
-        numHiddenLayers = this->getNumHiddenNodes[0];
-        numHiddenNodes = this->getNumHiddenLayers[0];
-    }
-    modelSet<T>::reset(); //FIXME: Should use modelSet if already created? I think this blows away setEpochs.
-    
-    if (training_set.size() > 0)
+    modelSet<T>::reset(); //FIXME: Should use modelSet if already created?
+    if (training_set.size() > 0) 
     {
         //create model(s) here
         modelSet<T>::numInputs = int(training_set[0].input.size());
