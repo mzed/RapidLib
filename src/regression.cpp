@@ -20,25 +20,23 @@
 template<typename T>
 regressionTemplate<T>::regressionTemplate()
     : 
-    
-    modelSet<T>::numOutputs (-1),
     numHiddenLayers (1),
     numHiddenNodes (0), //this will be changed by training
-    modelSet<T>::isTraining (false)
 {
     modelSet<T>::numInputs = -1;
+    modelSet<T>::numOutputs = -1;
+    modelSet<T>::isTraining (false);
 };
 
 template<typename T>
 regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_outputs)
     :
-    modelSet<T>::numOutputs (num_outputs),
     numHiddenLayers (1),
-    numHiddenNodes (num_inputs),
-    modelSet<T>::isTraining (false),
-    created(false)
+    numHiddenNodes (num_inputs)
 {
     modelSet<T>::numInputs = num_inputs;
+    modelSet<T>::numOutputs = num_outputs;
+    modelSet<T>::isTraining = false;
     std::vector<size_t> whichInputs;
 
     for (size_t i = 0; i < modelSet<T>::numInputs; ++i) 
@@ -50,7 +48,6 @@ regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_
     {
         modelSet<T>::myModelSet.push_back(new neuralNetwork<T>(modelSet<T>::numInputs, whichInputs, numHiddenLayers, numHiddenNodes));
     }
-    created = true;
 };
 
 template<typename T>
