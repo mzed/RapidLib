@@ -25,7 +25,7 @@ regressionTemplate<T>::regressionTemplate()
 {
     modelSet<T>::numInputs = -1;
     modelSet<T>::numOutputs = -1;
-    modelSet<T>::isTraining = false;
+    modelSet<T>::isTraining (false);
 };
 
 template<typename T>
@@ -52,17 +52,19 @@ regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_
 
 template<typename T>
 regressionTemplate<T>::regressionTemplate(const std::vector<trainingExampleTemplate<T> > &training_set)
+    :
+    modelSet<T>::numInputs (-1),
+    modelSet<T>::numOutputs (-1),
+    modelSet<T>::isTraining (false)
+
 {
-    modelSet<T>::numInputs = -1;
-    modelSet<T>::numOutputs = -1;
-    modelSet<T>::isTraining = false;
     train(training_set);
 };
 
 template<typename T>
-std::vector<size_t> regressionTemplate<T>::getNumHiddenLayers() const 
+std::vector<int> regressionTemplate<T>::getNumHiddenLayers() const 
 {
-    std::vector<size_t> vecNumHiddenLayers;
+    std::vector<int> vecNumHiddenLayers;
     if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet)) 
     {
         for (baseModel<T>* model : modelSet<T>::myModelSet) 
