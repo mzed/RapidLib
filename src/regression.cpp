@@ -19,34 +19,33 @@
 
 template<typename T>
 regressionTemplate<T>::regressionTemplate()
-    : 
-    modelSet<T>::numInputs (-1),
-    modelSet<T>::numOutputs (-1),
-    numHiddenLayers (1),
-    numHiddenNodes (0), //this will be changed by training
-    numEpochs (500),
-    modelSet<T>::isTraining (false);
-{};
+{
+    modelSet<T>::numInputs = -1;
+    modelSet<T>::numOutputs = -1;
+    numHiddenLayers = 1;
+    numHiddenNodes = 0; //this will be changed by training
+    numEpochs = 500;
+    modelSet<T>::isTraining = false;
+};
 
 template<typename T>
 regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_outputs)
-    :
-    modelSet<T>::numInputs (num_inputs),
-    modelSet<T>::numOutputs (num_outputs),
-    numHiddenLayers (1),
-    numEpochs (500),
-    numHiddenNodes (num_inputs),
-    modelSet<T>::isTraining (false),
-    created(false);
 {
+    modelSet<T>::numInputs = num_inputs;
+    modelSet<T>::numOutputs = num_outputs;
+    numHiddenLayers = 1;
+    numEpochs = 500;
+    numHiddenNodes = num_inputs;
+    modelSet<T>::isTraining = false;
+    created = false;
     std::vector<size_t> whichInputs;
 
-    for (size_t i = 0; i < modelSet<T>::numInputs; ++i) 
+    for (int i = 0; i < modelSet<T>::numInputs; ++i) 
     {
         whichInputs.push_back(i);
     }
 
-    for (size_t i = 0; i < modelSet<T>::numOutputs; ++i) 
+    for (int i = 0; i < modelSet<T>::numOutputs; ++i) 
     {
         modelSet<T>::myModelSet.push_back(new neuralNetwork<T>(modelSet<T>::numInputs, whichInputs, numHiddenLayers, numHiddenNodes));
     }
@@ -54,13 +53,11 @@ regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_
 };
 
 template<typename T>
-regressionTemplate<T>::regressionTemplate(const std::vector<trainingExampleTemplate<T> > &training_set)
-    :
-    modelSet<T>::numInputs (-1),
-    modelSet<T>::numOutputs (-1),
-    modelSet<T>::isTraining (false);
-
+regressionTemplate<T>::regressionTemplate(const std::vector<trainingExampleTemplate<T> > &training_set) 
 {
+    modelSet<T>::numInputs = -1;
+    modelSet<T>::numOutputs = -1;
+    modelSet<T>::isTraining = false;
     train(training_set);
 };
 
