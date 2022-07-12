@@ -26,7 +26,8 @@ void neuralNetwork<T>::initTrainer()
     {
         deltaWeights = std::vector<std::vector<std::vector<T> > >(numHiddenLayers, std::vector<std::vector<T> >(numHiddenNodes, std::vector<T>((numHiddenNodes + 1), 0)));
     }
-    else {
+    else 
+    {
         deltaWeights = std::vector<std::vector<std::vector<T> > >(numHiddenLayers, std::vector<std::vector<T> >(numHiddenNodes, std::vector<T>((numInputs + 1), 0)));
     }
     deltaHiddenOutput = std::vector<T>((numHiddenNodes + 1), 0);
@@ -64,8 +65,8 @@ neuralNetwork<T>::neuralNetwork(const size_t& num_inputs,
     std::default_random_engine generator;
     std::uniform_real_distribution<T> distribution(-0.5, 0.5);
     //winding up a long vector from javascript
-    size_t count = 0;
-    for (int i = 0; i < numHiddenLayers; ++i)
+    size_t count { 0 };
+    for (size_t i = 0; i < numHiddenLayers; ++i)
     {
         std::vector<std::vector<T>> layer;
         for (size_t j = 0; j < numHiddenNodes; ++j)
@@ -148,7 +149,7 @@ void neuralNetwork<T>::reset()
     std::uniform_real_distribution<T> distribution(-0.5, 0.5);
 
     weights.clear();
-    for (int i = 0; i < numHiddenLayers; ++i)
+    for (size_t i = 0; i < numHiddenLayers; ++i)
     {
         std::vector<std::vector<T>> layer;
         for (size_t j = 0; j < numHiddenNodes; ++j)
@@ -174,7 +175,7 @@ void neuralNetwork<T>::reset()
 template<typename T>
 inline T neuralNetwork<T>::getHiddenErrorGradient(size_t layer, size_t neuron)
 {
-    T weightedSum = 0;
+    T weightedSum { 0 };
     if (numHiddenLayers == 1 || layer == 0)
     {
         T wGradient = wHiddenOutput[neuron] * outputErrorGradient;
@@ -198,16 +199,9 @@ inline T neuralNetwork<T>::getHiddenErrorGradient(size_t layer, size_t neuron)
 template<typename T>
 inline T neuralNetwork<T>::activationFunction(T x)
 {
-    //sigmoid
-    if (x < -45) { //from weka, to combat overflow
-        x = 0;
-    }
-    else if (x > 45) {
-        x = 1;
-    }
-    else {
-        x = 1 / (1 + exp(-x));
-    }
+    if (x < -45) x = 0; //from weka, to combat overflow
+    else if (x > 45) x = 1;
+    else x = 1 / (1 + exp(-x)); //sigmoid   
     return x;
 }
 
@@ -218,9 +212,11 @@ size_t neuralNetwork<T>::getNumInputs() const
 }
 
 template<typename T>
-std::vector<size_t> neuralNetwork<T>::getWhichInputs() const {
+std::vector<size_t> neuralNetwork<T>::getWhichInputs() const 
+{
     return whichInputs;
 }
+
 template<typename T>
 size_t neuralNetwork<T>::getNumHiddenLayers() const 
 {
@@ -228,7 +224,8 @@ size_t neuralNetwork<T>::getNumHiddenLayers() const
 }
 
 template<typename T>
-void neuralNetwork<T>::setNumHiddenLayers(size_t num_hidden_layers) {
+void neuralNetwork<T>::setNumHiddenLayers(size_t num_hidden_layers) 
+{
     numHiddenLayers = num_hidden_layers;
     reset();
     initTrainer();
