@@ -46,13 +46,13 @@ public:
     void setNumEpochs(const size_t &epochs);
     
     /** Check how many hidden layers are in each model. This feature is temporary, and will be replaced by a different design. */
-    std::vector<int> getNumHiddenLayers() const;
+    std::vector<size_t> getNumHiddenLayers() const;
     
     /** Set how many hidden layers are in all models. This feature is temporary, and will be replaced by a different design. */
     void setNumHiddenLayers(const int &num_hidden_layers);
     
     /** Check how many hidden nodes are in each model. This feature is temporary, and will be replaced by a different design. */
-    std::vector<int> getNumHiddenNodes() const;
+    std::vector<size_t> getNumHiddenNodes() const;
     
     /** Set how many hidden layers are in all models. This feature is temporary, and will be replaced by a different design. */
     void setNumHiddenNodes(const int &num_hidden_nodes);
