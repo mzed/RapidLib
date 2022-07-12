@@ -149,7 +149,7 @@ Json::Value modelSet<T>::parse2json()
     
     metadata["creator"] = "Rapid API C++";
     metadata["version"] = "v0.1.1"; //TODO: This should be a macro someplace
-    metadata["numInputs"] = numInputs;
+    metadata["numInputs"] = int(numInputs); //FIXME: jsoncpp doesn't like size_t on mac
     Json::Value inputNamesJSON;
 
     for (size_t i = 0; i < inputNames.size(); ++i) 
@@ -157,7 +157,7 @@ Json::Value modelSet<T>::parse2json()
         inputNamesJSON.append(inputNames[i]);
     }
     metadata["inputNames"] = inputNamesJSON;
-    metadata["numOutputs"] = numOutputs;
+    metadata["numOutputs"] = int(numOutputs);
     root["metadata"] = metadata;
     for (auto model : myModelSet) 
     {
