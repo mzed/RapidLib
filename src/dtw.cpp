@@ -22,148 +22,160 @@ dtw<T>::~dtw() {};
 template<typename T>
 inline T dtw<T>::distanceFunction(const std::vector<T> &x, const std::vector<T> &y)
 {
-    double euclidianDistance = 0;
-    if (x.size() != y.size())
+  double euclidianDistance {};
+  
+  if (x.size() != y.size())
+  {
+    throw std::length_error("comparing different length series");
+  }
+  else
+  {
+    for (std::size_t i {}; i < x.size(); ++i)
     {
-        throw std::length_error("comparing different length series");
+      euclidianDistance += pow((x[i] - y[i]), 2);
     }
-    else
-    {
-        for (std::size_t i = 0; i < x.size(); ++i)
-        {
-            euclidianDistance = euclidianDistance + pow((x[i] - y[i]), 2);
-        }
-
-        euclidianDistance = sqrt(euclidianDistance);
-    }
-    return (T)euclidianDistance;
+    
+    euclidianDistance = sqrt(euclidianDistance);
+  }
+  return (T)euclidianDistance;
 };
 
 /* Just returns the cost, doesn't calculate the path */
 template<typename T>
 T dtw<T>::getCost(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY)
 {
-    if (seriesX.size() < seriesY.size())
-    {
-        return getCost(seriesY, seriesX);
-    }
+  if (seriesX.size() < seriesY.size())
+  {
+    return getCost(seriesY, seriesX);
+  }
+  
+  costMatrix.clear();
+  
+  for (std::size_t i {}; i < seriesX.size(); ++i)
+  {
+    std::vector<T> tempVector(seriesY.size(), 0);
+    costMatrix.push_back(tempVector);
+  }
+  
+  const std::size_t maxX { seriesX.size() - 1 };
+  const std::size_t maxY { seriesY.size() - 1 };
+  
+  //Calculate values for the first column
+  costMatrix[0][0] = distanceFunction(seriesX[0], seriesY[0]);
+  
+  for (std::size_t j {}; j < maxY; ++j)
+  {
+    costMatrix[0][j + 1] = costMatrix[0][j] + distanceFunction(seriesX[0], seriesY[j + 1]);
+  }
+  
+  for (std::size_t i {}; i < maxX; ++i)
+  {
+    //Bottom row of current column
+    costMatrix[i + 1][0] = costMatrix[i][0] + distanceFunction(seriesX[i + 1], seriesY[0]);
     
-    costMatrix.clear();
-    for (auto framesX : seriesX)
+    for (std::size_t j {}; j < maxY; ++j)
     {
-        std::vector<T> tempVector;
-        for (auto framesY : seriesY)
-        {
-            tempVector.push_back(0);
-        }
-        costMatrix.push_back(tempVector);
+      const T minGlobalCost = fmin(costMatrix[i][j], costMatrix[i + 1][j]);
+      costMatrix[i + 1][j] = minGlobalCost + distanceFunction(seriesX[i + 1], seriesY[j]);
     }
-    std::size_t maxX = seriesX.size() - 1;
-    std::size_t maxY = seriesY.size() - 1;
-    
-    //Calculate values for the first column
-    costMatrix[0][0] = distanceFunction(seriesX[0], seriesY[0]);
-    for (int j = 1; j <= maxY; ++j) {
-        costMatrix[0][j] = costMatrix[0][j - 1] + distanceFunction(seriesX[0], seriesY[j]);
-    }
-    
-    for (std::size_t i = 1; i <= maxX; ++i)
-    {
-        //Bottom row of current column
-        costMatrix[i][0] = costMatrix[i - 1][0] + distanceFunction(seriesX[i], seriesY[0]);
-        
-        for (std::size_t j = 1; j <= maxY; ++j)
-        {
-            T minGlobalCost = fmin(costMatrix[i-1][j-1], costMatrix[i][j-1]);
-            costMatrix[i][j] = minGlobalCost + distanceFunction(seriesX[i], seriesY[j]);
-        }
-    }
-    return costMatrix[maxX][maxY];
+  }
+  return costMatrix[maxX][maxY];
 };
 
 template<typename T>
-warpPath dtw<T>::calculatePath(std::size_t seriesXsize, std::size_t seriesYsize) const
+warpPath dtw<T>::calculatePath(const std::size_t seriesXsize, const std::size_t seriesYsize) const
 {
-    warpPath warpPath;
-    std::size_t i = seriesXsize - 1;
-    std::size_t j = seriesYsize - 1;
-    warpPath.add(i, j);
+  warpPath warpPath;
+  std::size_t i { seriesXsize - 1 };
+  std::size_t j { seriesYsize - 1 };
+  warpPath.add(i, j);
+  
+  while ((i > 0) || (j > 0))
+  {
+    const T diagonalCost = ((i > 0) && (j > 0)) ? costMatrix[i - 1][j - 1] : std::numeric_limits<T>::infinity();
+    const T leftCost = (i > 0) ? costMatrix[i - 1][j] : std::numeric_limits<T>::infinity();
+    const T downCost = (j > 0) ? costMatrix[i][j - 1] : std::numeric_limits<T>::infinity();
     
-    while ((i > 0) || (j > 0))
+    if ((diagonalCost <= leftCost) && (diagonalCost <= downCost))
     {
-        T diagonalCost = ((i > 0) && (j > 0)) ? costMatrix[i - 1][j - 1] : std::numeric_limits<T>::infinity();
-        T leftCost = (i > 0) ? costMatrix[i - 1][j] : std::numeric_limits<T>::infinity();
-        T downCost = (j > 0) ? costMatrix[i][j - 1] : std::numeric_limits<T>::infinity();
-
-        if ((diagonalCost <= leftCost) && (diagonalCost <= downCost)) 
-        {
-            if (i > 0) --i;
-            if (j > 0) --j;
-        } 
-        else if ((leftCost < diagonalCost) && (leftCost < downCost))
-        {
-            --i;
-        } 
-        else if ((downCost < diagonalCost) && (downCost < leftCost)) 
-        {
-            --j;
-        } 
-        else if (i <= j) 
-        {
-            --j;
-        } 
-        else 
-        {
-            --i;
-        }
-        warpPath.add(i, j);
+      if (i > 0) --i;
+      if (j > 0) --j;
     }
-    return warpPath;
+    else if ((leftCost < diagonalCost) && (leftCost < downCost))
+    {
+      --i;
+    }
+    else if ((downCost < diagonalCost) && (downCost < leftCost))
+    {
+      --j;
+    }
+    else if (i <= j)
+    {
+      --j;
+    }
+    else
+    {
+      --i;
+    }
+    
+    warpPath.add(i, j);
+  }
+  
+  return warpPath;
 };
 
 /* calculates both the cost and the warp path*/
 template<typename T>
 warpInfo<T> dtw<T>::dynamicTimeWarp(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY)
 {
-    warpInfo<T> info;
-    //calculate cost matrix
-    info.cost = getCost(seriesX, seriesY);
-    info.path = calculatePath(seriesX.size(), seriesY.size());
-    return info;
+  warpInfo<T> info;
+  
+  //calculate cost matrix
+  info.cost = getCost(seriesX, seriesY);
+  info.path = calculatePath(seriesX.size(), seriesY.size());
+  return info;
 }
 
 /* calculates warp info based on window */
 template<typename T>
 warpInfo<T> dtw<T>::constrainedDTW(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY, searchWindow<T> window)
 {
-    //initialize cost matrix
-    costMatrix.clear();
-    std::vector<T> tempVector(seriesY.size(), std::numeric_limits<T>::max());
-    costMatrix.assign(seriesX.size(), tempVector); //TODO: this could be smaller, since most cells are unused
-    std::size_t maxX = seriesX.size() - 1;
-    std::size_t maxY = seriesY.size() - 1;
-    
-    //fill cost matrix cells based on window
-    for (std::size_t currentX = 0; currentX < window.minMaxValues.size(); ++currentX)
+  //initialize cost matrix
+  costMatrix.clear();
+  std::vector<T> tempVector(seriesY.size(), std::numeric_limits<T>::max());
+  costMatrix.assign(seriesX.size(), tempVector); //TODO: this could be smaller, since most cells are unused
+  const std::size_t maxX { seriesX.size() - 1 };
+  const std::size_t maxY { seriesY.size() - 1 };
+  
+  //fill cost matrix cells based on window
+  for (std::size_t currentX {}; currentX < window.minMaxValues.size(); ++currentX)
+  {
+    for (std::size_t currentY = window.minMaxValues[currentX].first; currentY <= window.minMaxValues[currentX].second; ++currentY) //FIXME: should be <= ?
     {
-        for (std::size_t currentY = window.minMaxValues[currentX].first; currentY <= window.minMaxValues[currentX].second; ++currentY) //FIXME: should be <= ?
-        {
-            if (currentX == 0 && currentY == 0) { //bottom left cell
-                costMatrix[0][0] = distanceFunction(seriesX[0], seriesY[0]);
-            } else if (currentX == 0) { //first column
-                costMatrix[0][currentY] = distanceFunction(seriesX[0], seriesY[currentY]) + costMatrix[0][currentY - 1];
-            } else if (currentY == 0) { //first row
-                costMatrix[currentX][0] = distanceFunction(seriesX[currentX], seriesY[0]) + costMatrix[currentX - 1][0];
-            } else {
-                T minGlobalCost = fmin(costMatrix[currentX - 1][currentY], fmin(costMatrix[currentX-1][currentY-1], costMatrix[currentX][currentY-1]));
-                costMatrix[currentX][currentY] = distanceFunction(seriesX[currentX], seriesY[currentY]) + minGlobalCost;
-            }
-        }
+      if (currentX == 0 && currentY == 0) //bottom left cell
+      {
+        costMatrix[0][0] = distanceFunction(seriesX[0], seriesY[0]);
+      } 
+      else if (currentX == 0) //first column
+      {
+        costMatrix[0][currentY] = distanceFunction(seriesX[0], seriesY[currentY]) + costMatrix[0][currentY - 1];
+      } 
+      else if (currentY == 0) //first row
+      {
+        costMatrix[currentX][0] = distanceFunction(seriesX[currentX], seriesY[0]) + costMatrix[currentX - 1][0];
+      } 
+      else
+      {
+        T minGlobalCost = fmin(costMatrix[currentX - 1][currentY], fmin(costMatrix[currentX-1][currentY-1], costMatrix[currentX][currentY-1]));
+        costMatrix[currentX][currentY] = distanceFunction(seriesX[currentX], seriesY[currentY]) + minGlobalCost;
+      }
     }
-    warpInfo<T> info;
-    info.cost = costMatrix[maxX][maxY];
-    info.path = calculatePath(seriesX.size(), seriesY.size());
-    return info;
+  }
+  
+  warpInfo<T> info;
+  info.cost = costMatrix[maxX][maxY];
+  info.path = calculatePath(seriesX.size(), seriesY.size());
+  return info;
 }
 
 //explicit instantiation
