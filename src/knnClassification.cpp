@@ -17,16 +17,16 @@
 #endif
 
 template<typename T>
-knnClassification<T>::knnClassification(const int &num_inputs,
-                                        const std::vector<size_t> &which_inputs,
-                                        const std::vector<trainingExampleTemplate<T> > &_neighbours,
-                                        const int k) :
-numInputs(num_inputs),
-whichInputs(which_inputs),
-whichOutput(0),
-neighbours(_neighbours),
-desiredK(k),
-currentK(k)
+knnClassification<T>::knnClassification(const int &num_inputs, 
+    const std::vector<size_t> &which_inputs, 
+    const std::vector<trainingExampleTemplate<T> > &_neighbours, 
+    const int k) : 
+    numInputs(num_inputs), 
+    whichInputs(which_inputs),
+    whichOutput(0),
+    neighbours(_neighbours),
+    desiredK(k),
+    currentK(k)
 {
 }
 
@@ -34,180 +34,171 @@ template<typename T>
 knnClassification<T>::~knnClassification() {}
 
 template<typename T>
-void knnClassification<T>::reset()
+void knnClassification<T>::reset() 
 {
-  //TODO: implement this
+    //TODO: implement this
 }
 
 template<typename T>
 size_t knnClassification<T>::getNumInputs() const
 {
-  return numInputs;
+    return numInputs;
 }
 
 template<typename T>
-std::vector<size_t> knnClassification<T>::getWhichInputs() const
+std::vector<size_t> knnClassification<T>::getWhichInputs() const 
 {
-  return whichInputs;
+    return whichInputs;
 }
 
 template<typename T>
-int knnClassification<T>::getK() const
+int knnClassification<T>::getK() const 
 {
-  return currentK;
+    return currentK;
 }
 
 template<typename T>
-inline void knnClassification<T>::updateK()
+inline void knnClassification<T>::updateK() 
 {
-  if (currentK != desiredK) currentK = std::min(desiredK, (int) neighbours.size());
+    if (currentK != desiredK) currentK = std::min(desiredK, (int) neighbours.size());
 }
 
 template<typename T>
-void knnClassification<T>::setK(int newK)
+void knnClassification<T>::setK(int newK) 
 {
-  desiredK = newK;
-  updateK();
+    desiredK = newK;
+    updateK();
 }
 
 template<typename T>
-void knnClassification<T>::addNeighbour(const int &classNum, const std::vector<T> &features)
+void knnClassification<T>::addNeighbour(const int &classNum, const std::vector<T> &features) 
 {
-  std::vector<T> classVec {};
-  classVec.push_back(T(classNum));
-  trainingExampleTemplate<T>  newNeighbour = {features, classVec};
-  neighbours.push_back(newNeighbour);
-  updateK();
+    std::vector<T> classVec;
+    classVec.push_back(T(classNum));
+    trainingExampleTemplate<T>  newNeighbour = {features, classVec};
+    neighbours.push_back(newNeighbour);
+    updateK();
 };
 
 template<typename T>
-void knnClassification<T>::train(const std::vector<trainingExampleTemplate<T> >& trainingSet)
+void knnClassification<T>::train(const std::vector<trainingExampleTemplate<T> >& trainingSet) 
 {
-  train(trainingSet, 0);
+    train(trainingSet, 0);
 }
 
-// FIXME: Not paying attention to whichOutput.
+// FIXME: Not paying attention to whichOutput. 
 template<typename T>
 void knnClassification<T>::train(const std::vector<trainingExampleTemplate<T> > &trainingSet, const std::size_t which_output) //FIXME: Does numInputs need to be reset here? -MZ
-{
-  neighbours.clear();
-  neighbours = trainingSet;
-  updateK();
-  whichOutput = which_output;
+{ 
+    neighbours.clear();
+    neighbours = trainingSet;
+    updateK();
+    whichOutput = which_output;
 };
 
 template<typename T>
-T knnClassification<T>::run(const std::vector<T> &inputVector)
+T knnClassification<T>::run(const std::vector<T> &inputVector) 
 {
-  std::vector<std::pair<int, T>> nearestNeighbours {}; //These are our k nearest neighbours
-  
-  for (size_t i {}; i < currentK; ++i)
-  {
-    nearestNeighbours.push_back( std::make_pair(0, 0.) );
-  };
-  
-  std::pair<int, T> farthestNN {0, 0.}; //This one will be replaced if there's a closer one
-  std::vector<T> pattern; //This is what we're trying to match
-  
-  for (size_t h {}; h < numInputs; ++h)
-  {
-    pattern.push_back(inputVector[whichInputs[h]]);
-  }
-  
-  //Find k nearest neighbours
-  size_t index {};
-  
-  for (auto it = neighbours.cbegin(); it != neighbours.cend(); ++it)
-  {
-    //find Euclidian distance for this neighbor
-    T euclidianDistance {};
-    
-    for(size_t j {}; j < numInputs ; ++j)
+    std::vector<std::pair<int, T>> nearestNeighbours; //These are our k nearest neighbours
+
+    for (size_t i = 0; i < currentK; ++i) 
     {
-      euclidianDistance += (T)pow((pattern[j] - it->input[j]), 2);
+        nearestNeighbours.push_back( std::make_pair(0, 0.) );
+    };
+    std::pair<int, T> farthestNN {0, 0.}; //This one will be replaced if there's a closer one
+    
+    std::vector<T> pattern; //This is what we're trying to match
+    for (size_t h = 0; h < numInputs; ++h) 
+    {
+        pattern.push_back(inputVector[whichInputs[h]]);
     }
     
-    euclidianDistance = sqrt(euclidianDistance);
-    
-    if (index < currentK)
+    //Find k nearest neighbours
+    size_t index = 0;
+    for (auto it = neighbours.cbegin(); it != neighbours.cend(); ++it) 
     {
-      //save the first k neighbours
-      nearestNeighbours[index] = {index, euclidianDistance};
-      if (euclidianDistance > farthestNN.second) farthestNN = {index, euclidianDistance};
-    }
-    else if (euclidianDistance < farthestNN.second)
-    {
-      //replace farthest, if new neighbour is closer
-      nearestNeighbours[farthestNN.first] = {index, euclidianDistance};
-      size_t currentFarthest {};
-      T currentFarthestDistance = 0.;
-      
-      for (size_t n {}; n < currentK; ++n)
-      {
-        if (nearestNeighbours[n].second > currentFarthestDistance)
+        //find Euclidian distance for this neighbor
+        T euclidianDistance = 0;
+        for(size_t j = 0; j < numInputs ; ++j)
         {
-          currentFarthest = n;
-          currentFarthestDistance = nearestNeighbours[n].second;
+            euclidianDistance += (T)pow((pattern[j] - it->input[j]), 2);
         }
-      }
-      
-      farthestNN = { currentFarthest, currentFarthestDistance} ;
+        euclidianDistance = sqrt(euclidianDistance);
+
+        if (index < currentK) 
+        {
+            //save the first k neighbours
+            nearestNeighbours[index] = {index, euclidianDistance};
+            if (euclidianDistance > farthestNN.second) farthestNN = {index, euclidianDistance};
+        } 
+        else if (euclidianDistance < farthestNN.second) 
+        {
+            //replace farthest, if new neighbour is closer
+            nearestNeighbours[farthestNN.first] = {index, euclidianDistance};
+            size_t currentFarthest = 0;
+            T currentFarthestDistance = 0.;
+
+            for (size_t n = 0; n < currentK; ++n) 
+            {
+                if (nearestNeighbours[n].second > currentFarthestDistance) 
+                {
+                    currentFarthest = n;
+                    currentFarthestDistance = nearestNeighbours[n].second;
+                }
+            }
+            farthestNN = { currentFarthest, currentFarthestDistance} ;
+        }
+        ++index;
     }
-    ++index;
-  }
-  
-  //majority vote on nearest neighbours
-  std::map<T, int> classVoteMap;
-  using classVotePair = std::pair<int, int>;
-  
-  for (size_t i {}; i < currentK; ++i)
-  {
-    T classNum = (T)round(neighbours[nearestNeighbours[i].first].output[whichOutput]);
-    if ( classVoteMap.find(classNum) == classVoteMap.end() )
+    
+    //majority vote on nearest neighbours
+    std::map<T, int> classVoteMap;
+    using classVotePair = std::pair<int, int>;
+    for (size_t i = 0; i < currentK; ++i) 
     {
-      classVoteMap.insert(classVotePair(classNum, 1));
+        T classNum = (T)round(neighbours[nearestNeighbours[i].first].output[whichOutput]);
+        if ( classVoteMap.find(classNum) == classVoteMap.end() ) 
+        {
+            classVoteMap.insert(classVotePair(classNum, 1));
+        } 
+        else 
+        {
+            ++classVoteMap[classNum];
+        }
     }
-    else
+
+    T foundClass = 0;
+    int mostVotes = 0;
+    for (auto p = classVoteMap.cbegin(); p != classVoteMap.cend(); ++p) 
     {
-      ++classVoteMap[classNum];
+        if (p->second > mostVotes) 
+        {
+            mostVotes = p->second;
+            foundClass = p->first;
+        }
     }
-  }
-  
-  T foundClass {};
-  int mostVotes {};
-  
-  for (auto const& [whichClass, votes] : classVoteMap)
-  {
-    if (votes > mostVotes)
-    {
-      mostVotes = votes;
-      foundClass = whichClass;
-    }
-  }
-  
-  return foundClass;
+    return foundClass;
 }
 
 #ifndef EMSCRIPTEN
 template<typename T>
-void knnClassification<T>::getJSONDescription(Json::Value &jsonModelDescription)
+void knnClassification<T>::getJSONDescription(Json::Value &jsonModelDescription) 
 {
-  jsonModelDescription["modelType"] = "kNN Classificiation";
-  jsonModelDescription["numInputs"] = numInputs;
-  jsonModelDescription["whichInputs"] = this->vector2json(whichInputs);
-  jsonModelDescription["k"] = desiredK;
-  Json::Value examples;
-  
-  for (auto const& neighbour : neighbours)
-  //for (auto it = neighbours.cbegin(); it != neighbours.cend(); ++it)
-  {
-    Json::Value oneExample;
-    oneExample["class"] = neighbour.output[whichOutput];
-    oneExample["features"] = this->vector2json(neighbour.input);
-    examples.append(oneExample);
-  }
-  
-  jsonModelDescription["examples"] = examples;
+    jsonModelDescription["modelType"] = "kNN Classificiation";
+    jsonModelDescription["numInputs"] = numInputs;
+    jsonModelDescription["whichInputs"] = this->vector2json(whichInputs);
+    jsonModelDescription["k"] = desiredK;
+    Json::Value examples;
+
+    for (auto it = neighbours.cbegin(); it != neighbours.cend(); ++it) 
+    {
+        Json::Value oneExample;
+        oneExample["class"] = it->output[whichOutput];
+        oneExample["features"] = this->vector2json(it->input);
+        examples.append(oneExample);
+    }
+
+    jsonModelDescription["examples"] = examples;
 }
 #endif
 

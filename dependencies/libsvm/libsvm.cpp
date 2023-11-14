@@ -52,7 +52,7 @@ namespace LIBSVM {
         char buf[BUFSIZ];
         va_list ap;
         va_start(ap,fmt);
-        vsnprintf(buf,BUFSIZ,fmt,ap);
+        vsprintf(buf,fmt,ap);
         va_end(ap);
         (*svm_print_string)(buf);
     }
