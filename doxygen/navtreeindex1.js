@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"series_classification_8h_source.html":[4,0,0,21],
 "structseries_classification_template_1_1min_max.html":[3,0,10,0],
 "structseries_classification_template_1_1min_max.html#a6679fda24768931e0193b08d4f24b698":[3,0,10,0,0],
 "structseries_classification_template_1_1min_max.html#a85dde028d472907d4937e6a2e244dedb":[3,0,10,0,1],
