@@ -125,6 +125,7 @@ template<typename T>
 T seriesClassificationTemplate<T>::run(const std::vector< std::vector<T> >& inputSeries, std::string label)
 {
   T returnValue = 0;
+  
   if (isTraining)
   {
     throw std::runtime_error("can't run a model during training");
@@ -156,6 +157,7 @@ template<typename T>
 std::string seriesClassificationTemplate<T>::runParallel(const std::vector< std::vector<T> >& inputSeries) 
 {
   std::string returnLabel { "none" };
+  
   if (isTraining)
   {
     throw std::runtime_error("can't run a model during training");
@@ -193,7 +195,8 @@ T seriesClassificationTemplate<T>::runParallel(const std::vector< std::vector<T>
     allCosts.clear();
     std::vector<std::thread> runningThreads;
     int seriesIndex { 0 };
-    for (std::size_t i = 0; i < allTrainingSeries.size(); ++i) 
+    
+    for (std::size_t i {}; i < allTrainingSeries.size(); ++i)
     {
       if (allTrainingSeries[i].label == label) 
       {
