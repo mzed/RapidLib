@@ -19,9 +19,9 @@
 
 template<typename T>
 regressionTemplate<T>::regressionTemplate() :
+numEpochs(500),
 numHiddenLayers(1),
-numHiddenNodes(0), //this will be changed by training
-numEpochs(500)
+numHiddenNodes(0) //this will be changed by training
 {
   modelSet<T>::numInputs = -1;
   modelSet<T>::numOutputs = -1;
@@ -29,13 +29,13 @@ numEpochs(500)
 };
 
 template<typename T>
-regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_outputs)
+regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_outputs) :
+numEpochs(500),
+numHiddenLayers(1),
+numHiddenNodes(num_inputs)
 {
   modelSet<T>::numInputs = num_inputs;
   modelSet<T>::numOutputs = num_outputs;
-  numHiddenLayers = 1;
-  numEpochs = 500;
-  numHiddenNodes = num_inputs;
   modelSet<T>::isTraining = false;
   created = false;
   std::vector<size_t> whichInputs;

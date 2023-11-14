@@ -22,7 +22,7 @@
 static constexpr std::size_t SEARCH_RADIUS { 1 };
 
 template<typename T>
-seriesClassificationTemplate<T>::seriesClassificationTemplate() : hopSize(1), counter(0), isTraining(false) {};
+seriesClassificationTemplate<T>::seriesClassificationTemplate() : isTraining(false) , hopSize(1), counter(0) {};
 
 template<typename T>
 seriesClassificationTemplate<T>::~seriesClassificationTemplate() {};
@@ -31,6 +31,7 @@ template<typename T>
 bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemplate<T> > &seriesSet) 
 {
   bool success { false };
+  
   if (isTraining)
   {
     throw std::runtime_error("model already training");
