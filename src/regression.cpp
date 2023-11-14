@@ -62,21 +62,22 @@ regressionTemplate<T>::regressionTemplate(const std::vector<trainingExampleTempl
 };
 
 template<typename T>
-std::vector<int> regressionTemplate<T>::getNumHiddenLayers() const 
+std::vector<size_t> regressionTemplate<T>::getNumHiddenLayers() const
 {
-    std::vector<int> vecNumHiddenLayers;
-    if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet)) 
+    std::vector<size_t> vecNumHiddenLayers;
+  
+    if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet))
     {
-        for (baseModel<T>* model : modelSet<T>::myModelSet) 
+        for (const baseModel<T>* model : modelSet<T>::myModelSet)
         {
-            neuralNetwork<T>* nnModel = dynamic_cast<neuralNetwork<T>*>(model); //FIXME: I really dislike this design
-            vecNumHiddenLayers.push_back(nnModel->getNumHiddenLayers());
+            vecNumHiddenLayers.push_back(dynamic_cast<const neuralNetwork<T>*>(model)->getNumHiddenLayers()); //FIXME: I really dislike this design
         }
     } 
     else 
     {
         vecNumHiddenLayers = { numHiddenLayers };
     }
+  
     return vecNumHiddenLayers;
 }
 
@@ -96,21 +97,22 @@ void regressionTemplate<T>::setNumHiddenLayers(const int &num_hidden_layers)
 }
 
 template<typename T>
-std::vector<int> regressionTemplate<T>::getNumHiddenNodes() const 
+std::vector<size_t> regressionTemplate<T>::getNumHiddenNodes() const
 {
-    std::vector<int> vecNumHiddenNodes;
-    if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet)) 
+    std::vector<size_t> vecNumHiddenNodes;
+  
+    if (std::begin(modelSet<T>::myModelSet) != std::end(modelSet<T>::myModelSet))
     {
-        for (baseModel<T>* model : modelSet<T>::myModelSet) 
+        for (const baseModel<T>* model : modelSet<T>::myModelSet)
         {
-            neuralNetwork<T>* nnModel = dynamic_cast<neuralNetwork<T>*>(model); //FIXME: I really dislike this design
-            vecNumHiddenNodes.push_back(nnModel->getNumHiddenNodes());
+            vecNumHiddenNodes.push_back( dynamic_cast<const neuralNetwork<T>*>(model)->getNumHiddenNodes()); //FIXME: I really dislike this design
         }
     } 
     else 
     {
         vecNumHiddenNodes = { numHiddenNodes };
     }
+  
     return vecNumHiddenNodes;
 }
 

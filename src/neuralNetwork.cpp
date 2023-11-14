@@ -475,7 +475,7 @@ void neuralNetwork<T>::backpropagate(const T& desiredOutput)
     }
 
     //deltas between hidden
-    for (int i = numHiddenLayers - 1; i >= 0; --i)
+  for (int i { static_cast<int>(numHiddenLayers)- 1 }; i >= 0; --i)
     {
         for (size_t j = 0; j < numHiddenNodes; ++j)
         {

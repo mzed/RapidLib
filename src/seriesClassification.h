@@ -123,7 +123,7 @@ private:
     std::vector<T> allCosts;
     size_t maxLength;
     size_t minLength;
-    std::map<std::string, minMax<int> > lengthsPerLabel;
+    std::map<std::string, minMax<size_t> > lengthsPerLabel;
     bool isTraining;
     
     std::vector<std::vector<T> > seriesBuffer;
