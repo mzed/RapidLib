@@ -272,4 +272,5 @@ T rapidStream<T>::maxAcceleration() const
 //explicit instantiation
 template class rapidStream<double>;
 template class rapidStream<float>;
-};
+
+}; //namespace rapidLib
