@@ -58,8 +58,8 @@ public:
   void setNumHiddenNodes(const int &num_hidden_nodes);
   
 private:
+  size_t numEpochs { 500 }; //Temporary -- also should be part of nn only. -mz
   size_t numHiddenLayers { 1 }; //Temporary -- this should be part of the nn class. -mz
-  size_t numEpochs; //Temporary -- also should be part of nn only. -mz
   size_t numHiddenNodes; //Temporary -- also should be part of nn only. -mz
   bool created;
 };
