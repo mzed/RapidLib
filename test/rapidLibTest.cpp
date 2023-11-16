@@ -495,7 +495,18 @@ int main(int argc, const char * argv[])
     //std::cout << myDTW.getCosts()[0] << std::endl;
     //std::cout << myDTW.getCosts()[1] << std::endl;
 
-
+  ////////////////////////////////////////////////////////////////////////
+  
+  rapidLib::classification setTest;
+  try
+  {
+    setTest.setK(0, 2);
+  }
+  catch (...)
+  {
+    std::cout << "setting k on empty set doesn't crash" <<std::endl;
+  }
+    
     ////////////////////////////////////////////////////////////////////////
 //#define layerTest 1
 #ifdef layerTest
