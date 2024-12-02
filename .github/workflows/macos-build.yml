@@ -17,8 +17,4 @@ jobs:
       run: cmake --build build
     - name: test
       run: cd build && ctest
-    - name: Upload RapidLibPlugin build artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: RapidLibPlugin
-        path: build/
+ 
