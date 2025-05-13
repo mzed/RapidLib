@@ -111,7 +111,12 @@ outputErrorGradient(0)
 
   // setup neurons
   inputLayer.resize(numInputs);
-  inputLayer.push_back(1.0); // layer bias
+  inputLayer.push_back(1.0); // last neuron is always 1, to apply layer bias
+  hiddenLayers.resize(numHiddenLayers);
+  for (auto& layer : hiddenLayers)
+  {
+    layer.resize(numHiddenNodes + 1); // extra node for layer bias
+  }
 }
 
 /*!
@@ -140,6 +145,11 @@ outputErrorGradient(0)
   // setup neurons
   inputLayer.resize(numInputs);
   inputLayer.push_back(1.0); // layer bias
+  hiddenLayers.resize(numHiddenLayers);
+  for (auto& layer : hiddenLayers)
+  {
+    layer.resize(numHiddenNodes + 1); // extra node for layer bias
+  }
 }
 
 /*!
@@ -190,7 +200,7 @@ inline T neuralNetwork<T>::getHiddenErrorGradient(size_t layer, size_t neuron)
   if (numHiddenLayers == 1 || layer == 0)
   {
     T wGradient = wHiddenOutput[neuron] * outputErrorGradient;
-    return hiddenNeurons[layer][neuron] * (1 - hiddenNeurons[layer][neuron]) * wGradient;
+    return hiddenLayers[layer][neuron] * (1 - hiddenLayers[layer][neuron]) * wGradient;
   }
 
   if (layer == numHiddenLayers - 1)
@@ -207,7 +217,7 @@ inline T neuralNetwork<T>::getHiddenErrorGradient(size_t layer, size_t neuron)
       weightedSum += deltaWeights[layer + 1][neuron][i] * outputErrorGradient;
     }
   }
-  return hiddenNeurons[layer][neuron] * (1 - hiddenNeurons[layer][neuron]) * weightedSum;
+  return hiddenLayers[layer][neuron] * (1 - hiddenLayers[layer][neuron]) * weightedSum;
 }
 
 template<typename T>
@@ -386,15 +396,14 @@ T neuralNetwork<T>::run(const std::vector<T>& inputVector)
   }
 
   //calculate hidden layers
-  hiddenNeurons.clear();
-  for (int i {}; i < numHiddenLayers; ++i)
+  for (size_t i {}; auto& layer : hiddenLayers)
   {
-    std::vector<T> layer;
     for (size_t j {}; j < numHiddenNodes; ++j)
     {
-      layer.push_back(0);
-      if (i == 0)
-      { //first hidden layer
+      layer[j] = 0;
+
+      if (i == 0) //first hidden layer
+      {
         for (size_t k {}; k <= numInputs; ++k)
         {
           layer[j] += inputLayer[k] * weights[0][j][k];
@@ -404,20 +413,21 @@ T neuralNetwork<T>::run(const std::vector<T>& inputVector)
       {
         for (size_t k {}; k <= numHiddenNodes; ++k)
         {
-          layer[j] += hiddenNeurons[i - 1][k] * weights[i][j][k];
+          layer[j] += hiddenLayers[i - 1][k] * weights[i][j][k];
         }
       }
       layer[j] = activationFunction(layer[j]);
     }
-    layer.push_back(1); //for bias weight
-    hiddenNeurons.push_back(layer);
+
+    layer.back() = 1.0; //for bias weight
+    ++i;
   }
 
   //calculate output
   outputNeuron = 0;
   for (size_t k {}; k <= numHiddenNodes; ++k)
   {
-    outputNeuron += hiddenNeurons[numHiddenLayers - 1][k] * wHiddenOutput[k];
+    outputNeuron += hiddenLayers[numHiddenLayers - 1][k] * wHiddenOutput[k];
   }
 
   //if classifier, outputNeuron = activationFunction(outputNeuron), else...
@@ -492,14 +502,14 @@ void neuralNetwork<T>::backpropagate(const T& desiredOutput)
   T length = 0;
   for (size_t i {}; i < numHiddenNodes; ++i)
   {
-    length += hiddenNeurons[numHiddenLayers - 1][i] * hiddenNeurons[numHiddenLayers - 1][i];
+    length += hiddenLayers[numHiddenLayers - 1][i] * hiddenLayers[numHiddenLayers - 1][i];
   }
   if (length <= 2.0) length = 1.0;
 
   //deltas between hidden and output
   for (size_t i {}; i <= numHiddenNodes; ++i)
   {
-    deltaHiddenOutput[i] = (learningRate * (hiddenNeurons[numHiddenLayers - 1][i] / length) * outputErrorGradient) + (momentum * deltaHiddenOutput[i]);
+    deltaHiddenOutput[i] = (learningRate * (hiddenLayers[numHiddenLayers - 1][i] / length) * outputErrorGradient) + (momentum * deltaHiddenOutput[i]);
   }
 
   //deltas between hidden
@@ -512,7 +522,7 @@ void neuralNetwork<T>::backpropagate(const T& desiredOutput)
       {
         for (size_t k {}; k <= numHiddenNodes; ++k)
         {
-          deltaWeights[i][j][k] = (learningRate * hiddenNeurons[i][j] * hiddenErrorGradient) + (momentum * deltaWeights[i][j][k]);
+          deltaWeights[i][j][k] = (learningRate * hiddenLayers[i][j] * hiddenErrorGradient) + (momentum * deltaWeights[i][j][k]);
         }
       }
       else //hidden to input layer
