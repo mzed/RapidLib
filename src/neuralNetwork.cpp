@@ -396,38 +396,33 @@ T neuralNetwork<T>::run(const std::vector<T>& inputVector)
   }
 
   //calculate hidden layers
-  for (size_t i {}; auto& layer : hiddenLayers)
+  for (size_t layerNum {}; auto& layer : hiddenLayers)
   {
     for (size_t j {}; j < numHiddenNodes; ++j)
     {
       layer[j] = 0;
 
-      if (i == 0) //first hidden layer
+      const auto& previousLayer { layerNum == 0 ? inputLayer : hiddenLayers[layerNum - 1] };
+
+      for (size_t k {}; auto& input : previousLayer)
       {
-        for (size_t k {}; k <= numInputs; ++k)
-        {
-          layer[j] += inputLayer[k] * weights[0][j][k];
-        }
+        layer[j] += input * weights[layerNum][j][k];
+        ++k;
       }
-      else
-      {
-        for (size_t k {}; k <= numHiddenNodes; ++k)
-        {
-          layer[j] += hiddenLayers[i - 1][k] * weights[i][j][k];
-        }
-      }
+
       layer[j] = activationFunction(layer[j]);
     }
 
     layer.back() = 1.0; //for bias weight
-    ++i;
+    ++layerNum;
   }
 
   //calculate output
   outputNeuron = 0;
-  for (size_t k {}; k <= numHiddenNodes; ++k)
+  for (size_t i {}; auto& hiddenNeuron : hiddenLayers.back())
   {
-    outputNeuron += hiddenLayers[numHiddenLayers - 1][k] * wHiddenOutput[k];
+    outputNeuron += hiddenNeuron * wHiddenOutput[i];
+    ++i;
   }
 
   //if classifier, outputNeuron = activationFunction(outputNeuron), else...
