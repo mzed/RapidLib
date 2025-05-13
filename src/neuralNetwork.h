@@ -94,7 +94,7 @@ private:
     size_t numHiddenNodes;
 
     /** Neurons: state is updated on each process(). */
-    std::vector<T> inputNeurons;
+    std::vector<T> inputLayer;
     std::vector<std::vector<T> > hiddenNeurons;
     T outputNeuron;
 

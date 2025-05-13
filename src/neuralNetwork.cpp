@@ -108,6 +108,10 @@ outputErrorGradient(0)
 
   //trainer -- do we really need this?
   initTrainer();
+
+  // setup neurons
+  inputLayer.resize(numInputs);
+  inputLayer.push_back(1.0); // layer bias
 }
 
 /*!
@@ -132,6 +136,10 @@ outputErrorGradient(0)
 
   //trainer
   initTrainer();
+
+  // setup neurons
+  inputLayer.resize(numInputs);
+  inputLayer.push_back(1.0); // layer bias
 }
 
 /*!
@@ -372,12 +380,10 @@ T neuralNetwork<T>::run(const std::vector<T>& inputVector)
   }
 
   //set input layer
-  inputNeurons.clear();
   for (size_t i {}; i < numInputs; ++i)
   {
-    inputNeurons.push_back((pattern[i] - (inBases[i])) / inRanges[i]);
+    inputLayer[i] = (pattern[i] - inBases[i]) / inRanges[i];
   }
-  inputNeurons.push_back(1);
 
   //calculate hidden layers
   hiddenNeurons.clear();
@@ -391,7 +397,7 @@ T neuralNetwork<T>::run(const std::vector<T>& inputVector)
       { //first hidden layer
         for (size_t k {}; k <= numInputs; ++k)
         {
-          layer[j] += inputNeurons[k] * weights[0][j][k];
+          layer[j] += inputLayer[k] * weights[0][j][k];
         }
       }
       else
@@ -513,7 +519,7 @@ void neuralNetwork<T>::backpropagate(const T& desiredOutput)
       {
         for (size_t k {}; k <= numInputs; ++k)
         {
-          deltaWeights[0][j][k] = (learningRate * inputNeurons[k] * hiddenErrorGradient) + (momentum * deltaWeights[0][j][k]);
+          deltaWeights[0][j][k] = (learningRate * inputLayer[k] * hiddenErrorGradient) + (momentum * deltaWeights[0][j][k]);
         }
 
       }
