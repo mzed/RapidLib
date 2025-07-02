@@ -19,32 +19,28 @@ namespace rapidLib
 {
 
 template<typename T>
-rapidStream<T>::rapidStream(std::size_t window_size) :
-windowSize(window_size),
-windowIndex(0)
+rapidStream<T>::rapidStream(std::size_t window_size) : windowSize(window_size), windowIndex(0)
 {
   circularWindow.resize(windowSize);
   std::fill(circularWindow.begin(), circularWindow.end(), 0);
-  
+
   //Baysian Filter setup
-  bayesFilt.diffusion = powf(10., -2);
-  bayesFilt.jump_rate = powf(10., -10);
-  bayesFilt.mvc[0] = 1.;
+  bayesFilt.diffusion = powf(10.0f, -2);
+  bayesFilt.jump_rate = powf(10.0f, -10);
+  bayesFilt.mvc[0] = 1.0f;
   bayesFilt.init();
 }
 
 template<typename T>
-rapidStream<T>::rapidStream() :
-windowSize(3),
-windowIndex(0)
+rapidStream<T>::rapidStream() : windowSize(3), windowIndex(0)
 {
   circularWindow.resize(windowSize);
   std::fill(circularWindow.begin(), circularWindow.end(), 0);
-  
+
   //Baysian Filter setup
-  bayesFilt.diffusion = powf(10., -2);
-  bayesFilt.jump_rate = powf(10., -10);
-  bayesFilt.mvc[0] = 1.;
+  bayesFilt.diffusion = powf(10.0f, -2);
+  bayesFilt.jump_rate = powf(10.0f, -10);
+  bayesFilt.mvc[0] = 1.0;
   bayesFilt.init();
 }
 
@@ -103,9 +99,10 @@ template<typename T>
 uint32_t rapidStream<T>::numZeroCrossings() const
 {
   uint32_t zeroCrossings {};
-  
+
   //Is the begininng positive, negative, or 0?
   int previous { 1 };
+
   if (circularWindow[windowIndex] < 0)
   {
     previous = -1;
@@ -115,11 +112,11 @@ uint32_t rapidStream<T>::numZeroCrossings() const
     ++zeroCrossings;
     previous = 0;
   }
-  
+
   for (std::size_t i { 1 }; i < windowSize; ++i)
   {
     const std::size_t index { (windowIndex + i) % windowSize};
-    
+
     if (circularWindow[index] < 0 && previous >= 0) //Transition to negative
     {
       ++zeroCrossings;
@@ -135,14 +132,14 @@ uint32_t rapidStream<T>::numZeroCrossings() const
       previous = 0;
     }
   }
+
   return zeroCrossings;
 }
-
 
 template<typename T>
 T rapidStream<T>::sum() const
 {
-  return std::accumulate(circularWindow.begin(), circularWindow.end(), 0);
+  return std::reduce(circularWindow.begin(), circularWindow.end());
 }
 
 template<typename T>
@@ -156,26 +153,28 @@ T rapidStream<T>::standardDeviation() const
 {
   const T newMean { mean() };
   T standardDeviation {};
-  
-  for (auto value : circularWindow)
+
+  for (const auto value : circularWindow)
   {
-    standardDeviation += static_cast<T>(pow(value - newMean, 2));
+    standardDeviation += static_cast<T>(std::pow(value - newMean, 2));
   }
-  return sqrt(standardDeviation / windowSize);
+
+  return std::sqrt(standardDeviation / windowSize);
 }
 
 template<typename T>
 T rapidStream<T>::rms() const
 {
   T rms {};
-  
+
   for (auto value:circularWindow)
   {
     rms += value * value;
   }
-  
+
   rms = rms / windowSize;
-  return sqrt(rms);
+
+  return std::sqrt(rms);
 }
 
 template<typename T>
@@ -211,13 +210,13 @@ template<typename T>
 T rapidStream<T>::minVelocity() const
 {
   T minVel { std::numeric_limits<T>::infinity() };
-  
+
   for (std::size_t i {}; i < windowSize; ++i)
   {
     const T currentVel { calcCurrentVel(i) };
     if (currentVel < minVel)  minVel = currentVel;
   }
-  
+
   return minVel;
 }
 
@@ -225,13 +224,13 @@ template<typename T>
 T rapidStream<T>::maxVelocity() const
 {
   T maxVel { std::numeric_limits<T>::lowest() };
-  
+
   for (std::size_t i {}; i < windowSize; ++i)
   {
     const T currentVel { calcCurrentVel(i) };
     if (currentVel > maxVel) maxVel = currentVel;
   }
-  
+
   return maxVel;
 }
 
@@ -240,7 +239,7 @@ T rapidStream<T>::minAcceleration() const
 {
   T minAccel { std::numeric_limits<T>::infinity() };
   T lastVel { calcCurrentVel(1) };
-  
+
   for (std::size_t i { 2 }; i < windowSize; ++i)
   {
     const T currentVel { calcCurrentVel(i) };
@@ -248,7 +247,7 @@ T rapidStream<T>::minAcceleration() const
     lastVel = currentVel;
     if (currentAccel < minAccel) minAccel = currentAccel;
   }
-  
+
   return minAccel;
 }
 
@@ -257,7 +256,7 @@ T rapidStream<T>::maxAcceleration() const
 {
   T maxAccel { std::numeric_limits<T>::lowest() };
   T lastVel { calcCurrentVel(1) };
-  
+
   for (std::size_t i { 2 }; i < windowSize; ++i)
   {
     const T currentVel { calcCurrentVel(i) };
@@ -265,7 +264,7 @@ T rapidStream<T>::maxAcceleration() const
     lastVel = currentVel;
     if (currentAccel > maxAccel) maxAccel = currentAccel;
   }
-  
+
   return maxAccel;
 }
 

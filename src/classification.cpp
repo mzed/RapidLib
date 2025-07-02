@@ -69,36 +69,39 @@ bool classificationTemplate<T>::train(const std::vector<trainingExampleTemplate<
   if (training_set.size() > 0)
   {
     //create model(s) here
-    modelSet<T>::numInputs = int(training_set[0].input.size());
-    modelSet<T>::numOutputs = int(training_set[0].output.size());
-    
-    for (int i = 0; i < modelSet<T>::numInputs; ++i)
+    modelSet<T>::numInputs = static_cast<int>(training_set[0].input.size());
+    modelSet<T>::numOutputs = static_cast<int>(training_set[0].output.size());
+
+    for (int i {}; i < modelSet<T>::numInputs; ++i)
     {
       modelSet<T>::inputNames.push_back("inputs-" + std::to_string(i + 1));
     }
-    modelSet<T>::numOutputs = int(training_set[0].output.size());
-    
-    for ( auto example : training_set)
+
+    modelSet<T>::numOutputs = static_cast<int>(training_set[0].output.size());
+
+    for (const auto& example : training_set)
     {
       if (example.input.size() != modelSet<T>::numInputs)
       {
         throw std::length_error("unequal feature vectors in input.");
         return false;
       }
+
       if (example.output.size() != modelSet<T>::numOutputs)
       {
         throw std::length_error("unequal output vectors.");
         return false;
       }
     }
-    std::vector<size_t> whichInputs;
-    
-    for (int j = 0; j < modelSet<T>::numInputs; ++j)
+
+    std::vector<size_t> whichInputs {};
+
+    for (int inputNum {}; inputNum < modelSet<T>::numInputs; ++inputNum)
     {
-      whichInputs.push_back(j);
+      whichInputs.push_back(inputNum);
     }
     
-    for (int i = 0; i < modelSet<T>::numOutputs; ++i)
+    for (int outputNum {}; outputNum < modelSet<T>::numOutputs; ++outputNum)
     {
       if (classificationType == svm)
       {
@@ -118,12 +121,13 @@ bool classificationTemplate<T>::train(const std::vector<trainingExampleTemplate<
 template<typename T>
 std::vector<int> classificationTemplate<T>::getK()
 {
-  std::vector<int> kVector;
-  
+  std::vector<int> kVector {};
+
   for (const baseModel<T>* model : modelSet<T>::myModelSet)
   {
     kVector.push_back(dynamic_cast<const knnClassification<T>*>(model)->getK()); //FIXME: I really dislike this design
   }
+
   return kVector;
 }
 
