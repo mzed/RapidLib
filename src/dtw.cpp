@@ -67,7 +67,7 @@ T dtw<T>::getCost(const std::vector<std::vector<T>>& seriesX, const std::vector<
 
     for (std::size_t y { 1 }; y <= maxY; ++y)
     {
-      T minGlobalCost { fmin(costMatrix[x - 1][y - 1], costMatrix[x][y - 1]) };
+      T minGlobalCost { (std::min(costMatrix[x - 1][y - 1], costMatrix[x][y - 1])) };
       costMatrix[x][y] = minGlobalCost + distanceFunction(seriesX[x], seriesY[y]);
     }
   }
@@ -158,7 +158,7 @@ warpInfo<T> dtw<T>::constrainedDTW(const std::vector<std::vector<T> > &seriesX, 
       }
       else
       {
-        T minGlobalCost { fmin(costMatrix[currentX - 1][currentY], fmin(costMatrix[currentX-1][currentY-1], costMatrix[currentX][currentY-1])) };
+        T minGlobalCost { std::min(costMatrix[currentX - 1][currentY], std::min(costMatrix[currentX-1][currentY-1], costMatrix[currentX][currentY-1])) };
         costMatrix[currentX][currentY] = distanceFunction(seriesX[currentX], seriesY[currentY]) + minGlobalCost;
       }
     }
