@@ -12,7 +12,7 @@
 #include <vector>
 #include "baseModel.h"
 
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
 #include "../dependencies/json/json.h"
 #endif
 
@@ -81,7 +81,7 @@ class knnClassification final : public baseModel<T>
    */
   void setK(int newK);
 
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
   /** Populate a JSON value with a description of the current model
    * @param A JSON value to be populated
    */

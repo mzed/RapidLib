@@ -15,9 +15,11 @@
 #include <thread>
 #include "modelSet.h"
 
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
 #include "../dependencies/json/json.h"
-#else
+#endif
+
+#if defined(EMSCRIPTEN)
 #include "emscripten/modelSetEmbindings.h"
 #endif
 
@@ -129,7 +131,7 @@ std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector)
 
 
 
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
 //In emscripten, we do the JSON parsing with native JavaScript
 template<typename T>
 std::vector<T> json2vector(Json::Value json) 

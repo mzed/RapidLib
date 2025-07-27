@@ -20,7 +20,7 @@ template<typename T>
 warpInfo<T> fastDTW<T>::fullFastDTW(const std::vector<std::vector<T>>& seriesX, const std::vector<std::vector<T >>& seriesY, int searchRadius)
 {
 
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
   if (seriesY.size() > seriesX.size())
   {
     return fullFastDTW(seriesY, seriesX, searchRadius); //TODO: I'm not sure why I need this. Also, not sure why it fails with Emscripten.

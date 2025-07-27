@@ -13,7 +13,7 @@
 #include <vector>
 #include "trainingExample.h"
 
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
 #include "../dependencies/json/json.h"
 #endif
 
@@ -49,7 +49,7 @@ public:
     virtual size_t getNumInputs() const = 0;
     virtual std::vector<size_t> getWhichInputs() const = 0;
 
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
     virtual void getJSONDescription(Json::Value& currentModel) = 0;
 
 protected:

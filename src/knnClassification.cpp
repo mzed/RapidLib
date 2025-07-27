@@ -7,9 +7,11 @@
 //
 
 #include "knnClassification.h"
+
+#include <cmath>
+
 #include <algorithm>
 #include <map>
-#include <math.h>
 #include <utility>
 #include <vector>
 #ifdef EMSCRIPTEN
@@ -174,7 +176,7 @@ T knnClassification<T>::run(const std::vector<T> &inputVector)
   return foundClass;
 }
 
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
 template <typename T>
 void knnClassification<T>::getJSONDescription(Json::Value &jsonModelDescription)
 {

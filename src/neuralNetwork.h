@@ -12,7 +12,7 @@
 #include <vector>
 #include "baseModel.h"
 
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
 #include "../dependencies/json/json.h"
 #endif
 
@@ -81,7 +81,7 @@ public:
     T getOutRange() const;
     T getOutBase() const;
 
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
     void getJSONDescription(Json::Value& currentModel) override;
 #endif
 

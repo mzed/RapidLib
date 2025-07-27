@@ -7,6 +7,11 @@ else()
     add_compile_options(-std=c++20 -O2)   
 endif()
 
+option(RAPIDLIB_DISABLE_JSONCPP "Disable jsoncpp integration." OFF)
+if(EMSCRIPTEN)
+		set(RAPIDLIB_DISABLE_JSONCPP ON)
+endif()
+
 # Threads
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
@@ -28,15 +33,20 @@ file(GLOB JSON_SRC "${PROJECT_SOURCE_DIR}/dependencies/jsoncpp.cpp")
 file(GLOB BAYES_SRC "${PROJECT_SOURCE_DIR}/dependencies/bayesfilter/src/*.cpp")
 
 # Set the source for the main library, using the groups defined above
-set(RAPIDLIB_FULL_SRC 
+set(RAPIDLIB_FULL_SRC
 		${RAPIDLIB_SRC}
 		${RAPIDLIB_DEP}
-		${JSON_SRC}
 		${BAYES_SRC}
-	)
+  )
 
 add_library(${PROJECT_NAME} SHARED ${RAPIDLIB_FULL_SRC})
 add_executable(rapidLibTest test/rapidLibTest.cpp)
+
+if(RAPIDLIB_DISABLE_JSONCPP)
+		target_compile_definitions(${PROJECT_NAME} PUBLIC RAPIDLIB_DISABLE_JSONCPP)
+else()
+		target_sources(${PROJECT_NAME} PUBLIC ${JSON_SRC})
+endif()
 
 #include(GenerateExportHeader)
 #generate_export_header(${PROJECT_NAME})
