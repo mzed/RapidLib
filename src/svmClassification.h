@@ -79,7 +79,7 @@ public:
      * @param A standard vector of doubles to be evaluated.
      * @return A single double: the nearest class as determined by k-nearest neighbor.
      */
-    T run(const std::vector<T> &inputVector) override;
+    T run(const std::vector<T> &inputVector) const override;
     
     void reset() override;
     

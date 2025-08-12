@@ -91,7 +91,7 @@ void knnClassification<T>::train(const std::vector<trainingExampleTemplate<T>>& 
 };
 
 template <typename T>
-T knnClassification<T>::run(const std::vector<T> &inputVector)
+T knnClassification<T>::run(const std::vector<T> &inputVector) const
 {
   std::vector<std::pair<int, T>> nearestNeighbours { static_cast<size_t>(currentK), std::make_pair(0, 0.0) }; // These are our k nearest neighbours
   std::pair<int, T> farthestNN{ 0, 0.0 }; // This one will be replaced if there's a closer one
