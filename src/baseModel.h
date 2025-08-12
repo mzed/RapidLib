@@ -42,7 +42,7 @@ class baseModel
 {
 public:
     virtual ~baseModel() {};
-    virtual T run(const std::vector<T>& inputVector) = 0; //TODO: I'd like this to be const
+    virtual T run(const std::vector<T>& inputVector) const = 0; //TODO: I'd like this to be const
     virtual void train(const std::vector<trainingExampleTemplate<T> >& trainingSet) = 0;
     virtual void train(const std::vector<trainingExampleTemplate<T> >& trainingSet, const std::size_t whichOutput) = 0;
     virtual void reset() = 0;;

@@ -44,7 +44,7 @@ class knnClassification final : public baseModel<T>
    * @param A standard vector of type T to be evaluated.
    * @return A single value of type T: the nearest class as determined by k-nearest neighbor.
    */
-  T run(const std::vector<T>& inputVector) override;
+  T run(const std::vector<T>& inputVector) const override;
 
   /** Fill the model with a vector of examples.
    *
