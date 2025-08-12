@@ -31,12 +31,13 @@ file(GLOB BAYES_SRC "${PROJECT_SOURCE_DIR}/dependencies/bayesfilter/src/*.cpp")
 set(RAPIDLIB_FULL_SRC 
 		${RAPIDLIB_SRC}
 		${RAPIDLIB_DEP}
-		${JSON_SRC}
-		${BAYES_SRC}
 	)
 
 add_library(${PROJECT_NAME} SHARED ${RAPIDLIB_FULL_SRC})
 add_executable(rapidLibTest test/rapidLibTest.cpp)
+
+target_sources(${PROJECT_NAME} PRIVATE ${JSON_SRC})
+target_sources(${PROJECT_NAME} PRIVATE ${BAYES_SRC})
 
 #include(GenerateExportHeader)
 #generate_export_header(${PROJECT_NAME})
