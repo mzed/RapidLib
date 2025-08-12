@@ -15,7 +15,7 @@
 #include "neuralNetwork.h"
 #include "knnClassification.h"
 #include "svmClassification.h"
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
 #include "../dependencies/json/json.h"
 #endif
 
@@ -48,7 +48,7 @@ protected:
     bool isTrained;
     void threadTrain(std::size_t i, const std::vector<trainingExampleTemplate<T> >& training_set);
 
-#ifndef EMSCRIPTEN //The javascript code will do its own JSON parsing
+#ifndef RAPIDLIB_DISABLE_JSONCPP //The javascript code will do its own JSON parsing
 public:
 
     /** Get a JSON representation of the model

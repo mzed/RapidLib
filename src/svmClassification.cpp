@@ -262,7 +262,7 @@ std::vector<size_t> svmClassification<T>::getWhichInputs() const {
     return returnVec;
 };
 
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
 template<typename T>
 void svmClassification<T>::getJSONDescription(Json::Value &currentModel){
     

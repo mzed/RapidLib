@@ -6,9 +6,10 @@
 //  Copyright © 2016 Goldsmiths. All rights reserved.
 //
 
-
-#include <vector>
 #include "classification.h"
+
+#include <stdexcept>
+#include <vector>
 #ifdef EMSCRIPTEN
 #include "emscripten/classificationEmbindings.h"
 #endif

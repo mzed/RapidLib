@@ -327,7 +327,7 @@ T neuralNetwork<T>::getOutBase() const
   return outBase;
 }
 
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
 template<typename T>
 void neuralNetwork<T>::getJSONDescription(Json::Value& jsonModelDescription)
 {

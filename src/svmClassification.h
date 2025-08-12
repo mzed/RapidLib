@@ -113,7 +113,7 @@ public:
     size_t getNumInputs() const override;
     std::vector<size_t> getWhichInputs() const override;
         
-#ifndef EMSCRIPTEN
+#ifndef RAPIDLIB_DISABLE_JSONCPP
     void getJSONDescription(Json::Value &currentModel) override;
 #endif
     
