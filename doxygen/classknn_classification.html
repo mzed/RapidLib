@@ -130,8 +130,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4ba014191f6af7fc093b85ce6f1b3cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab063c995eafc46452033dc15f75df5b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#ab063c995eafc46452033dc15f75df5b1">addNeighbour</a> (const int classNum, const std::vector&lt; T &gt; &amp;features)</td></tr>
 <tr class="separator:ab063c995eafc46452033dc15f75df5b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac78e863b01422553e6360caa13620fde"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#ac78e863b01422553e6360caa13620fde">run</a> (const std::vector&lt; T &gt; &amp;inputVector) override</td></tr>
-<tr class="separator:ac78e863b01422553e6360caa13620fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa891133832f54ccf1e177c2da2c2dba6"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#aa891133832f54ccf1e177c2da2c2dba6">run</a> (const std::vector&lt; T &gt; &amp;inputVector) const override</td></tr>
+<tr class="separator:aa891133832f54ccf1e177c2da2c2dba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac953965e1cf8a1efa083ac5d67255a7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#ac953965e1cf8a1efa083ac5d67255a7d">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet) override</td></tr>
 <tr class="separator:ac953965e1cf8a1efa083ac5d67255a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c5abb3362a7eef0ce5865fb14cf7e0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a4c5abb3362a7eef0ce5865fb14cf7e0c">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt;&gt; &amp;trainingSet, const std::size_t whichOutput) override</td></tr>
@@ -409,8 +409,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="ac78e863b01422553e6360caa13620fde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac78e863b01422553e6360caa13620fde">&#9670;&nbsp;</a></span>run()</h2>
+<a id="aa891133832f54ccf1e177c2da2c2dba6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa891133832f54ccf1e177c2da2c2dba6">&#9670;&nbsp;</a></span>run()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -425,7 +425,7 @@ template&lt;typename T &gt; </div>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>inputVector</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -442,7 +442,7 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A single value of type T: the nearest class as determined by k-nearest neighbor. </dd></dl>
 
-<p>Implements <a class="el" href="classbase_model.html#a4c57cc5edffbfd8ed959e049e5951ebf">baseModel&lt; T &gt;</a>.</p>
+<p>Implements <a class="el" href="classbase_model.html#a9837d4f14eef56f6e2d5792365e84a9c">baseModel&lt; T &gt;</a>.</p>
 
 </div>
 </div>

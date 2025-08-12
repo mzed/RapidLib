@@ -22,7 +22,7 @@ var classsvm_classification =
     [ "getWhichInputs", "classsvm_classification.html#a36381ed6f8f7f6b051e313cfaf46c189", null ],
     [ "init", "classsvm_classification.html#aa3c095477366a40e13734788df155399", null ],
     [ "reset", "classsvm_classification.html#ad654279b9b8c11cf18242ad1d31cf8a1", null ],
-    [ "run", "classsvm_classification.html#a238f318cbd697bed95c6967aa5153cb0", null ],
+    [ "run", "classsvm_classification.html#a54a7c9664418d3d4c1fbf9a74e09ceda", null ],
     [ "train", "classsvm_classification.html#a23de13e7fef307193249c259eab32a81", null ],
     [ "train", "classsvm_classification.html#a55f8deffe659f06f1b9d6bf2fe39abb5", null ]
 ];

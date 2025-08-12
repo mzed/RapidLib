@@ -128,8 +128,8 @@ Collaboration diagram for baseModel&lt; T &gt;:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac16b40e0a37c3ddc335d44b0668df4e2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#ac16b40e0a37c3ddc335d44b0668df4e2">~baseModel</a> ()</td></tr>
 <tr class="separator:ac16b40e0a37c3ddc335d44b0668df4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c57cc5edffbfd8ed959e049e5951ebf"><td class="memItemLeft" align="right" valign="top">virtual T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a4c57cc5edffbfd8ed959e049e5951ebf">run</a> (const std::vector&lt; T &gt; &amp;inputVector)=0</td></tr>
-<tr class="separator:a4c57cc5edffbfd8ed959e049e5951ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9837d4f14eef56f6e2d5792365e84a9c"><td class="memItemLeft" align="right" valign="top">virtual T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a9837d4f14eef56f6e2d5792365e84a9c">run</a> (const std::vector&lt; T &gt; &amp;inputVector) const =0</td></tr>
+<tr class="separator:a9837d4f14eef56f6e2d5792365e84a9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3f6b2b8ca325306be05a8929871dcd6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#ae3f6b2b8ca325306be05a8929871dcd6">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet)=0</td></tr>
 <tr class="separator:ae3f6b2b8ca325306be05a8929871dcd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab178dbf9969eb61ca9b53388d0348c19"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#ab178dbf9969eb61ca9b53388d0348c19">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet, const std::size_t whichOutput)=0</td></tr>
@@ -303,8 +303,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a4c57cc5edffbfd8ed959e049e5951ebf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c57cc5edffbfd8ed959e049e5951ebf">&#9670;&nbsp;</a></span>run()</h2>
+<a id="a9837d4f14eef56f6e2d5792365e84a9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9837d4f14eef56f6e2d5792365e84a9c">&#9670;&nbsp;</a></span>run()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -319,7 +319,7 @@ template&lt;typename T &gt; </div>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>inputVector</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -329,7 +329,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classsvm_classification.html#a238f318cbd697bed95c6967aa5153cb0">svmClassification&lt; T &gt;</a>, <a class="el" href="classneural_network.html#ab2f9ce776bec91038721686bafe02bf5">neuralNetwork&lt; T &gt;</a>, and <a class="el" href="classknn_classification.html#ac78e863b01422553e6360caa13620fde">knnClassification&lt; T &gt;</a>.</p>
+<p>Implemented in <a class="el" href="classsvm_classification.html#a54a7c9664418d3d4c1fbf9a74e09ceda">svmClassification&lt; T &gt;</a>, <a class="el" href="classneural_network.html#a9acec74e15163e25ff5d3aa1b9951143">neuralNetwork&lt; T &gt;</a>, and <a class="el" href="classknn_classification.html#aa891133832f54ccf1e177c2da2c2dba6">knnClassification&lt; T &gt;</a>.</p>
 
 </div>
 </div>

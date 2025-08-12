@@ -158,8 +158,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a23de13e7fef307193249c259eab32a81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55f8deffe659f06f1b9d6bf2fe39abb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#a55f8deffe659f06f1b9d6bf2fe39abb5">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet, const std::size_t whichOutput) override</td></tr>
 <tr class="separator:a55f8deffe659f06f1b9d6bf2fe39abb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a238f318cbd697bed95c6967aa5153cb0"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#a238f318cbd697bed95c6967aa5153cb0">run</a> (const std::vector&lt; T &gt; &amp;inputVector) override</td></tr>
-<tr class="separator:a238f318cbd697bed95c6967aa5153cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54a7c9664418d3d4c1fbf9a74e09ceda"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#a54a7c9664418d3d4c1fbf9a74e09ceda">run</a> (const std::vector&lt; T &gt; &amp;inputVector) const override</td></tr>
+<tr class="separator:a54a7c9664418d3d4c1fbf9a74e09ceda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad654279b9b8c11cf18242ad1d31cf8a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#ad654279b9b8c11cf18242ad1d31cf8a1">reset</a> () override</td></tr>
 <tr class="separator:ad654279b9b8c11cf18242ad1d31cf8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3c095477366a40e13734788df155399"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#aa3c095477366a40e13734788df155399">init</a> (<a class="el" href="classsvm_classification.html#aee913f59a2aad7e1ea3f27ce9ef732e8">KernelType</a> kernelType, <a class="el" href="classsvm_classification.html#aa4fcd506f5684a1c466ecc54cdeca285">SVMType</a> svmType, bool useScaling, bool useNullRejection, bool useAutoGamma, float gamma, unsigned int degree, float coef0, float nu, float C, bool useCrossValidation, unsigned int kFoldValue)</td></tr>
@@ -596,8 +596,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a238f318cbd697bed95c6967aa5153cb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a238f318cbd697bed95c6967aa5153cb0">&#9670;&nbsp;</a></span>run()</h2>
+<a id="a54a7c9664418d3d4c1fbf9a74e09ceda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54a7c9664418d3d4c1fbf9a74e09ceda">&#9670;&nbsp;</a></span>run()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -612,7 +612,7 @@ template&lt;typename T &gt; </div>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>inputVector</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -629,7 +629,7 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A single double: the nearest class as determined by k-nearest neighbor. </dd></dl>
 
-<p>Implements <a class="el" href="classbase_model.html#a4c57cc5edffbfd8ed959e049e5951ebf">baseModel&lt; T &gt;</a>.</p>
+<p>Implements <a class="el" href="classbase_model.html#a9837d4f14eef56f6e2d5792365e84a9c">baseModel&lt; T &gt;</a>.</p>
 
 </div>
 </div>
