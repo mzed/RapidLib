@@ -393,58 +393,17 @@ void neuralNetwork<T>::getJSONDescription(Json::Value& jsonModelDescription)
 template<typename T>
 T neuralNetwork<T>::run(const std::vector<T>& inputVector) const
 {
-  std::vector<T> localInputLayer(numInputs);
-  localInputLayer.push_back(1.0); // layer bias
-  std::vector<std::vector<T> > localHiddenLayers(numHiddenLayers, std::vector<T>(numHiddenNodes + 1));
+  std::vector<T> localInputLayer { inputLayer };
+  std::vector<std::vector<T> > localHiddenLayers { hiddenLayers };
   T localOutputNeuron {};
 
-  std::vector<T> pattern;
-  for (size_t h {}; h < numInputs; h++)
-  {
-    pattern.push_back(inputVector[whichInputs[h]]);
-  }
+  runInternal(inputVector, localInputLayer, localHiddenLayers, localOutputNeuron);
 
-  //set input layer
-  for (size_t i {}; i < numInputs; ++i)
-  {
-    localInputLayer[i] = (pattern[i] - inBases[i]) / inRanges[i];
-  }
-
-  //calculate hidden layers
-  for (size_t layerNum {}; auto& layer : localHiddenLayers)
-  {
-    for (size_t j {}; j < numHiddenNodes; ++j)
-    {
-      layer[j] = 0;
-
-      const auto& previousLayer { layerNum == 0 ? localInputLayer : localHiddenLayers[layerNum - 1] };
-
-      for (size_t k {}; auto& input : previousLayer)
-      {
-        layer[j] += input * weights[layerNum][j][k];
-        ++k;
-      }
-
-      layer[j] = activationFunction(layer[j]);
-    }
-
-    layer.back() = 1.0; //for bias weight
-    ++layerNum;
-  }
-
-  //calculate output
-  for (size_t i {}; auto& hiddenNeuron : localHiddenLayers.back())
-  {
-    localOutputNeuron += hiddenNeuron * wHiddenOutput[i];
-    ++i;
-  }
-
-  //if classifier, outputNeuron = activationFunction(outputNeuron), else...
-  return (localOutputNeuron * outRange) + outBase;
+  return localOutputNeuron;
 }
 
 template<typename T>
-T neuralNetwork<T>::runForTraining(const std::vector<T>& inputVector)
+void neuralNetwork<T>::runInternal(const std::vector<T>& inputVector, std::vector<T>& inputLayer, std::vector<std::vector<T>>& hiddenLayers, T& outputNeuron) const
 {
   std::vector<T> pattern;
   for (size_t h {}; h < numInputs; ++h)
@@ -490,7 +449,6 @@ T neuralNetwork<T>::runForTraining(const std::vector<T>& inputVector)
 
   //if classifier, outputNeuron = activationFunction(outputNeuron), else...
   outputNeuron = (outputNeuron * outRange) + outBase;
-  return outputNeuron;
 }
 
 template<typename T>
@@ -544,7 +502,7 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
       //run through every training instance
       for (auto trainingExample : trainingSet)
       {
-        runForTraining(trainingExample.input);
+        runInternal(trainingExample.input, inputLayer, hiddenLayers, outputNeuron );
         backpropagate(trainingExample.output[whichOutput]);
       }
     }

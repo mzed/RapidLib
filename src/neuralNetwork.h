@@ -153,7 +153,7 @@ private:
     /** Propagate output error back through the network.
      * @param The desired output of the network is fed into the function, and compared with the actual output
      */
-    T runForTraining(const std::vector<T>& inputVector);
+    void runInternal(const std::vector<T>& inputVector, std::vector<T>& inputLayer, std::vector<std::vector<T>>& hiddenLayers, T& outputNeuron) const;
     void backpropagate(const T& desiredOutput);
 
     /** Apply corrections to network weights, based on output error */
