@@ -45,7 +45,7 @@ add_executable(rapidLibTest test/rapidLibTest.cpp)
 if(RAPIDLIB_DISABLE_JSONCPP)
 		target_compile_definitions(${PROJECT_NAME} PUBLIC RAPIDLIB_DISABLE_JSONCPP)
 else()
-		target_sources(${PROJECT_NAME} PUBLIC ${JSON_SRC})
+		target_sources(${PROJECT_NAME} PRIVATE ${JSON_SRC})
 endif()
 
 #include(GenerateExportHeader)
@@ -56,3 +56,4 @@ target_link_libraries(rapidLibTest Threads::Threads)
 
 enable_testing()
 add_test(rapidLibTest rapidLibTest)
+
