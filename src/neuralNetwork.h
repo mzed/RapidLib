@@ -57,7 +57,7 @@ public:
      * @param vector A standard vector of type T that feed-forward regression will run on.
      * @return T A single value, which is the result of the feed-forward operation
      */
-    T run(const std::vector<T>& inputVector) override;
+    T run(const std::vector<T>& inputVector) const override;
 
     void reset() override;
 
@@ -109,7 +109,7 @@ private:
     T outBase;
 
     /** Sigmoid function for activating hidden nodes. */
-    inline T activationFunction(T);
+    inline T activationFunction(T) const;
 
     ////////////////////////////////////////////////////////////////////////////
     /// These pertain to the training, and aren't need to run a trained model //
@@ -153,6 +153,7 @@ private:
     /** Propagate output error back through the network.
      * @param The desired output of the network is fed into the function, and compared with the actual output
      */
+    void runInternal(const std::vector<T>& inputVector, std::vector<T>& inputLayer, std::vector<std::vector<T>>& hiddenLayers, T& outputNeuron) const;
     void backpropagate(const T& desiredOutput);
 
     /** Apply corrections to network weights, based on output error */

@@ -24,17 +24,15 @@ public:
      */
     void add(std::size_t x, std::size_t y);
     
-    std::vector< std::pair<std::size_t, std::size_t> > indices;
+    std::vector<std::pair<std::size_t, std::size_t>> indices;
 };
 
 /** return struct holding a warp path and the cost of that path */
 template<typename T>
 struct warpInfo 
 {
-public:
     warpPath path;
     T cost;
-    
 };
 
 #endif

@@ -47,7 +47,8 @@ int main(int argc, const char * argv[])
     std::vector<rapidLib::trainingSeries> testVector;
     rapidLib::trainingSeries tempSeriesTest;
 
-    for (int i = 0; i < 5; ++i) {
+    for (std::size_t i = 0; i < 5; ++i) 
+    {
         tempSeriesTest.input.push_back({ 0.1, 0.1, 0.1 });
     }
     tempSeriesTest.label = "zzz";
@@ -195,18 +196,22 @@ int main(int argc, const char * argv[])
     
     //Testing exceptions for regression
     std::vector<double> emptyVec = {};
-    try {
+    try 
+    {
         myNN.run(emptyVec);
     }
-    catch (const std::length_error& e) {
+    catch (const std::length_error& e) 
+    {
         assert(e.what() == std::string("bad input size: 0"));
     }
 
     std::vector<double> wrongSizeVector = { 1, 1, 1, 1, 1, 1 };
-    try {
+    try 
+    {
         myNN.run(wrongSizeVector);
     }
-    catch (const std::length_error& e) {
+    catch (const std::length_error& e) 
+    {
         assert(e.what() == std::string("bad input size: 6"));
     }
     std::cout << "----- Regression run exceptions passed." << std::endl;
@@ -222,10 +227,12 @@ int main(int argc, const char * argv[])
     badExample.output = { 4.0 };
     badSet.push_back(badExample);
 
-    try {
+    try 
+    {
         badNN.train(badSet);
     }
-    catch (const std::length_error& e) {
+    catch (const std::length_error& e) 
+    {
         assert(e.what() == std::string("unequal feature vectors in input."));
     }
 
@@ -238,10 +245,12 @@ int main(int argc, const char * argv[])
     badExample.output = { 4.0, 5.0 };
     badSet.push_back(badExample);
 
-    try {
+    try 
+    {
         badNN.train(badSet);
     }
-    catch (const std::length_error& e) {
+    catch (const std::length_error& e) 
+    {
         assert(e.what() == std::string("unequal output vectors."));
     }
     std::cout << "----- Regression train exceptions passed." << std::endl;
@@ -271,17 +280,22 @@ int main(int argc, const char * argv[])
     assert(myKnn.run(inputVec)[0] == myKnnFromString.run(inputVec)[0]);
     assert(myKnn.run(inputVec)[0] == myKnnFromFile.run(inputVec)[0]);
 
-    try {
+    std::cout << "These errors are part of the test:" << std::endl;
+    try 
+    {
         myKnn.run(emptyVec);
     }
-    catch (const std::length_error& e) {
+    catch (const std::length_error& e) 
+    {
         std::cout << "error: " << e.what() << std::endl;
         assert(e.what() == std::string("bad input size: 0"));
     }
-    try {
+    try 
+    {
         myKnn.run(wrongSizeVector);
     }
-    catch (const std::length_error& e) {
+    catch (const std::length_error& e) 
+    {
         std::cout << "error: " << e.what() << std::endl;
         assert(e.what() == std::string("bad input size: 6"));
     }
@@ -298,10 +312,12 @@ int main(int argc, const char * argv[])
     std::default_random_engine generator;
     std::uniform_real_distribution<float> distribution(-0.5, 0.5);
     int vecLength = 64;
-    for (int j = 0; j < vecLength; ++j) {
+    for (std::size_t j = 0; j < vecLength; ++j) 
+    {
         tempExample2.input.clear();
         tempExample2.output.clear();
-        for (int i = 0; i < vecLength; ++i) {
+        for (std::size_t i = 0; i < vecLength; ++i) 
+        {
             tempExample2.input.push_back(distribution(generator));
         }
         tempExample2.output = { distribution(generator) };
@@ -309,7 +325,8 @@ int main(int argc, const char * argv[])
     }
     //    bigVector.train(trainingSet2);
     std::vector<float> inputVec2;
-    for (int i = 0; i < vecLength; ++i) {
+    for (std::size_t i = 0; i < vecLength; ++i) 
+    {
         inputVec2.push_back(distribution(generator));
     }
     //    assert (isfinite(bigVector.run(inputVec2)[0]));
@@ -453,18 +470,20 @@ int main(int argc, const char * argv[])
      */
 
      //Long dtw test
-    int testSize = 800;
+    std::size_t testSize = 800;
     seriesVector.clear();
     std::vector<std::vector<double> > inputSeries;
     tempSeries.input.clear();
-    for (int i = 0; i < testSize; ++i) {
+    for (std::size_t i = 0; i < testSize; ++i) 
+    {
         tempSeries.input.push_back({ (double)i, (double)i });
     }
     tempSeries.label = "long up";
     seriesVector.push_back(tempSeries);
 
     tempSeries.input.clear();
-    for (int i = 0; i < testSize; ++i) {
+    for (std::size_t i = 0; i < testSize; ++i) 
+    {
         tempSeries.input.push_back({ (double)i, double(testSize - i) });
     }
     tempSeries.label = "long down";
@@ -526,12 +545,12 @@ int main(int argc, const char * argv[])
     mtofRegression.train(trainingSet_mtof);
 
     //Get some user input
-    int newNote = 0;
+    char newNote { 0 };
     std::cout << "Type a MIDI note number.\n"; std::cin >> newNote;
 
     //Run the trained model on the user input
     std::vector<double> inputVec_mtof = { double(newNote) };
-    double freqHz = mtofRegression.run(inputVec_mtof)[0];
+    double freqHz { mtofRegression.run(inputVec_mtof)[0] };
 
     std::cout << "MIDI note " << newNote << " is " << freqHz << " Hertz" << std::endl;
 #endif
