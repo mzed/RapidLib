@@ -11,8 +11,8 @@ var searchData=
   ['minmax_71',['minMax',['../structseries_classification_template_1_1min_max.html',1,'seriesClassificationTemplate']]],
   ['minmaxvalues_72',['minMaxValues',['../classsearch_window.html#aec949fac5e88ed2dbc55e1dc86fa31c3',1,'searchWindow']]],
   ['minvelocity_73',['minVelocity',['../classrapid_lib_1_1rapid_stream.html#af6ae8f4dd5eb284600c54888375ac3dc',1,'rapidLib::rapidStream']]],
-  ['modelset_74',['modelSet',['../classmodel_set.html',1,'modelSet&lt; T &gt;'],['../classmodel_set.html#af4fd9213c198a53f1dc2140f423da147',1,'modelSet::modelSet()']]],
-  ['modelset_2ecpp_75',['modelSet.cpp',['../model_set_8cpp.html',1,'']]],
-  ['modelset_2eh_76',['modelSet.h',['../model_set_8h.html',1,'']]],
-  ['mymodelset_77',['myModelSet',['../classmodel_set.html#a3125419e0d392b4bfab347389278f404',1,'modelSet']]]
+  ['models_74',['models',['../classmodel_set.html#a4046fe44942080324e1786b7a026f088',1,'modelSet']]],
+  ['modelset_75',['modelSet',['../classmodel_set.html',1,'modelSet&lt; T &gt;'],['../classmodel_set.html#af4fd9213c198a53f1dc2140f423da147',1,'modelSet::modelSet()']]],
+  ['modelset_2ecpp_76',['modelSet.cpp',['../model_set_8cpp.html',1,'']]],
+  ['modelset_2eh_77',['modelSet.h',['../model_set_8h.html',1,'']]]
 ];

@@ -13,7 +13,7 @@ var classmodel_set =
     [ "inputNames", "classmodel_set.html#abfecf38aea9d66c9becd61f9051f86fd", null ],
     [ "isTrained", "classmodel_set.html#a626880f47b82c9a6922803fb25f27f27", null ],
     [ "isTraining", "classmodel_set.html#af8f753a5c17edac2b16f10bc5c067698", null ],
-    [ "myModelSet", "classmodel_set.html#a3125419e0d392b4bfab347389278f404", null ],
+    [ "models", "classmodel_set.html#a4046fe44942080324e1786b7a026f088", null ],
     [ "numInputs", "classmodel_set.html#ad4cd50c1dd5fc1d4ef55a24dbddfda1c", null ],
     [ "numOutputs", "classmodel_set.html#aa7a70546de7da2e8ba868ead39d592ca", null ]
 ];

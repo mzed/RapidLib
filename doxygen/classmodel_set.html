@@ -152,17 +152,17 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a3125419e0d392b4bfab347389278f404"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classbase_model.html">baseModel</a>&lt; T &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a3125419e0d392b4bfab347389278f404">myModelSet</a></td></tr>
-<tr class="separator:a3125419e0d392b4bfab347389278f404"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4cd50c1dd5fc1d4ef55a24dbddfda1c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#ad4cd50c1dd5fc1d4ef55a24dbddfda1c">numInputs</a></td></tr>
+<tr class="memitem:a4046fe44942080324e1786b7a026f088"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classbase_model.html">baseModel</a>&lt; T &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a4046fe44942080324e1786b7a026f088">models</a> {}</td></tr>
+<tr class="separator:a4046fe44942080324e1786b7a026f088"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4cd50c1dd5fc1d4ef55a24dbddfda1c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#ad4cd50c1dd5fc1d4ef55a24dbddfda1c">numInputs</a> {}</td></tr>
 <tr class="separator:ad4cd50c1dd5fc1d4ef55a24dbddfda1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfecf38aea9d66c9becd61f9051f86fd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#abfecf38aea9d66c9becd61f9051f86fd">inputNames</a></td></tr>
+<tr class="memitem:abfecf38aea9d66c9becd61f9051f86fd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#abfecf38aea9d66c9becd61f9051f86fd">inputNames</a> {}</td></tr>
 <tr class="separator:abfecf38aea9d66c9becd61f9051f86fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7a70546de7da2e8ba868ead39d592ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#aa7a70546de7da2e8ba868ead39d592ca">numOutputs</a></td></tr>
+<tr class="memitem:aa7a70546de7da2e8ba868ead39d592ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#aa7a70546de7da2e8ba868ead39d592ca">numOutputs</a> {}</td></tr>
 <tr class="separator:aa7a70546de7da2e8ba868ead39d592ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8f753a5c17edac2b16f10bc5c067698"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#af8f753a5c17edac2b16f10bc5c067698">isTraining</a></td></tr>
+<tr class="memitem:af8f753a5c17edac2b16f10bc5c067698"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#af8f753a5c17edac2b16f10bc5c067698">isTraining</a> {}</td></tr>
 <tr class="separator:af8f753a5c17edac2b16f10bc5c067698"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a626880f47b82c9a6922803fb25f27f27"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a626880f47b82c9a6922803fb25f27f27">isTrained</a></td></tr>
+<tr class="memitem:a626880f47b82c9a6922803fb25f27f27"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel_set.html#a626880f47b82c9a6922803fb25f27f27">isTrained</a> {}</td></tr>
 <tr class="separator:a626880f47b82c9a6922803fb25f27f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -428,7 +428,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::string&gt; <a class="el" href="classmodel_set.html">modelSet</a>&lt; T &gt;::inputNames</td>
+          <td class="memname">std::vector&lt;std::string&gt; <a class="el" href="classmodel_set.html">modelSet</a>&lt; T &gt;::inputNames {}</td>
         </tr>
       </table>
   </td>
@@ -452,7 +452,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classmodel_set.html">modelSet</a>&lt; T &gt;::isTrained</td>
+          <td class="memname">bool <a class="el" href="classmodel_set.html">modelSet</a>&lt; T &gt;::isTrained {}</td>
         </tr>
       </table>
   </td>
@@ -476,7 +476,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classmodel_set.html">modelSet</a>&lt; T &gt;::isTraining</td>
+          <td class="memname">bool <a class="el" href="classmodel_set.html">modelSet</a>&lt; T &gt;::isTraining {}</td>
         </tr>
       </table>
   </td>
@@ -488,8 +488,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a3125419e0d392b4bfab347389278f404"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3125419e0d392b4bfab347389278f404">&#9670;&nbsp;</a></span>myModelSet</h2>
+<a id="a4046fe44942080324e1786b7a026f088"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4046fe44942080324e1786b7a026f088">&#9670;&nbsp;</a></span>models</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -500,7 +500,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="classbase_model.html">baseModel</a>&lt;T&gt;*&gt; <a class="el" href="classmodel_set.html">modelSet</a>&lt; T &gt;::myModelSet</td>
+          <td class="memname">std::vector&lt;<a class="el" href="classbase_model.html">baseModel</a>&lt;T&gt;*&gt; <a class="el" href="classmodel_set.html">modelSet</a>&lt; T &gt;::models {}</td>
         </tr>
       </table>
   </td>
@@ -524,7 +524,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="classmodel_set.html">modelSet</a>&lt; T &gt;::numInputs</td>
+          <td class="memname">int <a class="el" href="classmodel_set.html">modelSet</a>&lt; T &gt;::numInputs {}</td>
         </tr>
       </table>
   </td>
@@ -548,7 +548,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="classmodel_set.html">modelSet</a>&lt; T &gt;::numOutputs</td>
+          <td class="memname">int <a class="el" href="classmodel_set.html">modelSet</a>&lt; T &gt;::numOutputs {}</td>
         </tr>
       </table>
   </td>
