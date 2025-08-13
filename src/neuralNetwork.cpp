@@ -188,9 +188,6 @@ void neuralNetwork<T>::reset()
     weights.push_back(layer);
   }
 
-    weights.push_back(layer);
-  }
-
   wHiddenOutput.clear();
 
   for (size_t i {}; i <= numHiddenNodes; ++i)
@@ -437,8 +434,6 @@ void neuralNetwork<T>::runInternal(const std::vector<T>& inputVector, std::vecto
       layer[j] = activationFunction(layer[j]);
     }
 
-  }
-}
     layer.back() = 1.0; //for bias weight
     ++layerNum;
   }
