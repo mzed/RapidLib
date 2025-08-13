@@ -32,7 +32,7 @@ namespace rapidLib
 template<typename T>
 struct trainingSeriesTemplate
 {
-    std::vector<std::vector<T> > input;
+    std::vector<std::vector<T>> input;
     std::string label;
 };
 

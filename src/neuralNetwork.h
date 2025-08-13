@@ -2,6 +2,7 @@
  * @file neuralNetwork.h
  *  RapidLib
  *
+ * @author Michael Zbyszynski
  * @date 05 Sep 2016
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */

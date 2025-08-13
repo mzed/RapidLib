@@ -1,10 +1,12 @@
-//
-//  modelSet.h
-//  RapidLib
-//
-//  Created by mzed on 26/09/2016.
-//  Copyright © 2016 Goldsmiths. All rights reserved.
-//
+/**
+ * @file modelSet.h
+ * RapidLib
+ *
+ * @author Michael Zbyszynski
+ * @date 26 Sep 2016
+ * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
+ */
+
 
 #ifndef MODELSET_H
 #define MODELSET_H
@@ -40,12 +42,13 @@ public:
     std::vector<T> run(const std::vector<T> &inputVector);
     
 protected:
-    std::vector<baseModel<T>*> myModelSet;
-    int numInputs;
-    std::vector<std::string> inputNames;
-    int numOutputs;
-    bool isTraining; //This is true while the models are training, and will block running
-    bool isTrained;
+    std::vector<baseModel<T>*> models {};
+    int numInputs {};
+    std::vector<std::string> inputNames {};
+    int numOutputs {};
+    bool isTraining {}; //This is true while the models are training, and will block running
+    bool isTrained {};
+
     void threadTrain(std::size_t i, const std::vector<trainingExampleTemplate<T> >& training_set);
 
 #ifndef EMSCRIPTEN //The javascript code will do its own JSON parsing

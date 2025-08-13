@@ -38,18 +38,16 @@ classificationTemplate<T>::classificationTemplate(const int &num_inputs, const i
   modelSet<T>::numInputs = num_inputs;
   modelSet<T>::numOutputs = num_outputs;
   modelSet<T>::isTraining = false;
-  std::vector<size_t> whichInputs;
-  
-  for (size_t i = 0; i < modelSet<T>::numInputs; ++i)
+  std::vector<size_t> whichInputs {};
+
+  for (size_t inputIndex {}; inputIndex < modelSet<T>::numInputs; ++inputIndex)
   {
-    whichInputs.push_back(i);
+    whichInputs.push_back(inputIndex);
   }
   std::vector<trainingExampleTemplate<T> > trainingSet;
-  
-  for (size_t i = 0; i < modelSet<T>::numOutputs; ++i)
-  {
-    modelSet<T>::myModelSet.push_back(new knnClassification<T>(modelSet<T>::numInputs, whichInputs, trainingSet, 1));
-  }
+
+
+  modelSet<T>::models = { static_cast<size_t>(modelSet<T>::numOutputs), new knnClassification<T>(modelSet<T>::numInputs, whichInputs, trainingSet, 1) };
 };
 
 template<typename T>
@@ -106,11 +104,11 @@ bool classificationTemplate<T>::train(const std::vector<trainingExampleTemplate<
     {
       if (classificationType == svm)
       {
-        modelSet<T>::myModelSet.push_back(new svmClassification<T>(modelSet<T>::numInputs));
+        modelSet<T>::models.push_back(new svmClassification<T>(modelSet<T>::numInputs));
       }
       else
       {
-        modelSet<T>::myModelSet.push_back(new knnClassification<T>(modelSet<T>::numInputs, whichInputs, training_set, 1));
+        modelSet<T>::models.push_back(new knnClassification<T>(modelSet<T>::numInputs, whichInputs, training_set, 1));
       }
     }
     
@@ -124,7 +122,7 @@ std::vector<int> classificationTemplate<T>::getK()
 {
   std::vector<int> kVector {};
 
-  for (const baseModel<T>* model : modelSet<T>::myModelSet)
+  for (const baseModel<T>* model : modelSet<T>::models)
   {
     kVector.push_back(dynamic_cast<const knnClassification<T>*>(model)->getK()); //FIXME: I really dislike this design
   }
@@ -135,9 +133,9 @@ std::vector<int> classificationTemplate<T>::getK()
 template<typename T>
 void classificationTemplate<T>::setK(const int whichModel, const int newK)
 {
-  if (modelSet<T>::myModelSet.size() > whichModel)
+  if (modelSet<T>::models.size() > whichModel)
   {
-    dynamic_cast<knnClassification<T>*>(modelSet<T>::myModelSet[whichModel])->setK(newK); //FIXME: I really dislike this design
+    dynamic_cast<knnClassification<T>*>(modelSet<T>::models[whichModel])->setK(newK); //FIXME: I really dislike this design
   }
   else
   {

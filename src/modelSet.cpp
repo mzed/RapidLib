@@ -1,19 +1,19 @@
-//
-//
-//  modelSet.cpp
-//  RapidLib
-//
-//  Created by mzed on 26/09/2016.
-//  Copyright © 2016 Goldsmiths. All rights reserved.
-//
+/**
+ * @file  modelSet.cpp
+ * RapidLib
+ *
+ * @author Michael Zbsyzynski
+ * @date 26 Sep 2016
+ * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
+ */
 
+#include "modelSet.h"
 
 #include <fstream>
 #include <vector>
 #include <cmath>
 #include <algorithm>
 #include <thread>
-#include "modelSet.h"
 
 #ifndef EMSCRIPTEN
 #include "../dependencies/json/json.h"
@@ -34,111 +34,99 @@ modelSet<T>::modelSet() :
 template<typename T>
 modelSet<T>::~modelSet() 
 {
-    for (auto& model : myModelSet) 
-    {
-        delete model;
-    }
+    for (auto& model : models) delete model;
 };
 
 template<typename T>
 bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set) 
 {
-    bool success = false;
     if (isTraining)
     {
         throw std::runtime_error("model is already training");
+        return false;
     }
-    else
+
+    for (const trainingExampleTemplate<T>& example : training_set)
     {
-        for (trainingExampleTemplate<T> example : training_set)
+        if (example.input.size() != numInputs)
         {
-            if (example.input.size() != numInputs)
-            {
-                throw std::length_error("unequal feature vectors in input.");
-                return false;
-            }
-            if (example.output.size() != numOutputs)
-            {
-                throw std::length_error("unequal output vectors.");
-                return false;
-            }
+            throw std::length_error("unequal feature vectors in input.");
+            return false;
         }
 
-        // Multithreaded training
-        std::vector<std::thread> trainingThreads;
-        for (std::size_t i = 0; i < myModelSet.size(); ++i)
+        if (example.output.size() != numOutputs)
         {
-            trainingThreads.push_back(std::thread(&modelSet<T>::threadTrain, this, i, training_set));
+            throw std::length_error("unequal output vectors.");
+            return false;
         }
-
-        for (std::size_t i = 0; i < myModelSet.size(); ++i)
-        {
-            trainingThreads.at(i).join();
-        }
-        isTraining = false;
-        success = isTrained = true;
     }
-    return success;
+
+    // Multithreaded training
+    std::vector<std::thread> trainingThreads;
+    for (size_t modelIndex {}; modelIndex < models.size(); ++modelIndex)
+    {
+        trainingThreads.push_back(std::thread(&modelSet<T>::threadTrain, this, modelIndex, training_set));
+    }
+
+    for (std::size_t modelIndex {}; modelIndex < models.size(); ++modelIndex)
+    {
+        trainingThreads.at(modelIndex).join();
+    }
+
+    isTraining = false;
+    isTrained = true;
+
+    return isTrained;
 }
 
 template<typename T>
-void modelSet<T>::threadTrain(std::size_t i, const std::vector<trainingExampleTemplate<T> > &training_set) 
+void modelSet<T>::threadTrain(std::size_t modelIndex, const std::vector<trainingExampleTemplate<T>>& training_set)
 {
-    myModelSet[i]->train(training_set, i);
+  models[modelIndex]->train(training_set, modelIndex);
 }
 
 template<typename T>
 bool modelSet<T>::reset() 
 {
-    for (auto& model : myModelSet) 
-    {
-        delete model;
-    }
-    myModelSet.clear();
+    for (auto& model : models) delete model;
+    models.clear();
     numInputs = -1;
     numOutputs = -1;
     isTraining = false;
+
     return true;
 }
 
 template<typename T>
 std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector) 
 {
-    std::vector<T> returnVector;
+  std::vector<T> returnVector {};
 
     if (isTraining)
     {
         throw std::runtime_error("can't run a model during training");
-        returnVector.push_back(0);
+        return returnVector;
     }
-    else if (inputVector.size() != numInputs) 
+
+    if (inputVector.size() != numInputs)
     {
         std::string badSize = std::to_string(inputVector.size());
         throw std::length_error("bad input size: " + badSize);
-        returnVector.push_back(0);
-    } 
-    else 
-    {
-        for (auto model : myModelSet)
-        {
-            returnVector.push_back(model->run(inputVector));
-        }
+        return returnVector;
     }
+
+    for (auto model : models) returnVector.push_back(model->run(inputVector));
+
     return returnVector;
 }
-
-
 
 #ifndef EMSCRIPTEN
 //In emscripten, we do the JSON parsing with native JavaScript
 template<typename T>
 std::vector<T> json2vector(Json::Value json) 
 {
-    std::vector<T> returnVec;
-    for (auto jsonValue : json) 
-    {
-        returnVec.push_back((T)jsonValue.asDouble());
-    }
+    std::vector<T> returnVec {};
+    for (auto jsonValue : json) returnVec.push_back((T)jsonValue.asDouble());
     return returnVec;
 }
 
@@ -150,24 +138,24 @@ Json::Value modelSet<T>::parse2json()
     Json::Value modelSet;
     
     metadata["creator"] = "Rapid API C++";
-    metadata["version"] = "v0.1.1"; //TODO: This should be a macro someplace
+    metadata["version"] = "v0.2.0"; //TODO: This should be a macro someplace
     metadata["numInputs"] = numInputs;
     Json::Value inputNamesJSON;
 
-    for (size_t i = 0; i < inputNames.size(); ++i) 
-    {
-        inputNamesJSON.append(inputNames[i]);
-    }
+    for (const auto& inputName : inputNames) inputNamesJSON.append(inputName);
+
     metadata["inputNames"] = inputNamesJSON;
     metadata["numOutputs"] = numOutputs;
     root["metadata"] = metadata;
-    for (auto model : myModelSet) 
+
+    for (auto model : models)
     {
         Json::Value currentModel;
         currentModel["inputNames"] = inputNamesJSON; //TODO: implment this feature
         model->getJSONDescription(currentModel);
         modelSet.append(currentModel);
     }
+
     root["modelSet"] = modelSet;
     return root;
 }
@@ -175,20 +163,19 @@ Json::Value modelSet<T>::parse2json()
 template<typename T>
 std::string modelSet<T>::getJSON() 
 {
-    Json::Value root = parse2json();
+    Json::Value root { parse2json() };
     return root.toStyledString();
 }
 
 template<typename T>
 void modelSet<T>::writeJSON(const std::string &filepath) 
 {
-    Json::Value root = parse2json();
+    Json::Value root { parse2json() };
     std::ofstream jsonOut;
-    jsonOut.open (filepath);
+    jsonOut.open(filepath);
     Json::StyledStreamWriter writer;
     writer.write(jsonOut, root);
     jsonOut.close();
-    
 }
 
 template<typename T>
@@ -196,7 +183,7 @@ bool modelSet<T>::putJSON(const std::string &jsonMessage)
 {
     Json::Value parsedFromString;
     Json::Reader reader;
-    bool parsingSuccessful = reader.parse(jsonMessage, parsedFromString);
+    const bool parsingSuccessful { reader.parse(jsonMessage, parsedFromString) };
     if (parsingSuccessful) json2modelSet(parsedFromString);
     return parsingSuccessful;
 }
@@ -278,8 +265,8 @@ void modelSet<T>::json2modelSet(const Json::Value &root)
             T outBase = (T)model["outBase"].asDouble();
             
             //TODO: many of these arguments could be size_t
-            myModelSet.push_back(new neuralNetwork<T>(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
-        } 
+            models.push_back(new neuralNetwork<T>(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
+        }
         else if (model["modelType"].asString() == "kNN Classificiation") 
         {
             std::vector<trainingExampleTemplate<T> > trainingSet;
@@ -292,9 +279,8 @@ void modelSet<T>::json2modelSet(const Json::Value &root)
                 tempExample.output.push_back((T)examples[i]["class"].asDouble());
                 trainingSet.push_back(tempExample);
             }
-            int k = model["k"].asInt();
 
-            myModelSet.push_back(new knnClassification<T>(modelNumInputs, whichInputs, trainingSet, k));
+            models.push_back(new knnClassification<T>(modelNumInputs, whichInputs, trainingSet, model["k"].asInt()));
         }
     }
 }

@@ -1,10 +1,11 @@
-//
-//  classification.h
-//  RapidLib
-//
-//  Created by mzed on 26/09/2016.
-//  Copyright © 2016 Goldsmiths. All rights reserved.
-//
+/**
+ * @file classification.h
+ * RapidLib
+ *
+ * @author Michael Zbyszynski
+ * @date 26 Sep 2016
+ * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
+ */
 
 #ifndef CLASSIFICATION_H
 #define CLASSIFICATION_H

@@ -4,7 +4,7 @@ project(rapidLib)
 if (MSVC)
     add_compile_options(/std:c++20)
 else()
-    add_compile_options(-std=c++20 -O2)   
+    add_compile_options(-std=c++20 -O2)
 endif()
 
 # Threads
@@ -21,6 +21,7 @@ include_directories(${PROJECT_SOURCE_DIR}/dependencies/bayesfilter/src)
 
 # RapidLib
 file(GLOB RAPIDLIB_SRC "${PROJECT_SOURCE_DIR}/src/*.cpp")
+file(GLOB RAPIDLIB_HDR "${PROJECT_SOURCE_DIR}/src/*.h")
 file(GLOB RAPIDLIB_DEP "${PROJECT_SOURCE_DIR}/dependencies/libsvm/libsvm.cpp")
 
 # Third party
@@ -30,6 +31,7 @@ file(GLOB BAYES_SRC "${PROJECT_SOURCE_DIR}/dependencies/bayesfilter/src/*.cpp")
 # Set the source for the main library, using the groups defined above
 set(RAPIDLIB_FULL_SRC 
 		${RAPIDLIB_SRC}
+		${RAPIDLIB_HDR}
 		${RAPIDLIB_DEP}
 	)
 

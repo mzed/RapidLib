@@ -419,19 +419,19 @@ void neuralNetwork<T>::runInternal(const std::vector<T>& inputVector, std::vecto
   //calculate hidden layers
   for (size_t layerNum {}; auto& layer : hiddenLayers)
   {
-    for (size_t j {}; j < numHiddenNodes; ++j)
+    for (size_t nodeNum {}; nodeNum < numHiddenNodes; ++nodeNum)
     {
-      layer[j] = 0;
+      layer[nodeNum] = 0;
 
       const auto& previousLayer { layerNum == 0 ? inputLayer : hiddenLayers[layerNum - 1] };
 
-      for (size_t k {}; auto& input : previousLayer)
+      for (size_t inputIndex {}; auto& input : previousLayer)
       {
-        layer[j] += input * weights[layerNum][j][k];
-        ++k;
+        layer[nodeNum] += input * weights[layerNum][nodeNum][inputIndex];
+        ++inputIndex;
       }
 
-      layer[j] = activationFunction(layer[j]);
+      layer[nodeNum] = activationFunction(layer[nodeNum]);
     }
 
     layer.back() = 1.0; //for bias weight
@@ -440,10 +440,10 @@ void neuralNetwork<T>::runInternal(const std::vector<T>& inputVector, std::vecto
 
   //calculate output
   outputNeuron = 0;
-  for (size_t i {}; auto& hiddenNeuron : hiddenLayers.back())
+  for (size_t outputIndex {}; auto& hiddenNeuron : hiddenLayers.back())
   {
-    outputNeuron += hiddenNeuron * wHiddenOutput[i];
-    ++i;
+    outputNeuron += hiddenNeuron * wHiddenOutput[outputIndex];
+    ++outputIndex;
   }
 
   //if classifier, outputNeuron = activationFunction(outputNeuron), else...
@@ -461,37 +461,37 @@ template<typename T>
 void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& trainingSet, const std::size_t whichOutput)
 {
   initTrainer();
+
   //setup maxes and mins
   std::vector<T> inMax = trainingSet[0].input;
   std::vector<T> inMin = trainingSet[0].input;
   T outMin = trainingSet[0].output[whichOutput];
   T outMax = trainingSet[0].output[whichOutput];
 
-  for(auto trainingExample : trainingSet)
+  for (auto trainingExample : trainingSet)
   {
-    for (size_t i {}; i < numInputs; ++i)
+    for (size_t inputIndex {}; inputIndex < numInputs; ++inputIndex)
     {
-      if (trainingExample.input[i] > inMax[i]) inMax[i] = trainingExample.input[i];
-      if (trainingExample.input[i] < inMin[i]) inMin[i] = trainingExample.input[i];
+      if (trainingExample.input[inputIndex] > inMax[inputIndex]) inMax[inputIndex] = trainingExample.input[inputIndex];
+      if (trainingExample.input[inputIndex] < inMin[inputIndex]) inMin[inputIndex] = trainingExample.input[inputIndex];
       if (trainingExample.output[whichOutput] > outMax) outMax = trainingExample.output[whichOutput];
       if (trainingExample.output[whichOutput] < outMin) outMin = trainingExample.output[whichOutput];
     }
   }
+
   inRanges.clear();
   inBases.clear();
 
-  for (size_t i {}; i < numInputs; ++i)
+  for (size_t inputIndex {}; inputIndex < numInputs; ++inputIndex)
   {
-    inRanges.push_back((inMax[i] - inMin[i]) * 0.5);
-    inBases.push_back((inMax[i] + inMin[i]) * 0.5);
+    const T range { (inMax[inputIndex] - inMin[inputIndex]) * static_cast<T>(0.5) };
+    inRanges.push_back(range == 0.0 ? 1.0 : range); //Prevent divide by zero later.
+
+    inBases.push_back((inMax[inputIndex] + inMin[inputIndex]) * 0.5);
   }
 
-  for (auto inRange : inRanges)
-  {
-    if (inRange == 0.) inRange = 1.0; //Prevent divide by zero later.
-  }
-  outRange = (outMax - outMin) * (T)0.5;
-  outBase = (outMax + outMin) * (T)0.5;
+  outRange = (outMax - outMin) * static_cast<T>(0.5);
+  outBase = (outMax + outMin) * static_cast<T>(0.5);
 
   //train
   if (outRange) //Don't need to do any training if output never changes
@@ -512,6 +512,7 @@ template<typename T>
 void neuralNetwork<T>::backpropagate(const T& desiredOutput)
 {
   outputErrorGradient = ((desiredOutput - outBase) / outRange) - ((outputNeuron - outBase) / outRange); //FIXME: could be tighter -MZ
+ // outputErrorGradient = ((desiredOutput - outBase) - (outputNeuron - outBase)) / outRange;
 
   //correction based on size of last layer. Is this right? -MZ
   T length = 0;

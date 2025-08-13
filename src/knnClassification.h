@@ -1,10 +1,11 @@
-//
-//  knnClassification.h
-//  RapidLib
-//
-//  Created by mzed on 05/09/2016.
-//  Copyright © 2016 Goldsmiths. All rights reserved.
-//
+/**
+ * @file knnClassification.h
+ * RapidLib
+ *
+ * @author Michael Zbyszynski
+ * @date 5 Sep 2016
+ * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
+ */
 
 #ifndef KNNCLASSIFICATION_H
 #define KNNCLASSIFICATION_H
