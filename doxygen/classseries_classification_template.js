@@ -11,7 +11,7 @@ var classseries_classification_template =
     [ "getMinLength", "classseries_classification_template.html#ae4001b002a50bf2b1b4a48a5d7b89af9", null ],
     [ "getMinLength", "classseries_classification_template.html#a68f2c3d77db93959d315464731b85ba0", null ],
     [ "reset", "classseries_classification_template.html#a0631618c7d29eeca05605b98c3146186", null ],
-    [ "run", "classseries_classification_template.html#ad8f5aa1c36fa8077ec6b9a25f7670fc8", null ],
+    [ "run", "classseries_classification_template.html#a3652be6a889d12780596b18d5487109b", null ],
     [ "run", "classseries_classification_template.html#a4521ff54adba307e43a5a88b580a4bd4", null ],
     [ "runContinuous", "classseries_classification_template.html#a72c1f59013389e65c5000b8b9b350da5", null ],
     [ "runParallel", "classseries_classification_template.html#a9b2ff83c8df21d3091fff1d3d09e7a98", null ],
