@@ -21,17 +21,19 @@
 #include "../dependencies/json/json.h"
 #endif
 
+#include "rapidlib_export.h"
+
 /** This class holds a set of models with the same or different algorithms. */
 template<typename T>
 class modelSet {
 public:
-    modelSet();
-    virtual ~modelSet();
+    RAPIDLIB_EXPORT modelSet();
+    RAPIDLIB_EXPORT virtual ~modelSet();
     /** Train on a specified set, causes creation if not created */
-    virtual bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet);
+    RAPIDLIB_EXPORT virtual bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet);
     /** reset to pre-training state */
-    bool reset();
-    
+    RAPIDLIB_EXPORT bool reset();
+
     /** Generate an output value from a single input vector.
     *
     * Will return an error if training in progress.
@@ -39,8 +41,8 @@ public:
     * @param vector A standard vector of type T that is the input for classification or regression.
     * @return vector A vector type T that are the predictions for each model in the set.
     */
-    std::vector<T> run(const std::vector<T> &inputVector);
-    
+    RAPIDLIB_EXPORT std::vector<T> run(const std::vector<T> &inputVector);
+
 protected:
     std::vector<baseModel<T>*> models {};
     int numInputs {};
@@ -58,20 +60,21 @@ public:
     * 
     * @return Styled string JSON representation
     */
-    std::string getJSON();
+    RAPIDLIB_EXPORT std::string getJSON();
 
     /** Write a JSON model description to specified file path 
     *
     * @param file path
     * 
     */
-    void writeJSON(const std::string &filepath);
+    RAPIDLIB_EXPORT void writeJSON(const std::string &filepath);
 
     /** configure empty model with string. See getJSON() */
-    bool putJSON(const std::string &jsonMessage);
+    RAPIDLIB_EXPORT bool putJSON(const std::string &jsonMessage);
+
     /** read a JSON file at file path and build a modelSet from it */
-    bool readJSON(const std::string &filepath);
-        
+    RAPIDLIB_EXPORT bool readJSON(const std::string &filepath);
+
 private:
     Json::Value parse2json();
     void json2modelSet(const Json::Value &root);

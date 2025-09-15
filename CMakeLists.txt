@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.14)
 project(rapidLib)
 
 if (MSVC)
@@ -6,6 +6,9 @@ if (MSVC)
 else()
     add_compile_options(-std=c++20 -O2)
 endif()
+
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
 
 # Threads
 set(THREADS_PREFER_PTHREAD_FLAG ON)
@@ -18,6 +21,7 @@ set (${PROJECT_NAME}_VERSION_MINOR 3)
 # Main lib
 include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_SOURCE_DIR}/dependencies/bayesfilter/src)
+include_directories(${PROJECT_BINARY_DIR}/src/)  # export header
 
 # RapidLib
 file(GLOB RAPIDLIB_SRC "${PROJECT_SOURCE_DIR}/src/*.cpp")
@@ -41,8 +45,9 @@ add_executable(rapidLibTest test/rapidLibTest.cpp)
 target_sources(${PROJECT_NAME} PRIVATE ${JSON_SRC})
 target_sources(${PROJECT_NAME} PRIVATE ${BAYES_SRC})
 
-#include(GenerateExportHeader)
-#generate_export_header(${PROJECT_NAME})
+include(GenerateExportHeader)
+generate_export_header(${PROJECT_NAME} EXPORT_FILE_NAME ${PROJECT_BINARY_DIR}/src/rapidlib_export.h)
+set_target_properties(${PROJECT_NAME} PROPERTIES EXPORT_NAME RapidLib)
 
 target_link_libraries(rapidLibTest ${PROJECT_NAME})
 target_link_libraries(rapidLibTest Threads::Threads)

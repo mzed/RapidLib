@@ -24,39 +24,39 @@ class regressionTemplate final : public modelSet<T>
 {
 public:
   /** with no arguments, just make an empty vector */
-  regressionTemplate();
+  RAPIDLIB_EXPORT regressionTemplate();
   /** create based on training set inputs and outputs */
-  regressionTemplate(const std::vector<trainingExampleTemplate<T> > &trainingSet);
+  RAPIDLIB_EXPORT regressionTemplate(const std::vector<trainingExampleTemplate<T> > &trainingSet);
   /** create with proper models, but not trained */
-  regressionTemplate(const int &numInputs, const int &numOutputs);
-  
+  RAPIDLIB_EXPORT regressionTemplate(const int &numInputs, const int &numOutputs);
+
   /** destructor */
   ~regressionTemplate() {};
   
   /** Train on a specified set, causes creation if not created */
-  bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
-  
+  RAPIDLIB_EXPORT bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
+
   /** Check how far the training has gotten. Averages progress over all models in training */
-  float getTrainingProgress();
-  
+  RAPIDLIB_EXPORT float getTrainingProgress();
+
   /** Check how many training epochs each model will run. This feature is temporary, and will be replaced by a different design. */
-  std::vector<size_t> getNumEpochs() const;
-  
+  RAPIDLIB_EXPORT std::vector<size_t> getNumEpochs() const;
+
   /** Call before train, to set the number of training epochs */
-  void setNumEpochs(const size_t &epochs);
-  
+  RAPIDLIB_EXPORT void setNumEpochs(const size_t &epochs);
+
   /** Check how many hidden layers are in each model. This feature is temporary, and will be replaced by a different design. */
-  std::vector<size_t> getNumHiddenLayers() const;
-  
+  RAPIDLIB_EXPORT std::vector<size_t> getNumHiddenLayers() const;
+
   /** Set how many hidden layers are in all models. This feature is temporary, and will be replaced by a different design. */
-  void setNumHiddenLayers(const int &num_hidden_layers);
+  RAPIDLIB_EXPORT void setNumHiddenLayers(const int &num_hidden_layers);
   
   /** Check how many hidden nodes are in each model. This feature is temporary, and will be replaced by a different design. */
-  std::vector<size_t> getNumHiddenNodes() const;
-  
+  RAPIDLIB_EXPORT std::vector<size_t> getNumHiddenNodes() const;
+
   /** Set how many hidden layers are in all models. This feature is temporary, and will be replaced by a different design. */
-  void setNumHiddenNodes(const int &num_hidden_nodes);
-  
+  RAPIDLIB_EXPORT void setNumHiddenNodes(const int &num_hidden_nodes);
+
 private:
   size_t numEpochs { 500 }; //Temporary -- also should be part of nn only. -mz
   size_t numHiddenLayers { 1 }; //Temporary -- this should be part of the nn class. -mz

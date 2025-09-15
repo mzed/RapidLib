@@ -16,7 +16,7 @@
 #include <thread>
 
 #ifndef EMSCRIPTEN
-#include "../dependencies/json/json.h"
+//#include "../dependencies/json/json.h"
 #else
 #include "emscripten/modelSetEmbindings.h"
 #endif

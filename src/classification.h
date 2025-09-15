@@ -29,20 +29,20 @@ public:
     *
     * Default classifier is kNN.
     */
-    classificationTemplate();
-    
+    RAPIDLIB_EXPORT classificationTemplate();
+
     /** Specify classification type 
     * 
     * @param Enum Classification type: knn or svm
     */
-    classificationTemplate(classificationTypes classificationType);
-    
+    RAPIDLIB_EXPORT classificationTemplate(classificationTypes classificationType);
+
     /** create based on training set inputs and outputs */
-    classificationTemplate(const std::vector<trainingExampleTemplate<T> > &trainingSet);
+    RAPIDLIB_EXPORT classificationTemplate(const std::vector<trainingExampleTemplate<T> > &trainingSet);
 
     /** create with proper models, but not trained */
-    classificationTemplate(const int &numInputs, const int &numOutputs);
-    
+    RAPIDLIB_EXPORT classificationTemplate(const int &numInputs, const int &numOutputs);
+
     /** destructor */
     ~classificationTemplate() {}
     
@@ -51,14 +51,14 @@ public:
     * @param vector Vector of training examples, type T
     * @return bool Successful training
     */
-    bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
-    
+    RAPIDLIB_EXPORT bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
+
     /** Check the K values for each model. 
     * 
     * This feature is temporary, and will be replaced by a different design. 
     * @return vector K for every model
     */
-    std::vector<int> getK();
+    RAPIDLIB_EXPORT std::vector<int> getK();
 
     /** Set the K values for each model. 
     * This feature is temporary, and will be replaced by a different design. 
@@ -66,8 +66,8 @@ public:
     * @param int which model to set
     * @param int k value for that model
     */
-    void setK(const int whichModel, const int newK);
-     
+    RAPIDLIB_EXPORT void setK(const int whichModel, const int newK);
+
 private:
     classificationTypes classificationType;
 };
