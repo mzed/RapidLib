@@ -7,7 +7,7 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
-#include "rapidLib/regression.h"
+#include "../include/rapidLib/regression.h"
 
 #ifdef EMSCRIPTEN
 #include "emscripten/regressionEmbindings.h"

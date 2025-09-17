@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include "rapidLib/modelSet.h"
+#include "modelSet.h"
 #include <vector>
 
 /*! Class for implementing a set of regression models.

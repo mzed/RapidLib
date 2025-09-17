@@ -11,6 +11,7 @@
 
 #include "rapidLib/rapidLib_export.h"
 #include "trainingExample.h"
+
 #include "../../src/baseModel.h"
 #include "../../src/neuralNetwork.h"
 #include "../../src/knnClassification.h"

@@ -27,9 +27,18 @@ set(public_headers
 	include/rapidLib/seriesClassification.h
 	include/rapidLib//trainingExample.h)
 
+set(third_party
+	dependencies/bayesfilter/src/BayesianFilter.cpp
+	dependencies/bayesfilter/src/BayesianFilter.h
+	dependencies/bayesfilter/src/filter_utilities.cpp 
+	dependencies/bayesfilter/src/filter_utilities.h
+	dependencies/jsoncpp.cpp
+	dependencies/libsvm/libsvm.cpp)
+
 set(sources
-    ${public_headers}
-    src/baseModel.h
+	${public_headers}
+	${third_party}
+	src/baseModel.h
 	src/classification.cpp
 	src/dtw.cpp
 	src/dtw.h
@@ -52,26 +61,12 @@ set(sources
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${sources})
 
 list(APPEND public_headers
-    "${CMAKE_CURRENT_BINARY_DIR}/include/rapidLib/rapidLib_export.h")
+	"include/rapidLib/rapidLib_export.h")
 list(APPEND sources
-    "${CMAKE_CURRENT_BINARY_DIR}/include/rapidLib/rapidLib_export.h")
-
-# Main lib
-include_directories(${PROJECT_SOURCE_DIR}/dependencies/bayesfilter/src)
-include_directories(${PROJECT_SOURCE_DIR}/dependencies/libsvm/)
-
-# Third party
-#file(GLOB JSON_SRC "${PROJECT_SOURCE_DIR}/dependencies/jsoncpp.cpp")
-#file(GLOB BAYES_SRC "${PROJECT_SOURCE_DIR}/dependencies/bayesfilter/src/*.cpp")
-
-# Set the source for the main library, using the groups defined above
-#set(RAPIDLIB_FULL_SRC 
-#		${RAPIDLIB_SRC}
-#		${RAPIDLIB_HDR}
-#		${RAPIDLIB_DEP}
-#	)
+	"include/rapidLib/rapidLib_export.h")
 
 target_sources(${PROJECT_NAME} PRIVATE ${sources})
+
 target_compile_definitions(${PROJECT_NAME}
     PUBLIC
         "$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:RAPIDLIB_STATIC_DEFINE")
@@ -91,11 +86,8 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
 set_property(TARGET ${PROJECT_NAME}  PROPERTY CXX_STANDARD 20)
 
+# testing
 add_executable(rapidLibTest test/rapidLibTest.cpp)
-
-#target_sources(${PROJECT_NAME} PRIVATE ${JSON_SRC})
-#target_sources(${PROJECT_NAME} PRIVATE ${BAYES_SRC})
-
 
 target_link_libraries(rapidLibTest ${PROJECT_NAME})
 target_link_libraries(rapidLibTest Threads::Threads)

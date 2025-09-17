@@ -4,7 +4,7 @@
  * @date    24 April 2020
  *
  * @copyright
- * Copyright © 2020 Michael Zbyszynski. All rights reserved.
+ * Copyright ï¿½ 2020 Michael Zbyszynski. All rights reserved.
  */
 
 
@@ -32,19 +32,16 @@
   * TODO
   */
 
-#ifndef rapidlib_h
-#define rapidlib_h
+#pragma once
 
 #define RAPIDLIB_VERSION_MAJOR 2
-#define RAPIDLIB_VERSION_MINOR 2
+#define RAPIDLIB_VERSION_MINOR 4
 #define RAPIDLIB_VERSION_PATCH 1
-#define RAPIDLIB_VERSION "2.2.1"
+#define RAPIDLIB_VERSION "2.4.0"
 #define RAPIDLIB_JSON_DOC_VERSION "1.0.0"
-#define RAPIDLIB_REVISION "19-August-2021"
+#define RAPIDLIB_REVISION "17-September-2024"
 
 #include "regression.h"
 #include "classification.h"
 #include "seriesClassification.h"
 #include "rapidStream.h"
-
-#endif

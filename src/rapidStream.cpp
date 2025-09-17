@@ -5,7 +5,7 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#include "rapidLib/rapidStream.h"
+#include "../include/rapidLib/rapidStream.h"
 #ifdef EMSCRIPTEN
 #include "emscripten/rapidStreamEmbindings.h"
 #endif
