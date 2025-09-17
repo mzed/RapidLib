@@ -1,13 +1,12 @@
 <map id="src/knnClassification.cpp" name="src/knnClassification.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="466,5,633,32"/>
-<area shape="rect" id="node2" href="$knn_classification_8h.html" title=" " alt="" coords="251,80,381,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="244,319,303,345"/>
-<area shape="rect" id="node8" title=" " alt="" coords="469,80,544,107"/>
-<area shape="rect" id="node9" title=" " alt="" coords="569,80,615,107"/>
-<area shape="rect" id="node10" title=" " alt="" coords="640,80,701,107"/>
-<area shape="rect" id="node11" title=" " alt="" coords="726,80,778,107"/>
-<area shape="rect" id="node4" href="$base_model_8h.html" title=" " alt="" coords="137,155,231,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="203,229,343,271"/>
-<area shape="rect" id="node5" href="$training_example_8h.html" title=" " alt="" coords="5,237,128,263"/>
-<area shape="rect" id="node6" title=" " alt="" coords="39,319,94,345"/>
+<area shape="rect" id="node1" title=" " alt="" coords="429,5,596,32"/>
+<area shape="rect" id="node2" href="$knn_classification_8h.html" title=" " alt="" coords="211,80,342,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="367,237,426,263"/>
+<area shape="rect" id="node7" title=" " alt="" coords="433,80,507,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="532,80,579,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="603,80,665,107"/>
+<area shape="rect" id="node10" title=" " alt="" coords="689,80,741,107"/>
+<area shape="rect" id="node4" href="$base_model_8h.html" title=" " alt="" coords="209,155,304,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,229,145,271"/>
+<area shape="rect" id="node5" title=" " alt="" coords="170,237,343,263"/>
 </map>

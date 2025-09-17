@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['neuralnetwork_257',['neuralNetwork',['../classneural_network.html#a585963ffd63e5865c97d38bee031dda0',1,'neuralNetwork::neuralNetwork(const size_t &amp;num_inputs, const std::vector&lt; size_t &gt; &amp;which_inputs, const size_t &amp;num_hidden_layers, const size_t &amp;num_hidden_nodes, const std::vector&lt; T &gt; &amp;weights, const std::vector&lt; T &gt; &amp;wHiddenOutput, const std::vector&lt; T &gt; &amp;inRanges, const std::vector&lt; T &gt; &amp;inBases, const T &amp;outRange, const T &amp;outBase)'],['../classneural_network.html#a51282344b90a5ee81b9cd10611e79512',1,'neuralNetwork::neuralNetwork(const size_t &amp;num_inputs, const std::vector&lt; size_t &gt; &amp;which_inputs, const size_t &amp;num_hidden_layer, const size_t &amp;num_hidden_nodes)']]],
-  ['numzerocrossings_258',['numZeroCrossings',['../classrapid_lib_1_1rapid_stream.html#a5e3cb4ab7bfc6569a303eeaf784fff83',1,'rapidLib::rapidStream']]]
+  ['searchwindow_139',['searchWindow',['../classsearch_window.html#abe71a6ed802a6162648cd9f390d6a0c1',1,'searchWindow']]],
+  ['setepochs_140',['setEpochs',['../classneural_network.html#aba035309d02ee4f85d394176d4082d68',1,'neuralNetwork']]],
+  ['setk_141',['setK',['../classknn_classification.html#a8c3d569112e964813ca0fb3e1d6597b5',1,'knnClassification']]],
+  ['setnumhiddenlayers_142',['setNumHiddenLayers',['../classneural_network.html#a873489b1600cbcb0b7e514125e03c87a',1,'neuralNetwork']]],
+  ['setnumhiddennodes_143',['setNumHiddenNodes',['../classneural_network.html#a660b5d16d302083f754257d63af47d74',1,'neuralNetwork']]],
+  ['svmclassification_144',['svmClassification',['../classsvm_classification.html#a77cdca9d4d80f7a2f9b101e299574523',1,'svmClassification::svmClassification(KernelType kernelType=LINEAR_KERNEL, SVMType svmType=C_SVC, bool useScaling=true, bool useNullRejection=false, bool useAutoGamma=true, float gamma=0.1, unsigned int degree=3, float coef0=0, float nu=0.5, float C=1, bool useCrossValidation=false, unsigned int kFoldValue=10)'],['../classsvm_classification.html#ae6cfa10c4cc9fb22267320067bac5cd2',1,'svmClassification::svmClassification(int numInputs)']]]
 ];

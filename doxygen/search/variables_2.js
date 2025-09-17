@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['label_303',['label',['../structtraining_series_template.html#ab7e7cd4002d6aa9ce674e9d08438f381',1,'trainingSeriesTemplate']]]
+  ['minmaxvalues_157',['minMaxValues',['../classsearch_window.html#aec949fac5e88ed2dbc55e1dc86fa31c3',1,'searchWindow']]]
 ];

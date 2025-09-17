@@ -164,10 +164,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a340e673fb29a9faa2d66a9ad26434ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88620edc9ba16fbcd7686c2da2325575"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#a88620edc9ba16fbcd7686c2da2325575">getJSONDescription</a> (Json::Value &amp;currentModel) override</td></tr>
 <tr class="separator:a88620edc9ba16fbcd7686c2da2325575"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5522af308ee4bae154f58bbd2977be7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#a5522af308ee4bae154f58bbd2977be7b">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet) override</td></tr>
+<tr class="memitem:a5522af308ee4bae154f58bbd2977be7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#a5522af308ee4bae154f58bbd2977be7b">train</a> (const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet) override</td></tr>
 <tr class="memdesc:a5522af308ee4bae154f58bbd2977be7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">These pertain to the training, and aren't need to run a trained model //.  <a href="classneural_network.html#a5522af308ee4bae154f58bbd2977be7b">More...</a><br /></td></tr>
 <tr class="separator:a5522af308ee4bae154f58bbd2977be7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1006fede576315ea2d8b41c81aeedd7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#a1006fede576315ea2d8b41c81aeedd7a">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet, const std::size_t whichOutput) override</td></tr>
+<tr class="memitem:a1006fede576315ea2d8b41c81aeedd7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#a1006fede576315ea2d8b41c81aeedd7a">train</a> (const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet, const std::size_t whichOutput) override</td></tr>
 <tr class="separator:a1006fede576315ea2d8b41c81aeedd7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef083e8782e22eeb1ade53cce192a9d5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneural_network.html#aef083e8782e22eeb1ade53cce192a9d5">getCurrentEpoch</a> () const</td></tr>
 <tr class="separator:aef083e8782e22eeb1ade53cce192a9d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -725,7 +725,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classneural_network.html">neuralNetwork</a>&lt; T &gt;::train </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em></td><td>)</td>
           <td></td>
         </tr>
@@ -764,7 +764,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classneural_network.html">neuralNetwork</a>&lt; T &gt;::train </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em>, </td>
         </tr>
         <tr>
@@ -785,7 +785,7 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Train a model using backpropagation. This function is used when the model is part of a <a class="el" href="classmodel_set.html">modelSet</a>.</p>
+<p>Train a model using backpropagation. This function is used when the model is part of a modelSet.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">This</td><td>triaining function takes examples that contain a vector of input values and a vector of output values. </td></tr>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['json2vector_247',['json2vector',['../model_set_8cpp.html#a4412c06b9ca0673dc734ef76bd19812e',1,'modelSet.cpp']]]
+  ['knnclassification_135',['knnClassification',['../classknn_classification.html#af1dc2785ea5a257c638edd7294066882',1,'knnClassification']]]
 ];

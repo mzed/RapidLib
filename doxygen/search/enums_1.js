@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kerneltype_323',['KernelType',['../classsvm_classification.html#aee913f59a2aad7e1ea3f27ce9ef732e8',1,'svmClassification']]]
+  ['svmtype_160',['SVMType',['../classsvm_classification.html#aa4fcd506f5684a1c466ecc54cdeca285',1,'svmClassification']]]
 ];
