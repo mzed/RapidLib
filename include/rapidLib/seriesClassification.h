@@ -7,16 +7,16 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#ifndef SERIESCLASSIFICATION_H
-#define SERIESCLASSIFICATION_H
+#pragma once
+
+#include "rapidLib/rapidLib_export.h"
+
+#include "../../src/fastDTW.h"
+#include "trainingExample.h"
 
 #include <vector>
 #include <string>
 #include <map>
-#include "fastDTW.h"
-#include "trainingExample.h"
-
-#include "rapidlib_export.h"
 
 /** Class for containing time series classifiers.
  *
@@ -142,5 +142,3 @@ namespace rapidLib
 using seriesClassification = seriesClassificationTemplate<double>;
 using seriesClassificationFloat = seriesClassificationTemplate<float>;
 }
-
-#endif

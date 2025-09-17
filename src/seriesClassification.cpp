@@ -7,17 +7,16 @@
  *  @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
+#include "rapidLib/seriesClassification.h"
+#ifdef EMSCRIPTEN
+#include "emscripten/seriesClassificationEmbindings.h"
+#endif
+
 #include <vector>
 #include <limits>
 #include <algorithm>
 #include <thread>
 #include <stdexcept>
-
-#include "seriesClassification.h"
-
-#ifdef EMSCRIPTEN
-#include "emscripten/seriesClassificationEmbindings.h"
-#endif
 
 static constexpr std::size_t SEARCH_RADIUS { 1 };
 

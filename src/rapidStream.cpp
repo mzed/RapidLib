@@ -5,15 +5,15 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#include "rapidStream.h"
+#include "rapidLib/rapidStream.h"
+#ifdef EMSCRIPTEN
+#include "emscripten/rapidStreamEmbindings.h"
+#endif
+
 #include <iostream>
 #include <cmath>
 #include <limits>
 #include <numeric>
-
-#ifdef EMSCRIPTEN
-#include "emscripten/rapidStreamEmbindings.h"
-#endif
 
 namespace rapidLib
 {

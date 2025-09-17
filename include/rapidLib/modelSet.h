@@ -7,21 +7,19 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
+#pragma once
 
-#ifndef MODELSET_H
-#define MODELSET_H
-
-#include <vector>
+#include "rapidLib/rapidLib_export.h"
 #include "trainingExample.h"
-#include "baseModel.h"
-#include "neuralNetwork.h"
-#include "knnClassification.h"
-#include "svmClassification.h"
+#include "../../src/baseModel.h"
+#include "../../src/neuralNetwork.h"
+#include "../../src/knnClassification.h"
+#include "../../src/svmClassification.h"
 #ifndef EMSCRIPTEN
 #include "../dependencies/json/json.h"
 #endif
 
-#include "rapidlib_export.h"
+#include <vector>
 
 /** This class holds a set of models with the same or different algorithms. */
 template<typename T>
@@ -80,5 +78,3 @@ private:
     void json2modelSet(const Json::Value &root);
 #endif
 };
-
-#endif

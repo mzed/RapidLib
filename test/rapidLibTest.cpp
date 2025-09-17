@@ -4,7 +4,7 @@
 #include <random>
 #include <algorithm>
 
-#include "../src/rapidLib.h"
+#include "rapidLib/rapidLib.h"
 
 int main(int argc, const char * argv[]) 
 {

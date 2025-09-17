@@ -11,7 +11,7 @@
 #define BASEMODEL_H
 
 #include <vector>
-#include "trainingExample.h"
+#include "rapidLib/trainingExample.h"
 
 #ifndef EMSCRIPTEN
 #include "../dependencies/json/json.h"

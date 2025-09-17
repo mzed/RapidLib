@@ -1,18 +1,18 @@
 //
-//  classification.h
+//  classification.cpp
 //  RapidLib
 //
 //  Created by mzed on 26/09/2016.
 //  Copyright © 2016 Goldsmiths. All rights reserved.
 //
 
-#include <stdexcept>
-#include <vector>
-
-#include "classification.h"
+#include "rapidLib/classification.h"
 #ifdef EMSCRIPTEN
 #include "emscripten/classificationEmbindings.h"
 #endif
+
+#include <stdexcept>
+#include <vector>
 
 template<typename T>
 classificationTemplate<T>::classificationTemplate()
