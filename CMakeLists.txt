@@ -20,7 +20,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES EXPORT_NAME RapidLib)
 
 
 set(public_headers
-	include/rapidLib/rapidlib.h
+	include/rapidLib/rapidLib.h
 	include/rapidLib/classification.h
 	include/rapidLib/modelSet.h
 	include/rapidLib/regression.h
@@ -67,9 +67,7 @@ list(APPEND sources
 
 target_sources(${PROJECT_NAME} PRIVATE ${sources})
 
-target_compile_definitions(${PROJECT_NAME}
-    PUBLIC
-        "$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:RAPIDLIB_STATIC_DEFINE")
+target_compile_definitions(${PROJECT_NAME} PUBLIC "$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:RAPIDLIB_STATIC_DEFINE>")
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
