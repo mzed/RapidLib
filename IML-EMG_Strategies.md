@@ -19,15 +19,15 @@
   - Pipo?
 - [IRCAM XMM](https://github.com/Ircam-RnD/xmm)
 - [XMM Node](https://github.com/Ircam-RnD/xmm-node)
-- Link to RapidMix API
-- Link to MIMIC?
-- [Link to InteractML](https://cycling74.com/products/max) Unity plugin
+- [RapidMix API](https://gitlab.doc.gold.ac.uk/rapid-mix/RAPID-MIX_API)
+- [MIMIC](https://mimicproject.com/)
+- [Link to InteractML](https://interactml.com/) Unity and Unreal plugins
 
 ML frameworks
 
 - tensorflow
 - tensorflow.js
-- ml5js
+- [ml5js](https://ml5js.org/)
 
 Wekinator
 - http://www.wekinator.org/
@@ -37,4 +37,4 @@ Creative frameworks
 - [Max](https://cycling74.com/products/max)
 - openFrameworks
 - Unity
-- 
+- Unreal
