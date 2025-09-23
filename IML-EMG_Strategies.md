@@ -4,7 +4,7 @@
 
 [Tutorials on BitaLino's site](https://bitalino.com/en/learn/tutorials)
 
-- RapidLib
+### RapidLib
   - C++ docs
   - JS docs
   - Node
@@ -14,7 +14,7 @@
 - links to Max objects
   - Myo
   - BITalino
-  - RapidMax
+  - [RapidMax](https://github.com/mzed/rapid)
   - [Mubu](http://ismm.ircam.fr/mubu/)
   - Pipo?
 - [IRCAM XMM](https://github.com/Ircam-RnD/xmm)
@@ -23,19 +23,22 @@
 - [MIMIC](https://mimicproject.com/)
 - [InteractML](https://interactml.com/) -- Unity and Unreal plugins
 
-ML frameworks
+### ML frameworks
 
 - tensorflow
 - tensorflow.js
 - [ml5js](https://ml5js.org/)
 
-Wekinator
+### Wekinator
+
 - http://www.wekinator.org/
 - https://www.kadenze.com/courses/machine-learning-for-musicians-and-artists-v/info
 
-Creative frameworks
+### Creative frameworks
+
 - [Max](https://cycling74.com/products/max)
 - openFrameworks
 - Unity
 - Unreal
+
 
