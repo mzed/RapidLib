@@ -21,7 +21,7 @@
 - [XMM Node](https://github.com/Ircam-RnD/xmm-node)
 - [RapidMix API](https://gitlab.doc.gold.ac.uk/rapid-mix/RAPID-MIX_API)
 - [MIMIC](https://mimicproject.com/)
-- [Link to InteractML](https://interactml.com/) Unity and Unreal plugins
+- [InteractML](https://interactml.com/) -- Unity and Unreal plugins
 
 ML frameworks
 
@@ -38,3 +38,4 @@ Creative frameworks
 - openFrameworks
 - Unity
 - Unreal
+
