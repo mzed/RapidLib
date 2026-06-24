@@ -139,7 +139,7 @@ uint32_t rapidStream<T>::numZeroCrossings() const
 template<typename T>
 T rapidStream<T>::sum() const
 {
-  return std::reduce(circularWindow.begin(), circularWindow.end());
+  return std::accumulate(circularWindow.begin(), circularWindow.end(), T{});
 }
 
 template<typename T>
