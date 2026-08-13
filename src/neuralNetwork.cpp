@@ -98,7 +98,7 @@ outputErrorGradient(0)
     }
   }
 
-  for(auto inRange : inRanges)
+  for(auto& inRange : inRanges)
   {
     if (inRange == 0.)
     {
@@ -466,7 +466,7 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
     inBases.push_back((inMax[i] + inMin[i]) * 0.5);
   }
 
-  for (auto inRange : inRanges)
+  for (auto& inRange : inRanges)
   {
     if (inRange == 0.) inRange = 1.0; //Prevent divide by zero later.
   }
