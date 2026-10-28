@@ -8,5 +8,5 @@ var annotated_dup =
     [ "searchWindow", "classsearch_window.html", "classsearch_window" ],
     [ "svmClassification", "classsvm_classification.html", "classsvm_classification" ],
     [ "warpInfo", "structwarp_info.html", "structwarp_info" ],
-    [ "warpPath", "classwarp_path.html", "classwarp_path" ]
+    [ "warpPath", "structwarp_path.html", "structwarp_path" ]
 ];

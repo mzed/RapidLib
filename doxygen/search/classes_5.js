@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['searchwindow_87',['searchWindow',['../classsearch_window.html',1,'']]],
-  ['svmclassification_88',['svmClassification',['../classsvm_classification.html',1,'']]]
+  ['searchwindow_85',['searchWindow',['../classsearch_window.html',1,'']]],
+  ['svmclassification_86',['svmClassification',['../classsvm_classification.html',1,'']]]
 ];

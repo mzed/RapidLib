@@ -9,5 +9,5 @@ var hierarchy =
     [ "fastDTW< T >", "classfast_d_t_w.html", null ],
     [ "searchWindow< T >", "classsearch_window.html", null ],
     [ "warpInfo< T >", "structwarp_info.html", null ],
-    [ "warpPath", "classwarp_path.html", null ]
+    [ "warpPath", "structwarp_path.html", null ]
 ];

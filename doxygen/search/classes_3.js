@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['knnclassification_85',['knnClassification',['../classknn_classification.html',1,'']]]
+  ['knnclassification_83',['knnClassification',['../classknn_classification.html',1,'']]]
 ];

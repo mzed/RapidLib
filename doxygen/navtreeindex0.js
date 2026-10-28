@@ -89,11 +89,6 @@ var NAVTREEINDEX0 =
 "classsvm_classification.html#aee913f59a2aad7e1ea3f27ce9ef732e8abc5abd56c47de997e425c1e1fb827a48":[1,0,6,0,1],
 "classsvm_classification.html#af724e989e4e7259a409c063a6b6b535e":[1,0,6,5],
 "classsvm_classification.html#afeaa634fe02f83de06d22f84af9f7c66":[1,0,6,6],
-"classwarp_path.html":[1,0,8],
-"classwarp_path.html#a11500942cb19b8994d065248855c0225":[1,0,8,2],
-"classwarp_path.html#a8fce9071c84eaddd6c5cc1b904debb69":[1,0,8,0],
-"classwarp_path.html#a9660d7ad1aafc7be66f91dfef807f268":[1,0,8,1],
-"classwarp_path.html#ab50926cf20aab971bb04a3c2f795d916":[1,0,8,3],
 "dir_68267d1309a1af8e8297ef4c3efbcdba.html":[2,0,0],
 "dtw_8cpp.html":[2,0,0,2],
 "dtw_8h.html":[2,0,0,3],
@@ -131,10 +126,12 @@ var NAVTREEINDEX0 =
 "structwarp_info.html":[1,0,7],
 "structwarp_info.html#a28ef01b16abcf855c7911b6d020d2dc8":[1,0,7,1],
 "structwarp_info.html#aa72d49476d2a04a09c8c94356f60056a":[1,0,7,0],
+"structwarp_path.html":[1,0,8],
+"structwarp_path.html#ab50926cf20aab971bb04a3c2f795d916":[1,0,8,1],
+"structwarp_path.html#add8a4723e19db88727e9bc09a4b5e8ba":[1,0,8,0],
 "svm_classification_8cpp.html":[2,0,0,16],
 "svm_classification_8h.html":[2,0,0,17],
 "svm_classification_8h_source.html":[2,0,0,17],
-"warp_path_8cpp.html":[2,0,0,18],
-"warp_path_8h.html":[2,0,0,19],
-"warp_path_8h_source.html":[2,0,0,19]
+"warp_path_8h.html":[2,0,0,18],
+"warp_path_8h_source.html":[2,0,0,18]
 };

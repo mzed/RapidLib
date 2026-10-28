@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['svmtype_160',['SVMType',['../classsvm_classification.html#aa4fcd506f5684a1c466ecc54cdeca285',1,'svmClassification']]]
+  ['svmtype_155',['SVMType',['../classsvm_classification.html#aa4fcd506f5684a1c466ecc54cdeca285',1,'svmClassification']]]
 ];

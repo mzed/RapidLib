@@ -32,9 +32,8 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "svmClassification.h", "svm_classification_8h.html", [
       [ "svmClassification", "classsvm_classification.html", "classsvm_classification" ]
     ] ],
-    [ "warpPath.cpp", "warp_path_8cpp.html", null ],
     [ "warpPath.h", "warp_path_8h.html", [
-      [ "warpPath", "classwarp_path.html", "classwarp_path" ],
+      [ "warpPath", "structwarp_path.html", "structwarp_path" ],
       [ "warpInfo", "structwarp_info.html", "structwarp_info" ]
     ] ]
 ];
