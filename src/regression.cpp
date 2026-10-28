@@ -7,15 +7,13 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
-#include <vector>
-#include <iostream>
-#include <time.h>
-#include "regression.h"
-
+#include "../include/rapidLib/regression.h"
 
 #ifdef EMSCRIPTEN
 #include "emscripten/regressionEmbindings.h"
 #endif
+
+#include <vector>
 
 template<typename T>
 regressionTemplate<T>::regressionTemplate() :

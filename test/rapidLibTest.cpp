@@ -6,9 +6,7 @@
 #include <random>
 #include <algorithm>
 
-#include "../src/rapidLib.h"
-
-int main(int argc, const char * argv[]) 
+int main(int argc, const char * argv[])
 {
   ///////////////////////////////////////////////////////////////////////////////////////////
   // Bayes test

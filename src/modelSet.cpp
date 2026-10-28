@@ -7,19 +7,19 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
-#include "modelSet.h"
-
-#include <fstream>
-#include <vector>
-#include <cmath>
-#include <algorithm>
-#include <thread>
+#include "rapidLib/modelSet.h"
 
 #ifndef EMSCRIPTEN
 //#include "../dependencies/json/json.h"
 #else
 #include "emscripten/modelSetEmbindings.h"
 #endif
+
+#include <fstream>
+#include <vector>
+#include <cmath>
+#include <algorithm>
+#include <thread>
 
 /** No arguments, don't create any models yet */
 template<typename T> 
