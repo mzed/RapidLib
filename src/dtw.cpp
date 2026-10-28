@@ -7,11 +7,12 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
+#include "dtw.h"
+
 #include <vector>
 #include <cmath>
 #include <limits>
 #include <stdexcept>
-#include "dtw.h"
 
 template<typename T>
 dtw<T>::dtw() {};

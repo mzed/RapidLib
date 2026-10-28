@@ -7,12 +7,12 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#ifndef SVMCLASSIFICATION_H
-#define SVMCLASSIFICATION_H
+#pragma once
 
-#include <vector>
 #include "baseModel.h"
 #include "../dependencies/libsvm/libsvm.h"
+
+#include <vector>
 
 template<typename T>
 class svmClassification final : public baseModel<T>
@@ -131,5 +131,3 @@ private:
     
     bool trained;
 };
-
-#endif

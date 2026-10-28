@@ -100,7 +100,7 @@ outputErrorGradient(0)
     }
   }
 
-  for (auto inRange : inRanges)
+  for (auto& inRange : inRanges)
   {
     if (inRange == 0.) inRange = 1.0; //Prevent divide by zero later.
   }

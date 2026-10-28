@@ -7,8 +7,7 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
-#ifndef TRAININGEXAMPLE_H
-#define TRAININGEXAMPLE_H
+#pragma once
 
 #include <vector>
 #include <string>
@@ -17,30 +16,28 @@
 template<typename T>
 struct trainingExampleTemplate
 {
-    std::vector<T> input;
-    std::vector<T> output;
+  std::vector<T> input;
+  std::vector<T> output;
 };
 
 namespace rapidLib
 {
-    //This is here to keep the old API working
-    using trainingExample = trainingExampleTemplate<double>;
-    using trainingExampleFloat = trainingExampleTemplate<float>;
+//This is here to keep the old API working
+using trainingExample = trainingExampleTemplate<double>;
+using trainingExampleFloat = trainingExampleTemplate<float>;
 }
 
 /** This is used by DTW models for training */
 template<typename T>
 struct trainingSeriesTemplate
 {
-    std::vector<std::vector<T>> input;
-    std::string label;
+  std::vector<std::vector<T>> input;
+  std::string label;
 };
 
 namespace rapidLib
 {
-    //This is here to keep the old API working
-    using trainingSeries = trainingSeriesTemplate<double> ;
-    using trainingSeriesFloat = trainingSeriesTemplate<float>;
+//This is here to keep the old API working
+using trainingSeries = trainingSeriesTemplate<double> ;
+using trainingSeriesFloat = trainingSeriesTemplate<float>;
 }
-
-#endif
