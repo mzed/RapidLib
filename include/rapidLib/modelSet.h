@@ -12,16 +12,15 @@
 #include "rapidLib/rapidLib_export.h"
 #include "trainingExample.h"
 
-#include "../../src/baseModel.h"
-#include "../../src/neuralNetwork.h"
-#include "../../src/knnClassification.h"
-#include "../../src/svmClassification.h"
+#include <memory>
+#include <string>
+#include <vector>
+
+template<typename T> class baseModel;
 
 #ifndef EMSCRIPTEN
-#include "../dependencies/json/json.h"
+namespace Json { class Value; }
 #endif
-
-#include <vector>
 
 /** This class holds a set of models with the same or different algorithms. */
 template<typename T>
@@ -44,7 +43,7 @@ public:
    * @param vector A standard vector of type T that is the input for classification or regression.
    * @return vector A vector type T that are the predictions for each model in the set.
    */
-  RAPIDLIB_EXPORT std::vector<T> run(const std::vector<T> &inputVector);
+  RAPIDLIB_EXPORT std::vector<T> run(const std::vector<T> &inputVector) const;
 
 protected:
   std::vector<std::unique_ptr<baseModel<T>>> models{};
@@ -63,14 +62,14 @@ public:
    *
    * @return Styled string JSON representation
    */
-  RAPIDLIB_EXPORT std::string getJSON();
+  RAPIDLIB_EXPORT std::string getJSON() const;
 
   /** Write a JSON model description to specified file path
    *
    * @param file path
    *
    */
-  RAPIDLIB_EXPORT void writeJSON(const std::string &filepath);
+  RAPIDLIB_EXPORT void writeJSON(const std::string &filepath) const;
 
   /** configure empty model with string. See getJSON() */
   RAPIDLIB_EXPORT bool putJSON(const std::string &jsonMessage);
@@ -79,7 +78,7 @@ public:
   RAPIDLIB_EXPORT bool readJSON(const std::string &filepath);
 
 private:
-  Json::Value parse2json();
+  Json::Value parse2json() const;
   void json2modelSet(const Json::Value &root);
 #endif
 };

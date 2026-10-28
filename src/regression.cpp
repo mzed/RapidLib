@@ -8,6 +8,7 @@
  */
 
 #include "../include/rapidLib/regression.h"
+#include "neuralNetwork.h"
 
 #ifdef EMSCRIPTEN
 #include "emscripten/regressionEmbindings.h"
@@ -226,15 +227,15 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T>> 
 }
 
 template<typename T>
-float regressionTemplate<T>::getTrainingProgress()
+float regressionTemplate<T>::getTrainingProgress() const
 {
   float progress { modelSet<T>::isTrained ? 1.f : 0.f };
 
   if (modelSet<T>::isTraining)
   {
-    for (auto& model : modelSet<T>::models)
+    for (const auto& model : modelSet<T>::models)
     {
-      neuralNetwork<T>* nnModel = dynamic_cast<neuralNetwork<T>*>(model.get()); //FIXME: I really dislike this design
+      const neuralNetwork<T>* nnModel = dynamic_cast<const neuralNetwork<T>*>(model.get()); //FIXME: I really dislike this design
       progress += (nnModel->getCurrentEpoch() / nnModel->getEpochs());
     }
 

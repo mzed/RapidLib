@@ -6,6 +6,7 @@
  */
 
 #include "../include/rapidLib/rapidStream.h"
+#include "../dependencies/bayesfilter/src/BayesianFilter.h"
 #ifdef EMSCRIPTEN
 #include "emscripten/rapidStreamEmbindings.h"
 #endif
@@ -19,29 +20,29 @@ namespace rapidLib
 {
 
 template<typename T>
-rapidStream<T>::rapidStream(std::size_t window_size) : windowSize(window_size), windowIndex(0)
+rapidStream<T>::rapidStream(std::size_t window_size) : windowSize(window_size), windowIndex(0), bayesFilt(std::make_unique<BayesianFilter>())
 {
   circularWindow.resize(windowSize);
   std::fill(circularWindow.begin(), circularWindow.end(), 0);
 
   //Baysian Filter setup
-  bayesFilt.diffusion = powf(10.0f, -2);
-  bayesFilt.jump_rate = powf(10.0f, -10);
-  bayesFilt.mvc[0] = 1.0f;
-  bayesFilt.init();
+  bayesFilt->diffusion = powf(10.0f, -2);
+  bayesFilt->jump_rate = powf(10.0f, -10);
+  bayesFilt->mvc[0] = 1.0f;
+  bayesFilt->init();
 }
 
 template<typename T>
-rapidStream<T>::rapidStream() : windowSize(3), windowIndex(0)
+rapidStream<T>::rapidStream() : windowSize(3), windowIndex(0), bayesFilt(std::make_unique<BayesianFilter>())
 {
   circularWindow.resize(windowSize);
   std::fill(circularWindow.begin(), circularWindow.end(), 0);
 
   //Baysian Filter setup
-  bayesFilt.diffusion = powf(10.0f, -2);
-  bayesFilt.jump_rate = powf(10.0f, -10);
-  bayesFilt.mvc[0] = 1.0;
-  bayesFilt.init();
+  bayesFilt->diffusion = powf(10.0f, -2);
+  bayesFilt->jump_rate = powf(10.0f, -10);
+  bayesFilt->mvc[0] = 1.0;
+  bayesFilt->init();
 }
 
 template<typename T>
@@ -181,29 +182,29 @@ template<typename T>
 T rapidStream<T>::bayesFilter(T input)
 {
   std::vector<float> inputVec = { float(input) };
-  bayesFilt.update(inputVec);
-  return static_cast<T>(bayesFilt.output[0]);
+  bayesFilt->update(inputVec);
+  return static_cast<T>(bayesFilt->output[0]);
 }
 
 template<typename T>
 void rapidStream<T>::bayesSetDiffusion(float diffusion)
 {
-  bayesFilt.diffusion = powf(10., diffusion);
-  bayesFilt.init();
+  bayesFilt->diffusion = powf(10., diffusion);
+  bayesFilt->init();
 }
 
 template<typename T>
 void rapidStream<T>::bayesSetJumpRate(float jump_rate)
 {
-  bayesFilt.jump_rate = powf(10., jump_rate);
-  bayesFilt.init();
+  bayesFilt->jump_rate = powf(10., jump_rate);
+  bayesFilt->init();
 }
 
 template<typename T>
 void rapidStream<T>::bayesSetMVC(float mvc)
 {
-  bayesFilt.mvc[0] = mvc;
-  bayesFilt.init();
+  bayesFilt->mvc[0] = mvc;
+  bayesFilt->init();
 }
 
 template<typename T>

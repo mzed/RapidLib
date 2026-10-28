@@ -8,6 +8,7 @@
  */
 
 #include "../include/rapidLib/seriesClassification.h"
+#include "fastDTW.h"
 
 #ifdef EMSCRIPTEN
 #include "emscripten/seriesClassificationEmbindings.h"

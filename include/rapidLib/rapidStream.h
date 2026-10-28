@@ -8,11 +8,14 @@
 #pragma once
 
 #include "rapidLib/rapidLib_export.h"
-#include "../dependencies/bayesfilter/src/BayesianFilter.h"
 
 #include <stdint.h>
 #include <atomic>
+#include <memory>
 #include <numeric>
+#include <vector>
+
+class BayesianFilter;
 
 namespace rapidLib
 {
@@ -123,7 +126,7 @@ private:
 
   inline T calcCurrentVel(std::size_t i) const;
 
-  BayesianFilter bayesFilt;
+  std::unique_ptr<BayesianFilter> bayesFilt;
 };
 
 }; // namespace rapidLib

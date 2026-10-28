@@ -7,6 +7,8 @@
 //
 
 #include "rapidLib/classification.h"
+#include "knnClassification.h"
+#include "svmClassification.h"
 #ifdef EMSCRIPTEN
 #include "emscripten/classificationEmbindings.h"
 #endif
@@ -121,7 +123,7 @@ bool classificationTemplate<T>::train(const std::vector<trainingExampleTemplate<
 }
 
 template<typename T>
-std::vector<int> classificationTemplate<T>::getK()
+std::vector<int> classificationTemplate<T>::getK() const
 {
   std::vector<int> kVector {};
 

@@ -57,7 +57,7 @@ class classificationTemplate final : public modelSet<T>
    * This feature is temporary, and will be replaced by a different design.
    * @return vector K for every model
    */
-  RAPIDLIB_EXPORT std::vector<int> getK();
+  RAPIDLIB_EXPORT std::vector<int> getK() const;
 
   /** Set the K values for each model.
    * This feature is temporary, and will be replaced by a different design.

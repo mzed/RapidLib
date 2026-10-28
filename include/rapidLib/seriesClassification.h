@@ -11,7 +11,6 @@
 
 #include "rapidLib/rapidLib_export.h"
 
-#include "../../src/fastDTW.h"
 #include "trainingExample.h"
 
 #include <vector>

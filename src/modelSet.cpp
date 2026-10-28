@@ -9,9 +9,12 @@
 
 #include "rapidLib/modelSet.h"
 
-#ifndef EMSCRIPTEN
-//#include "../dependencies/json/json.h"
-#else
+#include "baseModel.h"
+#include "neuralNetwork.h"
+#include "knnClassification.h"
+#include "svmClassification.h"
+
+#ifdef EMSCRIPTEN
 #include "emscripten/modelSetEmbindings.h"
 #endif
 
@@ -96,7 +99,7 @@ bool modelSet<T>::reset()
 }
 
 template<typename T>
-std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector) 
+std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector) const
 {
   std::vector<T> returnVector {};
 
@@ -129,7 +132,7 @@ std::vector<T> json2vector(Json::Value json)
 }
 
 template<typename T>
-Json::Value modelSet<T>::parse2json() 
+Json::Value modelSet<T>::parse2json() const
 {
     Json::Value root;
     Json::Value metadata;
@@ -159,14 +162,14 @@ Json::Value modelSet<T>::parse2json()
 }
 
 template<typename T>
-std::string modelSet<T>::getJSON() 
+std::string modelSet<T>::getJSON() const
 {
     Json::Value root { parse2json() };
     return root.toStyledString();
 }
 
 template<typename T>
-void modelSet<T>::writeJSON(const std::string &filepath) 
+void modelSet<T>::writeJSON(const std::string &filepath) const
 {
     Json::Value root { parse2json() };
     std::ofstream jsonOut;

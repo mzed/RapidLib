@@ -36,7 +36,7 @@ public:
   RAPIDLIB_EXPORT bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
 
   /** Check how far the training has gotten. Averages progress over all models in training */
-  RAPIDLIB_EXPORT float getTrainingProgress();
+  RAPIDLIB_EXPORT float getTrainingProgress() const;
 
   /** Check how many training epochs each model will run. This feature is temporary, and will be replaced by a different design. */
   RAPIDLIB_EXPORT std::vector<size_t> getNumEpochs() const;
