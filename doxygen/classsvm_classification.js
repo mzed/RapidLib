@@ -17,7 +17,7 @@ var classsvm_classification =
     [ "svmClassification", "classsvm_classification.html#a77cdca9d4d80f7a2f9b101e299574523", null ],
     [ "svmClassification", "classsvm_classification.html#ae6cfa10c4cc9fb22267320067bac5cd2", null ],
     [ "~svmClassification", "classsvm_classification.html#a62acf39aee26586edc12f3fa764cdc51", null ],
-    [ "getJSONDescription", "classsvm_classification.html#af724e989e4e7259a409c063a6b6b535e", null ],
+    [ "getJSONDescription", "classsvm_classification.html#a6e6e7d494779e55e89855906843d352e", null ],
     [ "getNumInputs", "classsvm_classification.html#afeaa634fe02f83de06d22f84af9f7c66", null ],
     [ "getWhichInputs", "classsvm_classification.html#a36381ed6f8f7f6b051e313cfaf46c189", null ],
     [ "init", "classsvm_classification.html#aa3c095477366a40e13734788df155399", null ],

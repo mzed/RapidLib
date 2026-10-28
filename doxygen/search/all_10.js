@@ -4,7 +4,7 @@ var searchData=
   ['searchwindow_2ecpp_57',['searchWindow.cpp',['../search_window_8cpp.html',1,'']]],
   ['searchwindow_2eh_58',['searchWindow.h',['../search_window_8h.html',1,'']]],
   ['seriesclassification_2ecpp_59',['seriesClassification.cpp',['../series_classification_8cpp.html',1,'']]],
-  ['setepochs_60',['setEpochs',['../classneural_network.html#aba035309d02ee4f85d394176d4082d68',1,'neuralNetwork']]],
+  ['setepochs_60',['setEpochs',['../classneural_network.html#aaff9d9535beb9cbd2b70233b03149c8e',1,'neuralNetwork']]],
   ['setk_61',['setK',['../classknn_classification.html#a8c3d569112e964813ca0fb3e1d6597b5',1,'knnClassification']]],
   ['setnumhiddenlayers_62',['setNumHiddenLayers',['../classneural_network.html#a873489b1600cbcb0b7e514125e03c87a',1,'neuralNetwork']]],
   ['setnumhiddennodes_63',['setNumHiddenNodes',['../classneural_network.html#a660b5d16d302083f754257d63af47d74',1,'neuralNetwork']]],

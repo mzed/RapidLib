@@ -1,4 +1,6 @@
 <map id="src/svmClassification.h" name="src/svmClassification.h">
-<area shape="rect" id="node1" title=" " alt="" coords="13,5,169,32"/>
-<area shape="rect" id="node2" href="$svm_classification_8cpp.html" title=" " alt="" coords="5,80,176,107"/>
+<area shape="rect" id="node1" title=" " alt="" coords="156,5,312,32"/>
+<area shape="rect" id="node2" href="$classification_8cpp.html" title=" " alt="" coords="5,80,148,107"/>
+<area shape="rect" id="node3" href="$model_set_8cpp.html" title=" " alt="" coords="173,80,295,107"/>
+<area shape="rect" id="node4" href="$svm_classification_8cpp.html" title=" " alt="" coords="319,80,490,107"/>
 </map>

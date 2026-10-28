@@ -1,4 +1,6 @@
 <map id="src/knnClassification.h" name="src/knnClassification.h">
-<area shape="rect" id="node1" title=" " alt="" coords="13,5,165,32"/>
-<area shape="rect" id="node2" href="$knn_classification_8cpp.html" title=" " alt="" coords="5,80,172,107"/>
+<area shape="rect" id="node1" title=" " alt="" coords="179,5,331,32"/>
+<area shape="rect" id="node2" href="$classification_8cpp.html" title=" " alt="" coords="5,80,148,107"/>
+<area shape="rect" id="node3" href="$knn_classification_8cpp.html" title=" " alt="" coords="172,80,339,107"/>
+<area shape="rect" id="node4" href="$model_set_8cpp.html" title=" " alt="" coords="363,80,486,107"/>
 </map>

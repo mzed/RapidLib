@@ -1,7 +1,7 @@
 var searchData=
 [
   ['searchwindow_136',['searchWindow',['../classsearch_window.html#abe71a6ed802a6162648cd9f390d6a0c1',1,'searchWindow']]],
-  ['setepochs_137',['setEpochs',['../classneural_network.html#aba035309d02ee4f85d394176d4082d68',1,'neuralNetwork']]],
+  ['setepochs_137',['setEpochs',['../classneural_network.html#aaff9d9535beb9cbd2b70233b03149c8e',1,'neuralNetwork']]],
   ['setk_138',['setK',['../classknn_classification.html#a8c3d569112e964813ca0fb3e1d6597b5',1,'knnClassification']]],
   ['setnumhiddenlayers_139',['setNumHiddenLayers',['../classneural_network.html#a873489b1600cbcb0b7e514125e03c87a',1,'neuralNetwork']]],
   ['setnumhiddennodes_140',['setNumHiddenNodes',['../classneural_network.html#a660b5d16d302083f754257d63af47d74',1,'neuralNetwork']]],

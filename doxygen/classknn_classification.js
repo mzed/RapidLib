@@ -1,9 +1,9 @@
 var classknn_classification =
 [
-    [ "knnClassification", "classknn_classification.html#af1dc2785ea5a257c638edd7294066882", null ],
+    [ "knnClassification", "classknn_classification.html#a897f6707a5bad072346ee6aa8ecbb6ac", null ],
     [ "~knnClassification", "classknn_classification.html#a4ba014191f6af7fc093b85ce6f1b3cd7", null ],
     [ "addNeighbour", "classknn_classification.html#ab063c995eafc46452033dc15f75df5b1", null ],
-    [ "getJSONDescription", "classknn_classification.html#a36a10aafe5a834e183b85192fb677979", null ],
+    [ "getJSONDescription", "classknn_classification.html#ab24218f2e23bd02cd97dbc17d2ce72fb", null ],
     [ "getK", "classknn_classification.html#a4a6a2b541e1172786d4f9af73d4eae78", null ],
     [ "getNumInputs", "classknn_classification.html#aadd11a7794e030694f960b7aab0a910a", null ],
     [ "getWhichInputs", "classknn_classification.html#a2471fe5f666f22ea1a016e53d48d6847", null ],

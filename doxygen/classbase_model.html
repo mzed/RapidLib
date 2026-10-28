@@ -140,17 +140,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa28f4ec7624443ebe8649124ad4a2621"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0de01cfc108e8163d73fe8048955d771"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a0de01cfc108e8163d73fe8048955d771">getWhichInputs</a> () const =0</td></tr>
 <tr class="separator:a0de01cfc108e8163d73fe8048955d771"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e8f888087752fa3d353edd14eeb4858"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#a7e8f888087752fa3d353edd14eeb4858">getJSONDescription</a> (Json::Value &amp;currentModel)=0</td></tr>
-<tr class="separator:a7e8f888087752fa3d353edd14eeb4858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd02a65d0940e2614bcba26dc41bcb8c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#abd02a65d0940e2614bcba26dc41bcb8c">getJSONDescription</a> (Json::Value &amp;currentModel) const =0</td></tr>
+<tr class="separator:abd02a65d0940e2614bcba26dc41bcb8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ab192da19c9cb056a5e83cfca5c38e603"><td class="memTemplParams" colspan="2">template&lt;typename TT , class Dummy  = int&gt; </td></tr>
-<tr class="memitem:ab192da19c9cb056a5e83cfca5c38e603"><td class="memTemplItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classbase_model.html#ab192da19c9cb056a5e83cfca5c38e603">vector2json</a> (TT vec)</td></tr>
-<tr class="separator:ab192da19c9cb056a5e83cfca5c38e603"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad54efcf0ded07edeb12dbbd157a04e63"><td class="memTemplParams" colspan="2">template&lt;class Dummy  = int&gt; </td></tr>
-<tr class="memitem:ad54efcf0ded07edeb12dbbd157a04e63"><td class="memTemplItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classbase_model.html#ad54efcf0ded07edeb12dbbd157a04e63">vector2json</a> (std::vector&lt; unsigned long &gt; vec)</td></tr>
-<tr class="separator:ad54efcf0ded07edeb12dbbd157a04e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1b542f6615157c2698e1f0d5edf6276"><td class="memTemplParams" colspan="2">template&lt;typename TT , class Dummy  = int&gt; </td></tr>
+<tr class="memitem:ae1b542f6615157c2698e1f0d5edf6276"><td class="memTemplItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classbase_model.html#ae1b542f6615157c2698e1f0d5edf6276">vector2json</a> (TT vec) const</td></tr>
+<tr class="separator:ae1b542f6615157c2698e1f0d5edf6276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f3fae80a604dbacee36632bbc3da060"><td class="memTemplParams" colspan="2">template&lt;class Dummy  = int&gt; </td></tr>
+<tr class="memitem:a5f3fae80a604dbacee36632bbc3da060"><td class="memTemplItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classbase_model.html#a5f3fae80a604dbacee36632bbc3da060">vector2json</a> (std::vector&lt; unsigned long &gt; vec) const</td></tr>
+<tr class="separator:a5f3fae80a604dbacee36632bbc3da060"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br />
@@ -186,8 +186,8 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7e8f888087752fa3d353edd14eeb4858"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e8f888087752fa3d353edd14eeb4858">&#9670;&nbsp;</a></span>getJSONDescription()</h2>
+<a id="abd02a65d0940e2614bcba26dc41bcb8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd02a65d0940e2614bcba26dc41bcb8c">&#9670;&nbsp;</a></span>getJSONDescription()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -202,7 +202,7 @@ template&lt;typename T &gt; </div>
           <td>(</td>
           <td class="paramtype">Json::Value &amp;&#160;</td>
           <td class="paramname"><em>currentModel</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -212,7 +212,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classsvm_classification.html#af724e989e4e7259a409c063a6b6b535e">svmClassification&lt; T &gt;</a>, <a class="el" href="classneural_network.html#a88620edc9ba16fbcd7686c2da2325575">neuralNetwork&lt; T &gt;</a>, and <a class="el" href="classknn_classification.html#a36a10aafe5a834e183b85192fb677979">knnClassification&lt; T &gt;</a>.</p>
+<p>Implemented in <a class="el" href="classsvm_classification.html#a6e6e7d494779e55e89855906843d352e">svmClassification&lt; T &gt;</a>, <a class="el" href="classneural_network.html#af86be8da65af80c09d7bf7179f508d59">neuralNetwork&lt; T &gt;</a>, and <a class="el" href="classknn_classification.html#ab24218f2e23bd02cd97dbc17d2ce72fb">knnClassification&lt; T &gt;</a>.</p>
 
 </div>
 </div>
@@ -403,8 +403,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="ad54efcf0ded07edeb12dbbd157a04e63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad54efcf0ded07edeb12dbbd157a04e63">&#9670;&nbsp;</a></span>vector2json() <span class="overload">[1/2]</span></h2>
+<a id="a5f3fae80a604dbacee36632bbc3da060"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f3fae80a604dbacee36632bbc3da060">&#9670;&nbsp;</a></span>vector2json() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -421,7 +421,7 @@ template&lt;class Dummy  = int&gt; </div>
           <td>(</td>
           <td class="paramtype">std::vector&lt; unsigned long &gt;&#160;</td>
           <td class="paramname"><em>vec</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -433,8 +433,8 @@ template&lt;class Dummy  = int&gt; </div>
 
 </div>
 </div>
-<a id="ab192da19c9cb056a5e83cfca5c38e603"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab192da19c9cb056a5e83cfca5c38e603">&#9670;&nbsp;</a></span>vector2json() <span class="overload">[2/2]</span></h2>
+<a id="ae1b542f6615157c2698e1f0d5edf6276"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1b542f6615157c2698e1f0d5edf6276">&#9670;&nbsp;</a></span>vector2json() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -451,7 +451,7 @@ template&lt;typename TT , class Dummy  = int&gt; </div>
           <td>(</td>
           <td class="paramtype">TT&#160;</td>
           <td class="paramname"><em>vec</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>

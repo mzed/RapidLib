@@ -5,7 +5,7 @@ var searchData=
   ['getepochs_117',['getEpochs',['../classneural_network.html#ad7f7b2da4f538858be2c8a0605ea50b9',1,'neuralNetwork']]],
   ['getinbases_118',['getInBases',['../classneural_network.html#a117ceae3ff964ea9612b8ab357d8f5de',1,'neuralNetwork']]],
   ['getinranges_119',['getInRanges',['../classneural_network.html#ac23b669ec4fc0a6f5f30a9ef3f9fe804',1,'neuralNetwork']]],
-  ['getjsondescription_120',['getJSONDescription',['../classbase_model.html#a7e8f888087752fa3d353edd14eeb4858',1,'baseModel::getJSONDescription()'],['../classknn_classification.html#a36a10aafe5a834e183b85192fb677979',1,'knnClassification::getJSONDescription()'],['../classneural_network.html#a88620edc9ba16fbcd7686c2da2325575',1,'neuralNetwork::getJSONDescription()'],['../classsvm_classification.html#af724e989e4e7259a409c063a6b6b535e',1,'svmClassification::getJSONDescription()']]],
+  ['getjsondescription_120',['getJSONDescription',['../classbase_model.html#abd02a65d0940e2614bcba26dc41bcb8c',1,'baseModel::getJSONDescription()'],['../classknn_classification.html#ab24218f2e23bd02cd97dbc17d2ce72fb',1,'knnClassification::getJSONDescription()'],['../classneural_network.html#af86be8da65af80c09d7bf7179f508d59',1,'neuralNetwork::getJSONDescription()'],['../classsvm_classification.html#a6e6e7d494779e55e89855906843d352e',1,'svmClassification::getJSONDescription()']]],
   ['getk_121',['getK',['../classknn_classification.html#a4a6a2b541e1172786d4f9af73d4eae78',1,'knnClassification']]],
   ['getnumhiddenlayers_122',['getNumHiddenLayers',['../classneural_network.html#ac747f899d7418d371b6ee4672f5ec221',1,'neuralNetwork']]],
   ['getnumhiddennodes_123',['getNumHiddenNodes',['../classneural_network.html#a9a8e7ea477ea2d05c70952fa523af9aa',1,'neuralNetwork']]],

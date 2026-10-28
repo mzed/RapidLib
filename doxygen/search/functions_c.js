@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vector2json_143',['vector2json',['../classbase_model.html#ab192da19c9cb056a5e83cfca5c38e603',1,'baseModel::vector2json(TT vec)'],['../classbase_model.html#ad54efcf0ded07edeb12dbbd157a04e63',1,'baseModel::vector2json(std::vector&lt; unsigned long &gt; vec)']]]
+  ['vector2json_143',['vector2json',['../classbase_model.html#ae1b542f6615157c2698e1f0d5edf6276',1,'baseModel::vector2json(TT vec) const'],['../classbase_model.html#a5f3fae80a604dbacee36632bbc3da060',1,'baseModel::vector2json(std::vector&lt; unsigned long &gt; vec) const']]]
 ];

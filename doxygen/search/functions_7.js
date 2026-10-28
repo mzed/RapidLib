@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['knnclassification_132',['knnClassification',['../classknn_classification.html#af1dc2785ea5a257c638edd7294066882',1,'knnClassification']]]
+  ['knnclassification_132',['knnClassification',['../classknn_classification.html#a897f6707a5bad072346ee6aa8ecbb6ac',1,'knnClassification']]]
 ];
