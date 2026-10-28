@@ -56,7 +56,6 @@ set(sources
 	src/seriesClassification.cpp
 	src/svmClassification.cpp
 	src/svmClassification.h
-	src/warpPath.cpp
 	src/warpPath.h)
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${sources})
 
