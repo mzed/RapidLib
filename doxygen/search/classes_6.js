@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['neuralnetwork_173',['neuralNetwork',['../classneural_network.html',1,'']]]
+  ['warpinfo_87',['warpInfo',['../structwarp_info.html',1,'']]],
+  ['warppath_88',['warpPath',['../structwarp_path.html',1,'']]]
 ];

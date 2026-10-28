@@ -154,9 +154,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae6cfa10c4cc9fb22267320067bac5cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62acf39aee26586edc12f3fa764cdc51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#a62acf39aee26586edc12f3fa764cdc51">~svmClassification</a> ()</td></tr>
 <tr class="separator:a62acf39aee26586edc12f3fa764cdc51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23de13e7fef307193249c259eab32a81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#a23de13e7fef307193249c259eab32a81">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet) override</td></tr>
+<tr class="memitem:a23de13e7fef307193249c259eab32a81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#a23de13e7fef307193249c259eab32a81">train</a> (const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet) override</td></tr>
 <tr class="separator:a23de13e7fef307193249c259eab32a81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55f8deffe659f06f1b9d6bf2fe39abb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#a55f8deffe659f06f1b9d6bf2fe39abb5">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet, const std::size_t whichOutput) override</td></tr>
+<tr class="memitem:a55f8deffe659f06f1b9d6bf2fe39abb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#a55f8deffe659f06f1b9d6bf2fe39abb5">train</a> (const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet, const std::size_t whichOutput) override</td></tr>
 <tr class="separator:a55f8deffe659f06f1b9d6bf2fe39abb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54a7c9664418d3d4c1fbf9a74e09ceda"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#a54a7c9664418d3d4c1fbf9a74e09ceda">run</a> (const std::vector&lt; T &gt; &amp;inputVector) const override</td></tr>
 <tr class="separator:a54a7c9664418d3d4c1fbf9a74e09ceda"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -647,7 +647,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classsvm_classification.html">svmClassification</a>&lt; T &gt;::train </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em></td><td>)</td>
           <td></td>
         </tr>
@@ -684,7 +684,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classsvm_classification.html">svmClassification</a>&lt; T &gt;::train </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em>, </td>
         </tr>
         <tr>
@@ -705,7 +705,7 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Fill the model with a vector of examples. Use this when part of a <a class="el" href="classmodel_set.html">modelSet</a></p>
+<p>Fill the model with a vector of examples. Use this when part of a modelSet</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">The</td><td>training set is a vector of training examples that contain both a vector of input values and a double specifying desired output class. </td></tr>

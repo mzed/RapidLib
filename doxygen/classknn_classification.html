@@ -124,7 +124,7 @@ Collaboration diagram for knnClassification&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af1dc2785ea5a257c638edd7294066882"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#af1dc2785ea5a257c638edd7294066882">knnClassification</a> (const int &amp;num_inputs, const std::vector&lt; size_t &gt; &amp;which_inputs, const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet, const int k)</td></tr>
+<tr class="memitem:af1dc2785ea5a257c638edd7294066882"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#af1dc2785ea5a257c638edd7294066882">knnClassification</a> (const int &amp;num_inputs, const std::vector&lt; size_t &gt; &amp;which_inputs, const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet, const int k)</td></tr>
 <tr class="separator:af1dc2785ea5a257c638edd7294066882"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ba014191f6af7fc093b85ce6f1b3cd7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a4ba014191f6af7fc093b85ce6f1b3cd7">~knnClassification</a> ()</td></tr>
 <tr class="separator:a4ba014191f6af7fc093b85ce6f1b3cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,9 +132,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab063c995eafc46452033dc15f75df5b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa891133832f54ccf1e177c2da2c2dba6"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#aa891133832f54ccf1e177c2da2c2dba6">run</a> (const std::vector&lt; T &gt; &amp;inputVector) const override</td></tr>
 <tr class="separator:aa891133832f54ccf1e177c2da2c2dba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac953965e1cf8a1efa083ac5d67255a7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#ac953965e1cf8a1efa083ac5d67255a7d">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet) override</td></tr>
+<tr class="memitem:ac953965e1cf8a1efa083ac5d67255a7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#ac953965e1cf8a1efa083ac5d67255a7d">train</a> (const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet) override</td></tr>
 <tr class="separator:ac953965e1cf8a1efa083ac5d67255a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c5abb3362a7eef0ce5865fb14cf7e0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a4c5abb3362a7eef0ce5865fb14cf7e0c">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt;&gt; &amp;trainingSet, const std::size_t whichOutput) override</td></tr>
+<tr class="memitem:a4c5abb3362a7eef0ce5865fb14cf7e0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a4c5abb3362a7eef0ce5865fb14cf7e0c">train</a> (const std::vector&lt; trainingExampleTemplate&lt; T &gt;&gt; &amp;trainingSet, const std::size_t whichOutput) override</td></tr>
 <tr class="separator:a4c5abb3362a7eef0ce5865fb14cf7e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41004e56b7fc3694e4e9e92bb82632b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a41004e56b7fc3694e4e9e92bb82632b2">reset</a> () override</td></tr>
 <tr class="separator:a41004e56b7fc3694e4e9e92bb82632b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,7 +151,7 @@ Public Member Functions</h2></td></tr>
 <tr class="inherit_header pub_methods_classbase_model"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classbase_model')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classbase_model.html">baseModel&lt; T &gt;</a></td></tr>
 <tr class="memitem:ac16b40e0a37c3ddc335d44b0668df4e2 inherit pub_methods_classbase_model"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#ac16b40e0a37c3ddc335d44b0668df4e2">~baseModel</a> ()</td></tr>
 <tr class="separator:ac16b40e0a37c3ddc335d44b0668df4e2 inherit pub_methods_classbase_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab178dbf9969eb61ca9b53388d0348c19 inherit pub_methods_classbase_model"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#ab178dbf9969eb61ca9b53388d0348c19">train</a> (const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;trainingSet, const std::size_t whichOutput)=0</td></tr>
+<tr class="memitem:ab178dbf9969eb61ca9b53388d0348c19 inherit pub_methods_classbase_model"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase_model.html#ab178dbf9969eb61ca9b53388d0348c19">train</a> (const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet, const std::size_t whichOutput)=0</td></tr>
 <tr class="separator:ab178dbf9969eb61ca9b53388d0348c19 inherit pub_methods_classbase_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
@@ -193,7 +193,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em>, </td>
         </tr>
         <tr>
@@ -486,7 +486,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classknn_classification.html">knnClassification</a>&lt; T &gt;::train </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em></td><td>)</td>
           <td></td>
         </tr>
@@ -523,7 +523,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classknn_classification.html">knnClassification</a>&lt; T &gt;::train </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structtraining_example_template.html">trainingExampleTemplate</a>&lt; T &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; trainingExampleTemplate&lt; T &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>trainingSet</em>, </td>
         </tr>
         <tr>
@@ -544,7 +544,7 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Fill the model with a vector of examples. Use this when the model is part of a <a class="el" href="classmodel_set.html">modelSet</a>.</p>
+<p>Fill the model with a vector of examples. Use this when the model is part of a modelSet.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">The</td><td>training set is a vector of training examples that contain both a vector of input values and a value specifying desired output class. </td></tr>
