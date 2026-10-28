@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 project(rapidLib
-	VERSION 2.4.0
+	VERSION 2.5.0
 	DESCRIPTION "A lightweight library for interactive machine learning"
 	LANGUAGES CXX)
 

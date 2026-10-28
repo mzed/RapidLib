@@ -34,15 +34,13 @@
 
 #pragma once
 
-#define RAPIDLIB_VERSION_MAJOR 2
-#define RAPIDLIB_VERSION_MINOR 4
-#define RAPIDLIB_VERSION_PATCH 1
-#define RAPIDLIB_VERSION "2.4.0"
 #define RAPIDLIB_JSON_DOC_VERSION "1.0.0"
-#define RAPIDLIB_REVISION "17-September-2024"
+#define RAPIDLIB_REVISION "28-October-2026"
+
+#include "rapidLib/version.h"
 
 #include "regression.h"
 #include "classification.h"
 #include "seriesClassification.h"
 #include "rapidStream.h"
-#include "rapidLib/version.h"
+
