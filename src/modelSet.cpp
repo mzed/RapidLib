@@ -14,6 +14,14 @@
 #include "knnClassification.h"
 #include "svmClassification.h"
 
+#if __has_include("rapidLib/version.h")
+#include "rapidLib/version.h"
+#endif
+// Fallback for builds that don't go through CMake (e.g. makefile-emscripten)
+#ifndef RAPIDLIB_VERSION
+#define RAPIDLIB_VERSION "2.4.0"
+#endif
+
 #ifdef EMSCRIPTEN
 #include "emscripten/modelSetEmbindings.h"
 #endif
@@ -123,7 +131,7 @@ Json::Value modelSet<T>::parse2json() const
     Json::Value modelSet;
     
     metadata["creator"] = "Rapid API C++";
-    metadata["version"] = "v0.2.0"; //TODO: This should be a macro someplace
+    metadata["version"] = "v" RAPIDLIB_VERSION;
     metadata["numInputs"] = static_cast<int>(numInputs.value_or(-1));
     Json::Value inputNamesJSON;
 

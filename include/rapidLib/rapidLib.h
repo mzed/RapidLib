@@ -45,3 +45,4 @@
 #include "classification.h"
 #include "seriesClassification.h"
 #include "rapidStream.h"
+#include "rapidLib/version.h"
