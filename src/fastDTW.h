@@ -46,13 +46,4 @@ private:
      * @return The warp path
      */
     static warpPath getWarpPath(const std::vector<std::vector<T>> &seriesX, const std::vector<std::vector<T > > &seriesY, int searchRadius);
-    
-    /**
-     * Downsamples a time series by two. Resolution isn't implemented yet
-     * @param series
-     * @param resolution (not used)
-     * @return downsampled series
-     `*/
-    inline static std::vector<std::vector<T> > downsample(const std::vector<std::vector<T>> &series, T resolution);
-    
 };

@@ -10,6 +10,35 @@
 #include "fastDTW.h"
 #include "dtw.h"
 
+namespace {
+
+template<typename T>
+std::vector<std::vector<T> > downsample(const std::vector<std::vector<T>>& series)
+{
+  std::vector<std::vector<T> > shrunkenSeries {};
+
+  for (std::size_t i {}; i < series.size(); ++i)
+  {
+    if (i % 2 == 0)
+    {
+      shrunkenSeries.push_back(series[i]);
+    }
+    else
+    {
+      const int shrunkIndex { static_cast<int>(i * 0.5) };
+
+      for (std::size_t j {}; j < series[i].size(); ++j)
+      {
+        shrunkenSeries[shrunkIndex][j] = (shrunkenSeries[shrunkIndex][j] + series[i][j]) * (T)0.5;
+      }
+    }
+  }
+
+  return shrunkenSeries;
+}
+
+} // anonymous namespace
+
 template<typename T>
 fastDTW<T>::fastDTW() {};
 
@@ -36,9 +65,8 @@ warpInfo<T> fastDTW<T>::fullFastDTW(const std::vector<std::vector<T>>& seriesX, 
     return dtw.dynamicTimeWarp(seriesX, seriesY);
   }
 
-  T resolution { 2.0 };//TODO: Just hardcode this?
-  std::vector<std::vector<T>> shrunkenX { downsample(seriesX, resolution) };
-  std::vector<std::vector<T>> shrunkenY { downsample(seriesY, resolution) };
+  std::vector<std::vector<T>> shrunkenX { downsample(seriesX) };
+  std::vector<std::vector<T>> shrunkenY { downsample(seriesY) };
 
   //some nice recursion here
   searchWindow<T> window(int(seriesX.size()), int(seriesY.size()), getWarpPath(shrunkenX, shrunkenY, searchRadius), searchRadius);
@@ -59,32 +87,6 @@ warpPath fastDTW<T>::getWarpPath(const std::vector<std::vector<T>>& seriesX, con
   warpInfo<T> info { fullFastDTW(seriesX, seriesY, searchRadius) };
   return info.path;
 };
-
-template<typename T>
-inline std::vector<std::vector<T> > fastDTW<T>::downsample(const std::vector<std::vector<T>>& series, T resolution)
-{
-  std::vector<std::vector<T> > shrunkenSeries {};
-
-  for (std::size_t i {}; i < series.size(); ++i)
-  {
-    if (i % 2 == 0)
-    {
-      shrunkenSeries.push_back(series[i]);
-    }
-    else
-    {
-      const int shrunkIndex { static_cast<int>(i * 0.5) };
-
-      for (std::size_t j {}; j < series[i].size(); ++j)
-      {
-        shrunkenSeries[shrunkIndex][j] = (shrunkenSeries[shrunkIndex][j] + series[i][j]) * (T)0.5;
-      }
-    }
-  }
-  
-  //TODO: implement downsampling by resolution
-  return shrunkenSeries;
-}
 
 //explicit instantiation
 template class fastDTW<double>;

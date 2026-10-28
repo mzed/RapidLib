@@ -10,12 +10,10 @@
 
 #include <vector>
 
-/** Class to hold warp paths through a cost matrix */
-class warpPath
+/** Struct to hold warp paths through a cost matrix */
+struct warpPath
 {
-public:
-  warpPath();
-  ~warpPath();
+  std::vector<std::pair<std::size_t, std::size_t>> indices{};
 
   /**
    * Add a point to the beginning of the warp path.
@@ -26,14 +24,11 @@ public:
   {
     indices.insert(indices.begin(), std::make_pair(x, y));
   };
-
-private:
-  std::vector<std::pair<std::size_t, std::size_t>> indices;
 };
 
 /** return struct holding a warp path and the cost of that path */
 template <typename T> struct warpInfo
 {
-  warpPath path;
-  T cost;
+  warpPath path{};
+  T cost{};
 };
