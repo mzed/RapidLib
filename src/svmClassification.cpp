@@ -67,9 +67,9 @@ svmClassification<T>::svmClassification(
 }
 
 template<typename T>
-svmClassification<T>::svmClassification(int num_inputs) {
-    
-    numInputs = num_inputs;
+svmClassification<T>::svmClassification(const std::optional<size_t> num_inputs) {
+
+    numInputs = num_inputs.value_or(0);
     
     //Setup the default SVM parameters
     model = NULL;

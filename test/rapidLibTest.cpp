@@ -309,8 +309,9 @@ int main(int argc, const char * argv[])
   rapidLib::trainingExampleFloat tempExample2;
   std::default_random_engine generator;
   std::uniform_real_distribution<float> distribution(-0.5, 0.5);
-  int vecLength = 64;
-  for (std::size_t j = 0; j < vecLength; ++j)
+  size_t vecLength { 64 };
+
+  for (std::size_t j{}; j < vecLength; ++j)
   {
     tempExample2.input.clear();
     tempExample2.output.clear();

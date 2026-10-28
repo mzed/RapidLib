@@ -55,8 +55,8 @@ public:
                       unsigned int kFoldValue = 10
                       );
     
-    svmClassification(int numInputs);
-    
+    svmClassification(const std::optional<size_t> num_inputs);
+
     /** Destructor */
     ~svmClassification();
     
@@ -123,8 +123,8 @@ private:
     struct LIBSVM::svm_parameter param;
     struct LIBSVM::svm_problem problem;
     
-    int numInputs;
-    
+    size_t numInputs;
+
     /** Normalization parameters */
     std::vector<double> inRanges;
     std::vector<double> inBases;

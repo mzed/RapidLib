@@ -40,7 +40,7 @@ class classificationTemplate final : public modelSet<T>
   RAPIDLIB_EXPORT classificationTemplate(const std::vector<trainingExampleTemplate<T> > &trainingSet);
 
   /** create with proper models, but not trained */
-  RAPIDLIB_EXPORT classificationTemplate(const int numInputs, const int numOutputs);
+  RAPIDLIB_EXPORT classificationTemplate(const size_t numInputs, const size_t numOutputs);
 
   /** destructor */
   ~classificationTemplate() {}
@@ -65,7 +65,7 @@ class classificationTemplate final : public modelSet<T>
    * @param int which model to set
    * @param int k value for that model
    */
-  RAPIDLIB_EXPORT void setK(const int whichModel, const int newK);
+  RAPIDLIB_EXPORT void setK(const size_t whichModel, const int newK);
 
   private:
   classificationTypes classificationType;

@@ -22,8 +22,8 @@ numEpochs(500),
 numHiddenLayers(1),
 numHiddenNodes(0) //this will be changed by training
 {
-  modelSet<T>::numInputs = -1;
-  modelSet<T>::numOutputs = -1;
+  modelSet<T>::numInputs = std::nullopt;
+  modelSet<T>::numOutputs = std::nullopt;
   modelSet<T>::isTraining = false;
 };
 
@@ -197,7 +197,8 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T>> 
     }
   }
 
-  if (numHiddenNodes == 0) numHiddenNodes = modelSet<T>::numInputs;
+
+  if (numHiddenNodes == 0 && modelSet<T>::numInputs.has_value()) numHiddenNodes = *modelSet<T>::numInputs;
   std::vector<size_t> whichInputs;
 
   for (int j = 0; j < modelSet<T>::numInputs; ++j)

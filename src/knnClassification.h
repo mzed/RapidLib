@@ -26,7 +26,7 @@ class knnClassification final : public baseModel<T>
    * @param vector of training examples
    * @param int how many near neighbours to evaluate
    */
-  knnClassification(const int num_inputs,
+  knnClassification(const std::optional<size_t> num_inputs,
                     const std::vector<size_t> &which_inputs,
                     const std::vector<trainingExampleTemplate<T> > &trainingSet,
                     const int k);
@@ -73,7 +73,7 @@ class knnClassification final : public baseModel<T>
   std::vector<size_t> getWhichInputs() const override;
 
   /** Get the number of nearest neighbours used by the kNN algorithm. */
-  int getK() const;
+  size_t getK() const;
 
   /** Change the number of nearest neighbours used by the kNN algorithm.
    * @param new value for k
@@ -88,11 +88,11 @@ class knnClassification final : public baseModel<T>
 #endif
 
   private:
-  int numInputs {};
+  size_t numInputs {};
   std::vector<size_t> whichInputs {};
   std::size_t whichOutput {};
   std::vector<trainingExampleTemplate<T>> neighbours {};
-  int desiredK {}; //K that user asked for might be limited but number of examples
-  int currentK {}; //K minimum of desiredK or neighbours.size()
+  size_t desiredK {}; //K that user asked for might be limited but number of examples
+  size_t currentK {}; //K minimum of desiredK or neighbours.size()
   inline void updateK();
 };

@@ -57,6 +57,7 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
 
 # testing
 add_executable(rapidLibTest test/rapidLibTest.cpp)
+set_property(TARGET rapidLibTest PROPERTY CXX_STANDARD 20)
 
 target_link_libraries(rapidLibTest ${PROJECT_NAME})
 target_link_libraries(rapidLibTest Threads::Threads)

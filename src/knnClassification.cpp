@@ -18,11 +18,11 @@
 
 template <typename T>
 knnClassification<T>::knnClassification(
-    const int num_inputs,
+    std::optional<size_t> numInputs,
     const std::vector<size_t> &which_inputs,
     const std::vector<trainingExampleTemplate<T>> &_neighbours,
     const int k)
-    : numInputs(num_inputs),
+    : numInputs(numInputs.value_or(0)),
       whichInputs(which_inputs),
       whichOutput(0),
       neighbours(_neighbours),
@@ -48,14 +48,14 @@ std::vector<size_t> knnClassification<T>::getWhichInputs() const
   return whichInputs;
 }
 
-template <typename T> int knnClassification<T>::getK() const
+template <typename T> size_t knnClassification<T>::getK() const
 {
   return currentK;
 }
 
 template <typename T> inline void knnClassification<T>::updateK()
 {
-  if (currentK != desiredK) currentK = std::min(desiredK, (int)neighbours.size());
+  if (currentK != desiredK) currentK = std::min(desiredK, neighbours.size());
 }
 
 template <typename T> void knnClassification<T>::setK(int newK)
@@ -179,9 +179,9 @@ template <typename T>
 void knnClassification<T>::getJSONDescription(Json::Value &jsonModelDescription) const
 {
   jsonModelDescription["modelType"] = "kNN Classificiation";
-  jsonModelDescription["numInputs"] = numInputs;
+  jsonModelDescription["numInputs"] = static_cast<int>(numInputs);
   jsonModelDescription["whichInputs"] = this->vector2json(whichInputs);
-  jsonModelDescription["k"] = desiredK;
+  jsonModelDescription["k"] = static_cast<int>(desiredK);
   Json::Value examples;
 
   for (const auto& neighbour : neighbours)

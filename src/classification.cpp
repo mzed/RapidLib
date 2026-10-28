@@ -35,10 +35,10 @@ classificationType { classification_type }
 };
 
 template<typename T>
-classificationTemplate<T>::classificationTemplate(const int num_inputs, const int num_outputs) //TODO: this feature isn't really useful
+classificationTemplate<T>::classificationTemplate(const size_t numInputs, const size_t numOutputs) //TODO: this feature isn't really useful
 {
-  modelSet<T>::numInputs = num_inputs;
-  modelSet<T>::numOutputs = num_outputs;
+  modelSet<T>::numInputs = numInputs;
+  modelSet<T>::numOutputs = numOutputs;
   modelSet<T>::isTraining = false;
   std::vector<size_t> whichInputs {};
 
@@ -58,8 +58,8 @@ classificationTemplate<T>::classificationTemplate(const int num_inputs, const in
 template<typename T>
 classificationTemplate<T>::classificationTemplate(const std::vector<trainingExampleTemplate<T> > &trainingSet)
 {
-  modelSet<T>::numInputs = -1;
-  modelSet<T>::numOutputs = -1;
+  modelSet<T>::numInputs = std::nullopt;
+  modelSet<T>::numOutputs = std::nullopt;
   modelSet<T>::isTraining = false;
   train(trainingSet);
 };
@@ -73,10 +73,10 @@ bool classificationTemplate<T>::train(const std::vector<trainingExampleTemplate<
   if (training_set.size() > 0)
   {
     //create model(s) here
-    modelSet<T>::numInputs = static_cast<int>(training_set[0].input.size());
-    modelSet<T>::numOutputs = static_cast<int>(training_set[0].output.size());
+    modelSet<T>::numInputs = training_set[0].input.size();
+    modelSet<T>::numOutputs = training_set[0].output.size();
 
-    for (int i {}; i < modelSet<T>::numInputs; ++i)
+    for (int i{}; i < modelSet<T>::numInputs; ++i)
     {
       modelSet<T>::inputNames.push_back("inputs-" + std::to_string(i + 1));
     }
@@ -88,13 +88,11 @@ bool classificationTemplate<T>::train(const std::vector<trainingExampleTemplate<
       if (example.input.size() != modelSet<T>::numInputs)
       {
         throw std::length_error("unequal feature vectors in input.");
-        return false;
       }
 
       if (example.output.size() != modelSet<T>::numOutputs)
       {
         throw std::length_error("unequal output vectors.");
-        return false;
       }
     }
 
@@ -105,7 +103,7 @@ bool classificationTemplate<T>::train(const std::vector<trainingExampleTemplate<
       whichInputs.push_back(inputNum);
     }
     
-    for (int outputNum {}; outputNum < modelSet<T>::numOutputs; ++outputNum)
+    for (size_t outputNum{}; outputNum < modelSet<T>::numOutputs; ++outputNum)
     {
       if (classificationType == svm)
       {
@@ -129,14 +127,15 @@ std::vector<int> classificationTemplate<T>::getK() const
 
   for (const auto& model : modelSet<T>::models)
   {
-    kVector.push_back(dynamic_cast<const knnClassification<T>*>(model.get())->getK()); //FIXME: I really dislike this design
+    const auto modelK { dynamic_cast<const knnClassification<T>*>(model.get())->getK() }; //FIXME: I really dislike this design
+    kVector.push_back(static_cast<int>(modelK));
   }
 
   return kVector;
 }
 
 template<typename T>
-void classificationTemplate<T>::setK(const int whichModel, const int newK)
+void classificationTemplate<T>::setK(const size_t whichModel, const int newK)
 {
   if (modelSet<T>::models.size() > whichModel)
   {

@@ -42,35 +42,24 @@ modelSet<T>::~modelSet()
 template<typename T>
 bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set) 
 {
-    if (isTraining)
-    {
-        throw std::runtime_error("model is already training");
-        return false;
-    }
+    if (isTraining) throw std::runtime_error("model is already training");
 
     for (const trainingExampleTemplate<T>& example : training_set)
     {
-        if (example.input.size() != numInputs)
-        {
-            throw std::length_error("unequal feature vectors in input.");
-            return false;
-        }
-
-        if (example.output.size() != numOutputs)
-        {
-            throw std::length_error("unequal output vectors.");
-            return false;
-        }
+        if (example.input.size() != numInputs) throw std::length_error("unequal feature vectors in input.");
+        if (example.output.size() != numOutputs) throw std::length_error("unequal output vectors.");
     }
 
     // Multithreaded training
+    isTraining = true;
     std::vector<std::thread> trainingThreads;
-    for (size_t modelIndex {}; modelIndex < models.size(); ++modelIndex)
+
+    for (size_t modelIndex{}; modelIndex < models.size(); ++modelIndex)
     {
         trainingThreads.push_back(std::thread(&modelSet<T>::threadTrain, this, modelIndex, training_set));
     }
 
-    for (std::size_t modelIndex {}; modelIndex < models.size(); ++modelIndex)
+    for (std::size_t modelIndex{}; modelIndex < models.size(); ++modelIndex)
     {
         trainingThreads.at(modelIndex).join();
     }
@@ -91,8 +80,8 @@ template<typename T>
 bool modelSet<T>::reset() 
 {
     models.clear();
-    numInputs = -1;
-    numOutputs = -1;
+    numInputs = std::nullopt;
+    numOutputs = std::nullopt;
     isTraining = false;
 
     return true;
@@ -103,17 +92,12 @@ std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector) const
 {
   std::vector<T> returnVector {};
 
-    if (isTraining)
-    {
-        throw std::runtime_error("can't run a model during training");
-        return returnVector;
-    }
+    if (isTraining) throw std::runtime_error("can't run a model during training");
 
-    if (inputVector.size() != numInputs)
+    if (!numInputs.has_value() || inputVector.size() != *numInputs)
     {
         std::string badSize = std::to_string(inputVector.size());
         throw std::length_error("bad input size: " + badSize);
-        return returnVector;
     }
 
     for (const auto& model : models) returnVector.push_back(model->run(inputVector));
@@ -127,7 +111,7 @@ template<typename T>
 std::vector<T> json2vector(Json::Value json) 
 {
     std::vector<T> returnVec {};
-    for (auto jsonValue : json) returnVec.push_back((T)jsonValue.asDouble());
+    for (auto& jsonValue : json) returnVec.push_back((T)jsonValue.asDouble());
     return returnVec;
 }
 
@@ -140,13 +124,13 @@ Json::Value modelSet<T>::parse2json() const
     
     metadata["creator"] = "Rapid API C++";
     metadata["version"] = "v0.2.0"; //TODO: This should be a macro someplace
-    metadata["numInputs"] = numInputs;
+    metadata["numInputs"] = static_cast<int>(numInputs.value_or(-1));
     Json::Value inputNamesJSON;
 
     for (const auto& inputName : inputNames) inputNamesJSON.append(inputName);
 
     metadata["inputNames"] = inputNamesJSON;
-    metadata["numOutputs"] = numOutputs;
+    metadata["numOutputs"] = static_cast<int>(numOutputs.value_or(-1));
     root["metadata"] = metadata;
 
     for (const auto& model : models)

@@ -24,7 +24,7 @@ class neuralNetwork final : public baseModel<T>
 {
   public:
   /** This is the constructor for building a trained model from JSON. */
-  neuralNetwork(const size_t num_inputs,
+  neuralNetwork(const std::optional<size_t> num_inputs,
                 const std::vector<size_t>& which_inputs,
                 const size_t num_hidden_layers,
                 const size_t num_hidden_nodes,
@@ -44,7 +44,7 @@ class neuralNetwork final : public baseModel<T>
    *
    * @return A neuralNetwork instance with randomized weights and no normalization values. These will be set or adjusted during training.
    */
-  neuralNetwork(const size_t num_inputs,
+  neuralNetwork(const std::optional<size_t> num_inputs,
                 const std::vector<size_t>& which_inputs,
                 const size_t num_hidden_layer,
                 const size_t num_hidden_nodes);

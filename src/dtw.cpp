@@ -56,7 +56,7 @@ T dtw<T>::getCost(const std::vector<std::vector<T>>& seriesX, const std::vector<
   
   //Calculate values for the first column
   costMatrix[0][0] = distanceFunction(seriesX[0], seriesY[0]);
-  for (int y { 1 }; y <= maxY; ++y)
+  for (size_t y { 1 }; y <= maxY; ++y)
   {
     costMatrix[0][y] = costMatrix[0][y - 1] + distanceFunction(seriesX[0], seriesY[y]);
   }

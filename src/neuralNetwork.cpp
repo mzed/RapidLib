@@ -38,7 +38,7 @@ void neuralNetwork<T>::initTrainer()
  */
 
 template<typename T>
-neuralNetwork<T>::neuralNetwork(const size_t num_inputs,
+neuralNetwork<T>::neuralNetwork(const std::optional<size_t> num_inputs,
                                 const std::vector<size_t>& which_inputs,
                                 const size_t num_hidden_layers,
                                 const size_t num_hidden_nodes,
@@ -50,7 +50,7 @@ neuralNetwork<T>::neuralNetwork(const size_t num_inputs,
                                 const T out_base
                                 )
 :
-numInputs(num_inputs),
+numInputs(num_inputs.value_or(0)),
 whichInputs(which_inputs),
 numHiddenLayers(num_hidden_layers),
 numHiddenNodes(num_hidden_nodes),
@@ -124,11 +124,11 @@ outputErrorGradient(0)
  */
 
 template<typename T>
-neuralNetwork<T>::neuralNetwork(const size_t num_inputs,
+neuralNetwork<T>::neuralNetwork(const std::optional<size_t> num_inputs,
                                 const std::vector<size_t>& which_inputs,
                                 const size_t num_hidden_layers,
                                 const size_t num_hidden_nodes) :
-numInputs(num_inputs),
+numInputs(num_inputs.value_or(0)),
 whichInputs(which_inputs),
 numHiddenLayers(num_hidden_layers),
 numHiddenNodes(num_hidden_nodes),
@@ -556,7 +556,7 @@ template<typename T>
 void neuralNetwork<T>::updateWeights()
 {
   //hidden to hidden weights
-  for (int i {}; i < numHiddenLayers; ++i)
+  for (size_t i {}; i < numHiddenLayers; ++i)
   {
     size_t numDeltas { (i == 0) ? numInputs : numHiddenNodes };
     for (size_t j {}; j < numHiddenNodes; ++j)

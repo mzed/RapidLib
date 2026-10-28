@@ -13,6 +13,7 @@
 #include "trainingExample.h"
 
 #include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -47,9 +48,9 @@ public:
 
 protected:
   std::vector<std::unique_ptr<baseModel<T>>> models{};
-  int numInputs{};
+  std::optional<size_t> numInputs{};
   std::vector<std::string> inputNames{};
-  int numOutputs{};
+  std::optional<size_t> numOutputs{};
   bool isTraining{}; //This is true while the models are training, and will block running
   bool isTrained{};
 

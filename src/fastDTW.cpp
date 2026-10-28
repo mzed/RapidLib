@@ -58,7 +58,7 @@ warpInfo<T> fastDTW<T>::fullFastDTW(const std::vector<std::vector<T>>& seriesX, 
 
   dtw<T> dtw;
   searchRadius = std::max(0, searchRadius);
-  const int minSeries { searchRadius + 2 };
+  const size_t minSeries { static_cast<size_t>(searchRadius) + 2 };
 
   if (seriesX.size() <= minSeries || seriesY.size() <= minSeries)
   {
