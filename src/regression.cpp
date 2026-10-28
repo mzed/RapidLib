@@ -146,7 +146,7 @@ std::vector<size_t> regressionTemplate<T>::getNumEpochs() const
 }
 
 template<typename T>
-void regressionTemplate<T>::setNumEpochs(const size_t &epochs)
+void regressionTemplate<T>::setNumEpochs(const size_t epochs)
 {
   numEpochs = epochs;
 

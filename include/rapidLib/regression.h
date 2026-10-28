@@ -42,7 +42,7 @@ public:
   RAPIDLIB_EXPORT std::vector<size_t> getNumEpochs() const;
 
   /** Call before train, to set the number of training epochs */
-  RAPIDLIB_EXPORT void setNumEpochs(const size_t &epochs);
+  RAPIDLIB_EXPORT void setNumEpochs(const size_t epochs);
 
   /** Check how many hidden layers are in each model. This feature is temporary, and will be replaced by a different design. */
   RAPIDLIB_EXPORT std::vector<size_t> getNumHiddenLayers() const;

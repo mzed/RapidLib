@@ -46,8 +46,8 @@ neuralNetwork<T>::neuralNetwork(const size_t num_inputs,
                                 const std::vector<T>& w_hidden_output,
                                 const std::vector<T>& in_ranges,
                                 const std::vector<T>& in_bases,
-                                const T& out_range,
-                                const T& out_base
+                                const T out_range,
+                                const T out_base
                                 )
 :
 numInputs(num_inputs),
@@ -507,7 +507,7 @@ void neuralNetwork<T>::train(const std::vector<trainingExampleTemplate<T > >& tr
 }
 
 template<typename T>
-void neuralNetwork<T>::backpropagate(const T& desiredOutput)
+void neuralNetwork<T>::backpropagate(const T desiredOutput)
 {
   outputErrorGradient = ((desiredOutput - outBase) / outRange) - ((outputNeuron - outBase) / outRange); //FIXME: could be tighter -MZ
  // outputErrorGradient = ((desiredOutput - outBase) - (outputNeuron - outBase)) / outRange;

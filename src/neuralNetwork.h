@@ -32,8 +32,8 @@ class neuralNetwork final : public baseModel<T>
                 const std::vector<T>& wHiddenOutput,
                 const std::vector<T>& inRanges,
                 const std::vector<T>& inBases,
-                const T& outRange,
-                const T& outBase);
+                const T outRange,
+                const T outBase);
 
   /** This constructor creates a neural network that needs to be trained.
    *
@@ -152,7 +152,7 @@ private:
    * @param The desired output of the network is fed into the function, and compared with the actual output
    */
   void runInternal(const std::vector<T>& inputVector, std::vector<T>& inputLayer, std::vector<std::vector<T>>& hiddenLayers, T& outputNeuron) const;
-  void backpropagate(const T& desiredOutput);
+  void backpropagate(const T desiredOutput);
 
   /** Apply corrections to network weights, based on output error */
   void updateWeights();
