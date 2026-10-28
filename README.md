@@ -8,7 +8,7 @@
 ![MacOS Build](https://github.com/mzed/RapidLib/workflows/Mac%20Build/badge.svg)
 
 #### dev
-![Linux Build](https://github.com/mzed/RapidLib/workflows/Linux+Docs%20Build/badge.svg?branch=dev)  
+[![Linux Build](https://github.com/mzed/RapidLib/actions/workflows/linux-build.yml/badge.svg?branch=dev)](https://github.com/mzed/RapidLib/actions/workflows/linux-build.yml) 
 ![Windows Build](https://github.com/mzed/RapidLib/workflows/Windows%20Build/badge.svg?branch=dev)  
 ![MacOS Build](https://github.com/mzed/RapidLib/workflows/Mac%20Build/badge.svg?branch=dev)
 
