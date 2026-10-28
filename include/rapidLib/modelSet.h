@@ -16,6 +16,7 @@
 #include "../../src/neuralNetwork.h"
 #include "../../src/knnClassification.h"
 #include "../../src/svmClassification.h"
+
 #ifndef EMSCRIPTEN
 #include "../dependencies/json/json.h"
 #endif
@@ -45,12 +46,12 @@ public:
   RAPIDLIB_EXPORT std::vector<T> run(const std::vector<T> &inputVector);
 
 protected:
-  std::vector<baseModel<T>*> models {};
-  int numInputs {};
-  std::vector<std::string> inputNames {};
-  int numOutputs {};
-  bool isTraining {}; //This is true while the models are training, and will block running
-  bool isTrained {};
+  std::vector<std::unique_ptr<baseModel<T>>> models{};
+  int numInputs{};
+  std::vector<std::string> inputNames{};
+  int numOutputs{};
+  bool isTraining{}; //This is true while the models are training, and will block running
+  bool isTrained{};
 
   void threadTrain(std::size_t i, const std::vector<trainingExampleTemplate<T> >& training_set);
 

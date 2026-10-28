@@ -38,11 +38,11 @@ numHiddenNodes(num_inputs)
   created = false;
   std::vector<size_t> whichInputs;
 
-  for (int i {}; i < modelSet<T>::numInputs; ++i) whichInputs.push_back(i);
+  for (int i{}; i < modelSet<T>::numInputs; ++i) whichInputs.push_back(i);
 
-  for (int i {}; i < modelSet<T>::numOutputs; ++i)
+  for (int i{}; i < modelSet<T>::numOutputs; ++i)
   {
-    modelSet<T>::models.push_back(new neuralNetwork<T>(modelSet<T>::numInputs, whichInputs, numHiddenLayers, numHiddenNodes));
+    modelSet<T>::models.push_back(std::make_unique<neuralNetwork<T>>(modelSet<T>::numInputs, whichInputs, numHiddenLayers, numHiddenNodes));
   }
 
   created = true;
@@ -64,9 +64,9 @@ std::vector<size_t> regressionTemplate<T>::getNumHiddenLayers() const
 
   if (std::begin(modelSet<T>::models) != std::end(modelSet<T>::models))
   {
-    for (const baseModel<T>* model : modelSet<T>::models)
+    for (const auto& model : modelSet<T>::models)
     {
-      vecNumHiddenLayers.push_back(dynamic_cast<const neuralNetwork<T>*>(model)->getNumHiddenLayers()); //FIXME: I really dislike this design
+      vecNumHiddenLayers.push_back(dynamic_cast<const neuralNetwork<T>*>(model.get())->getNumHiddenLayers()); //FIXME: I really dislike this design
     }
   }
   else
@@ -84,9 +84,9 @@ void regressionTemplate<T>::setNumHiddenLayers(const int &num_hidden_layers)
   //Set any existing models
   if (std::begin(modelSet<T>::models) != std::end(modelSet<T>::models))
   {
-    for (baseModel<T>* model : modelSet<T>::models)
+    for (auto& model : modelSet<T>::models)
     {
-      dynamic_cast<neuralNetwork<T>*>(model)->setNumHiddenLayers(num_hidden_layers); //FIXME: I really dislike this design
+      dynamic_cast<neuralNetwork<T>*>(model.get())->setNumHiddenLayers(num_hidden_layers); //FIXME: I really dislike this design
     }
   }
 }
@@ -98,9 +98,9 @@ std::vector<size_t> regressionTemplate<T>::getNumHiddenNodes() const
 
   if (std::begin(modelSet<T>::models) != std::end(modelSet<T>::models))
   {
-    for (const baseModel<T>* model : modelSet<T>::models)
+    for (const auto& model : modelSet<T>::models)
     {
-      vecNumHiddenNodes.push_back(dynamic_cast<const neuralNetwork<T>*>(model)->getNumHiddenNodes()); //FIXME: I really dislike this design
+      vecNumHiddenNodes.push_back(dynamic_cast<const neuralNetwork<T>*>(model.get())->getNumHiddenNodes()); //FIXME: I really dislike this design
     }
   }
   else
@@ -119,9 +119,9 @@ void regressionTemplate<T>::setNumHiddenNodes(const int &num_hidden_nodes)
   //Set any existing models
   if (std::begin(modelSet<T>::models) != std::end(modelSet<T>::models))
   {
-    for (baseModel<T>* model : modelSet<T>::models)
+    for (auto& model : modelSet<T>::models)
     {
-      dynamic_cast<neuralNetwork<T>*>(model)->setNumHiddenNodes(num_hidden_nodes); //FIXME: I really dislike this design
+      dynamic_cast<neuralNetwork<T>*>(model.get())->setNumHiddenNodes(num_hidden_nodes); //FIXME: I really dislike this design
     }
   }
 }
@@ -133,9 +133,9 @@ std::vector<size_t> regressionTemplate<T>::getNumEpochs() const
   std::vector<size_t> vecEpochs;
   if (std::begin(modelSet<T>::models) != std::end(modelSet<T>::models))
   {
-    for (const baseModel<T>* model : modelSet<T>::models)
+    for (const auto& model : modelSet<T>::models)
     {
-      vecEpochs.push_back(dynamic_cast<const neuralNetwork<T>*>(model)->getEpochs());  //FIXME: I really dislike this design
+      vecEpochs.push_back(dynamic_cast<const neuralNetwork<T>*>(model.get())->getEpochs());  //FIXME: I really dislike this design
     }
   }
   else
@@ -153,15 +153,15 @@ void regressionTemplate<T>::setNumEpochs(const size_t &epochs)
   //set any existing models
   if (std::begin(modelSet<T>::models) != std::end(modelSet<T>::models))
   {
-    for (baseModel<T>* model : modelSet<T>::models)
+    for (auto& model : modelSet<T>::models)
     {
-      dynamic_cast<neuralNetwork<T>*>(model)->setEpochs(epochs); //FIXME: I really dislike this design
+      dynamic_cast<neuralNetwork<T>*>(model.get())->setEpochs(epochs); //FIXME: I really dislike this design
     }
   }
 }
 
 template<typename T>
-bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set)
+bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T>> &training_set)
 {
   modelSet<T>::reset(); //FIXME: Should use modelSet if already created?
 
@@ -204,13 +204,20 @@ bool regressionTemplate<T>::train(const std::vector<trainingExampleTemplate<T> >
     whichInputs.push_back(j);
   }
 
-  modelSet<T>::models = { static_cast<size_t>(modelSet<T>::numOutputs), new neuralNetwork<T>(modelSet<T>::numInputs, whichInputs, numHiddenLayers, numHiddenNodes)} ;
+  modelSet<T>::models.clear();
+  for (int i = 0; i < modelSet<T>::numOutputs; ++i)
+  {
+    modelSet<T>::models.push_back(std::make_unique<neuralNetwork<T>>(modelSet<T>::numInputs,
+                                                                     whichInputs,
+                                                                     numHiddenLayers,
+                                                                     numHiddenNodes));
+  }
 
   if (numEpochs != 500)
   {
-    for (baseModel<T>* model : modelSet<T>::models)
+    for (auto& model : modelSet<T>::models)
     {
-      neuralNetwork<T>* nnModel = dynamic_cast<neuralNetwork<T>*>(model); //FIXME: I really dislike this design
+      neuralNetwork<T>* nnModel = dynamic_cast<neuralNetwork<T>*>(model.get()); //FIXME: I really dislike this design
       nnModel->setEpochs(numEpochs);
     }
   }
@@ -225,9 +232,9 @@ float regressionTemplate<T>::getTrainingProgress()
 
   if (modelSet<T>::isTraining)
   {
-    for (baseModel<T>* model : modelSet<T>::models)
+    for (auto& model : modelSet<T>::models)
     {
-      neuralNetwork<T>* nnModel = dynamic_cast<neuralNetwork<T>*>(model); //FIXME: I really dislike this design
+      neuralNetwork<T>* nnModel = dynamic_cast<neuralNetwork<T>*>(model.get()); //FIXME: I really dislike this design
       progress += (nnModel->getCurrentEpoch() / nnModel->getEpochs());
     }
 

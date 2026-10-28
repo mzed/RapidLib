@@ -34,7 +34,6 @@ modelSet<T>::modelSet() :
 template<typename T>
 modelSet<T>::~modelSet() 
 {
-    for (auto& model : models) delete model;
 };
 
 template<typename T>
@@ -88,7 +87,6 @@ void modelSet<T>::threadTrain(std::size_t modelIndex, const std::vector<training
 template<typename T>
 bool modelSet<T>::reset() 
 {
-    for (auto& model : models) delete model;
     models.clear();
     numInputs = -1;
     numOutputs = -1;
@@ -115,7 +113,7 @@ std::vector<T> modelSet<T>::run(const std::vector<T> &inputVector)
         return returnVector;
     }
 
-    for (auto model : models) returnVector.push_back(model->run(inputVector));
+    for (const auto& model : models) returnVector.push_back(model->run(inputVector));
 
     return returnVector;
 }
@@ -148,7 +146,7 @@ Json::Value modelSet<T>::parse2json()
     metadata["numOutputs"] = numOutputs;
     root["metadata"] = metadata;
 
-    for (auto model : models)
+    for (const auto& model : models)
     {
         Json::Value currentModel;
         currentModel["inputNames"] = inputNamesJSON; //TODO: implment this feature
@@ -265,7 +263,7 @@ void modelSet<T>::json2modelSet(const Json::Value &root)
             T outBase = (T)model["outBase"].asDouble();
             
             //TODO: many of these arguments could be size_t
-            models.push_back(new neuralNetwork<T>(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
+            models.push_back(std::make_unique<neuralNetwork<T>>(modelNumInputs, whichInputs, numHiddenLayers, numHiddenNodes, weights, wHiddenOutput, inRanges, inBases, outRange, outBase));
         }
         else if (model["modelType"].asString() == "kNN Classificiation") 
         {
@@ -280,7 +278,7 @@ void modelSet<T>::json2modelSet(const Json::Value &root)
                 trainingSet.push_back(tempExample);
             }
 
-            models.push_back(new knnClassification<T>(modelNumInputs, whichInputs, trainingSet, model["k"].asInt()));
+            models.push_back(std::make_unique<knnClassification<T>>(modelNumInputs, whichInputs, trainingSet, model["k"].asInt()));
         }
     }
 }

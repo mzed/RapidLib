@@ -38,10 +38,10 @@ void neuralNetwork<T>::initTrainer()
  */
 
 template<typename T>
-neuralNetwork<T>::neuralNetwork(const size_t& num_inputs,
+neuralNetwork<T>::neuralNetwork(const size_t num_inputs,
                                 const std::vector<size_t>& which_inputs,
-                                const size_t& num_hidden_layers,
-                                const size_t& num_hidden_nodes,
+                                const size_t num_hidden_layers,
+                                const size_t num_hidden_nodes,
                                 const std::vector<T>& _weights,
                                 const std::vector<T>& w_hidden_output,
                                 const std::vector<T>& in_ranges,
@@ -124,12 +124,10 @@ outputErrorGradient(0)
  */
 
 template<typename T>
-neuralNetwork<T>::neuralNetwork(const size_t& num_inputs,
+neuralNetwork<T>::neuralNetwork(const size_t num_inputs,
                                 const std::vector<size_t>& which_inputs,
-                                const size_t& num_hidden_layers,
-                                const size_t& num_hidden_nodes
-                                )
-:
+                                const size_t num_hidden_layers,
+                                const size_t num_hidden_nodes) :
 numInputs(num_inputs),
 whichInputs(which_inputs),
 numHiddenLayers(num_hidden_layers),
@@ -279,7 +277,7 @@ size_t neuralNetwork<T>::getEpochs() const
 }
 
 template<typename T>
-void neuralNetwork<T>::setEpochs(const size_t& epochs)
+void neuralNetwork<T>::setEpochs(const size_t epochs)
 {
   numEpochs = epochs;
 }

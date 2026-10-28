@@ -24,10 +24,10 @@ class neuralNetwork final : public baseModel<T>
 {
   public:
   /** This is the constructor for building a trained model from JSON. */
-  neuralNetwork(const size_t& num_inputs,
+  neuralNetwork(const size_t num_inputs,
                 const std::vector<size_t>& which_inputs,
-                const size_t& num_hidden_layers,
-                const size_t& num_hidden_nodes,
+                const size_t num_hidden_layers,
+                const size_t num_hidden_nodes,
                 const std::vector<T>& weights,
                 const std::vector<T>& wHiddenOutput,
                 const std::vector<T>& inRanges,
@@ -44,10 +44,10 @@ class neuralNetwork final : public baseModel<T>
    *
    * @return A neuralNetwork instance with randomized weights and no normalization values. These will be set or adjusted during training.
    */
-  neuralNetwork(const size_t& num_inputs,
+  neuralNetwork(const size_t num_inputs,
                 const std::vector<size_t>& which_inputs,
-                const size_t& num_hidden_layer,
-                const size_t& num_hidden_nodes);
+                const size_t num_hidden_layer,
+                const size_t num_hidden_nodes);
 
   /** destructor */
   ~neuralNetwork();
@@ -70,7 +70,7 @@ class neuralNetwork final : public baseModel<T>
   void setNumHiddenNodes(size_t num_hidden_nodes);
 
   size_t getEpochs() const;
-  void setEpochs(const size_t& epochs);
+  void setEpochs(const size_t epochs);
 
   std::vector<T> getWeights() const;
   std::vector<T> getWHiddenOutput() const;

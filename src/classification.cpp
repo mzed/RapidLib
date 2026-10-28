@@ -46,7 +46,11 @@ classificationTemplate<T>::classificationTemplate(const int &num_inputs, const i
   }
   std::vector<trainingExampleTemplate<T> > trainingSet;
 
-  modelSet<T>::models = { static_cast<size_t>(modelSet<T>::numOutputs), new knnClassification<T>(modelSet<T>::numInputs, whichInputs, trainingSet, 1) };
+  modelSet<T>::models.clear();
+  for (int i{}; i < modelSet<T>::numOutputs; ++i)
+  {
+    modelSet<T>::models.push_back(std::make_unique<knnClassification<T>>(modelSet<T>::numInputs, whichInputs, trainingSet, 1));
+  }
 };
 
 template<typename T>
@@ -103,11 +107,11 @@ bool classificationTemplate<T>::train(const std::vector<trainingExampleTemplate<
     {
       if (classificationType == svm)
       {
-        modelSet<T>::models.push_back(new svmClassification<T>(modelSet<T>::numInputs));
+        modelSet<T>::models.push_back(std::make_unique<svmClassification<T>>(modelSet<T>::numInputs));
       }
       else
       {
-        modelSet<T>::models.push_back(new knnClassification<T>(modelSet<T>::numInputs, whichInputs, training_set, 1));
+        modelSet<T>::models.push_back(std::make_unique<knnClassification<T>>(modelSet<T>::numInputs, whichInputs, training_set, 1));
       }
     }
     
@@ -121,9 +125,9 @@ std::vector<int> classificationTemplate<T>::getK()
 {
   std::vector<int> kVector {};
 
-  for (const baseModel<T>* model : modelSet<T>::models)
+  for (const auto& model : modelSet<T>::models)
   {
-    kVector.push_back(dynamic_cast<const knnClassification<T>*>(model)->getK()); //FIXME: I really dislike this design
+    kVector.push_back(dynamic_cast<const knnClassification<T>*>(model.get())->getK()); //FIXME: I really dislike this design
   }
 
   return kVector;
@@ -134,7 +138,7 @@ void classificationTemplate<T>::setK(const int whichModel, const int newK)
 {
   if (modelSet<T>::models.size() > whichModel)
   {
-    dynamic_cast<knnClassification<T>*>(modelSet<T>::models[whichModel])->setK(newK); //FIXME: I really dislike this design
+    dynamic_cast<knnClassification<T>*>(modelSet<T>::models[whichModel].get())->setK(newK); //FIXME: I really dislike this design
   }
   else
   {
