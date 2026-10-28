@@ -150,8 +150,8 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a77cdca9d4d80f7a2f9b101e299574523"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#a77cdca9d4d80f7a2f9b101e299574523">svmClassification</a> (<a class="el" href="classsvm_classification.html#aee913f59a2aad7e1ea3f27ce9ef732e8">KernelType</a> kernelType=<a class="el" href="classsvm_classification.html#aee913f59a2aad7e1ea3f27ce9ef732e8a2601098e661d71562a0a34284a91ebb2">LINEAR_KERNEL</a>, <a class="el" href="classsvm_classification.html#aa4fcd506f5684a1c466ecc54cdeca285">SVMType</a> svmType=<a class="el" href="classsvm_classification.html#aa4fcd506f5684a1c466ecc54cdeca285a2a28b664bf819bd9ee61a143720f8642">C_SVC</a>, bool useScaling=true, bool useNullRejection=false, bool useAutoGamma=true, float gamma=0.1, unsigned int degree=3, float coef0=0, float nu=0.5, float C=1, bool useCrossValidation=false, unsigned int kFoldValue=10)</td></tr>
 <tr class="separator:a77cdca9d4d80f7a2f9b101e299574523"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6cfa10c4cc9fb22267320067bac5cd2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#ae6cfa10c4cc9fb22267320067bac5cd2">svmClassification</a> (int numInputs)</td></tr>
-<tr class="separator:ae6cfa10c4cc9fb22267320067bac5cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad59b98cc4ce25a08d921f3a8a6a31158"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#ad59b98cc4ce25a08d921f3a8a6a31158">svmClassification</a> (const std::optional&lt; size_t &gt; num_inputs)</td></tr>
+<tr class="separator:ad59b98cc4ce25a08d921f3a8a6a31158"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62acf39aee26586edc12f3fa764cdc51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#a62acf39aee26586edc12f3fa764cdc51">~svmClassification</a> ()</td></tr>
 <tr class="separator:a62acf39aee26586edc12f3fa764cdc51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23de13e7fef307193249c259eab32a81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsvm_classification.html#a23de13e7fef307193249c259eab32a81">train</a> (const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet) override</td></tr>
@@ -341,8 +341,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="ae6cfa10c4cc9fb22267320067bac5cd2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6cfa10c4cc9fb22267320067bac5cd2">&#9670;&nbsp;</a></span>svmClassification() <span class="overload">[2/2]</span></h2>
+<a id="ad59b98cc4ce25a08d921f3a8a6a31158"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad59b98cc4ce25a08d921f3a8a6a31158">&#9670;&nbsp;</a></span>svmClassification() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,8 +352,8 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classsvm_classification.html">svmClassification</a>&lt; T &gt;::<a class="el" href="classsvm_classification.html">svmClassification</a> </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>numInputs</em></td><td>)</td>
+          <td class="paramtype">const std::optional&lt; size_t &gt;&#160;</td>
+          <td class="paramname"><em>num_inputs</em></td><td>)</td>
           <td></td>
         </tr>
       </table>

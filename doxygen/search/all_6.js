@@ -6,7 +6,7 @@ var searchData=
   ['getinbases_19',['getInBases',['../classneural_network.html#a117ceae3ff964ea9612b8ab357d8f5de',1,'neuralNetwork']]],
   ['getinranges_20',['getInRanges',['../classneural_network.html#ac23b669ec4fc0a6f5f30a9ef3f9fe804',1,'neuralNetwork']]],
   ['getjsondescription_21',['getJSONDescription',['../classbase_model.html#abd02a65d0940e2614bcba26dc41bcb8c',1,'baseModel::getJSONDescription()'],['../classknn_classification.html#ab24218f2e23bd02cd97dbc17d2ce72fb',1,'knnClassification::getJSONDescription()'],['../classneural_network.html#af86be8da65af80c09d7bf7179f508d59',1,'neuralNetwork::getJSONDescription()'],['../classsvm_classification.html#a6e6e7d494779e55e89855906843d352e',1,'svmClassification::getJSONDescription()']]],
-  ['getk_22',['getK',['../classknn_classification.html#a4a6a2b541e1172786d4f9af73d4eae78',1,'knnClassification']]],
+  ['getk_22',['getK',['../classknn_classification.html#a181aa03054f2d7e095c5fefebb1dfcfa',1,'knnClassification']]],
   ['getnumhiddenlayers_23',['getNumHiddenLayers',['../classneural_network.html#ac747f899d7418d371b6ee4672f5ec221',1,'neuralNetwork']]],
   ['getnumhiddennodes_24',['getNumHiddenNodes',['../classneural_network.html#a9a8e7ea477ea2d05c70952fa523af9aa',1,'neuralNetwork']]],
   ['getnuminputs_25',['getNumInputs',['../classbase_model.html#aa28f4ec7624443ebe8649124ad4a2621',1,'baseModel::getNumInputs()'],['../classknn_classification.html#aadd11a7794e030694f960b7aab0a910a',1,'knnClassification::getNumInputs()'],['../classneural_network.html#a7df947c013b114181bda7ad5af738780',1,'neuralNetwork::getNumInputs()'],['../classsvm_classification.html#afeaa634fe02f83de06d22f84af9f7c66',1,'svmClassification::getNumInputs()']]],

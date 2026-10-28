@@ -1,7 +1,7 @@
 var searchData=
 [
   ['kerneltype_34',['KernelType',['../classsvm_classification.html#aee913f59a2aad7e1ea3f27ce9ef732e8',1,'svmClassification']]],
-  ['knnclassification_35',['knnClassification',['../classknn_classification.html',1,'knnClassification&lt; T &gt;'],['../classknn_classification.html#a897f6707a5bad072346ee6aa8ecbb6ac',1,'knnClassification::knnClassification()']]],
+  ['knnclassification_35',['knnClassification',['../classknn_classification.html',1,'knnClassification&lt; T &gt;'],['../classknn_classification.html#ab4e538679d03d718dd862ed5f101febd',1,'knnClassification::knnClassification()']]],
   ['knnclassification_2ecpp_36',['knnClassification.cpp',['../knn_classification_8cpp.html',1,'']]],
   ['knnclassification_2eh_37',['knnClassification.h',['../knn_classification_8h.html',1,'']]]
 ];

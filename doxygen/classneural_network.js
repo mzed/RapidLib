@@ -1,7 +1,7 @@
 var classneural_network =
 [
-    [ "neuralNetwork", "classneural_network.html#ae05f31bae0a9fbeb983ea8590b852e0f", null ],
-    [ "neuralNetwork", "classneural_network.html#a018ebf6dfcced5481993a8fa5c4835c3", null ],
+    [ "neuralNetwork", "classneural_network.html#aedc2cd464ef861b86525cc00df10c231", null ],
+    [ "neuralNetwork", "classneural_network.html#ad7d540a8701854d0bc22cd2053edb881", null ],
     [ "~neuralNetwork", "classneural_network.html#ab959d1c89e56993ae85a6365950addcc", null ],
     [ "getCurrentEpoch", "classneural_network.html#aef083e8782e22eeb1ade53cce192a9d5", null ],
     [ "getEpochs", "classneural_network.html#ad7f7b2da4f538858be2c8a0605ea50b9", null ],

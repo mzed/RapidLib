@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['init_130',['init',['../classsvm_classification.html#aa3c095477366a40e13734788df155399',1,'svmClassification']]]
+  ['init_131',['init',['../classsvm_classification.html#aa3c095477366a40e13734788df155399',1,'svmClassification']]]
 ];

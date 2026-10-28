@@ -124,8 +124,8 @@ Collaboration diagram for knnClassification&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a897f6707a5bad072346ee6aa8ecbb6ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a897f6707a5bad072346ee6aa8ecbb6ac">knnClassification</a> (const int num_inputs, const std::vector&lt; size_t &gt; &amp;which_inputs, const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet, const int k)</td></tr>
-<tr class="separator:a897f6707a5bad072346ee6aa8ecbb6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4e538679d03d718dd862ed5f101febd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#ab4e538679d03d718dd862ed5f101febd">knnClassification</a> (const std::optional&lt; size_t &gt; num_inputs, const std::vector&lt; size_t &gt; &amp;which_inputs, const std::vector&lt; trainingExampleTemplate&lt; T &gt; &gt; &amp;trainingSet, const int k)</td></tr>
+<tr class="separator:ab4e538679d03d718dd862ed5f101febd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ba014191f6af7fc093b85ce6f1b3cd7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a4ba014191f6af7fc093b85ce6f1b3cd7">~knnClassification</a> ()</td></tr>
 <tr class="separator:a4ba014191f6af7fc093b85ce6f1b3cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab063c995eafc46452033dc15f75df5b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#ab063c995eafc46452033dc15f75df5b1">addNeighbour</a> (const int classNum, const std::vector&lt; T &gt; &amp;features)</td></tr>
@@ -142,8 +142,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aadd11a7794e030694f960b7aab0a910a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2471fe5f666f22ea1a016e53d48d6847"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a2471fe5f666f22ea1a016e53d48d6847">getWhichInputs</a> () const override</td></tr>
 <tr class="separator:a2471fe5f666f22ea1a016e53d48d6847"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a6a2b541e1172786d4f9af73d4eae78"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a4a6a2b541e1172786d4f9af73d4eae78">getK</a> () const</td></tr>
-<tr class="separator:a4a6a2b541e1172786d4f9af73d4eae78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a181aa03054f2d7e095c5fefebb1dfcfa"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a181aa03054f2d7e095c5fefebb1dfcfa">getK</a> () const</td></tr>
+<tr class="separator:a181aa03054f2d7e095c5fefebb1dfcfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c3d569112e964813ca0fb3e1d6597b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#a8c3d569112e964813ca0fb3e1d6597b5">setK</a> (int newK)</td></tr>
 <tr class="separator:a8c3d569112e964813ca0fb3e1d6597b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab24218f2e23bd02cd97dbc17d2ce72fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classknn_classification.html#ab24218f2e23bd02cd97dbc17d2ce72fb">getJSONDescription</a> (Json::Value &amp;currentModel) const override</td></tr>
@@ -170,8 +170,8 @@ class knnClassification&lt; T &gt;</h3>
 
 <p>Class for implementing a knn classifier </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a897f6707a5bad072346ee6aa8ecbb6ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a897f6707a5bad072346ee6aa8ecbb6ac">&#9670;&nbsp;</a></span>knnClassification()</h2>
+<a id="ab4e538679d03d718dd862ed5f101febd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4e538679d03d718dd862ed5f101febd">&#9670;&nbsp;</a></span>knnClassification()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -181,7 +181,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classknn_classification.html">knnClassification</a>&lt; T &gt;::<a class="el" href="classknn_classification.html">knnClassification</a> </td>
           <td>(</td>
-          <td class="paramtype">const int&#160;</td>
+          <td class="paramtype">const std::optional&lt; size_t &gt;&#160;</td>
           <td class="paramname"><em>num_inputs</em>, </td>
         </tr>
         <tr>
@@ -311,8 +311,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a4a6a2b541e1172786d4f9af73d4eae78"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a6a2b541e1172786d4f9af73d4eae78">&#9670;&nbsp;</a></span>getK()</h2>
+<a id="a181aa03054f2d7e095c5fefebb1dfcfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a181aa03054f2d7e095c5fefebb1dfcfa">&#9670;&nbsp;</a></span>getK()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -320,7 +320,7 @@ template&lt;typename T &gt; </div>
 template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="classknn_classification.html">knnClassification</a>&lt; T &gt;::getK</td>
+          <td class="memname">size_t <a class="el" href="classknn_classification.html">knnClassification</a>&lt; T &gt;::getK</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -1,10 +1,10 @@
 var classknn_classification =
 [
-    [ "knnClassification", "classknn_classification.html#a897f6707a5bad072346ee6aa8ecbb6ac", null ],
+    [ "knnClassification", "classknn_classification.html#ab4e538679d03d718dd862ed5f101febd", null ],
     [ "~knnClassification", "classknn_classification.html#a4ba014191f6af7fc093b85ce6f1b3cd7", null ],
     [ "addNeighbour", "classknn_classification.html#ab063c995eafc46452033dc15f75df5b1", null ],
     [ "getJSONDescription", "classknn_classification.html#ab24218f2e23bd02cd97dbc17d2ce72fb", null ],
-    [ "getK", "classknn_classification.html#a4a6a2b541e1172786d4f9af73d4eae78", null ],
+    [ "getK", "classknn_classification.html#a181aa03054f2d7e095c5fefebb1dfcfa", null ],
     [ "getNumInputs", "classknn_classification.html#aadd11a7794e030694f960b7aab0a910a", null ],
     [ "getWhichInputs", "classknn_classification.html#a2471fe5f666f22ea1a016e53d48d6847", null ],
     [ "reset", "classknn_classification.html#a41004e56b7fc3694e4e9e92bb82632b2", null ],

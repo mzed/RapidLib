@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['neuralnetwork_84',['neuralNetwork',['../classneural_network.html',1,'']]]
+  ['neuralnetwork_85',['neuralNetwork',['../classneural_network.html',1,'']]]
 ];
