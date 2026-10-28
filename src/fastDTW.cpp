@@ -13,7 +13,7 @@
 namespace {
 
 template<typename T>
-std::vector<std::vector<T> > downsample(const std::vector<std::vector<T>>& series)
+static std::vector<std::vector<T> > downsample(const std::vector<std::vector<T>>& series)
 {
   std::vector<std::vector<T> > shrunkenSeries {};
 

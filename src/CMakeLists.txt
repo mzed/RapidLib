@@ -1,0 +1,21 @@
+set(SOURCES
+	src/baseModel.h
+	src/classification.cpp
+	src/dtw.cpp
+	src/dtw.h
+	src/fastDTW.cpp
+	src/fastDTW.h
+	src/knnClassification.cpp 
+	src/knnClassification.h 
+	src/modelSet.cpp
+	src/neuralNetwork.cpp
+	src/neuralNetwork.h
+	src/rapidStream.cpp
+	src/regression.cpp
+	src/searchWindow.cpp
+	src/searchWindow.h
+	src/seriesClassification.cpp
+	src/svmClassification.cpp
+	src/svmClassification.h
+	src/warpPath.h)
+set(SOURCES ${SOURCES} PARENT_SCOPE)
