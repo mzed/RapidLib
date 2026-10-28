@@ -6,13 +6,14 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
+#include "searchWindow.h"
 #include <limits>
 #include <algorithm>
-#include "searchWindow.h"
 
 template<typename T>
-searchWindow<T>::searchWindow(const std::size_t seriesXSize, const std::size_t seriesYSize, const warpPath& shrunkenWarpPath, const int searchRadius) : minMaxValues(seriesXSize, std::make_pair(-1, 0)),
-    maxY(static_cast<int>(seriesYSize - 1))
+searchWindow<T>::searchWindow(const std::size_t seriesXSize, const std::size_t seriesYSize, const warpPath& shrunkenWarpPath, const int searchRadius) :
+minMaxValues(seriesXSize, std::make_pair(-1, 0)),
+maxY(static_cast<int>(seriesYSize - 1))
 {
   //Current location of higher resolution path
   std::pair<int, int> currentIndex { shrunkenWarpPath.indices[0] };
@@ -27,21 +28,22 @@ searchWindow<T>::searchWindow(const std::size_t seriesXSize, const std::size_t s
   {
     if (xyIndex.first > lastWarped.first) currentIndex.first += blockSize;
     if (xyIndex.second > lastWarped.second) currentIndex.second += blockSize;
+
     if ((xyIndex.first > lastWarped.first) && (xyIndex.second > lastWarped.second))
     {
       markVisited(currentIndex.first - 1, currentIndex.second);
       markVisited(currentIndex.first, currentIndex.second - 1);
     }
-    
+
     for (int j {}; j < blockSize; ++j)
     {
       markVisited(currentIndex.first + j, currentIndex.second);
       markVisited(currentIndex.first + j, currentIndex.second + blockSize - 1); //TODO: These are redundant?
     }
-    
+
     lastWarped = xyIndex;
   }
-  
+
   if (searchRadius > 0)
   {
     expandWindow(1);
@@ -73,146 +75,146 @@ inline void searchWindow<T>::markVisited(std::size_t col, std::size_t row)
 template<typename T>
 void searchWindow<T>::expandWindow(int radius)
 {
-  if (radius > 0)
-  {
-    //Add all cells in the current window to a vector.
-    std::vector<std::pair<int, int>> windowCells {};
+  if (radius <= 0) return;
 
-    for (int currentX = 0; currentX < minMaxValues.size(); ++currentX)
+  //Add all cells in the current window to a vector.
+  std::vector<std::pair<int, int>> windowCells {};
+
+  for (int currentX {}; currentX < minMaxValues.size(); ++currentX)
+  {
+    for (std::size_t currentY { minMaxValues[currentX].first}; currentY <= minMaxValues[currentX].second; ++currentY)
     {
-      for (std::size_t currentY { minMaxValues[currentX].first}; currentY <= minMaxValues[currentX].second; ++currentY)
+      windowCells.push_back(std::make_pair(currentX, currentY));
+    }
+  }
+
+  const int maxX { static_cast<int>(minMaxValues.size() - 1) };
+
+  for (const auto &currentCell : windowCells)
+  {
+    if (currentCell.first != 0 && currentCell.second != maxY) //move to upper left if possible
+    {
+      //expand until edges are met
+      const int targetX { currentCell.first - radius };
+      const int targetY { currentCell.second + radius };
+
+      if (targetX >= 0 && targetY <= maxY)
       {
-        windowCells.push_back(std::make_pair(currentX, currentY));
+        markVisited(targetX, targetY);
+      }
+      else
+      {
+        const int cellsPastEdge { std::max(0 - targetX, targetY - maxY) };
+        markVisited(targetX + cellsPastEdge, targetY + cellsPastEdge);
       }
     }
-    
-    const int maxX { static_cast<int>(minMaxValues.size() - 1) };
 
-    for (const auto &currentCell : windowCells)
+    if (currentCell.second != maxY) //move up if possible
     {
-      if (currentCell.first != 0 && currentCell.second != maxY) //move to upper left if possible
+      const int targetX { currentCell.first };
+      const int targetY { currentCell.second + radius };
+      if (targetY <= maxY)
       {
-        //expand until edges are met
-        const int targetX { currentCell.first - radius };
-        const int targetY { currentCell.second + radius };
+        markVisited(targetX, targetY);
+      }
+      else
+      {
+        const int cellsPastEdge { targetY - static_cast<int>(maxY) };
+        markVisited(targetX, targetY - cellsPastEdge);
+      }
+    }
 
-        if (targetX >= 0 && targetY <= maxY)
-        {
-          markVisited(targetX, targetY);
-        }
-        else
-        {
-          const int cellsPastEdge { std::max(0 - targetX, targetY - maxY) };
-          markVisited(targetX + cellsPastEdge, targetY + cellsPastEdge);
-        }
-      }
-      
-      if (currentCell.second != maxY) //move up if possible
-      {
-        const int targetX { currentCell.first };
-        const int targetY { currentCell.second + radius };
-        if (targetY <= maxY)
-        {
-          markVisited(targetX, targetY);
-        }
-        else
-        {
-          const int cellsPastEdge { targetY - int(maxY) };
-          markVisited(targetX, targetY - cellsPastEdge);
-        }
-      }
-      
-      if (currentCell.first != maxX && currentCell.second != maxY) //move upper right if possible
-      {
-        const int targetX { currentCell.first + radius };
-        const int targetY { currentCell.second + radius };
-        if (targetX <= maxX && targetY <= maxY)
-        {
-          markVisited(targetX, targetY);
-        }
-        else
-        {
-          const int cellsPastEdge { std::max(targetX - maxX, targetY - maxY) };
-          markVisited(targetX - cellsPastEdge, targetY - cellsPastEdge);
-        }
-      }
-      
-      if (currentCell.first != 0) //move left if possible
-      {
-        const int targetX { currentCell.first - radius };
-        const int targetY { currentCell.second };
+    if (currentCell.first != maxX && currentCell.second != maxY) //move upper right if possible
+    {
+      const int targetX { currentCell.first + radius };
+      const int targetY { currentCell.second + radius };
 
-        if (targetX != 0)
-        {
-          markVisited(targetX, targetY);
-        }
-        else
-        {
-          const int cellsPastEdge { 0 - targetX };
-          markVisited(targetX + cellsPastEdge, targetY);
-        }
-      }
-      
-      if (currentCell.first != maxX) //move right if possible
+      if (targetX <= maxX && targetY <= maxY)
       {
-        const int targetX { currentCell.first + radius};
-        const int targetY { currentCell.second };
-        if (targetX <= maxX)
-        {
-          markVisited(targetX, targetY);
-        }
-        else
-        {
-          const int cellsPastEdge { targetX - maxX };
-          markVisited(targetX - cellsPastEdge, targetY);
-        }
+        markVisited(targetX, targetY);
       }
-      
-      if (currentCell.first != 0 && currentCell.second != 0) { //move to lower left if possible
-        const int targetX { currentCell.first - radius };
-        const int targetY { currentCell.second - radius };
-
-        if (targetX >= 0 && targetY >= 0)
-        {
-          markVisited(targetX, targetY);
-        }
-        else
-        {
-          const int cellsPastEdge { std::max(0 - targetX, 0 - targetY) };
-          markVisited(targetX + cellsPastEdge, targetY + cellsPastEdge);
-        }
-      }
-      
-      if (currentCell.second != 0) //move down if possible
+      else
       {
-        const int targetX { currentCell.first };
-        const int targetY { currentCell.second - radius };
-
-        if (targetY >= 0)
-        {
-          markVisited(targetX, targetY);
-        }
-        else
-        {
-          const int cellsPastEdge { 0 - targetY };
-          markVisited(targetX, targetY + cellsPastEdge);
-        }
+        const int cellsPastEdge { std::max(targetX - maxX, targetY - maxY) };
+        markVisited(targetX - cellsPastEdge, targetY - cellsPastEdge);
       }
-      
-      if (currentCell.first != maxX && currentCell.second != 0) //move lower right if possible
-      {
-        const int targetX { currentCell.first + radius };
-        const int targetY { currentCell.second - radius };
+    }
 
-        if (targetX <= maxX && targetY >= 0)
-        {
-          markVisited(targetX, targetY);
-        }
-        else
-        {
-          const int cellsPastEdge { std::max(targetX - maxX, 0 - targetY) };
-          markVisited(targetX - cellsPastEdge, targetY + cellsPastEdge);
-        }
+    if (currentCell.first != 0) //move left if possible
+    {
+      const int targetX { currentCell.first - radius };
+      const int targetY { currentCell.second };
+
+      if (targetX != 0)
+      {
+        markVisited(targetX, targetY);
+      }
+      else
+      {
+        const int cellsPastEdge { 0 - targetX };
+        markVisited(targetX + cellsPastEdge, targetY);
+      }
+    }
+
+    if (currentCell.first != maxX) //move right if possible
+    {
+      const int targetX { currentCell.first + radius};
+      const int targetY { currentCell.second };
+      if (targetX <= maxX)
+      {
+        markVisited(targetX, targetY);
+      }
+      else
+      {
+        const int cellsPastEdge { targetX - maxX };
+        markVisited(targetX - cellsPastEdge, targetY);
+      }
+    }
+
+    if (currentCell.first != 0 && currentCell.second != 0) { //move to lower left if possible
+      const int targetX { currentCell.first - radius };
+      const int targetY { currentCell.second - radius };
+
+      if (targetX >= 0 && targetY >= 0)
+      {
+        markVisited(targetX, targetY);
+      }
+      else
+      {
+        const int cellsPastEdge { std::max(0 - targetX, 0 - targetY) };
+        markVisited(targetX + cellsPastEdge, targetY + cellsPastEdge);
+      }
+    }
+
+    if (currentCell.second != 0) //move down if possible
+    {
+      const int targetX { currentCell.first };
+      const int targetY { currentCell.second - radius };
+
+      if (targetY >= 0)
+      {
+        markVisited(targetX, targetY);
+      }
+      else
+      {
+        const int cellsPastEdge { 0 - targetY };
+        markVisited(targetX, targetY + cellsPastEdge);
+      }
+    }
+
+    if (currentCell.first != maxX && currentCell.second != 0) //move lower right if possible
+    {
+      const int targetX { currentCell.first + radius };
+      const int targetY { currentCell.second - radius };
+
+      if (targetX <= maxX && targetY >= 0)
+      {
+        markVisited(targetX, targetY);
+      }
+      else
+      {
+        const int cellsPastEdge { std::max(targetX - maxX, 0 - targetY) };
+        markVisited(targetX - cellsPastEdge, targetY + cellsPastEdge);
       }
     }
   }

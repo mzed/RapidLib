@@ -22,7 +22,6 @@
  *
  * Currently only (fast)DTW.
  */
-
 template<typename T>
 class seriesClassificationTemplate final
 {
@@ -120,15 +119,15 @@ public:
   RAPIDLIB_EXPORT minMax<T> calculateCosts(std::string label1, std::string label2) const;
 
 private:
-  std::vector<trainingSeriesTemplate<T> > allTrainingSeries;
-  size_t vectorLength;
-  std::vector<T> allCosts;
-  size_t maxLength;
-  size_t minLength;
-  std::map<std::string, minMax<size_t> > lengthsPerLabel;
+  std::vector<trainingSeriesTemplate<T> > allTrainingSeries {};
+  size_t vectorLength {};
+  std::vector<T> allCosts {};
+  size_t maxLength {};
+  size_t minLength {};
+  std::map<std::string, minMax<size_t> > lengthsPerLabel {};
   bool isTraining { false };
   
-  std::vector<std::vector<T> > seriesBuffer;
+  std::vector<std::vector<T> > seriesBuffer {};
   int hopSize {1};
   int counter {};
   

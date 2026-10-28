@@ -60,8 +60,8 @@ public:
 private:
   size_t numEpochs { 500 }; //Temporary -- also should be part of nn only. -mz
   size_t numHiddenLayers { 1 }; //Temporary -- this should be part of the nn class. -mz
-  size_t numHiddenNodes; //Temporary -- also should be part of nn only. -mz
-  bool created;
+  size_t numHiddenNodes {}; //Temporary -- also should be part of nn only. -mz
+  bool created {};
 };
 
 namespace rapidLib

@@ -7,76 +7,73 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
-#ifndef CLASSIFICATION_H
-#define CLASSIFICATION_H
+#pragma once
 
-#include <vector>
 #include "modelSet.h"
+#include <vector>
 
 /*! Class for implementing a set of classification models.
  *
  * This doesn't do anything modelSet can't do. But, it's simpler and more like wekinator.
- * 
+ *
  */
 
 template<typename T>
 class classificationTemplate final : public modelSet<T>
 {
-public:
-    enum classificationTypes { knn, svm };
-    
-    /** Create with no arguments
-    *
-    * Default classifier is kNN.
-    */
-    RAPIDLIB_EXPORT classificationTemplate();
+  public:
+  enum classificationTypes { knn, svm };
 
-    /** Specify classification type 
-    * 
-    * @param Enum Classification type: knn or svm
-    */
-    RAPIDLIB_EXPORT classificationTemplate(classificationTypes classificationType);
+  /** Create with no arguments
+   *
+   * Default classifier is kNN.
+   */
+  RAPIDLIB_EXPORT classificationTemplate();
 
-    /** create based on training set inputs and outputs */
-    RAPIDLIB_EXPORT classificationTemplate(const std::vector<trainingExampleTemplate<T> > &trainingSet);
+  /** Specify classification type
+   *
+   * @param Enum Classification type: knn or svm
+   */
+  RAPIDLIB_EXPORT classificationTemplate(classificationTypes classificationType);
 
-    /** create with proper models, but not trained */
-    RAPIDLIB_EXPORT classificationTemplate(const int &numInputs, const int &numOutputs);
+  /** create based on training set inputs and outputs */
+  RAPIDLIB_EXPORT classificationTemplate(const std::vector<trainingExampleTemplate<T> > &trainingSet);
 
-    /** destructor */
-    ~classificationTemplate() {}
-    
-    /** Train on a specified set, causes creation if not created 
-    *
-    * @param vector Vector of training examples, type T
-    * @return bool Successful training
-    */
-    RAPIDLIB_EXPORT bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
+  /** create with proper models, but not trained */
+  RAPIDLIB_EXPORT classificationTemplate(const int &numInputs, const int &numOutputs);
 
-    /** Check the K values for each model. 
-    * 
-    * This feature is temporary, and will be replaced by a different design. 
-    * @return vector K for every model
-    */
-    RAPIDLIB_EXPORT std::vector<int> getK();
+  /** destructor */
+  ~classificationTemplate() {}
 
-    /** Set the K values for each model. 
-    * This feature is temporary, and will be replaced by a different design. 
-    *
-    * @param int which model to set
-    * @param int k value for that model
-    */
-    RAPIDLIB_EXPORT void setK(const int whichModel, const int newK);
+  /** Train on a specified set, causes creation if not created
+   *
+   * @param vector Vector of training examples, type T
+   * @return bool Successful training
+   */
+  RAPIDLIB_EXPORT bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
 
-private:
-    classificationTypes classificationType;
+  /** Check the K values for each model.
+   *
+   * This feature is temporary, and will be replaced by a different design.
+   * @return vector K for every model
+   */
+  RAPIDLIB_EXPORT std::vector<int> getK();
+
+  /** Set the K values for each model.
+   * This feature is temporary, and will be replaced by a different design.
+   *
+   * @param int which model to set
+   * @param int k value for that model
+   */
+  RAPIDLIB_EXPORT void setK(const int whichModel, const int newK);
+
+  private:
+  classificationTypes classificationType;
 };
 
 namespace rapidLib
 {
-    //This is here so that the old API still works as expected.
-    using classification = classificationTemplate<double>;
-    using classificationFloat = classificationTemplate<float>;
+//This is here so that the old API still works as expected.
+using classification = classificationTemplate<double>;
+using classificationFloat = classificationTemplate<float>;
 }
-
-#endif

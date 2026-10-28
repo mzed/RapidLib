@@ -24,12 +24,12 @@ classificationTemplate<T>::classificationTemplate()
 };
 
 template<typename T>
-classificationTemplate<T>::classificationTemplate(classificationTypes classification_type)
+classificationTemplate<T>::classificationTemplate(classificationTypes classification_type) :
+classificationType { classification_type }
 {
   modelSet<T>::numInputs = -1;
   modelSet<T>::numOutputs = -1;
   modelSet<T>::isTraining = false;
-  classificationType = classification_type;
 };
 
 template<typename T>
@@ -45,7 +45,6 @@ classificationTemplate<T>::classificationTemplate(const int &num_inputs, const i
     whichInputs.push_back(inputIndex);
   }
   std::vector<trainingExampleTemplate<T> > trainingSet;
-
 
   modelSet<T>::models = { static_cast<size_t>(modelSet<T>::numOutputs), new knnClassification<T>(modelSet<T>::numInputs, whichInputs, trainingSet, 1) };
 };

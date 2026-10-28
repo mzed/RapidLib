@@ -6,8 +6,7 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#ifndef WARPPATH_H
-#define WARPPATH_H
+#pragma once
 
 #include <vector>
 
@@ -34,5 +33,3 @@ struct warpInfo
     warpPath path;
     T cost;
 };
-
-#endif

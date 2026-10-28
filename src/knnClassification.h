@@ -7,15 +7,13 @@
  * @copyright Copyright © 2016 Goldsmiths. All rights reserved.
  */
 
-#ifndef KNNCLASSIFICATION_H
-#define KNNCLASSIFICATION_H
+#pragma once
 
-#include <vector>
 #include "baseModel.h"
-
 #ifndef EMSCRIPTEN
 #include "../dependencies/json/json.h"
 #endif
+#include <vector>
 
 /** Class for implementing a knn classifier */
 template<typename T>
@@ -98,5 +96,3 @@ class knnClassification final : public baseModel<T>
   int currentK {}; //K minimum of desiredK or neighbours.size()
   inline void updateK();
 };
-
-#endif

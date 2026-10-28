@@ -78,6 +78,7 @@ bool seriesClassificationTemplate<T>::train(const std::vector<trainingSeriesTemp
     isTraining = false;
     success = true;
   }
+
   return success;
 };
 
@@ -96,6 +97,7 @@ template<typename T>
 std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T>>& inputSeries)
 {
   std::string returnLabel { "none" };
+
   if (isTraining)
   {
     throw std::runtime_error("can't run a model during training");
@@ -117,8 +119,10 @@ std::string seriesClassificationTemplate<T>::run(const std::vector<std::vector<T
         closestSeries = i;
       }
     }
+
     returnLabel = allTrainingSeries[closestSeries].label;
   }
+
   return returnLabel;
 };
 

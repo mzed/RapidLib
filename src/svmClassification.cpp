@@ -7,7 +7,6 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#include <iostream>
 #include "svmClassification.h"
 #ifdef EMSCRIPTEN
 #include "emscripten/svmEmbindings.h"

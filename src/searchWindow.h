@@ -6,11 +6,10 @@
  * @copyright Copyright © 2017 Goldsmiths. All rights reserved.
  */
 
-#ifndef SEARCHWINDOW_H
-#define SEARCHWINDOW_H
+#pragma once
 
-#include <vector>
 #include "warpPath.h"
+#include <vector>
 
 /** For fastDTW, a window of cells to calculate costs for.
  * These are cells within a specified search radius of a lower resolution path.
@@ -32,5 +31,3 @@ private:
 
   int maxY {};
 };
-
-#endif
