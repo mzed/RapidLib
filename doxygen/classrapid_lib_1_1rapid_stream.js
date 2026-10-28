@@ -1,0 +1,25 @@
+var classrapid_lib_1_1rapid_stream =
+[
+    [ "rapidStream", "classrapid_lib_1_1rapid_stream.html#aac51aa472f26c84eeb98ac20198ef572", null ],
+    [ "rapidStream", "classrapid_lib_1_1rapid_stream.html#a61392455fbd0e472a1e1176919f988a8", null ],
+    [ "~rapidStream", "classrapid_lib_1_1rapid_stream.html#a7d445fe9ee7cc5c2abda65bf6f7583ff", null ],
+    [ "acceleration", "classrapid_lib_1_1rapid_stream.html#a9b344d0abd0075c9735d0777ebe8d42b", null ],
+    [ "bayesFilter", "classrapid_lib_1_1rapid_stream.html#ace43b2cc522349755ef1bb27a3961a74", null ],
+    [ "bayesSetDiffusion", "classrapid_lib_1_1rapid_stream.html#a7a1506141baaae7dd61dae53785f0a61", null ],
+    [ "bayesSetJumpRate", "classrapid_lib_1_1rapid_stream.html#a60ef4b2f5d8201a282c2b01ab429a900", null ],
+    [ "bayesSetMVC", "classrapid_lib_1_1rapid_stream.html#a1314fcf8a2d951f53f24228c11bf20cc", null ],
+    [ "clear", "classrapid_lib_1_1rapid_stream.html#a5a69135cbea2fb81dd5d695874b266f1", null ],
+    [ "maxAcceleration", "classrapid_lib_1_1rapid_stream.html#a6546c143d98f324f8816510bc6001b33", null ],
+    [ "maximum", "classrapid_lib_1_1rapid_stream.html#a49cc904266a17c8a37105ed2421f0c25", null ],
+    [ "maxVelocity", "classrapid_lib_1_1rapid_stream.html#a1afdf21bc14ea95992fff5fe42046099", null ],
+    [ "mean", "classrapid_lib_1_1rapid_stream.html#aea5b18e7e240890040e3c24d9763bb25", null ],
+    [ "minAcceleration", "classrapid_lib_1_1rapid_stream.html#affb8a86b5279b739cdef892f20fe52fa", null ],
+    [ "minimum", "classrapid_lib_1_1rapid_stream.html#a4a3b349dfe6860025bf9aae72668d1bd", null ],
+    [ "minVelocity", "classrapid_lib_1_1rapid_stream.html#af6ae8f4dd5eb284600c54888375ac3dc", null ],
+    [ "numZeroCrossings", "classrapid_lib_1_1rapid_stream.html#a5e3cb4ab7bfc6569a303eeaf784fff83", null ],
+    [ "pushToWindow", "classrapid_lib_1_1rapid_stream.html#aa126e5d89852f164ee5f0fd4a6027be2", null ],
+    [ "rms", "classrapid_lib_1_1rapid_stream.html#a5d82289a80e6081ca7c92ce718ca5d15", null ],
+    [ "standardDeviation", "classrapid_lib_1_1rapid_stream.html#a168d36a6be751bbea0ab04654cbf4a17", null ],
+    [ "sum", "classrapid_lib_1_1rapid_stream.html#a6283a06463ff72ce29425b1f8c365526", null ],
+    [ "velocity", "classrapid_lib_1_1rapid_stream.html#af8679f45a78f8e3e28327bd9c5a322f8", null ]
+];

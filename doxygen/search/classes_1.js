@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dtw_81',['dtw',['../classdtw.html',1,'']]]
+  ['classificationtemplate_167',['classificationTemplate',['../classclassification_template.html',1,'']]]
 ];

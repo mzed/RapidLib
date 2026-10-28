@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fastdtw_82',['fastDTW',['../classfast_d_t_w.html',1,'']]]
+  ['dtw_168',['dtw',['../classdtw.html',1,'']]]
 ];

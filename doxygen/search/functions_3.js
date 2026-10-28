@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['fastdtw_114',['fastDTW',['../classfast_d_t_w.html#a684af845adef7a1cf5590715c1ea7187',1,'fastDTW']]]
+  ['dtw_222',['dtw',['../classdtw.html#a1efaf20d74df6a63e06460dbe35b1fe4',1,'dtw']]],
+  ['dynamictimewarp_223',['dynamicTimeWarp',['../classdtw.html#a14487c85534eef31bb05201e2e9dce6e',1,'dtw']]]
 ];
