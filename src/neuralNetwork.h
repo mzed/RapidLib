@@ -13,6 +13,8 @@
 #ifndef EMSCRIPTEN
 #include "../dependencies/json/json.h"
 #endif
+
+#include <optional>
 #include <vector>
 
 /*! Class for implementing a Neural Network.
