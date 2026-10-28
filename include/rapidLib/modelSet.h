@@ -29,7 +29,13 @@ class modelSet
 {
 public:
   RAPIDLIB_EXPORT modelSet();
-  virtual ~modelSet();
+  RAPIDLIB_EXPORT virtual ~modelSet();
+
+  // Move-only: models are owned through unique_ptr. Defined in modelSet.cpp, where baseModel is complete.
+  modelSet(const modelSet&) = delete;
+  modelSet& operator=(const modelSet&) = delete;
+  RAPIDLIB_EXPORT modelSet(modelSet&&) noexcept;
+  RAPIDLIB_EXPORT modelSet& operator=(modelSet&&) noexcept;
 
   /** Train on a specified set, causes creation if not created */
   RAPIDLIB_EXPORT virtual bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet);

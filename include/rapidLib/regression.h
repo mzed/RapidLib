@@ -29,9 +29,6 @@ public:
   /** create with proper models, but not trained */
   RAPIDLIB_EXPORT regressionTemplate(const int numInputs, const int numOutputs);
 
-  /** destructor */
-  ~regressionTemplate() {};
-  
   /** Train on a specified set, causes creation if not created */
   RAPIDLIB_EXPORT bool train(const std::vector<trainingExampleTemplate<T> > &trainingSet) override;
 

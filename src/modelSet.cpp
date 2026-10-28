@@ -43,9 +43,13 @@ modelSet<T>::modelSet() :
 };
 
 template<typename T>
-modelSet<T>::~modelSet() 
-{
-};
+modelSet<T>::~modelSet() = default;
+
+template<typename T>
+modelSet<T>::modelSet(modelSet&&) noexcept = default;
+
+template<typename T>
+modelSet<T>& modelSet<T>::operator=(modelSet&&) noexcept = default;
 
 template<typename T>
 bool modelSet<T>::train(const std::vector<trainingExampleTemplate<T> > &training_set) 

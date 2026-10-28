@@ -42,9 +42,6 @@ class classificationTemplate final : public modelSet<T>
   /** create with proper models, but not trained */
   RAPIDLIB_EXPORT classificationTemplate(const size_t numInputs, const size_t numOutputs);
 
-  /** destructor */
-  ~classificationTemplate() {}
-
   /** Train on a specified set, causes creation if not created
    *
    * @param vector Vector of training examples, type T
