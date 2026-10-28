@@ -27,7 +27,7 @@ numHiddenNodes(0) //this will be changed by training
 };
 
 template<typename T>
-regressionTemplate<T>::regressionTemplate(const int &num_inputs, const int &num_outputs) :
+regressionTemplate<T>::regressionTemplate(const int num_inputs, const int num_outputs) :
 numEpochs(500),
 numHiddenLayers(1),
 numHiddenNodes(num_inputs)
@@ -78,7 +78,7 @@ std::vector<size_t> regressionTemplate<T>::getNumHiddenLayers() const
 }
 
 template<typename T>
-void regressionTemplate<T>::setNumHiddenLayers(const int &num_hidden_layers)
+void regressionTemplate<T>::setNumHiddenLayers(const int num_hidden_layers)
 {
   numHiddenLayers = num_hidden_layers;
   //Set any existing models
@@ -112,7 +112,7 @@ std::vector<size_t> regressionTemplate<T>::getNumHiddenNodes() const
 }
 
 template<typename T>
-void regressionTemplate<T>::setNumHiddenNodes(const int &num_hidden_nodes)
+void regressionTemplate<T>::setNumHiddenNodes(const int num_hidden_nodes)
 {
   numHiddenNodes = num_hidden_nodes;
 

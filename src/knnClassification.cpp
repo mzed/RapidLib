@@ -18,7 +18,7 @@
 
 template <typename T>
 knnClassification<T>::knnClassification(
-    const int &num_inputs,
+    const int num_inputs,
     const std::vector<size_t> &which_inputs,
     const std::vector<trainingExampleTemplate<T>> &_neighbours,
     const int k)
@@ -176,7 +176,7 @@ T knnClassification<T>::run(const std::vector<T> &inputVector) const
 
 #ifndef EMSCRIPTEN
 template <typename T>
-void knnClassification<T>::getJSONDescription(Json::Value &jsonModelDescription)
+void knnClassification<T>::getJSONDescription(Json::Value &jsonModelDescription) const
 {
   jsonModelDescription["modelType"] = "kNN Classificiation";
   jsonModelDescription["numInputs"] = numInputs;

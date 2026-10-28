@@ -25,7 +25,8 @@
 
 /** This class holds a set of models with the same or different algorithms. */
 template<typename T>
-class modelSet {
+class modelSet
+{
 public:
   RAPIDLIB_EXPORT modelSet();
   virtual ~modelSet();

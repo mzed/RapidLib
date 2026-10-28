@@ -251,20 +251,23 @@ T svmClassification<T>::run(const std::vector<T> &inputVector) const
 }
 
 template<typename T>
-size_t svmClassification<T>::getNumInputs() const {
+size_t svmClassification<T>::getNumInputs() const
+{
     return 0;
 };
 
 template<typename T>
-std::vector<size_t> svmClassification<T>::getWhichInputs() const {
+std::vector<size_t> svmClassification<T>::getWhichInputs() const
+{
     std::vector<size_t> returnVec;
     return returnVec;
 };
 
 #ifndef EMSCRIPTEN
 template<typename T>
-void svmClassification<T>::getJSONDescription(Json::Value &currentModel){
-    
+void svmClassification<T>::getJSONDescription(Json::Value &currentModel) const
+{
+
 };
 #endif
 

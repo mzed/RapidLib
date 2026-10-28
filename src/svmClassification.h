@@ -114,7 +114,7 @@ public:
     std::vector<size_t> getWhichInputs() const override;
         
 #ifndef EMSCRIPTEN
-    void getJSONDescription(Json::Value &currentModel) override;
+    void getJSONDescription(Json::Value &currentModel) const override;
 #endif
     
 private:

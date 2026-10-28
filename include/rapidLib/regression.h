@@ -27,7 +27,7 @@ public:
   /** create based on training set inputs and outputs */
   RAPIDLIB_EXPORT regressionTemplate(const std::vector<trainingExampleTemplate<T> > &trainingSet);
   /** create with proper models, but not trained */
-  RAPIDLIB_EXPORT regressionTemplate(const int &numInputs, const int &numOutputs);
+  RAPIDLIB_EXPORT regressionTemplate(const int numInputs, const int numOutputs);
 
   /** destructor */
   ~regressionTemplate() {};
@@ -48,13 +48,13 @@ public:
   RAPIDLIB_EXPORT std::vector<size_t> getNumHiddenLayers() const;
 
   /** Set how many hidden layers are in all models. This feature is temporary, and will be replaced by a different design. */
-  RAPIDLIB_EXPORT void setNumHiddenLayers(const int &num_hidden_layers);
+  RAPIDLIB_EXPORT void setNumHiddenLayers(const int num_hidden_layers);
   
   /** Check how many hidden nodes are in each model. This feature is temporary, and will be replaced by a different design. */
   RAPIDLIB_EXPORT std::vector<size_t> getNumHiddenNodes() const;
 
   /** Set how many hidden layers are in all models. This feature is temporary, and will be replaced by a different design. */
-  RAPIDLIB_EXPORT void setNumHiddenNodes(const int &num_hidden_nodes);
+  RAPIDLIB_EXPORT void setNumHiddenNodes(const int num_hidden_nodes);
 
 private:
   size_t numEpochs { 500 }; //Temporary -- also should be part of nn only. -mz

@@ -26,7 +26,7 @@ class knnClassification final : public baseModel<T>
    * @param vector of training examples
    * @param int how many near neighbours to evaluate
    */
-  knnClassification(const int &num_inputs,
+  knnClassification(const int num_inputs,
                     const std::vector<size_t> &which_inputs,
                     const std::vector<trainingExampleTemplate<T> > &trainingSet,
                     const int k);
@@ -84,7 +84,7 @@ class knnClassification final : public baseModel<T>
   /** Populate a JSON value with a description of the current model
    * @param A JSON value to be populated
    */
-  void getJSONDescription(Json::Value& currentModel) override;
+  void getJSONDescription(Json::Value& currentModel) const override;
 #endif
 
   private:

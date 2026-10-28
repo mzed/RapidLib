@@ -81,7 +81,7 @@ class neuralNetwork final : public baseModel<T>
   T getOutBase() const;
 
 #ifndef EMSCRIPTEN
-  void getJSONDescription(Json::Value& currentModel) override;
+  void getJSONDescription(Json::Value& currentModel) const override;
 #endif
 
 private:

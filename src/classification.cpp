@@ -33,7 +33,7 @@ classificationType { classification_type }
 };
 
 template<typename T>
-classificationTemplate<T>::classificationTemplate(const int &num_inputs, const int &num_outputs) //TODO: this feature isn't really useful
+classificationTemplate<T>::classificationTemplate(const int num_inputs, const int num_outputs) //TODO: this feature isn't really useful
 {
   modelSet<T>::numInputs = num_inputs;
   modelSet<T>::numOutputs = num_outputs;

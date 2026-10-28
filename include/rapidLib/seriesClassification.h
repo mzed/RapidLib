@@ -50,20 +50,20 @@ public:
    * @param String label to compare with
    * @return The lowest cost match, float or double
    */
-  RAPIDLIB_EXPORT T run(const std::vector<std::vector<T> >& inputSeries, std::string label);
+  RAPIDLIB_EXPORT T run(const std::vector<std::vector<T> >& inputSeries, const std::string& label);
 
   /** Compare an input series to the stored training series. Parallel processing
    * @param std::vector<std::vector> vector of vectors, either float or double input data
    * @return The label of the closest training series.
    */
-  RAPIDLIB_EXPORT std::string runParallel(const std::vector<std::vector<T> >& inputSeries);
+  RAPIDLIB_EXPORT std::string runParallel(const std::vector<std::vector<T>>& inputSeries);
   
   /** Compare an input series to all of the stored series with a specified label. Parallel processing
    * @param std::vector<std::vector> either float or double input data
    * @param String label to compare with
    * @return The lowest cost match, float or double
    */
-  RAPIDLIB_EXPORT T runParallel(const std::vector<std::vector<T> > &inputSeries, std::string label);
+  RAPIDLIB_EXPORT T runParallel(const std::vector<std::vector<T>>& inputSeries, const std::string& label);
 
   /** Compare an input series to all of the stored series with a specified label
    * @param std::vector<T> one frame either float or double input data
@@ -85,7 +85,7 @@ public:
    * @param string The label to check
    * @return The minimum length training series of that label
    */
-  RAPIDLIB_EXPORT std::size_t getMinLength(std::string label) const;
+  RAPIDLIB_EXPORT std::size_t getMinLength(const std::string& label) const;
 
   /** Get maximum training series length
    * @return The maximum length training series
@@ -96,7 +96,7 @@ public:
    * @param string The label to check
    * @return The maximum length training series of that label
    */
-  RAPIDLIB_EXPORT std::size_t getMaxLength(std::string label) const;
+  RAPIDLIB_EXPORT std::size_t getMaxLength(const std::string& label) const;
 
   /** Return struct for calculate costs */
   template<typename TT>
@@ -109,18 +109,18 @@ public:
    * @param string Label to calculate
    * @return minMax struct containing min and max
    */
-  RAPIDLIB_EXPORT minMax<T> calculateCosts(std::string label) const;
+  RAPIDLIB_EXPORT minMax<T> calculateCosts(const std::string& label) const;
 
   /** Calculate minimum and maximum cost between examples in one label and examples in a second.
    * @param string first label to compare
    * @param string second label to compare
    * @return minMax struct containing min and max
    */
-  RAPIDLIB_EXPORT minMax<T> calculateCosts(std::string label1, std::string label2) const;
+  RAPIDLIB_EXPORT minMax<T> calculateCosts(const std::string& label1, const std::string& label2) const;
 
 private:
-  std::vector<trainingSeriesTemplate<T> > allTrainingSeries {};
-  size_t vectorLength {};
+  std::vector<trainingSeriesTemplate<T> > allTrainingSeries{};
+  size_t vectorLength{};
   std::vector<T> allCosts {};
   size_t maxLength {};
   size_t minLength {};

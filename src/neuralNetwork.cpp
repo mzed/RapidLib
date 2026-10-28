@@ -333,7 +333,7 @@ T neuralNetwork<T>::getOutBase() const
 
 #ifndef EMSCRIPTEN
 template<typename T>
-void neuralNetwork<T>::getJSONDescription(Json::Value& jsonModelDescription)
+void neuralNetwork<T>::getJSONDescription(Json::Value& jsonModelDescription) const
 {
   jsonModelDescription["modelType"] = "Neural Network";
   jsonModelDescription["numInputs"] = (int)numInputs;  //FIXME: Update json::cpp?

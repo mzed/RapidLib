@@ -50,12 +50,12 @@ class baseModel
   virtual std::vector<size_t> getWhichInputs() const = 0;
 
 #ifndef EMSCRIPTEN
-  virtual void getJSONDescription(Json::Value& currentModel) = 0;
+  virtual void getJSONDescription(Json::Value& currentModel) const = 0;
 
   protected:
 
   template<typename TT, class Dummy=int>
-  Json::Value vector2json(TT vec)
+  Json::Value vector2json(TT vec) const
   {
     Json::Value toReturn;
     for (auto value : vec)
@@ -68,7 +68,7 @@ class baseModel
 
   //FIXME: This is a temporary hack because Json::Value doesn't know what to do with unsinged longs, and XCode cares
   template<class Dummy=int>
-  Json::Value vector2json(std::vector<unsigned long> vec)
+  Json::Value vector2json(std::vector<unsigned long> vec) const
   {
     Json::Value toReturn;
     for (auto value : vec)
