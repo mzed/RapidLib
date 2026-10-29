@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['searchwindow_137',['searchWindow',['../classsearch_window.html#abe71a6ed802a6162648cd9f390d6a0c1',1,'searchWindow']]],
+  ['searchwindow_137',['searchWindow',['../classsearch_window.html#ae0ebcd89c966563b22275276eef2fb3f',1,'searchWindow']]],
   ['setepochs_138',['setEpochs',['../classneural_network.html#aaff9d9535beb9cbd2b70233b03149c8e',1,'neuralNetwork']]],
   ['setk_139',['setK',['../classknn_classification.html#a8c3d569112e964813ca0fb3e1d6597b5',1,'knnClassification']]],
   ['setnumhiddenlayers_140',['setNumHiddenLayers',['../classneural_network.html#a873489b1600cbcb0b7e514125e03c87a',1,'neuralNetwork']]],

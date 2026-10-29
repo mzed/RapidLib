@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['constraineddtw_112',['constrainedDTW',['../classdtw.html#a5de4dcfa706c0b3df46c52f29334fe4a',1,'dtw']]]
+  ['constraineddtw_112',['constrainedDTW',['../classdtw.html#a7cfb2c4a01390213aa02d2e599d8e33f',1,'dtw']]]
 ];

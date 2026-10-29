@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['searchwindow_57',['searchWindow',['../classsearch_window.html',1,'searchWindow&lt; T &gt;'],['../classsearch_window.html#abe71a6ed802a6162648cd9f390d6a0c1',1,'searchWindow::searchWindow()']]],
+  ['searchwindow_57',['searchWindow',['../classsearch_window.html',1,'searchWindow'],['../classsearch_window.html#ae0ebcd89c966563b22275276eef2fb3f',1,'searchWindow::searchWindow()']]],
   ['searchwindow_2ecpp_58',['searchWindow.cpp',['../search_window_8cpp.html',1,'']]],
   ['searchwindow_2eh_59',['searchWindow.h',['../search_window_8h.html',1,'']]],
   ['seriesclassification_2ecpp_60',['seriesClassification.cpp',['../series_classification_8cpp.html',1,'']]],

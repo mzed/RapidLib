@@ -1,5 +1,5 @@
 var classsearch_window =
 [
-    [ "searchWindow", "classsearch_window.html#abe71a6ed802a6162648cd9f390d6a0c1", null ],
-    [ "minMaxValues", "classsearch_window.html#a8f21d215c26e2e6ecec225f3e28b68c6", null ]
+    [ "searchWindow", "classsearch_window.html#ae0ebcd89c966563b22275276eef2fb3f", null ],
+    [ "minMaxValues", "classsearch_window.html#ac41679af7b310e34ac3fe933626074e6", null ]
 ];
