@@ -131,7 +131,7 @@ warpInfo<T> dtw<T>::dynamicTimeWarp(const std::vector<std::vector<T>>& seriesX, 
 
 /* calculates warp info based on window */
 template<typename T>
-warpInfo<T> dtw<T>::constrainedDTW(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY, searchWindow<T> window)
+warpInfo<T> dtw<T>::constrainedDTW(const std::vector<std::vector<T> > &seriesX, const std::vector<std::vector<T> > &seriesY, searchWindow window)
 {
   //initialize cost matrix
   costMatrix.clear();

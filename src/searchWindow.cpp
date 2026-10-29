@@ -7,11 +7,11 @@
  */
 
 #include "searchWindow.h"
+
 #include <limits>
 #include <algorithm>
 
-template<typename T>
-searchWindow<T>::searchWindow(const std::size_t seriesXSize, const std::size_t seriesYSize, const warpPath& shrunkenWarpPath, const int searchRadius) :
+searchWindow::searchWindow(const std::size_t seriesXSize, const std::size_t seriesYSize, const warpPath& shrunkenWarpPath, const int searchRadius) :
 minMaxValues(seriesXSize, std::make_pair(-1, 0)),
 maxY(static_cast<int>(seriesYSize - 1))
 {
@@ -51,8 +51,7 @@ maxY(static_cast<int>(seriesYSize - 1))
   }
 }
 
-template<typename T>
-inline void searchWindow<T>::markVisited(int col,int row)
+inline void searchWindow::markVisited(int col,int row)
 {
   if (row <= maxY && col < static_cast<int>(minMaxValues.size()))  //Don't mark beyond the edge of the window
   {
@@ -72,8 +71,7 @@ inline void searchWindow<T>::markVisited(int col,int row)
   }
 }
 
-template<typename T>
-void searchWindow<T>::expandWindow(int radius)
+void searchWindow::expandWindow(int radius)
 {
   if (radius <= 0) return;
 
@@ -219,7 +217,3 @@ void searchWindow<T>::expandWindow(int radius)
     }
   }
 }
-
-//explicit instantiation
-template class searchWindow<double>;
-template class searchWindow<float>;
