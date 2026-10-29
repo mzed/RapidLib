@@ -19,7 +19,7 @@ maxY(static_cast<int>(seriesYSize - 1))
   std::pair<int, int> currentIndex { shrunkenWarpPath.indices[0] };
 
   //Last evaluated part of low resolution path
-  std::pair<int, int> lastWarped { std::make_pair(std::numeric_limits<int>::max(), std::numeric_limits<int>::max()) };
+  std::pair<size_t, size_t> lastWarped { std::make_pair(std::numeric_limits<size_t>::max(), std::numeric_limits<size_t>::max()) };
 
   const int blockSize { 2 }; //TODO: something other than 2? Different for x and y?
 
@@ -52,9 +52,9 @@ maxY(static_cast<int>(seriesYSize - 1))
 }
 
 template<typename T>
-inline void searchWindow<T>::markVisited(std::size_t col, std::size_t row)
+inline void searchWindow<T>::markVisited(int col,int row)
 {
-  if (row <= maxY && col < minMaxValues.size())  //Don't mark beyond the edge of the window
+  if (row <= maxY && col < static_cast<int>(minMaxValues.size()))  //Don't mark beyond the edge of the window
   {
     if (minMaxValues[col].first == -1)
     {
@@ -80,9 +80,9 @@ void searchWindow<T>::expandWindow(int radius)
   //Add all cells in the current window to a vector.
   std::vector<std::pair<int, int>> windowCells {};
 
-  for (int currentX {}; currentX < minMaxValues.size(); ++currentX)
+  for (int currentX {}; currentX < static_cast<int>(minMaxValues.size()); ++currentX)
   {
-    for (std::size_t currentY { minMaxValues[currentX].first}; currentY <= minMaxValues[currentX].second; ++currentY)
+    for (int currentY { minMaxValues[currentX].first}; currentY <= minMaxValues[currentX].second; ++currentY)
     {
       windowCells.push_back(std::make_pair(currentX, currentY));
     }

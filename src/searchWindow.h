@@ -23,10 +23,10 @@ public:
                const warpPath &shrunkenWarpPath,
                const int searchRadius);
 
-  std::vector<std::pair<std::size_t, std::size_t>> minMaxValues {};
+  std::vector<std::pair<int, int>> minMaxValues {};
 
 private:
-  inline void markVisited(std::size_t col, std::size_t row);
+  inline void markVisited(int col, int row);
   void expandWindow(int searchRadius);
 
   int maxY {};
